@@ -6,6 +6,17 @@
 
 using namespace std;
 
+
+//This class will be given a list of words (such as might be tokenized
+//from a paragraph of text), and will provide a method that takes two
+//words and returns the shortest distance (in words) between those two
+//words in the provided text. 
+//Example:
+//  WordDistanceFinder finder = new WordDistanceFinder(Arrays.asList("the", "quick", "brown", "fox", "quick"));
+//  assert(finder.distance("fox","the") == 3);
+//  assert(finder.distance("quick", "fox") == 1);
+
+
 //d(a,d)
 //"a b d"
 //
@@ -24,7 +35,8 @@ int getMinDistance(vector<string> tokens,string s,string s1) {
         s1Dist = i;
       }
       if (sDist != INT_MIN && s1Dist != INT_MIN ) {
-          minDist = min( (max(sDist,s1Dist) - min(sDist,s1Dist)), minDist);
+          //minDist = min( (max(sDist,s1Dist) - min(sDist,s1Dist)), minDist);
+          minDist = min( abs(sDist - s1Dist), minDist);
       }
     }
  
@@ -40,7 +52,7 @@ int main() {
     //string s1 = "brown"; 
 
     string s = "quick";
-    string s1 = "over"; 
+    string s1 = "fox"; 
     int minDist = getMinDistance(sVec,s,s1);
     cout << "Min distance between the 2 strings = " << minDist << endl;
 }
