@@ -1,5 +1,4 @@
-
-
+//Happy Number
 int isHappyNumberHelper(int number){
     if(number<3){
         return number;
