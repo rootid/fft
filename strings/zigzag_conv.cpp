@@ -13,12 +13,14 @@
 using namespace std;
 
 string convert(string s, int numRows) {
-  
+ 
+  if(numRows == 1)  {
+    return s;
+  }
   //3-rows,columns
-  vector<vector<char> > t(3,vector<char>());
+  vector<vector<char> > t(numRows,vector<char>());
   string result;
   int len = s.size(); 
-
   int rowNum = 0;
   int offset= 1;
   for(int i=0;i<len;i++) {
