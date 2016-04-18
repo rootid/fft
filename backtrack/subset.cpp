@@ -3,17 +3,9 @@
 #include<vector>
 using namespace std;
 
-
-//(a,b,c) = 3^2,4^2
-//a
-//b
-//c
-//a b
+//(a,b,c) = 2^n
 //
-
-
 void generateSubset(string &s,vector<string>& result,vector<int>& inter,int k) {
-
   int len = s.size();
   if (k == len) {
     string tmp = "";
@@ -30,13 +22,13 @@ void generateSubset(string &s,vector<string>& result,vector<int>& inter,int k) {
   generateSubset(s,result,inter,k+1);
   inter[k] = 0;
   generateSubset(s,result,inter,k+1);
-
 }
 
 int main () {
 
   //string s = "abcd";
-  string s = "abc";
+  string s = "1234";
+  //string s = "abc";
   vector<string> result;
   int k = 0;
   int len = s.size();
