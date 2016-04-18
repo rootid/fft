@@ -18,10 +18,10 @@ int findPeakBinHelper(const vector<int>& nums,int left,int right) {
   } else {
     int mid = left + (right-left)/2;
     if (nums[mid] > nums[mid+1]) {
-      cout << " left = " <<  left <<  "| mid = " << mid << "| V = "  << nums[mid] << endl;
+      //cout << " left = " <<  left <<  "| mid = " << mid << "| V = "  << nums[mid] << endl;
       return findPeakBinHelper(nums,left,mid);
     } else {
-      cout << " rt = " <<  right <<  "| mid = " << mid << "| V = "  << nums[mid] << endl;
+      //cout << " rt = " <<  right <<  "| mid = " << mid << "| V = "  << nums[mid] << endl;
       return findPeakBinHelper(nums,mid+1,right);
     }
   }

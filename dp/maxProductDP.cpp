@@ -15,6 +15,7 @@ int maxProduct(vector<int>& nums) {
   int minP[len];
   maxP[0] = nums[0];
   minP[0] = nums[0];
+  maxProduct = nums[0];
   for(int i=1;i<len;i++) {
     //NOTE : it can be solved with 2 variables only 
     maxP[i] = max( max (minP[i-1] * nums[i], maxP[i-1]*nums[i]) , nums[i]);;

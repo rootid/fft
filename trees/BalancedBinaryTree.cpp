@@ -12,7 +12,8 @@ struct TreeNode {
     TreeNode *right;
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
-
+//
+//[1,2,2,3,3,null,null,4,4] :   expected false
 void getBothHeightByRef(TreeNode *root,int& ltHt,int& rtHt) {
   
   if(!root) {

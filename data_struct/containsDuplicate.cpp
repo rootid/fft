@@ -10,7 +10,7 @@ using namespace std;
 bool containsDuplicate(vector<int>& nums) {
 
   if( nums.size() <= 1) {
-    return true;
+    return false;
   }
   sort(nums.begin(),nums.end()) ;
   int len = nums.size();
