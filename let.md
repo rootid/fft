@@ -15,6 +15,10 @@
 
 #### Travsersal
 * ZigZag Conversion (SO)
+* Remove Duplicates from Sorted Array (SO)
+* Move Zeroes
+* Remove Element
+
 
 #### DP
 * Pow(x, n) (SO)
