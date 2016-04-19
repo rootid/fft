@@ -20,6 +20,7 @@
 * Remove Element
 
 
+
 #### DP
 * Pow(x, n) (SO)
 * Maximum Product Subarray (SO)
@@ -42,4 +43,5 @@
 #### Numbers
 * Happy Number (SO)
 * Excel Sheet Column Title (O)
+* Bulls and COWS (SO)
 
