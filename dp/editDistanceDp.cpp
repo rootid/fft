@@ -10,6 +10,7 @@
 #define MAX 3
 using namespace std;
 
+
 //Recursive implementation
 int minDistance(string word1, string word2) {
 
@@ -20,15 +21,23 @@ int minDistance(string word1, string word2) {
     return m + n;
   }
   int opt[m+1][n+1];
+  
+  //initialization languge agnostic
+  for(int i=0;i<=m;i++) {
+    for(int j=0;j<=n;j++) {
+      opt[i][j] = 0;
+    }
+  }
 
-  for(int j=0;j<=m;j++) {
+  for(int j=0;j<=n;j++) {
     opt[0][j] = j;
   }
-  
+
+  //Traverse in ROW-MAJOR order
   for(int i=1;i<=m;i++) {
     opt[i][0] = i;  //for each row traverse colmn
     for (int j=1;j<=n;j++) {
-      int min_ = min(opt[i-1][j],opt[i][j-1]); 
+      int min_ = min(opt[i-1][j]+1,opt[i][j-1]+1); 
       if(word1[i] == word2[j]) {
         opt[i][j] = min(min_ ,opt[i-1][j-1]);
       } else {
@@ -37,7 +46,7 @@ int minDistance(string word1, string word2) {
     }
   }
 
-  return opt[m-1][n-1];
+  return opt[m][n];
 }
 
 

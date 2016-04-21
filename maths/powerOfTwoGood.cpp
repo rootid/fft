@@ -15,6 +15,18 @@ bool isPowerOfTwo() {
 }
 
 
+bool isPowerOfFour() {
+        if ( n == 1 || n == 4) {
+            return true;
+        } else if (n%4 != 0) {
+            return false;
+        } else if (n == 0) {
+            return false;
+        }
+        return isPowerOfFour(n/4);
+}
+
+
 int main() {
 
 }
