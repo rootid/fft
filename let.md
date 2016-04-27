@@ -19,8 +19,6 @@
 * Move Zeroes
 * Remove Element
 
-
-
 #### DP
 * Pow(x, n) (SO)
 * Maximum Product Subarray (SO)
@@ -36,6 +34,7 @@
 
 #### Binary Search
 * Find Peak Element (SO)
+* sqrt		(SO)
 
 #### Data structure
 * Contains Duplicate (SO)
@@ -46,6 +45,20 @@
 * Bulls and COWS (SO)
 
 #### Linked List
-* Rotate Linked List 
-* Rotate Array
+* Rotate Linked List (SO)
+* Rotate Array (SO)
+* Reverse Linked List (SO)
+* Delete Node in a Linked List (SO)
+* Odd Even Linked List (O)
+
+### Pattern matching
+* Majority Element-I (SO)
+* Majority Element-II (SO)
+
+### SORTING
+* Wigglesort (L)
+
+### MATHS
+* Bulb Switcher (SO)
+
 
