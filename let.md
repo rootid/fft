@@ -27,6 +27,7 @@
 * Valid Anagram (SO)
 * Reverse Words in a String (O)
 * Valid Palindrome (SO)
+* Reverse Vowels of a String (SO)
 
 #### Backtracking
 * Generate Parentheses (Parentheses) (SO)
