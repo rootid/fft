@@ -55,6 +55,7 @@
 ### Pattern matching
 * Majority Element-I (SO)
 * Majority Element-II (SO)
+* Count Primes (SO)
 
 ### SORTING
 * Wigglesort (L)
