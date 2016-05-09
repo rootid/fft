@@ -16,8 +16,6 @@ struct TreeNode {
     TreeNode *right;
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
-
-
 //Try the left subtree first. If that made k zero, then its answer is the overall answer and we return it right away. Otherwise, decrease k for the current node, and if that made k zero, then we return the current node's value right away. Otherwise try the right subtree and return whatever comes back from there.
 int kthSmallestHelper(TreeNode* root, int k,int& l) {
   if(root) {
@@ -37,9 +35,10 @@ int kthSmallestHelper(TreeNode* root, int k,int& l) {
   }
   //cout <<  "L = " << l << " V = " << root->val << endl;
 }
-
 int find(TreeNode* root, int& k) {
-    if (root) {
+    if (!root) {
+        return -1;
+    }
         int x = find(root->left, k);
         //return !k ? x : !--k ? root->val : find(root->right, k);
         if (!k) {
@@ -48,18 +47,15 @@ int find(TreeNode* root, int& k) {
           if(!--k) { 
               return root->val;
           } else  {
-              find(root->right, k);
+             return find(root->right, k);
           }
         }
-    }
 }
-
 int kthSmallest(TreeNode* root, int k) {
   int l = 0;
   return kthSmallestHelper(root,k,l);
   //return find(root,k);
 }
-
 int main(int argc, char *argv[])
 {
   TreeNode* t = new TreeNode(20);
@@ -68,19 +64,14 @@ int main(int argc, char *argv[])
   t->left->right = new TreeNode(15);
   t->left->right->right = new TreeNode(17);
   t->right = new TreeNode(60);
-
   int sum = 4;
   int r = kthSmallest(t,sum);
   cout << "smallest ele " << r << endl;
   return 0;
 }
-
-
 //Contrainted inorder traversal with MAX k memory location instead of stack
-
 //Solution 2, C++ with circular vector
 //Using a vector of fixed size k and a stack pointer i into it which will be used modulo k.
-
 int kthSmallest(TreeNode* root, int k) {
     vector<TreeNode*> stac(k);
     int i = 0, j = k;
@@ -95,11 +86,8 @@ int kthSmallest(TreeNode* root, int k) {
         root = root->right;
     }
 }
-
-
 //Solution 3, C++ with deque
 //I really like the previous version, but the fixed size k isn't always necessary, so here's a version using a deque:
-
 int kthSmallest(TreeNode* root, int k) {
     deque<TreeNode*> stac;
     while (true) {
@@ -115,7 +103,5 @@ int kthSmallest(TreeNode* root, int k) {
             return root->val;
         root = root->right;
     }
-
-
 //ANS : with morris traversal
 //https://leetcode.com/discuss/43299/o-k-space-o-n-time-10-short-lines-3-solutions?show=43556#a43556
