@@ -6,9 +6,7 @@
 #include<vector>
 #include<unordered_map>
 using namespace std;
-
 vector<int> twoSum(vector<int>& nums,int target) {
-
   //lazy loading
   unordered_map<int,int> idxMap;
  
@@ -25,6 +23,24 @@ vector<int> twoSum(vector<int>& nums,int target) {
   }
   return vector<int> {};
 }
+
+vector<int> twoSum(vector<int>& nums, int target) {
+     vector<int> result;
+     unordered_map<int,int> idxMap;
+     int idx = 0;
+     for(auto &i:nums) {
+         int r = target - i;
+         if(idxMap.find(r) != idxMap.end()) {
+             result.push_back(idxMap[r]);
+             result.push_back(idx);
+             return result;
+         }
+        
+         idxMap[i] = idx;
+          idx += 1;
+     }
+      return result;
+}
   
 int main() {
   //int a[] = {2,7,11,15};
@@ -33,10 +49,8 @@ int main() {
   vector<int> av(a,a+sizeof(a)/sizeof(a[0]));
   //vector<int> result = twoSum(av,9);
   vector<int> result = twoSum(av,8);
-
   for(int i=0;i<result.size();i++) {
     cout << result[i] << " \t ";
   }
   cout << endl;
-
 }
