@@ -1,12 +1,12 @@
-#ifndef NODE_H
-#define NODE_H
+#ifndef NODint_H
+#define NODint_H
 
 #include<iostream>
 
-template<typename E>
+template<class E>
 class Node {
 private:
-  E data;
+  int data;
   Node *next;
   friend class NodeList;
 public:
@@ -16,5 +16,5 @@ public:
   ~Node() {}
 };
 
-#endif /* NODE_H */
+#endif /* NODint_H */
 

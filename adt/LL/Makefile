@@ -6,10 +6,10 @@ CFLAGS = -Wall -pedantic $(DEBUG)
 myList : $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o myList 
 
-main.o: NodeList.h main.cpp
+main.o: main.cpp NodeList.h NodeList.cpp 
 	$(CC) -c $(CFLAGS) main.cpp
 
-NodeList.o: Node.h NodeList.h NodeList.cpp
+NodeList.o: Node.h NodeList.h 
 	$(CC) -c $(CFLAGS) NodeList.cpp
 
 clean:

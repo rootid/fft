@@ -4,13 +4,15 @@
 #include <string>   
 #include <cstdlib> // for exit()
 
+#include "Node.h"
 #include "NodeList.h"
 
 using namespace std;
 
 int main() {
-  string st = "Hi";
-  //NodeList<string> nodeList(st);
-  NodeList<string> nodeList;
+  int st = 2;
+  NodeList<int> nodeList(st);
+  //NodeList<int> nodeList;
+  //NodeList nodeList;
   nodeList.addFront(st);
 }

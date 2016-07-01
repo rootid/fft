@@ -1,34 +1,34 @@
 #include "NodeList.h"
 #include "Node.h"
 
-template <typename E>
-NodeList<E>::NodeList() : head(NULL)  {}
+//template <typename int>
+NodeList::NodeList() : head(NULL)  {}
 
-template <typename E>
-NodeList<E>::~NodeList() {}
+//template <typename int>
+NodeList::~NodeList() {}
 
-template <typename E>
-NodeList<E>::NodeList(E &e) { 
-  head = new Node<E>(e);
+//template <typename int>
+NodeList::NodeList(int &e) { 
+  head = new Node(e);
 }
 
-template <typename E>
-bool NodeList<E>:: empty() const {
+//template <typename int>
+bool NodeList:: empty() const {
   return head == NULL;
 }
 
-template <typename E>
-void NodeList<E>:: addFront(E &e) {
-  Node<E>* newHead = new Node<E>(e);
+//template <typename int>
+void NodeList:: addFront(int &e) {
+  Node* newHead = new Node(e);
   newHead->next = head;
   head = newHead;
 }
 
-template <typename E>
-E& NodeList<E>:: removeFront() {
-  E e = NULL;
+//template <typename int>
+int& NodeList:: removeFront() {
+  int e = NULL;
   if(!empty()) {
-    Node<E> *tmp = head;
+    Node *tmp = head;
     head = head->next;
     e = tmp->data;
     delete tmp;
@@ -36,8 +36,8 @@ E& NodeList<E>:: removeFront() {
   return e;
 }
 
-template <typename E>
-const E& NodeList<E>:: getFront() const {
+//template <typename int>
+const int& NodeList:: getFront() const {
   if(!empty())  {
     return head->data;
   }

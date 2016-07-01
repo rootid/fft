@@ -1,22 +1,23 @@
-#ifndef NODELIST_H
-#define NODELIST_H
+#ifndef NODintLIST_H
+#define NODintLIST_H
 
 #include <iostream>
 #include "Node.h"
 
-template <typename E>
+//template <typename int>
 class NodeList
 {
 private:
-  Node<E> *head;
+  //Node<int> *head;
+  Node *head;
 public:
   NodeList();
-  NodeList(E &e);
+  NodeList(int &e);
   ~NodeList();
   bool empty() const;
-  void addFront(E &e);
-  E& removeFront();
-  const E& getFront() const;
+  void addFront(int &e);
+  int& removeFront();
+  const int& getFront() const;
 };
 
-#endif /* NODELIST_H */
+#endif /* NODintLIST_H */
