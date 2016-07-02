@@ -1,16 +1,27 @@
-OBJS = main.o Stack.o
-CC = g++
-DEBUG = -g
-CFLAGS = -Wall -pedantic $(DEBUG)
+program_NAME := myStack
+program_C_SRCS := $(wildcard *.c)
+program_CXX_SRCS := $(wildcard *.cpp)
+program_C_OBJS := ${program_C_SRCS:.c=.o}
+program_CXX_OBJS := ${program_CXX_SRCS:.cpp=.o}
+program_OBJS := $(program_C_OBJS) $(program_CXX_OBJS)
+program_INCLUDE_DIRS :=
+program_LIBRARY_DIRS :=
+program_LIBRARIES :=
 
-myStack : $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o myStack 
+CPPFLAGS += $(foreach includedir,$(program_INCLUDE_DIRS),-I$(includedir))
+LDFLAGS += $(foreach librarydir,$(program_LIBRARY_DIRS),-L$(librarydir))
+LDFLAGS += $(foreach library,$(program_LIBRARIES),-l$(library))
 
-Stack.o: Stack.h Stack.cpp
-	$(CC) -c $(CFLAGS) Stack.cpp
+.PHONY: all clean distclean
 
-main.o: main.cpp Stack.h 
-	$(CC) -c $(CFLAGS) main.cpp
+all: $(program_NAME)
+
+$(program_NAME): $(program_OBJS)
+	$(LINK.cc) $(program_OBJS) -o $(program_NAME)
 
 clean:
-	rm -f *.o a.out myStack 
+	@- $(RM) $(program_NAME)
+	@- $(RM) $(program_OBJS)
+
+distclean: clean
+

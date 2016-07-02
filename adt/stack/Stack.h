@@ -19,7 +19,7 @@ private:                                  // member data
   int t;                                  // index of the top of the stack
 };
 
-#define MYCLASS_FUNCTIONS
+#define MY_STACK
 #include "Stack.cpp"
 
 #endif /* STACK_H */

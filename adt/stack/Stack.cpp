@@ -1,4 +1,4 @@
-#ifndef MYCLASS_FUNCTIONS
+#ifndef MY_STACK
 #include "Stack.h"
 
 #else
