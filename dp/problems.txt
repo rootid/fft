@@ -78,7 +78,7 @@ nums: [1,2,4,8]
 Result: [1,2,4,8]
    
 ### Max Sum of Rectangle No Larger Than K
-## Given a non-empty 2D matrix matrix and an integer k, find the max sum of a rectangle in the matrix such that its sum is no larger than k.
+## (QUEUE : hint) Given a non-empty 2D matrix matrix and an integer k, find the max sum of a rectangle in the matrix such that its sum is no larger than k.
 Example:
 Given matrix = [
   [1,  0, 1],
@@ -393,7 +393,7 @@ For example, given the following matrix:
 1 0 1 1 1
 1 1 1 1 1
 1 0 0 1 0
-Return 6.
+Return 6. (STACK)
    
 ## Edit Distance
 ### Given two words word1 and word2, find the minimum number of steps required to convert word1 to word2. (each operation is counted as 1 step.)

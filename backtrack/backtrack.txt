@@ -1,4 +1,272 @@
-
-
+## Count Numbers with Unique Digits
+### Given a non-negative integer n, count all numbers with unique digits, x, where 0 ≤ x < 10n.
+Example:
+Given n = 2, return 91. (The answer should be the total numbers in the range of 0 ≤ x < 100, excluding [11,22,33,44,55,66,77,88,99])
+Hint:
+A direct way is to use the backtracking approach.
+Backtracking should contains three states which are (the current number, number of steps to get that number and a bitmask which represent which number is marked as visited so far in the current number). Start with state (0,0,0) and count all valid number till we reach number of steps equals to 10n.
+This problem can also be solved using a dynamic programming approach and some knowledge of combinatorics.
+Let f(k) = count of numbers with unique digits with length equals k.
+f(1) = 10, ..., f(k) = 9 * 9 * 8 * ... (9 - k + 2) [The first factor is 9 because a number cannot start with 0].
+	
+## Combination Sum
+### Given a set of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.
+The same repeated number may be chosen from C unlimited number of times.
+Note:
+All numbers (including target) will be positive integers.
+The solution set must not contain duplicate combinations.
+For example, given candidate set [2, 3, 6, 7] and target 7, 
+A solution set is: 
+[
+  [7],
+  [2, 2, 3]
+]
+	
+## Combination Sum II
+### Given a collection of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.
+Each number in C may only be used once in the combination.
+Note:
+All numbers (including target) will be positive integers.
+The solution set must not contain duplicate combinations.
+For example, given candidate set [10, 1, 2, 7, 6, 1, 5] and target 8, 
+A solution set is: 
+[
+  [1, 7],
+  [1, 2, 5],
+  [2, 6],
+  [1, 1, 6]
+]
+	
+## Combination Sum III
+### Find all possible combinations of k numbers that add up to a number n, given that only numbers from 1 to 9 can be used and each combination should be a unique set of numbers.
+Example 1:
+Input: k = 3, n = 7
+Output:
+[[1,2,4]]
+Example 2:
+Input: k = 3, n = 9
+Output:
+[[1,2,6], [1,3,5], [2,3,4]]
+	
+## Word Search
+### Given a 2D board and a word, find if the word exists in the grid.
+The word can be constructed from letters of sequentially adjacent cell, where "adjacent" cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once.
+For example,
+Given board =
+[
+  ['A','B','C','E'],
+  ['S','F','C','S'],
+  ['A','D','E','E']
+]
+word = "ABCCED", -> returns true,
+word = "SEE", -> returns true,
+word = "ABCB", -> returns false.
+	
+## Word Search II
+Given a 2D board and a list of words from the dictionary, find all words in the board.
+Each word must be constructed from letters of sequentially adjacent cell, where "adjacent" cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once in a word.
+For example,
+Given words = ["oath","pea","eat","rain"] and board =
+[
+  ['o','a','a','n'],
+  ['e','t','a','e'],
+  ['i','h','k','r'],
+  ['i','f','l','v']
+]
+Return ["eat","oath"].
+Note:
+You may assume that all inputs are consist of lowercase letters a-z.
+	
+## Add and Search Word - Data structure design
+###Design a data structure that supports the following two operations:
+void addWord(word)
+bool search(word)
+search(word) can search a literal word or a regular expression string containing only letters a-z or .. A . means it can represent any one letter.
+For example:
+addWord("bad")
+addWord("dad")
+addWord("mad")
+search("pad") -> false
+search("bad") -> true
+search(".ad") -> true
+search("b..") -> true
+Note:
+You may assume that all words are consist of lowercase letters a-z.
+	
+## Word Break II
+### Given a string s and a dictionary of words dict, add spaces in s to construct a sentence where each word is a valid dictionary word.
+Return all such possible sentences.
+For example, given
+s = "catsanddog",
+dict = ["cat", "cats", "and", "sand", "dog"].
+A solution is ["cats and dog", "cat sand dog"].
+	
+## Palindrome Partitioning
+### Given a string s, partition s such that every substring of the partition is a palindrome.  Return all possible palindrome partitioning of s.
+For example, given s = "aab",
+Return
+[
+  ["aa","b"],
+  ["a","a","b"]
+]
+## Word Ladder II
+### Given two words (beginWord and endWord), and a dictionary's word list, find all shortest transformation sequence(s) from beginWord to endWord, such that:
+Only one letter can be changed at a time
+Each intermediate word must exist in the word list
+For example,
+Given:
+beginWord = "hit"
+endWord = "cog"
+wordList = ["hot","dot","dog","lot","log"]
+Return
+  [
+    ["hit","hot","dot","dog","cog"],
+    ["hit","hot","lot","log","cog"]
+  ]
+Note:
+All words have the same length.
+All words contain only lowercase alphabetic characters.
+	
+## Restore IP Addresses
+### Given a string containing only digits, restore it by returning all possible valid IP address combinations.
+For example:
+Given "25525511135",
+return ["255.255.11.135", "255.255.111.35"]. (Order does not matter)
+	
+## Subsets 
+### Given a set of distinct integers, nums, return all possible subsets.
+Note: The solution set must not contain duplicate subsets.
+For example,
+If nums = [1,2,3], a solution is:
+[
+  [3],
+  [1],
+  [2],
+  [1,2,3],
+  [1,3],
+  [2,3],
+  [1,2],
+  []
+]
+	
+## Subsets II
+### Given a collection of integers that might contain duplicates, nums, return all possible subsets.
+Note: The solution set must not contain duplicate subsets.
+For example,
+If nums = [1,2,2], a solution is:
+[
+  [2],
+  [1],
+  [1,2,2],
+  [2,2],
+  [1,2],
+  []
+]
+	
+## Gray Code
+### The gray code is a binary numeral system where two successive values differ in only one bit.
+Given a non-negative integer n representing the total number of bits in the code, print the sequence of gray code. A gray code sequence must begin with 0.
+For example, given n = 2, return [0,1,3,2]. Its gray code sequence is:
+00 - 0
+01 - 1
+11 - 3
+10 - 2
+Note:
+For a given n, a gray code sequence is not uniquely defined.
+For example, [0,2,3,1] is also a valid gray code sequence according to the above definition.
+For now, the judge is able to judge based on one instance of gray code sequence. Sorry about that.
+	
+## Combinations
+### Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.
+For example,
+If n = 4 and k = 2, a solution is:
+[
+  [2,4],
+  [3,4],
+  [2,3],
+  [1,2],
+  [1,3],
+  [1,4],
+]
+	
+## Permutation Sequence
+### The set [1,2,3,…,n] contains a total of n! unique permutations.
+By listing and labeling all of the permutations in order,
+We get the following sequence (ie, for n = 3):
+"123"
+"132"
+"213"
+"231"
+"312"
+"321"
+Given n and k, return the kth permutation sequence.
+Note: Given n will be between 1 and 9 inclusive.
+	
+## Permutations
+###Given a collection of distinct numbers, return all possible permutations.
+For example,
+[1,2,3] have the following permutations:
+[
+  [1,2,3],
+  [1,3,2],
+  [2,1,3],
+  [2,3,1],
+  [3,1,2],
+  [3,2,1]
+]
+	
+## Permutations II
+### Given a collection of numbers that might contain duplicates, return all possible unique permutations.
+For example,
+[1,1,2] have the following unique permutations:
+[
+  [1,1,2],
+  [1,2,1],
+  [2,1,1]
+]
+	
+## N-Queens
+### The n-queens puzzle is the problem of placing n queens on an n×n chessboard such that no two queens attack each other.
+Given an integer n, return all distinct solutions to the n-queens puzzle.
+Each solution contains a distinct board configuration of the n-queens' placement, where 'Q' and '.' both indicate a queen and an empty space respectively.
+For example,
+There exist two distinct solutions to the 4-queens puzzle:
+[
+ [".Q..",  // Solution 1
+  "...Q",
+  "Q...",
+  "..Q."],
+ ["..Q.",  // Solution 2
+  "Q...",
+  "...Q",
+  ".Q.."]
+]
+	
+## N-Queens II
+### Follow up for N-Queens problem.
+Now, instead outputting board configurations, return the total number of distinct solutions.
+	
+## Sudoku Solver
+### Write a program to solve a Sudoku puzzle by filling the empty cells.
+Empty cells are indicated by the character '.'.
+You may assume that there will be only one unique solution.
+	
+## Generate Parentheses
+### Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+For example, given n = 3, a solution set is:
+[
+  "((()))",
+  "(()())",
+  "(())()",
+  "()(())",
+  "()()()"
+]
+	
+## Letter Combinations of a Phone Number
+### Given a digit string, return all possible letter combinations that the number could represent.
+A mapping of digit to letters (just like on the telephone buttons) is given below.
+Input:Digit string "23"
+Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
+	
 #### NXN Queen
 * How to store solution vector (can we store it in 1D array with column as indexes of vector and rows will be actual index)
