@@ -1,0 +1,142 @@
+## Odd Even Linked List
+### Given a singly linked list, group all odd nodes together followed by the even nodes. Please note here we are talking about the node number and not the value in the nodes.
+You should try to do it in place. The program should run in O(1) space complexity and O(nodes) time complexity.
+Example:
+Given 1->2->3->4->5->NULL,
+return 1->3->5->2->4->NULL.
+Note:
+The relative order inside both the even and odd groups should remain as it was in the input. 
+The first node is considered odd, the second node even and so on ...
+	
+## Delete Node in a Linked List
+### Write a function to delete a node (except the tail) in a singly linked list, given only access to that node.
+Supposed the linked list is 1 -> 2 -> 3 -> 4 and you are given the third node with value 3, the linked list should become 1 -> 2 -> 4 after calling your function.
+	
+## Palindrome Linked List
+### Given a singly linked list, determine if it is a palindrome.
+Follow up:
+Could you do it in O(n) time and O(1) space?
+	
+## Reverse Linked List
+### Reverse a singly linked list.
+click to show more hints.
+Hint:
+A linked list can be reversed either iteratively or recursively. Could you implement both?
+	
+## Remove Linked List Elements
+### Remove all elements from a linked list of integers that have value val.
+Example
+Given: 1 --> 2 --> 6 --> 3 --> 4 --> 5 --> 6, val = 6
+Return: 1 --> 2 --> 3 --> 4 --> 5
+	
+## Intersection of Two Linked Lists
+### Write a program to find the node at which the intersection of two singly linked lists begins.
+For example, the following two linked lists:
+A:          a1 → a2
+                   ↘
+                     c1 → c2 → c3
+                   ↗            
+B:     b1 → b2 → b3
+begin to intersect at node c1.
+Notes:
+If the two linked lists have no intersection at all, return null.
+The linked lists must retain their original structure after the function returns.
+You may assume there are no cycles anywhere in the entire linked structure.
+Your code should preferably run in O(n) time and use only O(1) memory.
+	
+## Sort List
+### Sort a linked list in O(n log n) time using constant space complexity.
+	
+## Insertion Sort List
+### Sort a linked list using insertion sort.
+	
+## Reorder List
+### Given a singly linked list L: L0→L1→…→Ln-1→Ln,
+reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…
+You must do this in-place without altering the nodes' values.
+For example,
+Given {1,2,3,4}, reorder it to {1,4,2,3}.
+	
+## Linked List Cycle
+### Given a linked list, determine if it has a cycle in it.
+Follow up:
+Can you solve it without using extra space?
+	
+## Linked List Cycle II
+### Given a linked list, return the node where the cycle begins. If there is no cycle, return null.
+Note: Do not modify the linked list.
+Follow up:
+Can you solve it without using extra space?
+	
+## Copy List with Random Pointer
+### A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.
+Return a deep copy of the list.
+	
+## Convert Sorted List to Binary Search Tree
+### Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.
+	
+## Reverse Linked List II
+### Reverse a linked list from position m to n. Do it in-place and in one-pass.
+For example:
+Given 1->2->3->4->5->NULL, m = 2 and n = 4,
+return 1->4->3->2->5->NULL.
+Note:
+Given m, n satisfy the following condition:
+1 ≤ m ≤ n ≤ length of list.
+	
+## Partition List
+### Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
+You should preserve the original relative order of the nodes in each of the two partitions.
+For example,
+Given 1->4->3->2->5->2 and x = 3,
+return 1->2->2->4->3->5.
+	
+## Remove Duplicates from Sorted List
+### Given a sorted linked list, delete all duplicates such that each element appear only once.
+For example,
+Given 1->1->2, return 1->2.
+Given 1->1->2->3->3, return 1->2->3.
+	
+## Remove Duplicates from Sorted List II
+### Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.
+For example,
+Given 1->2->3->3->4->4->5, return 1->2->5.
+Given 1->1->1->2->3, return 2->3.
+	
+## Rotate List
+### Given a list, rotate the list to the right by k places, where k is non-negative.
+For example:
+Given 1->2->3->4->5->NULL and k = 2,
+return 4->5->1->2->3->NULL.
+	
+##  Reverse Nodes in k-Group
+### Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.
+If the number of nodes is not a multiple of k then left-out nodes in the end should remain as it is.
+You may not alter the values in the nodes, only nodes itself may be changed.
+Only constant memory is allowed.
+For example,
+Given this linked list: 1->2->3->4->5
+For k = 2, you should return: 2->1->4->3->5
+For k = 3, you should return: 3->2->1->4->5
+	
+##  Swap Nodes in Pairs
+### Given a linked list, swap every two adjacent nodes and return its head.
+For example,
+Given 1->2->3->4, you should return the list as 2->1->4->3.
+Your algorithm should use only constant space. You may not modify the values in the list, only nodes itself can be changed.
+	
+##  Merge k Sorted Lists
+### Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.
+	
+##  Merge Two Sorted Lists
+### Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
+	
+## Remove Nth Node From End of List
+### Given a linked list, remove the nth node from the end of list and return its head.
+For example,
+   Given linked list: 1->2->3->4->5, and n = 2.
+   After removing the second node from the end, the linked list becomes 1->2->3->5.
+Note:
+Given n will always be valid.
+Try to do this in one pass.
+

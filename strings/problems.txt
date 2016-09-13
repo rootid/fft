@@ -42,7 +42,7 @@ Given words = ["abcd", "dcba", "lls", "s", "sssll"]
 Return [[0, 1], [1, 0], [3, 2], [2, 4]]
 The palindromes are ["dcbaabcd", "abcddcba", "slls", "llssssll"]
 	
-## Integer to English Words
+## Integer to English Words (MATHS)
 ### Convert a non-negative integer to its english words representation. Given input is guaranteed to be less than 231 - 1.
 For example,
 123 -> "One Hundred Twenty Three"
@@ -168,7 +168,8 @@ For example,
 a = "11"
 b = "1"
 Return "100".
-## Valid Number
+	
+## Valid Number (MATHS)
 ### Validate if a given string is numeric.
 Some examples:
 "0" => true
@@ -199,7 +200,7 @@ Return:
 ]
 Note: All inputs will be in lower-case.
 	
-## Multiply Strings
+## Multiply Strings (MATHS)
 ### Given two numbers represented as strings, return multiplication of the numbers as a string.
 Note:
 The numbers can be arbitrarily large and are non-negative.

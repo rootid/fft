@@ -189,7 +189,7 @@ If n = 4 and k = 2, a solution is:
   [1,4],
 ]
 	
-## Permutation Sequence
+## Permutation Sequence (MATHS)
 ### The set [1,2,3,…,n] contains a total of n! unique permutations.
 By listing and labeling all of the permutations in order,
 We get the following sequence (ie, for n = 3):

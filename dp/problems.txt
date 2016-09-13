@@ -91,8 +91,8 @@ The rectangle inside the matrix must have an area > 0.
 What if the number of rows is much larger than the number of columns?
    
  
-### Count Numbers with Unique Digits
-## Given a non-negative integer n, count all numbers with unique digits, x, where 0 ≤ x < 10n.
+### Count Numbers with Unique Digits (MATHS/BACKTRACK)
+## Given a non-negative integer n, count all numbers with unique digits, x, where 0 ≤ x < 10n. 
 Example:
 Given n = 2, return 91. (The answer should be the total numbers in the range of 0 ≤ x < 100, excluding [11,22,33,44,55,66,77,88,99])
 Hint:
@@ -108,7 +108,7 @@ What is the maximum number of envelopes can you Russian doll? (put one inside ot
 Example:
 Given envelopes = [[5,4],[6,4],[6,7],[2,3]], the maximum number of envelopes you can Russian doll is 3 ([2,3] => [5,4] => [6,7]).
   
-### Integer Break
+### Integer Break (MATHS)
 ##Given a positive integer n, break it into the sum of at least two positive integers and maximize the product of those integers. Return the maximum product you can get.
 For example, given n = 2, return 1 (2 = 1 + 1); given n = 10, return 36 (10 = 3 + 3 + 4).
 Note: You may assume that n is not less than 2 and not larger than 58.
@@ -241,11 +241,13 @@ Given [10, 9, 2, 5, 3, 7, 101, 18],
 The longest increasing subsequence is [2, 3, 7, 101], therefore the length is 4. Note that there may be more than one LIS combination, it is only necessary for you to return the length.
 Your algorithm should run in O(n2) complexity.
 Follow up: Could you improve it to O(n log n) time complexity?
-### Perfect Squares
+	
+
+### Perfect Squares (MATHS)
 ## Given a positive integer n, find the least number of perfect square numbers (for example, 1, 4, 9, 16, ...) which sum to n.
 For example, given n = 12, return 3 because 12 = 4 + 4 + 4; given n = 13, return 2 because 13 = 4 + 9.
        
-### Ugly Number II
+### Ugly Number II (MATHS)
 ## Write a program to find the n-th ugly number.
 Ugly numbers are positive numbers whose prime factors only include 2, 3, 5. For example, 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 is the sequence of the first 10 ugly numbers.
 Note that 1 is typically treated as an ugly number.
