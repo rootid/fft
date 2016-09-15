@@ -1,0 +1,402 @@
+## Insert Delete GetRandom O(1) - Duplicates allowed
+### Design a data structure that supports all following operations in average O(1) time.
+Note: Duplicate elements are allowed.
+insert(val): Inserts an item val to the collection.
+remove(val): Removes an item val from the collection if present.
+getRandom: Returns a random element from current collection of elements. The probability of each element being returned is linearly related to the number of same value the collection contains.
+Example:
+// Init an empty collection.
+RandomizedCollection collection = new RandomizedCollection();
+// Inserts 1 to the collection. Returns true as the collection did not contain 1.
+collection.insert(1);
+// Inserts another 1 to the collection. Returns false as the collection contained 1. Collection now contains [1,1].
+collection.insert(1);
+// Inserts 2 to the collection, returns true. Collection now contains [1,1,2].
+collection.insert(2);
+// getRandom should return 1 with the probability 2/3, and returns 2 with the probability 1/3.
+collection.getRandom();
+// Removes 1 from the collection, returns true. Collection now contains [1,2].
+collection.remove(1);
+// getRandom should return 1 and 2 both equally likely.
+collection.getRandom();
+	
+##  Insert Delete GetRandom O(1)
+### Design a data structure that supports all following operations in average O(1) time.
+insert(val): Inserts an item val to the set if not already present.
+remove(val): Removes an item val from the set if present.
+getRandom: Returns a random element from current set of elements. Each element must have the same probability of being returned.
+Example:
+// Init an empty set.
+RandomizedSet randomSet = new RandomizedSet();
+// Inserts 1 to the set. Returns true as 1 was inserted successfully.
+randomSet.insert(1);
+// Returns false as 2 does not exist in the set.
+randomSet.remove(2);
+// Inserts 2 to the set, returns true. Set now contains [1,2].
+randomSet.insert(2);
+// getRandom should return either 1 or 2 randomly.
+randomSet.getRandom();
+// Removes 1 from the set, returns true. Set now contains [2].
+randomSet.remove(1);
+// 2 was already in the set, so return false.
+randomSet.insert(2);
+// Since 1 is the only number in the set, getRandom always return 1.
+randomSet.getRandom();
+	
+##  Game of Life
+### According to the Wikipedia's article: "The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970."
+Given a board with m by n cells, each cell has an initial state live (1) or dead (0). Each cell interacts with its eight neighbors (horizontal, vertical, diagonal) using the following four rules (taken from the above Wikipedia article):
+Any live cell with fewer than two live neighbors dies, as if caused by under-population.
+Any live cell with two or three live neighbors lives on to the next generation.
+Any live cell with more than three live neighbors dies, as if by over-population..
+Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
+Write a function to compute the next state (after one update) of the board given its current state.
+Follow up: 
+Could you solve it in-place? Remember that the board needs to be updated at the same time: You cannot update some cells first and then use their updated values to update other cells.
+In this question, we represent the board using a 2D array. In principle, the board is infinite, which would cause problems when the active area encroaches the border of the array. How would you address these problems?
+	
+## Find the Duplicate Number
+### Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist. Assume that there is only one duplicate number, find the duplicate one.
+Note:
+You must not modify the array (assume the array is read only).
+You must use only constant, O(1) extra space.
+Your runtime complexity should be less than O(n2).
+There is only one duplicate number in the array, but it could be repeated more than once.
+	
+## Move Zeroes
+### Given an array nums, write a function to move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+For example, given nums = [0, 1, 0, 3, 12], after calling your function, nums should be [1, 3, 12, 0, 0].
+Note:
+You must do this in-place without making a copy of the array.
+Minimize the total number of operations.
+	
+##  Product of Array Except Self
+### Given an array of n integers where n > 1, nums, return an array output such that output[i] is equal to the product of all the elements of nums except nums[i].
+Solve it without division and in O(n).
+For example, given [1,2,3,4], return [24,12,8,6].
+Follow up:
+Could you solve it with constant space complexity? (Note: The output array does not count as extra space for the purpose of space complexity analysis.)
+	
+## Majority Element II
+### Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times. The algorithm should run in linear time and in O(1) space.
+Hint:
+How many majority elements could it possibly have?
+Do you have a better hint? Suggest it!
+	
+## Summary Ranges
+### Given a sorted integer array without duplicates, return the summary of its ranges.
+For example, given [0,1,2,4,5,7], return ["0->2","4->5","7"].
+	
+## Rotate Function
+### Given an array of integers A and let n to be its length.
+Assume Bk to be an array obtained by rotating the array A k positions clock-wise, we define a "rotation function" F on A as follow:
+F(k) = 0 * Bk[0] + 1 * Bk[1] + ... + (n-1) * Bk[n-1].
+Calculate the maximum value of F(0), F(1), ..., F(n-1).
+Note:
+n is guaranteed to be less than 105.
+Example:
+A = [4, 3, 2, 6]
+F(0) = (0 * 4) + (1 * 3) + (2 * 2) + (3 * 6) = 0 + 3 + 4 + 18 = 25
+F(1) = (0 * 6) + (1 * 4) + (2 * 3) + (3 * 2) = 0 + 4 + 6 + 6 = 16
+F(2) = (0 * 2) + (1 * 6) + (2 * 4) + (3 * 3) = 0 + 6 + 8 + 9 = 23
+F(3) = (0 * 3) + (1 * 2) + (2 * 6) + (3 * 4) = 0 + 2 + 12 + 12 = 26
+So the maximum value of F(0), F(1), F(2), F(3) is F(3) = 26.
+	
+## Contains Duplicate I
+### Given an array of integers and an integer k, find out whether there are two distinct indices i and j in the array such that nums[i] = nums[j] and the difference between i and j is at most k.
+	
+## Contains Duplicate
+### Given an array of integers, find if the array contains any duplicates. Your function should return true if any value appears at least twice in the array, and it should return false if every element is distinct.
+	
+## Minimum Size Subarray Sum
+### Given an array of n positive integers and a positive integer s, find the minimal length of a subarray of which the sum ≥ s. If there isn't one, return 0 instead.
+For example, given the array [2,3,1,2,4,3] and s = 7,
+the subarray [4,3] has the minimal length under the problem constraint.
+click to show more practice.
+More practice:
+If you have figured out the O(n) solution, try coding another solution of which the time complexity is O(n log n).
+	
+## Rotate Array
+### Rotate an array of n elements to the right by k steps.
+For example, with n = 7 and k = 3, the array [1,2,3,4,5,6,7] is rotated to [5,6,7,1,2,3,4].
+Note:
+Try to come up as many solutions as you can, there are at least 3 different ways to solve this problem.
+[show hint]
+Hint:
+Could you do it in-place with O(1) extra space?
+Related problem: Reverse Words in a String II
+	
+## Two Sum II - Input array is sorted
+### Given an array of integers that is already sorted in ascending order, find two numbers such that they add up to a specific target number.
+The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.
+You may assume that each input would have exactly one solution.
+Input: numbers={2, 7, 11, 15}, target=9
+Output: index1=1, index2=2
+	
+##  Find Peak Element
+### A peak element is an element that is greater than its neighbors.
+Given an input array where num[i] ≠ num[i+1], find a peak element and return its index.
+The array may contain multiple peaks, in that case return the index to any one of the peaks is fine.
+You may imagine that num[-1] = num[n] = -∞.
+For example, in array [1, 2, 3, 1], 3 is a peak element and your function should return the index number 2.
+click to show spoilers.
+Note:
+Your solution should be in logarithmic complexity.
+	
+## Find Minimum in Rotated Sorted Array II
+### Follow up for "Find Minimum in Rotated Sorted Array":
+What if duplicates are allowed?
+Would this affect the run-time complexity? How and why?
+Suppose a sorted array is rotated at some pivot unknown to you beforehand.
+(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).
+Find the minimum element.
+The array may contain duplicates.
+	
+##  Find Minimum in Rotated Sorted Array
+### Suppose a sorted array is rotated at some pivot unknown to you beforehand.
+(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).
+Find the minimum element.
+You may assume no duplicate exists in the array.
+	
+##  Longest Consecutive Sequence
+### Given an unsorted array of integers, find the length of the longest consecutive elements sequence.
+For example,
+Given [100, 4, 200, 1, 3, 2],
+The longest consecutive elements sequence is [1, 2, 3, 4]. Return its length: 4.
+Your algorithm should run in O(n) complexity.
+	
+## Best Time to Buy and Sell Stock II
+### Say you have an array for which the ith element is the price of a given stock on day i.
+Design an algorithm to find the maximum profit. You may complete as many transactions as you like (ie, buy one and sell one share of the stock multiple times). However, you may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).
+	
+## Pascal's Triangle II
+### Given an index k, return the kth row of the Pascal's triangle.
+For example, given k = 3,
+Return [1,3,3,1].
+	
+## Pascal's Triangle
+### Given numRows, generate the first numRows of Pascal's triangle.
+For example, given numRows = 5,
+Return
+[
+     [1],
+    [1,1],
+   [1,2,1],
+  [1,3,3,1],
+ [1,4,6,4,1]
+]
+	
+## Merge Sorted Array
+### Given two sorted integer arrays nums1 and nums2, merge nums2 into nums1 as one sorted array.
+Note:
+You may assume that nums1 has enough space (size that is greater or equal to m + n) to hold additional elements from nums2. The number of elements initialized in nums1 and nums2 are m and n respectively.
+	
+	
+## Search in Rotated Sorted Array II
+### Follow up for "Search in Rotated Sorted Array":
+What if duplicates are allowed?
+Would this affect the run-time complexity? How and why?
+Write a function to determine if a given target is in the array.
+	
+## Remove Duplicates from Sorted Array II
+### Follow up for "Remove Duplicates":
+What if duplicates are allowed at most twice?
+For example,
+Given sorted array nums = [1,1,1,2,2,3],
+Your function should return length = 5, with the first five elements of nums being 1, 1, 2, 2 and 3. It doesn't matter what you leave beyond the new length.
+	
+##  Sort Colors
+### Given an array with n objects colored red, white or blue, sort them so that objects of the same color are adjacent, with the colors in the order red, white and blue.
+Here, we will use the integers 0, 1, and 2 to represent the color red, white, and blue respectively.
+Note:
+You are not suppose to use the library's sort function for this problem.
+	
+## Search a 2D Matrix
+###  Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:
+Integers in each row are sorted from left to right.
+The first integer of each row is greater than the last integer of the previous row.
+For example,
+Consider the following matrix:
+[
+  [1,   3,  5,  7],
+  [10, 11, 16, 20],
+  [23, 30, 34, 50]
+]
+Given target = 3, return true.
+	
+##  Set Matrix Zeroes
+### Given a m x n matrix, if an element is 0, set its entire row and column to 0. Do it in place.
+click to show follow up.
+Follow up:
+Did you use extra space?
+A straight forward solution using O(mn) space is probably a bad idea.
+A simple improvement uses O(m + n) space, but still not the best solution.
+Could you devise a constant space solution?
+	
+## Spiral Matrix
+### Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.
+For example,
+Given the following matrix:
+[
+ [ 1, 2, 3 ],
+ [ 4, 5, 6 ],
+ [ 7, 8, 9 ]
+]
+You should return [1,2,3,6,9,8,7,4,5].
+	
+##  Spiral Matrix II
+### Given an integer n, generate a square matrix filled with elements from 1 to n2 in spiral order.
+For example,
+Given n = 3,
+You should return the following matrix:
+[
+ [ 1, 2, 3 ],
+ [ 8, 9, 4 ],
+ [ 7, 6, 5 ]
+]
+	
+##  Insert Interval
+### Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).
+You may assume that the intervals were initially sorted according to their start times.
+Example 1:
+Given intervals [1,3],[6,9], insert and merge [2,5] in as [1,5],[6,9].
+Example 2:
+Given [1,2],[3,5],[6,7],[8,10],[12,16], insert and merge [4,9] in as [1,2],[3,10],[12,16].
+This is because the new interval [4,9] overlaps with [3,5],[6,7],[8,10].
+	
+##  Minimum Path Sum
+### Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
+Note: You can only move either down or right at any point in time.
+	
+## Merge Intervals
+### Given a collection of intervals, merge all overlapping intervals.
+For example,
+Given [1,3],[2,6],[8,10],[15,18],
+return [1,6],[8,10],[15,18].
+	
+##  Jump Game
+### Given an array of non-negative integers, you are initially positioned at the first index of the array.
+Each element in the array represents your maximum jump length at that position.
+Determine if you are able to reach the last index.
+For example:
+A = [2,3,1,1,4], return true.
+A = [3,2,1,0,4], return false.
+	
+## Jump Game II
+### Given an array of non-negative integers, you are initially positioned at the first index of the array.
+Each element in the array represents your maximum jump length at that position.
+Your goal is to reach the last index in the minimum number of jumps.
+For example:
+Given array A = [2,3,1,1,4]
+The minimum number of jumps to reach the last index is 2. (Jump 1 step from index 0 to 1, then 3 steps to the last index.)
+Note:
+You can assume that you can always reach the last inde
+	
+## Rotate Image
+### You are given an n x n 2D matrix representing an image.
+Rotate the image by 90 degrees (clockwise).
+Follow up:
+Could you do this in-place?
+	
+## Two Sum
+### Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+You may assume that each input would have exactly one solution.
+Example:
+Given nums = [2, 7, 11, 15], target = 9,
+Because nums[0] + nums[1] = 2 + 7 = 9,
+return [0, 1].
+UPDATE (2016/2/13):
+The return format had been changed to zero-based indices. Please read the above updated description carefully.
+	
+## Median of Two Sorted Arrays
+### There are two sorted arrays nums1 and nums2 of size m and n respectively.
+Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
+Example 1:
+nums1 = [1, 3]
+nums2 = [2]
+The median is 2.0
+Example 2:
+nums1 = [1, 2]
+nums2 = [3, 4]
+The median is (2 + 3)/2 = 2.5
+	
+## Container With Most Water
+### Given n non-negative integers a1, a2, ..., an, where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water.
+Note: You may not slant the container.
+	
+## 3Sum
+### Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.
+Note: The solution set must not contain duplicate triplets.
+For example, given array S = [-1, 0, 1, 2, -1, -4],
+A solution set is:
+[
+  [-1, 0, 1],
+  [-1, -1, 2]
+]
+	
+### 3Sum Closest
+### Given an array S of n integers, find three integers in S such that the sum is closest to a given number, target. Return the sum of the three integers. You may assume that each input would have exactly one solution.
+    For example, given array S = {-1 2 1 -4}, and target = 1.
+    The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
+	
+## 4Sum
+### Given an array S of n integers, are there elements a, b, c, and d in S such that a + b + c + d = target? Find all unique quadruplets in the array which gives the sum of target.
+Note: The solution set must not contain duplicate quadruplets.
+For example, given array S = [1, 0, -1, 0, -2, 2], and target = 0.
+A solution set is:
+[
+  [-1,  0, 0, 1],
+  [-2, -1, 1, 2],
+  [-2,  0, 0, 2]
+]
+	
+## Remove Duplicates from Sorted Array
+### Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length.
+Do not allocate extra space for another array, you must do this in place with constant memory.
+For example,
+Given input array nums = [1,1,2],
+Your function should return length = 2, with the first two elements of nums being 1 and 2 respectively. It doesn't matter what you leave beyond the new length.
+	
+##  Remove Element
+### Given an array and a value, remove all instances of that value in place and return the new length.
+Do not allocate extra space for another array, you must do this in place with constant memory.
+The order of elements can be changed. It doesn't matter what you leave beyond the new length.
+Example:
+Given input array nums = [3,2,2,3], val = 3
+Your function should return length = 2, with the first two elements of nums being 2.
+Hint:
+Try two pointers.
+Did you use the property of "the order of elements can be changed"?
+What happens when the elements to remove are rare?
+	
+## Search in Rotated Sorted Array
+### Suppose a sorted array is rotated at some pivot unknown to you beforehand.
+(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).
+You are given a target value to search. If found in the array return its index, otherwise return -1.
+You may assume no duplicate exists in the array.
+	
+##  Search for a Range
+###  Given a sorted array of integers, find the starting and ending position of a given target value.
+Your algorithm's runtime complexity must be in the order of O(log n).
+If the target is not found in the array, return [-1, -1].
+For example,
+Given [5, 7, 7, 8, 8, 10] and target value 8,
+return [3, 4].
+	
+## Search Insert Position
+### Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+You may assume no duplicates in the array.
+Here are few examples.
+[1,3,5,6], 5 → 2
+[1,3,5,6], 2 → 1
+[1,3,5,6], 7 → 4
+[1,3,5,6], 0 → 0
+	
+##  First Missing Positive
+### Given an unsorted integer array, find the first missing positive integer.
+For example,
+Given [1,2,0] return 3,
+and [3,4,-1,1] return 2.
+Your algorithm should run in O(n) time and uses constant space.
+	
+
