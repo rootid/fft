@@ -308,7 +308,7 @@ return [0, 1].
 UPDATE (2016/2/13):
 The return format had been changed to zero-based indices. Please read the above updated description carefully.
 	
-## Median of Two Sorted Arrays
+## Median of Two Sorted Arrays (D&C)
 ### There are two sorted arrays nums1 and nums2 of size m and n respectively.
 Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
 Example 1:

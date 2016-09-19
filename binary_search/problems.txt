@@ -1,0 +1,37 @@
+##  First Bad Version
+### You are a product manager and currently leading a team to develop a new product. Unfortunately, the latest version of your product fails the quality check. Since each version is developed based on the previous version, all the versions after a bad version are also bad.
+Suppose you have n versions [1, 2, ..., n] and you want to find out the first bad one, which causes all the following ones to be bad.
+You are given an API bool isBadVersion(version) which will return whether version is bad. Implement a function to find the first bad version. You should minimize the number of calls to the API.
+	
+## Kth Smallest Element in a Sorted Matrix
+### Given a n x n matrix where each of the rows and columns are sorted in ascending order, find the kth smallest element in the matrix.
+Note that it is the kth smallest element in the sorted order, not the kth distinct element.
+Example:
+matrix = [
+   [ 1,  5,  9],
+   [10, 11, 13],
+   [12, 13, 15]
+],
+k = 8,
+return 13.
+Note: 
+You may assume k is always valid, 1 ≤ k ≤ n2.
+	
+## Guess Number Higher or Lower
+### We are playing the Guess Game. The game is as follows:
+I pick a number from 1 to n. You have to guess which number I picked.
+Every time you guess wrong, I'll tell you whether the number is higher or lower.
+You call a pre-defined API guess(int num) which returns 3 possible results (-1, 1, or 0):
+-1 : My number is lower
+ 1 : My number is higher
+ 0 : Congrats! You got it!
+Example:
+n = 10, I pick 6.
+Return 6.
+	
+## H-Index II
+### Follow up for H-Index: What if the citations array is sorted in ascending order? Could you optimize your algorithm?
+Hint:
+Expected runtime complexity is in O(log n) and the input is sorted.
+	
+

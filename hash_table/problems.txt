@@ -1,0 +1,76 @@
+## Design Twitter
+### Design a simplified version of Twitter where users can post tweets, follow/unfollow another user and is able to see the 10 most recent tweets in the user's news feed. Your design should support the following methods:
+postTweet(userId, tweetId): Compose a new tweet.
+getNewsFeed(userId): Retrieve the 10 most recent tweet ids in the user's news feed. Each item in the news feed must be posted by users who the user followed or by the user herself. Tweets must be ordered from most recent to least recent.
+follow(followerId, followeeId): Follower follows a followee.
+unfollow(followerId, followeeId): Follower unfollows a followee.
+Example:
+Twitter twitter = new Twitter();
+// User 1 posts a new tweet (id = 5).
+twitter.postTweet(1, 5);
+// User 1's news feed should return a list with 1 tweet id -> [5].
+twitter.getNewsFeed(1);
+// User 1 follows user 2.
+twitter.follow(1, 2);
+// User 2 posts a new tweet (id = 6).
+twitter.postTweet(2, 6);
+// User 1's news feed should return a list with 2 tweet ids -> [6, 5].
+// Tweet id 6 should precede tweet id 5 because it is posted after tweet id 5.
+twitter.getNewsFeed(1);
+// User 1 unfollows user 2.
+twitter.unfollow(1, 2);
+// User 1's news feed should return a list with 1 tweet id -> [5],
+// since user 1 is no longer following user 2.
+twitter.getNewsFeed(1);
+	
+##  Top K Frequent Elements
+### Given a non-empty array of integers, return the k most frequent elements.
+For example,
+Given [1,1,1,2,2,3] and k = 2, return [1,2].
+Note: 
+You may assume k is always valid, 1 ≤ k ≤ number of unique elements.
+Your algorithm's time complexity must be better than O(n log n), where n is the array's size.
+	
+## Bulls and Cows
+### You are playing the following Bulls and Cows game with your friend: You write down a number and ask your friend to guess what the number is. Each time your friend makes a guess, you provide a hint that indicates how many digits in said guess match your secret number exactly in both digit and position (called "bulls") and how many digits match the secret number but locate in the wrong position (called "cows"). Your friend will use successive guesses and hints to eventually derive the secret number.
+For example:
+Secret number:  "1807"
+Friend's guess: "7810"
+Hint: 1 bull and 3 cows. (The bull is 8, the cows are 0, 1 and 7.)
+Write a function to return a hint according to the secret number and friend's guess, use A to indicate the bulls and B to indicate the cows. In the above example, your function should return "1A3B".
+Please note that both secret number and friend's guess may contain duplicate digits, for example:
+Secret number:  "1123"
+Friend's guess: "0111"
+In this case, the 1st 1 in friend's guess is a bull, the 2nd or 3rd 1 is a cow, and your function should return "1A1B".
+You may assume that the secret number and your friend's guess only contain digits, and their lengths are always equal.
+	
+##  Word Pattern
+### Given a pattern and a string str, find if str follows the same pattern.
+Here follow means a full match, such that there is a bijection between a letter in pattern and a non-empty word in str.
+Examples:
+pattern = "abba", str = "dog cat cat dog" should return true.
+pattern = "abba", str = "dog cat cat fish" should return false.
+pattern = "aaaa", str = "dog cat cat dog" should return false.
+pattern = "abba", str = "dog dog dog dog" should return false.
+Notes:
+You may assume pattern contains only lowercase letters, and str contains lowercase letters separated by a single space.
+	
+## H-Index
+### Given an array of citations (each citation is a non-negative integer) of a researcher, write a function to compute the researcher's h-index.
+According to the definition of h-index on Wikipedia: "A scientist has index h if h of his/her N papers have at least h citations each, and the other N − h papers have no more than h citations each."
+For example, given citations = [3, 0, 6, 1, 5], which means the researcher has 5 papers in total and each of them had received 3, 0, 6, 1, 5 citations respectively. Since the researcher has 3 papers with at least 3 citations each and the remaining two with no more than 3 citations each, his h-index is 3.
+Note: If there are several possible values for h, the maximum one is taken as the h-index.
+Hint:
+An easy approach is to sort the array first.
+What are the possible values of h-index?
+A faster approach is to use extra space.
+	
+## Isomorphic Strings
+### Given two strings s and t, determine if they are isomorphic.
+Two strings are isomorphic if the characters in s can be replaced to get t.
+All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character but a character may map to itself.
+For example,
+Given "egg", "add", return true.
+Given "foo", "bar", return false.
+Given "paper", "title", return true.
+	
