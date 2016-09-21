@@ -3,20 +3,8 @@ CC = gcc
 CFLAGS = -ggdb # -O4 -g -DNDEBUG -pg
 LFLAGS = -lm # -g -lm -pg
 
-SOURCES = backtrack.c 8-queens.c permutations.c subsets.c queue.c war.c \
-	graph.c random.c sorting.c bfs-dfs.c bfs-demo.c dfs-demo.c \
-	connected.c topsort.c wgraph.c prim.c dijkstra.c floyd.c findcycle.c \
-	editdistance.c stringedit.c lcs.c substringedit.c geometry.c \
-	superman.c convex-hull.c triangulate.c 10055.c distance.c name.c \
-	polly.c gcd.c primes.c bignum.c editbrute.c elevator.c order.c \
-	plates.c geotest.c cgtest.c netflow.c
-OBJECTS = backtrack.o 8-queens.o permutations.o subsets.o queue.o war.o \
-	graph.o random.o sorting.o bfs-dfs.o bfs-demo.o dfs-demo.o \
-	connected.o topsort.o wgraph.o prim.o dijkstra.o floyd.o findcycle.o \
-	editdistance.o stringedit.o lcs.o substringedit.o geometry.o \
-	superman.o convex-hull.o triangulate.o 10055.c distance.o name.o \
-	polly.o gcd.o primes.o bignum.o editbrute.o elevator.o order.o \
-	plates.o geotest.o cgtest.o netflow.o
+SOURCES := $(wildcard *.c)
+OBJECTS := $(SOURCES:.c=.o)
 BINARIES = 8-queens permutations subsets war sorting bfs-demo \
 	dfs-demo connected topsort prim dijkstra floyd findcycle stringedit \
 	lcs substringedit superman convex-hull triangulate 10055 distance name \
@@ -24,8 +12,6 @@ BINARIES = 8-queens permutations subsets war sorting bfs-demo \
 	netflow
 INCLUDES = bool.h backtrack.h queue.h graph.h wgraph.h editdistance.h \
 	   geometry.h
-
-
 
 make:	$(BINARIES)
 	
@@ -36,6 +22,7 @@ $(OBJECTS):     $(MAKEFILE)
 all:	$(BINARIES)
 
 8-queens:	backtrack.o 8-queens.o
+		#$(__BREAKPOINT)
 		$(CC) -o $@ 8-queens.o backtrack.o $(LFLAGS)
 
 permutations:	backtrack.o permutations.o
@@ -46,7 +33,6 @@ subsets:	backtrack.o subsets.o
 
 sorting:	random.o sorting.o
 		$(CC) -o $@ random.o sorting.o $(LFLAGS)
-
 
 war:		queue.o random.o war.o
 		$(CC) -o $@ queue.o random.o war.o $(LFLAGS)
