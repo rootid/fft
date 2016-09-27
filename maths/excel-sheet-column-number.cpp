@@ -25,10 +25,18 @@ int titleToNumber(string s) {
         int tmp_ = pow(26,len-i) * (s[i - 1] - 'A' + 1);
         no += tmp_;
     }
+
+    int result = 0;
+    for (int i = 0; i < s.size();  i++) {
+        cout <<  "B4 = " << result << endl;
+        result = result * 26 + (s.at(i) - 'A' + 1);
+        cout <<  "After = " << result << endl;
+    }
     return no;
 }
 
 int main() {
-  int no_ = titleToNumber("AB");
+  //int no_ = titleToNumber("AB");
+  int no_ = titleToNumber("ABC");
   cout << "NO = " << no_ << endl;
 }
