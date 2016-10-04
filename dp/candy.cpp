@@ -11,25 +11,30 @@ using namespace std;
 int candy(vector<int>& ratings) {
 
   int totalCandy = 0;
-  int preVCandy = 1;
-  int nextCandy = 1;
   unsigned int n = ratings.size();
-  vector<int> result(n,1);
+  vector<int> result(n,0);
+  result[0] = 1;
+  
+  //Left scan : For child i to make sure it has more candies than its left neighbor if it has a higher rating
+  //+Keep at least 1 candy
   for(int i=1;i<n;i++) {
     if (ratings[i] > ratings[i-1]) {
-      result[i] += 1;
-    } 
-    //cout << "i = " << i << " R =" << result[i] << " RATI=" << ratings[i]  << endl;
-  }
-  //cout << ">>>>>>>>>>>>>" << endl;
-  for(int i=n-2;i>=0 ;i--) {
-    if (ratings[i] > ratings[i+1]) {
-        result[i] = max(1+result[i+1],result[i]);
+      result[i] = result[i-1] + 1;
+    } else {
+        result[i] = 1;
     }
-    //cout << "i = " << i << " R =" << result[i] << " RATI=" << ratings[i]  << endl;
   }
-
-  //cout << "TC  = " << totalCandy << endl;
+  
+  //Right Scan : For child i to make sure it has more candies than its right neighbor if it has a higher rating
+  for(int i=n-2;i>=0 ;i--) {
+    if (ratings[i] > ratings[i+1]) { 
+         result[i] = max(result[i],result[i+1]+1);
+    } 
+  }
+  //for(int i=n-2;i>=0 ;i--) {
+  //  if (ratings[i] > ratings[i+1] result[i] < (result[i+1]+1) ) {
+  //  } 
+  //}
   for(unsigned int i=0;i<n ;i++) {
     totalCandy += result[i];
   }
@@ -38,9 +43,7 @@ int candy(vector<int>& ratings) {
 }
 
 int main() {
-
   int a[] = {1,3,3,3,2};
   vector<int> av(a,a+sizeof(a)/sizeof(a[0]));
-
   candy(av);
 }
