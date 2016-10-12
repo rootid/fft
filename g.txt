@@ -1,0 +1,1 @@
+//Given a dictionary and a string, find all the substrings that are valid words in dictionary. 
