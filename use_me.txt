@@ -1,3 +1,0 @@
-
-echo "sh git config user.email "vxxx@gmail.com" && sh git config user.name "rootid"" | openssl enc -aes-256-cbc  > git_config.sh
-openssl enc -aes-256-cbc -d -in git_config.sh
