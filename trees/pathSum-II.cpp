@@ -20,14 +20,10 @@
 #include<iostream>
 #include<vector>
 #include<math.h>
+#include "treenode.h"
+
 using namespace std;
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
 
 void sumPathHelper(TreeNode *root,vector<int> s,vector<vector <int> >& s1,int sum) {
   if(!root) {
