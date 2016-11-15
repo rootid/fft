@@ -26,12 +26,14 @@ vector<int> spiralOrder(vector<vector<int> >& matrix) {
       col++;
       cout << matrix[row][col] << " ";
     }
-    n = n-1;
+    //n = n-1;
+    n--;
     while(row < m) {
       row++;
       cout << matrix[row][col] << " ";
     }
-    m -= 1;
+    //m -= 1;
+    m--;
     col -= 1;
     while(col >= 0) {
       col--;
@@ -47,13 +49,18 @@ vector<int> spiralOrder(vector<vector<int> >& matrix) {
 
 int main() {
 
-  vector<vector<int> > av (3,vector<int>(3) );
-  int a[] = {1,2,3};
-  int b[] = {4,5,6};
-  int c[] = {7,8,9};
-  //av[0](a,a+sizeof(a)/sizeof(a[0]) ) ;
-  for(int i=0;i<3;i++) {
-    av[0][i] = a[i];
-  }
+ // vector<vector<int> > av (3,vector<int>(3) );
+ // int a[] = {1,2,3};
+ // int b[] = {4,5,6};
+ // int c[] = {7,8,9};
+ // //av[0](a,a+sizeof(a)/sizeof(a[0]) ) ;
+ // for(int i=0;i<3;i++) {
+ //   av[0][i] = a[i];
+ // }
+ int a[] = {1};
+ vector<vector<int> > av;
+ vector<int> bv (a,a+sizeof(a)/sizeof(a[0])) ;
+ av.push_back(bv);
 
+ spiralOrder(av);
 }
