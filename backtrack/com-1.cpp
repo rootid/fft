@@ -1,3 +1,5 @@
+#include "../headers/global.hpp"
+
 //## Combinations
 //### Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.
 //For example,
@@ -10,33 +12,30 @@
 //  [1,3],
 //  [1,4],
 //]
-
-#include "../headers/global.hpp"
-
+//
+//Iterative :  1 ( k times)  4(k times)
+//             2 ( k-1 times) 3(k-1)
+//             3 ( k-2 )      2(k-2)
 void print_result(vector<vector<int> >& r);
 
-void dfsHelper(int start,int end,int k,vector<int>&iv,vector<int>& cv,vector<vector<int> >& result) {
-    if(k == 0) {
-      result.push_back(cv);
-      return;
-    }
-    for(int i=start;i<end-k+1;i++) {
-        cv.push_back(iv[i]);
-        dfsHelper(i+1,end,k-1,iv,cv,result);
-        cv.pop_back();
-    }
-}
 
 vector<vector<int>> combine(int n, int k) {
-    vector<int> iv;
-    for(int i=1;i<=n;i++) {
-      iv.push_back(i);
-    }
+    
     vector<vector<int> > result;
-    vector<int> cv;
-    int start = 0;
-    int end = n;
-    dfsHelper(start,end,k,iv,cv,result);
+    vector<vector<int> > cv(1);
+    vector<int> tmp;
+    for(int i=1;i<=n;i++) {
+      int len = cv.size();
+      for(int j=0;j<len;j++) {
+        tmp = cv[j];
+        tmp.push_back(i);
+        if(k == tmp.size()) {
+          result.push_back(tmp);
+        } else {
+          cv.push_back(tmp);
+        }
+      }
+    }
     print_result(result);
     return result;
 }
@@ -51,8 +50,8 @@ void print_result(vector<vector<int> >& r) {
 }
 
 int main() {
-  combine(4,2);
+  //vector< vector<int> > lv(1);
+  //print_result(lv);
+
+  combine(6,3);
 }
-
-
-
