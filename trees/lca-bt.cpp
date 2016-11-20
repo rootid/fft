@@ -30,9 +30,26 @@ TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
  //  return left;
  //}
  //return root;
+ //
+ //
+ //if(!root) {
+ //       return NULL;
+ //   }
+ //   if(p == root || q == root) {
+ //       return root;
+ //   }
+ //   
+ //   TreeNode *left = lowestCommonAncestor(root->left,p,q);
+ //   TreeNode *right = lowestCommonAncestor(root->right,p,q);
+ //   if(left == NULL) {
+ //       return right;
+ //   } 
+ //   if(right == NULL) {
+ //       return left;
+ //   }
+ //   return root;
+        
 }
-
-
 //this might go into each subtree twice. Which means you might go into each subsubtree four times. And into each subsubsubtree eight times. And so on. That takes exponential time, which is very slow.
 //
 //def lowestCommonAncestor(self, root, p, q):

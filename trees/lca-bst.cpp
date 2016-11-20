@@ -24,12 +24,12 @@ bool isFound(TreeNode *p,TreeNode *q) {
 }
 
 TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-  if(p->val < root->val && q->val < root->val) {
+  if(p->val < root->val && q->val < root->val) {  //p,q : left side of root
     root = lowestCommonAncestor(root->left,p,q);
-  } else if(p->val > root->val && q->val > root->val) {
+  } else if(p->val > root->val && q->val > root->val) { //p,q : right side of root
     root = lowestCommonAncestor(root->right,p,q);
   } 
-  return root;
+  return rootright ;
 }
 
 TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {

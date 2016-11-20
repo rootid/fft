@@ -44,6 +44,7 @@ bool isSymmetric(TreeNode* root) {
   }
   return isSymmetricHelper(root->left,root->right);
 }
+
 int main() {
   TreeNode* t = new TreeNode(1);
   t->left = new TreeNode(2);
