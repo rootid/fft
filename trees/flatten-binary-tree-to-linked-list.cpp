@@ -37,7 +37,30 @@ void flatten(TreeNode* root) {
     flatten(root->right);
     return;
 }
+//Iterative approach
+void flatten(TreeNode *root) {
+        stack<TreeNode *> stk;
+        if(root==NULL) 
+           return;
+        
+        stk.push(root);
+        TreeNode *oldptr=NULL;
+        
+        while(!stk.empty()){            // preorder traversal using a stack
+            TreeNode *ptr=stk.top();    // Using ptr to do travesal 
+            stk.pop();
+            if(ptr->right) 
+               stk.push(ptr->right);
+            if(ptr->left) 
+               stk.push(ptr->left);
+            if(oldptr!=NULL){            // Using oldptr to change left and right pointer 
+               oldptr->left=NULL;
+               oldptr->right=ptr;
+            }
+            oldptr=ptr;
+        }
+       
+}
 
 int main() {
-
 }
