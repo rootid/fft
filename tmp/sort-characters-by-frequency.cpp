@@ -51,6 +51,26 @@ string frequencySort(string s) {
      return res;
 }
 
+//Iteration 2
+string frequencySort(string s) {
+      string res;
+      if (s.size()==0) return res;
+      vector<pair<int,int>> map(256,make_pair(0,0));//<freq, char-char(0)>
+      for (int i = 0; i<256; i++) {
+          map[i].second = i;
+      }
+      for(int i = 0; i < s.size(); i++)
+          map[s[i]].first++;
+      sort(map.begin(), map.end(), greater<pair<int,int>>());// sort pairs by freq
+      int i = 0;
+      while(map[i].first != 0) {
+          for (int j = 0; j < map[i].first;j++)
+              res.push_back(char(0)+map[i].second);
+          i++;
+      }
+      return res;
+}
+
 int main() {
   frequencySort("tree");
 }
