@@ -40,10 +40,13 @@ vector<string> findMissingRanges(vector<int>& nums, int lower, int upper) {
     }
     // recover the input if needed
     nums.pop_back();
+    cout << res.size() << endl;
     return res;
 
 }
 
 int main() {
-  
+
+  vector<int>  t;
+  findMissingRanges (t,1,1);
 }
