@@ -1,0 +1,10 @@
+T1 Ï
+s = abc t = 
+s = bcd t = 
+s = acef t = 
+s = xyz t = 
+s = az t = ¦
+s = ba t = ¦
+s = a t = 
+s = z t = 
+s = ach t = ’
