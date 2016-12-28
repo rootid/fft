@@ -15,29 +15,51 @@
 //  [1,2],
 //  []
 //]
-
-#include<iostream>
-#include<vector>
-using namespace std;
-
-void subsetHelper(vector<int>& nums,choices,level,result) {
-
+#include "../headers/global.hpp"
+void enum_subset(vector<int>& ip,int& len,int k,vector<bool>&cv
+    ,vector<vector<int> >& sv) {
+  if(k == len) {
+    vector<int> lv;
+    int idx = 0;
+    for(auto c:cv) {
+      if (c == true) {
+        lv.push_back(ip[idx]);
+      }
+      idx+= 1;
+    }
+    sv.push_back(lv);
+    return;
+  }
+  cv[k] = true;
+  enum_subset(ip,len,k+1,cv,sv);
+  cv[k] = false;
+  enum_subset(ip,len,k+1,cv,sv);
 }
-
-vector<vector<int>> subsets(vector<int>& nums) {
-  
-  vector< vector<int> > result;
-  bool choices[] = {false,false};
-  int level = 0;
-  subsetHelper(nums,choices,level,result);
-  return result;
+vector<vector<int> > subsets(vector<int>& nums) {
+  int len = nums.size();
+  vector<bool> cv(len,true);
+  int k = 0;
+  vector<vector<int> > sv;
+  vector<int> lv;
+  enum_subset(nums,len,k,cv,sv);
+  return sv;
 }
-
-int main() {
-
+//Iteative with BFS at each level  1. copy all previous set
+//                                 2. append 
+vector<vector<int> > subsets(vector<int> &nums) {
+    int len = nums.size();
+    sort(nums.begin(), nums.end());
+    vector<vector<int> > res(1);//start by adding empty set   [ [] ]
+    for(int i = 0; i < len; ++i) { // BFS tree with levels = len 
+        int k = res.size();
+        for(int j = 0; j < k; j++) { //@ each level there will be at most k childern
+            res.push_back(res[j]); //[ [],[] ]
+            res.back().push_back(nums[i]); //[ [],[1] ]
+        }
+    }
+  return res;
 }
-
-
+//////
 //The characteristics of C++ reference is an outstanding tool for backtracking algorithm!
 //
 //let us use [1,2,3,4] as an example to explain my solution:
@@ -64,46 +86,41 @@ int main() {
 //t(n) = n+t(n-1)+t(n-2)+...+t(1)+t(0) = n+t(n-1)+t(n-1)-n+1=2t(n-1)+1
 //
 //=> t(n)+1 = 2(t(n-1)+1) => t(n)+1 = 2^n => t(n) = 2^n-1
+/////////
+void enum_subsets(vector<vector<int> > &res, vector<int> &nums, vector<int> &vec, int begin) {
+	res.push_back(vec);
+	for (int i = begin; i <= nums.size(); ++i) {
+		vec.push_back(nums[i]);
+		enum_subsets(res, nums, vec, i + 1);
+		vec.pop_back();
+	}
+}
+vector<vector<int> > subsets(vector<int> &nums) {
+	sort(nums.begin(), nums.end());
+      vector<vector<int> > res;
+	vector<int> vec;
+	enum_subsets(res, nums, vec, 0);
+	return res;
+}
+//////
 //
-
-class Solution {
-public:
-    std::vector<std::vector<int> > subsets(std::vector<int> &nums) {
-		std::sort(nums.begin(), nums.end());
-        std::vector<std::vector<int> > res;
-		std::vector<int> vec;
-		subsets(res, nums, vec, 0);
-		return res;
-    }
-private:
-	void subsets(std::vector<std::vector<int> > &res, std::vector<int> &nums, std::vector<int> &vec, int begin) {
-		res.push_back(vec);
-		for (int i = begin; i != nums.size(); ++i) {
+//
+void enum_subsetsWithDup(vector<vector<int> > &res, vector<int> &nums, vector<int> &vec, int begin) {
+	res.push_back(vec);
+	for (int i = begin; i != nums.size(); ++i)
+		if (i == begin || nums[i] != nums[i - 1]) { 
 			vec.push_back(nums[i]);
-			subsets(res, nums, vec, i + 1);
+			enum_subsetsWithDup(res, nums, vec, i + 1);
 			vec.pop_back();
 		}
-	}
-};
+}
+vector<vector<int> > subsetsWithDup(vector<int> &nums) {
+  sort(nums.begin(), nums.end());
+  vector<vector<int> > res;
+  vector<int> vec;
+  enum_subsetsWithDup(res, nums, vec, 0);
+  return res;
+}
 
-
-class Solution {
-public:
-    std::vector<std::vector<int> > subsetsWithDup(std::vector<int> &nums) {
-		std::sort(nums.begin(), nums.end());
-        std::vector<std::vector<int> > res;
-		std::vector<int> vec;
-		subsetsWithDup(res, nums, vec, 0);
-		return res;
-    }
-private:
-	void subsetsWithDup(std::vector<std::vector<int> > &res, std::vector<int> &nums, std::vector<int> &vec, int begin) {
-		res.push_back(vec);
-		for (int i = begin; i != nums.size(); ++i)
-			if (i == begin || nums[i] != nums[i - 1]) { 
-				vec.push_back(nums[i]);
-				subsetsWithDup(res, nums, vec, i + 1);
-				vec.pop_back();
-			}
-	}
-};
+int main() {
+}
