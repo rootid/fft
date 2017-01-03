@@ -30,10 +30,10 @@ void enum_subset(vector<int>& ip,int& len,int k,vector<bool>&cv
     sv.push_back(lv);
     return;
   }
-  cv[k] = true;
-  enum_subset(ip,len,k+1,cv,sv);
-  cv[k] = false;
-  enum_subset(ip,len,k+1,cv,sv);
+    cv[k] = true;
+    enum_subset(ip,len,k+1,cv,sv);
+    cv[k] = false;
+    enum_subset(ip,len,k+1,cv,sv);
 }
 vector<vector<int> > subsets(vector<int>& nums) {
   int len = nums.size();
@@ -58,6 +58,27 @@ vector<vector<int> > subsets(vector<int> &nums) {
         }
     }
   return res;
+}
+//////
+//
+//At each level either select kth element or not
+void dfs(int n,int k,vector<int>&ip,vector<int>&tmp,vector< vector<int> >&res) {
+  if(n == k) {
+    res.push_back(tmp);
+    return;
+  } 
+  tmp.push_back(ip[k]); // select kth element
+  dfs(n,k+1,ip,tmp,res);
+  tmp.pop_back();      //remove kth element
+  dfs(n,k+1,ip,tmp,res);
+}
+vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+    int level = 0;
+    vector<int> tmp;
+    vector< vector<int> > res;
+    sort(nums.begin(),nums.end());
+    dfs(nums.size(),level,nums,tmp,res);
+    return res;
 }
 //////
 //The characteristics of C++ reference is an outstanding tool for backtracking algorithm!
@@ -121,6 +142,5 @@ vector<vector<int> > subsetsWithDup(vector<int> &nums) {
   enum_subsetsWithDup(res, nums, vec, 0);
   return res;
 }
-
 int main() {
 }
