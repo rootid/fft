@@ -17,7 +17,7 @@
 #include<iostream>
 #include<vector>
 #include<queue>
-#include "treenode.h"
+#include "../headers/treenode.h"
 
 using namespace std;
 

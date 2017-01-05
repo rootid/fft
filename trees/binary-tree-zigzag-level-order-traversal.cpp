@@ -14,7 +14,7 @@
 //]
 
 #include "../headers/global.hpp"
-#include "treenode.h"
+#include "../headers/treenode.h"
 vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
        vector<vector <int> > result;
        if(!root) {

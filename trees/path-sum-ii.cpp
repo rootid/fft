@@ -15,15 +15,8 @@
 //   [5,8,4,5]
 //]
 
-
-
-#include<iostream>
-#include<vector>
-#include<math.h>
-#include "treenode.h"
-
-using namespace std;
-
+#include "../headers/global.hpp"
+#include "../headers/treenode.h"
 
 void sumPathHelper(TreeNode *root,vector<int> s,vector<vector <int> >& s1,int sum) {
   if(!root) {

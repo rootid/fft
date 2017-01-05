@@ -9,7 +9,7 @@
 #include<string>
 using namespace std;
 
-//GOOD
+//################################GOOD
 string addStrings(string num1, string num2) {
         string result = "";
         int sum = 0;
@@ -41,7 +41,7 @@ string addStrings(string num1, string num2) {
         return t;
 }
 
-//Ugly
+//####################################Ugly
 string addStrings(string num1, string num2) {
     string result = "";
     int sum = 0;

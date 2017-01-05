@@ -10,7 +10,7 @@
 //There are two left leaves in the binary tree, with values 9 and 15 respectively. Return 24.
 
 #include<iostream>
-#include "treenode.h"
+#include "../headers/treenode.h"
 using namespace std;
 
 int sumOfLeftLeavesHelper(TreeNode *root,bool isLeftLeaf) {
