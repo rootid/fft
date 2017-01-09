@@ -32,5 +32,27 @@ bool find132pattern(vector<int>& nums) {
      }
      return false;
 }
+//###### W/O Extra stack only indices #######
+////
+//This question gives us an array, let us find the 132 model, is the first number less than the second and third number, and the third number is less than the second number. Then we come to the order of the three numbers, first of all we come to the first number, this number needs the smallest, then if we find that the current number is greater than or equal to the back of a number, we continue to traverse down until the current number is less than the next A number stops. Then we find the second number, this number needs the largest, then if we find that the current number is less than or equal to the next number to continue traversing until the current number of heavy rain the next stop. Finally, we find the third figure, we verify that this figure is in the middle of the previous two figures, if not found, we will continue from the second digit of a position to re-find the three figures, see the code as follows:
+
+bool find132pattern(vector<int>& nums) {
+      if (nums.size() <= 2) return false;
+      int n = nums.size(), i = 0, j = 0, k = 0;
+      while (i < n) {
+          while (i < n - 1 && nums[i] >= nums[i + 1]) ++i;
+          j = i + 1;
+          while (j < n - 1 && nums[j] <= nums[j + 1]) ++j;
+          k = j + 1;
+          while (k < n) {
+              if (nums[k] > nums[i] && nums[k] < nums[j]) return true;
+              ++k;
+          }
+          i = j + 1;
+      }
+      return false;
+}
+
+
 int main() {
 }
