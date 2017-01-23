@@ -14,7 +14,7 @@
 #include<vector>
 using namespace std;
 
-
+//with 2 indexes
 vector<int> spiralOrder(vector<vector<int> >& matrix) {
   int m = matrix.size();
   int n = matrix[0].size();
@@ -45,6 +45,44 @@ vector<int> spiralOrder(vector<vector<int> >& matrix) {
       cout << matrix[row][col] << " ";
     }
   }
+}
+
+//with 4 indexes
+vector<int> spiralOrder(vector<vector<int>>& matrix) {
+       vector<int> res;
+       int m = matrix.size();
+       if(m == 0) {
+           return res;
+       }
+       int n = matrix[0].size();
+       int rowMin = 0;
+       int rowMax = m-1;
+       int colMin = 0;
+       int colMax = n-1;
+       while (rowMin <= rowMax && colMin <= colMax) {
+           for(int i=colMin;i<=colMax;i++) {  //l->r
+               res.push_back(matrix[rowMin][i]);
+           }
+           rowMin += 1;
+           for(int i=rowMin;i<=rowMax;i++) {  //u->d
+               res.push_back(matrix[i][colMax]);
+           }
+           colMax -= 1;
+           if(rowMin <= rowMax) {  // [ [2,3] ]
+             for(int i=colMax;i>=colMin;i--) {  //r->l
+                 res.push_back(matrix[rowMax][i]);
+             }
+           }
+           rowMax -= 1;
+           if(colMin <= colMax) {
+             for(int i=rowMax;i>=rowMin;i--) {   //d->u
+                 res.push_back(matrix[i][colMin]);
+             }
+           }
+           colMin +=1;
+           
+       }
+      return res;    
 }
 
 int main() {

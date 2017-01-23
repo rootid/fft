@@ -48,7 +48,7 @@ ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
          h2 = h2->next;
      }
      return nullptr;
- }
+}
 
 
 //GOOD
