@@ -6,6 +6,18 @@
 
 #include "../headers/global.hpp"
 
+//compute the unchanged part and & with the #
+//############################################### GOOD ############################################### 
+int rangeBitwiseAnd(int m, int n) {
+   unsigned int mask = ~0;
+    while ((m & mask) != (n & mask)) {
+        mask <<= 1;
+    }
+    return m & mask;
+    //or
+    //return n & mask;
+}
+
 //############################################### GOOD ############################################### 
 int rangeBitwiseAnd(int m, int n) {
       int i = 0;
