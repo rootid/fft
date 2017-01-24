@@ -18,6 +18,16 @@ uint32_t reverseBits(uint32_t n) {
      return res;
 }
 
+//uint32_t reverseBits(uint32_t n) {
+//  int count = 32;
+//  for(int i=0;i<count;i++) {
+//    if(n<<count-i ^ n>>i == 0 {
+//
+//    }
+//  }
+//  return n;
+//}
+
 
 //cout << " end " << end << endl;
 //cout << "00000010100101000001111010011100" << endl;
