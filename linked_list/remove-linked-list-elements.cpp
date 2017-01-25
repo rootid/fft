@@ -4,6 +4,8 @@
 //Given: 1 --> 2 --> 6 --> 3 --> 4 --> 5 --> 6, val = 6
 //Return: 1 --> 2 --> 3 --> 4 --> 5
 
+#include "../headers/global.hpp"
+#include "../headers/listnode.hpp"
 //################ Need to cleanup memory ################
 ListNode* removeElements(ListNode* head, int val) {
     ListNode *dummy = new ListNode(1 - val);

@@ -8,6 +8,10 @@
 //The relative order inside both the even and odd groups should remain as it was in the input. 
 //The first node is considered odd, the second node even and so on ...
 
+
+#include "../headers/global.hpp"
+#include "../headers/listnode.hpp"
+//########################################################## 
 ListNode* oddEvenList(ListNode* head) {
     
     ListNode *odd = head;
@@ -25,4 +29,47 @@ ListNode* oddEvenList(ListNode* head) {
     }
     odd->next = even_head;
     return head;
+}
+//########################################################## 
+//NOTE : modify head pointer
+ListNode* oddEvenList(ListNode* head) {
+
+  if(!head) {
+    //cout << "No element found" << "\t" ;
+    return head;
+  }
+  ListNode* oddList = head;
+  ListNode* evenList = head->next;
+  ListNode* tmpEvenList = evenList ;
+  while(oddList && oddList->next) {
+    //cout << head->val << "\t" ;
+    oddList->next = oddList->next->next;
+    evenList->next = evenList->next->next;
+    oddList = oddList->next; 
+    evenList = evenList->next; 
+  }
+  //evenList->next = NULL; // PLEASE NOTE : NULL is part of HEAD list
+  oddList->next = tmpEvenList;
+
+  return head;
+}
+
+int main() {
+  //1->2->3->4->5->NULL,
+  ListNode *head = new ListNode(1); 
+  head->next = new ListNode(2); 
+  head->next->next = new ListNode(3); 
+  head->next->next->next = new ListNode(4); 
+  head->next->next->next->next = new ListNode(5); 
+
+  cout << "cALL " << endl;
+  ListNode *result = oddEvenList(head);
+
+  cout << "after cALL " << endl;
+  while(result != NULL) {
+    cout << result->val << " ";
+    result = result->next;
+  }
+  cout << endl;
+
 }
