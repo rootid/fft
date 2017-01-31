@@ -11,6 +11,7 @@
 #include<limits.h>
 #include<cstring>
 #include<memory>
+#include<regex>
 // uncomment to disable assert()
 // #define NDEBUG
 #include <cassert>
