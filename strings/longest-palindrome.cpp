@@ -16,6 +16,7 @@
 #include<assert.h>
 #include<vector>
 using namespace std;
+
 int longestPalindrome(string s) {
       assert(s.size() <= 1010);
       

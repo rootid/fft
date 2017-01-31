@@ -1,57 +1,49 @@
-//Valid Anagram
-//Given two strings s and t, write a function to determine if t is an anagram of s.
-//
-//For example,
-//s = "anagram", t = "nagaram", return true.
-//s = "rat", t = "car", return false.
+//Group Anagrams
+//Given an array of strings, group anagrams together.
+//For example, given: ["eat", "tea", "tan", "ate", "nat", "bat"], 
+//Return:
+//[
+//  ["ate", "eat","tea"],
+//  ["nat","tan"],
+//  ["bat"]
+//]
+//Note: All inputs will be in lower-case.
 
-
-#include<iostream>
-#include<vector>
-#include<string>
-#include<limits.h>
-#include<stdlib.h>
-
-using namespace std;
-
-
-bool isAnagrams(string &s,string &s1) {
-
-  int MAX_CHAR = 26;
-  if (s.length() == s1.length()) {
-    int len_ = s1.length();
-    char mx[MAX_CHAR] = {0};
-    for (int i=0;i<len_;i++) {
-      mx[s[i] - 'a']++;   //aaaa
-      mx[s1[i] - 'a']--;   //aaaa
-    }
-    for(int i=0;i<MAX_CHAR;i++) {
-      if ( mx[i] != 0 ) {
-        return false;
+//1. use auto& rather then auto to avoid unnecessary copy
+//2. use std::move() to steal vector from map
+//3. use vector.reserve() to avoid reallocate
+//#################################### Move + reserve #################################### 
+vector<vector<string>> groupAnagrams(vector<string>& strs) {
+      int n = strs.size();
+      unordered_map<string, vector<string>> map;
+      vector<vector<string> > ret;
+      for (const auto& s : strs) {
+          string t = s;
+          sort(t.begin(), t.end());
+          map[t].push_back(s);
       }
-    }
-    return true; 
-  }
-  return false;
+      ret.reserve(map.size());
+      for (auto& p : map) {
+          ret.push_back(std::move(p.second));
+      }
+      return ret;
 }
 
-
-void testMe(string& s,string& s1) {
-
-    if ( isAnagrams(s,s1) == true) {
-      cout << " s= " << s<< "| s1= " << s1 << " are anagrams." << endl;
-    } else {
-      cout << " s= " << s<< "| s1= " << s1 << " are not anagrams." << endl;
+//#################################### GOOD #################################### 
+vector<vector<string>> groupAnagrams(vector<string>& strs) {
+    unordered_map<string,vector<string> > cntr;
+    vector<vector<string> > result;
+    for(auto str:strs) {
+        string tmp = str;
+        sort(tmp.begin(),tmp.end());
+        cntr[tmp].push_back(str);
+    } 
+    for(auto &p:cntr) {
+        vector<string> tmp;
+        for(auto &str:p.second) {
+            tmp.push_back(str);
+        }
+        result.push_back(tmp);
     }
-}
-
-
-int main() {
-    string s = "quick";
-    string s1 = "fox"; 
-    testMe(s1,s);
-
-    s = "anagram";
-    s1 = "nagaram"; 
-    testMe(s1,s);
+    return result;
 }
