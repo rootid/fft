@@ -10,11 +10,60 @@
 //  [1,3],
 //  [1,4],
 //]
-
+//
 #include "../headers/global.hpp"
-
+//################################################ So Far way ################################################ 
+void combine_helper(int n,int k,vector<vector<int> >&result, vector<int> so_far,int state) {
+      if(so_far.size() == k) {
+          result.push_back(so_far);
+      }
+      for(int i=state;i<=n;i++) {
+          so_far.push_back(i);
+          combine_helper(n,k,result,so_far,++state);
+          so_far.pop_back();
+      }
+}
+  
+vector<vector<int>> combine(int n, int k) {
+      vector< vector<int> > result;
+      vector<int> so_far;
+      int state = 1;
+      combine_helper(n,k,result,so_far,state);
+      return result;
+}
+//################################################ Iterative  ################################################ 
+//Iterative :  1 ( k times)  4(k times)
+//             2 ( k-1 times) 3(k-1)
+//             3 ( k-2 )      2(k-2)
 void print_result(vector<vector<int> >& r);
-
+vector<vector<int>> combine(int n, int k) {
+    vector<vector<int> > result;
+    vector<vector<int> > cv(1);
+    vector<int> tmp;
+    for(int i=1;i<=n;i++) {
+      int len = cv.size();
+      for(int j=0;j<len;j++) {
+        tmp = cv[j];
+        tmp.push_back(i);
+        if(k == tmp.size()) {
+          result.push_back(tmp);
+        } else {
+          cv.push_back(tmp);
+        }
+      }
+    }
+    print_result(result);
+    return result;
+}
+void print_result(vector<vector<int> >& r) {
+  for(auto& v:r) {
+    for(auto& i:v) {
+      cout << i << ",";
+    }
+    cout << endl;
+  }
+}
+//################################################ DFS ################################################ 
 void dfsHelper(int start,int end,int k,vector<int>&iv,vector<int>& cv,vector<vector<int> >& result) {
     if(k == 0) {
       result.push_back(cv);
@@ -26,7 +75,6 @@ void dfsHelper(int start,int end,int k,vector<int>&iv,vector<int>& cv,vector<vec
         cv.pop_back();
     }
 }
-
 vector<vector<int>> combine(int n, int k) {
     vector<int> iv;
     for(int i=1;i<=n;i++) {
@@ -40,19 +88,32 @@ vector<vector<int>> combine(int n, int k) {
     print_result(result);
     return result;
 }
-
-void print_result(vector<vector<int> >& r) {
-  for(auto& v:r) {
-    for(auto& i:v) {
-      cout << i << ",";
-    }
-    cout << endl;
-  }
+//################################################ Bit manipulation ################################################ 
+vector<vector<int> > combine(int n, int k) {
+         vector<vector<int> >res;
+         vector<int>tmpres;
+         //Maximum value of bit = (1<<n) - (1<<(n-k))
+         for(int bit = (1<<k) - 1; bit <= (1<<n) - (1<<(n-k)); bit = NextN(bit))
+         {
+             tmpres.clear();
+             for(int i = 0; i < n; i++)
+             {
+                 if(bit & (1<<i))
+                     tmpres.push_back(i+1);
+             }
+             res.push_back(tmpres);
+         }
+         return res;
 }
-
+//Returns the smallest integer M that is greater than N, so that the binary representation of M and N has the same number 1
+int NextN(int N) 
+{ 
+     int x = N&(-N);      
+     int t = N+x; 
+     return t | ((N^t)/x)>>2; 
+ }
 int main() {
-  combine(4,2);
+  //vector< vector<int> > lv(1);
+  //print_result(lv);
+  combine(6,3);
 }
-
-
-
