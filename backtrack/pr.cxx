@@ -44,6 +44,7 @@ vector<vector<int> > permute(vector<int>& nums) {
   dfs(nums,0,len,visit,tmp,result);
   return result;
 }
+
 int main() {
   vector<int> input( {1,2,3} );
   permute(input);

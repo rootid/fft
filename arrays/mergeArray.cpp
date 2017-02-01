@@ -59,8 +59,7 @@ void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
   //      while(j>=0)
   //          A[k--] = B[j--];
   //  }
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
   vector<int> av( {1,2,3,4,5} );
   vector<int> bv;
   int m = av.size();
