@@ -15,7 +15,7 @@
 //Step 4:
 //Since there is only one duplicated number, then that's it.
 
-int findDuplicate(vector<int>& nums) {
+int findDuplicate3(vector<int>& nums) {
 	if (nums.size() > 1) {
 		int slow = nums[0];
 		int fast = nums[nums[0]];
