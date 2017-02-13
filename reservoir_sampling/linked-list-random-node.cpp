@@ -31,7 +31,7 @@ public:
     /** Returns a random node's value. */
     int getRandom() {
         //reservoir sampling
-        int k = 0; //reservoid of 0 element
+        int k = 0; //reservoir of 0 element
         ListNode* head = p_head;
         int val = head->val;
         for(int i=1; head;i++) {  //reservoir sampling
