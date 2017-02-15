@@ -6,6 +6,8 @@
 //Note:
 //You may use one character in the keyboard more than once.
 //You may assume the input string will only contain letters of alphabet.
+
+//###################################################### Map ########################################### 
 vector<string> findWords(vector<string>& words) {
     unordered_set<char> row1 {'q', 'w', 'e', 'r', 't', 'y','u', 'i', 'o', 'p'};
     unordered_set<char> row2 {'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'}; 
@@ -31,4 +33,23 @@ vector<string> findWords(vector<string>& words) {
         
     }
     return validWords;
+}
+
+//###################################################### Bit manipulation  ########################################### 
+vector<string> findWords(vector<string>& words) {
+      vector<int> dict(26);
+      vector<string> rows = {"QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"};
+      for (int i = 0; i < rows.size(); i++) {
+          for (auto c : rows[i]) dict[c-'A'] = 1 << i;
+      }
+      vector<string> res;
+      for (auto w : words) {
+          int r = 7;
+          for (char c : w) {
+              r &= dict[toupper(c)-'A'];
+              if (r == 0) break;
+          }
+          if (r) res.push_back(w);
+      }
+      return res;
 }
