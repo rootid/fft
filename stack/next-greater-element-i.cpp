@@ -18,9 +18,28 @@
 //All elements in nums1 and nums2 are unique.
 //The length of both nums1 and nums2 would not exceed 1000.
 
+
+
+//################## With stack + map + Traverse right to left #################################### 
+vector<int> nextGreaterElement(vector<int>& findNums, vector<int>& nums) {
+     if (findNums.empty()) return {};
+     int n = nums.size();
+     unordered_map<int, int> ng;
+     stack<int> st;
+     for (int i = n-1; i >= 0; --i) {
+         while (!st.empty() && st.top() < nums[i]) st.pop();
+         ng[nums[i]] = st.empty() ? -1 : st.top();
+         st.push(nums[i]);
+     }
+     
+     int m = findNums.size();
+     vector<int> res(m);
+     for (int i = 0; i < m; ++i) res[i] = ng[findNums[i]];
+     return res;
+ }
 //findNums  = [4,1,2]
 //nums  = [1,3,4,2]
-//################## With stack + map ################## 
+//################## With stack + map + Traverse left to right  #################################### 
 vector<int> nextGreaterElement(vector<int>& findNums, vector<int>& nums) {
     stack<int> s;
     //map store k,v => 1,
