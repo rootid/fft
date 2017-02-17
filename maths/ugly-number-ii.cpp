@@ -7,8 +7,7 @@
 //The key is how to maintain the order of the ugly numbers. Try a similar approach of merging from three sorted lists: L1, L2, and L3.
 //Assume you have Uk, the kth ugly number. Then Uk+1 must be Min(L1 * 2, L2 * 3, L3 * 5).
 
-#include<iostream>
-using namespace std;
+#include "../headers/global.hpp"
 
 //We have an array k of first n ugly number. We only know, at the beginning, the first one, which is 1. Then
 //
@@ -16,14 +15,31 @@ using namespace std;
 //
 //k[2] = min( k[1]x2, k[0]x3, k[0]x5). And so on. Be careful about the cases such as 6, in which we need to forward both pointers of 2 and 3.
 
+///################# Evertime iterate over the index variables to find the min ugly ################# 
+int nthUglyNumber(int n){
+	int i2=0, i3=0, i5=0;
+  vector<int> ugly(n,INT_MAX);
+	ugly[0] = 1;
+	for (int i=1; i<n; i++) {
+		ugly[i] = min(ugly[i2]*2, min(ugly[i3]*3, ugly[i5]*5) );
+		if (ugly[i]%2 == 0) 
+      i2++;
+		if (ugly[i]%3 == 0) 
+      i3++;
+		if (ugly[i]%5 == 0) 
+      i5++;
+	}
+	
+	return ugly[n-1];
+}
+
 int nthUglyNumber(int n) {
        if(n <= 0) return false; // get rid of corner cases 
        if(n == 1) return true; // base case
        int t2 = 0, t3 = 0, t5 = 0; //pointers for 2, 3, 5
        vector<int> k(n);
        k[0] = 1;
-       for(int i  = 1; i < n ; i ++)
-       {
+       for(int i  = 1; i < n ; i ++) {
            k[i] = min(k[t2]*2,min(k[t3]*3,k[t5]*5));
            if(k[i] == k[t2]*2)  { 
              t2++; 
@@ -36,7 +52,9 @@ int nthUglyNumber(int n) {
            }
        }
        return k[n-1];
-   }
+}
+
+
 
 int nthUglyNumber(int n) {
      if (n == 1)
