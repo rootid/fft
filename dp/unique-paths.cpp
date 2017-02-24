@@ -3,7 +3,7 @@
 //The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
 //How many possible unique paths are there?
 
-//Space O(n^2)
+//########################################## Space O(n^2) ########################################## 
 int uniquePaths(int m, int n) {
     vector< vector<int> > paths(m, vector<int>(n,1) );
     for(int i=1;i<m;i++) {
@@ -14,7 +14,7 @@ int uniquePaths(int m, int n) {
     return paths[m-1][n-1];
 }
 
-//Space optimization O(min(m, n))
+//##################################### Space optimization O(min(m, n)) ##################################### 
 int uniquePaths(int m, int n) {
    if (m > n) return uniquePaths(n, m); 
         vector<int> pre(m, 1);
