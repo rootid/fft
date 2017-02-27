@@ -15,7 +15,6 @@
 //Since in this problem the range of possible sums is 
 //[-size...size], we can use an array instead of unordered_map. 
 //We can consider size as the zero point, so the array indexes will be [0... 2 * size].
-
 int findMaxLength(vector<int>& nums) {
     int size = nums.size(), ballance = size, max_len = 0;
     int newNums[size * 2 + 1] = {};
@@ -37,9 +36,6 @@ int findMaxLength(vector<int>& nums) {
     }
     return max_len;
 }
-
-
-
 //len(A) + len(B) = len
 //sum(A) + sum(B) = (sum(A) + len(B)) / 2 = sum
 //// so we have
@@ -62,4 +58,24 @@ int findMaxLength(vector<int>& nums) {
     return max_len;
 }
 
+//################################################# findMaxLength ######################################
+//SUM[i, j] == 0 then we know there are even number of -1 and 1 between 
+//index i and j. Also put the sum to index mapping to a HashMap to make search faster.
 
+int findMaxLength(vector<int>& nums) { 
+  for (int i = 0; i < nums.size(); i++) { 
+    if (nums[i] == 0) nums[i] = -1; 
+  }
+  unordered_map<int, int> sumToIndex;
+  sumToIndex[0] = -1;
+  int sum = 0, max_len = 0;
+  for (int i = 0; i < nums.size(); i++) {
+      sum += nums[i]; 
+      if (sumToIndex.count(sum)) {
+          max_len = max(max_len, i - sumToIndex[sum]); //total_len - sum = actual len of seq with 0's and 1's
+      } else {
+          sumToIndex[sum] = i;
+      }
+  }
+  return max_len;
+}
