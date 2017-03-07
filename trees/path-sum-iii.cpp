@@ -21,36 +21,108 @@
 #include "../headers/global.hpp"
 #include "../headers/treenode.h"
 
+
+
+//####################################### Recursive ####################################### 
+int rootSum(TreeNode* root, int sum) { 
+  if (root == nullptr) { 
+    return 0; 
+  }
+  return (sum == root->val) + rootSum(root->left, sum - root->val) + rootSum(root->right, sum - root->val);
+}
+
+int pathSum(TreeNode* root, int sum) { 
+  if (root == nullptr) 
+    return 0;
+  return rootSum(root, sum) + pathSum(root->left, sum) + pathSum(root->right, sum);
+}
+
+//######################### Use Dynamic root/head  ######################### 
+//
+///For example, the total sum is 8, root value is 3, in this case, you can pass either 8 or 5 to the next level. When you pass 8 to the children, it means that its children can be the new head because root is not in the path in this case. When you pass 5 to the children, then the children cannot be the new head anymore because in this case, root is the head. That's why you need the has_head variable so you know if the current node can be head or not with the given sum value
+void countPath(TreeNode* root, int sum, int& count, bool has_head){ 
+  if (!root) {
+    return;
+  }
+  if (root->val == sum) {
+    count++;
+  }
+  if (!has_head){  //in this case current node can be new head
+      countPath(root->left, sum, count, false); 
+      countPath(root->right, sum, count, false);
+  }
+  countPath(root->left, sum-root->val, count, true);
+  countPath(root->right, sum-root->val, count, true); 
+}
+
+int pathSum(TreeNode* root, int sum) { 
+  int count = 0;
+  countPath(root, sum, count, false);
+  return count;
+}
+//############################ Wrong : Only considers path from root to leaf
 void helper(TreeNode *root,int sum,int org_sum,int& cnt ) {
   if(!root) {
     return;
   }
   int l_val = root->val;
-  if(sum == 0) {
+  if(sum == org_sum) {
     cnt += 1;
-    sum = org_sum;
   }  
-  helper(root->left,sum-l_val,org_sum,cnt);
-  helper(root->right,sum-l_val,org_sum,cnt);
-
+  sum += l_val;
+  helper(root->left,sum,org_sum,cnt);
+  helper(root->right,sum,org_sum,cnt);
 }
 
 int pathSum(TreeNode* root, int sum) {
     int cnt = 0;
-    helper(root,sum,sum,cnt);
+    helper(root,0,sum,cnt);
+    return cnt;
 }
 
 
+//############################# Prefix sum ############################# 
 
-
-int rootSum(TreeNode* root, int sum) {
-      if (root == nullptr)
-          return 0;
-      return (sum == root->val) + rootSum(root->left, sum - root->val) + rootSum(root->right, sum - root->val);
+public int pathSum(TreeNode root, int sum) {
+    Map<Integer, Integer> map = new HashMap<>();
+    map.put(0, 1);  //Default sum = 0 has one count
+    return backtrack(root, 0, sum, map); 
 }
-  
-int pathSum(TreeNode* root, int sum) {
-      if (root == nullptr)
-          return 0;
-      return rootSum(root, sum) + pathSum(root->left, sum) + pathSum(root->right, sum);
+//BackTrack one pass
+public int backtrack(TreeNode root, int sum, int target, Map<Integer, Integer> map){
+    if(root == null)
+        return 0;
+    sum += root.val;
+    int res = map.getOrDefault(sum - target, 0);    //See if there is a subarray sum equals to target
+    map.put(sum, map.getOrDefault(sum, 0)+1);
+    //Extend to left and right child
+    res += backtrack(root.left, sum, target, map) + backtrack(root.right, sum, target, map);
+    map.put(sum, map.get(sum)-1);   //Remove the current node so it wont affect other path
+    return res;
+}
+
+//############################# recursion  ############################# 
+///Time Complexity should be O(N^2) for the worst case and O(NlogN) for balanced binary Tree.
+//
+//So the idea is similar as Two sum, using HashMap to store ( key : the prefix sum, value : how many ways get to this prefix sum) , and whenever reach a node, we check if prefix sum - target exists in hashmap or not, if it does, we added up the ways of prefix sum - target into res.
+//For instance : in one path we have 1,2,-1,-1,2, then the prefix sum will be: 1, 3, 2, 1, 3, let's say we want to find target sum is 2, then we will have{2}, {1,2,-1}, {2,-1,-1,2} and {2}ways.
+//used global variable count, but obviously we can avoid global variable by passing the count from bottom up. The time complexity is O(n). This is my first post in discuss, open to any improvement or criticism. :)
+public class Solution {
+    public int pathSum(TreeNode root, int sum) {
+        if(root == null)
+            return 0;
+        return findPath(root, sum) + pathSum(root.left, sum) + pathSum(root.right, sum);
+    }
+    
+    public int findPath(TreeNode root, int sum){
+        int res = 0;
+        if(root == null)
+            return res;
+        if(sum == root.val)
+            res++;
+        res += findPath(root.left, sum - root.val);
+        res += findPath(root.right, sum - root.val);
+        return res;
+    }
+   
 }
