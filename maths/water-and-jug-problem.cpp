@@ -12,6 +12,28 @@
 //Input: x = 2, y = 6, z = 5
 //Output: False
 
+//########################### GCD way ########################### 
+bool canMeasureWater(int x, int y, int z) {
+    if(x + y < z) { //(1,1 z=10) You must have z liters of water contained within one or both buckets by the end.
+      return false;
+    }
+    //case x or y is zero
+    if( x == z || y == z || x + y == z ) 
+      return true;
+    
+    //get GCD, then we can use the property of Bézout's identity
+    return z % GCD(x, y) == 0;
+}
+
+int GCD(int a, int b){
+    while(b != 0 ){
+        int temp = b;
+        b = a%b;
+        a = temp;
+    }
+    return a;
+}
+
 //##################### BFS way using nodes as states ##################### 
 bool canMeasureWaterbfs(int x, int y, int z) {
  if(z > x+y || z < 0) return false; 
