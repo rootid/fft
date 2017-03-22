@@ -123,3 +123,31 @@ public List<List<Integer>> updateMatrix(List<List<Integer>> matrix) {
         }
         return matrix;
     }
+
+
+public class Solution {
+    public List<List<Integer>> updateMatrix(List<List<Integer>> matrix) {
+        int m = matrix.size(), n = matrix.get(0).size();
+        this.matrix = matrix;
+        for (List<Integer> row : matrix)
+            for (int j = 0; j < n; j++)
+                row.set(j, row.get(j) * 10000);
+        for (int i = 0; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                relax(i, j, i, j-1);
+                relax(i, n-1-j, i, n-j);
+            }
+        }
+        for (int j = 0; j < n; j++) {
+            for (int i = 1; i < m; i++) {
+                relax(i, j, i-1, j);
+                relax(m-1-i, j, m-i, j);
+            }
+        }
+        return matrix;
+    }
+    void relax(int i, int j, int i0, int j0) {
+        matrix.get(i).set(j, Math.min(matrix.get(i).get(j), matrix.get(i0).get(j0) + 1));
+    }
+    List<List<Integer>> matrix;
+}
