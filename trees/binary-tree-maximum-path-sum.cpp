@@ -68,5 +68,38 @@ int maxPathSum(TreeNode *root) {
     helper(root, max);
     return max;
 }
+
+
+//Not many problems exhibit such a clear sub-structure. Here we need to simply solve the problem for a tree with up to two levels and then recursively repeat that logic.
+//Maximum path can be formed only in a few ways:
+//1. Root + Left sub-tree
+//2. Root + Right sub-tree
+//3. Just the Root, in case left and right sums are -ve.
+//4. Root + Left + Right sub-trees, this is closed path
+//Only greater of the first three values can move up the ladder. Repeat this at every step, and we have a bottom up solution. More comments with C implementation given below
+int maxValSum(TreeNode* root, int *maxVal) {
+    int ml, mr, mx;
+    if (!root) return 0;
+
+    /* Get the maxValimum values from the left and right sub-trees */
+    ml = maxValSum(root->left, maxVal);
+    mr = maxValSum(root->right, maxVal);
+
+    /* Maximum can be either
+       1. The whole sub-tree, or
+       2. Just the left subtree + root or
+       3. Right sub-tree + root. */
+    *maxVal = *maxVal < (mx = max(root->val + ml + mr, root->val + ml, 
+                            root->val + mr)) ? mx : *maxVal;
+
+    /* Return the larger of the two sub-trees + root or just the root. */
+    return max(root->val, root->val + ml, root->val + mr);
+}
+
+int maxPathSum(struct TreeNode* root) {
+    int sum1 = MIN_INT, sum2;
+    sum2 = maxSum(root, &sum1);
+    return sum1 > sum2 ? sum1 : sum2;
+}
         
 

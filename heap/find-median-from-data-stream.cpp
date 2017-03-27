@@ -22,7 +22,7 @@ public:
     }
     void addNum(int num) { 
       small.push(num); //2
-      large.push(-small.top()); //-2
+      large.push(-small.top()); //PLEASE NOTE : [4,3,2] or [2,3,4] (push larger element in larg heap)
       small.pop();
       if (small.size() < large.size()) {
           small.push(-large.top());
