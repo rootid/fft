@@ -1,5 +1,6 @@
 #include<algorithm>
 #include<cstring>
+#include<ctype.h>
 #include<iostream>
 #include<limits.h>
 #include<memory>
@@ -13,7 +14,6 @@
 #include<unordered_set>
 #include<utility>
 #include<vector>
-#include<ctype.h>
 // uncomment to disable assert()
 // #define NDEBUG
 #include <cassert>
