@@ -54,8 +54,46 @@ bool isScramble(string s1, string s2) {
     }
     return false;
 }
-
-
+//########################################## DP with 3-d vector ########################################## 
+bool isScramble(string s1, string s2) {
+    if( s1.size() != s2.size() )
+        return false;
+    int n = s1.size();
+    vector<vector<vector<bool> > > dp(n + 1, 
+            vector<vector<bool> >(n, vector<bool>(n, false)));
+    //first for loop enumerate string length;
+    //second and third for loop enumerate the string begin position;
+   //fourth try to determine whether s2[i:i+len] is scramble string of s1[j:j+len]
+    for(int l = 1; l <= n; ++l) {
+        for(int i = 0; i <= n - l; ++i) {
+            for(int j = 0; j <= n - l; ++j) {
+                if( l == 1 )
+                    dp[l][i][j] = s1[i] == s2[j];
+                for(int k = 1; k < l; ++k) {
+                    if( (dp[k][i][j] && dp[l-k][i+k][j+k])
+                        || (dp[k][i][j+l-k] && dp[l-k][i+k][j]) ) {
+                        dp[l][i][j] = true;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    return dp[n][0][0];
+    //if( s1.size() == 1 )
+        //return s1[0] == s2[0];
+    //int n = s1.size();
+    //for(int i = 1; i < n; ++i)
+    //{
+        //bool first = isScramble(s1.substr(0, i), s2.substr(0, i))
+            //&& isScramble(s1.substr(i), s2.substr(i));
+        //bool second = isScramble(s1.substr(0, i), s2.substr(n - i))
+            //&& isScramble(s1.substr(n - i), s2.substr(0, i));
+        //if( first || second )
+            //return true;
+    //}
+    //return false;
+}
 //##############################################  DP + Map  ##############################################  
 bool dpHelper(unordered_map<string, bool> &isScramblePair, string s1, string s2) {
     int i,len = s1.size();
@@ -246,4 +284,36 @@ bool isScramble(string s1, string s2) {
     }
   }
   return p[len][0][0];
+}
+
+//###################################################### DP+3-d array ############################################################
+bool isScramble(string s1, string s2) {  
+    // Start typing your C/C++ solution below  
+    // DO NOT write int main() function  
+    if (s1.length() != s2.length()) {  
+        return false;  
+    }  
+    int length = s1.length();  
+    bool f[length][length][length];  
+    memset(f, false, sizeof(bool) * length * length * length);  
+      
+    for (int k = 1; k <= length; k++) {  
+        for (int i = 0; i <= length - k; i++) {  
+            for (int j = 0; j <= length - k; j++) {  
+                if (k == 1) {  
+                    f[i][j][k] = s1[i] == s2[j];  
+                }  
+                else {  
+                    for (int l = 1; l < k; l++) {  
+                        if ((f[i][j][l] && f[i + l][j + l][k - l]) || (f[i][j + k - l][l] && f[i + l][j][k - l])) {  
+                            f[i][j][k] = true;  
+                            break;  
+                        }                              
+                    }  
+                }  
+            }  
+        }              
+    }  
+              
+    return f[0][0][length];  
 }
