@@ -23,9 +23,54 @@
 //[2,4,6,8,10]
 //[2,6,10]
 
-
-int numberOfArithmeticSlices(vector<int>& A) {
-
-    
-
+//############################################### O(N^2) ###############################################################
+int numberOfArithmeticSlices(vector<int>& A) { 
+  int res = 0;
+  vector<unordered_map<int, int>> map(A.size()); //map will store the intermediate results T(i, d), with i indexed into the array and d as the key of the
+    for (int i = 0; i < A.size(); i++) { //For each index i, we find the total number of "generalized" arithmetic subsequence slices ending at it with all possible differences. This is done by attaching A[i] to all slices of T(j, d) with j less than i.
+        for (int j = 0; j < i; j++) {
+            long long diff = (long long) A[i] - A[j];
+            if (diff <= INT_MIN || diff > INT_MAX) {
+              continue;
+            }
+            int dist = (int)diff;
+            auto it = map[i].find(dist);
+            int c1 = (it == map[i].end() ? 0 : it->second) ; //T(i, d)
+            auto it1 = map[j].find(dist);
+            int c2 = (it1 == map[j].end() ? 0 : it1->second); //T(j, d)
+            res += c2;
+            map[i][dist] = c1 + c2 + 1; //1 : count of the "two-element" slice (A[j], A[i])
+        }
+    }
+    return res;
 }
+
+//############################################################################################################
+int numberOfArithmeticSlices(vector<int>& A) { 
+  int ans = 0;
+  vector<unordered_map<long long, int>> dp(A.size());
+  for (int i = 1; i < A.size(); i++) {
+      for (int j = 0; j < i; j++) {
+          long long dist = (long long)A[i] - A[j];
+          auto it = dp[j].find(dist);
+          int s = (it == dp[j].end() ? 0 : it->second) + 1;
+          dp[i][dist] += s;
+          ans += s;
+      }
+      ans -= i;
+  }
+  return ans; 
+}
+////
+//class Solution(object):
+//    def numberOfArithmeticSlices(self, A): 
+//        ans = 0;
+//        dp = [{} for i in xrange(len(A))]
+//        for i in xrange(1, len(A)):
+//            for j in xrange(0, i): 
+//                dist = A[i] - A[j]
+//                s = dp[j].get(dist, 0) + 1
+//                dp[i][dist] = dp[i].get(dist, 0) + s
+//                ans += s
+//            ans -= i
+//        return ans;
