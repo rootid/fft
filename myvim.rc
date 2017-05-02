@@ -1,0 +1,5 @@
+function! AddEmptyLineBelow()
+  call append(line("."), "")
+endfunction
+
+noremap , <C-j> :call AddEmptyLineBelow()<CR>
