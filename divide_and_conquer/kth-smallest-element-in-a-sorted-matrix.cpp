@@ -17,7 +17,7 @@
 
 //TODO case fixx : matrix=[[2000000000]], k=1. Better start with INT_MIN/INT_MAX or matrix[0][0]/matrix[n-1][n-1]
 
-//##############################################  Bin search O(log n) ############################################## 
+//##############################################  Bin search O(r log n) ############################################## 
 int kthSmallest(vector<vector<int>>& matrix, int k) {
     int n = matrix.size();
     int left = matrix[0][0];
@@ -45,10 +45,10 @@ int kthSmallest(vector<vector<int>>& matrix, int k) {
   while(l<r){
       mid = l+r>>1;
       int cnt=0, j=n-1;
-      for(int i=0;i<n;i++){
+      for(int i=0;i<n;i++) { //i increases from 0 to n-1, j could only decrease from n-1 to -1 monotonically, which is O(n).
           while(j>=0&&matrix[i][j]>mid)
               j--;
-          cnt+=j+1;
+          cnt += j+1;
       }
       if(cnt<k)
           l=mid+1;
