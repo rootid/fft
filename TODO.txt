@@ -4,3 +4,8 @@ https://discuss.leetcode.com/category/39/next-permutation
 https://discuss.leetcode.com/topic/15216/a-simple-algorithm-from-wikipedia-with-c-implementation-can-be-used-in-permutations-and-permutations-ii
 https://leetcode.com/problems/minimum-path-sum/
 https://discuss.leetcode.com/topic/15269/10-lines-28ms-o-n-space-dp-solution-in-c-with-explanations
+
+
+### Pytonic
+# zip in python
+http://stupidpythonideas.blogspot.de/2013/08/how-grouper-works.html
