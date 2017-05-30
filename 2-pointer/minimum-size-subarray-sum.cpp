@@ -26,7 +26,7 @@ int minSubArrayLen(int s, vector<int>& nums) {
     }
     return min_len<=num_len ? min_len: 0;
 }
-//############################################ O(n) + cumulative sum ############################################ 
+//############################################ O(n) + cumulative sum + Kadane algo ############################################ 
 int minSubArrayLen(int s, vector<int>& nums) {
   int start = 0, sum = 0, minLength = INT_MAX;
   for(int i = 0; i<nums.size(); i++) {
