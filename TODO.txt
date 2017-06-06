@@ -13,3 +13,7 @@ http://stupidpythonideas.blogspot.de/2013/08/how-grouper-works.html
 ####  O(N) on average, O(NM) worst case for substring
 ## trees/subtree-of-another-tree.cpp
 https://stackoverflow.com/questions/35220418/runtime-of-pythons-if-substring-in-string/35220792#35220792
+
+####  Count The Repetitions
+## https://discuss.leetcode.com/topic/70667/c-0ms-o-str1-length-str2-length
+## https://discuss.leetcode.com/topic/72105/c-solution-inspired-by-70664914-with-organized-explanation/2
