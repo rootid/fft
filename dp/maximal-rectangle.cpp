@@ -47,11 +47,13 @@ int maximalRectangle(vector<vector<char> > &matrix) {
 //The value of left & right means the boundaries of the rectangle which contains the current point with a height of value height.
 //
 //
-matrix
-0 0 0 1 0 0 0
-0 0 1 1 1 0 0
-0 1 1 1 1 1 0
-
+//matrix
+//0 0 0 1 0 0 0
+//0 0 1 1 1 0 0
+//0 1 1 1 1 1 0
+//height means from top to this position, there are how many '1'
+//left means at current position, what is the index of left bound of the rectangle with height[j]. 0 means at this position, no rectangle. (现在这个矩形的左边的下标)
+//right means the right bound index of this rectangle. 'n' means no rectangle.
 //0th row: 0 0 0 1 0 0 0
 //height: 0 0 0 1 0 0 0
 //left: 0 0 0 3 0 0 0
@@ -68,7 +70,6 @@ matrix
 //right: 7 6 5 4 5 6 7
 //
 //
-
 //0  0  0  1  0  0  0
 //
 //0  0  1  1  1  0  0
@@ -125,7 +126,6 @@ matrix
 //  ***************               
 //0 *1  1  1  1  1* 0          
 //  ***************           
-
 int maximalRectangle(vector<vector<char>>& matrix) {
   if(matrix.empty()) return 0;
   const int m = matrix.size();
@@ -154,7 +154,6 @@ int maximalRectangle(vector<vector<char>>& matrix) {
   }
   return maxA;
 }
-
 
 //######################################## pytonic  ######################################## 
 //def maximalRectangle(self, matrix):
