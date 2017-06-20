@@ -120,3 +120,48 @@ private:
     int *available;
     bool *isAvailable;
 };
+
+//########################################### With Set  ########################################### 
+class PhoneDirectory {
+    
+private :
+    vector<int> numbers;
+    unordered_set<int> dir_set;
+public:
+    /** Initialize your data structure here
+        @param maxNumbers - The maximum numbers that can be stored in the phone directory. */
+    PhoneDirectory(int maxNumbers) {
+        int i = maxNumbers;
+        while(i-- > 0) {
+           // cout << i << endl;
+            numbers.push_back(i);
+            dir_set.insert(i);
+        }
+    }
+    
+    /** Provide a number which is not assigned to anyone.
+        @return - Return an available number. Return -1 if none is available. */
+    int get() {
+        if(numbers.size() == 0) {
+            return -1;
+        }
+        int no_ = numbers.back();
+        dir_set.erase(no_);
+        numbers.pop_back();
+        return no_;
+    }
+    
+    /** Check if a number is available or not. */
+    bool check(int number) {
+        return dir_set.find(number) != dir_set.end();
+    }
+    
+    /** Recycle or release a number. */
+    void release(int number) {
+        if(check(number)) {
+            return;
+        }
+        dir_set.insert(number);
+        numbers.push_back(number);
+    }
+};
