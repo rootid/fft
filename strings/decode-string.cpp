@@ -8,7 +8,8 @@
 //s = "2[abc]3[cd]ef", return "abcabccdcdcdef".
 //
 //
-//Recursive
+
+//######################################### Recursive ######################################### 
 string dfs(string s,int &k) {
   int cnt = 0;
   string res;
@@ -35,3 +36,36 @@ string decodeString(string s) {
   int k = 0; 
   return dfs(s,k);
 }
+
+//######################################### Iterative ######################################### 
+string decodeString(string s) {
+      string ans, tmp;
+      stack<int> numStack;
+      stack<string> strStack;
+      int n = 0;
+      for (int i = 0; i < s.size(); i++) {
+          if (isdigit(s[i]))
+              n = n * 10 + s[i] - '0';
+          else if (s[i] == '[') {
+              numStack.push(n);
+              n = 0;
+              strStack.push(tmp);
+              tmp.clear();
+          }
+          else if (s[i] == ']') {
+              int k = numStack.top();
+              numStack.pop();
+              for (; k > 0; k--)
+                  strStack.top() += tmp;
+              tmp = strStack.top();
+              strStack.pop();
+          }
+          else
+              tmp += s[i];
+      }
+     if (strStack.size() == 0) {
+        return tmp;
+     }
+     return strStack.top();
+}
+
