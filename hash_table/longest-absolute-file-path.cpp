@@ -66,3 +66,49 @@ int main() {
   //cout << " lt " << t.size() << endl;
   lengthLongestPath("dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext");
 }
+
+
+//########################### pytonic  ########################### 
+//the number of tabs is my depth and for each depth I store the current path length.
+//def lengthLongestPath(self, input):
+//    maxlen = 0
+//    pathlen = {0: 0}
+//    for line in input.splitlines():
+//        name = line.lstrip('\t')
+//        depth = len(line) - len(name)
+//        if '.' in name:
+//            maxlen = max(maxlen, pathlen[depth] + len(name))
+//        else:
+//            pathlen[depth + 1] = pathlen[depth] + len(name) + 1
+//    return maxlen
+
+//########################### pytonic  ########################### 
+//def lengthLongestPath(self, input):
+//    m, l = 0, {-1: -1}
+//    for s in input.split('\n'):
+//        d = s.count('\t')
+//        l[d] = 1 + l[d-1] + len(s) - d
+//        if '.' in s: m = max(m, l[d])
+//    return m
+
+//########################### pytonic  ########################### 
+//class Solution(object):
+//    def lengthLongestPath(self, input):
+//        paths, max_length, length, depth = [], 0, 0, 0
+//        for line in input.split("\n"):
+//            now_depth = collections.Counter(line)['\t']
+//            name = line.strip('\t')
+//            if now_depth <= depth and paths:
+//                for k in range(depth - now_depth + 1):
+//                    last = paths.pop()
+//                    length -= len(last)
+//                    if "." not in last:
+//                        length -= 1
+//            paths.append(name)
+//            length += len(name)
+//            if "." in name:
+//                max_length = max(max_length, length)
+//            else:
+//                length += 1
+//            depth = now_depth
+//        return max_length
