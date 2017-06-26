@@ -66,3 +66,4 @@ int main() {
   }
   cout << endl;
 }
+// vim: set sw=2 sts=2 tw=120 et nospell : 

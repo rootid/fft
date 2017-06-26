@@ -83,3 +83,5 @@ int main () {
   vector<string> strs( {"abcdef","a","b"} );
   wordsTyping(strs,3,5);
 }
+
+// vim: set sw=2 sts=2 tw=120 et nospell : 
