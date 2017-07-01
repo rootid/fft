@@ -9,7 +9,7 @@ bool doubleEqual(double a, double b){
     return abs(a-b) <= std::numeric_limits<double>::epsilon();
 }
 
-//recursive
+//######################################### Recursive #########################################
 int closestValue(TreeNode *root,double target) {
     if(!root) {
       return 0;
@@ -28,6 +28,7 @@ int closestValue(TreeNode *root,double target) {
     return b;
 }
 
+//######################################### Iterative #########################################
 int closest_iter(TreeNode* root,double target) {
   int closest = root->val;
   while (root) {

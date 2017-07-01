@@ -1,5 +1,6 @@
 #include "../headers/global.hpp"
 
+//Sort Characters By Frequency
 //Given a string, sort it in decreasing order based on the frequency of characters.
 //Example 1:
 //Input:
@@ -26,6 +27,7 @@
 //"bbaA" is also a valid answer, but "Aabb" is incorrect.
 //Note that 'A' and 'a' are treated as two different characters.
 
+//######################################### Iteration ######################################### 
 string frequencySort(string s) {
      unordered_map<char,int> freq_map;
      for(char c:s) {
