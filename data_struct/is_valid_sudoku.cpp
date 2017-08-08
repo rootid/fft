@@ -1,3 +1,4 @@
+
 #include "../headers/global.hpp"
 bool isValidSudoku(vector<vector<char> >& board) {
    assert(board.size() != 9);

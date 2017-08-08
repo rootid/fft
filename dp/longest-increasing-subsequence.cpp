@@ -6,8 +6,7 @@
 //Your algorithm should run in O(n2) complexity.
 //Follow up: Could you improve it to O(n log n) time complexity?
 //
-//###################### DP
-//
+//############################################  DP ############################################  
 // There's a typical DP solution with O(N^2) Time and O(N) space 
 // DP[i] means the result ends at i
 // So for dp[i], dp[i] is max(dp[j]+1), for all j < i and nums[j] < nums[i]
@@ -101,3 +100,49 @@ int getIndex( vector<int>& tops, int end, int x ){
     }
     return l;
 }
+
+//######################################### Pythonic  ######################################### 
+//#########################################  O(N^2) #########################################  
+class Solution(object):
+    def lengthOfLIS(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if nums == []:
+            return 0
+        N = len(nums)
+        LIS, max_so_far = [1]*N, 0
+        for i in range(N):
+            for j in range(i):
+                if nums[i] > nums[j]:
+                    LIS[i] = max(LIS[i], LIS[j]+1)
+            max_so_far = max(max_so_far, LIS[i])
+        return max_so_far
+
+
+//#########################################  Binary search O(n log n) #########################################  
+//
+//tails[i] stores the smallest tail value for all increasing subsequences of length i+1
+//Example: nums = [4,5,19,3].
+//Increasing subsequence of length 1: [4].[5],[19],[3]. Smallest value: 3
+//Increasing subsequence of length 2: [4,5], [5,19], [4,19]: Smallest value: 5
+//Increasing subsequence of length 3: [4,5,19]: Smallest value: 19
+//tails = [3,5,19]. Clearly tails will be sorted since tails[i+1] increases the subsequence by 1 by adding a number larger than tails[i].
+//Imagine the next number is 9. [4,5,19,3,9]. There are now two sequences of length 3: [4,5,19] and [4,5,9]. tails[2] should be updated to 9. We do this so that later we can get say 11,12,13 and any of these can increase the sequence. The new tails array will now be [3,5,9]
+//Imagine the next number is 28. [4,5,19,3,28]. There are now two sequences of length 3: [4,5,28] and [4,5,19]. tails[2] should not be updated since 19 is smaller than 28. But we now have a subsequence of 4 [4,5,19,28]. So we add 28 to the tails array to indicate that subsequence of length 4 ends at 28.
+from bisect import bisect_left
+class Solution(object):
+    def lengthOfLIS(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        tails = []
+        for num in nums:
+            idx = bisect_left(tails, num)
+            if idx == len(tails):
+                tails.append(num)
+            else:
+                tails[idx] = num
+        return len(tails)
