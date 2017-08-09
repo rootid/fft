@@ -8,6 +8,8 @@
 //Note:
 //The input array will only contain 0 and 1.
 //The length of input array is a positive integer and will not exceed 10,000
+
+//################################################### O(n) + append 0 to array ################################################### 
 int findMaxConsecutiveOnes(vector<int>& nums) {
   int maxLen = 0;
   int last_idx = 0;
@@ -24,3 +26,18 @@ int findMaxConsecutiveOnes(vector<int>& nums) {
   }
   return maxLen;
 }
+
+//################################################### Python  ################################################### 
+//################################################### O(n) + append 0 to array ################################################### 
+class Solution(object):
+    def findMaxConsecutiveOnes(self, nums):
+        nums.append(0)
+        lo = 0
+        ret = 0
+        for hi,n in enumerate(nums):
+            if n==0:
+                ret = max(ret, hi-lo)
+                lo = hi+1
+        return ret
+
+
