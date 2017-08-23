@@ -31,6 +31,29 @@ ListNode* reverseListRec(ListNode* head) {
   return nextP;
 }
 
+
+public ListNode reverseList(ListNode head) {
+    if(head == null || head.next == null) {
+        return head;
+    }
+    ListNode nextNode = head.next;
+    ListNode nxt = reverseList(head.next);
+    nextNode.next = head;
+    head.next = null;
+    return nxt;
+}
+
+
+public ListNode reverseList(ListNode head) {
+     if(head==null || head.next==null)
+         return head;
+     ListNode nextNode=head.next;
+     ListNode newHead=reverseList(nextNode);
+     nextNode.next=head;
+     head.next=null;
+     return newHead;
+ }
+
 ListNode* reverseList(ListNode* head) {
 
   if(!head) {
