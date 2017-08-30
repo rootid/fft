@@ -1,3 +1,5 @@
 https://discuss.leetcode.com/user/elmirap
+https://discuss.leetcode.com/user/stellari
 
 http://blog.gainlo.co/index.php/2016/09/12/dropbox-interview-design-hit-counter/
+https://oeis.org/A215721
