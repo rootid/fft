@@ -61,6 +61,40 @@ int getLongestNRSubstr(string &s) {
   return maxLen;
 }
 
+//######################################### O(n) ######################################### 
+//"pwwkew" : 3
+//"abba" : 2
+ public int lengthOfLongestSubstring(String s) {
+		//startIdx -- Always increasing should never go back
+        int len = s.length();
+        int max = 0;
+        int[] store = new int[256];
+        for(int i=0,startIdx=0 ;i<len;i++) {
+            if(store[s.charAt(i)] != 0) 
+              startIdx = Math.max(startIdx, store[s.charAt(i)]); //"abba" : 2 a
+            store[s.charAt(i)] = i + 1;
+            max = Math.max(max,  i - startIdx + 1);
+        }
+        return max;
+    }
+}
+
+
+//######################################### HashMap  ######################################### 
+public int lengthOfLongestSubstring(String s) {
+        if (s.length()==0) return 0;
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+        int max=0;
+        for (int i=0, j=0; i<s.length(); ++i){
+            if (map.containsKey(s.charAt(i))){
+                j = Math.max(j,map.get(s.charAt(i))+1);
+            }
+            map.put(s.charAt(i),i);
+            max = Math.max(max,i-j+1);
+        }
+        return max;
+    }
+
 int wrapperLR(string s) {
   int len = getLongestNRSubstr(s);
   cout << "Longest str " << s << " = "  << len << endl;

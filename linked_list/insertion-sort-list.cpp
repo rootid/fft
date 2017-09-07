@@ -73,3 +73,72 @@ ListNode *insertionSortList(ListNode *head) {
         }
         return res->next;
 }
+
+//######################################### Python  ######################################### 
+def insertionSortList(self, head):
+    p = dummy = ListNode(0)
+    cur = dummy.next = head
+    while cur and cur.next:
+        val = cur.next.val
+        if cur.val < val:
+            cur = cur.next
+            continue
+        if p.next.val > val:
+            p = dummy
+        while p.next.val < val:
+            p = p.next
+        new = cur.next
+        cur.next = new.next
+        new.next = p.next
+        p.next = new
+    return dummy.next
+
+//######################################### Python  ######################################### 
+def insertionSortList(self, head):
+    cur = dummy = ListNode(0)
+    while head:
+        if cur and cur.val > head.val: 
+            cur = dummy
+        while cur.next and cur.next.val < head.val: 
+            cur = cur.next
+        cur.next, cur.next.next, head = head, cur.next, head.next
+    return dummy.next
+
+
+//######################################### JAVA O(N^2) ######################################### 
+public ListNode insertionSortList(ListNode head) {
+    ListNode helper = new ListNode(0);
+    ListNode pre = helper;
+    ListNode current = head;
+    while(current!=null) {
+        pre = helper;
+        while(pre.next!=null &&pre.next.val<current.val) {
+            pre=pre.next;
+        }
+        ListNode next=current.next;
+        current.next=pre.next;
+        pre.next=current;
+        current=next;
+    }
+    return helper.next;
+}
+
+//######################################### JAVA O(n^2) ######################################### 
+public ListNode insertionSortList(ListNode head) {
+	ListNode cur = head;
+	ListNode dummy = new ListNode(0), p;
+	while (cur != null) {
+		//locate the insertion position.
+		p = dummy;
+		while (p.next != null &&  cur.val > p.next.val) {
+			p = p.next;
+		}
+		//insert between p and p.next.
+		ListNode pNext = p.next;
+		p.next = cur;
+		ListNode next = cur.next;
+		cur.next = pNext;
+		cur = next;
+	}
+	return dummy.next;
+}

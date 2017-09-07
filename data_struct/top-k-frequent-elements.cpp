@@ -31,6 +31,37 @@ vector<int> topKFrequent(vector<int>& nums, int k) {
     return res;
 }
 
+//######################################### Bucket sort  ######################################### 
+public List<Integer> topKFrequent(int[] nums, int k) { //At most n times
+    Map<Integer, Integer> invFrqMap = new HashMap();
+    List<Integer>[] bucket = new List[nums.length + 1];
+    
+    for(int n:nums)
+        invFrqMap.put(n, invFrqMap.getorDefault(n,0) + 1);
+    //[1,1,1,2,2,3] and k = 2, return [1,2]. 
+	for (int key : frequencyMap.keySet()) {
+		int frequency = frequencyMap.get(key);
+		if (bucket[frequency] == null) {
+			bucket[frequency] = new ArrayList<>();
+		} 
+		bucket[frequency].add(key); //3 [1], 2 [2], 1 [3] 
+	}
+    
+	List<Integer> res = new ArrayList<>();
+	for (int pos = bucket.length - 1; pos >= 0 && res.size() < k; pos--) {
+	if (bucket[pos] != null) {
+		res.addAll(bucket[pos]);
+	}
+}
+
+
+//######################################### Bucket sort Python  ######################################### 
+def topKFrequent(self, nums, k):
+    bucket = [[] for _ in nums]
+    for num, freq in collections.Counter(nums).items():
+        bucket[-freq].append(num)
+    return list(itertools.chain(*bucket))[:k]
+
 int main() {
   vector<int> n({1,2});
   topKFrequent(n,2);

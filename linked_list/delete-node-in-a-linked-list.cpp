@@ -26,6 +26,23 @@ void deleteNode(ListNode* node) {
   node->next = node->next->next;
 }
 
+//######################################### With Memory leak  ######################################### 
+void deleteNode(ListNode* node) {
+    *node = *node->next;
+}
+
+//######################################### With auto ######################################### 
+void deleteNode(ListNode* node) {
+    auto next = node->next;
+    *node = *next;
+    delete next;
+}
+
+public void deleteNode(ListNode node) {
+    node.val = node.next.val;
+    node.next = node.next.next;
+}
+
 int main() {
   //1->2->3->4->5->NULL,
   ListNode *head = new ListNode(1); 

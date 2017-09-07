@@ -105,3 +105,87 @@ int kthSmallest(TreeNode* root, int k) {
     }
 //ANS : with morris traversal
 //https://leetcode.com/discuss/43299/o-k-space-o-n-time-10-short-lines-3-solutions?show=43556#a43556
+
+//######################################### With instance variable  ######################################### 
+class Solution {
+	int count = 0;
+	TreeNode result  = null;
+	public TreeNode findKthSmallest(TreeNode root, int k) {
+		traverse(root, k);
+		return result;
+	}
+
+	public void traverse(TreeNode root, int k) {
+		if(root == null) return;
+		traverse(root.left, k);
+		count ++;
+		if(count == k) result = root;
+		traverse(root.right, k);       
+	}
+}
+
+//######################################### With Stack (Iterative) ######################################### 
+ public int kthSmallest(TreeNode root, int k) {
+     Stack<TreeNode> stack = new Stack<TreeNode>();
+     TreeNode p = root;
+     int count = 0;
+     
+     while(!stack.isEmpty() || p != null) {
+         if(p != null) {
+             stack.push(p);  // Just like recursion
+             p = p.left;   
+             
+         } else {
+            TreeNode node = stack.pop();
+            if(++count == k) return node.val; 
+            p = node.right;
+         }
+     }
+     
+     return Integer.MIN_VALUE;
+ }
+
+
+//######################################### D&C ######################################### 
+public class Solution {
+     public int kthSmallest(TreeNode root, int k) {
+         int left = nodeCount(root.left);  // this value can be saved in the root node
+         if(left + 1 == k) {
+             return root.val;
+         } else if (left + 1 < k) {
+             return kthSmallest(root.right, k - left - 1);
+         } else {
+             return kthSmallest(root.left, k);
+         }
+     }
+     
+     private int nodeCount(TreeNode root) {
+         if(root == null) {
+             return 0;
+         }
+         return 1 + nodeCount(root.left) + nodeCount(root.right);
+     }
+ }
+
+
+//######################################### D&C ######################################### 
+public TreeNode findKthSmallest(TreeNode root, int k) {
+       
+            if(root == null) {
+                return root;
+            }
+            int left = nodeCount(root.left);  // this value can be saved in the root node
+            if(left + 1  == k) {
+                return root;
+            } else if (left + 1 < k) {
+                return findKthSmallest(root.right, k - left - 1);
+            }
+            return findKthSmallest(root.left, k);
+            
+        }
+        private int nodeCount(TreeNode root) {
+            if(root == null) {
+                return 0;
+            }
+            return 1 + nodeCount(root.left) + nodeCount(root.right);
+        }
