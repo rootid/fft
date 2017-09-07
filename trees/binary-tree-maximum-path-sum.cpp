@@ -11,6 +11,15 @@
 #include "../headers/global.hpp"
 #include "../headers/treenode.h"
 
+//Idea : 
+//traversal every nodes as the top of sub tree and calculate left max and right max individually, then keep update max. T
+//A path, in this problem, refers to any sequence of nodes from some starting node to any node in the tree along the parent-child connections. 
+//In the example, you start at either the 2 or 3, then traverse to its parent, the 1 at the root, then finish at the root's other child. That gives 2+1+3 = 3+1+2 = 6.
+//
+//					  1
+//        **2**                   1
+//  10          10           1          1
+//  Ans = 22 not 26
 
 //maxValue = max(maxValue, left + right + node->val);
 //return max(left, right) + node->val;
@@ -18,13 +27,20 @@
 //so we use left + right + node.val. 
 //But to the //upper layer(after return statement), we cannot choose both left and right branches, so we need to select the larger one, so we use max(left, right) + node.val to prune the lower branch.
 
+
 int depth(TreeNode *root,int &res) { 
   if(root == NULL) 
     return 0;
   int a = depth(root->left,res); 
   int b = depth(root->right,res);
   res = max(res,a+b+root->val);//if *root is the top node in the path (left+right+root)
+
+//									root 
+//                                 /      \   
+//                  left max value        right max value
+  //From the bottom of the tree to the top, it's in post-order manner.
   return max(0,max(a, b)+root->val);//if *root is in the path, if this branch a burden or a plus (left/right + root)
+  //At every node, we need to make a decision, if the sum comes from the left path larger than the right path, we pick the left path and plus the current node's value, this recursion goes all the way up to the root node.
 }
 
 int maxPathSum(TreeNode *root) { 
@@ -101,5 +117,80 @@ int maxPathSum(struct TreeNode* root) {
     sum2 = maxSum(root, &sum1);
     return sum1 > sum2 ? sum1 : sum2;
 }
-        
 
+//######################################### Top-down ######################################### 
+public static int maxSumPath(TreeNode root) {
+    int[] res = new int[1];
+    helper(root,res);
+    return res[0];
+}
+public static int helper(TreeNode root, int[] res) {
+    if(root == null) return 0;
+    int l = helper(root.left, res);
+    int r = helper(root.right, res);
+    res[0] = Math.max(res[0],l+r+root.data);
+    return Math.max(0, Math.max(l,r) + root.data);
+}
+
+//######################################### Top-down ######################################### 
+    def maxPathSum(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        maxSeen = [float('-INF')]
+        self.maxSumIfNodeIsHighestEnd(root, maxSeen)
+        return maxSeen[0]
+        
+    
+    def maxSumIfNodeIsHighestEnd(self, node, maxSeen):
+        if not node:
+            return 0
+        leftSeen = max(0, self.maxSumIfNodeIsHighestEnd(node.left, maxSeen))
+        rightSeen = max(0, self.maxSumIfNodeIsHighestEnd(node.right, maxSeen))
+        maxSeen[0] = max(maxSeen[0], leftSeen + rightSeen + node.val)
+        return max(leftSeen, rightSeen) + node.val
+
+
+//######################################### Top-down ######################################### 
+class Solution(object):
+    def maxPathSum(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        self.sum = root.val
+        def dfs(root):
+            if not root: return 0
+            l = dfs(root.left)
+            r = dfs(root.right)
+            self.sum = max(self.sum, root.val + max(l, r), root.val, root.val + l + r)
+            return max(root.val, root.val + max(l, r))
+        return max(dfs(root), self.sum)
+
+
+//A path from start to end, goes up on the tree for 0 or more steps,
+//then goes down for 0 or more steps. 
+//Once it goes down, it can't go up. 
+//Each path has a highest node, which is also the lowest common ancestor of all other nodes on the path.
+//A recursive method maxPathDown(TreeNode node) 
+//(1) computes the maximum path sum with highest node is the input node, update maximum if necessary 
+//(2) returns the maximum sum of the path that can be extended to input node's parent.
+//
+//######################################### DFS  ######################################### 
+class Solution {
+private:
+    int dfs(TreeNode* root, int& maxsum) {
+        if(!root) return 0;
+        int l = max(0,dfs(root->left,maxsum));
+        int r = max(0,dfs(root->right,maxsum));
+        maxsum = max(l+r+root->val, maxsum);
+        return root->val + max(l,r);
+    }
+public:
+    int maxPathSum(TreeNode* root) {
+        int maxsum = INT_MIN;
+        dfs(root,maxsum);
+        return maxsum;
+    }
+};
