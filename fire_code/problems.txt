@@ -1,3 +1,11 @@
 Number of Half Nodes in a Binary Tree | NumberOfHalfNodesInABinaryTree.java
-
 Insert a Node at a specified position in a Linked List  | InsertANodeAtASpecifiedPositionInALinkedList.java
+Merging Ranges | MergingRanges.java
+
+Convert a Binary Tree to its Mirror Image | ConvertABinaryTreeToItsMirrorImage.java
+
+Find the Maximum BST Node | FindTheMaximumBstNode.java
+Snake |  Snake.java
+Find the Maximum Number of Repetitions | FindTheMaximumNumberOfRepetitions.java (why it works?)
+The Deepest Node | TheDeepestNode.java
+

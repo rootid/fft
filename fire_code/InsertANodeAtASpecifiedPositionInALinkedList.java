@@ -5,7 +5,7 @@
 //insertAtPosition(1,4,2) ==> 1->4->2->3
 //*position=2 means the 2nd node in the list
 
-public class InsertANodeAtASpecifiedPositionInALinkedList  {
+public class InsertANodeAtASpecifiedPositionInALinkedList {
 
   public ListNode insertAtPosition(ListNode head, int data, int pos) {
       if (head == null) {
