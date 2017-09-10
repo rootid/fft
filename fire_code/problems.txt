@@ -8,4 +8,5 @@ Find the Maximum BST Node | FindTheMaximumBstNode.java
 Snake |  Snake.java
 Find the Maximum Number of Repetitions | FindTheMaximumNumberOfRepetitions.java (why it works?)
 The Deepest Node | TheDeepestNode.java
-
+Print a Binary Tree Level by Level | PrintABinaryTreeLevelByLevel.java
+Count Paths on a Game Board | CountPathsOnAGameBoard.java

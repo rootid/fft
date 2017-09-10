@@ -2,6 +2,10 @@
 //A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
 //The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
 //How many possible unique paths are there?
+//
+When (n==0||m==0) the function always returns 0 since the robot can't go left or up.
+For all other cells. The result = uniquePaths(m-1,n)+uniquePaths(m,n-1)
+Therefore I populated the edges with 1 first and use DP to get the full 2-D array.
 
 //########################################## Space O(n^2) ########################################## 
 int uniquePaths(int m, int n) {
@@ -27,3 +31,25 @@ int uniquePaths(int m, int n) {
         return pre[m - 1];
     }
 }
+
+//######################################### Recursion  ######################################### 
+public int countPaths(int m, int n){
+   if (m == 0 || n == 0) {
+		return 0;
+    }
+   if (m == 1 || n == 1) {
+		return 1;
+   }
+   int result = countPaths(m-1,n) + countPaths(m,n-1);
+   return result;
+}
+
+//######################################### Python ######################################### 
+class Solution:
+    # @return an integer
+    def uniquePaths(self, m, n):
+        aux = [[1 for x in range(n)] for x in range(m)]
+        for i in range(1, m):
+            for j in range(1, n):
+                aux[i][j] = aux[i][j-1]+aux[i-1][j]
+        return aux[-1][-1]
