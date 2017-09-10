@@ -10,3 +10,11 @@ Find the Maximum Number of Repetitions | FindTheMaximumNumberOfRepetitions.java 
 The Deepest Node | TheDeepestNode.java
 Print a Binary Tree Level by Level | PrintABinaryTreeLevelByLevel.java
 Count Paths on a Game Board | CountPathsOnAGameBoard.java
+
+Stock Market Oracle | StockMarketOracle.java
+Generate Combinations of Parentheses | GenerateCombinationsOfParentheses.java
+Find the Minimum BST Node | FindTheMinimumBstNode.java
+Distance of a node from the root | DistanceOfANodeFromTheRoot.java
+Find the Nth Node from the End - Linked List | FindTheNthNodeFromTheEnd.java
+Looping Lists : Space complexity O(n) | LoopingLists.java (cyclic test)
+Remove Duplicate Nodes |  RemoveDuplicateNodes.java

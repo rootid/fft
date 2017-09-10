@@ -36,3 +36,18 @@ int maxProfit(vector<int>& prices) {
   }
   return sum; 
 }
+
+
+public int maxProfit(int[] prices) {
+    int profit = 0, i = 0;
+	int len = prices.length;
+    while (i < len) {
+        // find next local minima : Wait when prices are decreasing
+        while (i < len-1 && prices[i+1] <= prices[i]) i++; //monotonic decrease : continue, 0,100,3000,
+        int lastBuy = prices[i++]; // need increment to avoid infinite loop for "[1]"
+        // find next local maximum : Wait when prices are increasing
+        while (i < len-1 && prices[i+1] >= prices[i]) i++; //monotonic decrease
+        profit += i < len ? prices[i++] - lastBuy : 0; //no montonic ↓ 
+    }
+    return profit;
+}

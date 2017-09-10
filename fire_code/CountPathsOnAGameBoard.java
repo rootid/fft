@@ -15,7 +15,8 @@
 // C D
 
 public class CountPathsOnAGameBoard {
-  //######################################### DP T,S = O(m*n)  #########################################
+  //######################################### DP T,S = O(m*n)
+  //#########################################
   public int countPaths(int m, int n) {
     Integer[][] map = new Integer[m][n];
     for (int i = 0; i < m; i++) {
