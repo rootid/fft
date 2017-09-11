@@ -9,8 +9,8 @@
 // ")()(" is not a valid combination.
 
 public class GenerateCombinationsOfParentheses {
-
-  //######################################### Iterative ######################################### 
+  //######################################### Iterative
+  //#########################################
   public static ArrayList<String> combParenthesis(int pairs) {
     ArrayList<ArrayList<String> > lists = new ArrayList<>();
     lists.add(new ArrayList<String>(Collections.singletonList("")));
@@ -32,14 +32,16 @@ public class GenerateCombinationsOfParentheses {
     return lists.get(lists.size() - 1);
   }
 
-  //######################################### DFS ######################################### 
+  //######################################### DFS
+  //#########################################
   public static ArrayList<String> combParenthesisR(int pairs) {
     ArrayList<String> res = new ArrayList<String>();
     dfsHelper(pairs, pairs, "", res);
     return res;
   }
 
-  public static void dfsHelper(int left, int right, String build, ArrayList<String> res) {
+  public static void dfsHelper(int left, int right, String build,
+                               ArrayList<String> res) {
     if (right == 0 && left == 0) {
       res.add(build);
       return;

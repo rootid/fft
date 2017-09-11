@@ -5,8 +5,8 @@ int isHappyNumberHelper(int number){
     }
     int nextSum = 0;
     while(number>0) {
-        int rem_ = number%10;
-        nextSum += pow(rem_,2) ;
+        int rem = number%10;
+        nextSum += pow(rem,2) ;
         number = number/10;
     }
     return isHappyNumberHelper(nextSum);

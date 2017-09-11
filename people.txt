@@ -1,7 +1,9 @@
 https://discuss.leetcode.com/user/elmirap
 https://discuss.leetcode.com/user/stellari
+https://discuss.leetcode.com/user/qeatzy
 http://blog.gainlo.co/index.php/2016/09/12/dropbox-interview-design-hit-counter/
 https://oeis.org/A215721
 https://gist.github.com/nicokosi
 http://www.yujinc.com/8-1-triple-step-cci/
 https://www.youtube.com/watch?v=M8BYckxI8_U
+https://discuss.leetcode.com/topic/42746/all-you-need-to-know-about-testing-happy-number

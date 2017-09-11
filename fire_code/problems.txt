@@ -18,3 +18,6 @@ Distance of a node from the root | DistanceOfANodeFromTheRoot.java
 Find the Nth Node from the End - Linked List | FindTheNthNodeFromTheEnd.java
 Looping Lists : Space complexity O(n) | LoopingLists.java (cyclic test)
 Remove Duplicate Nodes |  RemoveDuplicateNodes.java
+Find the Diameter of a BST | FindTheDiameterOfABst.java
+Happy Numbers | HappyNumbers.java
+ntroduction to Tries | Trie.java
