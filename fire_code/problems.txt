@@ -20,4 +20,12 @@ Looping Lists : Space complexity O(n) | LoopingLists.java (cyclic test)
 Remove Duplicate Nodes |  RemoveDuplicateNodes.java
 Find the Diameter of a BST | FindTheDiameterOfABst.java
 Happy Numbers | HappyNumbers.java
-ntroduction to Tries | Trie.java
+Introduction to Tries | Trie.java
+
+
+Insert a Node at the Head in a Doubly Linked List | InsertANodeAtTheHeadInADoublyLinkedList.java
+Bit Conversion | BitConversion.java
+Find the Level that has the Maximum Sum | FindTheLevelThatHasTheMaximumSum.java
+Fill in the Ancestors of the Node in a Binary Tree | FillInTheAncestorsOfTheNodeInABinaryTree.java
+Boggle with Electronic Dictionary | BoggleWithElectronicDictionary.java
+Delete the Node at the Specific Position in a Doubly Linked List | DeleteTheNodeAtTheSpecificPositionInADoublyLinkedList.java

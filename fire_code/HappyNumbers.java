@@ -36,7 +36,7 @@ public class HappyNumbers {
   }
 
   //#########################################  Bad Thinking too much of Data
-  //structure  #########################################
+  // structure  #########################################
   public static boolean isHappyNumberUgly(int n) {
     // get unit digit + add 2
     HashSet<List<Integer>> set = new HashSet<>();
@@ -65,7 +65,7 @@ public class HappyNumbers {
   }
 
   //#########################################  Bad Thinking too much of Data
-  //structure  #########################################
+  // structure  #########################################
   public static boolean isHappyNumberUgly1(int n) {
     int[] digitArray = getInputDigits(n);
     int sum;
