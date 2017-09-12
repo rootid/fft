@@ -29,3 +29,11 @@ Find the Level that has the Maximum Sum | FindTheLevelThatHasTheMaximumSum.java
 Fill in the Ancestors of the Node in a Binary Tree | FillInTheAncestorsOfTheNodeInABinaryTree.java
 Boggle with Electronic Dictionary | BoggleWithElectronicDictionary.java
 Delete the Node at the Specific Position in a Doubly Linked List | DeleteTheNodeAtTheSpecificPositionInADoublyLinkedList.java
+
+Remove the Nth from the end Node from a Singly-Linked List |  RemoveTheNthFromTheEndNodeFromASinglyLinkedList.java
+Add Two Linked Listish Numbers | AddTwoLinkedListishNumbers.java
+Minimum Sum Path in a Triangle | MinimumSumPathInATriangle.java
+Find the kth Smallest Node in a BST | FindTheKthSmallestNodeInABst.java
+Check Balanced Parentheses | CheckBalancedParentheses.java
+Rotate_a Square Image Counterclockwise | RotateASquareImageCounterclockwise.java
+
