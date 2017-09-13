@@ -5,10 +5,10 @@
 // path. Movement is restricted to adjacent numbers from the top to the bottom.
 // Note:
 //- You can only traverse through adjacent nodes while moving up or down the
-//triangle.
+// triangle.
 //- An adjacent node is defined as a node that is reached by moving down and
-//left or down and right from a level. For eg, in the triangle shown below, if
-//you are at the digit 3 in the second row, its adjacent nodes are 5 and 6
+// left or down and right from a level. For eg, in the triangle shown below, if
+// you are at the digit 3 in the second row, its adjacent nodes are 5 and 6
 // Example:
 // Input Triangle:
 //[   [1],

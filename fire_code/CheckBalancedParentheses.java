@@ -5,8 +5,7 @@ import java.util.*;
 // isBalanced("() [] ()") ==> true
 // isBalanced("([)]") ==> false
 public class CheckBalancedParentheses {
-
-  //### Regex + recursion  ### 
+  //### Regex + recursion  ###
   public static boolean isBalancedGood(String input) {
     if (input == null) return true;
     int originalLength = input.length();

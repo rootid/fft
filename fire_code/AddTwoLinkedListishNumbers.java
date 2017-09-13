@@ -13,7 +13,6 @@
 // Output : 8->8->1
 
 public class AddTwoLinkedListishNumbers {
-
   public static ListNode sumTwoLinkedLists(ListNode input1, ListNode input2) {
     ListNode sum = new ListNode(0);
     ListNode current = sum;
@@ -61,5 +60,4 @@ public class AddTwoLinkedListishNumbers {
     }
     return result.next;
   }
-
 }

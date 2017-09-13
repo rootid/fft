@@ -37,3 +37,6 @@ Find the kth Smallest Node in a BST | FindTheKthSmallestNodeInABst.java
 Check Balanced Parentheses | CheckBalancedParentheses.java
 Rotate_a Square Image Counterclockwise | RotateASquareImageCounterclockwise.java
 
+
+Binary Tree Serialization | BinaryTreeSerialization.java
+Recursive String Permutation | RecursiveStringPermutation.java
