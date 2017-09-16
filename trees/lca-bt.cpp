@@ -58,3 +58,19 @@ TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
 //    if self.lowestCommonAncestor(root.left, p, q) and self.lowestCommonAncestor(root.right, p, q):
 //        return root
 //    return self.lowestCommonAncestor(root.left, p, q) or self.lowestCommonAncestor(root.right, p, q)
+
+
+//######################################### left + right ######################################### 
+def lowestCommonAncestor(self, root, p, q):
+    if root in (None, p, q): return root
+    left, right = (self.lowestCommonAncestor(kid, p, q)
+                   for kid in (root.left, root.right))
+    return root if left and right else left or right
+
+//######################################### children ######################################### 
+def lowestCommonAncestor(self, root, p, q):
+    if root in (None, p, q): return root
+    subs = [self.lowestCommonAncestor(kid, p, q)
+            for kid in (root.left, root.right)]
+    return root if all(subs) else max(subs)
+

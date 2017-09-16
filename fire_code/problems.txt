@@ -40,3 +40,16 @@ Rotate_a Square Image Counterclockwise | RotateASquareImageCounterclockwise.java
 
 Binary Tree Serialization | BinaryTreeSerialization.java
 Recursive String Permutation | RecursiveStringPermutation.java
+
+Edit Distance | EditDistance.java
+Making Change | MakingChange.java
+Find the Transpose of a Square Matrix | FindTheTransposeOfASquareMatrix.java
+Bit Swapping | BitSwapping.java
+Find the size of the Binary Tree | FindTheSizeOfTheBinaryTree.java
+Recursively Merge Two Sorted Linked Lists | RecursivelyMergeTwoSortedLinkedLists.java
+Print Paths | PrintPaths.java
+Find the Lowest Common Ancestor of Two Tree Nodes
+FindTheLowestCommonAncestorOfTwoTreeNodes.java
+
+
+

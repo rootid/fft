@@ -70,7 +70,7 @@ ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
     l3->next = NULL;
     return dummy->next;
 }
-//Recursive 
+//#########################################Recursive #########################################
 //This solution is not a tail-recursive, the stack will overflow while the list is too long :)
 //http://en.wikipedia.org/wiki/Tail_call
 namespace recursive {
@@ -87,6 +87,38 @@ namespace recursive {
        }
   }
 }
+
+//######################################### Recursive ######################################### 
+public ListNode mergeTwoSortedList(ListNode l1, ListNode l2) {
+    if(l1 == null) return l2;
+    if(l2 == null) return l1;
+    if(l1.data < l2.data) {
+        l1.next = mergeTwoSortedList(l1.next, l2);
+        return l1;
+    }
+    l2.next = mergeTwoSortedList(l1, l2.next);
+    return l2;
+}
+
+//######################################### Merge2Lists ######################################### 
+//If both lists are non-empty, I first make sure a starts smaller, use its head as result, and merge the remainders behind it. Otherwise, i.e., if one or both are empty, I just return what's there.
+class Solution:
+    def mergeTwoLists(self, a, b):
+        if a and b:
+            if a.val > b.val:
+                a, b = b, a
+            a.next = self.mergeTwoLists(a.next, b)
+        return a or b
+//######################################### Return b  ######################################### 
+//First make sure that a is the "better" one (meaning b is None or has larger/equal value).
+//Then merge the remainders behind a.
+def mergeTwoLists(self, a, b):
+    if not a or b and a.val > b.val:
+        a, b = b, a
+    if a:
+        a.next = self.mergeTwoLists(a.next, b)
+    return a
+
 
 int main() {
   ListNode* l1 = new ListNode(1);
