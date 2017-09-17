@@ -48,8 +48,15 @@ Bit Swapping | BitSwapping.java
 Find the size of the Binary Tree | FindTheSizeOfTheBinaryTree.java
 Recursively Merge Two Sorted Linked Lists | RecursivelyMergeTwoSortedLinkedLists.java
 Print Paths | PrintPaths.java
-Find the Lowest Common Ancestor of Two Tree Nodes
-FindTheLowestCommonAncestorOfTwoTreeNodes.java
+Find the Lowest Common Ancestor of Two Tree Nodes | FindTheLowestCommonAncestorOfTwoTreeNodes.java
 
-
+Matrix Max Sum Path with Dynamic Programming | MatrixMaxSumPath.java
+Longest Non-Repeating Substring | LongestNonRepeatingSubstring.java
+Combinations and Permutations | CombinationsAndPermutations.java
+Subset Summation | SubsetSummation.java
+1-800-PROBLEM | Problem1800.java
+Steal the Node | StealTheNode.java
+Mobile Game Range Module - Inserting Ranges | InsertRange.java
+Check a Linked List for Loops or Cycles With O(1) Space Complexity | Cycle.java
+Remove Duplicates from a List of Words | RemoveDuplicatesFromAListOfWords.java
 

@@ -50,6 +50,22 @@ TreeNode* deleteNode(TreeNode* root, int key) {
      return root;
 }
 
+//######################################### Python ######################################### 
+def deleteNode(self, root, key):
+    def getNodes(root):
+        if root:
+            getNodes(root.left)
+            if root.val != key:
+                nodes.append(root)
+            getNodes(root.right)
+    nodes = []
+    getNodes(root)
+    root = None
+    while nodes:
+        root, root.left, root.right = nodes.pop(), None, root
+    return root
+
+
 //We will only do deletion when root->val == NULL, so if root->val > key we can know that the key is in the left subtree, then root->left = deleteNode(root->left, key), if root->val < key should do root->right = deleteNode(root->right, key).
 //When root->val == NULL we need to delete root. If root->left == NULL && root->right == NULL we can just delete root and return NULL, else we can chose root->left or root->right to be the new root in case it is not NULL.
 //
