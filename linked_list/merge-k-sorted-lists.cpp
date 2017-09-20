@@ -172,6 +172,150 @@ ListNode* mergeKLists(vector<ListNode*>& lists) { //make_heap
     return head.next;
 }
 
+//################################## Priority queue ################################## 
+public ListNode mergeKLists(ListNode[] lists) {
+    if (lists==null||lists.length==0) return null;
+    
+    PriorityQueue<ListNode> queue = new PriorityQueue<ListNode>(lists.length,(a,b)->a.val-b.val);
+    ListNode Dummy=new ListNode(0);
+    ListNode tail = Dummy;
+    
+    for(ListNode node : lists)
+    if (node != null){
+        queue.add(node);
+    }
+    
+    while(!queue.isEmpty()){
+        tail.next=queue.poll();
+        tail=tail.next;
+        if(tail.next!=null){
+            queue.add(tail.next);
+        }
+    }
+    
+    return Dummy.next;
+}
+
+//######################################### Divide and Conquer ######################################### 
+//1.If there is a single list, return it as the result
+//2.If there are two lists, return their merged lists as the result
+//3.Split the list into two halves, recursively merge the lower half and the upper half, and then return the merge of the two halves as the result
+//Let there be n elements on average in all the k lists.
+//for n number of items of all lists, k for the number of list
+//Time :
+//We perform merge log(k) times, and in the worst case merge takes O(nk) time, so the worst case time complexity is O(nklogk).
+//Space :
+//We perform merge log(k) times, and in the worst case merge takes O(1) space, so the worst case space complexity is O(logk).
+public class Solution {
+    public ListNode mergeKLists(ListNode[] lists) {
+        if (lists == null)  return null;
+        return mergeKListsHelper(lists, 0, lists.length - 1);
+    }
+    
+    private ListNode mergeKListsHelper(ListNode[] lists, int start, int end) {
+        //Recursion base case
+        if (start > end)    return null;
+        
+        //Single list
+        if (start == end)   return lists[start];
+
+        //Two lists
+        if (end - start == 1)   return mergeTwoLists(lists[start], lists[end]);
+        
+        //More than two lists, so recursively merge them
+        int mid = start + (end - start) / 2;
+        ListNode lower = mergeKListsHelper(lists, start, mid);
+        ListNode upper = mergeKListsHelper(lists, mid + 1, end);
+        return mergeTwoLists(lower, upper);
+    }
+    
+    private ListNode mergeTwoLists(ListNode lower, ListNode upper) {
+        //Both lists are empty
+        if (lower == null && upper == null)     return null;
+
+        //Either one of the lists is empty
+        if (lower == null)  return upper;
+        if (upper == null)  return lower;
+        
+        //Both lists are not empty, so we need to merge them
+        ListNode res = new ListNode(0);
+        
+        ListNode i, j, k;
+        i = lower;  j = upper;  k = res;
+        
+        while (i != null && j != null) {
+            if (i.val <= j.val) {
+                k.next = new ListNode(i.val);
+                i = i.next;
+            }
+            else {
+                k.next = new ListNode(j.val);
+                j = j.next;
+            }
+            k = k.next;
+        }
+       //Add the left over elements
+
+        while (i != null) {
+            k.next = new ListNode(i.val);
+            i = i.next;
+            k = k.next;
+        }
+        while (j != null) {
+            k.next = new ListNode(j.val);
+            j = j.next;
+            k = k.next;
+        }
+        
+        //First node is dummy, so return res.next
+        return res.next;
+    }
+}
+
+//######################################### D&C ######################################### 
+//I think my code's complexity is also O(nlogk) and not using heap or priority queue, n means the total elements and k means the size of list.
+//The mergeTwoLists functiony in my code comes from the problem Merge Two Sorted Lists whose complexity obviously is O(n), n is the sum of length of l1 and l2.
+//To put it simpler, assume the k is 2^x, So the progress of combination is like a full binary tree, from bottom to top. So on every level of tree, the combination complexity is n, beacause every level have all n numbers without repetition. The level of tree is x, ie logk. So the complexity is O(nlogk).
+//for example, 8 ListNode, and the length of every ListNode is x1, x2,
+//x3, x4, x5, x6, x7, x8, total is n.
+//on level 3: x1+x2, x3+x4, x5+x6, x7+x8 sum: n
+//on level 2: x1+x2+x3+x4, x5+x6+x7+x8 sum: n
+//on level 1: x1+x2+x3+x4+x5+x6+x7+x8 sum: n
+//total 3n, nlog8
+public class Solution {
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        if (l1 == null) return l2;
+        if (l2 == null) return l1;
+
+        ListNode head=null;
+        ListNode former=null;
+        while (l1!=null&&l2!=null) {
+            if (l1.val>l2.val) {
+                if (former==null) former=l2; else former.next=l2;
+                if (head==null) head=former; else former=former.next;
+                l2=l2.next;
+            } else {
+                if (former==null) former=l1; else former.next=l1;
+                if (head==null) head=former; else former=former.next;
+                l1=l1.next;
+            }
+        }
+        if (l2!=null) l1=l2;
+        former.next=l1;
+        return head;
+        
+    }
+    
+    public ListNode mergeKLists(List<ListNode> lists) {
+        if (lists.size()==0) return null;
+        if (lists.size()==1) return lists.get(0);
+        if (lists.size()==2) return mergeTwoLists(lists.get(0), lists.get(1));
+        return mergeTwoLists(mergeKLists(lists.subList(0, lists.size()/2)), 
+            mergeKLists(lists.subList(lists.size()/2, lists.size())));
+    }
+}
+
+
 //################################## pytonic hack  ################################## 
 //"I figured out that OJ converts Python list into a ListNode automatically"
 //I think what really happens is that the OJ serializes the result to a string, and both Python lists and ListNode lists look the same when serialized (if they have the same contents).
