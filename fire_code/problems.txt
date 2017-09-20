@@ -35,7 +35,7 @@ Add Two Linked Listish Numbers | AddTwoLinkedListishNumbers.java
 Minimum Sum Path in a Triangle | MinimumSumPathInATriangle.java
 Find the kth Smallest Node in a BST | FindTheKthSmallestNodeInABst.java
 Check Balanced Parentheses | CheckBalancedParentheses.java
-Rotate_a Square Image Counterclockwise | RotateASquareImageCounterclockwise.java
+Rotate a Square Image Counterclockwise | RotateASquareImageCounterclockwise.java
 
 
 Binary Tree Serialization | BinaryTreeSerialization.java
@@ -67,5 +67,7 @@ Find the Sum of all Elements in a Binary Tree | FindTheSumOfAllElementsInABinary
 Reverse Level Order Traversal | ReverseLevelOrderTraversal.java
 Merge k Sorted Linked Lists | MergeKSortedLinkedLists.java
 Mirror on the Wall | MirrorOnTheWall.java
+Image Manipulation | 
+ImageManipulation.java
 
 
