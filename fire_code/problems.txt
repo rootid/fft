@@ -67,7 +67,9 @@ Find the Sum of all Elements in a Binary Tree | FindTheSumOfAllElementsInABinary
 Reverse Level Order Traversal | ReverseLevelOrderTraversal.java
 Merge k Sorted Linked Lists | MergeKSortedLinkedLists.java
 Mirror on the Wall | MirrorOnTheWall.java
-Image Manipulation | 
-ImageManipulation.java
+Image Manipulation | ImageManipulation.java
 
-
+Boggle Search | BoggleSearch.java
+Iterative Inorder Traversal | IterativeInorderTraversal.java
+Distance between two nodes in a Binary Tree | DistanceBetweenTwoNodesInABinaryTree.java
+Matrix Max Sum Path with DFS | MatrixMaxSumPathWithDfs.java
