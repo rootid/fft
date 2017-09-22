@@ -73,3 +73,7 @@ Boggle Search | BoggleSearch.java
 Iterative Inorder Traversal | IterativeInorderTraversal.java
 Distance between two nodes in a Binary Tree | DistanceBetweenTwoNodesInABinaryTree.java
 Matrix Max Sum Path with DFS | MatrixMaxSumPathWithDfs.java
+
+Pascal's Triangle | PascalsTriangle.java
+
+
