@@ -76,4 +76,11 @@ Matrix Max Sum Path with DFS | MatrixMaxSumPathWithDfs.java
 
 Pascal's Triangle | PascalsTriangle.java
 
+Find the Sum of all Elements in a Binary Tree Iteratively | FindTheSumOfAllElementsInABinaryTreeIteratively.java
+Implement the Breadth First Search Algorithm for a Graph | ImplementTheBreadthFirstSearchAlgorithmForAGraph.java
+TODO : Subset Summation with Number Constraint | SubsetSummationWithNumberConstraint.java
+
+Insert a Node at the Specified Position in Doubly Linked List | InsertANodeAtTheSpecifiedPositionInDoublyLinkedList.java
+Find the Maximum Contiguous Subsequence in an Array | FindTheMaximumContiguousSubsequenceInAnArray.java
+
 
