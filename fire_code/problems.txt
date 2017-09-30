@@ -84,4 +84,13 @@ Insert a Node at the Specified Position in Doubly Linked List | InsertANodeAtThe
 Find the Maximum Contiguous Subsequence in an Array | FindTheMaximumContiguousSubsequenceInAnArray.java
 Largest Square | LargestSquare.java
 
+Implement the Djikstra Shortest Path Algorithm in a Graph | ImplementTheDjikstraShortestPathAlgorithmInAGraph.java
+Maximum Sum Path | MaximumSumPath.java
+Boggle with Paper Dictionary | BoggleWithPaperDictionary.java
+Even Split | EvenSplit.java
+Levelorder Traversal | LevelorderTraversal.java
+Longest Palindromic Substring | LongestPalindromicSubstring.java
+
+
+
 
