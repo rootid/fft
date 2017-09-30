@@ -13,6 +13,7 @@
 // Half nodes count => 1
 
 public class NumberOfHalfNodesInABinaryTree {
+  //########### Good ###########
   public int numberOfHalfNodes(TreeNode root) {
     if (root == null) return 0;
     int self = 0;
@@ -21,6 +22,7 @@ public class NumberOfHalfNodesInABinaryTree {
     return self + numberOfHalfNodes(root.left) + numberOfHalfNodes(root.right);
   }
 
+  //########### Ugly ###########
   public int numberOfHalfNodesUgly(TreeNode root) {
     if (root == null) return 0;
     if (root.left != null && root.right == null)

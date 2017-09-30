@@ -62,4 +62,35 @@ public class ImplementTheDjikstraShortestPathAlgorithmInAGraph {
       }
     }
   }
+
+  //##### TODO #####
+  public static List<Vertex> getShortestPath(Vertex source, Vertex target) {
+    Queue<Vertex> q = new PriorityQueue<>();
+    q.add(source);
+    source.minDistance = 0.0;
+
+    while (!q.isEmpty()) {
+      Vertex curr = q.poll();
+
+      for (Edge e : curr.adjacencies) {
+        Vertex v = e.target;
+
+        double distance = e.weight + curr.minDistance;
+        if (v.minDistance > distance) {
+          v.minDistance = distance;
+          v.previous = curr;
+          q.add(v);
+        }
+      }
+    }
+
+    List<Vertex> vList = new ArrayList<>();
+    while (target != null) {
+      vList.add(target);
+      target = target.previous;
+    }
+
+    Collections.reverse(vList);
+    return vList;
+  }
 }

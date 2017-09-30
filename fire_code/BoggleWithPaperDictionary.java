@@ -129,4 +129,94 @@ public class BoggleWithPaperDictionary {
 
     board[r][c] = ch;  // Unmark the board node
   }
+
+  //#### TODO ####
+  public ArrayList<String> boggleByot(char[][] board,
+                                      ArrayList<String> dictionary) {
+    Trie trie = new Trie();
+    for (String s : dictionary) {
+      trie.insertWord(s);
+    }
+    TreeSet<String> set = new TreeSet<>();
+    for (int i = 0; i < board.length; i++) {
+      for (int j = 0; j < board[0].length; j++) {
+        searchBoard(board, "", i, j, trie, set);
+      }
+    }
+    return new ArrayList<String>(set);
+  }
+
+  public void searchBoard(char[][] board, String s, int i, int j, Trie trie,
+                          TreeSet<String> set) {
+    if (i < 0 || i >= board.length || j < 0 || j >= board[0].length ||
+        board[i][j] == '#') {
+      return;
+    }
+    String current = s + board[i][j];
+    if (!trie.searchPrefix(current)) {
+      return;
+    }
+    if (trie.searchWord(current)) {
+      set.add(current);
+    }
+    char temp = board[i][j];
+    board[i][j] = '#';
+    searchBoard(board, s + temp, i - 1, j, trie, set);
+    searchBoard(board, s + temp, i + 1, j, trie, set);
+    searchBoard(board, s + temp, i, j - 1, trie, set);
+    searchBoard(board, s + temp, i, j + 1, trie, set);
+    board[i][j] = temp;
+  }
+
+  class TrieNode {
+    Character c;
+
+    Boolean isLeaf = false;
+
+    HashMap<Character, TrieNode> children = new HashMap<>();
+
+    public TrieNode(){};
+
+    public TrieNode(Character c) { this.c = c; };
+  }
+
+  class Trie {
+    private TrieNode root;
+
+    public Trie() { this.root = new TrieNode(Character.MIN_VALUE); };
+
+    public void insertWord(String word) {
+      TrieNode node = root;
+      for (char c : word.toCharArray()) {
+        if (!node.children.containsKey(c)) {
+          TrieNode next = new TrieNode(c);
+          node.children.put(c, next);
+        }
+        node = node.children.get(c);
+      }
+      node.isLeaf = true;
+    };
+
+    public Boolean searchWord(String word) {
+      TrieNode node = root;
+      for (char c : word.toCharArray()) {
+        if (!node.children.containsKey(c)) {
+          return false;
+        }
+        node = node.children.get(c);
+      }
+      return node.isLeaf;
+    };
+
+    public Boolean searchPrefix(String word) {
+      TrieNode node = root;
+      for (char c : word.toCharArray()) {
+        if (!node.children.containsKey(c)) {
+          return false;
+        }
+        node = node.children.get(c);
+      }
+      return true;
+    };
+  }
 }
