@@ -10,13 +10,11 @@ int swapBits(int n) {
     }
     int oddBits=n&oneZeroes;        //1th positon from right side of binary form of no. is considered odd position
     int evenBits=n&zeroOnes;       //0th position from right side of binary form of no. is considered even position
-    
     return (oddBits>>1)|(evenBits<<1);
 }
 
 
-int main()
-{
+int main() {
     unsigned int x = 23; // 00010111
  
     // Output is 43 (00101011)
