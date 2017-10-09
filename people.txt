@@ -9,3 +9,4 @@ https://www.youtube.com/watch?v=M8BYckxI8_U
 https://discuss.leetcode.com/topic/42746/all-you-need-to-know-about-testing-happy-number
 https://discuss.leetcode.com/user/waigx
 http://www.stefan-pochmann.info/spots/tutorials/topcoder_for_dummies/
+https://discuss.leetcode.com/user/yangshun
