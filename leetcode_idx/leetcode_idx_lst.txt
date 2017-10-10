@@ -1,3 +1,16 @@
+Range Sum Query 2D - Mutable	
+Range Sum Query 2D - Immutable	
+Flatten 2D Vector	
+Search a 2D Matrix	
+Search a 2D Matrix II	
+Spiral Matrix II	
+Spiral Matrix	
+Sparse Matrix Multiplication	
+Set Matrix Zeroes	
+Reshape the Matrix	
+Longest Line of Consecutive One in Matrix	
+Longest Increasing Path in a Matrix	
+Kth Smallest Element in a Sorted Matrix	
 01 Matrix	
 132 Pattern	
 2 Keys Keyboard	
@@ -138,7 +151,6 @@ First Bad Version
 First Missing Positive	
 First Unique Character in a String	
 Fizz Buzz	
-Flatten 2D Vector	
 Flip Game	
 Flip Game II	
 Fraction Addition and Subtraction	
@@ -195,7 +207,6 @@ Keyboard Row
 Kill Process	
 Kth Largest Element in an Array	
 Kth Smallest Element in a BST	
-Kth Smallest Element in a Sorted Matrix	
 Kth Smallest Number in Multiplication Table	
 LFU Cache	
 LRU Cache	
@@ -216,9 +227,7 @@ Longest Common Prefix
 Longest Consecutive Sequence	
 Longest Continuous Increasing Subsequence	
 Longest Harmonious Subsequence	
-Longest Increasing Path in a Matrix	
 Longest Increasing Subsequence	
-Longest Line of Consecutive One in Matrix	
 Longest Palindrome	
 Longest Palindromic Subsequence	
 Longest Palindromic Substring	
@@ -346,8 +355,6 @@ Range Addition
 Range Addition II	
 Range Sum Query - Immutable	
 Range Sum Query - Mutable	
-Range Sum Query 2D - Immutable	
-Range Sum Query 2D - Mutable	
 Ransom Note	
 Read N Characters Given Read4	
 Read N Characters Given Read4 II - Call multiple times	
@@ -368,7 +375,6 @@ Remove K Digits
 Repeated DNA Sequences	
 Repeated Substring Pattern	
 Replace Words	
-Reshape the Matrix	
 Restore IP Addresses	
 Reverse Bits	
 Reverse Integer	
@@ -387,8 +393,6 @@ Rotate Image
 Russian Doll Envelopes	
 Scramble String	
 Search Insert Position	
-Search a 2D Matrix	
-Search a 2D Matrix II	
 Search for a Range	
 Search in Rotated Sorted Array	
 Search in Rotated Sorted Array II	
@@ -396,7 +400,6 @@ Self Crossing
 Sentence Screen Fitting	
 Sequence Reconstruction	
 Serialize and Deserialize BST	
-Set Matrix Zeroes	
 Set Mismatch	
 Shopping Offers	
 Shortest Distance from All Buildings	
@@ -420,9 +423,6 @@ Solve the Equation
 Sort Characters By Frequency	
 Sort Colors	
 Sort Transformed Array	
-Sparse Matrix Multiplication	
-Spiral Matrix	
-Spiral Matrix II	
 Split Array Largest Sum	
 Split Array into Consecutive Subsequences	
 Split Array with Equal Sum	
