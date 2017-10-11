@@ -10,6 +10,13 @@ https://discuss.leetcode.com/topic/42746/all-you-need-to-know-about-testing-happ
 https://discuss.leetcode.com/user/waigx
 http://www.stefan-pochmann.info/spots/tutorials/topcoder_for_dummies/
 https://discuss.leetcode.com/user/yangshun
+https://discuss.leetcode.com/user/zestypanda
 
 ## judge prepare
 http://poj.org/problem?id=1083
+http://poj.org/problem?id=1390
+
+https://discuss.leetcode.com/topic/84687/java-top-down-and-bottom-up-dp-solutions
+http://www.geeksforgeeks.org/count-inversions-array-set-3-using-bit/
+http://www.geeksforgeeks.org/counting-inversions/
+http://www.geeksforgeeks.org/count-inversions-in-an-array-set-2-using-self-balancing-bst/
