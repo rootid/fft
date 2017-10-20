@@ -5,6 +5,26 @@
 //b) Delete a character
 //c) Replace a character
 #include "../headers/global.hpp"
+
+
+//1.Replace word1[i - 1] by word2[j - 1] (dp[i][j] = dp[i - 1][j - 1] + 1 (for replacement));
+//2.Delete word1[i - 1] and word1[0..i - 2] = word2[0..j - 1] (dp[i][j] = dp[i - 1][j] + 1 (for deletion));
+//3.Insert word2[j - 1] to word1[0..i - 1] and word1[0..i - 1] + word2[j - 1] = word2[0..j - 1] (dp[i][j] = dp[i][j - 1] + 1 (for insertion)).
+
+//#########################################DP#########################################
+public int minDistance(String word1, String word2) {
+    int m = word1.length();
+    int n = word2.length();
+    int[][] opt= new int[m+1][n+1];
+    for(int i=0;i<=m;i++) opt[i][0] = i;
+    for(int j=0;j<=n;j++) opt[0][j] = j;
+    for(int i=1;i<=m;i++)
+        for(int j=1;j<=n;j++)
+            opt[i][j] = word1.charAt(i-1) == word2.charAt(j-1) ? opt[i-1][j-1] : Math.min(opt[i-1][j-1], Math.min(opt[i-1][j], opt[i][j-1])) + 1;
+    return opt[m][n];
+}
+
+
 #define MAX 3
 
 //######################################## DP implementation ######################################## 

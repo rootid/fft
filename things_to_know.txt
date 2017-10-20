@@ -1,0 +1,15 @@
+#LBYP : 
+#Look before you leap. This coding style explicitly tests for pre-conditions before making calls or lookups. This style contrasts with the EAFP approach and is characterized by the presence of many if statements.
+#https://docs.python.org/3/glossary.html#term-lbyl
+if "key" in my_dict:
+    x = my_dict["key"]
+	else:
+	    # handle missing key
+#EAFP
+#Easier to ask for forgiveness than permission
+#https://docs.python.org/3/glossary.html#term-eafp
+try:
+    x = my_dict["key"]
+	except KeyError:
+	    # handle missing key
+

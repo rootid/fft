@@ -64,11 +64,6 @@ Climbing Stairs
 Clone Graph	
 Coin Change	
 Coin Path	
-Combination Sum	
-Combination Sum II	
-Combination Sum III	
-Combination Sum IV	
-Combinations	
 Compare Version Numbers	
 Complex Number Multiplication	
 Concatenated Words	
@@ -160,8 +155,6 @@ Friend Circles
 Frog Jump	
 Game of Life	
 Gas Station	
-Generalized Abbreviation	
-Generate Parentheses	
 Gray Code	
 Group Anagrams	
 Group Shifted Strings	
@@ -169,7 +162,6 @@ Guess Number Higher or Lower
 Guess Number Higher or Lower II	
 H-Index	
 H-Index II	
-Hamming Distance	
 Happy Number	
 Heaters	
 House Robber	
@@ -215,7 +207,6 @@ Largest Number
 Largest Palindrome Product	
 Largest Rectangle in Histogram	
 Length of Last Word	
-Letter Combinations of a Phone Number	
 Lexicographical Numbers	
 License Key Formatting	
 Line Reflection	
@@ -299,7 +290,6 @@ Non-negative Integers without Consecutive Ones
 Non-overlapping Intervals	
 Nth Digit	
 Number Complement	
-Number of 1 Bits	
 Number of Boomerangs	
 Number of Connected Components in an Undirected Graph	
 Number of Digit One	
@@ -321,8 +311,6 @@ Palindrome Number
 Palindrome Pairs	
 Palindrome Partitioning	
 Palindrome Partitioning II	
-Palindrome Permutation	
-Palindrome Permutation II	
 Palindromic Substrings	
 Partition Equal Subset Sum	
 Pascal's Triangle	
@@ -336,10 +324,6 @@ Peeking Iterator
 Perfect Number	
 Perfect Rectangle	
 Perfect Squares	
-Permutation Sequence	
-Permutation in String	
-Permutations	
-Permutations II	
 Plus One	
 Populating Next Right Pointers in Each Node	
 Populating Next Right Pointers in Each Node II	
@@ -375,7 +359,6 @@ Remove K Digits
 Repeated DNA Sequences	
 Repeated Substring Pattern	
 Replace Words	
-Restore IP Addresses	
 Reverse Bits	
 Reverse Integer	
 Reverse Nodes in k-Group	
@@ -438,8 +421,6 @@ Strong Password Checker
 Student Attendance Record I	
 Student Attendance Record II	
 Subarray Sum Equals K	
-Subsets	
-Subsets II	
 Substring with Concatenation of All Words	
 Sudoku Solver	
 Sum Root to Leaf Numbers	
@@ -464,7 +445,6 @@ The Maze III
 The Skyline Problem	
 Third Maximum Number	
 Top K Frequent Elements	
-Total Hamming Distance	
 Trapping Rain Water	
 Trapping Rain Water II	
 Triangle	
@@ -487,7 +467,6 @@ Valid Parentheses
 Valid Parenthesis String   
 Valid Perfect Square	
 Valid Square	
-Valid Sudoku	
 Valid Triangle Number	
 Valid Word Abbreviation	
 Valid Word Square	

@@ -9,6 +9,18 @@
 //Note:
 //You may assume that you have an infinite number of each kind of coin.
 
+//######################################### Coin change : Pick coin or do not pick the coin ######################################### 
+//1. Pick the coin : and increament coin count
+public int coinChange(int[] coins, int amount) {
+    int m = coins.length;
+    int[] opt = new int[amount+1];
+    for(int i=1;i<=amount;i++) opt[i] = amount+1;
+    for(int coin: coins) 
+        for(int i=coin;i<=amount;i++)
+            opt[i] = Math.min(opt[i], opt[i-coin]+1); //pick the coin
+    return opt[amount] > amount ? -1 : opt[amount];
+}
+
 //#################### DP - 1 ################################
 int coinChange(vector<int>& coins, int amount) { 
   int Max = amount + 1;

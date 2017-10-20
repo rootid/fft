@@ -14,6 +14,77 @@
 
 #include "../headers/global.hpp"
 
+//subsets([1,2,3,4]) = []
+//                     // push(1)
+//                     [1, subsets([2,3,4])] // if push N times in subsets([2,3,4]), the pop times is also N, so vec is also [1] after backtrack.
+//                     // pop(), push(2)
+//                     [2, subsets([3,4])]
+//                     // pop(), push(3)
+//                     [3, subsets([4])]
+//                     // pop(), push(4)
+//                     [4, subsets([])]
+//                     // pop()
+
+//######################################### Recursion  ######################################### 
+class Solution {
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        List<Integer> soFar = new LinkedList<>();
+        List<List<Integer>> result = new ArrayList<>();
+        Arrays.sort(nums);
+        subsetsWithDupHelper(nums,0,soFar,result);
+        return result;
+    }
+    private void subsetsWithDupHelper(int[] nums,int k,List<Integer>soFar, List<List<Integer>> result) {
+        int n = nums.length;
+        result.add(new ArrayList(soFar)); 
+        for(int i=k;i<n;i++) {
+            if (i == k || nums[i] != nums[i - 1]) { //Only pick the single ele when duplicates are present.
+  			//if(i > k && nums[i] == nums[i-1]) continue; // skip duplicates
+                soFar.add(nums[i]);
+                subsetsWithDupHelper(nums,i+1,soFar,result);
+                soFar.remove(soFar.size() - 1);
+            }
+        }
+    }
+}
+
+//######################################### Iterative ######################################### 
+ vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+    vector<vector<int>> ret;
+    ret.push_back(vector<int>());
+    sort(nums.begin(), nums.end());
+    vector<vector<int>> sub;
+    for (int i = 0; i < nums.size(); ++i) {
+        if (i == 0 || nums[i] != nums[i-1]) sub = ret;
+        for (auto& j:sub) j.push_back(nums[i]);
+        ret.insert(ret.end(), sub.begin(), sub.end());
+    }
+    return ret;
+}
+
+
+//######################################### Recursion  ######################################### 
+class Solution {
+public:
+    vector<vector<int> > subsets(vector<int> &nums) {
+		sort(nums.begin(), nums.end());
+        vector<vector<int> > res;
+		vector<int> vec;
+		subsets(res, nums, vec, 0);
+		return res;
+    }
+private:
+	void subsets(vector<vector<int> > &res, vector<int> &nums, vector<int> &vec, int begin) {
+		res.push_back(vec);
+		for (int i = begin; i != nums.size(); ++i) {
+			vec.push_back(nums[i]);
+			subsets(res, nums, vec, i + 1);
+			vec.pop_back();
+		}
+	}
+};
+
+
 //we want to insert an element which is a dup, we can only insert it after the newly inserted elements from last step.
 //Iterative version
 vector<vector<int> > subsetsWithDup(vector<int> &nums) {

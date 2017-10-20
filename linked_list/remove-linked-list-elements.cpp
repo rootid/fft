@@ -6,6 +6,15 @@
 
 #include "../headers/global.hpp"
 #include "../headers/listnode.hpp"
+
+//######################################### Recursion ######################################### 
+public ListNode removeElements(ListNode head, int val) {
+    if(head == null) return head;
+    ListNode child = removeElements(head.next,val);
+    if(head.val == val) return child;
+    head.next = child;
+    return head;
+}
 //################ Need to cleanup memory ################
 ListNode* removeElements(ListNode* head, int val) {
     ListNode *dummy = new ListNode(1 - val);

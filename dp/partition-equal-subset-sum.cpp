@@ -1,4 +1,5 @@
-//Given a non-empty array containing only positive integers, find if the array can be partitioned into two subsets such that the sum of elements in both subsets is equal.
+//Given a non-empty array containing only positive integers, find if the array can be partitioned into 
+//two subsets such that the sum of elements in both subsets is equal.
 //Note:
 //Each of the array element will not exceed 100.
 //The array size will not exceed 200.
@@ -16,6 +17,43 @@
 //Even when N is around 20 they should be on about the same level, 
 //for larger N backtracking should be prohibitively slow! And there are test cases as large as 50 elements.
 //
+
+
+
+//############################### Is it possible to reach target ###############################
+class Solution {
+    public boolean canPartition(int[] nums) {
+        int sum = IntStream.of(nums).sum();
+        if(sum % 2 == 1) return false;
+        int target = sum/2;
+        int n = nums.length;
+        boolean[] dp = new boolean[target+1];
+        dp[0] = true;
+        for(int num : nums) { //pick the number
+            for(int i=target;i>=num;i--) dp[i] = dp[i] || dp[i - num];
+        }
+        return dp[target];
+    }
+}
+
+//###############################dp[n][W] = dp[n - 1][W - a[n-1]] || dp[n - 1][W] // pick || skip ###############################
+class Solution {
+    public boolean canPartition(int[] nums) {
+        int sum = IntStream.of(nums).sum();
+        if(sum % 2 == 1) return false;
+        int target = sum/2;
+        int n = nums.length;
+        boolean[][] dp = new boolean[n+1][target+1];
+        dp[0][0] = true;
+        for(int i=1;i<=n;i++) { //Choose the number
+            dp[i][0] = true;
+            for(int j=1;j<=target;j++) { //check whether we can partition it 
+                dp[i][j] = j>= nums[i-1] ? ( dp[i-1][j] || dp[i-1][j - nums[i-1]]) : dp[i-1][j];
+            }
+        }
+        return dp[n][target];
+    }
+}
 
 //###############################dp[n][W] = dp[n - 1][W - a[n-1]] || dp[n - 1][W] // pick || skip ###############################
 bool canPartition(vector<int>& nums) {
@@ -120,6 +158,7 @@ public boolean canPartition(int[] nums) {
     sum /= 2;
 
     int n = nums.length;
+
     boolean[][] dp = new boolean[n+1][sum+1];
     for (int i = 0; i < dp.length; i++) {
         Arrays.fill(dp[i], false);

@@ -14,6 +14,116 @@
 
 #include "../headers/global.hpp"
 
+//##################################### Recursive insert version ##################################### 
+//Each iteration create a new copy of list by picking next element
+public List<List<Integer>> permute(int[] nums) {
+    List<List<Integer>> result = new ArrayList<>();
+    if (nums.length == 0) return result;
+    backtrack(result, nums, new ArrayList<>(), 0);
+    return result;
+}
+
+private void backtrack(List<List<Integer>> result, int[] nums, List<Integer> currentList, int k) {
+    if (currentList.size() == nums.length) {
+        result.add(currentList);
+        return;
+    }
+    int n = nums[k];
+    for (int i = 0; i <= currentList.size(); i++) {
+        //List<Integer> copy = new ArrayList<>(currentList);
+		List<Integer> copy = currentList.stream().collect(Collectors.toList());
+        copy.add(i, n); 
+        backtrack(result, nums, copy, k + 1);
+    }
+}
+
+//##################################### Recursive Swap version ##################################### 
+class Solution {
+    
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        permuteHelper(nums,0,result); 
+        return result;
+    }
+
+    public void permuteHelper(int[] nums,int k,List<List<Integer>> result) {
+        int n = nums.length;
+        if(k == n) result.add(new ArrayList(Arrays.stream(nums).boxed().collect(Collectors.toList())));
+        for(int i=k;i<n;i++) {
+            doSwap(nums,i,k);
+            permuteHelper(nums,k+1,result);
+            doSwap(nums,k,i);
+        }
+    }
+   
+    private void doSwap(int[] nums,int i,int j) {
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
+    }
+}
+
+//##################################### Recursive version ##################################### 
+//Recursive, take any number as first
+def permute(self, nums):
+    return [[n] + p
+            for i, n in enumerate(nums)
+            for p in self.permute(nums[:i] + nums[i+1:])] or [[]]
+
+//Solution 2: Recursive, insert first number anywhere
+//Insert the first number anywhere in any permutation of the remaining numbers.
+
+def permute(self, nums):
+    return nums and [p[:i] + [nums[0]] + p[i:]
+                     for p in self.permute(nums[1:])
+                     for i in range(len(nums))] or [[]]
+
+//Solution 3: Reduce, insert next number anywhere
+//Use reduce to insert the next number anywhere in the already built permutations.
+def permute(self, nums):
+    return reduce(lambda P, n: [p[:i] + [n] + p[i:]
+                                for p in P for i in range(len(p)+1)],
+                  nums, [[]])
+//Solution 4: Using the library
+def permute(self, nums):
+    return list(itertools.permutations(nums))
+
+
+def permute(self, nums):
+        def gen(nums):
+            n = len(nums)
+            if n == 0 : yield []
+            else:
+                for i in range(n):
+                    for cc in gen(nums[:i] + nums[i+1:]):
+                        yield [nums[i]] + cc
+        return list(gen(nums))
+
+def permute(self, nums):
+    def gen(nums):
+        if not nums:
+            yield []
+        for i, n in enumerate(nums):
+            for p in gen(nums[:i] + nums[i+1:]):
+                yield [n] + p
+    return list(gen(nums))
+
+
+void recSubsets(string soFar, string rest) {
+   if (rest == "") cout << soFar << endl;
+   else { 
+		// add to subset, remove from rest, recur
+		recSubsets(soFar + rest[0], rest.substr(1));
+		// don't add to subset, remove from rest,recur
+		recSubsets(soFar, rest.substr(1)); 
+  } 
+}
+void listSubsets(string str) {
+   recSubsets("", str);
+}
+
+
+
 //1,2,3
 //##################################### Iterative version ##################################### 
 vector<vector<int> > permute(vector<int>& nums) {

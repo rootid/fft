@@ -80,6 +80,7 @@
 ./backtrack/combination-sum-iv.cpp
 ./backtrack/combination-sum.cpp
 ./backtrack/combinations.cpp
+./backtrack/concatenated-words.cpp
 ./backtrack/cs-3.cpp
 ./backtrack/cs-II.cpp
 ./backtrack/different-ways-to-add-parentheses.cpp
@@ -95,6 +96,7 @@
 ./backtrack/n-queens-ii.cpp
 ./backtrack/n-queens.cpp
 ./backtrack/palindrome-partition.cpp
+./backtrack/palindrome-permutation-ii.cpp
 ./backtrack/permutation-sequence.cpp
 ./backtrack/permutation.cpp
 ./backtrack/permutations-ii.cpp
@@ -111,6 +113,7 @@
 ./backtrack/word-break-ii.cpp
 ./backtrack/word-break.cpp
 ./backtrack/word-search-ii.cpp
+./base_conversion.cpp
 ./bfs/01-matrix.cpp
 ./bfs/game-of-life.cpp
 ./bfs/shortest-distance-from-all-buildings.cpp
@@ -206,6 +209,7 @@
 ./dfs/kill-process.cpp
 ./dfs/longest-increasing-path-in-a-matrix.cpp
 ./dfs/matchsticks-to-square.cpp
+./dfs/max-area-of-island.cpp
 ./dfs/nested-list-weight-sum-ii.cpp
 ./dfs/nested-list-weight-sum.cpp
 ./dfs/number-of-connected-components.cpp
@@ -216,6 +220,7 @@
 ./dfs/test.cpp
 ./dfs/word-search-xtra-space.cpp
 ./dfs/word-search.cpp
+./divide_and_conquer/count-of-range-sum.cpp
 ./divide_and_conquer/kth-largest-element-in-an-array.cpp
 ./divide_and_conquer/kth-smallest-element-in-a-sorted-matrix.cpp
 ./divide_and_conquer/maximum-subarray.cpp
@@ -246,6 +251,7 @@
 ./dp/increasing-triplet-subsequence.cpp
 ./dp/interleaving-string.cpp
 ./dp/k-inverse-pairs-array.cpp
+./dp/knight-probability-in-chessboard.cpp
 ./dp/largest-divisible-subset.cpp
 ./dp/longest-increasing-subsequence.cpp
 ./dp/longest-palindromic-subsequence.cpp
@@ -254,10 +260,12 @@
 ./dp/max-sum-of-sub-matrix-no-larger-than-k.cpp
 ./dp/maximal-rectangle.cpp
 ./dp/maximal-square.cpp
+./dp/maximum-sum-of-3-non-overlapping-subarrays.cpp
 ./dp/maxProductDP.cpp
 ./dp/maxProductTraverse.cpp
 ./dp/minimum-path-sum.cpp
 ./dp/myPow.cpp
+./dp/non-negative-integers-without-consecutive-ones.cpp
 ./dp/num_decoding.cpp
 ./dp/number-of-longest-increasing-subsequence.cpp
 ./dp/ones-and-zeroes.cpp
@@ -273,6 +281,7 @@
 ./dp/predict-the-winner.cpp
 ./dp/range-sum-query-2d-immutable.cpp
 ./dp/range-sum-query-immutable.cpp
+./dp/remove-boxes.cpp
 ./dp/robber-2.cpp
 ./dp/russian-doll-envelopes.cpp
 ./dp/scramble-string.cpp
@@ -285,6 +294,8 @@
 ./dp/unique-substrings-in-wraparound-string.cpp
 ./dp/wiggle-subsequence.cpp
 ./easy/judge-route-circle.cpp
+./general/maximum-swap.cpp
+./general/super-washing-machines.cpp
 ./geometry/line-reflection.cpp
 ./graph/bfsshortreach.cpp
 ./graph/clone-graph.cpp
@@ -378,7 +389,8 @@
 ./maths/addBinary.cpp
 ./maths/base-7.cpp
 ./maths/basicCalulator.cpp
-./maths/bulbSwitch.cpp
+./maths/bulb-switcher-ii.cpp
+./maths/bulb-switcher.cpp
 ./maths/citation.cpp
 ./maths/construct-the-rectangle.cpp
 ./maths/count-numbers-with-unique-digits.cpp
@@ -436,11 +448,11 @@
 ./pattern_matching/2-keys-keyboard.cpp
 ./pattern_matching/bulb_switcher.cpp
 ./pattern_matching/countPrimes.cpp
-./pattern_matching/intToRom.cpp
+./pattern_matching/integer-to-roman.cpp
 ./pattern_matching/MajorityElement-II.cpp
 ./pattern_matching/MajorityElement.cpp
 ./pattern_matching/minimum-factorization.cpp
-./pattern_matching/romToInt.cpp
+./pattern_matching/roman-to-integer.cpp
 ./recursion/combination.cpp
 ./recursion/employee-importance.cpp
 ./recursion/palindorme-valid.cpp
@@ -516,6 +528,7 @@
 ./strings/longest-uncommon-subsequence-ii.cpp
 ./strings/min-window.cpp
 ./strings/missing-ranges.cpp
+./strings/next-closest-time.cpp
 ./strings/next-greater-element-iii.cpp
 ./strings/number-of-segments-in-a-string.cpp
 ./strings/one-edit-distance.cpp
@@ -542,12 +555,14 @@
 ./strings/solve-the-equation.cpp
 ./strings/string_compression.cpp
 ./strings/student-attendance-record-i.cpp
+./strings/student-attendance-record-ii.cpp
 ./strings/subString.cpp
 ./strings/text-justification.cpp
 ./strings/trie.cpp
 ./strings/valid-number.cpp
 ./strings/valid-palindrome-ii.cpp
 ./strings/valid-palindrome.cpp
+./strings/valid-parenthesis-string.cpp
 ./strings/valid-word-abbreviation.cpp
 ./strings/validate-ip-address.cpp
 ./strings/word-pattern.cpp
@@ -564,7 +579,6 @@
 ./tmp/maximum-size-subarray-sum-equals-k.cpp
 ./tmp/maximum-vacation-days.cpp
 ./tmp/output-contest-matches.cpp
-./tmp/palindrome-permutation-ii.cpp
 ./tmp/sequence-reconstruction.cpp
 ./tmp/smallest-rectangle-enclosing-black-pixels.cpp
 ./tmp/split-concatenated-strings.cpp
@@ -627,6 +641,7 @@
 ./trees/longest-univalue-path.cpp
 ./trees/maxdepth.cpp
 ./trees/maximum-binary-tree.cpp
+./trees/maximum-width-of-binary-tree.cpp
 ./trees/maxSumBT.cpp
 ./trees/merge-two-binary-trees.cpp
 ./trees/minDepth.cpp

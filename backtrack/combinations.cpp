@@ -12,6 +12,43 @@
 //]
 //
 #include "../headers/global.hpp"
+
+//C(n,k)=C(n-1,k-1)+C(n-1,k).
+//################################################ Recursion  ################################################ 
+public List<List<Integer>> combine(int n, int k) {
+    List<Integer> soFar = new LinkedList<>();
+    List<List<Integer>> result = new ArrayList<>();
+    combineHelper(n,k,1,soFar,result);
+    return result;
+}
+
+public void combineHelper(int n,int k, int start,List<Integer>soFar, List<List<Integer>> result) {
+    if(k == soFar.size()) {
+        result.add(new ArrayList(soFar));
+    }
+    for(int i=start;i<=n;i++) {
+        soFar.add(i);
+        combineHelper(n,k,i+1,soFar,result); //NOTE : i increamented not start To avoid duplicates (2,3) and (3,2)
+        soFar.remove(soFar.size() - 1);
+    }
+}
+
+//################################################ Combine ################################################ 
+//C(n,k)=C(n-1,k-1)+C(n-1,k).
+public class Solution {
+	public List<List<Integer>> combine(int n, int k) {
+    	if (k > n || k == 0) return new LinkedList<>();
+    	List<List<Integer>> ans = combine(n - 1, k - 1);
+    	if (ans.size() == 0) ans.add(new LinkedList<>(Arrays.asList(n))); //asList is needed to create a list with a single list in it.
+																		  //return new LinkedList<List<Integer>>(Arrays.<List<Integer>>asList((List<Integer>)row));
+    	else ans.forEach(e-> e.add(n));
+    	ans.addAll(combine(n - 1, k)); 
+    	return ans;
+	}
+}
+
+
+
 //################################################ So Far way ################################################ 
 void combine_helper(int n,int k,vector<vector<int> >&result, vector<int> so_far,int state) {
       if(so_far.size() == k) {

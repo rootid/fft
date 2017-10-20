@@ -5,8 +5,30 @@
 //Can you solve it without using extra space?
 
 
+//##################### JAVA  ##################### 
+ListNode detectCycle(ListNode head) {
 
+  if(head == null) { 
+    return head;
+  }
+  ListNode slow= head;
+  ListNode fast= head;
+  while(fast.next != null && fast.next.next != null) {
+	  slow = slow.next;
+	  fast = fast.next.next;
+      if(slow == fast)  { //found cycle
+        ListNode tmp = head;  //tmp needs to travel K unit of distance from head
+        while(fast != tmp) {  
+          fast  = fast.next;
+          tmp = tmp.next;  
+        }
+        return tmp;
+      }
+  }
+  return null;
+}
 
+//##################### c++ ##################### 
 ListNode *detectCycle(ListNode *head) {
 
   if(!head ) { 

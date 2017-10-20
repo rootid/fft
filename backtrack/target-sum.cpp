@@ -17,6 +17,23 @@
 //Your output answer is guaranteed to be fitted in a 32-bit integer.
 //
 
+//######################################### Recursion ######################################### 
+public int findTargetSumWays(int[] nums, int S) {
+    return findTargetSumWaysHelper(nums,0,S,0);
+}
+
+private int findTargetSumWaysHelper(int[] nums, int idx,int S,int cSum) {
+    if(nums.length == idx) {
+        if(S == cSum) return 1;
+        return 0;
+    }
+    int count = 0;
+    count += findTargetSumWaysHelper(nums, idx+1,S,cSum + nums[idx]);
+    count += findTargetSumWaysHelper(nums, idx+1,S,cSum - nums[idx]);
+    return count;
+}
+
+//######################################### Recursion ######################################### 
 int helper(vector<int> &nums,int &S,int index,int sum) {
     if(index == nums.size()) {
         if(sum == S)

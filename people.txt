@@ -20,3 +20,5 @@ https://discuss.leetcode.com/topic/84687/java-top-down-and-bottom-up-dp-solution
 http://www.geeksforgeeks.org/count-inversions-array-set-3-using-bit/
 http://www.geeksforgeeks.org/counting-inversions/
 http://www.geeksforgeeks.org/count-inversions-in-an-array-set-2-using-self-balancing-bst/
+
+http://steve-yegge.blogspot.nl/2008/03/get-that-job-at-google.html

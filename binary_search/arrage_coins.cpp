@@ -18,6 +18,29 @@
 //¤ ¤
 //Because the 4th row is incomplete, we return 3.
 //[0,n]
+
+//######################################## Iteration  ######################################### 
+public int arrangeCoins(int n) {
+      int stairCase = 0;
+      while(n > 0){
+          stairCase += 1;
+          n -= stairCase;
+      }
+      return n == 0 ? stairCase : stairCase-1;
+  }
+
+//######################################## Recursion ######################################### 
+public int arrangeCoins(int n) {
+    //1,2,3,4
+    int stairCase = 1;
+    return arrangeCoinsHelper(stairCase,n);
+}
+
+int arrangeCoinsHelper(int k, int n) {
+    if(n-k < 0) return n;
+    return arrangeCoinsHelper(k+1, n-k);
+}
+
 int arrangeCoins(int n) {
     
       int l = 0;

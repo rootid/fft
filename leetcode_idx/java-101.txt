@@ -1,0 +1,64 @@
+######################################### Stack ######################################### 
+Deque<Character> p = new ArrayDeque<>(s.length()); //push,pop
+Stack<Character> p = new Stack<>(); //push,pop
+
+######################################### valueOf v/s parseInt ######################################### 
+//Convert String to Integer/int
+Integer.valueOf() returns an Integer object,
+while Integer.parseInt() returns an int primitive.
+
+
+####################### Convert currentSet to list ####################### 
+List<String> copy = currentSet.stream().collect(Collectors.toList());
+####################### Convert currentList to list ####################### 
+List<Integer> copy = currentList.stream().collect(Collectors.toList());
+####################### Convert currentArr to list ####################### 
+List<Integer> lst =  IntStream.of(currentArr).boxed().collect(Collectors.toList());
+
+####################### Copy nums to Rest ####################### 
+int[] rest = Arrays.copyOf(nums, nums.length);
+
+
+####################### Create List ####################### 
+List<String> list = new ArrayList<String>(Arrays.asList("one", "two", "three"));
+
+################### Count set bit  ################### 
+Integer.bitCount()
+eg.  Integer.bitCount(x ^ y); # count set bits for x ^ y
+
+######################################### Int java  ######################################### 
+An Integer in Java has 32 bits or 4 bytes , e.g. 00101000011110010100001000011010.
+To count the 1s in the Integer representation we put the input int
+n in bit AND with 1 (that is represented as
+
+ones = ones + (n & 1); //to compute # of 1
+00000000000000000000000000000001 - (JAVA representation of digit 1)
+n = n>>>1; //Unsigned/logical right shift operation.
+Integer.MAX_VALUE == 2147483647 == 2^31 - 1 == 0111 1111 1111 1111 1111 1111 1111 1111
+Integer.MAX_VALUE + 1 == -2147483648 ==        1000 0000 0000 0000 0000 0000 0000 0000 == Integer.MIN_VALUE
+
+################### Bit shifting ################### 
+n >>>= 1 (logical/unsigned bit shift)
+Integer.MAX_VALUE + 1 should look like this:
+0100 0000 0000 0000 0000 0000 0000 0000
+0010 0000 0000 0000 0000 0000 0000 0000
+0001 0000 0000 0000 0000 0000 0000 0000
+
+n >>= 1 (arithmetic/signed bit shift)
+A few shifts of Integer.MAX_VALUE + 1 using the >> operator would look like this:
+1100 0000 0000 0000 0000 0000 0000 0000
+1110 0000 0000 0000 0000 0000 0000 0000
+1111 0000 0000 0000 0000 0000 0000 0000
+1111 1000 0000 0000 0000 0000 0000 0000
+...
+1111 1111 1111 1111 1111 1111 1111 1111, to infinity, which would never exit our n != 0 condition.
+
+Eg. 
+-5：11111111 11111111 11111111 11111011 (complement)
+-5>>1：11111111 11111111 11111111 11111101 (-3)
+-5>>>1：01111111 11111111 11111111 11111101 (2147483645)
+
+
+
+
+vim:tw=90:et:norl:

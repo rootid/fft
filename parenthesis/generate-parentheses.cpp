@@ -10,6 +10,49 @@
 //]
 //
 
+//T(n) = 2T(n-1)
+//#########################################  Backtrack pruning #########################################  
+class Solution {
+    List<String> result = new ArrayList<>();
+    public List<String> generateParenthesis(int n) {
+        char[] curr = new char[2*n];
+        generateParenthesisHelper(n,n,curr,0);
+        return result;
+    }
+    private void generateParenthesisHelper(int left, int right, char[] curr,int k) {
+        if(left == right && left == 0) {
+            result.add(new String(curr)); 
+            return;
+        }      
+        if(left > 0) {
+            curr[k] = '(';
+            generateParenthesisHelper(left-1,right, curr,k+1);
+        }
+        if(right > left) { 
+            curr[k] = ')';
+            generateParenthesisHelper(left,right-1, curr,k+1);
+        }
+    }
+}
+
+//CFG grammar : S -> S(S) | empty
+//#########################################
+public List<String> ans(int n) {				
+	List<String> parens = new ArrayList<String>();  
+	if (n == 0) parens.add(""); //base case
+	else { // recursive case
+		for (int i = 0; i < n; i++){
+			for ( String front:ans(i))
+				for (String back:ans(n-i-1)) 
+					parens.add( front + 
+							      "(" +  
+							     back + 
+							       ")");
+		}
+	}
+	return parens;
+}
+
 //######################################### Recursive ######################################### 
 class Solution {
 public:

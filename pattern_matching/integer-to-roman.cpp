@@ -7,6 +7,26 @@
 #include<vector>
 using namespace std;
 
+
+//######################################### Iteration + Index solution  ######################################### 
+public static String intToRoman(int num) {
+	//Zero doesnot exist in roman
+    String M[] = {"", "M", "MM", "MMM"}; //"", 1000-3000
+    String C[] = {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"}; // "" , 100-900 C: 100, CC: 200, CCC: 300, CD: 400
+    String X[] = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"}; //"", 10-90
+    String I[] = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"}; //"",1-9
+    return M[num/1000] + C[(num%1000)/100] + X[(num%100)/10] + I[num%10];
+}
+//######################################### Recursion ######################################### 
+string intToRoman(int num) {                
+    for (int i = 0; i < int_dict.size(); i++) {
+        if (int_dict[i] <= num)
+            return roman_dict[i] + intToRoman(num - int_dict[i]);
+    }
+    return "";
+}
+
+//######################################### Iteration  ######################################### 
 string intToRoman(int num) {
   string roman;
   vector<int> dec_num ({1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1});
@@ -58,15 +78,6 @@ string intToRoman(int num) {
     } 
    }
   return roman;
-}
-//Recursion
-//
- string intToRoman(int num) {                
-    for (int i = 0; i < int_dict.size(); i++) {
-        if (int_dict[i] <= num)
-            return roman_dict[i] + intToRoman(num - int_dict[i]);
-    }
-    return "";
 }
 int main() {
   cout <<  " 6 = " << intToRoman(6)  << endl;

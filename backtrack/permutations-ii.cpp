@@ -8,6 +8,42 @@
 //]
 
 //##################### Sort + Backtrack  ##################### 
+
+//Consider the following example:
+//i= 0, 1, 2, 3, 4
+//A= 1, 1, 1, 2, 2
+//In the for loop, at i = 0, we will form permutations of form [1] + permutations({1,1,2,2}).
+//At i = 1, !used[0] means that we're on to next iteration and we don't need to consider [1] + permutations({1,1,2,2}) again.
+//Similar for at i = 2, !used[1] means that we've already considered similar permutations.
+//However, not that used[0] could be true, and that can happen for a permutations of {1,1,2,2}.
+public class Solution {
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> soFar = new ArrayList<>();
+        Arrays.sort(nums);
+        boolean[] used = new boolean[nums.length];
+        permute(nums, 0, soFar, res,used);
+        return res;
+    }
+    private void permute(int[] nums, int k, List<Integer>soFar, List<List<Integer>> res,boolean[] used){ 
+        if (k == nums.length) {
+            res.add(new ArrayList(soFar));
+            return;
+        }
+        for (int i = 0; i < nums.length; i++) {
+            if(used[i]) continue;
+            if( i > 0 && nums[i-1] == nums[i] && !used[i-1] == true) continue;  //When duplicates are selected, the order is ascending
+			//if(i > 0 && nums[i] == nums[i - 1] && used[i - 1]) continue;  ://When duplicates are selected, the order is descending 
+            used[i] = true;
+            soFar.add(nums[i]); 
+            permute(nums,k+1, soFar, res,used);
+            used[i] = false;
+            soFar.remove(soFar.size() -1);
+        }
+    }
+}
+
+//##################### Sort + Backtrack  ##################### 
 //If we do soring, then the unordered_map is not needed.
 void dfs(vector<vector<int>> &res, vector<int> &cur, vector<int> canVec, int len) {
     if(cur.size()== len ) {
@@ -36,7 +72,7 @@ vector<vector<int>> permuteUnique(vector<int>& nums) {
     return res;
 }
 
-///############## Backtrack + No sort + unordered_map
+///############## Backtrack + No sort + unordered_map ############## 
 void  dfsHelper(vector<vector<int>>  &res, vector<int> &path, unordered_map<int, int> &numMap, int len) {
         if(path.size()==len) {
           res.push_back(path); 
