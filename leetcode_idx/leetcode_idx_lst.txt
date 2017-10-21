@@ -89,7 +89,6 @@ Course Schedule III
 Create Maximum Number	
 Data Stream as Disjoint Intervals	
 Decode String	
-Decode Ways	
 Decode Ways II	
 Delete Node in a BST	
 Delete Operation for Two Strings	
@@ -351,9 +350,6 @@ Relative Ranks
 Remove 9	
 Remove Boxes	
 Remove Duplicate Letters	
-Remove Duplicates from Sorted Array	
-Remove Duplicates from Sorted Array II	
-Remove Element	
 Remove Invalid Parentheses	
 Remove K Digits	
 Repeated DNA Sequences	

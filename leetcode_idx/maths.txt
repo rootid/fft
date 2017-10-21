@@ -21,4 +21,31 @@ Arranging Coins (Iteration)
     Because the 4th row is incomplete, we return 3.
     [0,n]
 
+#################################################################################
+Decode Ways	
+    A message containing letters from A-Z is being encoded to numbers using the following
+    mapping:
+    'A' -> 1
+    'B' -> 2
+    ...
+    'Z' -> 26
+    Given an encoded message containing digits, determine the total number of ways to decode
+    it.
+    For example,
+    Given encoded message "12", it could be decoded as "AB" (1 2) or "L" (12).
+    The number of ways decoding "12" is 2.
+
+#################################################################################
+Find the Derangement of An Array
+    In combinatorial mathematics, a derangement is a permutation of the elements of a set, such that no element appears in its original position.
+    There's originally an array consisting of n integers from 1 to n in ascending order, you need to find the number of derangement it can generate.
+    Also, since the answer may be very large, you should return the output mod 10^9 + 7.
+    Example 1:
+    Input: 3
+    Output: 2
+    Explanation: The original array is [1,2,3]. The two derangements are [2,3,1] and [3,1,2].
+    Note:
+    n is in the range of [1, 106].
+
+
 vim:tw=90:et:norl:

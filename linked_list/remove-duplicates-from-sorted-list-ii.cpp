@@ -3,6 +3,20 @@
 //For example,
 //Given 1->2->3->3->4->4->5, return 1->2->5.
 //Given 1->1->1->2->3, return 2->3.
+
+
+
+//################################## Recusrion ################################## 
+public ListNode deleteDuplicates(ListNode head) {
+    if(head == null || head.next == null) return head;
+    ListNode kid = head.next;
+    while(kid != null && kid.val == head.val) kid = kid.next; //value check with next node
+    if(kid != head.next) return deleteDuplicates(kid); //Duplicates are found and get rid of duplicates.
+    head.next = deleteDuplicates(kid); //No duplicates
+    return head;
+}
+
+
 //################################## Recusrion - 1 ################################## 
 ListNode* deleteDuplicates(ListNode* head) {
     if (!head || !head->next) {
@@ -55,3 +69,4 @@ ListNode* deleteDuplicates(ListNode* head) {
   }
   return dummy_head->next;
 }
+

@@ -6,7 +6,9 @@ Stack<Character> p = new Stack<>(); //push,pop
 //Convert String to Integer/int
 Integer.valueOf() returns an Integer object,
 while Integer.parseInt() returns an int primitive.
-
+######################################### Regex ######################################### 
+######################################### Replace (()|[]|{}) with empty string ######################################### 
+String newString = input.replaceAll("(\\(\\)|\\[\\]|\\{\\})", "");
 
 ####################### Convert currentSet to list ####################### 
 List<String> copy = currentSet.stream().collect(Collectors.toList());

@@ -38,9 +38,11 @@ void deleteNode(ListNode* node) {
     delete next;
 }
 
+//######################################### Copy value + and check wheather it is last node######################################### 
 public void deleteNode(ListNode node) {
-    node.val = node.next.val;
-    node.next = node.next.next;
+  node.val = node.next.val;  
+  if(node.next == null) node = null;
+  else node.next = node.next.next;
 }
 
 int main() {

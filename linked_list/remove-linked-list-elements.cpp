@@ -10,6 +10,20 @@
 //######################################### Recursion ######################################### 
 public ListNode removeElements(ListNode head, int val) {
     if(head == null) return head;
+    head.next = removeElements(head.next, val);
+    if(head != null && head.val == val) head = head.next;
+    return head;
+}
+//######################################### Recursion ######################################### 
+public ListNode removeElements(ListNode head, int val) {
+        if (head == null) return null;
+        head.next = removeElements(head.next, val);
+        return head.val == val ? head.next : head;
+}
+
+//######################################### Recursion ######################################### 
+public ListNode removeElements(ListNode head, int val) {
+    if(head == null) return head;
     ListNode child = removeElements(head.next,val);
     if(head.val == val) return child;
     head.next = child;

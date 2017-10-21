@@ -6,7 +6,21 @@
 //Given input array nums = [3,2,2,3], val = 3
 //Your function should return length = 2, with the first two elements of nums being 2.
     
+//######################################### Iteration ######################################### 
+private void swap(int[] nums, int i,int j) {
+    int tmp = nums[i];
+    nums[i] = nums[j];
+    nums[j] = tmp;
+}
+public int removeElement(int[] nums, int val) {
+    int lastIdx = 0;
+    for(int i=0;i<nums.length;i++) {
+        if(nums[i] != val)  { swap(nums,i,lastIdx); lastIdx++;} 
+     }
+    return lastIdx;
+}
 
+//######################################### Iteration ######################################### 
 int removeElement(vector<int>& nums, int val) {
   int len = nums.size();
   int idx = 0; 

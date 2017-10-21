@@ -9,6 +9,15 @@
 #include "../headers/global.hpp"
 using namespace std;
 
+
+//################### Iteration  ################### 
+public int removeDuplicates(int[] nums) {
+     int lastIdx = 1;
+     for(int i=1;i<nums.length;i++)  { 
+         if(nums[i] != nums[i-1]) nums[lastIdx++] = nums[i]; 
+     }
+     return lastIdx;
+}
 //################### GOOD  ################### 
 int removeDuplicates(int A[], int n) {
   int count = 0;

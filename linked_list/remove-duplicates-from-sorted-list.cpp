@@ -7,6 +7,25 @@
 #include "../headers/global.hpp"
 #include "../headers/listnode.hpp"
 
+
+//######################################### Recursion ######################################### 
+public ListNode deleteDuplicates(ListNode head) {
+    if(head == null || head.next == null) return head;
+    head.next =  deleteDuplicates(head.next);
+    return head.val == head.next.val ?  head.next : head;
+}
+
+//######################################### Iteration ######################################### 
+public ListNode deleteDuplicates(ListNode head) {
+    ListNode tmp = head;
+    while(tmp != null) {
+        while(tmp.next != null && tmp.val == tmp.next.val) tmp.next = tmp.next.next;
+        tmp = tmp.next;
+    }
+    return head;
+}
+
+//######################################### Iteration ######################################### 
 ListNode* deleteDuplicates(ListNode* head) {
     ListNode *tmp = head;
     while(tmp) {
