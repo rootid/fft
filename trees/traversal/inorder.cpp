@@ -40,6 +40,25 @@ struct TreeNode {
 //      visit(node)
 //      node ← node.right
 
+
+//######################################### Inorder traversal  with Stack ######################################### 
+public List<Integer> inorderTraversal(TreeNode root) {
+    List<Integer> lst = new LinkedList<>();
+    Stack<TreeNode> stk = new Stack<>();
+    while(!stk.isEmpty() || root != null) {
+        if(root != null) {
+            stk.push(root);
+            root = root.left;
+        } else {
+            root =  stk.pop();
+            lst.add(root.val);
+            root = root.right;
+        }
+    }
+    return lst;
+}
+
+//######################################### Inorder traversal  ######################################### 
 vector<int> inorderTraversal(TreeNode* root) {
   
   stack<TreeNode*> s;

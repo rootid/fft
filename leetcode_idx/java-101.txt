@@ -1,3 +1,11 @@
+######################################### Must Know ######################################### 
+
+when you use add function of List, it just add a copy of reference of the object into the List instead of a new copy of the object.
+So if you don't create a new copy, all the reference you add to your result refer to the same object.
+
+result.add(new ArrayList(currentResult)); V/S result.add(currentResult);
+
+
 ######################################### Stack ######################################### 
 Deque<Character> p = new ArrayDeque<>(s.length()); //push,pop
 Stack<Character> p = new Stack<>(); //push,pop

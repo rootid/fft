@@ -14,6 +14,18 @@
 #include<math.h>
 using namespace std;
 
+//######################################### Convert each node to decimal digit ######################################### 
+public int sumNumbers(TreeNode root) {
+    return sumNumberHelper(root, 0);
+}
+
+private int sumNumberHelper(TreeNode root, int curSum) {
+    if(root == null) return 0;
+    curSum = curSum * 10 + root.val;
+    if(root.left == null && root.right == null) return curSum;
+    return sumNumberHelper(root.left, curSum) + sumNumberHelper(root.right, curSum);
+}
+
 struct TreeNode {
     int val;
     TreeNode *left;

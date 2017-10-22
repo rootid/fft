@@ -1,0 +1,52 @@
+#################################################################################
+Given a sorted list of integers, square the elements and give the output in sorted order.
+Eg. Consider the list [-3, -1, 0, 2, 4], which contains negative numbers, squaring 
+the values would return [9, 1, 0, 2, 4], that isn't sorted.
+
+public static int[] getSortedSequence(int[] arr) {
+   int high = arr.length();
+   int low = 0;
+   int[] result = new int[high];
+   high -= 1
+   int idx = high;
+   while(low <= high) {
+       if(Math.abs(arr[low]) >= Math.abs(arr[high])) {
+           result[idx] = arr[low] * arr[low];
+           low++;
+       } else {
+           result[idx] = arr[high] * arr[high];
+           high--;
+       }
+       idx++;
+   }
+   return result;
+}
+
+
+#################################################################################
+Find all words [A-Z] in a dictionary (about 1M words) that are made of a 
+subset (in any order) of the chars in the input parameter [A-Z]. 
+ex: input "ACRAT" (10 to 20 chars, up to 30 worst case) 
+matching words: "A", "CAR", "ACA", "ART", "RAC". 
+non-matching words: "BAR", "AAA" 
+
+follow up : the input is a list of words. Return a list of words that each 
+list is formed by exactly the characters in the input list. 
+For example: two lists {“DEBIT”, “CARD”} and{“BAD”, “CREDIT”} 
+are formed by the same exact group of characters.
+
+
+#################################################################################
+Remove invalid parentheses
+
+#################################################################################
+LC560, element in array is positive, target is positive. followup: normal LC560.2. LC304.
+
+#################################################################################
+Regular expression
+
+#################################################################################
+
+
+
+vim:tw=90:et:norl:

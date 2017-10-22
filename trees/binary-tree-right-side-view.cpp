@@ -10,6 +10,25 @@
 //You should return [1, 3, 4].
 //
 //
+
+//######################################### explore right node first with increase level by 1 ######################################### 
+public List<Integer> rightSideView(TreeNode root) {
+    List<Integer> rvList = new LinkedList<>();
+    rightSideViewHelper(root, rvList,0);
+    return rvList;
+}
+
+private void rightSideViewHelper(TreeNode root, List<Integer> rvList,int level) {
+    if(root != null) {
+		//Add first right node 
+        if(rvList.size() == level) {
+            rvList.add(root.val);
+        }
+        rightSideViewHelper(root.right, rvList, level + 1); //explore right node first
+        rightSideViewHelper(root.left, rvList, level + 1);
+    }
+}
+
 //Variation :
 //print a tree one level at a time.
 //################################# Recursive ################################# 

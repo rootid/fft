@@ -40,7 +40,25 @@ struct TreeNode {
 //  else
 //    node ← s.pop()
 
+//######################################### Preorder ######################################### 
+public List<Integer> preorderTraversal(TreeNode root) {
+    Stack<TreeNode> stk = new Stack();
+    List<Integer> lst = new LinkedList<>();
+    while(!stk.isEmpty() || root != null) {
+        if(root != null) {
+            lst.add(root.val);
+            if(root.right != null) {
+                stk.push(root.right); // Preorder right pointers
+            }
+            root = root.left;
+        } else {
+            root = stk.pop();
+        }    
+    }
+    return lst;
+}
 
+//######################################### Preorder ######################################### 
 vector<int> preorderTraversal(TreeNode* root) {
   //Store the right substree for next visit and traverse the left substree 
   stack<TreeNode*> s;

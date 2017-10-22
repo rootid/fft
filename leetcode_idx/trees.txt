@@ -1,0 +1,419 @@
+#################################################################################
+Binary Tree Postorder Traversal
+    Given a binary tree, return the postorder traversal of its nodes' values.
+    For example:
+    Given binary tree {1,#,2,3},
+       1
+        \
+         2
+        /
+       3
+    return [3,2,1].
+
+#################################################################################
+Binary Tree Preorder Traversal
+    Given a binary tree, return the preorder traversal of its nodes' values.
+    For example:
+    Given binary tree {1,#,2,3},
+       1
+        \
+         2
+        /
+       3
+    return [1,2,3].
+
+#################################################################################
+Binary Tree Inorder Traversal
+    Given a binary tree, return the inorder traversal of its nodes' values.
+    For example:
+    Given binary tree {1,#,2,3},
+       1
+        \
+         2
+        /
+       3
+    return [1,3,2].
+
+#################################################################################
+Binary Search Tree Iterator (Inorder successor of a node 'n' is the next node you would
+visit after node 'n' when you perform inOrder traversal of the BST.)
+    Implement an iterator over a binary search tree (BST). 
+    Your iterator will be initialized with the root node of a BST.
+    Calling next() will return the next smallest number in the BST.
+    Note: next() and hasNext() should run in average O(1) time and uses O(h) memory,
+    where h is the height of the tree.
+
+#################################################################################
+Sum Root to Leaf Numbers 
+    Given a binary tree containing digits from 0-9 only, each root-to-leaf path could represent a number.
+    An example is the root-to-leaf path 1->2->3 which represents the number 123.
+    Find the total sum of all root-to-leaf numbers.
+    For example,
+        1
+       / \
+      2   3
+    The root-to-leaf path 1->2 represents the number 12.
+    The root-to-leaf path 1->3 represents the number 13.
+    Return the sum = 12 + 13 = 25.
+
+
+#################################################################################
+Level/height related problems
+
+#################################################################################
+House Robber III
+    The thief has found himself a new place for his thievery again. There is only one entrance to this area, called the "root." Besides the root, each house has one and only one parent house. After a tour, the smart thief realized that "all houses in this place forms a binary tree". It will automatically contact the police if two directly-linked houses were broken into on the same night.
+    Determine the maximum amount of money the thief can rob tonight without alerting the police.
+    Example 1:
+         3
+        / \
+       2   3
+        \   \ 
+         3   1
+    Maximum amount of money the thief can rob = 3 + 3 + 1 = 7.
+    Example 2:
+         3
+        / \
+       4   5
+      / \   \ 
+     1   3   1
+    Maximum amount of money the thief can rob = 4 + 5 = 9.
+
+#################################################################################
+    Given a binary tree
+        struct TreeLinkNode {
+          TreeLinkNode *left;
+          TreeLinkNode *right;
+          TreeLinkNode *next;
+        }
+    Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to NULL.
+    Initially, all next pointers are set to NULL.
+    Note:
+    You may only use constant extra space.
+    You may assume that it is a perfect binary tree (ie, all leaves are at the same level, and every parent has two children).
+    For example,
+    Given the following perfect binary tree,
+             1
+           /  \
+          2    3
+         / \  / \
+        4  5  6  7
+    After calling your function, the tree should look like:
+             1 -> NULL
+           /  \
+          2 -> 3 -> NULL
+         / \  / \
+        4->5->6->7 -> NULL
+
+#################################################################################
+find-leaves-of-binary-tree
+    Given a binary tree, collect a tree's nodes as if you were doing this: Collect and remove all leaves, repeat until the tree is empty.
+    Example:
+    Given binary tree 
+              1
+             / \
+            2   3
+           / \     
+          4   5    
+    Returns [4, 5, 3], [2], [1].
+    Explanation:
+    1. Removing the leaves [4, 5, 3] would result in this tree:
+              1
+             / 
+            2          
+    2. Now removing the leaf [2] would result in this tree:
+              1          
+    3. Now removing the leaf [1] would result in the empty tree:
+              []         
+    Returns [4, 5, 3], [2], [1].
+#################################################################################
+Find Bottom Left Tree Value
+    Given a binary tree, find the leftmost value in the last row of the tree.
+    Example 1:
+    Input:
+        2
+       / \
+      1   3
+    Output:
+    1
+    Example 2: 
+    Input:
+            1
+           / \
+          2   3
+         /   / \
+        4   5   6
+           /
+          7
+    Output:
+    7
+
+#################################################################################
+Binary Tree Vertical Order Traversal (Only BFS works)
+    Given a binary tree, return the vertical order traversal of its nodes' values. (ie, from top to bottom, column by column).
+    If two nodes are in the same row and column, the order should be from left to right.
+    Examples:
+    Given binary tree [3,9,20,null,null,15,7],
+        3
+       / \
+      9  20
+        /  \
+       15   7
+    return its vertical order traversal as:
+    [
+      [9],
+      [3,15],
+      [20],
+      [7]
+    ]
+    Given binary tree [3,9,20,4,5,2,7],
+        _3_
+       /   \
+      9    20
+     / \   / \
+    4   5 2   7
+    return its vertical order traversal as:
+    [
+      [4],
+      [9],
+      [3,5,2],
+      [20],
+      [7]
+    ]
+
+#################################################################################
+Binary Tree Longest Consecutive Sequence (Global Max + Pass val + 1 to next level)
+    Given a binary tree, find the length of the longest consecutive sequence path.
+    The path refers to any sequence of nodes from some starting node to any node in the tree along the parent-child connections. The longest consecutive path need to be from parent to child (cannot be the reverse).
+    For example,
+       1
+        \
+         3
+        / \
+       2   4
+            \
+             5
+    Longest consecutive sequence path is 3-4-5, so return 3.
+       2
+        \
+         3
+        / 
+       2    
+      / 
+     1
+    Longest consecutive sequence path is 2-3,not 3-2-1, so return 2.
+
+#################################################################################
+Binary Tree Right Side View
+    Given a binary tree, imagine yourself standing on the right side of it, return the values of the nodes you can see ordered from top to bottom.
+    For example:
+    Given the following binary tree,
+       1            <---
+     /   \
+    2     3         <---
+     \     \
+      5     4       <---
+    You should return [1, 3, 4].
+
+#################################################################################
+Binary Tree Zigzag Level Order Traversal
+    Given a binary tree, return the zigzag level order traversal of its nodes' values. 
+    (ie, from left to right, then right to left for the next level and alternate between).
+    For example:
+    Given binary tree [3,9,20,null,null,15,7],
+        3
+       / \
+      9  20
+        /  \
+       15   7
+    return its zigzag level order traversal as:
+    [
+      [3],
+      [20,9],
+      [15,7]
+    ]
+
+#################################################################################
+Binary Tree Level Order Traversal
+    Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
+
+    For example:
+    Given binary tree {3,9,20,#,#,15,7}
+    
+        3
+       / \
+      9  20
+        /  \
+       15   7
+    [
+      [3],
+      [9,20],
+      [15,7]
+    ]
+
+#################################################################################
+Binary Tree Level Order Traversal II
+    Given a binary tree, return the bottom-up level order traversal of its nodes' values.
+    (ie, from left to right, level by level from leaf to root).
+    For example:
+    Given binary tree [3,9,20,null,null,15,7],
+        3
+       / \
+      9  20
+        /  \
+       15   7
+    return its bottom-up level order traversal as:
+    [
+      [15,7],
+      [9,20],
+      [3]
+    ]
+
+#################################################################################
+Average of Levels in Binary Tree
+    Given a non-empty binary tree, return the average value of the nodes on each level in the form of an array.
+    Example 1:
+    Input:
+        3
+       / \
+      9  20
+        /  \
+       15   7
+    Output: [3, 14.5, 11]
+    Explanation:
+    The average value of nodes on level 0 is 3,  on level 1 is 14.5, and on level 2 is 11. Hence return [3, 14.5, 11].
+    Note:
+    The range of node's value is in the range of 32-bit signed integer.
+#################################################################################
+Maximum Width of Binary Tree (Level+1 solution + Complete tree property)
+    Given a binary tree, write a function to get the maximum width of the given tree.
+    The width of a tree is the maximum width among all levels. The binary tree has the same structure as a full binary tree, but some nodes are null.
+    The width of one level is defined as the length between the end-nodes (the leftmost and right most non-null nodes in the level, where the null nodes between the end-nodes are also counted into the length calculation.
+    Example 1:
+    Input: 
+               1
+             /   \
+            3     2
+           / \     \  
+          5   3     9 
+    Output: 4
+    Explanation: The maximum width existing in the third level with the length 4 (5,3,null,9).
+    Example 2:
+    Input: 
+              1
+             /  
+            3    
+           / \       
+          5   3     
+    Output: 2
+    Explanation: The maximum width existing in the third level with the length 2 (5,3).
+    Example 3:
+    Input: 
+              1
+             / \
+            3   2 
+           /        
+          5      
+    Output: 2
+    Explanation: The maximum width existing in the second level with the length 2 (3,2).
+    Example 4:
+    Input: 
+              1
+             / \
+            3   2
+           /     \  
+          5       9 
+         /         \
+        6           7
+    Output: 8
+    Explanation:The maximum width existing in the fourth level with the length 8 (6,null,null,null,null,null,null,7).
+    Note: Answer will in the range of 32-bit signed integer.
+
+#################################################################################
+Add One Row to Tree
+    Given the root of a binary tree, then value v and depth d, you need to add a row of nodes with value v at the given depth d. The root node is at depth 1.
+    The adding rule is: given a positive integer depth d, for each NOT null tree nodes N in depth d-1, create two tree nodes with value v as N's left subtree root and right subtree root. And N's original left subtree should be the left subtree of the new left subtree root, its original right subtree should be the right subtree of the new right subtree root. If depth d is 1 that means there is no depth d-1 at all, then create a tree node with value v as the new root of the whole original tree, and the original tree is the new root's left subtree.
+    Example 1:
+    Input: 
+    A binary tree as following:
+           4
+         /   \
+        2     6
+       / \   / 
+      3   1 5   
+    v = 1
+    d = 2
+    Output: 
+           4
+          / \
+         1   1
+        /     \
+       2       6
+      / \     / 
+     3   1   5   
+    Example 2:
+    Input: 
+    A binary tree as following:
+          4
+         /   
+        2    
+       / \   
+      3   1    
+    v = 1
+    d = 3
+    Output: 
+          4
+         /   
+        2
+       / \    
+      1   1
+     /     \  
+    3       1
+    Note:
+    The given d is in range [1, maximum depth of the given tree + 1].
+    The given binary tree has at least one tree node.
+
+#################################################################################
+Print Binary Tree
+    Print a binary tree in an m*n 2D string array following these rules:
+    The row number m should be equal to the height of the given binary tree.
+    The column number n should always be an odd number.
+    The root node's value (in string format) should be put in the exactly middle of the first row it can be put. The column and the row where the root node belongs will separate the rest space into two parts (left-bottom part and right-bottom part). You should print the left subtree in the left-bottom part and print the right subtree in the right-bottom part. The left-bottom part and the right-bottom part should have the same size. Even if one subtree is none while the other is not, you don't need to print anything for the none subtree but still need to leave the space as large as that for the other subtree. However, if two subtrees are none, then you don't need to leave space for both of them.
+    Each unused space should contain an empty string "".
+    Print the subtrees following the same rules.
+    Example 1:
+    Input:
+         1
+        /
+       2
+    Output:
+    [["", "1", ""],
+     ["2", "", ""]]
+    Example 2:
+    Input:
+         1
+        / \
+       2   3
+        \
+         4
+    Output:
+    [["", "", "", "1", "", "", ""],
+     ["", "2", "", "", "", "3", ""],
+     ["", "", "4", "", "", "", ""]]
+    Example 3:
+    Input:
+          1
+         / \
+        2   5
+       / 
+      3 
+     / 
+    4 
+    Output:
+    [["",  "",  "", "",  "", "", "", "1", "",  "",  "",  "",  "", "", ""]
+     ["",  "",  "", "2", "", "", "", "",  "",  "",  "",  "5", "", "", ""]
+     ["",  "3", "", "",  "", "", "", "",  "",  "",  "",  "",  "", "", ""]
+     ["4", "",  "", "",  "", "", "", "",  "",  "",  "",  "",  "", "", ""]]
+    Note: The height of binary tree is in the range of [1, 10].
+
+vim:tw=90:et:norl:

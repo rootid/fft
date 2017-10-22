@@ -49,6 +49,32 @@ struct TreeNode {
 //        visit(peekNode)
 //        lastNodeVisited ← s.pop()
 
+//######################################### PostOrder with Stack ######################################### 
+public List<Integer> postorderTraversal(TreeNode root) {
+    TreeNode lastVisitedNode = null;
+    TreeNode pkNode = null;
+    List<Integer> lst = new LinkedList<>();
+    Stack<TreeNode> tStack = new Stack<>();
+    while(!tStack.isEmpty() || root != null) {
+        if(root != null) {
+            tStack.push(root);
+            root = root.left;
+        } else {
+            pkNode = tStack.peek();
+            if(pkNode.right != null && lastVisitedNode != pkNode.right) {
+                  root = pkNode.right;
+            } else {
+                lastVisitedNode = pkNode;
+                lst.add(pkNode.val);
+                tStack.pop();
+            }
+        }
+        
+    }
+    return lst;
+}
+
+//######################################### PostOrder with Stack ######################################### 
 vector<int> postorderTraversal(TreeNode* root) {
   
   stack<TreeNode*> s;

@@ -22,6 +22,41 @@
 #include "../headers/treenode.h"
 
 
+//####################################### Recursive ####################################### 
+//T: O(n^2) ,  O(nlogn) in best case (balanced tree).
+//S : O(n)
+
+//
+//            1
+//      2           3
+//   4     5     6     7
+
+//Analysis of pathSum
+//Firstly, pathSum() will be called O(n) times, which is O(n) to traverse the tree.
+//Analysis of pathSumFrom
+//Then, on every node, we call pathSumFrom(), but notice, the time of this call is different on different node. 
+//Consider node 2 and node 3 in above tree, they have O(3) and O(3) respectfully. Which means,
+//the sum time of pathSumFrom() from a layer is <= O(n).
+//Overall, the time complexity is: O(n) + height * O(n)
+//Best case = O(n) + logn * O(n) = O(nlogn)
+//Worst case = O(n) + n * O(n) = O(n^2)
+
+public int pathSum(TreeNode root, int sum) {       
+    if(root == null) return 0;
+    return pathSumFrom(root , sum) + pathSum(root.left , sum) + pathSum(root.right, sum);
+	
+	//Problem : pathSum(root.left, sum)  and pathSum(root.left, sum-root.val) : count path sum twice
+    //pathSum(root.left, sum) + pathSum(root.right, sum) +  //The sum without root.val. 
+    //pathSum(root.left, sum-root.val) + pathSum(root.right, sum-root.val); //The sum with root.val.
+}
+
+private int pathSumFrom(TreeNode root, int sum) {
+    if(root == null) return 0;
+	//NOTE : ? => precedance (R-L)
+    return (root.val == sum ? 1 : 0) + pathSumFrom(root.left, sum - root.val) 
+			+ pathSumFrom(root.right, sum - root.val);
+}
+
 
 //####################################### Recursive ####################################### 
 int rootSum(TreeNode* root, int sum) { 
@@ -60,7 +95,8 @@ int pathSum(TreeNode* root, int sum) {
   countPath(root, sum, count, false);
   return count;
 }
-//############################ Wrong : Only considers path from root to leaf
+
+//############################ Wrong : Only considers path from root to leaf ############################ 
 void helper(TreeNode *root,int sum,int org_sum,int& cnt ) {
   if(!root) {
     return;

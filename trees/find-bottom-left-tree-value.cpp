@@ -18,6 +18,42 @@
 //      7
 //Output:
 //7
+
+
+//##################### BFS traversal ( R-L) ##################### 
+public int findLeftMostNode(TreeNode root) {
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.add(root);
+    while (!queue.isEmpty()) {
+        root = queue.poll();
+        if (root.right != null)
+            queue.add(root.right);
+        if (root.left != null)
+            queue.add(root.left);
+    }
+    return root.val;
+}
+
+//##################### Keep track of state globally ##################### 
+class Solution {
+   	TreeNode leftNode = null;
+    int maxLevel = -1;
+    public int findBottomLeftValue(TreeNode root) {
+        findBottomLeftValueHelper(root,0);
+        return leftNode == null ? -1 : leftNode.val;
+    }
+    private void findBottomLeftValueHelper(TreeNode root, int level) {
+        if(root != null) {
+            if(level > maxLevel) {
+                maxLevel = level;
+                leftNode = root;
+            }
+            findBottomLeftValueHelper(root.left, level+1);
+            findBottomLeftValueHelper(root.right, level+1);
+      }
+    }
+}
+
 //##################### DFS ##################### 
 void dfsHelper(TreeNode* root, int level,pair<int, int>& res){
     if(root == nullptr) 

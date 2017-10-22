@@ -11,10 +11,33 @@
 #include "../headers/global.hpp"
 #include "../headers/treenode.h"
 
+
+//######################################### Global Max ######################################### 
+class Solution {
+	int maxPathSum = Integer.MIN_VALUE;;
+
+	private int maxPathSumHelper(TreeNode root) {
+		if(root != null) {
+			int leftMax = Math.max(0, maxPathSumHelper(root.left));
+			int rightMax = Math.max(0, maxPathSumHelper(root.right));
+			maxPathSum = Math.max(maxPathSum, leftMax + rightMax + root.val); //Compares the max value from every iteration with the current sum and updates it . 
+			return Math.max(leftMax,rightMax) + root.val; //At every node, we need to make a decision, if the sum comes from the left path larger than the right path, we pick the left path and plus the current node's value, this recursion goes all the way up to the root node.
+		}
+		return 0;
+	}
+
+	public int maxPathSum(TreeNode root) {
+	   maxPathSumHelper(root);
+	   return maxPathSum;
+	}
+}
+
+
 //Idea : 
 //traversal every nodes as the top of sub tree and calculate left max and right max individually, then keep update max. T
 //A path, in this problem, refers to any sequence of nodes from some starting node to any node in the tree along the parent-child connections. 
-//In the example, you start at either the 2 or 3, then traverse to its parent, the 1 at the root, then finish at the root's other child. That gives 2+1+3 = 3+1+2 = 6.
+//In the example, you start at either the 2 or 3, then traverse to its parent, the 1 at the root, then finish at the root's other child.
+// That gives 2+1+3 = 3+1+2 = 6.
 //
 //					  1
 //        **2**                   1
@@ -42,7 +65,7 @@ int depth(TreeNode *root,int &res) {
   return max(0,max(a, b)+root->val);//if *root is in the path, if this branch a burden or a plus (left/right + root)
   //At every node, we need to make a decision, if the sum comes from the left path larger than the right path, we pick the left path and plus the current node's value, this recursion goes all the way up to the root node.
 }
-
+//############################### MathPathSumHelper  ############################### 
 int maxPathSum(TreeNode *root) { 
   if(root == NULL) {
     return 0;

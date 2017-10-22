@@ -1,5 +1,7 @@
 :command -range=% REL :<line1>,<line2>g/^\s*$/d
+"To execute :'a,'b REL
 map ,rel :g/^\s*$/d<CR>
+map ,m :%s/\/\//    /g<CR> 
 
 noremap <silent> ,n :set number!<CR>
 noremap <silent> ,p :set paste!<CR>

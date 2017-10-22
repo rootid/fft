@@ -18,6 +18,28 @@
 #include "../headers/global.hpp"
 #include "../headers/treenode.h"
 
+//######################################### Recursion ######################################### 
+//T : O(n)
+//T : O(n) + O(p * h)
+public List<List<Integer>> pathSum(TreeNode root, int sum) {
+    List<List<Integer>> resultList = new LinkedList<>();
+    List<Integer> localList = new ArrayList<>();
+    pathSumHelper(root, sum, localList,resultList);
+    return resultList;
+}
+private void pathSumHelper(TreeNode root, int sum, List<Integer> localList, List<List<Integer>> result) {
+    if(root != null) {
+        localList.add(root.val);
+        if(sum == root.val && root.left == null && root.right == null) {
+            result.add(new LinkedList<>(localList)); //O(p*h) : p = # of root to leaf paths , h = height of the tree.
+        }
+        pathSumHelper(root.left,sum - root.val ,localList,result);
+        pathSumHelper(root.right,sum - root.val ,localList,result);
+        localList.remove(localList.size () - 1);
+    }
+}
+
+//######################################### Recursion ######################################### 
 void sumPathHelper(TreeNode *root,vector<int> s,vector<vector <int> >& s1,int sum) {
   if(!root) {
     return;

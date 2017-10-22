@@ -4,6 +4,41 @@
 //Note: next() and hasNext() should run in average O(1) time and uses O(h) memory, where h is the height of the tree.
 #include "../headers/global.hpp"
 #include "../global/treenode.h"
+
+//######################################### With Stack ######################################### 
+Class Solution {
+    Stack<TreeNode> stk;
+
+    public BSTIterator(TreeNode root) {
+        stk = new Stack<>();
+        pushAll(root);
+    }
+
+    /** @return whether we have a next smallest number */
+    public boolean hasNext() {
+        return !stk.isEmpty();
+    }
+
+    /** @return the next smallest number */
+    public int next() {
+        int val = -1;
+        if(hasNext()) {
+            TreeNode tmp = stk.pop();
+            val = tmp.val;
+            pushAll(tmp.right);
+        }
+        return val;
+    }
+    
+    
+    private void pushAll(TreeNode root) {
+        while(root != null) { 
+            stk.push(root);
+            root = root.left;
+        }
+    }
+}
+
 //################# W/O modifying the actual struct ###########
 class BSTIterator {
 private :

@@ -3,6 +3,43 @@
 #include<iostream>
 #include<vector>
 using namespace std;
+
+//######################################### Only check digit < 9 ######################################### 
+public int[] plusOne(int[] digits) {
+    int n = digits.length;
+    for(int i=n-1; i>=0; i--) {
+        if(digits[i] < 9) {
+            digits[i]++;
+            return digits;
+        }
+        digits[i] = 0;
+    }
+    int[] newNumber = new int [n+1];
+    newNumber[0] = 1;
+    return newNumber;
+}
+
+//######################################### Dumb solution ######################################### 
+public int[] plusOne(int[] digits) {
+        
+    //99 + 1 = 1
+    int n = digits.length;
+    int carry = (digits[n-1] + 1) /10; 
+    digits[n-1] = (digits[n-1] + 1) % 10; 
+    for(int i=n-2;i>=0;i--) {
+        int cVal = digits[i];
+        digits[i] = (carry +  cVal) % 10;
+        carry = (carry + cVal)/10;
+    }
+    if(carry == 0) return digits;
+    int[] newDigits = new int[n + 1];
+    newDigits[0] = carry;
+    for(int i=0;i<n;i++) newDigits[i+1] = digits[i];
+    return newDigits;
+}
+
+
+//######################################### Xtra space ######################################### 
 vector<int> plusOne(vector<int>& digits) {
     
     int l = digits.size() - 1;

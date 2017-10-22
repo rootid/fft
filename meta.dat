@@ -383,7 +383,6 @@
 ./maths/3sum-closest.cpp
 ./maths/3sum-smaller.cpp
 ./maths/3sum.cpp
-./maths/3sumG.cpp
 ./maths/4sum.cpp
 ./maths/add-digits.cpp
 ./maths/addBinary.cpp
@@ -426,8 +425,7 @@
 ./maths/super-ugly-number.cpp
 ./maths/threeSumCloset.cpp
 ./maths/threeSumUgly.cpp
-./maths/twoSumGood.cpp
-./maths/twoSumUgly.cpp
+./maths/two-sum.cpp
 ./maths/ugly-number-ii.cpp
 ./maths/ugly.cpp
 ./maths/valid-square.cpp
@@ -665,7 +663,7 @@
 ./trees/serialize-and-deserialize-bst.cpp
 ./trees/subtree-of-another-tree.cpp
 ./trees/sum-of-left-leaves.cpp
-./trees/sumNumber.cpp
+./trees/sum-root-to-leaf-numbers.cpp
 ./trees/symmetricBT.cpp
 ./trees/symmetricTree.cpp
 ./trees/symmetricTreeIteration.cpp

@@ -13,6 +13,33 @@
 #include<algorithm>
 using namespace std;
 
+
+
+//################################################### O(n^2) ################################################### 
+public List<List<Integer>> threeSum(int[] nums) {
+    //sort array 
+    //pick 1 and check rest i.e. a+b = -c
+    //for duplicates continue or pick last 
+    Arrays.sort(nums);
+    int n = nums.length;
+    List<List<Integer>> result = new ArrayList<>();
+    for(int i=0;i< n-2;i++) {
+        if ((i>0) && (nums[i]==nums[i-1])) continue; // No duplicate a's
+        int c = -nums[i];
+        for(int j=i+1,k=n-1;j<k;) {
+            int aPlusb = nums[j] + nums[k];
+            if(aPlusb == c) {
+                result.add(Arrays.asList(nums[i],nums[j],nums[k]));
+                while( j+1 < k && nums[j] == nums[j+1]) { j++; continue;} // No duplicate b's
+                while( k-1 > j && nums[k] == nums[k-1]) { k--; continue;} // No duplicate c's
+                j++; k--;
+            }
+            else if(aPlusb > c) k--;
+            else j++;
+        }
+    }
+    return result;
+}
 //################################################### O(n^2) ################################################### 
 vector<vector<int>> threeSum(vector<int>& nums) {
     sort(nums.begin(), nums.end());
@@ -117,6 +144,44 @@ vector<vector<int>> threeSum(vector<int>& nums) {
 }
 
 
+//######################################### 3Sum using 2 Sum ######################################### 
+void twoSum(vector<int>& nums,int cIdx,int ltIdx,int rtIdx,int target,vector<vector<int>>& result) {
+    while(ltIdx < rtIdx) {
+        if(nums[ltIdx] + nums[rtIdx] > target) {
+            rtIdx -= 1;
+        } else if (nums[ltIdx] + nums[rtIdx] < target) {
+            ltIdx += 1;
+        } else {
+            result.push_back(vector<int>{nums[cIdx], nums[ltIdx], nums[rtIdx]});
+            int l = nums[ltIdx];
+            int r = nums[rtIdx];
+            while( ltIdx < rtIdx &&  l == nums[ltIdx]) {
+              ltIdx += 1;
+            }
+            while(ltIdx < rtIdx && r == nums[rtIdx]) {
+              rtIdx -= 1;
+            }
+        }
+   }
+}
+
+vector<vector<int>> threeSum(vector<int>& nums) {
+  int len = nums.size(); 
+  if(len <=2) return {};
+  sort(nums.begin(),nums.end());
+  vector<vector<int>> result;
+  for(int i=0;i<len-2;i++) {
+    int target = -nums[i];
+    int ltIdx = i+1;
+    int rtIdx = len-1;
+    int cIdx = i;
+    twoSum(nums,cIdx,ltIdx,rtIdx,target,result);
+    while( i < len && nums[i] == nums[i+1]) {
+        i = i+1;
+    }
+  }
+  return result;
+}
 int main(int argc, char *argv[])
 {
  

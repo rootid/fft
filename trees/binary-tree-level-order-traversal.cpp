@@ -16,6 +16,22 @@
 //]
 //
 
+//######################################### DFS  ######################################### 
+public List<List<Integer>> levelOrder(TreeNode root) {
+    List<List<Integer>> result = new ArrayList<>();
+    levelOrderHelper(root,result,0);
+    return result;
+}
+
+private void levelOrderHelper(TreeNode root, List<List<Integer>> result, int level) {
+    if(root != null) {
+        if(result.size() == level) result.add(new ArrayList<>()); //<---------------------
+        //OR result.get(level).add(root.val); //<---------------------
+        levelOrderHelper(root.left, result,level + 1);
+        levelOrderHelper(root.right, result,level + 1);
+        result.get(level).add(root.val); //<---------------------
+    }
+}
 //######################################### BFS  ######################################### 
 class Solution {
 public:

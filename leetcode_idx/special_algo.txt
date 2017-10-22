@@ -1,0 +1,14 @@
+#################################################################################
+Majority Element I 
+    Given an integer array of size n, find all elements that appear 
+    more than ⌊ n/2 ⌋ times. The algorithm should run in linear time 
+    and in O(1) space.
+Voting algo : count
+
+#################################################################################
+Majority Element II
+    Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times.
+    The algorithm should run in linear time and in O(1) space.
+Tweak : use of 2 variables
+
+vim:tw=90:et:norl:

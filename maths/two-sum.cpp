@@ -6,6 +6,21 @@
 #include<vector>
 #include<unordered_map>
 using namespace std;
+
+//######################################### 2 Sum with Map  ######################################### 
+public int[] twoSum(int[] nums, int target) {
+    //RemainingVal, idx
+    //if match
+    Map<Integer, Integer> store = new HashMap<>();
+    for(int i=0;i<nums.length;i++) {
+        if(store.containsKey(nums[i])) return new int[] {store.get(nums[i]), i};
+        store.put(target - nums[i], i);
+    }
+    return new int[] {-1,-1};
+}
+
+
+//######################################### Lazy loading ######################################### 
 vector<int> twoSum(vector<int>& nums,int target) {
   //lazy loading
   unordered_map<int,int> idxMap;

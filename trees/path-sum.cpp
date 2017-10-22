@@ -14,6 +14,21 @@
 #include "../headers/global.hpp"
 #include "../headers/treenode.h"
 
+//######################################### Recursion ######################################### 
+public boolean hasPathSum(TreeNode root, int sum) {
+    return hasPathSumHelper(root, sum);
+}
+
+boolean hasPathSumHelper(TreeNode root, int targetSum) {
+    if(root != null) {
+        if(targetSum - root.val == 0 && root.left == null && root.right == null) return true;
+        return hasPathSumHelper(root.left, targetSum - root.val) || hasPathSumHelper(root.right, targetSum - root.val);
+    }
+    return false;
+}
+
+
+//######################################### Recursion ######################################### 
 bool hasPathSum(TreeNode* root, int sum) {
       if(!root) {
           return false;

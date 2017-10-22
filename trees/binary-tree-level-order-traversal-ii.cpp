@@ -14,6 +14,22 @@
 //  [3]
 //]
 
+//############################### DFS ###############################
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        levelOrderBottomHelper(root,result,0);
+        return result;
+    }
+    
+    private void levelOrderBottomHelper(TreeNode root, List<List<Integer>> result, int level) {
+        if(root != null) {
+            if(result.size() == level) result.add(0, new ArrayList<>()); // inject list at 0th position
+            levelOrderBottomHelper(root.left, result,level + 1);
+            levelOrderBottomHelper(root.right, result,level + 1);
+            result.get(result.size() - 1 - level).add(root.val); // add the element in reverse order
+        }
+    }
+
 //############################### Optimizied O(N)###############################
 def levelOrderBottom(self, root):
         res, queue = [], [root]

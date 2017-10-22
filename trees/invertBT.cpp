@@ -1,5 +1,4 @@
 //Invert Binary Tree 
-//Invert a binary tree.
 //
 //     4
 //   /   \
@@ -25,10 +24,20 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
+//######################################### Recursion ######################################### 
+public TreeNode invertTree(TreeNode root) {
+     if(root != null) {
+     TreeNode tmp = invertTree(root.left);
+     root.left = invertTree(root.right);
+     root.right = tmp;
+  }
+  return root;
+}
+
 //EXample use of pointer and referene
 //
 //NOTE : in this recursion we need to return the parent
-//WROANG way
+//WRONG way
 TreeNode* invertTree(TreeNode* root) {
      if(root) {
          TreeNode* l = invertTree(root->left);
@@ -50,7 +59,7 @@ TreeNode* invertTree(TreeNode* root) {
 }
 
 //With stack : It is just about the traversal + swap
-//
+//######################################### Stack ######################################### 
 TreeNode* invertTree(TreeNode* root) {
   if(!root) {
     return root;
@@ -69,29 +78,23 @@ TreeNode* invertTree(TreeNode* root) {
   return root;
 }
 
-
+//######################################### Queue  ######################################### 
 TreeNode* invertTree(TreeNode* root) {
         if (root == NULL) return root;
-
         queue<TreeNode *>q;
         TreeNode *temp, *cur;
-
         q.push(root);
-        while (!q.empty())
-        {
+        while (!q.empty()) {
             cur = q.front();
             q.pop();
-
             temp = cur->left;
             cur->left = cur->right;
             cur->right = temp;
-
             if (cur->left != NULL)
                 q.push(cur->left);
             if (cur->right != NULL)
                 q.push(cur->right);
         }
-
         return root;
 }
 

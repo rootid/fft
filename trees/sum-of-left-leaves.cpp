@@ -13,6 +13,22 @@
 #include "../headers/treenode.h"
 using namespace std;
 
+
+//######################################### Recursion ######################################### 
+public int sumOfLeftLeaves(TreeNode root) {
+    return sumOfLeftLeavesHelper(root, false);
+}
+
+private int sumOfLeftLeavesHelper(TreeNode root, boolean isLeftLeaf) {
+    int sum = 0;
+    if(root != null)  {
+        sum += sumOfLeftLeavesHelper(root.left, true) + sumOfLeftLeavesHelper(root.right, false);
+        if(root.left == null && root.right == null && isLeftLeaf) return root.val;
+        else return sum;
+    }   
+    return sum;
+}
+
 int sumOfLeftLeavesHelper(TreeNode *root,bool isLeftLeaf) {
 
   if(!root) {
