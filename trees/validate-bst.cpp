@@ -19,29 +19,8 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-//######################################### Inorder traversal  ######################################### 
-bool bstValidCheckHelper(TreeNode* root,TreeNode*& prev) {
 
-  if(!root) {
-    return true;
-  }
-  if (!bstValidCheckHelper(root->left,prev) ) {
-    return false;
-  } 
-  if(prev != NULL && prev->val >= root->val) {
-    return false;
-  }
-  prev = root;
-  return (bstValidCheckHelper(root->right,prev) );
-}
-
-bool isValidBST(TreeNode* root) {
-  TreeNode *prev = NULL;
-  return bstValidCheckHelper(root,prev);
-}
-
-
-//######################################### JAVA  ######################################### 
+//######################################### Inorder traversal ######################################### 
    private TreeNode prev; //With class variable
    private boolean isValidBSTHelper(TreeNode root) {
        if(root == null) return true;
@@ -62,8 +41,25 @@ bool isValidBST(TreeNode* root) {
     public boolean isValidBST(TreeNode root, long minVal, long maxVal) {
         if (root == null) return true;
         if (root.val >= maxVal || root.val <= minVal) return false;
+		//Right : update min val while traversing to right node
         return isValidBST(root.left, minVal, root.val) && isValidBST(root.right, root.val, maxVal);
     }
+
+//######################################### Inorder traversal  ######################################### 
+bool bstValidCheckHelper(TreeNode* root,TreeNode*& prev) {
+
+  if(!root) return true;
+  if (!bstValidCheckHelper(root->left,prev) ) return false; 
+  if(prev != NULL && prev->val >= root->val) return false;
+  prev = root;
+  return (bstValidCheckHelper(root->right,prev) );
+}
+
+bool isValidBST(TreeNode* root) {
+  TreeNode *prev = NULL;
+  return bstValidCheckHelper(root,prev);
+}
+
 
 
 int main() {

@@ -21,24 +21,26 @@
 //4. Otherwise, union two islands, and reduce islands count by 1.
 //5. Bonus: path compression can reduce time by 50%.
 public int countComponents(int n, int[][] edges) {
+	//In all connected components return n.
     int[] roots = new int[n];
 	//initialization to add the roots
     for(int i = 0; i < n; i++) {
 		roots[i] = i; 
 	}
     for(int[] e : edges) {
-        int root1 = find(roots, e[0]);
-        int root2 = find(roots, e[1]);
-        if(root1 != root2) {   //no parent found 
-            roots[root1] = root2;  // union or join 
+        int from = findRoot(roots, e[0]); //from 
+        int to = findRoot(roots, e[1]); //to
+        if(from != to) {   //no parent found 
+            roots[from] = to;  // union or join 
             n--;
         }
     }
     return n;
 }
 
-public int find(int[] roots, int id) {
-    while(roots[id] != id) {
+//######################################### Path Compression reduces complexity  ######################################### 
+public int findRoot(int[] roots, int id) {
+    while(roots[id] != id) { //find "to" value in case of connected components.
         roots[id] = roots[roots[id]];  // optional: path compression
         id = roots[id];
     }

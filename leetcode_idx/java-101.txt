@@ -5,6 +5,14 @@ So if you don't create a new copy, all the reference you add to your result refe
 
 result.add(new ArrayList(currentResult)); V/S result.add(currentResult);
 
+######################################### Sort ######################################### 
+1. Pair Sort
+   Collections.sort(intervalsList, (Interval a, Interval b) -> a.start - b.start);
+   //OR
+   Collections.sort(intervalsList, Comparator.comparingInt(e->e.start));
+
+1. Float Sort for movie rating
+   Collections.sort(intervalsList, (Interval a, Interval b) -> a.start - b.start);
 
 ######################################### Stack ######################################### 
 Deque<Character> p = new ArrayDeque<>(s.length()); //push,pop

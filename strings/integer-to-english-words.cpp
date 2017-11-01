@@ -9,11 +9,40 @@
 //Group the number by thousands (3 digits). You can write a helper function that takes a number less than pow(10,3) and convert just that chunk to words.
 //There are many edge cases. What are some good test cases? Does your code work with input such as 0? Or pow(10,3)010? (middle chunk is zero and should not be printed out)
 
-
+//######################################## Recursive ######################################## 
+class Solution {
+    
+     final String[] lessThan20Words = {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
+     final String[] tyWords = {"","","Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
+     final String[] THOUSANDS = {"Billion", "Million", "Thousand", "Hundred"};
+     final int[] radix = { (int) Math.pow(10,9), (int) Math.pow(10,6), (int) Math.pow(10,3), (int)Math.pow(10,2)};
+  
+    public String numberToWords(int num) {
+        if (num == 0) return "Zero";
+        StringBuffer sb = new StringBuffer();
+        int count = 0;
+        for (int i = 0; i < radix.length; ++i) {
+            if (num/radix[i] == 0) continue;
+            sb.append(numberToWords(num / radix[i]) + " "); //get the next number 
+            sb.append(dexWords[i] + " ");
+            num %= radix[i]; //update the number
+        }
+        if (num < 20) {
+            sb.append(lessThan20Words[num]);
+        }else {
+            sb.append(THOUSANDS[num/10] + " ");
+            sb.append(lessThan20Words[num % 10]);
+        }
+        return sb.toString().trim();
+    }
+}
 //######################################## Recursive ######################################## 
 string digits[20] = {"Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
 string tens[10] = {"Zero", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
 int powers[5] = {10,10*10,10*10*10,100*100*100,100*100*100*100*10};
+
+int[] radix = {10*Math.pow(10,9),10*Math.pow(10,5), 1000, 100};
+
 
 string int2string(int n) { 
     if (n >= pow(10,9)) {

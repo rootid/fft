@@ -25,6 +25,38 @@
  *     const vector<NestedInteger> &getList() const;
  * };
  */
+
+
+//################# with Begin and end list iterators (Most optimum) #################### 
+public class NestedIterator implements Iterator<Integer> {
+
+    public NestedIterator(List<NestedInteger> nestedList) {
+        lists = new Stack<>();
+        lists.push(nestedList.listIterator());
+    }
+
+    public Integer next() {
+        hasNext();
+        return lists.peek().next().getInteger();
+    }
+
+    public boolean hasNext() {
+        while (!lists.empty()) {
+            if (!lists.peek().hasNext()) {
+                lists.pop();
+            } else {
+                NestedInteger x = lists.peek().next();
+                if (x.isInteger())
+                    return lists.peek().previous() == x;
+                lists.push(x.getList().listIterator());
+            }
+        }
+        return false;
+    }
+    
+    private Stack<ListIterator<NestedInteger>> lists;
+}
+//######################################### Lazy retreival ######################################### 
 class NestedIterator {
 public:
     NestedIterator(vector<NestedInteger> &nestedList) {
@@ -58,6 +90,43 @@ private:
  * NestedIterator i(nestedList);
  * while (i.hasNext()) cout << i.next();
  */
+
+
+//######################################### Heavy constructor ######################################### 
+class Solution {
+ 	private Stack<NestedInteger> stack;
+    private List<NestedInteger> nestedList;
+    List<Integer> result;
+    int cIdx = 0;
+
+    public NestedIterator(List<NestedInteger> nestedList) {
+        stack = new Stack<>();
+        this.nestedList = nestedList;
+        result = new ArrayList();
+        for(int i = nestedList.size() -1;i>=0 ;i--) stack.push(nestedList.get(i));
+
+        while(!stack.isEmpty()) {
+            NestedInteger ni = stack.pop();
+            if(ni.isInteger()) result.add(ni.getInteger());
+            else {
+                List<NestedInteger> niList = ni.getList();
+                 for(int i = niList.size()-1;i>=0 ;i--) stack.push(niList.get(i));
+            }
+        }
+    }
+
+    @Override
+    public Integer next() {
+        if(hasNext()) return result.get(cIdx++);
+        return -1;
+    }
+
+    @Override
+    public boolean hasNext() {
+        if(result.size() == cIdx) return false;
+        return true;
+    }
+}
 
 //################ with Begin and end iterators ################ 
 class NestedIterator {
@@ -94,36 +163,6 @@ private:
 };
 
 
-//################# with Begin and end list iterators #################### 
-public class NestedIterator implements Iterator<Integer> {
-
-    public NestedIterator(List<NestedInteger> nestedList) {
-        lists = new Stack<>();
-        lists.push(nestedList.listIterator());
-    }
-
-    public Integer next() {
-        hasNext();
-        return lists.peek().next().getInteger();
-    }
-
-    public boolean hasNext() {
-        while (!lists.empty()) {
-            if (!lists.peek().hasNext()) {
-                lists.pop();
-            } else {
-                NestedInteger x = lists.peek().next();
-                if (x.isInteger())
-                    return lists.peek().previous() == x;
-                lists.push(x.getList().listIterator());
-            }
-        }
-        return false;
-    }
-    
-    private Stack<ListIterator<NestedInteger>> lists;
-}
-
 
 //################# With DFS #################### 
 class NestedIterator {
@@ -153,3 +192,5 @@ public:
         return index < nums.size();
     }
 };
+
+

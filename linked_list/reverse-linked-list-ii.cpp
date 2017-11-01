@@ -7,6 +7,32 @@
 //Given m, n satisfy the following condition:
 //1 ≤ m ≤ n ≤ length of list.
 //
+
+//####################### 3 variables  ####################### 
+public ListNode reverseBetween(ListNode head, int m, int n) {
+        if(m > n) return head;
+        int idx = 0;
+        ListNode dummyNode = new ListNode(0);
+        dummyNode.next = head;
+        ListNode past = dummyNode;
+        while(idx++ < m-1 && past != null) 
+            past = past.next;
+       
+		// 1->2->3->4->5->NULL ; m=2; n =4 ---> past = 1, current = 2, future = 3
+    	// dummy-> 1 -> 2 -> 3 -> 4 -> 5-> NULL 
+		ListNode current = past.next;
+        ListNode future = current.next;
+
+        while(idx++ < n) {
+             current.next = future.next;
+             future.next = past.next;
+             past.next = future;
+             future = current.next;
+        } 
+        return dummyNode.next;
+    }
+
+//####################### Memory leak  ####################### 
 ListNode* reverseBetween(ListNode* head, int m, int n) {
       int idx = 0;
       ListNode* dummy_head = new ListNode(0);

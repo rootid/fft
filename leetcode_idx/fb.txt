@@ -1,3 +1,88 @@
+Given a string S, and an integer K, rearrange the string such that similar characters are at least K distance apart.
+
+Example:
+
+S = AAABBBCC, K = 3
+Result : ABCABCABC (all 'A's are 3 distance apart, similarly with B's and C's)
+
+S = AAABC, K=2 : Not possible. (EDIT : k=3 is not possible).
+
+S = AAADBBCC, K = 2:
+Result: ABCABCDA
+
+#################################################################################
+Amazing number
+
+Define amazing number as: its value is less than or equal to its index. Given a circular array, find the starting position, such that the total number of amazing numbers in the array is maximized. 
+Example 1: 0, 1, 2, 3 
+Ouptut: 0. When starting point at position 0, all the elements in the array are equal to its index. So all the numbers are amazing number. 
+Example 2: 1, 0 , 0 
+Output: 1. When starting point at position 1, the array becomes 0, 0, 1. All the elements are amazing number. 
+If there are multiple positions, return the smallest one. 
+
+should get a solution with time complexity less than O(N^2)
+// int[] a = {4, 3, 6, 8, 0, 3, 2, 3};
+// 6  7  0  1  2  3  4  5 = 6
+// 7  0  1  2  3  4  5  6 = 5
+// 4  5  6  7  0  1  2  3 = 6
+
+
+
+#################################################################################
+Linked list in reverse in linear time (O(n)) and less than linear space (space<(O(n))
+Given the linked list : 4-5-12-1-3
+Your program should print : 3-1-12-5-4
+Break the list into two halves by advancing to the middle node, 
+recursively print the second half in reverse, then recursively print the first half in reverse.
+
+T(n) = 2 T(n/2) + n/2
+
+Space should be O(log n).
+
+EDIT: Oops, I missed the linear time complexity, this is not linear, it's O(n log n).
+
+#################################################################################
+Considering that I'ld would like to spread a promotion message across all people in twitter. 
+Assuming the ideal case, if a person tweets a message, then every follower will re-tweet the message.
+You need to find the minimum number of people to reach out (for example, who doesn't follow anyone etc) 
+so that your promotion message is spread out across entire network in twitter.
+Also, we need to consider loops like, if A follows B, B follows C, C follows D, D follows A (A -> B -> C -> D -> A) 
+then reaching only one of them is sufficient to spread your message.
+Input: A 2x2 matrix like below. In this case, a follows b, b follows c, c follows a.
+
+    a b c
+a  1 1 0
+b  0 1 1
+c  1 0 1
+Output: List of people to be reached to spread out message across everyone in the network.
+
+//For each unvisited node, add it 
+//to the sender list and search all nodes including visited nodes starting from it, 
+//mark unvisited nodes as visited, if a sender is seen, remove it from the sender list.
+//O(n^2)
+
+//1. Min # of people = 1 
+//2. Max # of people = n-1
+//3. BFS for # people * C( # of people * Total # of People)
+
+This is a very interesting graph problem, here is what I would do:
+step 1. Build a directed graph based on the input people (nodes) and their relationship (edges).
+step 2. Find strongly connected components (SCCs) in the graph. Let's use the wikipedia's graph example, 
+in that case, there are 3 SCCs: (a, b, e), (c, d, h) and (f, g). There are two famous algorithms for getting the SCCs: 
+Kosaraju's algorithm and Tarjan's algorithm.
+step 3. Pick one of the nodes from the SCCs we get: a, c, f, now these 3 nodes form a DAG, we just need to do topological sort for them, eventually a is the root node in the path (or stack), and we can let a spread the message and guarantee all other people will get it.
+Sometimes, there could be several topological paths, and the root nodes of those paths will be the minimum people to reach out to spread the message.
+
+Why strongly connected components only? You could have A->B->C which doesn't form a "strongly connected" component. I would imagine a "connected" component works better for this case.
+
+In case there truly weren't cycles, which isn't explicitly stated int the question, we could use topological sorting.
+Step3 would then have to account for the fact that after topological sorting is done, we might end up with multiple root nodes per connected component. Gathering all these root nodes up we'll have a final set and consequent count.
+
+
+There is an edge from a to b iff b follows a. (this represent the information flow)
+If we systematically perform BFS on every not visited node, we can safely delete every unvisited node we discover except the root since these discovered nodes doesn't contribute to the answer.
+In the end simply print the nodes not deleted. They are the minimum set of people to reach.
+
 #################################################################################
 Given a sorted list of integers, square the elements and give the output in sorted order.
 Eg. Consider the list [-3, -1, 0, 2, 4], which contains negative numbers, squaring 
@@ -40,13 +125,237 @@ are formed by the same exact group of characters.
 Remove invalid parentheses
 
 #################################################################################
-LC560, element in array is positive, target is positive. followup: normal LC560.2. LC304.
+Subarray Sum Equals K (560)
+Range Sum Query 2D - Immutable (304)
 
 #################################################################################
 Regular expression
 
 #################################################################################
+If a=1, b=2, c=3,....z=26. Given a string, find all possible codes that string can
+generate. Give a count as well as print the strings.
+If a=1, b=2, c=3,....z=26. Given a string, find all possible codes that string can
+generate. Give a count as well as print the strings.
 
+For example:
+Input: "1123". You need to general all valid alphabet codes from this string.
+
+Output List
+aabc //a = 1, a = 1, b = 2, c = 3
+kbc // since k is 11, b = 2, c= 3
+alc // a = 1, l = 12, c = 3
+aaw // a= 1, a =1, w= 23
+kw // k = 11, w = 23
+
+public class Solution {
+
+public Set<String> decode(String code) {
+    Set<String> result = new HashSet<String>();
+    helper("", code, result);
+    return result;
+}
+
+
+public void helper(String prefix, String code, Set<String> result) {
+    int len = code.length();
+    if (len == 0) {
+        result.add(prefix);
+        return;
+    }
+    if (code.charAt(0) == '0')
+        return;
+    
+	helper(prefix + (char)(code.charAt(0) - '1' + 'a'), code.substring(1), result);
+
+    if (len >= 2) {
+        int value = Integer.parseInt(code.substring(0, 2));
+        if (value <= 26) 
+            helper(prefix + (char)(value - 1 +'a'), code.substring(2), result);
+    }
+}
+}
+
+#################################################################################
+Best time to Buy and Sell stock follow up - with transaction fee
+If you can do unlimited times of buy and sell (can only hold one stock at a time),
+but each time you sell you need to pay transaction fee, please calculate the maximum profit you can take.
+
+public int maxProfit(int[] prices, int fee) {
+
+}
+
+int maxProfit(int[] prices, int fee) { 
+    int rt = 0, k = prices.size()-1;
+    vector<long> sells(k+1, 0), buys(k+1, );
+    int[] sells(k+1);
+    int[] buys(k+1);
+    Arrays.fill(buys, Integer.MIN_VALUE);
+    for(int p: prices) {
+        //At most k txns
+        for(int i = k; i > 0; i--) {
+            sells[i] = max(sells[i], p + buys[i] - fee); //hold v/s sell
+            buys[i] = max(buys[i], sells[i-1] - p); //hold vs buy
+        }
+    }
+    return *max_element(sells.begin(), sells.end()); 
+}
+
+int maxProfit(vector<int>& prices, int fee) {
+     if (prices.empty())  return 0;
+     int n = prices.size(), k = n - 1; //there are at most n-1 transactions
+
+     vector<vector<int>> dpProfit(k + 1, vector<int>(n, 0)); //Txn, #of days
+     for (int i = 1; i <= k; i++){
+         int tmpMax = -prices[0];   
+         for (int j = 1; j<n; j++){ //start with day 1
+             dpProfit[i][j] = max(dpProfit[i][j - 1], prices[j] + tmpMax - fee); // keep the stock vs. sell the stock
+             tmpMax = max(tmpMax, t[i - 1][j - 1] - prices[j]); //i-1 : last txn, j-1 : last day
+         }
+     }
+     return t[k][n - 1];
+ }
+
+follow the state machine way of thinking,
+
+def maxProfit(prices, fee):
+    if not prices: return 0
+    
+    cash, hold = 0, -prices[0]
+    max_cash = 0
+    for i in range(1, len(prices)):
+        (cash, hold) = (max(cash, hold+prices[i]-fee),
+                        max(hold, cash-prices[i]))
+        max_cash = max(max_cash, cash)
+        
+    return max_cash
+
+# Tests
+prices, fee = [1, 3, 7, 5, 10, 3], 3
+assert maxProfit(prices, fee) == 6
+
+prices, fee = [9, 8, 7, 1, 2], 3
+assert maxProfit(prices, fee) == 0
+
+prices, fee = [1, 4, 6, 2, 8, 3, 10, 14], 3
+assert maxProfit(prices, fee) == 13
+
+#################################################################################
+Question: Given a sequence of positive integers A and an integer T, return whether there is a continuous sequence of A that sums up to exactly T
+Example
+[23, 5, 4, 7, 2, 11], 20. Return True because 7 + 2 + 11 = 20
+[1, 3, 5, 23, 2], 8. Return True because 3 + 5 = 8
+[1, 3, 5, 23, 2], 7 Return False because no sequence in this array adds up to 7
+
+My solution used sliding window. The window expands to the right when current sum is less than T, it shrinks from left when sum is greater than T and algorithm return true in case current sum is T.
+
+boolean hasSequence(int[] nums, int T) {
+    if (T <=0)
+        return false;
+    if (nums.length == 0) 
+        return false;
+    int i = 0;
+    int start = 0;
+    int sum = 0;	  
+    while (i < nums.length) {
+        if (sum + nums[i] < T)
+            sum += nums[i];
+        else if (sum + nums[i] == T)
+            return true;
+        else {
+            sum += nums[i];
+            while (sum > T) {
+                sum -= nums[start];
+                start++;	                
+            }
+            if (sum == T)
+                return true;	            
+        }
+        i++;
+    }
+    return false;
+}
+
+
+#################################################################################
+Define amazing number as: its value is less than or equal to its index. 
+Given a circular array, find the starting position, such that the 
+total number of amazing numbers in the array is maximized.
+Example 1: 0, 1, 2, 3
+Ouptut: 0. When starting point at position 0, all the elements in the array are equal to its index. So all the numbers are amazing number.
+Example 2: 1, 0 , 0
+Output: 1. When starting point at position 1, the array becomes 0, 0, 1. All the elements are amazing number.
+If there are multiple positions, return the smallest one.
+
+should get a solution with time complexity less than O(N^2)
+
+#################################################################################
+Group Anagrams
+
+
+#################################################################################
+Int sorted array, with repeated numbers.
+Given a number K, return the count of K in the array
+e.g. 3, 5, 5, 5, 5, 7, 8, 8
+k = 6 return ->0
+k = 5 return ->4
+
+#################################################################################
+Implement a method to draw a circle. You are not allowed to use math library functions such as sqrt, sin, or cos.
+For example, given r = 2 (radius), return the following points to plot:
+(0,0), (0,1),(0,2), (1,0), (1,1), (2,0), (0,-1), (0,-2), (-1,0), (-1,1), (1,-1), (-1,-1),(-2,0)
+Note that all points satisfy the equation: x^2 + y^2 <= r^2.
+
+1. NOTE : start from center (0,0)
+
+a quarter of the space: x in [0, r] and y in [0, r]. Because the points can be mirrored by the axis
+one-eight of the space. The circle is symmetry along y=x and y=-x
+
+// T : O( (2r) n^2)
+  private static List<int[]> drawCircle(int r) {
+    List<int[]> list = new ArrayList<>();
+    int l = -r;
+    int u = r;
+    for (int i = l; i <= u; i++) {
+      for (int j = u; j >= l; j--) {
+        if (i * i + j * j <= r * r) {
+          list.add(new int[] { i, j });
+        }
+      }
+    }
+    return list;
+  }
+
+// T : O(n^2)
+public List<int[]> drawCycle(int n) {
+        if (n <= 0) {
+            return new ArrayList<>();
+        }
+
+        List<int[]> list = new ArrayList<>();
+        int r = n * n;
+        for (int i = 0; i <= n; i++) {
+            for (int j = 0; j <= n; j++) {
+                if (i * i + j * j <= r) {
+                    if (i == 0 && j == 0) {
+                        list.add(new int[]{0, 0});
+                    } else if (i == 0) {
+                        list.add(new int[]{i, j});
+                        list.add(new int[]{i, -j});
+                    } else if (j == 0) {
+                        list.add(new int[]{i, j});
+                        list.add(new int[]{-i, j});
+                    } else {
+                        list.add(new int[]{i, j});
+                        list.add(new int[]{i, -j});
+                        list.add(new int[]{-i, j});
+                        list.add(new int[]{-i, -j});
+                    }
+                }
+            }
+        }
+        return list;
+
+    }
 
 
 vim:tw=90:et:norl:

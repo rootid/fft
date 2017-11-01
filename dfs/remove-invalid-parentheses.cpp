@@ -6,6 +6,49 @@
 //"(a)())()" -> ["(a)()()", "(a())()"]
 //")(" -> [""]
 
+//################################################### DFS ################################################### 
+//T = O(2^n)
+// T(n) = n x C(n, n) + (n-1) x C(n, n-1) + ... + 1 x C(n, 1) = n x 2^(n-1). 
+//C(n, n-1) : # of new strings 
+//n-1 characters,
+public List<String> removeInvalidParentheses(String s) {
+    List<String> result = new ArrayList<>();
+    if(s == null) return result;
+    Set<String> visited = new HashSet<>();
+    Queue<String> tQ = new LinkedList<>();
+    tQ.offer(s);
+    visited.add(s);
+    boolean isValid = false;
+    while(!tQ.isEmpty()) {
+       s = tQ.poll();
+       if(isValid(s)) {
+           isValid = true;   
+           result.add(s);
+       }
+       if (isValid) continue;  
+       for (int j = 0; j < s.length(); j++) {
+            if (s.charAt(j) != '(' && s.charAt(j) != ')') continue; //any alphabet
+            //This also generates unncessary substrings of length n
+            String newStr = s.substring(0, j) + s.substring(j + 1); // Generate all possible of substrings of same length 
+            if (!visited.contains(newStr)) { //To keep track of duplicate visited strings 
+                tQ.add(newStr);
+                visited.add(newStr);
+             }
+          }
+    }
+    return result;   
+}
+    
+private boolean isValid(String s) {
+    int cnt = 0;
+    for(char c: s.toCharArray()) {
+        if(c == '(') cnt++;
+        if(c == ')') cnt--;
+        if(cnt < 0 ) return false;
+    }
+    return cnt == 0;
+}
+
 //################################################### BFS ################################################### 
 bool isValid(string s){
     int count=0;

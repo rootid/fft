@@ -13,7 +13,106 @@
 //00011
 //Answer: 3
 
-//#################### GOOD ######################################3
+//#################### Union Find  ######################################
+//convert 2-D points to 1-D
+
+class Solution {
+    int[][] distance = {{1,0},{-1,0},{0,1},{0,-1}};
+    public int numIslands(char[][] grid) {  
+        if (grid == null || grid.length == 0 || grid[0].length == 0)  {
+            return 0;  
+        }
+        UnionFind uf = new UnionFind(grid);  
+        int rows = grid.length;  
+        int cols = grid[0].length;  
+        for (int i = 0; i < rows; i++) {  
+            for (int j = 0; j < cols; j++) {  
+                if (grid[i][j] == '1') {  
+                    for (int[] d : distance) {
+                        int x = i + d[0];
+                        int y = j + d[1];
+                        if (x >= 0 && x < rows && y >= 0 && y < cols && grid[x][y] == '1') {  
+                            int id1 = i*cols+j; //convert 2-D points to 1-D
+                            int id2 = x*cols+y;
+                            uf.union(id1, id2);  
+                        }  
+                    }  
+                }  
+            }  
+        }  
+        return uf.count;  
+    }
+}
+
+class UnionFind {
+        int[] father;  
+        int m, n;
+        int count = 0;
+        UnionFind(char[][] grid) {  
+            m = grid.length;  
+            n = grid[0].length;  
+            father = new int[m*n]; //Convert 2D array to 1D
+            for (int i = 0; i < m; i++) {  
+                for (int j = 0; j < n; j++) {  
+                    if (grid[i][j] == '1') {
+                        int id = i * n + j;
+                        father[id] = id;
+                        count++;
+                    }
+                }  
+            }  
+        }
+		
+        public void union(int node1, int node2) {  
+            int find1 = find(node1);
+            int find2 = find(node2);
+            if(find1 != find2) {
+                father[find1] = find2;
+                count--;
+            }
+        }
+        public int find (int node) {  
+            if (father[node] == node) {  
+                return node;
+            }
+            father[node] = find(father[node]);  
+            return father[node];
+        }
+    }
+
+//#################### DFS ######################################
+class Solution {
+    public int numIslands(char[][] grid) {
+        int m = grid.length;
+        if(m <= 0) return 0;
+        int n = grid[0].length;
+        if(n <= 0) return 0;
+        int cnt = 0;
+        for(int i=0;i<m;i++)
+            for(int j=0;j<n;j++)
+                if(grid[i][j] == '1') {
+                    dfs(grid,i,j);
+                    cnt++;
+                }
+        return cnt;
+    }
+    
+    private void dfs(char grid[][],int i,int j) {
+        int[] dirs = {0,1,0,-1,0};
+        int m = grid.length;
+        int n = grid[0].length;
+        if(grid[i][j] == '1') {
+            grid[i][j] = '0';
+            for(int l=0;l<dirs.length-1;l++) {
+                int dx = i+ dirs[l];
+                int dy = j + dirs[l+1];
+                if(dx < m && dy < n && dx >=0 && dy >=0) dfs(grid,dx,dy);
+            }   
+        }
+    }
+}
+
+//#################### DFS  ######################################3
 int numIslands(vector<vector<char>> &grid) {
      int m = grid.size();
      if (m==0) return 0;

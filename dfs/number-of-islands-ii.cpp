@@ -36,6 +36,7 @@ vector<int> numIslands2(int m, int n, vector<pair<int, int>>& positions) {
    for(auto& p:positions) {
      cnt++;
      int idx= p.first * n + p.second;
+	 //idx : 1-D representation of edge 
      id[idx] = idx;
      for(int i=0;i<4;i++) {
        int dx = p.first + dirs[i];

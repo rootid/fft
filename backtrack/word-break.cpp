@@ -7,6 +7,48 @@
 //
 //
 //
+//######################################### BFS ######################################### 
+//T : O(n^2) 
+//S : O(n)
+
+//0123456789
+//nightmare, [ "night","mare", "nightmare"]
+//0-->5-->9
+//
+//|__ __ _^
+public boolean wordBreak(String s, List<String> dict) {
+    if (dict.contains(s)) return true;
+    Set<Integer> visitedIdx = new HashSet<>();
+    Queue<Integer> pathQ = new LinkedList<>();
+    int n = s.length();
+    pathQ.offer(0);
+    while(!pathQ.isEmpty()) {
+        int startIdx = pathQ.poll();
+        if(!visitedIdx.contains(startIdx)) {
+            for(int i= startIdx+1;i<= s.length();i++) {
+                 if(dict.contains(s.substring(startIdx,i))) {
+                     visitedIdx.add(startIdx);
+                     if(i == n) return true;
+                     pathQ.offer(i);
+                 }
+            }
+        }
+    }
+    return false;
+}
+
+//######################################### Backtrack ######################################### 
+private boolean dfs(String s, int k, List<String> wordDict) {
+    if(k == s.length()) return true;
+    for(int i=k;i<s.length();i++)  {
+        if(wordDict.contains(s.substring(k, i+1)) && (i ==  s.length() -1 || dfs(s,i+1,wordDict))) return true; 
+    }
+    return false;
+}
+
+public boolean wordBreak(String s, List<String> wordDict) {
+    return dfs(s, 0, wordDict);
+}
 //#################################################### TOP-DOWN APPROACH ###################################################### 
 bool wordBreak(string s, unordered_set<string>& dict) {
   int len = s.size();

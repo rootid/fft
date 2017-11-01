@@ -10,6 +10,32 @@
 //
 
 //######################################### Recursive ######################################### 
+class Solution {
+    int k = 0;
+    private String decodeStringHelper(String s) {
+        int n = s.length();
+        String result = "";
+        int freq = 0;
+        while(k < n) {
+            if(Character.isDigit(s.charAt(k))) freq = freq * 10 +  (s.charAt(k) - '0');
+            else if(s.charAt(k) == '[') {
+                k++;
+                String last = decodeStringHelper(s);
+                for(int i=0;i<freq;i++) result += last;
+                freq = 0;
+            } else if(s.charAt(k) == ']') {
+                return result;
+            } else result += s.charAt(k);
+            k++;
+        }
+        return result;        
+    }
+    
+    public String decodeString(String s) {
+        return decodeStringHelper(s);
+    }
+}
+//######################################### Recursive ######################################### 
 string dfs(string s,int &k) {
   int cnt = 0;
   string res;

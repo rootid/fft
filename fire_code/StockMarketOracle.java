@@ -1,6 +1,6 @@
 // Stock Market Oracle
 // You've recently acquired market prediction superpowers that let you predict
-// the closing stock price of a Acme Inc. 's stock a month into the future! To
+// the closing stock price of a Acme Inc.'s stock a month into the future! To
 // get the most out of this superpower, you need to write a method called
 // maxProfit that takes in an array of integers representing the close out stock
 // price on a given day. This method should return the maximum profit you can
@@ -14,7 +14,7 @@
 // made, return 0.
 // Examples:
 //[50,100,20,80,20] => 110
-//[50,100] => 0
+//[50,100] => 0 //50?
 //[50,100,50,100,50] => 100
 
 public class StockMarketOracle {
@@ -23,8 +23,8 @@ public class StockMarketOracle {
     int len = prices.length;
     while (i < len) {
       // find next local minima : Wait when prices are decreasing
-      while (i < len - 1 && prices[i + 1] <= prices[i])
-        i++;  // monotonic decrease : continue, 0,100,3000,
+      while (i < len - 1 && prices[i + 1] <= prices[i]) //i+1 : Future : wrong
+        i++;  // monotonic decrease : continue, 100,10,5
       int lastBuy =
           prices[i++];  // need increment to avoid infinite loop for "[1]"
       // find next local maximum : Wait when prices are increasing

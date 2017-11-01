@@ -7,6 +7,41 @@
 //A solution is ["cats and dog", "cat sand dog"].
 //
 
+//######################################### Recursive ######################################### 
+// T : O(len(wordDict) ^ len(s / minWordLenInDict)), 
+//because there're len(wordDict) 
+
+//O(2^n). But this solution, 
+//using memo can reduce it to O(n^2)
+public List<String> wordBreak(String s, List<String> wordDict) {
+    return dfs(s,wordDict, new HashMap<String, List<String>>());
+}
+    
+// dfs function returns an array including all substrings derived from s.
+private List<String> dfs(String s, List<String> dict, Map<String, List<String>> map) {
+    if(map.containsKey(s)) return map.get(s);
+    List<String> curResult = new LinkedList<>();
+    if(s.length() == 0) {
+        curResult.add(""); 
+        return curResult;
+    }
+    for(String sol : dict) {
+        if(s.startsWith(sol)) {
+            List<String> pastResult = dfs(s.substring(sol.length()), dict, map);
+            for(String r : pastResult) 
+                curResult.add(sol + (r.isEmpty() ? "" : " ") + r);
+        }
+    }
+    map.put(s, curResult);
+    return curResult;
+}
+//recursive call of the word_break method
+//we will have two choice:
+//1.W/o Memo that means we should calculate it using recursion, because there is no result form memo, we don't need to iterator the result form memo, so this choice is O(n^2);
+//2.W/ Memo so we don't need to do recursion, just iterator every String from the set return buy memo, so this choice is O(n^2);
+//in conclusion, recursion and iterator memo won't happen at the same time, so the run time is O(n^2);
+
+
 //########################################### 
 vector<string> wordBreak(string s, unordered_set<string>& wordDict) {
     unordered_map<int, vector<string>> memo {{s.size(), {""}}};

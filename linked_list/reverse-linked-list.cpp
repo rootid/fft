@@ -3,7 +3,31 @@
 #include "../headers/global.hpp"
 #include "../headers/listnode.hpp"
 
-//Addition of node solution
+//######################################### Iterative - version ######################################### 
+public ListNode reverseList(ListNode head) {
+    ListNode prev = null;
+    while (head != null) {
+        ListNode nextHead = head.next;
+        head.next = prev;
+        prev = head;
+        head = nextHead;
+    }
+    return prev;
+}
+
+//######################################### Recursive - version ######################################### 
+public ListNode reverseList(ListNode head) {
+    return reverseListHelper(null, head);
+}
+
+public ListNode reverseListHelper(ListNode prev, ListNode head) {
+    if(head == null) return prev;
+    ListNode nextHead = head.next; 
+    head.next = prev;
+    return reverseListHelper(head, nextHead);
+}
+
+//######################################### Dummy node approach ######################################### 
 ListNode* reverseList(ListNode* head) {
         ListNode* new_head = new ListNode(0);
         new_head->next = head;
@@ -62,31 +86,6 @@ public ListNode reverseList(ListNode head) {
     head.next = null;
     return newHead;
 }
-
-//######################################### Iterative - version ######################################### 
-public ListNode reverseList(ListNode head) {
-    ListNode prev = null;
-    while (head != null) {
-        ListNode kid = head.next;
-        head.next = prev;
-        prev = head;
-        head = kid;
-    }
-    return prev;
-}
-
-//######################################### Recursive - version ######################################### 
-public ListNode reverseList(ListNode head) {
-    return reverseListHelper(null, head);
-}
-
-public ListNode reverseListHelper(ListNode prev, ListNode head) {
-    if(head == null) return prev;
-    ListNode tmp = head.next;
-    head.next = prev;
-    return reverseListHelper(head, tmp);
-}
-    
 
 int main() {
   //1->2->3->4->5->NULL,

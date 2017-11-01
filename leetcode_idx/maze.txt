@@ -1,0 +1,128 @@
+#################################################################################
+Walls and Gates  (Reverse thinking)
+    (Hint : 1. dist(Gate,Empty Room) = dist(Empty Room,Gate) 2. Collect all gates and find
+    distance from gate)
+    
+    You are given a m x n 2D grid initialized with these three possible values.
+    -1 - A wall or an obstacle.
+    0 - A gate.
+    INF - Infinity means an empty room. We use the value 2^31 - 1 = 2147483647 
+    to represent INF as you may assume that the distance to a gate is less than 2147483647.
+    Fill each empty room with the distance to its nearest gate. 
+    If it is impossible to reach a gate, it should be filled with INF.
+
+    For example, given the 2D grid:
+    INF  -1  0  INF
+    INF INF INF  -1
+    INF  -1 INF  -1
+      0  -1 INF INF
+
+    After running your function, the 2D grid should be:
+      3  -1   0   1
+      2   2   1  -1
+      1  -1   2  -1
+      0  -1   3   4
+
+#################################################################################
+Surrounded Regions (Reverse thinking)
+    //Collect 'O' one by one and Change to 'V' and check wheather there exists leak
+    Given a 2D board containing 'X' and 'O' (the letter O), capture all regions surrounded by 'X'.
+    A region is captured by flipping all 'O's into 'X's in that surrounded region.
+    For example,
+    X X X X
+    X O O X
+    X X O X
+    X O X X
+    After running your function, the board should be:
+    X X X X
+    X X X X
+    X X X X
+    X O X X
+
+#################################################################################
+Number of Islands
+    Given a 2d grid map of '1's (land) and '0's (water), count the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
+    Example 1:
+    11110
+    11010
+    11000
+    00000
+    Answer: 1
+    Example 2:
+    11000
+    11000
+    00100
+    00011
+    Answer: 3
+
+#################################################################################
+Number of Islands II 
+    Union-find application
+    A 2d grid map of m rows and n columns is initially filled with water. We may perform an addLand operation which turns the water at position (row, col) into a land. Given a list of positions to operate, count the number of islands after each addLand operation. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
+    Example:
+    Given m = 3, n = 3, positions = [[0,0], [0,1], [1,2], [2,1]].
+    Initially, the 2d grid grid is filled with water. (Assume 0 represents water and 1 represents land).
+    0 0 0
+    0 0 0
+    0 0 0
+    Operation #1: addLand(0, 0) turns the water at grid[0][0] into a land.
+    1 0 0
+    0 0 0   Number of islands = 1
+    0 0 0
+    Operation #2: addLand(0, 1) turns the water at grid[0][1] into a land.
+    1 1 0
+    0 0 0   Number of islands = 1
+    0 0 0
+    Operation #3: addLand(1, 2) turns the water at grid[1][2] into a land.
+    1 1 0
+    0 0 1   Number of islands = 2
+    0 0 0
+    Operation #4: addLand(2, 1) turns the water at grid[2][1] into a land.
+    1 1 0
+    0 0 1   Number of islands = 3
+    0 1 0
+    We return the result as an array: [1, 1, 2, 3]
+    Challenge:
+    Can you do it in time complexity O(k log mn), where k is the length of the positions?
+
+#################################################################################
+The Maze
+    There is a ball in a maze with empty spaces and walls. The ball can go through 
+    empty spaces by rolling up, down, left or right, but it won't stop rolling until hitting a wall. 
+    When the ball stops, it could choose the next direction.
+    Given the ball's start position, the destination and the maze, 
+    determine whether the ball could stop at the destination.
+    The maze is represented by a binary 2D array. 1 means the wall and 0 means the empty space. 
+    You may assume that the borders of the maze are all walls. 
+    The start and destination coordinates are represented by row and column indexes.
+    Example 1
+    Input 1: a maze represented by a 2D array
+    0 0 1 0 0
+    0 0 0 0 0
+    0 0 0 1 0
+    1 1 0 1 1
+    0 0 0 0 0
+    Input 2: start coordinate (rowStart, colStart) = (0, 4)
+    Input 3: destination coordinate (rowDest, colDest) = (4, 4)
+    Output: true
+    Explanation: One possible way is : left -> down -> left -> down -> right -> down -> right.
+    Example 2
+    Input 1: a maze represented by a 2D array
+    0 0 1 0 0
+    0 0 0 0 0
+    0 0 0 1 0
+    1 1 0 1 1
+    0 0 0 0 0
+    Input 2: start coordinate (rowStart, colStart) = (0, 4)
+    Input 3: destination coordinate (rowDest, colDest) = (3, 2)
+    Output: false
+    Explanation: There is no way for the ball to stop at the destination.
+    Note:
+    There is only one ball and one destination in the maze.
+    Both the ball and the destination exist on an empty space, and they will not be at the same position initially.
+    The given maze does not contain border (like the red rectangle in the example pictures), but you could assume the border of the maze are all walls.
+    The maze contains at least 2 empty spaces, and both the width and height of the maze won't exceed 100.
+
+
+
+vim:tw=90:et:norl:
