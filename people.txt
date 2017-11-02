@@ -22,3 +22,5 @@ http://www.geeksforgeeks.org/counting-inversions/
 http://www.geeksforgeeks.org/count-inversions-in-an-array-set-2-using-self-balancing-bst/
 
 http://steve-yegge.blogspot.nl/2008/03/get-that-job-at-google.html
+
+http://bravenewgeek.com/a-look-at-springs-beanfactorypostprocessor/

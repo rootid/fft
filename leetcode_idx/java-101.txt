@@ -1,3 +1,8 @@
+######################################### Objects API ######################################### 
+Objects.nonNull() : (boolean) Returns true if the provided reference is non-null otherwise returns
+false.
+Objects.isNull() : (boolean) Returns true if the provided reference is null otherwise returns false.
+
 ######################################### Must Know ######################################### 
 
 when you use add function of List, it just add a copy of reference of the object into the List instead of a new copy of the object.
@@ -17,6 +22,12 @@ result.add(new ArrayList(currentResult)); V/S result.add(currentResult);
 ######################################### Stack ######################################### 
 Deque<Character> p = new ArrayDeque<>(s.length()); //push,pop
 Stack<Character> p = new Stack<>(); //push,pop
+
+######################################### Map ######################################### 
+1. LinkedHashMap : DLL (maintains the insertion order)
+2. containsKey(Key k) : boolean
+3. entrySet() : Set<Map.Entry<K,V>> 
+4. keySet() :  Set<K> 
 
 ######################################### valueOf v/s parseInt ######################################### 
 //Convert String to Integer/int

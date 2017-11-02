@@ -23,6 +23,145 @@
  * obj.put(key,value);
  */
 
+
+//######################################### LinkedHashMap ######################################### 
+public class LRUCache {
+	//LinkedHashMap : hashMap with DLL
+    LinkedHashMap<Integer,Integer> cache=new LinkedHashMap<>();
+    int cap=0;
+    
+    public LRUCache(int capacity) {
+        cap=capacity;
+    }
+
+    public int get(int key) {
+        if(cache.containsKey(key)) {
+            int value = cache.get(key);
+            cache.remove(key);
+            cache.put(key,value);
+            return value;
+        }
+        return -1;
+    }
+
+    public void put(int key, int value) {
+        if(cache.containsKey(key)) {
+          cache.remove(key);
+          cache.put(key,value);
+        } else if(cache.size() == cap) cache.remove(cache.entrySet().iterator().next().getKey());  //removes first element
+        //} else if(cache.size() == cap) cache.remove(cache.keySet().iterator().next());  //removes first element
+       cache.put(key,value);  //append to last
+    }
+}
+
+
+//######################################### DLL + HAshTable ######################################### 
+//the "head" node is a pseudo node that marks the head. The double linked list can be represented 
+//as head (pseudo) <--> head <--> ....tail <--> tail (pseudo)
+//by adding two pseudo nodes to make the boundaries, we could reduce the 
+//boundary checking code such as if (head != null), making the code more concise and also more efficient.
+private Hashtable<Integer, DLinkedNode> 
+	cache = new Hashtable<Integer, DLinkedNode>();
+private int count;
+private int capacity;
+private DLinkedNode head, tail;
+
+public LRUCache(int capacity) {
+	this.count = 0;
+	this.capacity = capacity;
+	
+	//Add dummy nodes at head and tail
+	head = new DLinkedNode();
+	head.pre = null;
+	
+	tail = new DLinkedNode();
+	tail.post = null;
+	
+	head.post = tail;
+	tail.pre = head;
+}
+
+public int get(int key) {
+	DLinkedNode node = cache.get(key);
+	if(node == null){
+		return -1; // should raise exception here.
+	}
+	// move the accessed node to the head;
+	this.moveToHead(node);
+	return node.value;
+}
+
+public void put(int key, int value) {
+	DLinkedNode node = cache.get(key);
+	if(node == null){
+		DLinkedNode newNode = new DLinkedNode();
+		newNode.key = key;
+		newNode.value = value;
+		
+		this.cache.put(key, newNode);
+		this.addNode(newNode);
+		
+		++count;
+		
+		if(count > capacity){
+			// pop the tail
+			DLinkedNode tail = this.popTail();
+			this.cache.remove(tail.key);
+			--count;
+		}
+	 } else {
+		// update the value.
+		node.value = value;
+		this.moveToHead(node);
+	}
+}
+
+
+class DLinkedNode {
+	int key;
+	int value;
+	DLinkedNode pre;
+	DLinkedNode post;
+}
+
+/**
+ * Always add the new node right after head;
+ */
+private void addNode(DLinkedNode node){
+	node.pre = head;
+	node.post = head.post;
+	
+	head.post.pre = node;
+	head.post = node;
+}
+
+/**
+ * Remove an existing node from the linked list.
+ */
+private void removeNode(DLinkedNode node){
+	DLinkedNode pre = node.pre;
+	DLinkedNode post = node.post;
+	pre.post = post;
+	post.pre = pre;
+}
+
+/**
+ * Move certain node in between to the head.
+ */
+private void moveToHead(DLinkedNode node){
+	this.removeNode(node);
+	this.addNode(node);
+}
+
+// pop the current tail. 
+private DLinkedNode popTail(){
+	DLinkedNode res = tail.pre;
+	this.removeNode(res);
+	return res;
+}
+
+
+//######################################### HashMap + LL ######################################### 
 class LRUCache{
 
 private:
