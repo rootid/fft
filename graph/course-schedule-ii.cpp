@@ -14,18 +14,18 @@
 
 vector<int> findOrder(int numCourses, vector<pair<int, int>>& prerequisites) { 
   vector<vector<int> > adjList( numCourses,vector<int>() );
-	vector<int> inDegrees(numCourses,0);
-	vector<int> pOrderResult;
-	int sum = 0;
-	for (auto i : prerequisites) { 
+    vector<int> inDegrees(numCourses,0);
+    vector<int> pOrderResult;
+    int sum = 0;
+    for (auto i : prerequisites) { 
     adjList[i.second].push_back(i.first);
-		inDegrees[i.first]++;
-	}
-	stack<int> zeroInDegStack;
-	for(auto i=0;i<inDegrees.size();i++){ 
-	    if(inDegrees[i] == 0) { 
-	        zeroInDegStack.push(i); 
-	    }
+        inDegrees[i.first]++;
+    }
+    stack<int> zeroInDegStack;
+    for(auto i=0;i<inDegrees.size();i++){ 
+        if(inDegrees[i] == 0) { 
+            zeroInDegStack.push(i); 
+        }
   }
   if(zeroInDegStack.size() == 0) { 
     return pOrderResult;
@@ -41,7 +41,7 @@ vector<int> findOrder(int numCourses, vector<pair<int, int>>& prerequisites) {
     } 
   } 
   if(pOrderResult.size() == numCourses) {
-	    return pOrderResult;
+        return pOrderResult;
   } 
   return vector<int>{}; 
 }

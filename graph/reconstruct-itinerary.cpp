@@ -12,6 +12,102 @@
 //Return ["JFK","ATL","JFK","SFO","ATL","SFO"].
 //Another possible reconstruction is ["JFK","SFO","ATL","JFK","ATL","SFO"]. But it is larger in lexical order.
 
+
+//Treeset hold only single occurance
+//[["EZE","AXA"],["TIA","ANU"],["ANU","JFK"],["JFK","ANU"],["ANU","EZE"],["TIA","ANU"],["AXA","TIA"],["TIA","JFK"],["ANU","TIA"],["JFK","TIA"]]
+//Output:
+//["JFK","ANU","EZE","AXA","TIA","ANU","TIA","JFK","TIA","JFK"]
+//Expected:
+//["JFK","ANU","EZE","AXA","TIA","ANU","JFK","TIA","ANU","TIA","JFK"]
+
+// node, <outgoing node>
+//################################### Iterative #################################
+    public List<String> findItinerary(String[][] tickets) {
+        List<String> itinerary = new ArrayList<>();
+        Map<String, PriorityQueue<String>> itineryMap = new HashMap<>();
+       // Arrays.sort(tickets); 2D sort
+        for(String[] ticket: tickets) {
+            PriorityQueue<String> toCityList = null;
+            if(itineryMap.containsKey(ticket[0])) 
+               toCityList = itineryMap.get(ticket[0]);
+            else toCityList = new PriorityQueue<>();
+            toCityList.add(ticket[1]);
+            itineryMap.put(ticket[0],toCityList);
+        }
+        Stack<String> stack = new Stack<>();
+        stack.push("JFK");
+        while(!stack.isEmpty()) {
+            while (itineryMap.containsKey(stack.peek()) && !itineryMap.get(stack.peek()).isEmpty()) 
+                stack.push(itineryMap.get(stack.peek()).poll());
+            itinerary.add(stack.pop());
+        }
+        Collections.reverse(itinerary);
+        return itinerary;
+    }
+
+//################################### Iterative #################################
+
+public List<String> findItinerary(String[][] tickets) {
+    Map<String, PriorityQueue<String>> targets = new HashMap<>();
+    for (String[] ticket : tickets)
+        targets.computeIfAbsent(ticket[0], k -> new PriorityQueue()).add(ticket[1]);
+    List<String> route = new LinkedList();
+    Stack<String> stack = new Stack<>();
+    stack.push("JFK");
+    while (!stack.empty()) {
+        while (targets.containsKey(stack.peek()) && !targets.get(stack.peek()).isEmpty())
+            stack.push(targets.get(stack.peek()).poll());
+        route.add(0, stack.pop());
+    }
+    return route;
+}
+		
+//################################### Recursive #################################
+Map<String, PriorityQueue<String>> targets = new HashMap<>();
+List<String> route = new LinkedList();
+
+public List<String> findItinerary(String[][] tickets) { 
+	for (String[] ticket : tickets)
+		targets.computeIfAbsent(ticket[0], k -> new PriorityQueue()).add(ticket[1]);
+	visit("JFK");
+	return route;
+}
+
+void visit(String airport) { 
+	//node with at least one outgoing edge && not a leaf node 
+	while(targets.containsKey(airport) && !targets.get(airport).isEmpty())  
+		visit(targets.get(airport).poll());
+	route.add(0, airport);
+}
+
+
+//################################### Iterative #################################
+def findItinerary(self, tickets):
+    targets = collections.defaultdict(list)
+    for a, b in sorted(tickets)[::-1]:
+        targets[a] += b,
+    route, stack = [], ['JFK']
+    while stack:
+        while targets[stack[-1]]:
+            stack += targets[stack[-1]].pop(),
+        route += stack.pop(),
+    return route[::-1]
+
+
+//################################### Recursive #################################
+def findItinerary(self, tickets):
+    targets = collections.defaultdict(list)
+    for a, b in sorted(tickets)[::-1]:
+        targets[a] += b,
+    route = []
+    def visit(airport):
+        while targets[airport]:
+            visit(targets[airport].pop())
+        route.append(airport)
+    visit('JFK')
+    return route[::-1]
+
+
 //################################### post order DFS #################################
 vector<string> findItinerary(vector<pair<string, string>> tickets) {
 		// Each node (airport) contains a set of outgoing edges (destination).

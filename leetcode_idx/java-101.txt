@@ -3,12 +3,24 @@ Objects.nonNull() : (boolean) Returns true if the provided reference is non-null
 false.
 Objects.isNull() : (boolean) Returns true if the provided reference is null otherwise returns false.
 
+targets.computeIfAbsent(ticket[0], k -> new PriorityQueue()).add(ticket[1]);
+
+https://stackoverflow.com/questions/34585444/java-lambdas-20-times-slower-than-anonymous-classes
+It's not computeIfAbsent, it's lambdas. 
+If you replace the lambda with an ugly anonymous class, it will work 20 times faster 
+or so (and slightly faster than containsKey because you don't look up the key twice). 
+That's probably because the OJ doesn't include lambda
+warm-up phase in its benchmarks. See my question about that on StackOverflow.
+
 ######################################### Must Know ######################################### 
 
-when you use add function of List, it just add a copy of reference of the object into the List instead of a new copy of the object.
+Q. result.add(new ArrayList(currentResult)); V/S result.add(currentResult);
+=> when you use add/addAll function of List, it just add a copy of reference of the object into the List instead of a new copy of the object.
 So if you don't create a new copy, all the reference you add to your result refer to the same object.
 
-result.add(new ArrayList(currentResult)); V/S result.add(currentResult);
+Q. Use of ArrayDeque
+=> LinkedList is not the best choice to implement a queue in Java. https://docs.oracle.com/javase/7/docs/api/java/util/Queue.html
+   Queue<UndirectedGraphNode> q = new ArrayDeque<>; this way if you change
 
 ######################################### Sort ######################################### 
 1. Pair Sort
@@ -18,6 +30,9 @@ result.add(new ArrayList(currentResult)); V/S result.add(currentResult);
 
 1. Float Sort for movie rating
    Collections.sort(intervalsList, (Interval a, Interval b) -> a.start - b.start);
+
+2. Reverse Sort
+Collections.sort(list, Collections.reverseOrder());
 
 ######################################### Stack ######################################### 
 Deque<Character> p = new ArrayDeque<>(s.length()); //push,pop

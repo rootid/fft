@@ -10,22 +10,50 @@
 //Note:
 //The input prerequisites is a graph represented by a list of edges, not adjacency matrices. Read more about how a graph is represented.
 //You may assume that there are no duplicate edges in the input prerequisites.
+
+//######################################### O(V^2) ######################################### 
+ public boolean canFinish(int numCourses, int[][] prerequisites) {
+        //1. Create AdjGraph
+        //2. Use O(v^2) traversal
+        Map<Integer, List<Integer>> adjMap = new HashMap<>();
+        int[] inDeg = new int[numCourses];
+        for(int[] edge: prerequisites) {
+            inDeg[edge[1]]++;
+            adjMap.computeIfAbsent(edge[0], k-> new ArrayList()).add(edge[1]);
+        }
+        for(int i=0;i<inDeg.length;i++) {
+            int j = 0;
+            for(;j < inDeg.length; j++) 
+                if(inDeg[j] == 0) break;
+             if (j == numCourses) return false;
+             inDeg[j] = -1; //Mark selected vertex as visted or Remove from vertexxList
+             List<Integer> outNbrs = adjMap.get(j);
+             if(outNbrs != null) {
+                 for(Integer v : outNbrs) {
+                    inDeg[v]--;
+                 }
+             }
+        }
+        return true;    
+    }
+
+
 //Kahn's Algo
 //http://www.geeksforgeeks.org/topological-sorting-indegree-based-solution/
 //############################## Kahn's algo ############################## 
 bool canFinish(int numCourses, vector<pair<int, int> > &prerequisites) {
   vector<vector<int> > adjList( numCourses,vector<int>() );
-	vector<int> inDegrees(numCourses,0);
-	int sum = 0;
-	for (auto i : prerequisites) { 
+    vector<int> inDegrees(numCourses,0);
+    int sum = 0;
+    for (auto i : prerequisites) { 
     adjList[i.second].push_back(i.first);
-		inDegrees[i.first]++;
-	}
-	stack<int> zeroInDegStack;
-	for(auto i=0;i<inDegrees.size();i++){ 
-	    if(inDegrees[i] == 0) { 
-	        zeroInDegStack.push(i); 
-	    }
+        inDegrees[i.first]++;
+    }
+    stack<int> zeroInDegStack;
+    for(auto i=0;i<inDegrees.size();i++){ 
+        if(inDegrees[i] == 0) { 
+            zeroInDegStack.push(i); 
+        }
   }
   if(zeroInDegStack.size() == 0) { 
     return false;
@@ -42,35 +70,35 @@ bool canFinish(int numCourses, vector<pair<int, int> > &prerequisites) {
     } 
   }
   if(pOrderResult.size() != numCourses) {
-	    return false;
+        return false;
   }
   return true;
 }
 
 //######################################### BFS ############################## 
 bool canFinish(int numCourses, vector<pair<int, int> > &prerequisites) {
-		vector<unordered_set<int> > dg(numCourses);
+    vector<unordered_set<int> > dg(numCourses);
     for(auto &i:prerequisites) {
-			dg[i.second].insert(i.first);
+            dg[i.second].insert(i.first);
     }
-		vector<int> indegree(numCourses,0);
-		for (int i = 0; i != numCourses; i++) {
-			for(auto it = dg[i].begin(); it != dg[i].end(); it++) {
-				indegree[*it]++;
+    vector<int> indegree(numCourses,0);
+    for (int i = 0; i != numCourses; i++) {
+        for(auto it = dg[i].begin(); it != dg[i].end(); it++) {
+           indegree[*it]++;
       }
     }
-		queue<int> zeros;
-		for (int i = 0; i != numCourses; ++i) { 
-      if (indegree[i] == 0) {
-				zeros.push(i);
+    queue<int> zeros;
+    for (int i = 0; i != numCourses; ++i) { 
+    if (indegree[i] == 0) {
+        zeros.push(i);
       } 
     }
     while (!zeros.empty()) { 
       int seq = zeros.front();
-		  zeros.pop();
-		  for (auto it = dg[seq].begin(); it != dg[seq].end(); ++it) {
-		  	if (--indegree[*it] == 0) {
-		  		zeros.push(*it);
+          zeros.pop();
+          for (auto it = dg[seq].begin(); it != dg[seq].end(); ++it) {
+              if (--indegree[*it] == 0) {
+                  zeros.push(*it);
         } 
       } 
       --numCourses;
