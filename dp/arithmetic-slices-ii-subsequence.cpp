@@ -23,6 +23,27 @@
 //[2,4,6,8,10]
 //[2,6,10]
 
+
+//############################################### O(N^2) ###############################################################
+public int numberOfArithmeticSlices(int[] A) {
+    int m = A.length;
+    Map<Integer,Integer>[] map = new Map[m]; //vector<unordered_map<int,int>>
+    int result = 0;
+    for(int i=0;i<m;i++) {
+        map[i] = new HashMap<>();
+        for(int j=0;j<i;j++) {
+            long diff = (long)A[i] - A[j];
+            if (diff <= Integer.MIN_VALUE || diff > Integer.MAX_VALUE) continue;
+            int d = (int) diff;
+            int c1 = map[i].getOrDefault(d,0);
+            int c2 = map[j].getOrDefault(d,0);
+            result += c2;
+            map[i].put(d, c1+c2+1);
+        }
+    }
+    return result;
+}
+
 //############################################### O(N^2) ###############################################################
 int numberOfArithmeticSlices(vector<int>& A) { 
   int res = 0;

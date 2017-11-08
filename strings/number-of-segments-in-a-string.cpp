@@ -6,6 +6,13 @@
 //Output: 5
 #include "../headers/global.hpp"
 
+//##################################### With Split ##################################### 
+public int countSegments(String s) {
+    if(s == null || s.length() == 0) return 0;
+    //" a ".split("\\s+").length() will return 2 so added extra prefex char : 
+    //" a ".split(" +").length() will return true
+    return ("x "+ s).split("\\s+").length - 1;
+}
 //##################################### With Regex ##################################### 
 int countSegments(string s) {
   cout << s << endl; 

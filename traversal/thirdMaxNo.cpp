@@ -14,6 +14,19 @@
 //Explanation: Note that the third maximum here means the third maximum distinct number.
 //Both numbers with value 2 are both considered as second maximum.
 //
+
+//######################################### O(n log n) ##################################
+public int thirdMax(int[] nums) {
+    TreeSet<Integer> tSet = new TreeSet<>();
+    for(int num:nums) {
+        tSet.add(num);
+        if(tSet.size() > 3) tSet.pollFirst();
+    }
+    if(tSet.size() < 3) return tSet.last();
+    return tSet.first();
+}
+
+//######################################### O(n) ######################################### 
 int thirdMax(vector<int>& nums) {
     int ln = nums.size();
    vector<long long> max_vec(3, LLONG_MIN);
@@ -63,3 +76,14 @@ int thirdMax(vector<int>& nums) {
     }
     return max_vec[2];
 }
+
+
+//######################################### sort ######################################### 
+class Solution(object):
+    def thirdMax(self, nums):
+        l = []
+        for n in set(nums):
+            bisect.insort(l, -n)
+            if len(l)>3:
+                l.pop()
+        return -l[2] if len(l)>2 else -l[0]

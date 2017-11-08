@@ -98,8 +98,10 @@ public boolean isOneEditDistance(String s, String t) {
     if (Math.abs(m - n) > 1) return false;
     int k = Math.min(m, n);
     int i = 0, j = 0;
-    while (i < k && s.charAt(i) == t.charAt(i)) ++i;
-    while (j < k - i && s.charAt(m - 1 - j) == t.charAt(n - 1 - j)) ++j;
+    while (i < k && s.charAt(i) == t.charAt(i)) ++i;  //match from start
+	//i : Matched count
+    while (j < k - i && s.charAt(m - 1 - j) == t.charAt(n - 1 - j)) ++j; //match from end
+	//j : Matched count
     return m + n - k - 1 == i + j;
 }
 // Runtime : 2ms

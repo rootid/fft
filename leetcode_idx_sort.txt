@@ -19,8 +19,8 @@
 19.  Alien Dictionary
 20.  All O`one Data Structure
 21.  Android Unlock Patterns
-22.  Arithmetic Slices
-23.  Arithmetic Slices II - Subsequence
+22.  Arithmetic Slices : [DP -> 1D]
+23.  Arithmetic Slices II - Subsequence : [DP -> 2D]
 24.  Arranging Coins
 25.  Array Nesting
 26.  Array Partition I
@@ -362,9 +362,9 @@
 362. Number of Islands
 363. Number of Islands II
 364. Number of Longest Increasing Subsequence
-365. Number of Segments in a String
+365. Number of Segments in a String : [Regex only split]
 366. Odd Even Linked List
-367. One Edit Distance
+367. One Edit Distance : [2 Pointer]
 368. Ones and Zeroes
 369. Optimal Account Balancing
 370. Optimal Division
@@ -547,7 +547,7 @@
 547. The Maze II
 548. The Maze III
 549. The Skyline Problem
-550. Third Maximum Number
+550. Third Maximum Number : DS [TreeSet]
 551. Top K Frequent Elements
 552. Total Hamming Distance
 553. Trapping Rain Water

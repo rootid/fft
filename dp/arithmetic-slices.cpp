@@ -14,6 +14,21 @@
 //A = [1, 2, 3, 4]
 //Return: 3, for 3 arithmetic slices in A: [1, 2, 3], [2, 3, 4] and [1, 2, 3, 4] itself.
 
+
+//######################### DP  ###############################
+//TC : O(N)
+public int numberOfArithmeticSlices(int[] A) {
+      int m = A.length;
+      int[] dp = new int[m];
+      int result = 0;
+      for(int i=2;i<m;i++) {
+          if(A[i] - A[i-1] == A[i-1] - A[i-2]) dp[i] = dp[i-1] + 1;
+          result += dp[i];
+      }
+      return result;
+}
+
+
 //######################### GOOD ###############################
 int numberOfArithmeticSlices(vector<int>& A) {
    int n = A.size();
