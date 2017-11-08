@@ -5,6 +5,28 @@
 //For example:
 //Given array A = [2,3,1,1,4]
 //The minimum number of jumps to reach the last index is 2. (Jump 1 step from index 0 to 1, then 3 steps to the last index.)
+
+//####################################################### BFS ####################################################### 
+public int jump(int[] nums) {
+	if (nums.length <= 1) return 0;
+	int cnt = 0;
+	int lastIdx = 0;
+	Queue<Integer>idxQueue = new ArrayDeque<>();
+	idxQueue.offer(0);
+	while(!idxQueue.isEmpty()) {
+		int maxReachable = lastIdx;
+		while(!idxQueue.isEmpty()){
+			int currIdx = idxQueue.poll();
+			if (currIdx >= nums.length - 1) return cnt;
+			lastIdx = Math.max(lastIdx, currIdx);
+			maxReachable = Math.max(maxReachable, currIdx + nums[currIdx]);
+		}
+		for (int i = lastIdx + 1; i <= maxReachable; i++) idxQueue.offer(i);
+		cnt++;
+	}
+	return -1;
+}
+
 //
 //2,31
 //2||
@@ -13,6 +35,7 @@
 //#### TODO : need to add verfication step where we cannot reach to end 
 // A={3,0,0,0,4} or A={0,5}
 //
+
 //####################################################### BFS ####################################################### 
 int jump_bfs(vector<int>& nums) {
   int n = nums.size(), step = 0, start = 0, end = 0; 
@@ -20,9 +43,9 @@ int jump_bfs(vector<int>& nums) {
   while (end < dest) { 
     step++; 
     //each iteration increase the step
-		int maxend = end + 1; //start,end : range of current node
+	int maxend = end + 1; //start,end : range of current node
     // Each time after we make a move, update start to be end + 1 and end to be the farthest index that can be reached in 1 i.e. maxend+1 move from the current [start, end]
-		for (int i = start; i <= end; i++) { 
+	for (int i = start; i <= end; i++) { 
       if (i + nums[i] >= dest) {
         return step;
       } 
@@ -34,6 +57,7 @@ int jump_bfs(vector<int>& nums) {
   return step;
 }
 
+//####################################################### O(N) ####################################################### 
 int jump(vector<int>& nums) { 
   if(nums.size() < 3 ) {
     return ;
@@ -57,6 +81,7 @@ int jump(vector<int>& nums) {
 }
 
 
+//####################################################### O(N) ####################################################### 
 int jump(int A[], int n) { //O(N)
     	 if(n<2) return 0;
     	 int level=0,currentMax=0,i=0,nextMax=0;

@@ -26,9 +26,18 @@
 //The range of a is [1,m], and the range of b is [1,n].
 //The range of operations size won't exceed 10,000.
 
+//######################################### Minimum intersection count ######################################### 
+public int maxCount(int m, int n, int[][] ops) {
+    //NOTE : visualize LED board always start blinking from left corner
+    //Max value can be obtained as ops.length as (0,0)/ left corner incremented by 1
+    for(int[] corner : ops) {
+        m = Math.min(m, corner[0]);
+        n = Math.min(n, corner[1]);
+    }
+    return m * n;
+}
 
-
-//######################################### Use of auto  ######################################### 
+//######################################### Use of auto ######################################### 
 int maxCount(int m, int n, vector<vector<int>>& ops) {
     for (auto op : ops) {
         m = min(op[0], m);
@@ -37,6 +46,7 @@ int maxCount(int m, int n, vector<vector<int>>& ops) {
     return m * n;
 }
 
+//######################################### Use of auto ######################################### 
 int maxCount(int m, int n, vector<vector<int>>& ops) { 
   for (int i = 0; i < ops.size(); ++i) { 
     m = min(m, ops[i][0]);

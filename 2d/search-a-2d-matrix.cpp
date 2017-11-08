@@ -11,7 +11,22 @@
 //]
 //Given target = 3, return true.
 
-
+//###################################### Assume 2d matrix as a linear array ######################################  
+//TC : O(log(m) + log(n)), or in other words, O(log(mn)).
+public boolean searchMatrix(int[][] matrix, int target) {
+    int m = matrix.length;
+    if(m == 0) return false;
+    int n = matrix[0].length;
+    int s = 0;
+    int e = m * n - 1;
+    while(s <= e) {
+        int mid = s + (e-s)/2;
+        if(matrix[mid/n][mid%n] == target) return true;
+        else if(matrix[mid/n][mid%n] < target) s = mid + 1;
+        else e = mid-1;
+    }
+    return false;
+}
 //###################################### Assume 2d matrix as a linear array ######################################  
 bool searchMatrix(vector<vector<int>>& matrix, int target) { 
   if(matrix.empty()) {

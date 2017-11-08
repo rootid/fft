@@ -39,10 +39,10 @@
 39.  Best Time to Buy and Sell Stock III
 40.  Best Time to Buy and Sell Stock IV
 41.  Best Time to Buy and Sell Stock with Cooldown
-42.  Binary Search Tree Iterator : [Tree traversal (inorder),Stack ]
-43.  Binary Tree Inorder Traversal : [Tree traversal (inorder),Stack ]
-44.  Binary Tree Level Order Traversal : [3 Approaches : visit-nextvisit, 2push-1pop/#(NV)= 2* #(PV), recursion/DFS]
-45.  Binary Tree Level Order Traversal II : [3 Approaches : visit-nextvisit, 2push-1pop/#(NV)= 2* #(PV), recursion/DFS]
+42.  Binary Search Tree Iterator
+43.  Binary Tree Inorder Traversal
+44.  Binary Tree Level Order Traversal
+45.  Binary Tree Level Order Traversal II
 46.  Binary Tree Longest Consecutive Sequence
 47.  Binary Tree Longest Consecutive Sequence II
 48.  Binary Tree Maximum Path Sum
@@ -233,19 +233,19 @@
 233. Island Perimeter
 234. Isomorphic Strings
 235. Judge Route Circle
-236. Jump Game : Greedy, BFS [like word-break ]
-237. Jump Game II  : BFS
+236. Jump Game
+237. Jump Game II
 238. K Inverse Pairs Array
 239. K-diff Pairs in an Array
 240. K-th Smallest in Lexicographical Order
 241. Keyboard Row
 242. Kill Process
-243. Kth Largest Element in an Array : D&C [quickSelect]
+243. Kth Largest Element in an Array
 244. Kth Smallest Element in a BST
 245. Kth Smallest Element in a Sorted Matrix
 246. Kth Smallest Number in Multiplication Table
-247. LFU Cache : [Age, Frequency]
-248. LRU Cache : [Age]
+247. LFU Cache
+248. LRU Cache
 249. Largest BST Subtree
 250. Largest Divisible Subset
 251. Largest Number
@@ -312,8 +312,8 @@
 312. Maximum Width of Binary Tree
 313. Maximum XOR of Two Numbers in an Array
 314. Median of Two Sorted Arrays
-315. Meeting Rooms : Sorting
-316. Meeting Rooms II  : Trick [ In real, we check from our start time , Acquire + Release Count]
+315. Meeting Rooms
+316. Meeting Rooms II
 317. Merge Intervals
 318. Merge Sorted Array
 319. Merge Two Binary Trees
@@ -403,17 +403,17 @@
 403. Plus One Linked List
 404. Populating Next Right Pointers in Each Node
 405. Populating Next Right Pointers in Each Node II
-406. Pow(x, n) : DP
-407. Power of Four : Bit Manipulation
-408. Power of Three : Recursion
-409. Power of Two : Bit Manipulation 
+406. Pow(x, n)
+407. Power of Four
+408. Power of Three
+409. Power of Two
 410. Predict the Winner
 411. Print Binary Tree
 412. Product of Array Except Self
 413. Queue Reconstruction by Height
 414. Random Pick Index
-415. Range Addition : Trick [Differentiation, Accumulation]
-416. Range Addition II : Trick [Visualize Cricket LED]
+415. Range Addition
+416. Range Addition II
 417. Range Sum Query - Immutable
 418. Range Sum Query - Mutable
 419. Range Sum Query 2D - Immutable
@@ -520,7 +520,7 @@
 520. Strong Password Checker
 521. Student Attendance Record I
 522. Student Attendance Record II
-523. Subarray Sum Equals K : Presum DP
+523. Subarray Sum Equals K
 524. Subsets
 525. Subsets II
 526. Substring with Concatenation of All Words
@@ -558,7 +558,7 @@
 558. Two Sum II - Input array is sorted
 559. Two Sum III - Data structure design
 560. Two Sum IV - Input is a BST
-561. UTF-8 Validation : Bit Manipulation
+561. UTF-8 Validation
 562. Ugly Number
 563. Ugly Number II
 564. Unique Binary Search Trees

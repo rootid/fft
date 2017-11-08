@@ -27,7 +27,38 @@
 //The optimal time complexity is O(k + n) and uses O(1) extra space.
 #include "../headers/global.hpp"
 
-//O(k+n)
+//[1 , 3 , 2] , [2, 3, 3] (length = 5)
+//res[0, 2, ,0, 0 -2]
+//res[0 ,2, 3, 0, -5]
+//sum 0, 2, 5, 5, 0
+//res[0, 2, 5, 5, 0]
+
+//#########################################O(k+n)#########################################
+public int[] getModifiedArray(int length, int[][] updates) { 
+	int[] res = new int[length];
+    for(int[] update : updates) {
+       int value = update[2];
+       int start = update[0];
+       int end = update[1];
+       res[start] += value;
+       if(end < length - 1)
+           res[end + 1] -= value;
+        
+    }
+    int sum = 0;
+    for(int i = 0; i < length; i++) {
+        sum += res[i];
+        res[i] = sum;
+    }
+    return res;
+}
+
+//#########################################O(k+n)#########################################
+//[ 0, 0, 0, 0, 0 ] 
+//[ -2, 0, 0, 2, 0 ] <= [1, 3, 2]
+//[ -2, -3, 0, 2, 3 ] <= [2, 4, 3]
+//[ -2, -3, -2, 2, 3 ] <= [0, 2, -2]
+//[ -2, 0, 3, 5, 3 ] <= sum = 3
 vector<int> getModifiedArray(int length, vector<vector<int>>& updates) {
      vector<int> a(length,0);
      for (int i=0;i<updates.size();i++) {

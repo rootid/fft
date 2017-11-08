@@ -5,6 +5,34 @@
 //Note: 
 //You may assume k is always valid, 1 ≤ k ≤ array's length.
 
+
+//########################### O(k) ########################### 
+public int quickSelect(int[] nums, int left, int right, int k) {
+    int pVal = nums[right];  //pivk pivot as last element.
+    int i = left, j = right;
+    while(i < j) 
+        if(nums[i++] > pVal) swap(nums, --i, --j); // (i,left)-- pVal --(j,right)
+    swap(nums, i, right); 
+    // count the nums that are <= pVal from left
+    int m = i - left + 1;
+    if (m == k) return i;  // pivot is the one!
+    else if (m > k) return quickSelect(nums, left, i - 1, k); // pivot is too big, so it must be on the left
+    return quickSelect(nums, i + 1, right, k - m);   // pivot is too small, so it must be on the right
+}
+
+public int findKthLargest(int[] nums, int k) {
+    int n = nums.length;
+    int p = quickSelect(nums, 0, n-1, n-k+1);
+    return nums[p];
+}
+
+private void swap(int[] a, int i, int j) {
+    int tmp = a[i];
+    a[i] = a[j];
+    a[j] = tmp;
+}
+
+
 //########################### min heap ########################### 
 int findKthLargest(vector<int>& nums, int k) {
      priority_queue<int> pq(nums.begin(), nums.end()); //store in ascending order pq

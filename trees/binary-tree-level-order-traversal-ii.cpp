@@ -14,6 +14,26 @@
 //  [3]
 //]
 
+//############################### BFS  ###############################
+  public List<List<Integer>> levelOrderBottom(TreeNode root) {     
+        List<List<Integer>> result = new ArrayList<>();
+        if(root == null) return result;
+        Queue<TreeNode> q = new ArrayDeque<>();
+        q.offer(root);
+        while(!q.isEmpty()) {
+                int level = q.size();
+                LinkedList<Integer> visitedList = new LinkedList<>();
+                for(int i=0;i<level;i++) {
+                    TreeNode tmp = q.poll();
+                    if(tmp.left != null)  q.offer(tmp.left);
+                    if(tmp.right != null)  q.offer(tmp.right);
+                    visitedList.add(tmp.val);
+                }
+                result.add(0, visitedList);
+        }
+        return result;
+    }
+
 //############################### DFS ###############################
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
         List<List<Integer>> result = new ArrayList<>();

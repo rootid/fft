@@ -2,12 +2,24 @@
 //A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
 //The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
 //How many possible unique paths are there?
-//
-When (n==0||m==0) the function always returns 0 since the robot can't go left or up.
-For all other cells. The result = uniquePaths(m-1,n)+uniquePaths(m,n-1)
-Therefore I populated the edges with 1 first and use DP to get the full 2-D array.
+
+//######################################### TC: O(m*n) ######################################### 
+public int uniquePaths(int m, int n) {
+	//Totol # of subproblems : O(mn)
+    int[][] path = new int[m][n];   
+    Arrays.fill(path[0], 1);
+    for(int i=1;i<m;i++) path[i][0] = 1;
+    for(int i=1;i<m;i++)
+        for(int j=1;j<n;j++) 
+            path[i][j] = path[i-1][j] + path[i][j-1];
+    return path[m-1][n-1];
+}
+
 
 //########################################## Space O(n^2) ########################################## 
+//When (n==0||m==0) the function always returns 0 since the robot can't go left or up.
+//For all other cells. The result = uniquePaths(m-1,n)+uniquePaths(m,n-1)
+//Therefore I populated the edges with 1 first and use DP to get the full 2-D array.
 int uniquePaths(int m, int n) {
     vector< vector<int> > paths(m, vector<int>(n,1) );
     for(int i=1;i<m;i++) {

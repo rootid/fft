@@ -24,7 +24,25 @@
 //The next byte is a continuation byte which starts with 10 and that's correct.
 //But the second continuation byte does not start with 10, so it is invalid
 
-//########################## bit update ########################## 
+//########################## Bit Pattern lookup ########################## 
+public boolean validUtf8(int[] data) { 
+	int noOfOctet = 0;
+    for(int d:data) {
+      if(noOfOctet == 0) {
+        if( ((d >>> 3) & 31) == 31) return false; //11111xxx (invalid)
+        else if( ((d >>> 4) & 15) == 15) noOfOctet = 3; //11110xxx
+        else if (((d >>> 5) & 7) == 7) noOfOctet = 2; //1110xxxx
+        else if (((d >>> 6) & 3)  == 3) noOfOctet = 1; //110xxxxx
+        else if (((d >>> 7) & 1)  == 1) return false; //1xxxxxxx (invalid)
+      } else {
+        if(((d >>> 6) & 2)  == 2) noOfOctet -= 1; //10xxxxxx
+        else return false;
+      }
+    } 
+	return noOfOctet == 0; 
+}
+
+//########################## Bit pattern lookup ########################## 
 bool validUtf8(vector<int>& data) { 
   int cnt = 0;
   for (int c: data) { 

@@ -6,6 +6,35 @@
 //A = [2,3,1,1,4], return true.
 //A = [3,2,1,0,4], return false.
 
+//################################### O(n) : linear traversal ################################### 
+public boolean canJump(int[] nums) {
+   int m = 0; // m : tells the maximum index we can reach so far.
+   for(int i=0;i<nums.length;i++) {
+       if(i > m) return false;   
+       m = Math.max(m, i + nums[i]);    
+   }
+   return true;
+}
+//################################### BFS with indexes ################################### 
+public boolean canJump(int[] nums) {
+     int dIdx = nums.length -1;
+     if(dIdx == 0) return true;
+     Queue<Integer> q = new ArrayDeque<>();
+     q.offer(0);
+     while(!q.isEmpty()) {
+       int cIdx = q.poll();
+       int cVal = nums[cIdx];
+       if(cIdx + cVal == dIdx) return true;
+       while(cVal >= 1) {
+           if(cIdx + cVal >= dIdx) break;
+           q.offer(cIdx + cVal);
+           cVal--;
+       }
+       if(cVal >= 1) return true;
+     }
+     return false;
+}
+
 //iterate and update the maximal index that can reached
 //###################################   ################################### 
 bool canJump(vector<int>& nums) {
@@ -35,3 +64,12 @@ bool canJump(vector<int>& nums) {
     }
     return b[0];
 }
+
+//Going forwards. m tells the maximum index we can reach so far.
+def canJump(self, nums):
+    m = 0
+    for i, n in enumerate(nums):
+        if i > m:
+            return False
+        m = max(m, i+n)
+    return True
