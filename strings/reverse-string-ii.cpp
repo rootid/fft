@@ -8,12 +8,30 @@
 //Length of the given string and k will in the range [1, 10000]
 //
 
+//######################### 2 Pointer ######################### 
+    public String reverseStr(String s, int k) {
+        int m = s.length();
+        char[] charArr = s.toCharArray();
+        for(int start=0; start <m; start+= 2*k) {
+            for(int i=start,j= Math.min(start+k-1, m-1); i < j ;i++,j--) {
+                swap(charArr,i,j);
+            }
+        }
+        return new String(charArr);
+    }
+    
+    private void swap(char[] nums, int i, int j) {
+     nums[i] ^= nums[j];
+     nums[j] ^= nums[i];
+     nums[i] ^= nums[j];
+    }
+
+
 //######################### Move 2k distance and reverse K chars ######################### 
 string reverseStr(string s, int k) {
       for (int i = 0; i < s.size(); i += 2*k) reverse(s.begin()+i, min(s.begin()+i+k, s.end()));
       return s;
 }
-
 
 //######################### Move 2k distance and reverse K chars ######################### 
 /**
@@ -29,3 +47,11 @@ string reverseStr(string s, int k) {
   }
   return s;
 }
+
+
+//For every block of 2k characters starting with position i, we want to replace S[i:i+k] with it's reverse.
+def reverseStr(self, s, k):
+    s = list(s)
+    for i in xrange(0, len(s), 2*k):
+        s[i:i+k] = reversed(s[i:i+k])
+    return "".join(s)

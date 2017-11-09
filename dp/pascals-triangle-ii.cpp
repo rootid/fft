@@ -5,6 +5,20 @@
 //Could you optimize your algorithm to use only O(k) extra space?
 #include "../headers/global.hpp"
 
+
+//######################## O(k) #########################
+public List<Integer> getRow(int rowIndex) {
+    rowIndex++;
+    int[] result = new int[rowIndex];
+    result[0] = 1;
+    for(int i=1;i<rowIndex;i++) {
+        for(int j=i;j>=1;j--)  
+            result[j] += result[j-1];
+    }
+    return Arrays.stream(result).boxed().collect(Collectors.toList());
+	//return Arrays.asList(result);
+}
+
 //######################## GOOD #########################
 vector<int> getRow(int rowIndex) { 
   int k = rowIndex;
@@ -35,6 +49,19 @@ vector<int> getRow(int rowIndex) {
    result.erase(result.begin());  
    return result;  
 }  
+
+//######################## Python #########################
+class Solution:
+    # @return a list of integers
+    def getRow(self, rowIndex):
+        
+        array = [1]*(rowIndex+1)
+
+        for i in range(1,rowIndex+1):
+            for j in range(i-1,0,-1):
+                array[j] += array[j-1]
+
+        return array
 
 int main() {
   getRow(3);

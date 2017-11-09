@@ -105,7 +105,7 @@
 105. Count and Say
 106. Count of Range Sum
 107. Count of Smaller Numbers After Self
-108. Counting Bits
+108. Counting Bits : Pattern, Bit Manipulation (How 1,2 formed from 0)
 109. Course Schedule
 110. Course Schedule II
 111. Course Schedule III
@@ -175,9 +175,9 @@
 175. Find the Difference
 176. Find the Duplicate Number
 177. First Bad Version
-178. First Missing Positive
+178. First Missing Positive : Swap (Move 1 to 0th index O(n))
 179. First Unique Character in a String
-180. Fizz Buzz
+180. Fizz Buzz : Maths [Mod]
 181. Flatten 2D Vector
 182. Flatten Binary Tree to Linked List
 183. Flatten Nested List Iterator
@@ -200,7 +200,7 @@
 200. Guess Number Higher or Lower II
 201. H-Index
 202. H-Index II
-203. Hamming Distance
+203. Hamming Distance : Bit Manipulation
 204. Happy Number
 205. Heaters
 206. House Robber
@@ -335,7 +335,7 @@
 335. Minimum Time Difference
 336. Minimum Unique Word Abbreviation
 337. Minimum Window Substring
-338. Missing Number
+338. Missing Number : Swap,XOR
 339. Missing Ranges
 340. Most Frequent Subtree Sum
 341. Move Zeroes
@@ -355,7 +355,7 @@
 355. Non-overlapping Intervals
 356. Nth Digit
 357. Number Complement
-358. Number of 1 Bits
+358. Number of 1 Bits : Bit Manipulation [Java why not to use n > 0 (n!=0) , >>> , n & 1 == 1 trick]
 359. Number of Boomerangs
 360. Number of Connected Components in an Undirected Graph
 361. Number of Digit One
@@ -384,8 +384,8 @@
 384. Palindromic Substrings
 385. Partition Equal Subset Sum
 386. Partition List
-387. Pascal's Triangle
-388. Pascal's Triangle II
+387. Pascal's Triangle : [DP : 2d formula]
+388. Pascal's Triangle II : [DP : 1d formula+Trick travesal(RL,LR)]
 389. Patching Array
 390. Path Sum
 391. Path Sum II
@@ -452,8 +452,8 @@
 452. Reverse Linked List II
 453. Reverse Nodes in k-Group
 454. Reverse Pairs
-455. Reverse String
-456. Reverse String II
+455. Reverse String : [2 Pointer, in Built StringBuilder]
+456. Reverse String II : [2 Pointer]
 457. Reverse Vowels of a String
 458. Reverse Words in a String
 459. Reverse Words in a String II
@@ -479,7 +479,7 @@
 479. Serialize and Deserialize BST
 480. Serialize and Deserialize Binary Tree
 481. Set Matrix Zeroes
-482. Set Mismatch
+482. Set Mismatch : Swap [ move V to V-1 idx position]
 483. Shopping Offers
 484. Shortest Distance from All Buildings
 485. Shortest Palindrome

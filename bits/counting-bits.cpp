@@ -14,6 +14,17 @@
 
 #include "../headers/global.hpp"
 
+
+//ndex : 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+//num :  0 1 1 2 1 2 2 3 1 2 2  3  2  3  3  4
+//For 2^i = 1
+//
+public int[] countBits(int num) {
+    int[] result = new int[num + 1];
+    for(int i=1;i<=num;i++) result[i] = result[i&(i-1)] + 1;
+    return result;
+}
+
 //An recurrence for this problem is result[i] = result[i / 2] + i % 2.
 //############################################### GOOD ############################################### 
 vector<int> countBits(int num) {
