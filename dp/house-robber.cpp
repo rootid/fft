@@ -6,14 +6,28 @@
 #include<vector>
 using namespace std;
 
+//Base Case : {2} => 2
+//Rec case :  dp[i] = Math.max(nums[i] + dp[i-2],dp[i-1]);
+public int rob(int[] nums) {
+    int m = nums.length;
+    if(m == 0) return 0;
+    if(m == 1) return nums[0];
+    int dp[] = new int[m];
+    dp[0] = nums[0];
+    dp[1] = Math.max(nums[0],nums[1]);
+    for(int i=2;i<m;i++) {
+        dp[i] = Math.max(nums[i] + dp[i-2],dp[i-1]);
+    }
+    return dp[m-1];
+}
 
 //This code handles odd-even overlapping [2,1,1,2] max=4
 int rob1(vector<int>&nums) {
   int odd = 0;
   int even = 0;
   for(int i=0;i<nums.size();i++) {
-      if (i % 2 == 0) {
-        even = max ( odd ,even + nums[i]);
+      if (i%2 == 0) {
+        even = max (odd ,even + nums[i]);
       } else {
         odd = max(even , odd + nums[i]);
       }

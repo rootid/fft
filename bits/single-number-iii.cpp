@@ -6,25 +6,46 @@
 //The order of the result is not important. So in the above example, [5, 3] is also correct.
 //Your algorithm should run in linear runtime complexity. Could you implement it using only constant space complexity?
 
-vector<int> singleNumber(vector<int>& nums) {
-    int AXORB = 0;  // the result of a xor b;
-    for (auto item : nums) {
-      AXORB ^= item;
+public int[] singleNumber(int[] nums) {
+    int diff = 0;
+    for (int num : nums) 
+        diff ^= num;
+    // Get its last set bit
+    diff &= -diff;
+    // Pass 2 :
+    int[] rets = {0, 0}; // this array stores the two numbers we will return
+    for (int num : nums) {
+        if ((num & diff) == 0) // the bit is not set (order matters)
+            rets[0] ^= num;
+        else // the bit is set
+            rets[1] ^= num;
     }
-    int lastBit = (AXORB & (AXORB - 1)) ^ AXORB;  // the last bit that a diffs b
-    lastBit = AXORB & (-AXORB)  //  my last bit :)
-    int intA = 0, intB = 0;
-    for (auto item : nums) {
-        // based on the last bit, group the items into groupA(include a) and groupB
-        if (item & lastBit) {
-          intA = intA ^ item;
-        }
-        else {
-          intB = intB ^ item;
-        }
-    }
-    return vector<int>{intA, intB};   
+    return rets;
 }
+
+
+class Solution
+{
+public:
+    vector<int> singleNumber(vector<int>& nums) {
+        // Pass 1 : 
+        // Get the XOR of the two numbers we need to find
+        int diff = accumulate(nums.begin(), nums.end(), 0, bit_xor<int>());
+        // Get its last set bit
+        diff &= -diff;
+        // Pass 2 :
+        vector<int> rets = {0, 0}; // this vector stores the two numbers we will return
+        for (int num : nums) {
+            if ((num & diff) == 0) {  // the bit is not set
+                rets[0] ^= num;
+            }
+            else {
+                rets[1] ^= num;
+            }
+        }
+        return rets;
+    }
+};
 
 
 //This problem is an extension of the other two problems Single Number and Single Number II. As we know that for an integer N:

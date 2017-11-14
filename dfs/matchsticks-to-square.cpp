@@ -156,8 +156,7 @@ private: // helpers
     vector<int>::iterator e; // end of nums sorted descendingly
     vector<int> small = vector<int>(4); // 4 smallest subsums
 
-//############### NAive DFS 
-//
+//############### NAive DFS  ###################### 
 public boolean makesquare(int[] nums) {
     if (nums.length < 4) return false;
         
@@ -182,7 +181,7 @@ private boolean makesquareSub(int[] nums, int i, int[] s) {
         
     return false;
 }
-//###################### DFS + sort 
+//###################### DFS + sort ###################### 
 
 public boolean makesquare(int[] nums) {
     if (nums.length < 4) return false;

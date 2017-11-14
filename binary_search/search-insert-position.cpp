@@ -7,11 +7,50 @@
 //[1,3,5,6], 0 → 0
 
 
+//######################################### Binary Search (start,end-1) ######################################### 
+public int searchInsert(int[] nums, int target) {
+    int end = nums.length-1;
+    int start = 0;
+    int mid = 0;
+    while(start <= end) {
+        mid = start + (end - start)/2;
+        if(nums[mid] == target) return mid;
+        if(nums[mid] > target)
+            end = mid - 1;
+        else
+            start = mid + 1;
+    }
+    return start;
+}
+
+//######################################### Binary Search (start,end] ######################################### 
+public int searchInsert(int[] nums, int target) {
+    int end = nums.length;
+    int start = 0;
+    int mid = 0;
+    while(start < end) {
+        mid = start + (end - start)/2;
+        if(nums[mid] == target) return mid;
+        if(nums[mid] > target)
+            end = mid;
+        else
+            start = mid + 1;
+    }
+    return start;
+}
+
+//######################################### In built Java Arrays binary search ######################################### 
+public int searchInsert(int[] nums, int target) {
+   int idx =  Arrays.binarySearch(nums, target);
+   return idx < 0 ? ~idx : idx; 
+}
+
+//######################################### Binary Search ######################################### 
 int searchInsert(vector<int>& a, int target) {
     int end = a.size() -1;
     int start  = 0;
     while(start <= end) {
-        // Invariant: the desired index is between [start, end+1]
+        // Invariant: the desired index is between (start, end)
         int mid = start + (end - start)/2;
         if(a[mid] == target) {
             return mid;

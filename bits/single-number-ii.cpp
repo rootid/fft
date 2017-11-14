@@ -5,6 +5,36 @@
 
 #include "../headers/global.hpp"
 
+//######################################### Count # of set bit ######################################### 
+public int singleNumber(int[] nums) {
+    int result = 0;
+    int k = 3; //# is repeated 3 times
+    for(int i=0;i<32;i++) {
+        int sum = 0;
+        for(int num:nums) 
+            if((num >>> i & 1) == 1) sum++; //only right bit shift worked
+        sum = sum % k;
+        result |= sum << i;
+    }
+    return result;
+}
+
+//######################################### Count # of set bit ######################################### 
+int singleNumber(int[] nums) {
+	int result = 0;
+	int k = 3;
+	int x = 0;
+	for(int i=0;i<32;i++) {
+		x = 1 << i;	 //set i-th bit
+		int sum = 0;
+		for(int num:nums) 
+			if((num & x) == 1) sum++;
+		if(sum % k == 1) result |= x; //set i-th bit
+	}
+	return result;
+}
+
+//######################################### Count # of bits ######################################### 
 int singleNumber(vector<int>& nums) {
     int number = 0;
     int idx;

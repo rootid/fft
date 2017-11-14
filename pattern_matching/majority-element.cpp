@@ -4,7 +4,24 @@
 #include<vector>
 using namespace std;
 
+//######################################### Voting algorithm ######################################### 
+public int majorityElement(int[] nums) {
+    int m = nums.length;
+    int majElm = nums[0];
+    int freqCount = 1;
+    for(int i=1;i<m;i++) {
+        //update freq Count
+        if(majElm != nums[i]) freqCount--;
+        else freqCount++;
+        if(freqCount == 0)  { //2,2,1,1,1,2,2 : o/p : 2 
+            freqCount = 1;	  
+            majElm = nums[i];
+        }
+    }
+    return majElm;
+}
 
+//######################################### Voting algorithm ######################################### 
 int majorityElement(vector<int>& nums) {
   int majorityEle = nums[0];
   int count = 1;

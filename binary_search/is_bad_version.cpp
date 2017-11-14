@@ -3,6 +3,23 @@
 //You are given an API bool isBadVersion(version) which will return whether version is bad. Implement a function to find the first bad version. You should minimize the number of calls to the API.
 //Credits:
 // Forward declaration of isBadVersion API.
+
+//######################################### Binary Search (start,end] ######################################### 
+public int firstBadVersion(int n) { 
+    int start = 0;
+    int end = n;
+    int mid = 0;
+    while(start < end) {
+        mid = start + (end - start)/2;
+        //if(isBadVersion(mid) == true && isBadVersion(mid-1) == false) return mid;  << not required
+        if(isBadVersion(mid) == true) 
+            end = mid;
+        else start = mid+1;
+    }
+    return start;
+}
+
+//######################################### Binary Search ######################################### 
 bool isBadVersion(int version);
 class Solution {
 public:

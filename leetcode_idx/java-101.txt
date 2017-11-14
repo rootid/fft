@@ -1,3 +1,6 @@
+######################################### PECS ######################################### 
+Producer extends : e.g. List<? extends Integer> , pushAll(<? extends T> E)
+Consumer super : e.g. List<? super Integer> , popAll(<? super T> E)
 ######################################### Logical v/s bit operator######################################### 
 Bit (single) : &,|,^,!
 Logical (more) : && , || 
@@ -84,6 +87,9 @@ int[] rest = Arrays.copyOf(nums, nums.length);
 
 ####################### Create List ####################### 
 List<String> list = new ArrayList<String>(Arrays.asList("one", "two", "three"));
+
+################### Bits ################### 
+ 1. Use -diff instead of ~(diff - 1) Usage to get the last set bit int a = a & -a;
 
 ################### Count set bit  ################### 
 Integer.bitCount()

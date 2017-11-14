@@ -22,6 +22,21 @@
 //
 //
 //
+
+//######################################### Recursive approach#########################################
+public void flatten(TreeNode root) {    
+    if(root == null) return;      
+    TreeNode tmp = root;
+    TreeNode lastRight = root.right;
+    root.right = root.left;
+    root.left = null;
+    while(tmp.right != null) tmp = tmp.right;
+    tmp.right = lastRight;
+    flatten(root.right);
+}
+
+
+//######################################### Recursive approach#########################################
 void flatten(TreeNode* root) {
     if(!root) {
         return;
@@ -37,7 +52,8 @@ void flatten(TreeNode* root) {
     flatten(root->right);
     return;
 }
-//Iterative approach
+
+//#########################################Iterative approach#########################################
 void flatten(TreeNode *root) {
         stack<TreeNode *> stk;
         if(root==NULL) 

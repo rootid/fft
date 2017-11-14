@@ -11,3 +11,4 @@ noremap <silent> ,p :set paste!<CR>
 noremap <silent> ,l :set paste! <bar> set nu! <CR>
 noremap ,c :'a,'bs/^/\/\//g<CR>
 
+" :set smartcase , :set ignorecase | Usage the matched to The and the

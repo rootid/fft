@@ -19,7 +19,29 @@
 //How about using a data structure such as deque (double-ended queue)?
 //The queue size need not be the same as the window’s size.
 //Remove redundant elements and the queue should store only elements that need to be considered.
-//###########################################    Use of deque and store deque  ##############################################    
+
+//########################################### Use of deque and store indices ##############################################    
+//1. Push always 
+//2. Pop when monotonic increase/limit reached
+public int[] maxSlidingWindow(int[] nums, int k) {
+    Deque<Integer> deque = new ArrayDeque<>();
+    int m = nums.length;
+    if(m == 0) return nums;
+    int[] result = new int[m-k+1];
+    //push always , pop when monotonic increase/limit reached;
+    int idx = 0;
+    for(int i=0;i<nums.length;i++) {
+        if(!deque.isEmpty() && deque.getFirst() == i-k) deque.pollFirst();
+        while(!deque.isEmpty() && nums[i] > nums[deque.peekLast()]) {
+            deque.pollLast();
+        }
+        deque.offer(i);
+        if(i >= k-1) result[idx++] = nums[deque.peekFirst()];
+    }
+    return result;
+}
+
+//########################################### Use of deque and store deque  ##############################################    
 vector<int> maxSlidingWindow(vector<int>& nums, int k) { 
   int len = nums.size();
   vector<int> result;

@@ -1,4 +1,4 @@
-1.   01 Matrix
+1.   01 Matrix  :  BFS [1. Put all 0's in q + update all 1's to MAX/m+n and do BFS with 0s, 2. 2-Way sweep L-R ([i][j-1],[i-1][j]),R-L([i][j+1],[i+1][j])
 2.   132 Pattern
 3.   2 Keys Keyboard
 4.   3Sum
@@ -41,8 +41,8 @@
 41.  Best Time to Buy and Sell Stock with Cooldown
 42.  Binary Search Tree Iterator : [Tree traversal (inorder),Stack ]
 43.  Binary Tree Inorder Traversal : [Tree traversal (inorder),Stack ]
-44.  Binary Tree Level Order Traversal : [3 Approaches : visit-nextvisit, 2push-1pop/#(NV)= 2* #(PV), recursion/DFS]
-45.  Binary Tree Level Order Traversal II : [3 Approaches : visit-nextvisit, 2push-1pop/#(NV)= 2* #(PV), recursion/DFS]
+44.  Binary Tree Level Order Traversal : [3 Approaches  => 1. visit-nextvisit, 2. 2push-1pop/#(NV)= 2* #(PV),3. recursion/DFS]
+45.  Binary Tree Level Order Traversal II : [3 Approaches => visit-nextvisit, 2push-1pop/#(NV)= 2* #(PV), recursion/DFS]
 46.  Binary Tree Longest Consecutive Sequence
 47.  Binary Tree Longest Consecutive Sequence II
 48.  Binary Tree Maximum Path Sum
@@ -174,12 +174,12 @@
 174. Find the Derangement of An Array
 175. Find the Difference
 176. Find the Duplicate Number
-177. First Bad Version
+177. First Bad Version : Binary search (start,end]
 178. First Missing Positive : Swap (Move 1 to 0th index O(n))
 179. First Unique Character in a String
 180. Fizz Buzz : Maths [Mod]
 181. Flatten 2D Vector
-182. Flatten Binary Tree to Linked List
+182. Flatten Binary Tree to Linked List : Recursion (visualization)
 183. Flatten Nested List Iterator
 184. Flip Game
 185. Flip Game II
@@ -202,10 +202,10 @@
 202. H-Index II
 203. Hamming Distance : Bit Manipulation
 204. Happy Number
-205. Heaters
-206. House Robber
-207. House Robber II
-208. House Robber III
+205. Heaters : Real life simulation
+206. House Robber : [DP 1D] F[n] = max(F[n-1], F[n-2]+ A[i])
+207. House Robber II : [DP] => House robber with 2 diff ranges(0,n-2), (1,n-1)
+208. House Robber III : [DP] => Bottom up tree traversal
 209. IPO
 210. Image Smoother
 211. Implement Magic Dictionary
@@ -251,7 +251,7 @@
 251. Largest Number
 252. Largest Palindrome Product
 253. Largest Rectangle in Histogram
-254. Length of Last Word
+254. Length of Last Word : [Regex only split] (Java split function accepts only string)
 255. Letter Combinations of a Phone Number
 256. Lexicographical Numbers
 257. License Key Formatting
@@ -282,10 +282,10 @@
 282. Longest Uncommon Subsequence II
 283. Longest Valid Parentheses
 284. Longest Word in Dictionary through Deleting
-285. Lowest Common Ancestor of a Binary Search Tree
-286. Lowest Common Ancestor of a Binary Tree
+285. Lowest Common Ancestor of a Binary Search Tree : [Recursion, Iteration] 1. When to move left/right?
+286. Lowest Common Ancestor of a Binary Tree : [Recursion, Iteration] 1. Traverse tree untill either of node found
 287. Magical String
-288. Majority Element
+288. Majority Element : voting algo (freq, majjority ele)
 289. Majority Element II
 290. Map Sum Pairs
 291. Matchsticks to Square
@@ -313,7 +313,7 @@
 313. Maximum XOR of Two Numbers in an Array
 314. Median of Two Sorted Arrays
 315. Meeting Rooms : Sorting
-316. Meeting Rooms II  : Trick [ In real, we check from our start time , Acquire + Release Count]
+316. Meeting Rooms II  : Trick [ In real, we check from our start time , Acquire + Release Count] + Real life simulation
 317. Merge Intervals
 318. Merge Sorted Array
 319. Merge Two Binary Trees
@@ -384,8 +384,8 @@
 384. Palindromic Substrings
 385. Partition Equal Subset Sum
 386. Partition List
-387. Pascal's Triangle : [DP : 2d formula]
-388. Pascal's Triangle II : [DP : 1d formula+Trick travesal(RL,LR)]
+387. Pascal's Triangle : [DP => 2d formula]
+388. Pascal's Triangle II : [DP => 1d formula+Trick traversal(RL,LR)]
 389. Patching Array
 390. Path Sum
 391. Path Sum II
@@ -404,9 +404,9 @@
 404. Populating Next Right Pointers in Each Node
 405. Populating Next Right Pointers in Each Node II
 406. Pow(x, n) : DP
-407. Power of Four : Bit Manipulation
+407. Power of Four : Bit Manipulation ((n & 0x55555555) == n) && ((n & (n-1)) == 0)
 408. Power of Three : Recursion
-409. Power of Two : Bit Manipulation 
+409. Power of Two : Bit Manipulation  (n&n-1==0 && n>0)
 410. Predict the Winner
 411. Print Binary Tree
 412. Product of Array Except Self
@@ -455,7 +455,7 @@
 455. Reverse String : [2 Pointer, in Built StringBuilder]
 456. Reverse String II : [2 Pointer]
 457. Reverse Vowels of a String
-458. Reverse Words in a String
+458. Reverse Words in a String 
 459. Reverse Words in a String II
 460. Reverse Words in a String III
 461. Roman to Integer
@@ -464,9 +464,9 @@
 464. Rotate Image
 465. Rotate List
 466. Russian Doll Envelopes
-467. Same Tree
+467. Same Tree : [Recursion]
 468. Scramble String
-469. Search Insert Position
+469. Search Insert Position : (Java)Arrays.binarySearch(int[], int target) Miss=> ~idx , Hit=> idx, Binsrch(start,end=n-1)
 470. Search a 2D Matrix
 471. Search a 2D Matrix II
 472. Search for a Range
@@ -478,7 +478,7 @@
 478. Sequence Reconstruction
 479. Serialize and Deserialize BST
 480. Serialize and Deserialize Binary Tree
-481. Set Matrix Zeroes
+481. Set Matrix Zeroes : Trick traversal(RL,LR)
 482. Set Mismatch : Swap [ move V to V-1 idx position]
 483. Shopping Offers
 484. Shortest Distance from All Buildings
@@ -490,10 +490,10 @@
 490. Shuffle an Array
 491. Simplify Path
 492. Single Element in a Sorted Array
-493. Single Number
-494. Single Number II
-495. Single Number III
-496. Sliding Window Maximum
+493. Single Number : Bit Manipulation (XOR)
+494. Single Number II : Bit Manipulation (Count # of 1s) Compute 1 with >>>
+495. Single Number III : Bit Manipulation (Grouping based on the last set bit)
+496. Sliding Window Maximum : [Data Structure => Deque]
 497. Sliding Window Median
 498. Smallest Good Base
 499. Smallest Range
@@ -590,7 +590,7 @@
 590. Wiggle Subsequence
 591. Wildcard Matching
 592. Word Abbreviation
-593. Word Break
+593. Word Break : BFS is it possible to cover distance = length of string?
 594. Word Break II
 595. Word Ladder
 596. Word Ladder II
