@@ -11,6 +11,24 @@
 //right subtrees (or even further, in the right subtree of an ancestor).
 //Also, use the popped values as a lower bound, since being in their right subtree means we must never come across a smaller number anymore.
 
+//Basically this is how to recover inorder sequence from preorder sequence of a BST.
+//######################################### How to recover inorder seq from preorder seq ######################################### 
+public boolean verifyPreorder(int[] preorder) {
+    Stack<Integer> stack = new Stack<>();
+    Stack<Integer> inorder = new Stack<>();
+    
+    for(int v : preorder){
+        if(!inorder.isEmpty() && v < inorder.peek())
+            return false;
+        while(!stack.isEmpty() && v > stack.peek()){
+            inorder.push(stack.pop());
+        }
+        stack.push(v);
+    }
+    return true;
+}
+
+
 //HOW TO replay stack insertion?
 
 //######################################### O(n) space  ######################################### 

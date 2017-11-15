@@ -20,6 +20,27 @@
 //7
 
 
+//##################### Preorder recursion  ##################### 
+class Solution {
+    int maxIdx = -1;
+    int maxValue;
+    
+    public int findBottomLeftValue(TreeNode root) {
+        findBottomLeftValueHelper(root, true, 0);
+        return maxValue;
+    }
+    
+    private void findBottomLeftValueHelper(TreeNode root, boolean isLeftNode,int k) {
+        if(root == null) return; 
+        if(++k > maxIdx) {
+            maxValue = root.val;
+            maxIdx = k;
+        }
+        findBottomLeftValueHelper(root.left, true, k);
+        findBottomLeftValueHelper(root.right, false,k);
+    }  
+}
+
 //##################### BFS traversal ( R-L) ##################### 
 public int findLeftMostNode(TreeNode root) {
     Queue<TreeNode> queue = new LinkedList<>();

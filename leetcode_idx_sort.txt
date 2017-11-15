@@ -9,7 +9,7 @@
 9.   4Sum II
 10.  Add Binary
 11.  Add Bold Tag in String
-12.  Add Digits
+12.  Add Digits : O(1) [Congruence formula dr(n) = 1 + (n - 1) % (b-1) b = base for decimal b = 10]
 13.  Add One Row to Tree
 14.  Add Strings
 15.  Add Two Numbers
@@ -66,7 +66,7 @@
 66.  Can I Win
 67.  Can Place Flowers
 68.  Candy
-69.  Climbing Stairs
+69.  Climbing Stairs : O(n) c[n] = c[n-1] + c[n-2], O(log n)
 70.  Clone Graph
 71.  Closest Binary Search Tree Value
 72.  Closest Binary Search Tree Value II
@@ -155,7 +155,7 @@
 155. Find All Anagrams in a String
 156. Find All Duplicates in an Array
 157. Find All Numbers Disappeared in an Array
-158. Find Bottom Left Tree Value
+158. Find Bottom Left Tree Value : Clock pattern (Preorder compare ht, maintain indices in clock manner)
 159. Find Duplicate File in System
 160. Find Duplicate Subtrees
 161. Find K Closest Elements
@@ -200,9 +200,9 @@
 200. Guess Number Higher or Lower II
 201. H-Index
 202. H-Index II
-203. Hamming Distance : Bit Manipulation
+203. Hamming Distance : Bit Manipulation (XOR)
 204. Happy Number
-205. Heaters : Real life simulation
+205. Heaters : Binary Search on heaters
 206. House Robber : [DP 1D] F[n] = max(F[n-1], F[n-2]+ A[i])
 207. House Robber II : [DP] => House robber with 2 diff ranges(0,n-2), (1,n-1)
 208. House Robber III : [DP] => Bottom up tree traversal
@@ -476,8 +476,8 @@
 476. Self Crossing
 477. Sentence Screen Fitting
 478. Sequence Reconstruction
-479. Serialize and Deserialize BST
-480. Serialize and Deserialize Binary Tree
+479. Serialize and Deserialize BST : (1. Preorder traversal + Flow pattern for index scanning for deserialization  2. BFS Q)
+480. Serialize and Deserialize Binary Tree : (1. Preorder traversal + Flow pattern for index scanning deserialization  2. BFS Q)
 481. Set Matrix Zeroes : Trick traversal(RL,LR)
 482. Set Mismatch : Swap [ move V to V-1 idx position]
 483. Shopping Offers
@@ -527,7 +527,7 @@
 527. Subtree of Another Tree
 528. Sudoku Solver
 529. Sum Root to Leaf Numbers
-530. Sum of Left Leaves
+530. Sum of Left Leaves : sum += SL(root.left, true) + SL(root.right, false); (clock pattern)
 531. Sum of Square Numbers
 532. Sum of Two Integers
 533. Summary Ranges
@@ -571,7 +571,7 @@
 571. Valid Number
 572. Valid Palindrome
 573. Valid Palindrome II
-574. Valid Parentheses
+574. Valid Parentheses : 
 575. Valid Parenthesis String
 576. Valid Perfect Square
 577. Valid Square
@@ -581,8 +581,8 @@
 581. Valid Word Square
 582. Validate Binary Search Tree
 583. Validate IP Address
-584. Verify Preorder Sequence in Binary Search Tree
-585. Verify Preorder Serialization of a Binary Tree
+584. Verify Preorder Sequence in Binary Search Tree : How to recover inorder seq from preorder seq 
+585. Verify Preorder Serialization of a Binary Tree : Link counting (non-leaf [+2(out),-1(in)],leaf[0,-1])
 586. Walls and Gates
 587. Water and Jug Problem
 588. Wiggle Sort

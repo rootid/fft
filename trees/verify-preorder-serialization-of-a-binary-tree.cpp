@@ -21,6 +21,24 @@
 //"9,#,#,1"
 //Return false
 
+
+//######################################### Link counting (non-leaf [+2(out),-1(in)],leaf[0,-1]) ######################################### 
+public boolean isValidSerialization(String preorder) {
+    String[] nodes = preorder.split(",");
+    int diff = 1;
+    for (String node: nodes) {
+        if (--diff < 0) return false; // Visit node =>  -1 counter; or (1 incoming link) link counting
+        if (!node.equals("#")) diff += 2; //if non empty node +2 for next  (2 links)
+    }
+    return diff == 0;
+}
+
+//Suppose we try to build this tree. During building, we record the difference between out degree and in degree 
+//diff = outdegree - indegree. 
+//When the next node comes, we then decrease diff by 1, because the node provides an in degree. 
+//If the node is not null, we increase diff by 2, because it provides two out degrees. 
+//If a serialization is correct, diff should never be negative and diff will be zero when finishe
+
 //######################################### Reduction with single traversal ######################################### 
 bool isValidSerialization(string preorder_str) { 
   const char* preorder = preorder_str.c_str();
@@ -64,25 +82,22 @@ bool isValidSerialization(string preorder) {
 
 //######################################### Reduction with single traversal with stack ######################################### 
 //Reduction n,#,# => #
-bool isValidSerialization(string preorder) { 
-  stack<string> s;
-  stringstream ss(preorder);
-  while (!ss.eof()) {
-      string val_str;
-      getline(ss, val_str, ',');
-      if (val_str != "#") {
-          s.push(val_str);
-      } else {  //found "#"
-        while (!s.empty() && s.top() == "#") { 
-          s.pop(); //remove '#'
-          if (s.empty()) {
-              return false;
-          }
-          s.pop(); //remove 'n/#'
-        } 
-        s.push("#"); 
+public boolean isValidSerialization(String preorder) {
+  if (preorder == null) return false;
+
+  Stack<String> st = new Stack<>();
+  String[] strs = preorder.split(",");
+  for (String curr : strs) {
+    if (curr.equals("#")) {
+      // replace a number node and its left child "#" to a "#" node.  
+      while (!st.isEmpty() && st.peek().equals("#")) {
+        st.pop();
+        if (st.isEmpty()) return false;
+        st.pop();
       }
+    }
+    st.push(curr);
   }
-  //We must left with "#"
-  return s.size() == 1 && s.top() == "#"; 
+  return st.size() == 1 && st.peek().equals("#");
 }
+
