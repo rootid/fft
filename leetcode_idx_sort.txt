@@ -47,8 +47,8 @@
 47.  Binary Tree Longest Consecutive Sequence II
 48.  Binary Tree Maximum Path Sum
 49.  Binary Tree Paths
-50.  Binary Tree Postorder Traversal
-51.  Binary Tree Preorder Traversal
+50.  Binary Tree Postorder Traversal 
+51.  Binary Tree Preorder Traversal 
 52.  Binary Tree Right Side View
 53.  Binary Tree Tilt
 54.  Binary Tree Upside Down
@@ -72,9 +72,9 @@
 72.  Closest Binary Search Tree Value II
 73.  Coin Change
 74.  Coin Path
-75.  Combination Sum
-76.  Combination Sum II
-77.  Combination Sum III
+75.  Combination Sum : Pick Next element only when current sum > target (DP : Coin change)
+76.  Combination Sum II : Pick Next element only when elem[i-1] != elem[i]
+77.  Combination Sum III : Pick Next element only when (target - current ele) > 0
 78.  Combination Sum IV
 79.  Combinations
 80.  Compare Version Numbers
@@ -286,7 +286,7 @@
 286. Lowest Common Ancestor of a Binary Tree : [Recursion, Iteration] 1. Traverse tree untill either of node found
 287. Magical String
 288. Majority Element : voting algo (freq, majjority ele)
-289. Majority Element II
+289. Majority Element II : (Selection algo n/3 place and 2n/3 place) , At least 2 Elements due to ceiling [n/3]
 290. Map Sum Pairs
 291. Matchsticks to Square
 292. Max Consecutive Ones
@@ -387,9 +387,9 @@
 387. Pascal's Triangle : [DP => 2d formula]
 388. Pascal's Triangle II : [DP => 1d formula+Trick traversal(RL,LR)]
 389. Patching Array
-390. Path Sum
-391. Path Sum II
-392. Path Sum III
+390. Path Sum : Preorder recursion 
+391. Path Sum II : Preorder DFS (Note: To add localList to list =>  list.add(new ArrayList<> localList))
+392. Path Sum III : 1. Backtracking BT(root),Trav(root.left),Trav(root.right) [T : O(n^2),S:O(n)]  2. Prefix sum from Root + Backtrack  O(n)  [eg.Find if there is a subarray with 0 sum] Map{Prefix sum from Root, # of ways to reach that sum} Check if Map[Prefix Sum - targe] exists/not
 393. Path Sum IV
 394. Peeking Iterator
 395. Perfect Number
@@ -412,7 +412,7 @@
 412. Product of Array Except Self
 413. Queue Reconstruction by Height
 414. Random Pick Index
-415. Range Addition : Trick [Differentiation, Accumulation]
+415. Range Addition : Trick [Differentiation, Accumulation/ Prefix Sum]
 416. Range Addition II : Trick [Visualize Cricket LED]
 417. Range Sum Query - Immutable
 418. Range Sum Query - Mutable

@@ -12,6 +12,32 @@
 //  [1, 1, 6]
 //]
 //
+
+//######################################### Backtrack ######################################### 
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        List<List<Integer>> resultList = new LinkedList<>();
+        Arrays.sort(candidates);
+        List<Integer> localList = new ArrayList<>();
+        int sum = 0;
+        combinationSumHelper(candidates, 0 ,resultList, localList, sum,target);
+        return resultList;
+    }
+    
+    private void combinationSumHelper(int[] candidates, int k, List<List<Integer>> resultList, List<Integer> localList, int sum, int target) {
+        if(sum > target) return;
+        int m = candidates.length;
+        if(sum == target) resultList.add(new LinkedList<>(localList));
+        for(int i=k;i<m;i++) {
+            if(i > k && candidates[i-1] == candidates[i]) continue; // skip duplicate elements
+            if(candidates[i] <= target) {
+                localList.add(candidates[i]);
+                combinationSumHelper(candidates,i+1,resultList, localList, sum + candidates[i],target);  //pick next element.
+                localList.remove(localList.size() - 1);
+            }
+        }
+    }
+
+//######################################### Backtrack ######################################### 
 void genSolution(int last_choice,int level,int choice,vector<int>&candidates,vector<int>& local_store,int& local_result
    ,int target,vector< vector<int> >&result) {
        if(local_result == target) {
@@ -19,7 +45,7 @@ void genSolution(int last_choice,int level,int choice,vector<int>&candidates,vec
        } else {
            level += 1;
              for(int i=last_choice;i<candidates.size();i++) {
-                                 if(local_result + candidates[i] <= target) {
+                 if(local_result + candidates[i] <= target) {
                 local_result += candidates[i];
                 local_store.push_back(candidates[i]);
                 genSolution(i+1,level,choice,candidates,local_store,local_result,target,result);
