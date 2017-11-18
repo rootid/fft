@@ -61,3 +61,8 @@ Hope it will help you to understand :
     
 And  so on...
 */
+
+
+int numTrees(int n) { 
+	if(n == 0) return 0;
+}

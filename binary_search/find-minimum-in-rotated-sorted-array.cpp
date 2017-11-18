@@ -4,6 +4,19 @@
 //Find the minimum element.
 //You may assume no duplicate exists in the array.
 
+//######################################### O(log n) ######################################### 
+public int findMin(int[] nums) {
+     int start = 0;
+     int end = nums.length - 1;
+     while(start < end) {
+         int mid = start + (end -  start) / 2;
+         if(nums[mid] > nums[end]) start = mid+1; //4,5,6,7,0,1,2  1. 4,5,6 2.7,0,1,2
+         else end = mid;
+     }
+     return nums[start];    
+}
+
+//######################################### O(log n) ######################################### 
 int getMin(vector<int>& nums,int start,int end) {
     while(start < end) {
         int mid = start + (end-start)/2;

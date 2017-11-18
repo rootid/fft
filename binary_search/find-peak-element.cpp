@@ -8,8 +8,23 @@
 
 #include "../headers/global.hpp"
 
-//O(n)
-//##################################################  Good  ##################################################  
+//##################################################  O(log n) + Iteration ##################################################  
+int findPeakElement(int[] num)  {
+      int low = 0;
+      int high = num.length-1;
+      while(low < high) {
+          int mid1 = low + (high-low)/2;
+          System.out.println(mid1);
+          if(num[mid1] < num[mid1+1]) 
+              low = mid1+1;
+          else
+              high = mid1;
+      }
+      return low; // [1]
+}
+
+
+//##################################################  Recursion + O(log n) ##################################################  
 int findPeakBinHelper(const vector<int>& nums,int left,int right) {
   if(left == right) {
     return left;

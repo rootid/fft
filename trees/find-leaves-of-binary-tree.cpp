@@ -7,6 +7,52 @@
 //       / \     
 //      4   5    
 //Returns [4, 5, 3], [2], [1].
+
+
+//######################################### Recursion -> Compute ht of each node ######################################### 
+public List<List<Integer>> findLeaves(TreeNode root) {
+    List<List<Integer>> res = new ArrayList<>();
+    height(root, res);
+    return res;
+}
+private int height(TreeNode node, List<List<Integer>> res){
+    if(null==node)  return -1;
+    int level = 1 + Math.max(height(node.left, res), height(node.right, res));
+    if(res.size()<level+1)  res.add(new ArrayList<>());
+    res.get(level).add(node.val);
+    return level;
+}
+
+//######################################### Pruning ######################################### 
+//simply prune the leaves at each iteration of the while loop until the root itself is prune
+public class Solution {
+    private TreeNode removeLeaves(TreeNode root, List<Integer> result)
+    {
+        if (root == null) return null;
+        if (root.left == null && root.right == null) {
+            result.add(root.val);
+            return null; //Pruning
+        }
+        root.left = removeLeaves(root.left, result);
+        root.right = removeLeaves(root.right, result);
+        return root;
+    }
+    
+    public List<List<Integer>> findLeaves(TreeNode root) {
+        List<List<Integer>> results = new ArrayList<List<Integer>>();
+        if (root == null) return results;
+        
+        while (root != null) {
+            List<Integer> leaves = new ArrayList<Integer>();
+            root = removeLeaves(root, leaves);
+            results.add(leaves);
+        }
+        
+        return results;
+    }
+}
+
+//######################################### Recursion -> Compute ht of each node ######################################### 
 //Explanation:
 //1. Removing the leaves [4, 5, 3] would result in this tree:
 //          1
@@ -40,6 +86,8 @@ vector<vector<int>> findLeaves(TreeNode* root) {
     helper(root,result);
     return result;
 }
+
+//######################################### Recursion + Dummy node ######################################### 
 void helper(TreeNode* parent,TreeNode* child,vector< vector<int> >& result,vector<int>& tmp) {
      if(child == NULL) {
          result.push_back(tmp);

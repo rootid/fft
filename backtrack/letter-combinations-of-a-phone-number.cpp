@@ -7,6 +7,40 @@
 #include "../headers/global.hpp"
 //"123": 3C1 * 3C1 * 3C1 = 27
 //"123": 3C1 * 3C1 * 2C1 = 18
+
+//######################################### Recursive + Skiena ######################################### 
+class Solution {
+
+    List<String> result;
+    
+    public List<String> letterCombinations(String digits) {
+        result = new LinkedList<>();    
+        if(digits.length() == 0) return result;
+        String[] idxMap = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        int start = 0;
+        char[] digitArr = digits.toCharArray();
+        StringBuilder sb = new StringBuilder();
+        letterCombinationsHelper(0, digitArr, idxMap, sb);
+        return result;
+    }
+    
+    public void letterCombinationsHelper(int k, char[] digitsArr, String[] idxMap, StringBuilder sb) {
+        int m = digitsArr.length;
+        if(k > m) return;
+        if(sb.length() == m && k == m) result.add(sb.toString());
+        for(int i=k;i<m;i++) {
+            int idx = digitsArr[i] - '0';
+            k += 1;
+            for(int j=0;j<idxMap[idx].length();j++) {
+                sb.append(idxMap[idx].charAt(j));
+                letterCombinationsHelper(k,digitsArr,idxMap,sb);
+                sb.setLength(sb.length() -1);
+            }
+        }
+    }
+}
+
+//######################################### Recursive + Skiena ######################################### 
 void enumerate_number(vector<string>& cv,string& ip,int k,int k1,int len,string lsv,vector<string>&sv) {
   if(k == len) {
     if(len != 0) {
@@ -24,7 +58,7 @@ void enumerate_number(vector<string>& cv,string& ip,int k,int k1,int len,string 
       lsv.pop_back();
     }
 }
-
+//######################################### Recursive ######################################### 
 vector<string> letterCombinations_rec(string digits) {
  
   vector<string> cv({"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"});

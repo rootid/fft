@@ -161,12 +161,12 @@
 161. Find K Closest Elements
 162. Find K Pairs with Smallest Sums
 163. Find Largest Value in Each Tree Row
-164. Find Leaves of Binary Tree
+164. Find Leaves of Binary Tree : 1. h(node) = 1 + max(h(node.left), h(node.right)). 2. Pruning leaves
 165. Find Median from Data Stream
-166. Find Minimum in Rotated Sorted Array
-167. Find Minimum in Rotated Sorted Array II
+166. Find Minimum in Rotated Sorted Array : (Binary Search) Find repeated mid s.t. a[mid] > a[end]
+167. Find Minimum in Rotated Sorted Array II : (Binary Search) Handle duplicates with v[start]==v[mid]==[end]
 168. Find Mode in Binary Search Tree
-169. Find Peak Element
+169. Find Peak Element : Binary Search : 
 170. Find Permutation
 171. Find Right Interval
 172. Find the Celebrity
@@ -194,7 +194,7 @@
 194. Generate Parentheses
 195. Graph Valid Tree
 196. Gray Code
-197. Group Anagrams
+197. Group Anagrams : O(N log K) {String -> List} or O(N * K) : <Freq Map> #1#2#3#0#0#0...#0 -> List
 198. Group Shifted Strings
 199. Guess Number Higher or Lower
 200. Guess Number Higher or Lower II
@@ -252,7 +252,7 @@
 252. Largest Palindrome Product
 253. Largest Rectangle in Histogram
 254. Length of Last Word : [Regex only split] (Java split function accepts only string)
-255. Letter Combinations of a Phone Number
+255. Letter Combinations of a Phone Number : Backtracking (# candidates = l(input str) * l(keypad str))
 256. Lexicographical Numbers
 257. License Key Formatting
 258. Line Reflection
@@ -401,8 +401,8 @@
 401. Permutations II
 402. Plus One
 403. Plus One Linked List
-404. Populating Next Right Pointers in Each Node
-405. Populating Next Right Pointers in Each Node II
+404. Populating Next Right Pointers in Each Node : 1. BFS 2. Recursion (h.l -> h.r, t.l->t.r, h.r->t.l)
+405. Populating Next Right Pointers in Each Node II : 1. BFS 2. BFS with dummy node + traverse/pre node
 406. Pow(x, n) : DP
 407. Power of Four : Bit Manipulation ((n & 0x55555555) == n) && ((n & (n-1)) == 0)
 408. Power of Three : Recursion
@@ -470,8 +470,8 @@
 470. Search a 2D Matrix
 471. Search a 2D Matrix II
 472. Search for a Range
-473. Search in Rotated Sorted Array
-474. Search in Rotated Sorted Array II
+473. Search in Rotated Sorted Array : 1. (Find Min index + Binary Search ) 2. [ (1. Partially sorted v[mid] > v[end] , 1.a[mid] > target || a[end] <= target {move to first half} else second half) (2. sorted array (Binary search) )  ] 3. -inf/inf,target (trick
+474. Search in Rotated Sorted Array II : 1. 473. + v[start]==v[mid]==v[end]
 475. Second Minimum Node In a Binary Tree
 476. Self Crossing
 477. Sentence Screen Fitting

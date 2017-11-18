@@ -238,6 +238,7 @@
 ./dp/burst-balloons.cpp
 ./dp/can-i-win.cpp
 ./dp/candy.cpp
+./dp/climbing-stairs.cpp
 ./dp/coin-change-ii.cpp
 ./dp/coin-change.cpp
 ./dp/coinchange.cpp
@@ -490,7 +491,6 @@
 ./strings/add-bold-tag-in-string.cpp
 ./strings/add-strings.cpp
 ./strings/anagrams-i.cpp
-./strings/anagrams.cpp
 ./strings/atoi.cpp
 ./strings/basic-calculator-ii.cpp
 ./strings/basic-calculator.cpp
@@ -508,6 +508,7 @@
 ./strings/find_uniq.cpp
 ./strings/findMinStr.cpp
 ./strings/fizz-buzz.cpp
+./strings/group-anagrams.cpp
 ./strings/group-shifted-strings.cpp
 ./strings/implement-strstr.cpp
 ./strings/implement-trie-prefix-tree.cpp
@@ -571,6 +572,7 @@
 ./tmp/android-unlock-patterns.cpp
 ./tmp/convex-polygon.cpp
 ./tmp/count-univalue-subtrees.cpp
+./tmp/cpp
 ./tmp/cpp/ptr_test.cpp
 ./tmp/data-stream-as-disjoint-intervals.cpp
 ./tmp/design-hit-counter.cpp
