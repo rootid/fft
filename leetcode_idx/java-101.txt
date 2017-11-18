@@ -54,7 +54,7 @@ Q. Use of ArrayDeque
    Collections.sort(intervalsList, (Interval a, Interval b) -> a.start - b.start);
 
 2. Reverse Sort
-Collections.sort(list, Collections.reverseOrder());
+    Collections.sort(list, Collections.reverseOrder());
 
 ######################################### Stack ######################################### 
 Deque<Character> p = new ArrayDeque<>(s.length()); //push,pop

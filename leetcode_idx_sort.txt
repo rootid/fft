@@ -364,7 +364,7 @@
 364. Number of Longest Increasing Subsequence
 365. Number of Segments in a String : [Regex only split]
 366. Odd Even Linked List
-367. One Edit Distance : [2 Pointer]
+367. One Edit Distance : [2 Pointer: Match v/s Non Match case] O(n)
 368. Ones and Zeroes
 369. Optimal Account Balancing
 370. Optimal Division
@@ -569,8 +569,8 @@
 569. Unique Word Abbreviation
 570. Valid Anagram
 571. Valid Number
-572. Valid Palindrome
-573. Valid Palindrome II
+572. Valid Palindrome : Use of Character.toUpperCase,isAlphabetic,isDigit
+573. Valid Palindrome II : Pal(s+1,e) || Pal(s,e-1)
 574. Valid Parentheses : 
 575. Valid Parenthesis String
 576. Valid Perfect Square

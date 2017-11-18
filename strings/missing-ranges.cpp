@@ -6,6 +6,50 @@
 //[-2147483648, 2147483647] -2147483648 2147483647
 //Expected output: ["-2147483647->2147483646"]
 
+//######################################### Forward Traversal  ######################################### 
+public List<String> findMissingRanges(int[] nums, int lower, int upper) {
+      List<String> list = new ArrayList<String>();
+      if(nums == null) return list;
+      int n = nums.length;
+      for(int i = 0; i <= n; i++) {
+          int lt = (i == 0) ? lower : nums[i - 1] + 1;
+          int gt = (i == n) ? upper : nums[i] - 1;
+          addRange(list, lt, gt);
+      }
+      return list;
+  }
+private void addRange(List<String> list, int lo, int hi) {
+      if(lo > hi) return;
+      else if(lo == hi) list.add(String.valueOf(lo));
+      else list.add(lo + "->" + hi);
+}
+
+
+//######################################### Traverse Backwards ######################################### 
+public List<String> findMissingRanges(int[] nums, int lower, int upper) {
+     //[0, 1, 3, 50, 75], return [“2”, “4->49”, “51->74”, “76->99”]
+    int uL = upper;
+    int lL = lower;
+    int m = nums.length - 1;
+    Deque<String> missingRangeDeque = new ArrayDeque<>();
+    while(end >= start) {
+        String missingRange = "";
+        if(nums[end] == uL) uL--;
+        else {
+            if(nums[end]+ 1 == uL)
+                missingRange += String.valueOf(nums[end]+ 1);
+            else
+                 missingRange += String.valueOf(nums[end]+ 1) + "->" + uL;
+            missingRangeDeque.push(missingRage);
+            uL = nums[end] -1;
+        }
+    }
+	return missingRangeDeque.stream().collect(Collectors.toList()); //it returns FIFO ordering not LIFO
+}
+
+
+
+//######################################### Forward traversal  ######################################### 
 vector<string> findMissingRanges(vector<int>& nums, int lower, int upper) {
     // key here: make inclusive range exclusive to avoid corner cases
     // now problem becomes finding inclusive ranges between the pair of numbers: 

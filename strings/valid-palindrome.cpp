@@ -11,7 +11,24 @@
 
 #include "../headers/global.hpp"
 
-//#################### Good
+
+//######################################### Iterative  ######################################### 
+public boolean isPalindrome(String s) {
+     char[] arr = s.toCharArray();
+     int end = s.length() -1;
+     int start = 0;
+     while(start < end) {
+         if(!Character.isDigit(arr[start]) && !Character.isAlphabetic(arr[start])) start++;
+         else if(!Character.isDigit(arr[end]) && !Character.isAlphabetic(arr[end])) end--;                   
+         else if(Character.toUpperCase(arr[start]) == Character.toUpperCase(arr[end])) {
+             start++;
+             end--;
+         } else return false;
+     }
+     return true;
+}
+
+//######################################### Iterative  ######################################### 
 bool isPalindrome(string s) {
    int i = 0, j = s.size() - 1;
    while(i < j)
@@ -25,7 +42,7 @@ bool isPalindrome(string s) {
    return true;
 }
 
-//#################### Ugly
+//#################### Ugly #################### 
 bool isValid(char c) {
   if( (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') ) {
     return true;
