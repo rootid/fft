@@ -10,6 +10,31 @@
 
 #include "../headers/global.hpp"
 
+//######################################### O(n) ######################################### 
+//Traverse the array. Do following for every index i of A[].
+//{
+//check for sign of A[abs(A[i])] ;
+//if positive then
+//   make it negative by   A[abs(A[i])]=-A[abs(A[i])];
+//else  // i.e., A[abs(A[i])] is negative
+//   this   element (ith element of list) is a repetition
+//}
+
+//Example: A[] =  {1, 1, 2, 3, 2}
+//i=0; 
+//Check sign of A[abs(A[0])] which is A[1].  A[1] is positive, so make it negative. 
+//Array now becomes {1, -1, 2, 3, 2}
+//i=1; 
+//Check sign of A[abs(A[1])] which is A[1].  A[1] is negative, so A[1] is a repetition.
+//i=2; 
+//Check sign of A[abs(A[2])] which is A[2].  A[2] is  positive, so make it negative. '
+//Array now becomes {1, -1, -2, 3, 2}
+//i=3; 
+//Check sign of A[abs(A[3])] which is A[3].  A[3] is  positive, so make it negative. 
+//Array now becomes {1, -1, -2, -3, 2}
+//i=4; 
+//Check sign of A[abs(A[4])] which is A[2].  A[2] is negative, so A[4] is a repetition
+
 vector<int> findDuplicates(vector<int>& nums) {
     vector<int> result;
     int len = nums.size();

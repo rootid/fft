@@ -12,6 +12,26 @@
  *     Interval(int s, int e) : start(s), end(e) {}
  * };
  */
+
+
+//######################################### O(n log n) ######################################### 
+public List<Interval> merge(List<Interval> intervals) {  
+    List<Interval> result = new ArrayList<>();
+    int m = intervals.size();
+    if(m == 0) return result;
+    Collections.sort(intervals, (i,j) -> i.start - j.start);
+    result.add(new Interval(intervals.get(0).start, intervals.get(0).end));
+    for(int i=1;i<intervals.size();i++) {
+        int prevEnd = result.get(result.size() -1).end;
+        if(prevEnd >= intervals.get(i).start) result.get(result.size() -1).end = Math.max(intervals.get(i).end, prevEnd);
+        else result.add(new Interval(intervals.get(i).start, intervals.get(i).end));
+    }
+    return result;
+}
+
+
+
+//######################################### O(n log n) ######################################### 
 class Solution {
     
 private :

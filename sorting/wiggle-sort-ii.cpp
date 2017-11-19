@@ -8,6 +8,57 @@
 //Follow Up:
 //Can you do it in O(n) time and/or in-place with O(1) extra space?
 #include "../headers/global.hpp"
+
+//######################################### Sort + Arrangement (even<odd) ######################################### 
+    public void wiggleSort(int[] nums) {
+        Arrays.sort(nums);
+        int n = nums.length;
+        int[] tmp = Arrays.copyOf(nums, n);
+        int i, k = (n+1)/2, j=n; //(n+1)/2 - To handle odd length
+        for(i=0; i<n; i++)
+            nums[i] = (i%2 == 1)? tmp[--j]:tmp[--k];  
+    }
+
+//######################################### Median find + Dutch partition with Wiggled indices  ######################################### 
+//
+//Original Indices:    0  1  2  3  4  5  6  7  8  9 10 11
+//Mapped Indices:      1  3  5  7  9 11  0  2  4  6  8 10
+//(its reverse mapping is)
+//
+//Mapped Indices:      0  1  2  3  4  5  6  7  8  9 10 11
+//Original Indices:    6  0  7  1  8  2  9  3 10  4 11  5   (wiggled)
+	void wiggleSort(vector<int>& nums) {
+		if (nums.empty()) {
+			return;
+		}    
+		int n = nums.size();
+		
+		// Step 1: Find the median    		
+		vector<int>::iterator nth = next(nums.begin(), n / 2);
+		nth_element(nums.begin(), nth, nums.end());
+		int median = *nth;
+
+		// Step 2: Tripartie partition within O(n)-time & O(1)-space.    		
+		auto m = [n](int idx) { return (2 * idx + 1) % (n | 1); };    		
+		int first = 0, mid = 0, last = n - 1;
+		while (mid <= last) {
+			if (nums[m(mid)] > median) {
+				swap(nums[m(first)], nums[m(mid)]);
+				++first;
+				++mid;
+			}
+			else if (nums[m(mid)] < median) {
+				swap(nums[m(mid)], nums[m(last)]);
+				--last;
+			}				
+			else {
+				++mid;
+			}
+		}
+	}   
+
+
+//######################################### Median find + Virtual indxing  ######################################### 
 void wiggleSort(vector<int>& nums) {
     int n = nums.size();
     // Find a median.
@@ -212,8 +263,7 @@ private int bsSelect(int[] nums, int k) {
 //As noted in the comment below, mid = (left + right) / 2 may overflow, so it was replaced by that ugly, but overflow-aware line.
 
 
-
-//############################################## Median of medians
+//############################################## Median of medians ############################################## 
 
 public void wiggleSort(int[] nums) {
     if (nums.length <= 1) {
@@ -319,4 +369,103 @@ private static int[] dnfPartition(int[] nums, int start, int length, int p) {
     return new int[] {l, m};
 }
 int main () {
+}
+
+//######################################### Sort + merge ######################################### 
+//Roughly speaking I put the smaller half of the numbers on the even indexes and the larger half on the odd indexes.
+
+def wiggleSort(self, nums):
+    nums.sort()
+    half = len(nums[::2])
+    nums[::2], nums[1::2] = nums[:half][::-1], nums[half:][::-1]
+
+def wiggleSort(self, nums):
+    nums.sort()
+    half = len(nums[::2]) - 1
+    nums[::2], nums[1::2] = nums[half::-1], nums[:half:-1]
+//Explanation / Proof
+//I put the smaller half of the numbers on the even indexes and the larger half on the odd indexes, both from right to left:
+//
+//Example nums = [1,2,...,7]      Example nums = [1,2,...,8] 
+//
+//Small half:  4 . 3 . 2 . 1      Small half:  4 . 3 . 2 . 1 .
+//Large half:  . 7 . 6 . 5 .      Large half:  . 8 . 7 . 6 . 5
+//--------------------------      --------------------------
+//Together:    4 7 3 6 2 5 1      Together:    4 8 3 7 2 6 1 5
+//I want:
+//
+//Odd-index numbers are larger than their neighbors.
+//Since I put the larger numbers on the odd indexes, clearly I already have:
+//
+//Odd-index numbers are larger than or equal to their neighbors.
+//Could they be "equal to"? That would require some number M to appear both in the smaller and the larger half. It would be the largest in the smaller half and the smallest in the larger half. Examples again, where S means some number smaller than M and L means some number larger than M.
+//
+//Small half:  M . S . S . S      Small half:  M . S . S . S .
+//Large half:  . L . L . M .      Large half:  . L . L . L . M
+//--------------------------      --------------------------
+//Together:    M L S L S M S      Together:    M L S L S L S M
+//You can see the two M are quite far apart. Of course M could appear more than just twice, for example:
+//
+//Small half:  M . M . S . S      Small half:  M . S . S . S .
+//Large half:  . L . L . M .      Large half:  . L . M . M . M
+//--------------------------      --------------------------
+//Together:    M L M L S M S      Together:    M L S M S M S M
+//You can see that with seven numbers, three M are no problem. And with eight numbers, four M are no problem. Should be easy to see that in general, with n numbers, floor(n/2) times M is no problem. Now, if there were more M than that, then my method would fail. But... it would also be impossible:
+//
+//If n is even, then having more than n/2 times the same number clearly is unsolvable, because you'd have to put two of them next to each other, no matter how you arrange them.
+//If n is odd, then the only way to successfully arrange a number appearing more than floor(n/2) times is if it appears exactly floor(n/2)+1 times and you put them on all the even indexes. And to have the wiggle-property, all the other numbers would have to be larger. But then we wouldn't have an M in both the smaller and the larger half.
+//So if the input has a valid answer at all, then my code will find one.
+//
+
+
+//######################################### T : O(n) , S: O(n) ######################################### 
+public class Solution {
+	public void wiggleSort(int[] nums) {
+		int median = selectKth(nums, 0, nums.length-1, nums.length%2==0 ? nums.length/2 : nums.length/2+1);
+		List<Integer> leftArr = new ArrayList<Integer>();
+		for(int i=0; i<=median; i++)
+		leftArr.add(nums[i]);
+		List<Integer> rightArr = new ArrayList<Integer>();
+		for(int i=median+1; i<nums.length; i++)
+		rightArr.add(nums[i]);
+		for(int li=leftArr.size()-1,ri=rightArr.size()-1,i=0; ri>=0; li--,ri--,i+=2) { // right is same or shorter than left
+		nums[i] = leftArr.get(li);
+		nums[i+1] = rightArr.get(ri);
+		}
+		if(nums.length%2!=0)
+		nums[nums.length-1] = leftArr.get(0);
+	}
+
+ private int selectKth(int[] nums, int start, int end, int k) {
+     int[] res = partition(nums,start,end);
+     int lb = res[0]; int hb = res[1];
+     if(k-1<lb)
+         return selectKth(nums,start,lb-1,k);
+     else if (k-1>hb)
+         return selectKth(nums,hb+1,end,k);
+     else
+         return k-1;
+ }
+ 
+ private int[] partition(int[] nums, int lb, int hb) {
+     int pVal = nums[lb]; // use random genarater is better in performance
+     int i = lb;
+     while(i<=hb) {
+         if(nums[i]==pVal)
+             i++;
+         else if(nums[i]<pVal)
+             swap(nums,i++,lb++);
+         else
+             swap(nums,i,hb--);
+     }
+     int[] res = new int[2];
+     res[0] = lb; res[1] = hb;
+     return res;
+ }
+ 
+ private void swap(int[] nums, int i, int j) {
+     int tmp = nums[i];
+     nums[i] = nums[j];
+     nums[j] = tmp;
+ }
 }

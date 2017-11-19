@@ -7,7 +7,7 @@
 7.   4 Keys Keyboard
 8.   4Sum
 9.   4Sum II
-10.  Add Binary
+10.  Add Binary : 1. Iterative (like BT traversal stack.empty || root == carry, idx a, idx b), 2. Recursive (3 cases 1,1|0,0|(1,0/0,1))
 11.  Add Bold Tag in String
 12.  Add Digits : O(1) [Congruence formula dr(n) = 1 + (n - 1) % (b-1) b = base for decimal b = 10]
 13.  Add One Row to Tree
@@ -153,7 +153,7 @@
 153. Factor Combinations
 154. Factorial Trailing Zeroes
 155. Find All Anagrams in a String
-156. Find All Duplicates in an Array
+156. Find All Duplicates in an Array 
 157. Find All Numbers Disappeared in an Array
 158. Find Bottom Left Tree Value : Clock pattern (Preorder compare ht, maintain indices in clock manner)
 159. Find Duplicate File in System
@@ -314,8 +314,8 @@
 314. Median of Two Sorted Arrays
 315. Meeting Rooms : Sorting
 316. Meeting Rooms II  : Trick [ In real, we check from our start time , Acquire + Release Count] + Real life simulation
-317. Merge Intervals
-318. Merge Sorted Array
+317. Merge Intervals : O(n log n) Sort + traversal O(n)
+318. Merge Sorted Array : Traversal backwards O(m+n)
 319. Merge Two Binary Trees
 320. Merge Two Sorted Lists
 321. Merge k Sorted Lists
@@ -399,8 +399,8 @@
 399. Permutation in String
 400. Permutations
 401. Permutations II
-402. Plus One
-403. Plus One Linked List
+402. Plus One : Last digit check < 9 eg. 99 + 1 = 100, 19+1 = 20
+403. Plus One Linked List : 1. Recursive (carry check ,use 402 property) 2. Iterative 2 pointer (p,q) p=># < 9 q = last 9 
 404. Populating Next Right Pointers in Each Node : 1. BFS 2. Recursion (h.l -> h.r, t.l->t.r, h.r->t.l)
 405. Populating Next Right Pointers in Each Node II : 1. BFS 2. BFS with dummy node + traverse/pre node
 406. Pow(x, n) : DP
@@ -410,7 +410,7 @@
 410. Predict the Winner
 411. Print Binary Tree
 412. Product of Array Except Self
-413. Queue Reconstruction by Height
+413. Queue Reconstruction by Height : Sort(absolute ht decreasing , tie : use k) + Arrange with relative pos using k
 414. Random Pick Index
 415. Range Addition : Trick [Differentiation, Accumulation/ Prefix Sum]
 416. Range Addition II : Trick [Visualize Cricket LED]
@@ -567,7 +567,7 @@
 567. Unique Paths II
 568. Unique Substrings in Wraparound String
 569. Unique Word Abbreviation
-570. Valid Anagram
+570. Valid Anagram : 1. Sort Max(O(n log n, m log m)) | 2. Char[] array  O(n) 3. O(1) HashMap
 571. Valid Number
 572. Valid Palindrome : Use of Character.toUpperCase,isAlphabetic,isDigit
 573. Valid Palindrome II : Pal(s+1,e) || Pal(s,e-1)
@@ -585,8 +585,8 @@
 585. Verify Preorder Serialization of a Binary Tree : Link counting (non-leaf [+2(out),-1(in)],leaf[0,-1])
 586. Walls and Gates
 587. Water and Jug Problem
-588. Wiggle Sort
-589. Wiggle Sort II
+588. Wiggle Sort : nums[0]<= nums[1]>= nums[2]<= nums[3]. i.e even <= odd odd >= even , <=,>= allows us to perform it in O(n) Only check odd,even idx + condition
+589. Wiggle Sort II : nums[0]< nums[1]> nums[2]< nums[3] 1. O(n)- selection algo find median 2. O(n log n) - sort
 590. Wiggle Subsequence
 591. Wildcard Matching
 592. Word Abbreviation

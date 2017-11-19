@@ -389,7 +389,7 @@
 ./maths/3sum.cpp
 ./maths/4sum.cpp
 ./maths/add-digits.cpp
-./maths/addBinary.cpp
+./maths/add-binary.cpp
 ./maths/base-7.cpp
 ./maths/basicCalulator.cpp
 ./maths/bulb-switcher-ii.cpp
@@ -490,7 +490,7 @@
 ./stack/remove-k-digits.cpp
 ./strings/add-bold-tag-in-string.cpp
 ./strings/add-strings.cpp
-./strings/anagrams-i.cpp
+./strings/valid-anagram.cpp
 ./strings/atoi.cpp
 ./strings/basic-calculator-ii.cpp
 ./strings/basic-calculator.cpp
