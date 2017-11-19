@@ -15,6 +15,40 @@
 
 #include "../headers/global.hpp"
 
+
+//######################################### 1 Stack ######################################### 
+public class MinStack {
+
+  long min = Integer.MAX_VALUE;
+  Stack<Long> stack;
+
+  public MinStack() {
+    stack = new Stack<>();
+  }
+
+  public void push(int x) {
+    stack.push((long) x - min);
+    min = Math.min(x, min);
+  }
+
+  public void pop() {
+    if(stack.isEmpty()) {
+        return;
+    }
+    min = Math.max(min - stack.pop(), min);
+  }
+
+  public int top() {
+    return (int)Math.max(stack.peek() + min, min) ;
+  }
+
+  public int getMin() {
+    return (int)min;
+  }
+
+}
+
+//######################################### 2 Stacks ######################################### 
 class MinStack {
 public:
     /** initialize your data structure here. */

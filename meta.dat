@@ -14,7 +14,6 @@
 ./2d/lonely-pixel-i.cpp
 ./2d/lonely-pixel-ii.cpp
 ./2d/range-addition-ii.cpp
-./2d/rotate_image-2.cpp
 ./2d/rotate_image.cpp
 ./2d/search-a-2d-matrix-ii.cpp
 ./2d/search-a-2d-matrix.cpp
@@ -264,8 +263,8 @@
 ./dp/max-sum-of-sub-matrix-no-larger-than-k.cpp
 ./dp/maximal-rectangle.cpp
 ./dp/maximal-square.cpp
+./dp/maximum-product-subarray.cpp
 ./dp/maximum-sum-of-3-non-overlapping-subarrays.cpp
-./dp/maxProductDP.cpp
 ./dp/maxProductTraverse.cpp
 ./dp/minimum-path-sum.cpp
 ./dp/myPow.cpp
@@ -387,9 +386,10 @@
 ./maths/3sum-closest.cpp
 ./maths/3sum-smaller.cpp
 ./maths/3sum.cpp
+./maths/4sum-ii.cpp
 ./maths/4sum.cpp
-./maths/add-digits.cpp
 ./maths/add-binary.cpp
+./maths/add-digits.cpp
 ./maths/base-7.cpp
 ./maths/basicCalulator.cpp
 ./maths/bulb-switcher-ii.cpp
@@ -400,7 +400,6 @@
 ./maths/excel-sheet-column-number.cpp
 ./maths/factorial-trailing-zeroes.cpp
 ./maths/find-the-derangement-of-an-array.cpp
-./maths/foursum.cpp
 ./maths/fraction-addition-and-subtraction.cpp
 ./maths/fraction-to-recurring-decimal.cpp
 ./maths/integerBreak.cpp
@@ -490,7 +489,6 @@
 ./stack/remove-k-digits.cpp
 ./strings/add-bold-tag-in-string.cpp
 ./strings/add-strings.cpp
-./strings/valid-anagram.cpp
 ./strings/atoi.cpp
 ./strings/basic-calculator-ii.cpp
 ./strings/basic-calculator.cpp
@@ -560,6 +558,7 @@
 ./strings/subString.cpp
 ./strings/text-justification.cpp
 ./strings/trie.cpp
+./strings/valid-anagram.cpp
 ./strings/valid-number.cpp
 ./strings/valid-palindrome-ii.cpp
 ./strings/valid-palindrome.cpp

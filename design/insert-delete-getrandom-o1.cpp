@@ -21,6 +21,54 @@
 //// Since 1 is the only number in the set, getRandom always return 1.
 //randomSet.getRandom();
 ////
+
+//######################################### Map + List ######################################### 
+//1. Use map and list
+//2. Use list for random function
+class RandomizedSet {
+
+    Map<Integer,Integer> valueIdxMap;
+    List<Integer> valueList;
+    Random random;
+    
+    /** Initialize your data structure here. */
+    public RandomizedSet() {
+        valueIdxMap = new HashMap<>();
+        valueList = new ArrayList<>();
+        random = new Random();
+    }
+    
+    /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
+    public boolean insert(int val) {
+        if(valueIdxMap.containsKey(val)) return false;
+        valueList.add(val);
+        valueIdxMap.put(val, valueList.size() -1);
+        return true;
+    }
+    
+    /** Removes a value from the set. Returns true if the set contained the specified element. */
+    public boolean remove(int val) {
+          if(!valueIdxMap.containsKey(val)) return false;
+          int idxReadyToUse = valueIdxMap.get(val);
+          
+          valueList.set(idxReadyToUse,valueList.get(valueList.size() -1));
+          valueIdxMap.put(valueList.get(idxReadyToUse), idxReadyToUse);
+            
+          //Remove last element
+          valueList.remove(valueList.size() -1);
+          valueIdxMap.remove(val);
+          return true;
+    }
+    
+    /** Get a random element from the set. */
+    //Must act on the index
+    public int getRandom() {
+        return valueList.get(random.nextInt(valueList.size()));
+    }
+}
+
+
+
 class RandomizedSet {
 public:
     /** Initialize your data structure here. */
