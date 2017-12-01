@@ -19,3 +19,16 @@ vector<string> generatePossibleNextMoves(string s) {
     }
     return result;
 }
+
+
+List<String> generatePossibleNextMoves(String s) {
+    List<String> result = new LinkedList<>();
+	if(s == null || s.length() <= 1) return result;
+    int len = s.length();
+    for(int i=0;i<len - 1;) {
+        if(s.charAt(i) == s.charAt(++i) && s.charAt(i) == '+') {
+            result.add(s.substring(0,i-1)+ "--" + s.substring(i+1) );
+        }
+    }
+    return result;
+}

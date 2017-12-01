@@ -10,6 +10,40 @@
 
 #include "../headers/global.hpp"
 
+//######################################### 4 Indices  ######################################### 
+public int[][] generateMatrix(int n) {
+    assert n >= 0;
+    int[][] rst = new int[n][n];
+    int rStart = 0;
+    int rEnd = n-1;
+    int cStart = 0;
+    int cEnd = n-1;
+    int idx = 1;
+    while(rStart<= rEnd && cStart <= cEnd) {
+        for(int i=cStart;i<=cEnd;i++) 
+            rst[rStart][i] = idx++;
+            
+        rStart++;
+        for(int i=rStart;i<=rEnd;i++)
+            rst[i][cEnd] = idx++;
+
+        cEnd--;
+        if(rStart <= rEnd) {
+            for(int i=cEnd;i>=cStart;i--)
+                rst[rEnd][i] = idx++;
+        }
+        rEnd--;
+        if(cStart <= cEnd) {
+             for(int i=rEnd;i>=rStart;i--)
+                rst[i][cStart] = idx++;
+                
+        }
+        cStart++;
+    }
+    return rst;
+}
+
+//######################################### 4 Indices  ######################################### 
 vector<vector<int> > generateMatrix(int n) {
       vector<vector <int> > rv(n,vector<int>(n));
       int rowMin = 0;

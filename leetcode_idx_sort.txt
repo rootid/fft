@@ -237,7 +237,7 @@
 237. Jump Game II  : BFS
 238. K Inverse Pairs Array
 239. K-diff Pairs in an Array
-240. K-th Smallest in Lexicographical Order
+240. K-th Smallest in Lexicographical Order : BFS and DFS to minimize the unnecessary moves
 241. Keyboard Row
 242. Kill Process
 243. Kth Largest Element in an Array : D&C [quickSelect]
@@ -253,7 +253,7 @@
 253. Largest Rectangle in Histogram
 254. Length of Last Word : [Regex only split] (Java split function accepts only string)
 255. Letter Combinations of a Phone Number : Backtracking (# candidates = l(input str) * l(keypad str))
-256. Lexicographical Numbers
+256. Lexicographical Numbers : DFS (Multilevel D-Ary tree) D = [0-9]
 257. License Key Formatting
 258. Line Reflection
 259. Linked List Cycle
@@ -356,7 +356,7 @@
 356. Nth Digit
 357. Number Complement
 358. Number of 1 Bits : Bit Manipulation [Java why not to use n > 0 (n!=0) , >>> , n & 1 == 1 trick]
-359. Number of Boomerangs
+359. Number of Boomerangs : HT (# of permutations of size 2 from n different EQUIDISTANT points is nP2 = n!/(n-2)! = n * (n-1).)
 360. Number of Connected Components in an Undirected Graph
 361. Number of Digit One
 362. Number of Islands
@@ -430,7 +430,7 @@
 430. Relative Ranks
 431. Remove 9
 432. Remove Boxes
-433. Remove Duplicate Letters
+433. Remove Duplicate Letters : O(n^2) , counter + chop-off string from R-L untill this case is valid "xyza....yzx" 
 434. Remove Duplicates from Sorted Array
 435. Remove Duplicates from Sorted Array II
 436. Remove Duplicates from Sorted List
@@ -460,8 +460,8 @@
 460. Reverse Words in a String III
 461. Roman to Integer
 462. Rotate Array
-463. Rotate Function
-464. Rotate Image
+463. Rotate Function : f(i) = f(i - 1) - SUM(A -> D) + N * A[i - 1]
+464. Rotate Image : 90deg Clock- T-D swap, Trasponse  AntiClock- L-R swap, Transponse (Ring-by-Ring solution)
 465. Rotate List
 466. Russian Doll Envelopes
 467. Same Tree : [Recursion]
@@ -504,8 +504,8 @@
 504. Sort List
 505. Sort Transformed Array
 506. Sparse Matrix Multiplication
-507. Spiral Matrix
-508. Spiral Matrix II
+507. Spiral Matrix : 4 Way traversal (l->r(rS++),r->d(cE--),d->l(rE--),l->u(cS++)) + Bound checks with (rS<=rE,cS<=cE) (Visualize)
+508. Spiral Matrix II : = 507
 509. Split Array Largest Sum
 510. Split Array into Consecutive Subsequences
 511. Split Array with Equal Sum

@@ -5,6 +5,25 @@
 
 #include<iostream>
 
+//############################### DFS #####################
+List<Integer> lst = new ArrayList<>();
+
+private void generate(int k, int n) {
+    if(k > n) return;
+    lst.add(k);
+    for(int j=0;j<=9;j++) {
+        if(10 * k + j > n)  break;
+        generate(10 * k + j, n);
+    }
+}
+
+public List<Integer> lexicalOrder(int n) {
+    for(int i=1;i<=9;i++) {
+        generate(i, n);
+    }
+    return lst;
+}
+
 //############################### DFS GOOD #####################
 vector<int> lexicalOrder(int n) {
     vector<int> res;

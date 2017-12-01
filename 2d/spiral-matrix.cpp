@@ -14,6 +14,39 @@
 #include<vector>
 using namespace std;
 
+//######################################### 4 indices solution ######################################### 
+public List<Integer> spiralOrder(int[][] matrix) {
+       List<Integer> rsLst = new LinkedList<>();
+       
+       int m = matrix.length;
+       if(m == 0) return rsLst;
+       int n = matrix[0].length;
+       int rStart = 0;
+       int rEnd = m-1;
+       int cStart = 0;
+       int cEnd = n-1;
+       
+       while(rStart<= rEnd && cStart <= cEnd) {
+           for(int i=cStart;i<=cEnd;i++) 
+               rsLst.add(matrix[rStart][i]);
+           rStart++;
+           for(int i=rStart;i<=rEnd;i++)
+               rsLst.add(matrix[i][cEnd]);
+           cEnd--;
+           if(rStart <= rEnd) {
+               for(int i=cEnd;i>=cStart;i--)
+                   rsLst.add(matrix[rEnd][i]);
+           }
+           rEnd--;
+           if(cStart <= cEnd) {
+                for(int i=rEnd;i>=rStart;i--)
+                   rsLst.add(matrix[i][cStart]);
+           }
+           cStart++;
+       }
+       return rsLst;
+   }
+
 //with 2 indexes
 vector<int> spiralOrder(vector<vector<int> >& matrix) {
   int m = matrix.size();

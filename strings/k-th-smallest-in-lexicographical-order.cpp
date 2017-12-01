@@ -11,10 +11,67 @@
 
 
 //https://discuss.leetcode.com/topic/64624/concise-easy-to-understand-java-5ms-solution-with-explaination/6
-//################################### Denary tree ################################### 
 
 #include "../headers/global.hpp"
 
+
+//################################### Denary tree ################################### 
+//calculate the steps between curr and curr + 1 (neighbor nodes in same level), in order to skip some unnecessary moves.
+int distance(long curr, long nxt, int n) {
+    int dist = 0;
+    while(curr <= n) {
+        dist += Math.min(n+1, nxt) - curr;
+        curr *= 10;
+        nxt *= 10;
+    }
+    return dist;
+}
+
+public int findKthNumber(int n, int k) {
+    int curr = 1;
+    k = k -1;
+    while(k > 0) {
+        int dist = distance(curr, curr+1, n);
+        if(dist <= k) {
+            curr++; //Go wide (BFS)
+            k -= dist;
+        } else {
+            curr *= 10; //Go deep (DFS)
+            k -= 1;
+        }
+    }
+    return curr;
+}
+
+
+//################################### Denary tree ################################### 
+int result = Integer.MIN_VALUE;
+int level = Integer.MIN_VALUE;
+
+void findKthNumberHelper(int i, int n) {
+    if(level == 1) {
+        result = i;
+        return;
+    }
+    for(int j=0;j<=9;j++) {
+        if(i*10+j > n) break;
+        level -= 1;
+        findKthNumberHelper(i*10+j,n);
+    }
+}
+
+public int findKthNumber(int n, int k) {
+    level = k;
+    for(int i=1;i<=9;i++) {
+        if(result != Integer.MIN_VALUE) return result;
+        findKthNumberHelper(i,n);
+        level -= 1;
+    }
+    return result;
+}
+
+
+//################################### Denary tree ################################### 
 int helper(long curr, long next, long n) {  //This compute the level differene between curr and next
   int result = 0;
   //eg. compute distance between 1,2 @same level

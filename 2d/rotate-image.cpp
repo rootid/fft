@@ -5,6 +5,52 @@
 
 #include "../headers/global.hpp"
 
+
+//######################################### 90deg + Ring by Ring ######################################### 
+def rotate(self, matrix):
+    n = len(matrix)
+    for l in xrange(n / 2):
+        r = n - 1 - l
+        for p in xrange(l, r):
+            q = n - 1 - p  # or q = ~p 
+            cache = matrix[l][p]
+            matrix[l][p] = matrix[q][l]
+            matrix[q][l] = matrix[r][q]
+            matrix[r][q] = matrix[p][r]
+            matrix[p][r] = cache
+
+//######################################### 90deg + Ring by Ring ######################################### 
+public void rotate(int[][] matrix) {
+    int n = matrix.length;
+    for (int i = 0; i < n / 2; ++i) {
+        int j = n - 1 - i;
+        for (int p = i; p < j; ++p) {
+            int q = n - 1 - p;
+            int cache = matrix[i][p];
+            matrix[i][p] = matrix[q][i];
+            matrix[q][i] = matrix[j][q];
+            matrix[j][q] = matrix[p][j];
+            matrix[p][j] = cache;
+        }
+    }
+}
+
+
+//######################################### 90deg ######################################### 
+//Rotate 90deg clockwise (Ring-By-Ring solution)
+public void rotate(int[][] matrix) {
+    int n = matrix.length, temp;
+	for(int i = 0; i < n / 2; i++)
+		for(int j = i; j < n - i - 1; j++) {
+			temp = matrix[i][j];
+			matrix[i][j] = matrix[n - j - 1][i];
+			matrix[n - j - 1][i] = matrix[n - i - 1][n - j - 1];
+			matrix[n - i - 1][n - j - 1] = matrix[j][n - i - 1];
+			matrix[j][n - i - 1] = temp;
+		}
+}
+
+//######################################### 90deg ######################################### 
 void rotate(vector<vector<int>>& matrix) {
       int m = matrix.size();
        for(int i=m-1;i>=0;i--) {
