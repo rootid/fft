@@ -14,7 +14,7 @@
 ./2d/lonely-pixel-i.cpp
 ./2d/lonely-pixel-ii.cpp
 ./2d/range-addition-ii.cpp
-./2d/rotate_image.cpp
+./2d/rotate-image.cpp
 ./2d/search-a-2d-matrix-ii.cpp
 ./2d/search-a-2d-matrix.cpp
 ./2d/set-matrix-zeroes.cpp
@@ -417,7 +417,7 @@
 ./maths/quotient-calculate.cpp
 ./maths/rectangle-area.cpp
 ./maths/reverse-integer.cpp
-./maths/rotateFunction.cpp
+./maths/rotate-function.cpp
 ./maths/self-crossing.cpp
 ./maths/strobogrammatic-number-ii.cpp
 ./maths/strobogrammatic-number.cpp
@@ -571,7 +571,6 @@
 ./tmp/android-unlock-patterns.cpp
 ./tmp/convex-polygon.cpp
 ./tmp/count-univalue-subtrees.cpp
-./tmp/cpp
 ./tmp/cpp/ptr_test.cpp
 ./tmp/data-stream-as-disjoint-intervals.cpp
 ./tmp/design-hit-counter.cpp
@@ -641,13 +640,13 @@
 ./trees/longest-univalue-path.cpp
 ./trees/lowest-common-ancestor-of-a-binary-search-tree.cpp
 ./trees/lowest-common-ancestor-of-a-binary-tree.cpp
-./trees/maxdepth.cpp
 ./trees/maximum-binary-tree.cpp
+./trees/maximum-depth-of-binary-tree.cpp
 ./trees/maximum-width-of-binary-tree.cpp
 ./trees/maxSumBT.cpp
 ./trees/merge-two-binary-trees.cpp
-./trees/minDepth.cpp
 ./trees/minimum-absolute-difference-in-bst.cpp
+./trees/minimum-depth-of-binary-tree.cpp
 ./trees/most-frequent-subtree-sum.cpp
 ./trees/path-sum-ii.cpp
 ./trees/path-sum-iii.cpp

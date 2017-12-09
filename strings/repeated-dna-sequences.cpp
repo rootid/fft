@@ -7,6 +7,40 @@
 //["AAAAACCCCC", "CCCCCAAAAA"].
 
 
+//################### Customized hashMap ################### 
+  public List<String> findRepeatedDnaSequences(String s) {
+        Map<Integer, Boolean> m = new HashMap<>();
+        List<String> result = new LinkedList<>();
+        for (int t = 0, i = 0; i < s.length(); i++) {
+            t = t << 3 & 0x3FFFFFFF | s.charAt(i) & 7;
+            if (m.containsKey(t)) {
+                if (m.get(t)) {
+                    result.add(s.substring(i - 9, i+1));
+                    m.put(t, false);
+                }
+            } else m.put(t, true);
+        }
+
+      return result;
+    }
+
+
+//################### HashMap ################### 
+//"AAAAAAAAAAA" o/p = AAAAAAAAAA (As AAAAAAAAAA occured at idx=0,1)
+  public List<String> findRepeatedDnaSequences(String s) {
+        List<String> result = new LinkedList<>();
+        Map<String,Boolean> map = new HashMap<>();
+        for(int i=0;i<=s.length() - 10;i++) {
+            String tmp = s.substring(i,i+10);
+            if(map.containsKey(tmp)) {
+                if(map.get(tmp))
+                    result.add(tmp);
+                map.put(tmp, false);
+            } else map.put(tmp, true);
+        }
+      return result;
+    }
+
 //################### Encode with last 3 bits ################### 
 vector<string> findRepeatedDnaSequences(string s) {
       unordered_map<int,int> umap;
@@ -18,6 +52,7 @@ vector<string> findRepeatedDnaSequences(string s) {
       }
       return r;
 }
+
 
 //################## use boolean instead of int counter as a value (SPACE Eff) ################## 
 vector<string> findRepeatedDnaSequences(string s) {

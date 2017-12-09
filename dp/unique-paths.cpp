@@ -3,6 +3,23 @@
 //The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
 //How many possible unique paths are there?
 
+
+//######################################### TC: O(m*n) ######################################### 
+    public int uniquePaths(int m, int n) {
+        //Total # of subproblems : O(mn)
+        int[][] path = new int[m][n];   
+        Arrays.fill(path[0], 1); //R->D
+        Arrays.fill(path[m-1], 1); //D->R
+        for(int i=1;i<m;i++) {
+            path[i][0] = 1; //R->D
+            path[i][n-1] = 1; //D->R
+        }
+        for(int i=1;i<m;i++)
+            for(int j=1;j<n;j++) 
+                path[i][j] = path[i-1][j] + path[i][j-1];
+        return path[m-1][n-1];
+    }
+
 //######################################### TC: O(m*n) ######################################### 
 public int uniquePaths(int m, int n) {
 	//Totol # of subproblems : O(mn)
@@ -14,6 +31,8 @@ public int uniquePaths(int m, int n) {
             path[i][j] = path[i-1][j] + path[i][j-1];
     return path[m-1][n-1];
 }
+
+
 
 
 //########################################## Space O(n^2) ########################################## 

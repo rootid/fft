@@ -38,14 +38,14 @@ public class Solution {
         
 		Queue<int[]> pQueue = new LinkedList<>();
         Queue<int[]> aQueue = new LinkedList<>();
-        for(int i=0; i<n; i++){ //Vertical border
+        for(int i=0; i<n; i++){ //left-right border
             pQueue.offer(new int[]{i, 0});
             aQueue.offer(new int[]{i, m-1});
 			//matrix indicates that ocean water is reachable to borders
             pacific[i][0] = true; 
             atlantic[i][m-1] = true;
         }
-        for(int i=0; i<m; i++){ //Horizontal border
+        for(int i=0; i<m; i++){ //top-downborder
             pQueue.offer(new int[]{0, i});
             aQueue.offer(new int[]{n-1, i});
             pacific[0][i] = true;  

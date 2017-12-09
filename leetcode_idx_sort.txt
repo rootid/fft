@@ -40,15 +40,15 @@
 40.  Best Time to Buy and Sell Stock IV
 41.  Best Time to Buy and Sell Stock with Cooldown
 42.  Binary Search Tree Iterator : [Tree traversal (inorder),Stack ]
-43.  Binary Tree Inorder Traversal : [Tree traversal (inorder),Stack ]
+43.  Binary Tree Inorder Traversal : [push node -> go node.left]
 44.  Binary Tree Level Order Traversal : [3 Approaches  => 1. visit-nextvisit, 2. 2push-1pop/#(NV)= 2* #(PV),3. recursion/DFS]
 45.  Binary Tree Level Order Traversal II : [3 Approaches => visit-nextvisit, 2push-1pop/#(NV)= 2* #(PV), recursion/DFS]
 46.  Binary Tree Longest Consecutive Sequence
 47.  Binary Tree Longest Consecutive Sequence II
 48.  Binary Tree Maximum Path Sum
 49.  Binary Tree Paths
-50.  Binary Tree Postorder Traversal 
-51.  Binary Tree Preorder Traversal 
+50.  Binary Tree Postorder Traversal : Keep track of last visited, push node -> go node.left
+51.  Binary Tree Preorder Traversal  : [push node.right -> go node.left]
 52.  Binary Tree Right Side View
 53.  Binary Tree Tilt
 54.  Binary Tree Upside Down
@@ -77,7 +77,7 @@
 77.  Combination Sum III : Pick Next element only when (target - current ele) > 0
 78.  Combination Sum IV
 79.  Combinations
-80.  Compare Version Numbers
+80.  Compare Version Numbers : split + compare number by number "NOTE-Do not handle 1.02 and 1.1 correctly"
 81.  Complex Number Multiplication
 82.  Concatenated Words
 83.  Construct Binary Tree from Inorder and Postorder Traversal
@@ -85,7 +85,7 @@
 85.  Construct Binary Tree from String
 86.  Construct String from Binary Tree
 87.  Construct the Rectangle
-88.  Container With Most Water
+88.  Container With Most Water :  max width to max height
 89.  Contains Duplicate
 90.  Contains Duplicate II
 91.  Contains Duplicate III
@@ -128,11 +128,11 @@
 128. Design Snake Game
 129. Design Tic-Tac-Toe
 130. Design Twitter
-131. Detect Capital
+131. Detect Capital : Regex use of matches
 132. Diagonal Traverse
 133. Diameter of Binary Tree
 134. Different Ways to Add Parentheses
-135. Distinct Subsequences
+135. Distinct Subsequences : (S,T) -> Count # of chars in T in S keeping the order of T in S (left-right)
 136. Distribute Candies
 137. Divide Two Integers
 138. Dota2 Senate
@@ -298,7 +298,7 @@
 298. Maximum Average Subarray I
 299. Maximum Average Subarray II
 300. Maximum Binary Tree
-301. Maximum Depth of Binary Tree
+301. Maximum Depth of Binary Tree : Update ht when leaf node found
 302. Maximum Distance in Arrays
 303. Maximum Gap
 304. Maximum Length of Pair Chain
@@ -322,8 +322,8 @@
 322. Min Stack : 1. 2 stacks 2. 1 stack(Long) - store the gap between stack.push((long) currentEle - min), during pop update min = Math.max(min - stack.pop(), min);
 323. Minesweeper
 324. Mini Parser
-325. Minimum Absolute Difference in BST
-326. Minimum Depth of Binary Tree
+325. Minimum Absolute Difference in BST : Keep track of predecessor + Minimum value in Flow manner + Inorder traversal
+326. Minimum Depth of Binary Tree : Update ht when leaf node found
 327. Minimum Factorization
 328. Minimum Height Trees
 329. Minimum Index Sum of Two Lists
@@ -338,7 +338,7 @@
 338. Missing Number : Swap,XOR
 339. Missing Ranges
 340. Most Frequent Subtree Sum
-341. Move Zeroes
+341. Move Zeroes : Trick nums[i]!=0 -> swap(nums,i,idx++)
 342. Moving Average from Data Stream
 343. Multiply Strings
 344. N-Queens
@@ -359,8 +359,8 @@
 359. Number of Boomerangs : HT (# of permutations of size 2 from n different EQUIDISTANT points is nP2 = n!/(n-2)! = n * (n-1).)
 360. Number of Connected Components in an Undirected Graph
 361. Number of Digit One
-362. Number of Islands
-363. Number of Islands II
+362. Number of Islands : DFS(Start from land(1) move in 2 directions left(1,0),down(0,-1) ), UF(2d -> 1d)
+363. Number of Islands II : Quick-union not quick find TODO - Path compression 
 364. Number of Longest Increasing Subsequence
 365. Number of Segments in a String : [Regex only split]
 366. Odd Even Linked List
@@ -370,7 +370,7 @@
 370. Optimal Division
 371. Out of Boundary Paths
 372. Output Contest Matches
-373. Pacific Atlantic Water Flow
+373. Pacific Atlantic Water Flow : 
 374. Paint Fence
 375. Paint House
 376. Paint House II
@@ -441,7 +441,7 @@
 441. Remove Linked List Elements
 442. Remove Nth Node From End of List
 443. Reorder List
-444. Repeated DNA Sequences
+444. Repeated DNA Sequences : substring(startidx-Inclusive,endIdx-Exclusive) Default hash or Customized Hash (Use last 2 bits  t = t << 3 & 0x3FFFFFFF | s.charAt(i) & 7;)
 445. Repeated Substring Pattern
 446. Replace Words
 447. Reshape the Matrix
@@ -454,7 +454,7 @@
 454. Reverse Pairs
 455. Reverse String : [2 Pointer, in Built StringBuilder]
 456. Reverse String II : [2 Pointer]
-457. Reverse Vowels of a String
+457. Reverse Vowels of a String : [2 Pointer]
 458. Reverse Words in a String 
 459. Reverse Words in a String II
 460. Reverse Words in a String III
@@ -534,7 +534,7 @@
 534. Super Pow
 535. Super Ugly Number
 536. Super Washing Machines
-537. Surrounded Regions
+537. Surrounded Regions : BFS Pick Boundry O's -> V -> BFS -> Check V's -> Change it O else X
 538. Swap Nodes in Pairs
 539. Symmetric Tree
 540. Tag Validator
@@ -554,7 +554,7 @@
 554. Trapping Rain Water II
 555. Triangle
 556. Trim a Binary Search Tree
-557. Two Sum
+557. Two Sum : Map <Reamining Val, Idx>
 558. Two Sum II - Input array is sorted
 559. Two Sum III - Data structure design
 560. Two Sum IV - Input is a BST
@@ -563,15 +563,15 @@
 563. Ugly Number II
 564. Unique Binary Search Trees : Catalan # - C(n) += C(i-1)* C(n-i)  1. O(3^N)-  2. O(N^2) - memoization
 565. Unique Binary Search Trees II
-566. Unique Paths
-567. Unique Paths II
+566. Unique Paths : Total # of subproblems - O(mn) (2 ways R->D,D->R)
+567. Unique Paths II : Total # of subproblems - O(mn) (2 ways R->D,D->R + Check obstacles)
 568. Unique Substrings in Wraparound String
 569. Unique Word Abbreviation
 570. Valid Anagram : 1. Sort Max(O(n log n, m log m)) | 2. Char[] array  O(n) 3. O(1) HashMap
 571. Valid Number
 572. Valid Palindrome : Use of Character.toUpperCase,isAlphabetic,isDigit
 573. Valid Palindrome II : Pal(s+1,e) || Pal(s,e-1)
-574. Valid Parentheses : 
+574. Valid Parentheses : Stack
 575. Valid Parenthesis String
 576. Valid Perfect Square
 577. Valid Square
@@ -579,11 +579,11 @@
 579. Valid Triangle Number
 580. Valid Word Abbreviation
 581. Valid Word Square
-582. Validate Binary Search Tree
+582. Validate Binary Search Tree : 1. Inorder traversal + Keep track of prev Node with flow pattern, 2. Min,Max
 583. Validate IP Address
 584. Verify Preorder Sequence in Binary Search Tree : How to recover inorder seq from preorder seq 
 585. Verify Preorder Serialization of a Binary Tree : Link counting (non-leaf [+2(out),-1(in)],leaf[0,-1])
-586. Walls and Gates
+586. Walls and Gates :  537-Pick boundry points while here BFS - Pick 0s -> BFS + Distance update 2. DFS from all 0s + Distance update, Start from 0 and update distance in each iteration
 587. Water and Jug Problem
 588. Wiggle Sort : nums[0]<= nums[1]>= nums[2]<= nums[3]. i.e even <= odd odd >= even , <=,>= allows us to perform it in O(n) Only check odd,even idx + condition
 589. Wiggle Sort II : nums[0]< nums[1]> nums[2]< nums[3] 1. O(n)- selection algo find median 2. O(n log n) - sort

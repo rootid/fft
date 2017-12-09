@@ -3,6 +3,24 @@
 //Note: You may not slant the container and n is at least 2.
 
 //############################################ Reduction ############################################ 
+  //Max width to Max height
+    public int maxArea(int[] height) {
+        int maxArea = 0;
+        int n = height.length;
+        int low = 0;
+        int high = n-1;
+        while(low < high) {
+            int len = high - low;
+            int ht = Math.min(height[low], height[high]);
+            maxArea = Math.max(maxArea, len*ht);
+            if(height[low] < height[high]) low++;
+            else high--;
+        }
+        return maxArea;
+    }
+
+
+//############################################ Reduction ############################################ 
 //Idea same as  bfs/trapping-rain-water.cpp
 int maxArea(vector<int>& height) {
     int water = 0;

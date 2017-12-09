@@ -15,6 +15,45 @@
 
 #include "../headers/global.hpp"
 
+//######################## Keep track of predecessor value ######################## 
+class Solution {
+    int minDiff = Integer.MAX_VALUE;
+    int preVal =  Integer.MAX_VALUE;
+    
+    public void getMinimumDifferenceHelper(TreeNode root) {
+         if(root == null) return;
+         getMinimumDifferenceHelper(root.left);
+         minDiff = Math.min(minDiff , Math.abs(preVal - root.val));
+         preVal = root.val;
+         getMinimumDifferenceHelper(root.right); 
+         
+    }
+    
+    public int getMinimumDifference(TreeNode root) {
+       getMinimumDifferenceHelper(root);
+       return minDiff;  
+    }
+}
+
+//######################## Keep track of predecessor value ######################## 
+public class Solution {
+    private int min = Integer.MAX_VALUE;
+    private TreeNode pre = null;
+    public int getMinimumDifference(TreeNode root) {
+        inorder(root);
+        return min;
+    }
+    public void inorder(TreeNode root){
+        if(root == null) return;
+        inorder(root.left);
+        if(pre != null){
+            min = Math.min(min, root.val-pre.val);
+        }
+        pre = root;
+        inorder(root.right);
+    }
+}
+
 
 //######################## With only predecessor ######################## 
 void helper(TreeNode *node, TreeNode *&prev, int &ans) {

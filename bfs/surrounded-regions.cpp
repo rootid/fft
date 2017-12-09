@@ -12,6 +12,51 @@
 //X X X X
 //X O X X
 #include "../headers/global.hpp"
+
+//######################################### BFS ######################################### 
+//Pick boundry points
+	int[] dirs = {0,1,0,-1,0};
+
+    public void solve(char[][] board) {
+        int m = board.length;
+        if(m == 0) return;
+        int n = board[0].length;
+        Queue<Integer> q = new ArrayDeque<>();
+        for(int i=0;i<m;i++) {
+            if(board[i][0] == 'O') tryMarking(board,i,0,q);
+            if(board[i][n-1] == 'O') tryMarking(board,i,n-1,q);
+        }
+        for(int j=0;j<n;j++) {
+            if(board[0][j] == 'O') tryMarking(board,0,j,q);
+            if(board[m-1][j] == 'O') tryMarking(board,m-1,j,q);
+        }
+        while(!q.isEmpty()) {
+            int point = q.poll();
+            int x = point/n; int y = point % n;
+            for(int i=0;i<dirs.length-1;i++) {
+				int dx = dirs[i]+x; int dy = dirs[i+1]+y;
+                if( dx >=0 && dx < m && dy >=0 && dy < n)
+                    tryMarking(board, dx, dy, q);
+            }
+        }
+        for(int i=0;i<m;i++) {
+            for(int j=0;j<n;j++) {
+                if(board[i][j] == 'V') board[i][j] = 'O';
+                else board[i][j] = 'X';
+            }
+        }
+    }
+  
+    private void tryMarking(char[][] board, int i, int j, Queue<Integer> q) {
+        int n = board[0].length;
+        if(board[i][j] == 'O') {
+            board[i][j] = 'V';
+            q.offer(i*n + j);
+        }
+    }
+
+
+//######################################### BFS ######################################### 
 void boundry_traversal(vector<vector<char> >& board,int l,int w) {
  
   int m = board.size();

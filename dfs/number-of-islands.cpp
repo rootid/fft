@@ -62,7 +62,6 @@ class UnionFind {
                 }  
             }  
         }
-		
         public void union(int node1, int node2) {  
             int find1 = find(node1);
             int find2 = find(node2);

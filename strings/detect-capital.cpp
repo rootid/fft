@@ -15,6 +15,19 @@
 #include "../headers/global.hpp"
 
 
+//######################################### Regex  ######################################### 
+public boolean detectCapitalUse(String word) {
+    if(word.matches("[A-Z][a-z]+") || word.matches("[A-Z]+") || word.matches("[a-z]+")) return true;
+    return false;
+}
+
+
+//######################################### Compact regex ######################################### 
+public boolean detectCapitalUse(String word) {
+    return word.matches("[A-Z]+|[a-z]+|[A-Z][a-z]+");
+}
+
+//######################################### Primitive ######################################### 
 //def detectCapitalUse(self, word):
 //    return word.isupper() or word.islower() or word.istitle()
 

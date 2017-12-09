@@ -4,6 +4,37 @@
 #include<iostream>
 //This solution o/p  {1,2} = 2 : as it thinks shortest path is from 
 //root->NON-NULL NODE
+
+
+//######################################### Update height when leaf node found ######################################### 
+public int minDepth(TreeNode root) {
+    if(root == null) return 0;
+    int left = minDepth(root.left);
+    int right = minDepth(root.right);
+    return (left == 0 || right == 0) ? left + right + 1: Math.min(left,right) + 1;
+}
+
+//######################################### Update height when leaf node found ######################################### 
+class Solution {
+	int minHt = Integer.MAX_VALUE;
+    
+    private void minDepthHelper(TreeNode root,int ht) {
+        if(root == null) return;
+        ht = ht + 1;
+        if(root.left == null && root.right == null) 
+            minHt = Math.min(ht, minHt);  
+        minDepthHelper(root.left,ht);
+        minDepthHelper(root.right,ht);
+    }
+    
+    public int minDepth(TreeNode root) {
+        if(root == null) return 0;
+        minDepthHelper(root,0);
+        return minHt;
+    }
+}
+
+//######################################### Update height when leaf node found ######################################### 
 int minDepth(TreeNode* root) {
   if(!root) {
     return 0;

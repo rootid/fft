@@ -5,6 +5,43 @@
 //S = "rabbbit", T = "rabbit"
 //Return 3.
 
+
+//########################### DP ########################### 
+//S: [acdabefbc] and T: [ab]
+//first we check with a:
+//            *  *
+//       S = [acdabefbc]
+//memST[1] = [0111222222]
+//then we check with ab:
+//
+//                *  * ]
+//       S = [acdabefbc]
+//memST[1] = [0111222222]
+//memST[2] = [0000022244]
+//
+//And the result is 4, as the distinct subsequences are:
+//      S = [a   b    ]
+//      S = [a      b ]
+//      S = [   ab    ]
+//      S = [   a   b ]
+
+public int numDistinct(String s, String t) {
+    int m = t.length();
+    int n = s.length();
+    if(n == 0) return 0;
+    int[][] memST = new int[m+1][n+1];
+    Arrays.fill(memST[0],1);
+    for(int i=1;i<=t.length();i++) {
+        for(int j=1;j<=s.length();j++) {
+            if(t.charAt(i-1) == s.charAt(j-1)) 
+                memST[i][j] = memST[i-1][j-1] + memST[i][j-1];
+            else 
+                memST[i][j] = memST[i][j-1];
+        }
+    }
+    return memST[m][n];
+}
+
 //########################### DP ########################### 
 int numDistinct(string s, string t) { 
     int m = t.length(), n = s.length();

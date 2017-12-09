@@ -9,7 +9,21 @@
 
 using namespace std;
 
+//######################################### Trick ######################################### 
+public void moveZeroes(int[] nums) {
+     int m = nums.length;
+     int idx = 0;
+     for(int i=0;i<m;i++) {
+         if(nums[i] != 0) swap(nums,i,idx++);
+     }
+ }
+ private void swap(int[] nums, int i,int j) {
+     int tmp = nums[i];
+     nums[i] = nums[j];
+     nums[j] = tmp;
+ }
 
+//######################################### Trick ######################################### 
 void moveZeroes(vector<int>& nums) {
   int len = nums.size();
   int idx = 0; 

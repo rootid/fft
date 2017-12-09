@@ -64,6 +64,7 @@ int get_root (vector<int>& id, int i) {
 }
 
 //######################################### Union find  ######################################### 
+//TODO : If we just visit 2 directions left and down it should work
 int[][] dirs = {{0, 1}, {1, 0}, {-1, 0}, {0, -1}};
 public List<Integer> numIslands2(int m, int n, int[][] positions) {
     List<Integer> result = new ArrayList<>();
