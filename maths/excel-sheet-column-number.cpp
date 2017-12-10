@@ -13,6 +13,26 @@
 #include<iostream>
 #include<math.h>
 using namespace std;
+
+//######################################### Iteration ######################################### 
+public int titleToNumber(String s) {
+	int result = 0;
+	for (int i = 0; i < s.length(); result = result * 26 + (s.charAt(i) - 'A' + 1), i++);
+	return result;
+}
+//######################################### Iteration ######################################### 
+public int titleToNumber(String s) {
+  int result = 0;
+  for(int i=0;i<s.length();i++) {
+    result *= 26;
+    char tmp = (char) (s.charAt(i) - 'A' + 1);
+    result += tmp;
+  }
+  return result;
+}
+
+
+//######################################### Iteration ######################################### 
 int titleToNumber(string s) {
     int len = s.size();
     int no = 0;

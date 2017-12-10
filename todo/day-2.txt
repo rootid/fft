@@ -1,0 +1,124 @@
+#################################################################################
+377. Palindrome Linked List
+    Given a singly linked list, determine if it is a palindrome.
+    Follow up:
+    Could you do it in O(n) time and O(1) space?
+
+#################################################################################
+378. Palindrome Number
+
+    Determine whether an integer is a palindrome. Do this without extra space.
+    click to show spoilers.
+    Some hints:
+    Could negative integers be palindromes? (ie, -1)
+    If you are thinking of converting the integer to string, note the restriction of using extra space.
+    You could also try reversing an integer. However, if you have solved the problem "Reverse Integer", 
+    you know that the reversed integer might overflow. How would you handle such case?
+    There is a more generic way of solving this problem.
+
+#################################################################################
+382. Palindrome Permutation
+    Given a string, determine if a permutation of the string could form a palindrome.
+    For example,
+    "code" -> False, "aab" -> True, "carerac" -> True.
+    Hint:
+    Consider the palindromes of odd vs even length. What difference do you notice?
+    Count the frequency of each character.
+    If each character occurs even number of times, then it must be a palindrome.
+    How about character which occurs odd number of times?
+
+#################################################################################
+383. Palindrome Permutation II
+    Palindrome Permutation II
+    Given a string s, return all the palindromic permutations (without duplicates) of it.
+    Return an empty list if no palindromic permutation could be form.
+    For example:
+    Given s = "aabb", return ["abba", "baab"].
+    Given s = "abc", return [].
+
+
+#################################################################################
+379. Palindrome Pairs
+    Given a list of unique words, find all pairs of distinct indices (i, j) in the given list, 
+    so that the concatenation of the two words, i.e. words[i] + words[j] is a palindrome.
+
+    Example 1:
+    Given words = ["bat", "tab", "cat"]
+    Return [[0, 1], [1, 0]]
+    The palindromes are ["battab", "tabbat"]
+    Example 2:
+    Given words = ["abcd", "dcba", "lls", "s", "sssll"]
+    Return [[0, 1], [1, 0], [3, 2], [2, 4]]
+    The palindromes are ["dcbaabcd", "abcddcba", "slls", "llssssll"]
+
+#################################################################################
+384. Palindromic Substrings
+    Given a string, your task is to count how many palindromic substrings in this string.
+    The substrings with different start indexes or end indexes are counted as different substrings even they consist of same characters.
+    Example 1:
+    Input: "abc"
+    Output: 3
+    Explanation: Three palindromic strings: "a", "b", "c".
+    Example 2:
+    Input: "aaa"
+    Output: 6
+    Explanation: Six palindromic strings: "a", "a", "a", "aa", "aa", "aaa".
+    Note:
+    The input string length won't exceed 1000.
+
+#################################################################################
+380. Palindrome Partitioning
+    Given a string s, partition s such that every substring of the partition is a palindrome.
+    Return all possible palindrome partitioning of s.
+    For example, given s = "aab",
+    Return
+    [
+      ["aa","b"],
+      ["a","a","b"]
+    ]
+
+#################################################################################
+381. Palindrome Partitioning II
+    Return the minimum cuts needed for a palindrome partitioning of s.
+    For example, given s = "aab",
+    Return 1 since the palindrome partitioning ["aa","b"] could be produced using 1 cut.
+
+#################################################################################
+572. Valid Palindrome : Use of Character.toUpperCase,isAlphabetic,isDigit
+    Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
+    For example,
+    "A man, a plan, a canal: Panama" is a palindrome.
+    "race a car" is not a palindrome.
+    Note:
+    Have you consider that the string might be empty? This is a good question to ask during an interview.
+    For the purpose of this problem, we define empty string as valid palindrome.
+
+#################################################################################
+573. Valid Palindrome II : Pal(s+1,e) || Pal(s,e-1)
+
+    Given a non-empty string s, you may delete at most one character. Judge whether you can make it a palindrome.
+    Example 1:
+    Input: "aba"
+    Output: True
+    Example 2:
+    Input: "abca"
+    Output: True
+    Explanation: You could delete the character 'c'.
+    Note:
+    The string will only contain lowercase characters a-z. The maximum length of the string is 50000.
+
+#################################################################################
+10 - Problems
+377. Palindrome Linked List
+378. Palindrome Number
+382. Palindrome Permutation
+383. Palindrome Permutation II
+379. Palindrome Pairs
+384. Palindromic Substrings
+380. Palindrome Partitioning
+381. Palindrome Partitioning II
+572. Valid Palindrome 
+573. Valid Palindrome II 
+#################################################################################
+
+vim:tw=90:et:norl:

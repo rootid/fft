@@ -5,6 +5,11 @@ using namespace std;
 
 ///https://en.wikipedia.org/wiki/Digital_root#Congruence_formula
 
+public int addDigits(int num) {
+    int base = 10;
+    return 1 + (num - 1) % (base - 1);
+}
+
 int addDigits(int num) {
    if(num < 9) {
         return num;

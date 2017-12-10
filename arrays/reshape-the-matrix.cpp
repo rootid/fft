@@ -29,6 +29,26 @@
 //The given r and c are all positive.
 //
 //matrix[index / width][index % width] 
+
+
+//######################################### matrix[index / width][index % width]  ######################################### 
+public int[][] matrixReshape(int[][] nums, int r, int c) {
+    int m = nums.length;
+    int n = nums[0].length;
+    int[][] result = new int[r][c];
+    if(r*c != m*n) return nums;
+    for(int i=0;i<m;i++) {
+        for(int j=0;j<n;j++) {
+            int tmp = i*n + j;
+            int ii = tmp/c;
+            int jj = tmp%c;;
+            result[ii][jj] = nums[i][j];
+        }
+    }
+    return result;
+}
+
+//######################################### matrix[index / width][index % width]  ######################################### 
 vector<vector<int>> matrixReshape(vector<vector<int>>& nums, int r, int c) { 
   if(nums.empty()) { 
     return nums; 

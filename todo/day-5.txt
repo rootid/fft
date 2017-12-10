@@ -1,0 +1,204 @@
+#################################################################################
+329. Minimum Index Sum of Two Lists
+    Suppose Andy and Doris want to choose a restaurant for dinner, and they both have a list of favorite restaurants represented by strings.
+    You need to help them find out their common interest with the least list index sum. If there is a choice tie between answers, output all of them with no order requirement. You could assume there always exists an answer.
+    Example 1:
+    Input:
+    ["Shogun", "Tapioca Express", "Burger King", "KFC"]
+    ["Piatti", "The Grill at Torrey Pines", "Hungry Hunter Steakhouse", "Shogun"]
+    Output: ["Shogun"]
+    Explanation: The only restaurant they both like is "Shogun".
+    Example 2:
+    Input:
+    ["Shogun", "Tapioca Express", "Burger King", "KFC"]
+    ["KFC", "Shogun", "Burger King"]
+    Output: ["Shogun"]
+    Explanation: The restaurant they both like and have the least index sum is "Shogun" with index sum 1 (0+1).
+    Note:
+    1. The length of both lists will be in the range of [1, 1000].
+    2. The length of strings in both lists will be in the range of [1, 30].
+    3. The index is starting from 0 to the list length minus 1.
+    4. No duplicates in both lists.
+
+#################################################################################
+333. Minimum Path Sum
+    Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
+    Note: You can only move either down or right at any point in time.
+    Example 1:
+    [[1,3,1],
+     [1,5,1],
+     [4,2,1]]
+    Given the above grid map, return 7. Because the path 1→3→1→1→1 minimizes the sum.
+
+#################################################################################
+334. Minimum Size Subarray Sum
+    Given an array of n positive integers and a positive integer s, find the minimal length of a contiguous subarray of which the sum ≥ s. If there isn't one, return 0 instead.
+    For example, given the array [2,3,1,2,4,3] and s = 7,
+    the subarray [4,3] has the minimal length under the problem constraint.
+    click to show more practice.
+    More practice:
+    If you have figured out the O(n) solution, try coding another solution of which the time complexity is O(n log n).
+
+#################################################################################
+346. Nested List Weight Sum
+    Given a nested list of integers, return the sum of all integers in the list weighted by their depth.
+    Each element is either an integer, or a list -- whose elements may also be integers or other lists.
+    Example 1:
+    Given the list [[1,1],2,[1,1]], return 10. (four 1's at depth 2, one 2 at depth 1)
+    Example 2:
+    Given the list [1,[4,[6]]], return 27. (one 1 at depth 1, one 4 at depth 2, and one 6 at depth 3; 1 + 4*2 + 6*3 = 27)
+    /**
+     * // This is the interface that allows for creating nested lists.
+     * // You should not implement it, or speculate about its implementation
+     * class NestedInteger {
+     *   public:
+     *     // Return true if this NestedInteger holds a single integer, rather than a nested list.
+     *     bool isInteger() const;
+     *
+     *     // Return the single integer that this NestedInteger holds, if it holds a single integer
+     *     // The result is undefined if this NestedInteger holds a nested list
+     *     int getInteger() const;
+     *
+     *     // Return the nested list that this NestedInteger holds, if it holds a nested list
+     *     // The result is undefined if this NestedInteger holds a single integer
+     *     const vector<NestedInteger> &getList() const;
+     * };
+     */
+
+#################################################################################
+340. Most Frequent Subtree Sum
+    Given the root of a tree, you are asked to find the most frequent subtree sum. The subtree sum of a node is defined as the sum of all the node values formed by the subtree rooted at that node (including the node itself). So what is the most frequent subtree sum value? If there is a tie, return all the values with the highest frequency in any order.
+    Examples 1
+    Input:
+      5
+     /  \
+    2   -3
+    return [2, -3, 4], since all the values happen only once, return all of them in any order.
+    Examples 2
+    Input:
+      5
+     /  \
+    2   -5
+    return [2], since 2 happens twice, however -5 only occur once.
+    Note: You may assume the sum of values in any subtree is in the range of 32-bit signed integer.
+
+#################################################################################
+347. Nested List Weight Sum II
+    Given a nested list of integers, return the sum of all integers in the list weighted by their depth.
+    Each element is either an integer, or a list -- whose elements may also be integers or other lists.
+    Different from the previous question where weight is increasing from root to leaf, now the weight is defined from bottom up. i.e., the leaf level integers have weight 1, and the root level integers have the largest weight.
+    Example 1:
+    Given the list [[1,1],2,[1,1]], return 8. (four 1's at depth 1, one 2 at depth 2)
+    Example 2:
+    Given the list [1,[4,[6]]], return 17. (one 1 at depth 3, one 4 at depth 2, and one 6 at depth 1; 1*3 + 4*2 + 6*1 = 17) 
+
+#################################################################################
+385. Partition Equal Subset Sum
+
+    Given a non-empty array containing only positive integers, find if the array can be partitioned into two subsets such that the sum of elements in both subsets is equal.
+    Note:
+    1. Each of the array element will not exceed 100.
+    2. The array size will not exceed 200.
+    Example 1:
+    Input: [1, 5, 11, 5]
+    Output: true
+    Explanation: The array can be partitioned as [1, 5, 5] and [11].
+    Example 2:
+    Input: [1, 2, 3, 5]
+    Output: false
+    Explanation: The array cannot be partitioned into equal sum subsets.
+
+#################################################################################
+390. Path Sum : Preorder recursion 
+    Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum.
+    For example:
+    Given the below binary tree and sum = 22,
+                  5
+                 / \
+                4   8
+               /   / \
+              11  13  4
+             /  \      \
+            7    2      1
+    return true, as there exist a root-to-leaf path 5->4->11->2 which sum is 22.
+
+#################################################################################
+391. Path Sum II : Preorder DFS (Note: To add localList to list =>  list.add(new ArrayList<> localList))
+    Given a binary tree and a sum, find all root-to-leaf paths where each path's sum equals the given sum.
+    For example:
+    Given the below binary tree and sum = 22,
+                  5
+                 / \
+                4   8
+               /   / \
+              11  13  4
+             /  \    / \
+            7    2  5   1
+    return
+    [
+       [5,4,11,2],
+       [5,8,4,5]
+    ]
+
+#################################################################################
+392. Path Sum III : 1. Backtracking BT(root),Trav(root.left),Trav(root.right) [T : O(n^2),S:O(n)]  2. Prefix sum from Root + Backtrack  O(n)  [eg.Find if there is a subarray with 0 sum] Map{Prefix sum from Root, # of ways to reach that sum} Check if Map[Prefix Sum - targe] exists/not
+    You are given a binary tree in which each node contains an integer value.
+    Find the number of paths that sum to a given value.
+    The path does not need to start or end at the root or a leaf, but it must go downwards (traveling only from parent nodes to child nodes).
+    The tree has no more than 1,000 nodes and the values are in the range -1,000,000 to 1,000,000.
+    Example:
+    root = [10,5,-3,3,2,null,11,3,-2,null,1], sum = 8
+          10
+         /  \
+        5   -3
+       / \    \
+      3   2   11
+     / \   \
+    3  -2   1
+    Return 3. The paths that sum to 8 are:
+    1.  5 -> 3
+    2.  5 -> 2 -> 1
+    3. -3 -> 11
+
+#################################################################################
+393. Path Sum IV
+    If the depth of a tree is smaller than 5, then this tree can be represented by a list of three-digits integers.
+    For each integer in this list:
+    The hundreds digit represents the depth D of this node, 1 <= D <= 4.
+    The tens digit represents the position P of this node in the level it belongs to, 1 <= P <= 8. The position is the same as that in a full binary tree.
+    The units digit represents the value V of this node, 0 <= V <= 9.
+    Given a list of ascending three-digits integers representing a binary with the depth smaller than 5. You need to return the sum of all paths from the root towards the leaves.
+    Example 1:
+    Input: [113, 215, 221]
+    Output: 12
+    Explanation: 
+    The tree that the list represents is:
+        3
+       / \
+      5   1
+    The path sum is (3 + 5) + (3 + 1) = 12.
+    Example 2:
+    Input: [113, 221]
+    Output: 4
+    Explanation: 
+    The tree that the list represents is: 
+        3
+         \
+          1
+    The path sum is (3 + 1) = 4.
+
+#################################################################################
+11 - Problem
+329. Minimum Index Sum of Two Lists
+333. Minimum Path Sum
+334. Minimum Size Subarray Sum
+346. Nested List Weight Sum
+340. Most Frequent Subtree Sum
+347. Nested List Weight Sum II
+385. Partition Equal Subset Sum
+390. Path Sum 
+391. Path Sum II 
+392. Path Sum III 
+393. Path Sum IV
+#################################################################################
+vim:tw=90:et:norl:

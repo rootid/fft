@@ -512,7 +512,7 @@
 ./strings/implement-trie-prefix-tree.cpp
 ./strings/integer-to-english-words.cpp
 ./strings/is_subseq.cpp
-./strings/isomorphicString.cpp
+./strings/isomorphic-strings.cpp
 ./strings/k-th-smallest-in-lexicographical-order.cpp
 ./strings/length-of-last-word.cpp
 ./strings/license-key-formatting.cpp
@@ -571,6 +571,7 @@
 ./tmp/android-unlock-patterns.cpp
 ./tmp/convex-polygon.cpp
 ./tmp/count-univalue-subtrees.cpp
+./tmp/cpp
 ./tmp/cpp/ptr_test.cpp
 ./tmp/data-stream-as-disjoint-intervals.cpp
 ./tmp/design-hit-counter.cpp
@@ -589,7 +590,7 @@
 ./tmp/word-pattern-ii.cpp
 ./tmp/word-squares.cpp
 ./traversal/1-bit-and-2-bit-characters.cpp
-./traversal/moveZeros.cpp
+./traversal/move-zeroes.cpp
 ./traversal/remove-duplicates-from-sorted-array-ii.cpp
 ./traversal/remove-duplicates-from-sorted-array.cpp
 ./traversal/removeElement.cpp

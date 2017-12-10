@@ -1,0 +1,1551 @@
+
+
+
+#################################################################################
+Generalized Abbreviation	
+
+
+#################################################################################
+Generate Parentheses	
+	Given n pairs of parentheses, write a function to generate all 
+	combinations of well-formed parentheses.
+	For example, given n = 3, a solution set is:
+	[
+	  "((()))",
+	  "(()())",
+	  "(())()",
+	  "()(())",
+	  "()()()"
+	]
+
+#################################################################################
+ Generalized Abbreviation
+    Write a function to generate the generalized abbreviations of a word.
+    Example:
+    Given word = "word", return the following list (order does not matter):
+    ["word", "1ord", "w1rd", "wo1d", "wor1", "2rd", "w2d", "wo2", "1o1d", "1or1", "w1r1", "1o2", "2r1", "3d", "w3", "4"]
+    for k size word , total # of words = 2^k
+    000 -> abc -> abc
+    001 -> ab_ -> ab1
+    010 -> a_c -> a1c
+    011 -> a__ -> a2
+    100 -> _bc -> 1bc
+    101 -> _b_ -> 1b1
+    110 -> __c -> 2c
+    111 -> ___ -> 3
+
+#################################################################################
+Letter Combinations of a Phone Number	
+    Given a digit string, return all possible letter combinations that the number could represent.
+    A mapping of digit to letters (just like on the telephone buttons) is given below.
+    Input:Digit string "23"
+    Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
+    Note:
+    Although the above answer is in lexicographical order, your answer could be in any order you want.
+
+#################################################################################
+Restore IP Addresses	
+    Given a string containing only digits, restore it by returning all possible valid IP address combinations.
+    For example:
+    Given "25525511135",
+    return ["255.255.11.135", "255.255.111.35"]. (Order does not matter)
+
+#################################################################################
+N-Queens
+    The n-queens puzzle is the problem of placing n queens on an n×n chessboard such that no two queens attack each other.
+    Given an integer n, return all distinct solutions to the n-queens puzzle.
+    Each solution contains a distinct board configuration of the n-queens' placement, where 'Q' and '.' both indicate a queen and an empty space respectively.
+    For example,
+    There exist two distinct solutions to the 4-queens puzzle:
+    [
+     [".Q..",       Solution 1
+      "...Q",
+      "Q...",
+      "..Q."],
+     ["..Q.",       Solution 2
+      "Q...",
+      "...Q",
+      ".Q.."]
+    ]
+
+#################################################################################
+N-Queens II
+    Instead outputting board configurations, return the total number of distinct solutions.
+
+    https:    www.cs.utexas.edu/users/EWD/transcriptions/EWD03xx/EWD316.9.html#contents
+    Things to consider
+    1.At max,# of queens in the ROW = 1.
+    2.At max,# of queens in the col = 1
+    3.At max,# of queen in the diagonal = 1. (upward + downward)
+
+#################################################################################
+Valid Sudoku	
+Write a program to solve a Sudoku puzzle by filling the empty cells.
+
+Empty cells are indicated by the character '.'.
+
+You may assume that there will be only one unique solution.
+
+
+A sudoku puzzle...
+
+
+...and its solution numbers marked in red.
+
+#################################################################################
+Generate Parentheses 
+    Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+    For example, given n = 3, a solution set is:
+    [
+      "((()))",
+      "(()())",
+      "(())()",
+      "()(())",
+      "()()()"
+    ]
+Hint : T(n) = 2 T(n-1)
+
+#################################################################################
+Restore IP Addresses
+    Given a string containing only digits, restore it by returning all possible valid IP address combinations.
+    For example:
+    Given "25525511135",
+    return ["255.255.11.135", "255.255.111.35"]. (Order does not matter)
+
+Hint : O(3^4)
+
+#################################################################################
+Hamming Distance
+    The Hamming distance between two integers is the number of positions at which the
+    corresponding bits are different.
+    Given two integers x and y, calculate the Hamming distance.
+    Note:
+    0 ≤ x, y < 231.
+    Example:
+    Input: x = 1, y = 4
+    Output: 2
+    Explanation:
+    1   (0 0 0 1)
+    4   (0 1 0 0)
+           ↑   ↑
+    The above arrows point to positions where the corresponding bits are different.
+
+#################################################################################
+Number of 1 Bits
+Write a function that takes an unsigned integer and returns the number of ’1' bits it has (also known as the Hamming weight).
+For example, the 32-bit integer ’11' has binary representation 00000000000000000000000000001011, so the function should return 3.
+
+#################################################################################
+
+
+#################################################################################
+LRU Cache (HahsMap + LL)
+    Design and implement a data structure for Least Recently Used (LRU) cache. 
+    It should support the following operations: get and put.
+    get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.
+    put(key, value) - Set or insert the value if the key is not already present. 
+    When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.
+    Follow up:
+    Could you do both operations in O(1) time complexity?
+    Example:
+    LRUCache cache = new LRUCache( 2 /* capacity */ );
+    cache.put(1, 1);
+    cache.put(2, 2);
+    cache.get(1);            returns 1
+    cache.put(3, 3);         evicts key 2
+    cache.get(2);            returns -1 (not found)
+    cache.put(4, 4);         evicts key 1
+    cache.get(1);            returns -1 (not found)
+    cache.get(3);            returns 3
+    cache.get(4);            returns 4
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache obj = new LRUCache(capacity);
+ * int param_1 = obj.get(key);
+ * obj.put(key,value);
+ */
+
+#################################################################################
+LFU Cache (Frequency + Age)
+//First frquency compare and then age bit compare
+    Design and implement a data structure for Least Frequently Used (LFU) cache. 
+    It should support the following operations: get and put.
+    get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.
+    put(key, value) - Set or insert the value if the key is not already present. When the cache reaches its capacity,
+    it should invalidate the least frequently used item before inserting a new item. 
+    For the purpose of this problem, when there is a tie (i.e., two or more keys that have the same frequency), the least recently used key would be evicted.
+    Follow up:
+    Could you do both operations in O(1) time complexity?
+    Example:
+    LFUCache cache = new LFUCache( 2 /* capacity */ );
+    cache.put(1, 1);
+    cache.put(2, 2);
+    cache.get(1);            returns 1
+    cache.put(3, 3);         evicts key 2
+    cache.get(2);            returns -1 (not found)
+    cache.get(3);            returns 3.
+    cache.put(4, 4);         evicts key 1.
+    cache.get(1);            returns -1 (not found)
+    cache.get(3);            returns 3
+    cache.get(4);            returns 
+
+#################################################################################
+Partition Equal Subset Sum
+   Given a non-empty array containing only positive integers, find if the array can be partitioned into 
+    two subsets such that the sum of elements in both subsets is equal.
+    Note:
+    Each of the array element will not exceed 100.
+    The array size will not exceed 200.
+    Example 1:
+    Input: [1, 5, 11, 5]
+    Output: true
+    Explanation: The array can be partitioned as [1, 5, 5] and [11].
+    Example 2:
+    Input: [1, 2, 3, 5]
+    Output: false
+    Explanation: The array cannot be partitioned into equal sum subsets.
+    
+    The maximum possible sum is O(N^2). That makes DP O(N^3), 
+    and backtracking is still O(2^N). 
+    Even when N is around 20 they should be on about the same level, 
+    for larger N backtracking should be prohibitively slow! And there are test cases as large as 50 elements.
+
+Given a string S, and an integer K, rearrange the string such that similar characters are at least K distance apart.
+
+Example:
+
+S = AAABBBCC, K = 3
+Result : ABCABCABC (all 'A's are 3 distance apart, similarly with B's and C's)
+
+S = AAABC, K=2 : Not possible. (EDIT : k=3 is not possible).
+
+S = AAADBBCC, K = 2:
+Result: ABCABCDA
+
+#################################################################################
+Amazing number
+
+Define amazing number as: its value is less than or equal to its index. Given a circular array, find the starting position, such that the total number of amazing numbers in the array is maximized. 
+Example 1: 0, 1, 2, 3 
+Ouptut: 0. When starting point at position 0, all the elements in the array are equal to its index. So all the numbers are amazing number. 
+Example 2: 1, 0 , 0 
+Output: 1. When starting point at position 1, the array becomes 0, 0, 1. All the elements are amazing number. 
+If there are multiple positions, return the smallest one. 
+
+should get a solution with time complexity less than O(N^2)
+// int[] a = {4, 3, 6, 8, 0, 3, 2, 3};
+// 6  7  0  1  2  3  4  5 = 6
+// 7  0  1  2  3  4  5  6 = 5
+// 4  5  6  7  0  1  2  3 = 6
+
+
+
+#################################################################################
+Linked list in reverse in linear time (O(n)) and less than linear space (space<(O(n))
+Given the linked list : 4-5-12-1-3
+Your program should print : 3-1-12-5-4
+Break the list into two halves by advancing to the middle node, 
+recursively print the second half in reverse, then recursively print the first half in reverse.
+
+T(n) = 2 T(n/2) + n/2
+
+Space should be O(log n).
+
+EDIT: Oops, I missed the linear time complexity, this is not linear, it's O(n log n).
+
+#################################################################################
+Considering that I'ld would like to spread a promotion message across all people in twitter. 
+Assuming the ideal case, if a person tweets a message, then every follower will re-tweet the message.
+You need to find the minimum number of people to reach out (for example, who doesn't follow anyone etc) 
+so that your promotion message is spread out across entire network in twitter.
+Also, we need to consider loops like, if A follows B, B follows C, C follows D, D follows A (A -> B -> C -> D -> A) 
+then reaching only one of them is sufficient to spread your message.
+Input: A 2x2 matrix like below. In this case, a follows b, b follows c, c follows a.
+
+    a b c
+a  1 1 0
+b  0 1 1
+c  1 0 1
+Output: List of people to be reached to spread out message across everyone in the network.
+
+//For each unvisited node, add it 
+//to the sender list and search all nodes including visited nodes starting from it, 
+//mark unvisited nodes as visited, if a sender is seen, remove it from the sender list.
+//O(n^2)
+
+//1. Min # of people = 1 
+//2. Max # of people = n-1
+//3. BFS for # people * C( # of people * Total # of People)
+
+This is a very interesting graph problem, here is what I would do:
+step 1. Build a directed graph based on the input people (nodes) and their relationship (edges).
+step 2. Find strongly connected components (SCCs) in the graph. Let's use the wikipedia's graph example, 
+in that case, there are 3 SCCs: (a, b, e), (c, d, h) and (f, g). There are two famous algorithms for getting the SCCs: 
+Kosaraju's algorithm and Tarjan's algorithm.
+step 3. Pick one of the nodes from the SCCs we get: a, c, f, now these 3 nodes form a DAG, we just need to do topological sort for them, eventually a is the root node in the path (or stack), and we can let a spread the message and guarantee all other people will get it.
+Sometimes, there could be several topological paths, and the root nodes of those paths will be the minimum people to reach out to spread the message.
+
+Why strongly connected components only? You could have A->B->C which doesn't form a "strongly connected" component. I would imagine a "connected" component works better for this case.
+
+In case there truly weren't cycles, which isn't explicitly stated int the question, we could use topological sorting.
+Step3 would then have to account for the fact that after topological sorting is done, we might end up with multiple root nodes per connected component. Gathering all these root nodes up we'll have a final set and consequent count.
+
+
+There is an edge from a to b iff b follows a. (this represent the information flow)
+If we systematically perform BFS on every not visited node, we can safely delete every unvisited node we discover except the root since these discovered nodes doesn't contribute to the answer.
+In the end simply print the nodes not deleted. They are the minimum set of people to reach.
+
+#################################################################################
+Given a sorted list of integers, square the elements and give the output in sorted order.
+Eg. Consider the list [-3, -1, 0, 2, 4], which contains negative numbers, squaring 
+the values would return [9, 1, 0, 2, 4], that isn't sorted.
+
+public static int[] getSortedSequence(int[] arr) {
+   int high = arr.length();
+   int low = 0;
+   int[] result = new int[high];
+   high -= 1
+   int idx = high;
+   while(low <= high) {
+       if(Math.abs(arr[low]) >= Math.abs(arr[high])) {
+           result[idx] = arr[low] * arr[low];
+           low++;
+       } else {
+           result[idx] = arr[high] * arr[high];
+           high--;
+       }
+       idx++;
+   }
+   return result;
+}
+
+
+#################################################################################
+Find all words [A-Z] in a dictionary (about 1M words) that are made of a 
+subset (in any order) of the chars in the input parameter [A-Z]. 
+ex: input "ACRAT" (10 to 20 chars, up to 30 worst case) 
+matching words: "A", "CAR", "ACA", "ART", "RAC". 
+non-matching words: "BAR", "AAA" 
+
+follow up : the input is a list of words. Return a list of words that each 
+list is formed by exactly the characters in the input list. 
+For example: two lists {“DEBIT”, “CARD”} and{“BAD”, “CREDIT”} 
+are formed by the same exact group of characters.
+
+
+#################################################################################
+Remove invalid parentheses
+
+#################################################################################
+Subarray Sum Equals K (560)
+Range Sum Query 2D - Immutable (304)
+
+#################################################################################
+Regular expression
+
+#################################################################################
+If a=1, b=2, c=3,....z=26. Given a string, find all possible codes that string can
+generate. Give a count as well as print the strings.
+If a=1, b=2, c=3,....z=26. Given a string, find all possible codes that string can
+generate. Give a count as well as print the strings.
+
+For example:
+Input: "1123". You need to general all valid alphabet codes from this string.
+
+Output List
+aabc //a = 1, a = 1, b = 2, c = 3
+kbc // since k is 11, b = 2, c= 3
+alc // a = 1, l = 12, c = 3
+aaw // a= 1, a =1, w= 23
+kw // k = 11, w = 23
+
+#################################################################################
+Best time to Buy and Sell stock follow up - with transaction fee
+If you can do unlimited times of buy and sell (can only hold one stock at a time),
+but each time you sell you need to pay transaction fee, please calculate the maximum profit you can take.
+
+#################################################################################
+Question: Given a sequence of positive integers A and an integer T, return whether there is a continuous sequence of A that sums up to exactly T
+Example
+[23, 5, 4, 7, 2, 11], 20. Return True because 7 + 2 + 11 = 20
+[1, 3, 5, 23, 2], 8. Return True because 3 + 5 = 8
+[1, 3, 5, 23, 2], 7 Return False because no sequence in this array adds up to 7
+
+My solution used sliding window. The window expands to the right when current sum is less than T, it shrinks from left when sum is greater than T and algorithm return true in case current sum is T.
+
+
+#################################################################################
+Define amazing number as: its value is less than or equal to its index. 
+Given a circular array, find the starting position, such that the 
+total number of amazing numbers in the array is maximized.
+Example 1: 0, 1, 2, 3
+Ouptut: 0. When starting point at position 0, all the elements in the array are equal to its index. So all the numbers are amazing number.
+Example 2: 1, 0 , 0
+Output: 1. When starting point at position 1, the array becomes 0, 0, 1. All the elements are amazing number.
+If there are multiple positions, return the smallest one.
+
+should get a solution with time complexity less than O(N^2)
+
+#################################################################################
+Group Anagrams
+
+
+#################################################################################
+Int sorted array, with repeated numbers.
+Given a number K, return the count of K in the array
+e.g. 3, 5, 5, 5, 5, 7, 8, 8
+k = 6 return ->0
+k = 5 return ->4
+
+#################################################################################
+Implement a method to draw a circle. You are not allowed to use math library functions such as sqrt, sin, or cos.
+For example, given r = 2 (radius), return the following points to plot:
+(0,0), (0,1),(0,2), (1,0), (1,1), (2,0), (0,-1), (0,-2), (-1,0), (-1,1), (1,-1), (-1,-1),(-2,0)
+Note that all points satisfy the equation: x^2 + y^2 <= r^2.
+
+1. NOTE : start from center (0,0)
+
+#################################################################################
+Valid Parenthesis String
+    Given a string containing only three types of characters: '(', ')' and '*',
+    write a function to check whether this string is valid.
+    We define the validity of a string by these rules:
+    Any left parenthesis '(' must have a corresponding right parenthesis ')'.
+    Any right parenthesis ')' must have a corresponding left parenthesis '('.
+    Left parenthesis '(' must go before the corresponding right parenthesis ')'.
+    '*' could be treated as a single right parenthesis ')' or a single left parenthesis '(' or an empty string.
+    An empty string is also valid.
+    Example 1:
+    Input: "()"
+    Output: True
+    Example 2:
+    Input: "(*)"
+    Output: True
+    Example 3:
+    Input: "(*))"
+    Output: True
+    Note:
+    The string size will be in the range [1, 100].
+
+#################################################################################
+Regular Expression Matching
+    Implement regular expression matching with support for '.' and '*'.
+    '.' Matches any single character.
+    '*' Matches zero or more of the preceding element.
+    The matching should cover the entire input string (not partial).
+    The function prototype should be:
+    bool isMatch(const char *s, const char *p)
+
+    Some examples:
+    isMatch("aa","a") → false
+    isMatch("aa","aa") → true
+    isMatch("aaa","aa") → false
+    isMatch("aa", "a*") → true
+    isMatch("aa", ".*") → true
+    isMatch("ab", ".*") → true
+    isMatch("aab", "c*a*b") → true
+
+#################################################################################
+Wildcard Matching
+    Implement wildcard pattern matching with support for '?' and '*'.
+    '?' Matches any single character.
+    '*' Matches any sequence of characters (including the empty sequence).
+    The matching should cover the entire input string (not partial).
+    The function prototype should be:
+    bool isMatch(const char *s, const char *p)
+    Some examples:
+    isMatch("aa","a") → false
+    isMatch("aa","aa") → true
+    isMatch("aaa","aa") → false
+    isMatch("aa", "*") → true
+    isMatch("aa", "a*") → true
+    isMatch("ab", "?*") → true
+    isMatch("aab", "c*a*b") → false
+
+#################################################################################
+Sort List
+    Sort a linked list in O(n log n) time using constant space complexity.
+
+#################################################################################
+Rotate List
+
+#################################################################################
+Reverse Linked List
+
+#################################################################################
+Reverse Linked List II
+    Reverse a linked list from position m to n. Do it in-place and in one-pass.
+    For example:
+    Given 1->2->3->4->5->NULL, m = 2 and n = 4,
+    return 1->4->3->2->5->NULL.
+    Note:
+    Given m, n satisfy the following condition:
+    1 ≤ m ≤ n ≤ length of list.
+Hints :
+
+
+#################################################################################
+Reorder List
+
+#################################################################################
+Remove Nth Node From End of List
+
+#################################################################################
+Remove Linked List Elements (Recursion)
+    Remove all elements from a linked list of integers that have value val.
+    Example
+    Given: 1 --> 2 --> 6 --> 3 --> 4 --> 5 --> 6, val = 6
+    Return: 1 --> 2 --> 3 --> 4 --> 5
+
+#################################################################################
+Remove Duplicates from Sorted List II
+    Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.
+    For example,
+    Given 1->2->3->3->4->4->5, return 1->2->5.
+    Given 1->1->1->2->3, return 2->3
+
+#################################################################################
+Remove Duplicates from Sorted List (Recursion)
+    Given a sorted linked list, delete all duplicates such that each element appear only once.
+    For example,
+    Given 1->1->2, return 1->2.
+    Given 1->1->2->3->3, return 1->2->3.
+
+#################################################################################
+Plus One Linked List
+
+#################################################################################
+Partition List
+
+#################################################################################
+#################################################################################
+Odd Even Linked List
+
+#################################################################################
+Nested List Weight Sum II
+
+#################################################################################
+Nested List Weight Sum
+
+#################################################################################
+Minimum Index Sum of Two Lists
+
+#################################################################################
+Merge k Sorted Lists
+
+#################################################################################
+Merge Two Sorted Lists
+
+#################################################################################
+Linked List Random Node
+
+#################################################################################
+Linked List Cycle
+    Given a singly-linked list, implement a method to check if the list has
+    cycles. The space complexity can be O(n). If there is a cycle, return true
+    otherwise return false. Empty lists should be considered non-cyclic.
+    Examples:
+    1->2->3->4->1 ==> true
+    1->2->3->4 ==> false
+Hint : Slow and Fast pointer (Floyd's algorithm)
+
+#################################################################################
+Linked List Cycle II
+    Given a linked list, return the node where the cycle begins. If there is no cycle, return null.
+    Note: Do not modify the linked list.
+    Follow up:
+    Can you solve it without using extra space?
+Hint : 1 .Slow and Fast pointer (Floyd's algorithm), 
+       2. What is the cycle length? 
+       3. How far is the meeting point between Head and Cycle start?
+
+#################################################################################
+Intersection of Two Linked Lists
+
+#################################################################################
+Insertion Sort List
+    Sort a linked list using insertion sort.
+#################################################################################
+Flatten Nested List Iterator
+
+#################################################################################
+Flatten Binary Tree to Linked List
+
+#################################################################################
+Delete Node in a Linked List
+    Write a function to delete a node (except the tail) in a singly linked list, given only access to that node.
+    Supposed the linked list is 1 -> 2 -> 3 -> 4 and you are given the third node with value 3, the linked list should become 1 -> 2 -> 4 after calling your function.
+
+#################################################################################
+Copy List with Random Pointer
+
+#################################################################################
+Convert Sorted List to Binary Search Tree
+
+#################################################################################
+Arranging Coins (Iteration)
+    You have a total of n coins that you want to form in a staircase shape,
+    where every k-th row must have exactly k coins.
+    Given n, find the total number of full staircase rows that can be formed.
+    n is a non-negative integer and fits within the range of a 32-bit signed integer.
+    Example 1:
+    n = 5
+    The coins can form the following rows:
+    ¤
+    ¤ ¤
+    ¤ ¤
+    Because the 3rd row is incomplete, we return 2.
+    Example 2:
+    n = 8
+    The coins can form the following rows:
+    ¤
+    ¤ ¤
+    ¤ ¤ ¤
+    ¤ ¤
+    Because the 4th row is incomplete, we return 3.
+    [0,n]
+
+#################################################################################
+Decode Ways	
+    A message containing letters from A-Z is being encoded to numbers using the following
+    mapping:
+    'A' -> 1
+    'B' -> 2
+    ...
+    'Z' -> 26
+    Given an encoded message containing digits, determine the total number of ways to decode
+    it.
+    For example,
+    Given encoded message "12", it could be decoded as "AB" (1 2) or "L" (12).
+    The number of ways decoding "12" is 2.
+
+#################################################################################
+Find the Derangement of An Array
+    In combinatorial mathematics, a derangement is a permutation of the elements of a set, such that no element appears in its original position.
+    There's originally an array consisting of n integers from 1 to n in ascending order, you need to find the number of derangement it can generate.
+    Also, since the answer may be very large, you should return the output mod 10^9 + 7.
+    Example 1:
+    Input: 3
+    Output: 2
+    Explanation: The original array is [1,2,3]. The two derangements are [2,3,1] and [3,1,2].
+    Note:
+    n is in the range of [1, 106].
+
+
+#################################################################################
+Walls and Gates  (Reverse thinking)
+    (Hint : 1. dist(Gate,Empty Room) = dist(Empty Room,Gate) 2. Collect all gates and find
+    distance from gate)
+    
+    You are given a m x n 2D grid initialized with these three possible values.
+    -1 - A wall or an obstacle.
+    0 - A gate.
+    INF - Infinity means an empty room. We use the value 2^31 - 1 = 2147483647 
+    to represent INF as you may assume that the distance to a gate is less than 2147483647.
+    Fill each empty room with the distance to its nearest gate. 
+    If it is impossible to reach a gate, it should be filled with INF.
+
+    For example, given the 2D grid:
+    INF  -1  0  INF
+    INF INF INF  -1
+    INF  -1 INF  -1
+      0  -1 INF INF
+
+    After running your function, the 2D grid should be:
+      3  -1   0   1
+      2   2   1  -1
+      1  -1   2  -1
+      0  -1   3   4
+
+#################################################################################
+Surrounded Regions (Reverse thinking)
+    //Collect 'O' one by one and Change to 'V' and check wheather there exists leak
+    Given a 2D board containing 'X' and 'O' (the letter O), capture all regions surrounded by 'X'.
+    A region is captured by flipping all 'O's into 'X's in that surrounded region.
+    For example,
+    X X X X
+    X O O X
+    X X O X
+    X O X X
+    After running your function, the board should be:
+    X X X X
+    X X X X
+    X X X X
+    X O X X
+
+#################################################################################
+Number of Islands
+    Given a 2d grid map of '1's (land) and '0's (water), count the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
+    Example 1:
+    11110
+    11010
+    11000
+    00000
+    Answer: 1
+    Example 2:
+    11000
+    11000
+    00100
+    00011
+    Answer: 3
+
+#################################################################################
+Number of Islands II 
+    Union-find application
+    A 2d grid map of m rows and n columns is initially filled with water. We may perform an addLand operation which turns the water at position (row, col) into a land. Given a list of positions to operate, count the number of islands after each addLand operation. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
+    Example:
+    Given m = 3, n = 3, positions = [[0,0], [0,1], [1,2], [2,1]].
+    Initially, the 2d grid grid is filled with water. (Assume 0 represents water and 1 represents land).
+    0 0 0
+    0 0 0
+    0 0 0
+    Operation #1: addLand(0, 0) turns the water at grid[0][0] into a land.
+    1 0 0
+    0 0 0   Number of islands = 1
+    0 0 0
+    Operation #2: addLand(0, 1) turns the water at grid[0][1] into a land.
+    1 1 0
+    0 0 0   Number of islands = 1
+    0 0 0
+    Operation #3: addLand(1, 2) turns the water at grid[1][2] into a land.
+    1 1 0
+    0 0 1   Number of islands = 2
+    0 0 0
+    Operation #4: addLand(2, 1) turns the water at grid[2][1] into a land.
+    1 1 0
+    0 0 1   Number of islands = 3
+    0 1 0
+    We return the result as an array: [1, 1, 2, 3]
+    Challenge:
+    Can you do it in time complexity O(k log mn), where k is the length of the positions?
+
+#################################################################################
+The Maze
+    There is a ball in a maze with empty spaces and walls. The ball can go through 
+    empty spaces by rolling up, down, left or right, but it won't stop rolling until hitting a wall. 
+    When the ball stops, it could choose the next direction.
+    Given the ball's start position, the destination and the maze, 
+    determine whether the ball could stop at the destination.
+    The maze is represented by a binary 2D array. 1 means the wall and 0 means the empty space. 
+    You may assume that the borders of the maze are all walls. 
+    The start and destination coordinates are represented by row and column indexes.
+    Example 1
+    Input 1: a maze represented by a 2D array
+    0 0 1 0 0
+    0 0 0 0 0
+    0 0 0 1 0
+    1 1 0 1 1
+    0 0 0 0 0
+    Input 2: start coordinate (rowStart, colStart) = (0, 4)
+    Input 3: destination coordinate (rowDest, colDest) = (4, 4)
+    Output: true
+    Explanation: One possible way is : left -> down -> left -> down -> right -> down -> right.
+    Example 2
+    Input 1: a maze represented by a 2D array
+    0 0 1 0 0
+    0 0 0 0 0
+    0 0 0 1 0
+    1 1 0 1 1
+    0 0 0 0 0
+    Input 2: start coordinate (rowStart, colStart) = (0, 4)
+    Input 3: destination coordinate (rowDest, colDest) = (3, 2)
+    Output: false
+    Explanation: There is no way for the ball to stop at the destination.
+    Note:
+    There is only one ball and one destination in the maze.
+    Both the ball and the destination exist on an empty space, and they will not be at the same position initially.
+    The given maze does not contain border (like the red rectangle in the example pictures), but you could assume the border of the maze are all walls.
+    The maze contains at least 2 empty spaces, and both the width and height of the maze won't exceed 100.
+
+
+
+######################################### Python Complexity ######################################### 
+https://www.ics.uci.edu/~pattis/ICS-33/lectures/complexitypython.txt
+#LBYP : 
+#Look before you leap. This coding style explicitly tests for pre-conditions before making calls or lookups. This style contrasts with the EAFP approach and is characterized by the presence of many if statements.
+#https://docs.python.org/3/glossary.html#term-lbyl
+if "key" in my_dict:
+    x = my_dict["key"]
+	else:
+	    # handle missing key
+#EAFP
+#Easier to ask for forgiveness than permission
+#https://docs.python.org/3/glossary.html#term-eafp
+try:
+    x = my_dict["key"]
+	except KeyError:
+	    # handle missing key
+
+#################################################################################
+Invert Binary Tree 
+         4
+       /   \
+      2     7
+     / \   / \
+    1   3 6   9
+      to
+         4
+       /   \
+      7     2
+     / \   / \
+    9   6 3   1
+
+#################################################################################
+Sum of Left Leaves
+    Find the sum of all left leaves in a given binary tree.
+    Example:
+        3
+       / \
+      9  20
+        /  \
+       15   7
+    There are two left leaves in the binary tree, with values 9 and 15 respectively. Return 24.
+
+#################################################################################
+Path Sum
+    Given a binary tree and a sum, determine if the tree has a root-to-leaf path 
+    such that adding up all the values along the path equals the given sum.
+    For example:
+    Given the below binary tree and sum = 22,
+                  5
+                 / \
+                4   8
+               /   / \
+              11  13  4
+             /  \      \
+            7    2      1
+    return true, as there exist a root-to-leaf path 5->4->11->2 which sum is 22.
+
+#################################################################################
+Path Sum II  
+    Given a binary tree and a sum, find all root-to-leaf paths where each path's sum equals the given sum.
+    For example:
+    Given the below binary tree and sum = 22,
+                  5
+                 / \
+                4   8
+               /   / \
+              11  13  4
+             /  \    / \
+            7    2  5   1
+    return
+    [
+       [5,4,11,2],
+       [5,8,4,5]
+    ]
+
+#################################################################################
+Path Sum III
+    You are given a binary tree in which each node contains an integer value.
+    Find the number of paths that sum to a given value.
+    The path does not need to start or end at the root or a leaf, 
+    but it must go downwards (traveling only from parent nodes to child nodes).
+    The tree has no more than 1,000 nodes and the values are in the range -1,000,000 to 1,000,000.
+    Example:
+    root = [10,5,-3,3,2,null,11,3,-2,null,1], sum = 8
+          10
+         /  \
+        5   -3
+       / \    \
+      3   2   11
+     / \   \
+    3  -2   1
+    Return 3. The paths that sum to 8 are:
+    1.  5 -> 3
+    2.  5 -> 2 -> 1
+    3. -3 -> 11
+
+
+#################################################################################
+Diameter of Binary Tree (Global Max diameter technique)
+    Given a binary tree, you need to compute the length of the diameter of the tree. 
+    The diameter of a binary tree is the length of the longest path between 
+    any two nodes in a tree. This path may or may not pass through the root.
+    Example:
+    Given a binary tree 
+              1
+             / \
+            2   3
+           / \     
+          4   5    
+    Return 3, which is the length of the path [4,2,1,3] or [5,2,1,3].
+    Note: The length of path between two nodes is represented by the number of edges between them.
+
+#################################################################################
+Binary Tree Maximum Path Sum (Global Max value technique)
+    Given a binary tree, find the maximum path sum.
+    For this problem, a path is defined as any sequence of nodes from some starting 
+    node to any node in the tree along the parent-child connections. 
+    The path must contain at least one node and does not need to go through the root.
+    For example:
+    Given the below binary tree,
+           1
+          / \
+         2   3
+    Return 6.
+
+#################################################################################
+Binary Tree Paths
+    Given a binary tree, return all root-to-leaf paths.
+    For example, given the following binary tree:
+       1
+     /   \
+    2     3
+     \
+      5
+    All root-to-leaf paths are:
+    ["1->2->5", "1->3"]
+
+#################################################################################
+Find Bottom Left Tree Value (Keep track of state globally)
+    Given a binary tree, find the leftmost value in the last row of the tree.
+    Example 1:
+    Input:
+        2
+       / \
+      1   3
+    Output:
+    1
+    Example 2: 
+    Input:
+            1
+           / \
+          2   3
+         /   / \
+        4   5   6
+           /
+          7
+    Output:
+    7
+
+#################################################################################
+Target Sum
+    You are given a list of non-negative integers, a1, a2, ..., an, and a target, S.
+	Now you have 2 symbols + and -. For each integer,
+	you should choose one from + and - as its new symbol.
+    Find out how many ways to assign symbols to make sum of integers equal to target S.
+    Example 1:
+    Input: nums is [1, 1, 1, 1, 1], S is 3. 
+    Output: 5
+    Explanation: 
+    -1+1+1+1+1 = 3
+    +1-1+1+1+1 = 3
+    +1+1-1+1+1 = 3
+    +1+1+1-1+1 = 3
+    +1+1+1+1-1 = 3
+    There are 5 ways to assign symbols to make the sum of nums be target 3.
+    Note:
+    The length of the given array is positive and will not exceed 20.
+    The sum of elements in the given array will not exceed 1000.
+    Your output answer is guaranteed to be fitted in a 32-bit integer.
+
+#################################################################################
+Partition Equal Subset Sum
+    Given a non-empty array containing only positive integers,
+	find if the array can be partitioned into two subsets such that the
+	sum of elements in both subsets is equal.
+    Note:
+    Each of the array element will not exceed 100.
+    The array size will not exceed 200.
+    Example 1:
+    Input: [1, 5, 11, 5]
+    Output: true
+    Explanation: The array can be partitioned as [1, 5, 5] and [11].
+    Example 2:
+    Input: [1, 2, 3, 5]
+    Output: false
+    Explanation: The array cannot be partitioned into equal sum subsets.
+
+#################################################################################
+Integer to English Words (Flow pattern)
+    Convert a non-negative integer to its english words representation. 
+    Given input is guaranteed to be less than 231 - 1.
+    For example,
+    123 -> "One Hundred Twenty Three"
+    12345 -> "Twelve Thousand Three Hundred Forty Five"
+    1234567 -> "One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven"
+    Hint:
+    Did you see a pattern in dividing the number into chunk of words? For example, 123 and 123000.
+    Group the number by thousands (3 digits). You can write a helper function that takes a number less than pow(10,3) and convert just that chunk to words.
+    There are many edge cases. What are some good test cases? Does your code work with input such as 0? Or pow(10,3)010? (middle chunk is zero and should not be printed out)
+
+#################################################################################
+Decode String (Flow pattern)
+    Given an encoded string, return it's decoded string.
+    The encoding rule is: k[encoded_string], where the encoded_string inside 
+    the square brackets is being repeated exactly k times. 
+    Note that k is guaranteed to be a positive integer.
+    You may assume that the input string is always valid; No extra white spaces, 
+    square brackets are well-formed, etc.
+    Furthermore, you may assume that the original data does not contain any digits 
+    and that digits are only for those repeat numbers, k. 
+    For example, there won't be input like 3a or 2[4].
+    Examples:
+    s = "3[a]2[bc]", return "aaabcbc".
+    s = "3[a2[c]]", return "accaccacc".
+    s = "2[abc]3[cd]ef", return "abcabccdcdcdef".
+
+#################################################################################
+Validate Binary Search Tree
+    (Flow pattern : while performing inorder traversal, Clock : while using MIN and MAX)
+    Given a binary tree, determine if it is a valid binary search tree (BST).
+    Assume a BST is defined as follows:
+    The left subtree of a node contains only nodes with keys less than the node's key.
+    The right subtree of a node contains only nodes with keys greater than the node's key.
+    Both the left and right subtrees must also be binary search trees.
+
+#################################################################################
+Nested List Weight Sum (Clock pattern)
+    Given a nested list of integers, return the sum of all integers in the list weighted by their depth.
+    Each element is either an integer, or a list -- whose elements may also be integers or other lists.
+    Example 1:
+    Given the list [[1,1],2,[1,1]], return 10. (four 1's at depth 2, one 2 at depth 1)
+    Example 2:
+    Given the list [1,[4,[6]]], return 27. (one 1 at depth 1, one 4 at depth 2, and one 6 at depth 3; 1 + 4*2 + 6*3 = 27)
+
+
+#################################################################################
+Nested List Weight Sum II (Bottom up)
+    Trick : store/keep sum and it to final result in every iteration.
+    Given a nested list of integers, return the sum of all integers in the list weighted by their depth.
+    Each element is either an integer, or a list -- whose elements may also be integers or other lists.
+    Different from the previous question where weight is increasing from root to leaf,
+    now the weight is defined from bottom up. i.e., the leaf level integers have weight 1,
+    and the root level integers have the largest weight.
+    Example 1:
+    Given the list [[1,1],2,[1,1]], return 8. (four 1's at depth 1, one 2 at depth 2)
+    Example 2:
+    Given the list [1,[4,[6]]], return 17. (one 1 at depth 3, one 4 at depth 2, and one 6 at depth 1; 1*3 + 4*2 + 6*1 = 17) 
+
+#################################################################################
+Flatten Nested List Iterator
+    Given a nested list of integers, implement an iterator to flatten it.
+    Each element is either an integer, or a list -- whose elements may also be integers or other lists.
+    Example 1:
+    Given the list [[1,1],2,[1,1]],
+    By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,1,2,1,1].
+    Example 2:
+    Given the list [1,[4,[6]]],
+    By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,4,6].
+
+
+#################################################################################
+Reverse Linked List 
+    Given 1->2->3->4->5->NULL
+    O/P NULL<-1<-2<-3<-4<-5
+
+#################################################################################
+Reverse Linked List II
+    Reverse a linked list from position m to n. Do it in-place and in one-pass.
+    For example:
+    Given 1->2->3->4->5->NULL, m = 2 and n = 4,
+    return 1->4->3->2->5->NULL.
+    Note:
+    Given m, n satisfy the following condition:
+    1 ≤ m ≤ n ≤ length of list.
+
+
+
+#################################################################################
+H-Index
+    Given an array of citations (each citation is a non-negative integer) of a researcher,
+    write a function to compute the researcher's h-index.
+    According to the definition of h-index on Wikipedia: "A scientist has index h if h of 
+    his/her N papers have at least h citations each, and the other N − h papers have no more than h citations each."
+    For example, given citations = [3, 0, 6, 1, 5], which means the researcher has 
+    5 papers in total and each of them had received 3, 0, 6, 1, 5 citations respectively. 
+    Since the researcher has 3 papers with at least 3 citations each and the remaining two 
+    with no more than 3 citations each, his h-index is 3.
+    Note: If there are several possible values for h, the maximum one is taken as the h-index.
+
+#################################################################################
+
+
+
+#################################################################################
+Majority Element I 
+    Given an integer array of size n, find all elements that appear 
+    more than ⌊ n/2 ⌋ times. The algorithm should run in linear time 
+    and in O(1) space.
+Voting algo : count
+
+#################################################################################
+Majority Element II
+    Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times.
+    The algorithm should run in linear time and in O(1) space.
+Tweak : use of 2 variables
+
+#################################################################################
+Valid Parentheses
+    Given a string containing just the characters '(', ')', '{', '}', '[' and ']', 
+    determine if the input string is valid.
+    The brackets must close in the correct order, "()" and "()[]{}" 
+    are all valid but "(]" and "([)]" are not.
+
+#################################################################################
+Remove Element
+    Given an array and a value, remove all instances of that value in place and return the new length.
+    Do not allocate extra space for another array, you must do this in place with constant memory.
+    The order of elements can be changed. It doesn't matter what you leave beyond the new length.
+    Example:
+    Given input array nums = [3,2,2,3], val = 3
+    Your function should return length = 2, with the first two elements of nums being 2.
+
+#################################################################################
+Remove Duplicates from Sorted Array	
+    Given a sorted array, remove the duplicates in place such that each element 
+    appear only once and return the new length.
+    Do not allocate extra space for another array, you must do this in place with constant memory.
+    For example,
+    Given input array nums = [1,1,2],
+    Your function should return length = 2, with the first two elements of 
+    nums being 1 and 2 respectively. It doesn't matter what you leave beyond the new length.
+
+#################################################################################
+Remove Duplicates from Sorted Array II	
+    Follow up for "Remove Duplicates":
+    What if duplicates are allowed at most twice?
+    For example,
+    Given sorted array nums = [1,1,1,2,2,3],
+    Your function should return length = 5, with the first five elements 
+    of nums being 1, 1, 2, 2 and 3. 
+    It doesn't matter what you leave beyond the new length.
+
+#################################################################################
+Remove Element	
+    Given an array and a value, remove all instances of that value in place 
+    and return the new length.
+    Do not allocate extra space for another array, you must do this in place 
+    with constant memory.
+    The order of elements can be changed. It doesn't matter what you leave 
+    beyond the new length.
+    Example:
+    Given input array nums = [3,2,2,3], val = 3
+    Your function should return length = 2, with the first two elements of nums being 2.
+
+https://www.cs.cmu.edu/~adamchik/15-121/lectures/Trees/trees.html
+
+The depth of a node is the number of edges from the root to the node.
+The height of a node is the number of edges from the node to the deepest leaf.
+The height of a tree is a height of the root.
+A full binary tree.is a binary tree in which each node has exactly zero or two children.
+A complete binary tree is a binary tree, which is completely filled, with the possible exception of the bottom level, which is filled from left to right.
+#################################################################################
+Binary Tree Postorder Traversal
+    Given a binary tree, return the postorder traversal of its nodes' values.
+    For example:
+    Given binary tree {1,#,2,3},
+       1
+        \
+         2
+        /
+       3
+    return [3,2,1].
+
+#################################################################################
+Binary Tree Preorder Traversal
+    Given a binary tree, return the preorder traversal of its nodes' values.
+    For example:
+    Given binary tree {1,#,2,3},
+       1
+        \
+         2
+        /
+       3
+    return [1,2,3].
+
+#################################################################################
+Binary Tree Inorder Traversal
+    Given a binary tree, return the inorder traversal of its nodes' values.
+    For example:
+    Given binary tree {1,#,2,3},
+       1
+        \
+         2
+        /
+       3
+    return [1,3,2].
+
+#################################################################################
+Binary Search Tree Iterator (Inorder successor of a node 'n' is the next node you would
+visit after node 'n' when you perform inOrder traversal of the BST.)
+    Implement an iterator over a binary search tree (BST). 
+    Your iterator will be initialized with the root node of a BST.
+    Calling next() will return the next smallest number in the BST.
+    Note: next() and hasNext() should run in average O(1) time and uses O(h) memory,
+    where h is the height of the tree.
+
+#################################################################################
+Sum Root to Leaf Numbers 
+    Given a binary tree containing digits from 0-9 only, each root-to-leaf path could represent a number.
+    An example is the root-to-leaf path 1->2->3 which represents the number 123.
+    Find the total sum of all root-to-leaf numbers.
+    For example,
+        1
+       / \
+      2   3
+    The root-to-leaf path 1->2 represents the number 12.
+    The root-to-leaf path 1->3 represents the number 13.
+    Return the sum = 12 + 13 = 25.
+
+
+#################################################################################
+Level/height related problems
+
+#################################################################################
+House Robber III
+    The thief has found himself a new place for his thievery again. There is only one entrance to this area, called the "root." Besides the root, each house has one and only one parent house. After a tour, the smart thief realized that "all houses in this place forms a binary tree". It will automatically contact the police if two directly-linked houses were broken into on the same night.
+    Determine the maximum amount of money the thief can rob tonight without alerting the police.
+    Example 1:
+         3
+        / \
+       2   3
+        \   \ 
+         3   1
+    Maximum amount of money the thief can rob = 3 + 3 + 1 = 7.
+    Example 2:
+         3
+        / \
+       4   5
+      / \   \ 
+     1   3   1
+    Maximum amount of money the thief can rob = 4 + 5 = 9.
+
+#################################################################################
+    Given a binary tree
+        struct TreeLinkNode {
+          TreeLinkNode *left;
+          TreeLinkNode *right;
+          TreeLinkNode *next;
+        }
+    Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to NULL.
+    Initially, all next pointers are set to NULL.
+    Note:
+    You may only use constant extra space.
+    You may assume that it is a perfect binary tree (ie, all leaves are at the same level, and every parent has two children).
+    For example,
+    Given the following perfect binary tree,
+             1
+           /  \
+          2    3
+         / \  / \
+        4  5  6  7
+    After calling your function, the tree should look like:
+             1 -> NULL
+           /  \
+          2 -> 3 -> NULL
+         / \  / \
+        4->5->6->7 -> NULL
+
+#################################################################################
+find-leaves-of-binary-tree
+    Given a binary tree, collect a tree's nodes as if you were doing this: Collect and remove all leaves, repeat until the tree is empty.
+    Example:
+    Given binary tree 
+              1
+             / \
+            2   3
+           / \     
+          4   5    
+    Returns [4, 5, 3], [2], [1].
+    Explanation:
+    1. Removing the leaves [4, 5, 3] would result in this tree:
+              1
+             / 
+            2          
+    2. Now removing the leaf [2] would result in this tree:
+              1          
+    3. Now removing the leaf [1] would result in the empty tree:
+              []         
+    Returns [4, 5, 3], [2], [1].
+#################################################################################
+Find Bottom Left Tree Value
+    Given a binary tree, find the leftmost value in the last row of the tree.
+    Example 1:
+    Input:
+        2
+       / \
+      1   3
+    Output:
+    1
+    Example 2: 
+    Input:
+            1
+           / \
+          2   3
+         /   / \
+        4   5   6
+           /
+          7
+    Output:
+    7
+
+#################################################################################
+Binary Tree Vertical Order Traversal (Only BFS works)
+    Given a binary tree, return the vertical order traversal of its nodes' values. (ie, from top to bottom, column by column).
+    If two nodes are in the same row and column, the order should be from left to right.
+    Examples:
+    Given binary tree [3,9,20,null,null,15,7],
+        3
+       / \
+      9  20
+        /  \
+       15   7
+    return its vertical order traversal as:
+    [
+      [9],
+      [3,15],
+      [20],
+      [7]
+    ]
+    Given binary tree [3,9,20,4,5,2,7],
+        _3_
+       /   \
+      9    20
+     / \   / \
+    4   5 2   7
+    return its vertical order traversal as:
+    [
+      [4],
+      [9],
+      [3,5,2],
+      [20],
+      [7]
+    ]
+
+#################################################################################
+Binary Tree Longest Consecutive Sequence (Global Max + Pass val + 1 to next level)
+    Given a binary tree, find the length of the longest consecutive sequence path.
+    The path refers to any sequence of nodes from some starting node to any node in the tree along the parent-child connections. The longest consecutive path need to be from parent to child (cannot be the reverse).
+    For example,
+       1
+        \
+         3
+        / \
+       2   4
+            \
+             5
+    Longest consecutive sequence path is 3-4-5, so return 3.
+       2
+        \
+         3
+        / 
+       2    
+      / 
+     1
+    Longest consecutive sequence path is 2-3,not 3-2-1, so return 2.
+
+#################################################################################
+Binary Tree Right Side View
+    Given a binary tree, imagine yourself standing on the right side of it, return the values of the nodes you can see ordered from top to bottom.
+    For example:
+    Given the following binary tree,
+       1            <---
+     /   \
+    2     3         <---
+     \     \
+      5     4       <---
+    You should return [1, 3, 4].
+
+#################################################################################
+Binary Tree Zigzag Level Order Traversal
+    Given a binary tree, return the zigzag level order traversal of its nodes' values. 
+    (ie, from left to right, then right to left for the next level and alternate between).
+    For example:
+    Given binary tree [3,9,20,null,null,15,7],
+        3
+       / \
+      9  20
+        /  \
+       15   7
+    return its zigzag level order traversal as:
+    [
+      [3],
+      [20,9],
+      [15,7]
+    ]
+
+#################################################################################
+Binary Tree Level Order Traversal
+    Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
+
+    For example:
+    Given binary tree {3,9,20,#,#,15,7}
+    
+        3
+       / \
+      9  20
+        /  \
+       15   7
+    [
+      [3],
+      [9,20],
+      [15,7]
+    ]
+
+#################################################################################
+Binary Tree Level Order Traversal II
+    Given a binary tree, return the bottom-up level order traversal of its nodes' values.
+    (ie, from left to right, level by level from leaf to root).
+    For example:
+    Given binary tree [3,9,20,null,null,15,7],
+        3
+       / \
+      9  20
+        /  \
+       15   7
+    return its bottom-up level order traversal as:
+    [
+      [15,7],
+      [9,20],
+      [3]
+    ]
+
+#################################################################################
+Average of Levels in Binary Tree
+    Given a non-empty binary tree, return the average value of the nodes on each level in the form of an array.
+    Example 1:
+    Input:
+        3
+       / \
+      9  20
+        /  \
+       15   7
+    Output: [3, 14.5, 11]
+    Explanation:
+    The average value of nodes on level 0 is 3,  on level 1 is 14.5, and on level 2 is 11. Hence return [3, 14.5, 11].
+    Note:
+    The range of node's value is in the range of 32-bit signed integer.
+#################################################################################
+Maximum Width of Binary Tree (Level+1 solution + Complete tree property)
+    Given a binary tree, write a function to get the maximum width of the given tree.
+    The width of a tree is the maximum width among all levels. The binary tree has the same structure as a full binary tree, but some nodes are null.
+    The width of one level is defined as the length between the end-nodes (the leftmost and right most non-null nodes in the level, where the null nodes between the end-nodes are also counted into the length calculation.
+    Example 1:
+    Input: 
+               1
+             /   \
+            3     2
+           / \     \  
+          5   3     9 
+    Output: 4
+    Explanation: The maximum width existing in the third level with the length 4 (5,3,null,9).
+    Example 2:
+    Input: 
+              1
+             /  
+            3    
+           / \       
+          5   3     
+    Output: 2
+    Explanation: The maximum width existing in the third level with the length 2 (5,3).
+    Example 3:
+    Input: 
+              1
+             / \
+            3   2 
+           /        
+          5      
+    Output: 2
+    Explanation: The maximum width existing in the second level with the length 2 (3,2).
+    Example 4:
+    Input: 
+              1
+             / \
+            3   2
+           /     \  
+          5       9 
+         /         \
+        6           7
+    Output: 8
+    Explanation:The maximum width existing in the fourth level with the length 8 (6,null,null,null,null,null,null,7).
+    Note: Answer will in the range of 32-bit signed integer.
+
+#################################################################################
+Add One Row to Tree
+    Given the root of a binary tree, then value v and depth d, you need to add a row of nodes with value v at the given depth d. The root node is at depth 1.
+    The adding rule is: given a positive integer depth d, for each NOT null tree nodes N in depth d-1, create two tree nodes with value v as N's left subtree root and right subtree root. And N's original left subtree should be the left subtree of the new left subtree root, its original right subtree should be the right subtree of the new right subtree root. If depth d is 1 that means there is no depth d-1 at all, then create a tree node with value v as the new root of the whole original tree, and the original tree is the new root's left subtree.
+    Example 1:
+    Input: 
+    A binary tree as following:
+           4
+         /   \
+        2     6
+       / \   / 
+      3   1 5   
+    v = 1
+    d = 2
+    Output: 
+           4
+          / \
+         1   1
+        /     \
+       2       6
+      / \     / 
+     3   1   5   
+    Example 2:
+    Input: 
+    A binary tree as following:
+          4
+         /   
+        2    
+       / \   
+      3   1    
+    v = 1
+    d = 3
+    Output: 
+          4
+         /   
+        2
+       / \    
+      1   1
+     /     \  
+    3       1
+    Note:
+    The given d is in range [1, maximum depth of the given tree + 1].
+    The given binary tree has at least one tree node.
+
+#################################################################################
+Print Binary Tree
+    Print a binary tree in an m*n 2D string array following these rules:
+    The row number m should be equal to the height of the given binary tree.
+    The column number n should always be an odd number.
+    The root node's value (in string format) should be put in the exactly middle of the first row it can be put. The column and the row where the root node belongs will separate the rest space into two parts (left-bottom part and right-bottom part). You should print the left subtree in the left-bottom part and print the right subtree in the right-bottom part. The left-bottom part and the right-bottom part should have the same size. Even if one subtree is none while the other is not, you don't need to print anything for the none subtree but still need to leave the space as large as that for the other subtree. However, if two subtrees are none, then you don't need to leave space for both of them.
+    Each unused space should contain an empty string "".
+    Print the subtrees following the same rules.
+    Example 1:
+    Input:
+         1
+        /
+       2
+    Output:
+    [["", "1", ""],
+     ["2", "", ""]]
+    Example 2:
+    Input:
+         1
+        / \
+       2   3
+        \
+         4
+    Output:
+    [["", "", "", "1", "", "", ""],
+     ["", "2", "", "", "", "3", ""],
+     ["", "", "4", "", "", "", ""]]
+    Example 3:
+    Input:
+          1
+         / \
+        2   5
+       / 
+      3 
+     / 
+    4 
+    Output:
+    [["",  "",  "", "",  "", "", "", "1", "",  "",  "",  "",  "", "", ""]
+     ["",  "",  "", "2", "", "", "", "",  "",  "",  "",  "5", "", "", ""]
+     ["",  "3", "", "",  "", "", "", "",  "",  "",  "",  "",  "", "", ""]
+     ["4", "",  "", "",  "", "", "", "",  "",  "",  "",  "",  "", "", ""]]
+    Note: The height of binary tree is in the range of [1, 10].
+

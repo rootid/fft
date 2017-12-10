@@ -7,6 +7,33 @@
 //Given an integer n, generate the nth sequence.
 //Note: The sequence of integers will be represented as a string.
 
+
+//######################################### Iterative ######################################### 
+public String countAndSay(int n) {
+    String say = "1";
+    if(n == 1) return "1";
+    StringBuilder countAndSay = new StringBuilder();
+    countAndSay.append("1");
+    for(int i=1;i<n;i++) {
+        int count = 1;
+        StringBuilder tmp = new StringBuilder();
+        countAndSay.append('X');
+        int len = countAndSay.length();
+        for(int j=0;j<len-1;j++) {
+            while(j < len- 1 && countAndSay.charAt(j) == countAndSay.charAt(j+1)) {
+                count++;
+                j++;
+            }
+            tmp.append(String.valueOf(count) + countAndSay.charAt(j));
+            count = 1;
+        }
+		countAndSay = tmp;
+    } 
+   return countAndSay.toString();
+}
+
+
+//######################################### Iterative ######################################### 
 string countAndSay(int n) {
   if(n == 0) {
     return "";

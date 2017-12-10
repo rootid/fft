@@ -1,0 +1,183 @@
+#################################################################################
+15.  Add Two Numbers
+    You are given two linked lists representing two non-negative numbers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
+    Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
+    Output: 7 -> 0 -> 8
+
+#################################################################################
+16.  Add Two Numbers II
+    You are given two non-empty linked lists representing two non-negative integers. The most significant digit comes first and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
+    You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+    Follow up:
+    What if you cannot modify the input lists? In other words, reversing the lists is not allowed.
+    Example:
+    Input: (7 -> 2 -> 4 -> 3) + (5 -> 6 -> 4)
+    Output: 7 -> 8 -> 0 -> 7
+
+#################################################################################
+48.  Binary Tree Maximum Path Sum
+    Given a binary tree, find the maximum path sum.
+    For this problem, a path is defined as any sequence of nodes from some starting node to any node in the tree along the parent-child connections. The path must contain at least one node and does not need to go through the root.
+    For example:
+    Given the below binary tree,
+           1
+          / \
+         2   3
+    Return 6.
+
+#################################################################################
+93.  Continuous Subarray Sum
+    Given a list of non-negative numbers and a target integer k, write a function to check 
+    if the array has a continuous subarray of size at least 2 that sums up to the multiple of k, 
+    that is, sums up to n*k where n is also an integer.
+    Example 1:
+    Input: [23, 2, 4, 6, 7],  k=6
+    Output: True
+    Explanation: Because [2, 4] is a continuous subarray of size 2 and sums up to 6.
+    Example 2:
+    Input: [23, 2, 6, 4, 7],  k=6
+    Output: True
+    Explanation: Because [23, 2, 6, 4, 7] is an continuous subarray of size 5 and sums up to 42.
+    Note:
+    The size() of the array won't exceed 10,000.
+    You may assume the sum of all the numbers is in the range of a signed 32-bit integer.
+
+#################################################################################
+106. Count of Range Sum
+    Given an integer array nums, return the number of range sums that lie in [lower, upper] inclusive.
+    Range sum S(i, j) is defined as the sum of the elements in nums between indices i and j (i ≤ j), inclusive.
+    Note:
+    A naive algorithm of O(n2) is trivial. You MUST do better than that.
+    Example:
+    Given nums = [-2, 5, -1], lower = -2, upper = 2,
+    Return 3.
+    The three ranges are : [0, 0], [2, 2], [0, 2] and their respective sums are: -2, -1, 2
+
+#################################################################################
+122. Design Excel Sum Formula
+
+    Your task is to design the basic function of Excel and implement the function of sum formula. Specifically, you need to implement the following functions:
+    Excel(int H, char W): This is the constructor. The inputs represents the height and width of the Excel form. H is a positive integer, range from 1 to 26. 
+    It represents the height. W is a character range from 'A' to 'Z'. It represents that the width is the number of characters from 'A' to W. 
+    The Excel form content is represented by a height * width 2D integer array C,
+    it should be initialized to zero. You should assume that the first row of C starts from 1,
+    and the first column of C starts from 'A'.
+
+    void Set(int row, char column, int val): Change the value at C(row, column) to be val.
+    int Get(int row, char column): Return the value at C(row, column).
+    int Sum(int row, char column, List of Strings : numbers): This function calculate 
+    and set the value at C(row, column), where the value should be the sum of cells represented by numbers. 
+    This function return the sum result at C(row, column). This sum formula should exist until this cell is overlapped by another value or another sum formula.
+
+    numbers is a list of strings that each string represent a cell or a range of cells. If the string represent a single cell, then it has the following format : ColRow. For example, "F7" represents the cell at (7, F).
+
+    If the string represent a range of cells, then it has the following format : ColRow1:ColRow2. The range will always be a rectangle, and ColRow1 represent the position of the top-left cell, and ColRow2 represents the position of the bottom-right cell.
+
+    Example 1:
+    Excel(3,"C"); 
+    // construct a 3*3 2D array with all zero.
+    //   A B C
+    // 1 0 0 0
+    // 2 0 0 0
+    // 3 0 0 0
+
+    Set(1, "A", 2);
+    // set C(1,"A") to be 2.
+    //   A B C
+    // 1 2 0 0
+    // 2 0 0 0
+    // 3 0 0 0
+
+    Sum(3, "C", ["A1", "A1:B2"]);
+    // set C(3,"C") to be the sum of value at C(1,"A") and the values sum of the rectangle range whose top-left cell is C(1,"A") and bottom-right cell is C(2,"B"). Return 4. 
+    //   A B C
+    // 1 2 0 0
+    // 2 0 0 0
+    // 3 0 0 4
+
+    Set(2, "B", 2);
+    // set C(2,"B") to be 2. Note C(3, "C") should also be changed.
+    //   A B C
+    // 1 2 0 0
+    // 2 0 2 0
+    // 3 0 0 6
+    Note:
+    You could assume that there won't be any circular sum reference. For example, A1 = sum(B1) and B1 = sum(A1).
+    The test cases are using double-quotes to represent a character.
+    Please remember to RESET your class variables declared in class Excel, as static/class variables are persisted across multiple test cases. Please see here for more detai
+
+#################################################################################
+162. Find K Pairs with Smallest Sums
+    You are given two integer arrays nums1 and nums2 sorted in ascending order and an integer k.
+    Define a pair (u,v) which consists of one element from the first array and one element from the second array.
+    Find the k pairs (u1,v1),(u2,v2) ...(uk,vk) with the smallest sums.
+    Example 1:
+    Given nums1 = [1,7,11], nums2 = [2,4,6],  k = 3
+    Return: [1,2],[1,4],[1,6]
+    The first 3 pairs are returned from the sequence:
+    [1,2],[1,4],[1,6],[7,2],[7,4],[11,2],[7,6],[11,4],[11,6]
+    Example 2:
+    Given nums1 = [1,1,2], nums2 = [1,2,3],  k = 2
+    Return: [1,1],[1,1]
+    The first 2 pairs are returned from the sequence:
+    [1,1],[1,1],[1,2],[2,1],[1,2],[2,2],[1,3],[1,3],[2,3]
+    Example 3:
+    Given nums1 = [1,2], nums2 = [3],  k = 3 
+    Return: [1,3],[2,3]
+    All possible pairs are returned from the sequence:
+    [1,3],[2,3]
+
+#################################################################################
+290. Map Sum Pairs
+
+    Implement a MapSum class with insert, and sum methods.
+    For the method insert, you'll be given a pair of (string, integer). The string represents the key and the integer represents the value. If the key already existed, then the original key-value pair will be overridden to the new one.
+    For the method sum, you'll be given a string representing the prefix, and you need to return the sum of all the pairs' value whose key starts with the prefix.
+    Example 1:
+    Input: insert("apple", 3), Output: Null
+    Input: sum("ap"), Output: 3
+    Input: insert("app", 2), Output: Null
+    Input: sum("ap"), Output: 5
+
+#################################################################################
+295. Max Sum of Rectangle No Larger Than K
+    Given a non-empty 2D matrix matrix and an integer k, find the max sum of a rectangle in the matrix such that its sum is no larger than k.
+    Example:
+    Given matrix = [
+      [1,  0, 1],
+      [0, -2, 3]
+    ]
+    k = 2
+    The answer is 2. Because the sum of rectangle [[0, 1], [-2, 3]] is 2 and 2 is the max number no larger than k (k = 2).
+    Note:
+    The rectangle inside the matrix must have an area > 0.
+    What if the number of rows is much larger than the number of columns?
+
+#################################################################################
+308. Maximum Size Subarray Sum Equals k
+    Given a non-empty 2D matrix matrix and an integer k, find the max sum of a rectangle in the matrix such that its sum is no larger than k.
+    Example:
+    Given matrix = [
+      [1,  0, 1],
+      [0, -2, 3]
+    ]
+    k = 2
+    The answer is 2. Because the sum of rectangle [[0, 1], [-2, 3]] is 2 and 2 is the max number no larger than k (k = 2).
+    Note:
+    The rectangle inside the matrix must have an area > 0.
+    What if the number of rows is much larger than the number of columns?
+
+#################################################################################
+10 - Problems
+15.  Add Two Numbers
+16.  Add Two Numbers II
+48.  Binary Tree Maximum Path Sum
+93.  Continuous Subarray Sum
+106. Count of Range Sum
+122. Design Excel Sum Formula
+162. Find K Pairs with Smallest Sums
+290. Map Sum Pairs
+295. Max Sum of Rectangle No Larger Than K
+308. Maximum Size Subarray Sum Equals k
+#################################################################################
+vim:tw=90:et:norl:

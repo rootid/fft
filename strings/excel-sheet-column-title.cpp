@@ -14,8 +14,26 @@
 #include<algorithm>
 using namespace std;
 
+
+//######################################### Iteration ######################################### 
+public static String convertToTitle(int n) {
+    String result = "";
+    while(n > 0) {
+        n = n - 1;
+        char t = (char) ((n%26) + 'A');
+        result += String.valueOf(t);
+        n = n/26;
+    }
+    return new StringBuffer(result).reverse().toString();
+}
+
+//######################################### Recursion ######################################### 
+String convertToTitle(int n) {
+  return n == 0 ? "" : convertToTitle((n - 1) / 26) + (char) ((n - 1) % 26 + 'A') ;
+}
+
+//######################################### Iteration ######################################### 
 string convertToTitle(int n) {
-    
     string title;
     assert(n > 0);
     while(n) {
@@ -28,6 +46,7 @@ string convertToTitle(int n) {
     cout << title << endl;
     return title;
 }
+
 int main() {
   convertToTitle(1); //A
   convertToTitle(27); //AA

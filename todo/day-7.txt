@@ -1,0 +1,159 @@
+#################################################################################
+531. Sum of Square Numbers
+    Given a non-negative integer c, your task is to decide whether there're two integers a and b such that a^2 + b^2 = c.
+    Example 1:
+    Input: 5
+    Output: True
+    Explanation: 1 * 1 + 2 * 2 = 5
+    Example 2:
+    Input: 3
+    Output: False
+
+#################################################################################
+532. Sum of Two Integers
+    Calculate the sum of two integers a and b, but you are not allowed to use the operator + and -.
+    Example:
+    Given a = 1 and b = 2, return 3.
+
+#################################################################################
+541. Target Sum
+    You are given a list of non-negative integers, a1, a2, ..., an, and a target, S. Now you have 2 symbols + and -. For each integer, you should choose one from + and - as its new symbol.
+    Find out how many ways to assign symbols to make sum of integers equal to target S.
+    Example 1:
+    Input: nums is [1, 1, 1, 1, 1], S is 3. 
+    Output: 5
+    Explanation: 
+    -1+1+1+1+1 = 3
+    +1-1+1+1+1 = 3
+    +1+1-1+1+1 = 3
+    +1+1+1-1+1 = 3
+    +1+1+1+1-1 = 3
+    There are 5 ways to assign symbols to make the sum of nums be target 3.
+    Note:
+    1. The length of the given array is positive and will not exceed 20.
+    2. The sum of elements in the given array will not exceed 1000.
+    3. Your output answer is guaranteed to be fitted in a 32-bit intege
+
+#################################################################################
+7.   4 Keys Keyboard
+    Imagine you have a special keyboard with the following keys:
+    Key 1: (A): Prints one 'A' on screen.
+    Key 2: (Ctrl-A): Select the whole screen.
+    Key 3: (Ctrl-C): Copy selection to buffer.
+    Key 4: (Ctrl-V): Print buffer on screen appending it after what has already been printed.
+    Now, you can only press the keyboard for N times (with the above four keys), find out the maximum numbers of 'A' you can print on screen.
+    Example 1:
+    Input: N = 3
+    Output: 3
+    Explanation: 
+    We can at most get 3 A's on screen by pressing following key sequence:
+    A, A, A
+    Example 2:
+    Input: N = 7
+    Output: 9
+    Explanation: 
+    We can at most get 9 A's on screen by pressing following key sequence:
+    A, A, A, Ctrl A, Ctrl C, Ctrl V, Ctrl V
+    Note:
+    1. 1 <= N <= 50
+    2. Answers will be in the range of 32-bit signed integer.
+
+#################################################################################
+3.   2 Keys Keyboard
+    Initially on a notepad only one character 'A' is present. You can perform two operations on this notepad for each step:
+    Copy All: You can copy all the characters present on the notepad (partial copy is not allowed).
+    Paste: You can paste the characters which are copied last time.
+    Given a number n. You have to get exactly n 'A' on the notepad by performing the minimum number of steps permitted. Output the minimum number of steps to get n 'A'.
+    Example 1:
+    Input: 3
+    Output: 3
+    Explanation:
+    Intitally, we have one character 'A'.
+    In step 1, we use Copy All operation.
+    In step 2, we use Paste operation to get 'AA'.
+    In step 3, we use Paste operation to get 'AAA'.
+    Note:
+    1. The n will be in the range [1, 1000].
+
+#################################################################################
+241. Keyboard Row
+    Given a List of words, return the words that can be typed using letters of alphabet on only one row's of American keyboard like the image below.
+    American keyboard
+    Example 1:
+    Input: ["Hello", "Alaska", "Dad", "Peace"]
+    Output: ["Alaska", "Dad"]
+    Note:
+    1. You may use one character in the keyboard more than once.
+    2. You may assume the input string will only contain letters of alphabet.
+
+#################################################################################
+257. License Key Formatting
+    You are given a license key represented as a string S which consists only alphanumeric character and dashes. The string is separated into N+1 groups by N dashes.
+    Given a number K, we would want to reformat the strings such that each group contains exactly K characters, except for the first group which could be shorter than K, but still must contain at least one character. Furthermore, there must be a dash inserted between two groups and all lowercase letters should be converted to uppercase.
+    Given a non-empty string S and a number K, format the string according to the rules described above.
+    Example 1:
+    Input: S = "5F3Z-2e-9-w", K = 4
+    Output: "5F3Z-2E9W"
+    Explanation: The string S has been split into two parts, each part has 4 characters.
+    Note that the two extra dashes are not needed and can be removed.
+    Example 2:
+    Input: S = "2-5g-3-J", K = 2
+    Output: "2-5G-3J"
+    Explanation: The string S has been split into three parts, each part has 2 characters except the first part as it could be shorter as mentioned above.
+    Note:
+    1. The length of string S will not exceed 12,000, and K is a positive integer.
+    2. String S consists only of alphanumerical characters (a-z and/or A-Z and/or 0-9) and dashes(-).
+    3. String S is non-empty.
+
+#################################################################################
+265. Longest Absolute File Path
+    Suppose we abstract our file system by a string in the following manner:
+    The string "dir\n\tsubdir1\n\tsubdir2\n\t\tfile.ext" represents:
+    dir
+        subdir1
+        subdir2
+            file.ext
+    The directory dir contains an empty sub-directory subdir1 and a sub-directory subdir2 containing a file file.ext.
+    The string "dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext" represents:
+    dir
+        subdir1
+            file1.ext
+            subsubdir1
+        subdir2
+            subsubdir2
+                file2.ext
+    The directory dir contains two sub-directories subdir1 and subdir2. subdir1 contains a file file1.ext and an empty second-level sub-directory subsubdir1. subdir2 contains a second-level sub-directory subsubdir2 containing a file file2.ext.
+    We are interested in finding the longest (number of characters) absolute path to a file within our file system. For example, in the second example above, the longest absolute path is "dir/subdir2/subsubdir2/file2.ext", and its length is 32 (not including the double quotes).
+    Given a string representing the file system in the above format, return the length of the longest absolute path to file in the abstracted file system. If there is no file in the system, return 0.
+    Note:
+    1. The name of a file contains at least a . and an extension.
+    2. The name of a directory or sub-directory will not contain a ..
+    Time complexity required: O(n) where n is the size of the input string.
+    Notice that a/aa/aaa/file1.txt is not the longest file path, if there is another path aaaaaaaaaaaaaaaaaaaaa/sth.png.
+
+#################################################################################
+266. Longest Common Prefix
+    Write a function to find the longest common prefix string amongst an array of strings.
+
+#################################################################################
+267. Longest Consecutive Sequence
+    Given an unsorted array of integers, find the length of the longest consecutive elements sequence.
+    For example,
+    Given [100, 4, 200, 1, 3, 2],
+    The longest consecutive elements sequence is [1, 2, 3, 4]. Return its length: 4.
+    Your algorithm should run in O(n) complexity.
+
+#################################################################################
+10 - Problems
+531. Sum of Square Numbers
+532. Sum of Two Integers
+541. Target Sum
+7.   4 Keys Keyboard
+3.   2 Keys Keyboard
+241. Keyboard Row
+257. License Key Formatting
+265. Longest Absolute File Path
+266. Longest Common Prefix
+267. Longest Consecutive Sequence
+#################################################################################
+vim:tw=90:et:norl:

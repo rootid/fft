@@ -14,6 +14,8 @@
 using namespace std;
 
 //######################################### Recursion ######################################### 
+//1. Go from R-L
+//2. Check IV kind of sample
 class Solution {
     public int romanToInt(String s) {
         final Map<Character, Integer> rMap = new HashMap<>();

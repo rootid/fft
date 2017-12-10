@@ -102,7 +102,7 @@
 102. Count Primes
 103. Count The Repetitions
 104. Count Univalue Subtrees
-105. Count and Say
+105. Count and Say : Iterate previous string to get the next string -533,143
 106. Count of Range Sum
 107. Count of Smaller Numbers After Self
 108. Counting Bits : Pattern, Bit Manipulation (How 1,2 formed from 0)
@@ -146,8 +146,8 @@
 146. Erect the Fence
 147. Evaluate Division
 148. Evaluate Reverse Polish Notation
-149. Excel Sheet Column Number
-150. Excel Sheet Column Title
+149. Excel Sheet Column Number : result * 26 + (s.charAt(i) - 'A' + 1)
+150. Excel Sheet Column Title : Recursion : n == 0 ? "" : convertToTitle((n - 1) / 26) + (char) ((n - 1) % 26 + 'A') ;
 151. Exclusive Time of Functions
 152. Expression Add Operators
 153. Factor Combinations
@@ -231,7 +231,7 @@
 231. Invert Binary Tree
 232. Is Subsequence
 233. Island Perimeter
-234. Isomorphic Strings
+234. Isomorphic Strings : Check charV->Idx mapping is same/not.
 235. Judge Route Circle
 236. Jump Game : Greedy, BFS [like word-break ]
 237. Jump Game II  : BFS
@@ -426,7 +426,7 @@
 426. Reconstruct Original Digits from English
 427. Recover Binary Search Tree
 428. Rectangle Area
-429. Regular Expression Matching
+429. Regular Expression Matching : 1. ".*" - Starts and Ends with any char 2. ".*a" - Starts with any and Ends with a 3. "ab.*" - Starts with ab/a and Ends with any , Iteration - save result of matches in 2D  Hint- Must scan all pattern to produce result.
 430. Relative Ranks
 431. Remove 9
 432. Remove Boxes
@@ -444,7 +444,7 @@
 444. Repeated DNA Sequences : substring(startidx-Inclusive,endIdx-Exclusive) Default hash or Customized Hash (Use last 2 bits  t = t << 3 & 0x3FFFFFFF | s.charAt(i) & 7;)
 445. Repeated Substring Pattern
 446. Replace Words
-447. Reshape the Matrix
+447. Reshape the Matrix : idx = (i* width/col+ j) matrix[idx/ width or col][idx % width or col] 
 448. Restore IP Addresses
 449. Reverse Bits
 450. Reverse Integer
@@ -458,7 +458,7 @@
 458. Reverse Words in a String 
 459. Reverse Words in a String II
 460. Reverse Words in a String III
-461. Roman to Integer
+461. Roman to Integer : 1. Go from R-L 2. Check IV kind of sample
 462. Rotate Array
 463. Rotate Function : f(i) = f(i - 1) - SUM(A -> D) + N * A[i - 1]
 464. Rotate Image : 90deg Clock- T-D swap, Trasponse  AntiClock- L-R swap, Transponse (Ring-by-Ring solution)
