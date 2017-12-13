@@ -75,7 +75,7 @@
 75.  Combination Sum : Pick Next element only when current sum > target (DP : Coin change)
 76.  Combination Sum II : Pick Next element only when elem[i-1] != elem[i]
 77.  Combination Sum III : Pick Next element only when (target - current ele) > 0
-78.  Combination Sum IV
+78.  Combination Sum IV : Recursion + Memory - Bottom up, Explicit iteration over weight,sample set - Top down
 79.  Combinations
 80.  Compare Version Numbers : split + compare number by number "NOTE-Do not handle 1.02 and 1.1 correctly"
 81.  Complex Number Multiplication
@@ -397,8 +397,8 @@
 397. Perfect Squares
 398. Permutation Sequence
 399. Permutation in String
-400. Permutations
-401. Permutations II
+400. Permutations : Swap, SoFar 
+401. Permutations II :  Swap, SoFar 
 402. Plus One : Last digit check < 9 eg. 99 + 1 = 100, 19+1 = 20
 403. Plus One Linked List : 1. Recursive (carry check ,use 402 property) 2. Iterative 2 pointer (p,q) p=># < 9 q = last 9 
 404. Populating Next Right Pointers in Each Node : 1. BFS 2. Recursion (h.l -> h.r, t.l->t.r, h.r->t.l)
@@ -521,8 +521,8 @@
 521. Student Attendance Record I
 522. Student Attendance Record II
 523. Subarray Sum Equals K : Presum DP
-524. Subsets
-525. Subsets II
+524. Subsets : Pick/Don't pick the item
+525. Subsets II : Manage duplicate elements with comparing with prev element
 526. Substring with Concatenation of All Words
 527. Subtree of Another Tree
 528. Sudoku Solver

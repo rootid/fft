@@ -8,6 +8,7 @@
 //]
 
 //##################### Sort + Backtrack  ##################### 
+//https://discuss.leetcode.com/topic/15875/short-40ms-c-solution-similar-to-permutation-i-solution/2
 
 //Consider the following example:
 //i= 0, 1, 2, 3, 4

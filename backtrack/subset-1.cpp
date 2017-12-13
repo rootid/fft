@@ -13,7 +13,28 @@
 //
 //
 
-//######################################### Recursion ######################################### 
+//### A v/s B - (A - Pick the first item, B- Iterate over sample set and pick)
+//A - ######################################### Pick/Don't pick item ######################################### 
+public List<List<Integer>> subsets(int[] nums) {
+    List<Integer> soFarList = new LinkedList<>();
+    List<List<Integer>> result = new ArrayList<>();
+    Arrays.sort(nums);
+    subsetsHelper(nums,0,soFarList,result);
+    return result;
+}
+private void subsetsHelper(int[] nums,int k,List<Integer>soFarList, List<List<Integer>> result) {
+    int n = nums.length;
+    if(n == k) {
+        result.add(new ArrayList<>(soFarList));
+        return;
+    }
+    soFarList.add(nums[k]); //Pick the item 
+    subsetsHelper(nums, k+1, soFarList, result);
+    soFarList.remove(soFarList.size() -1); //Don't pick the item
+    subsetsHelper(nums, k+1, soFarList, result);
+}
+
+//B - ######################################### Recursion ######################################### 
 class Solution {
     public List<List<Integer>> subsets(int[] nums) {
         List<Integer> soFar = new LinkedList<>();
@@ -25,7 +46,7 @@ class Solution {
     private void subsetsHelper(int[] nums,int k,List<Integer>soFar, List<List<Integer>> result) {
         int n = nums.length;
         result.add(new ArrayList(soFar));
-        for(int i=k;i<n;i++) {
+        for(int i=k;i<n;i++) { 
             soFar.add(nums[i]);
             subsetsHelper(nums,i+1,soFar,result);
             soFar.remove(soFar.size() - 1);

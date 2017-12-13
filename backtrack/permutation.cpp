@@ -23,16 +23,14 @@ public List<List<Integer>> permute(int[] nums) {
     return result;
 }
 
-private void backtrack(List<List<Integer>> result, int[] nums, List<Integer> currentList, int k) {
-    if (currentList.size() == nums.length) {
-        result.add(currentList);
-        return;
+private void backtrack(List<List<Integer>> result, int[] nums, List<Integer> soFarList, int k) {
+    if (k == nums.length) {
+        result.add(soFarList);
+        return ;
     }
-    int n = nums[k];
-    for (int i = 0; i <= currentList.size(); i++) {
-        //List<Integer> copy = new ArrayList<>(currentList);
-		List<Integer> copy = currentList.stream().collect(Collectors.toList());
-        copy.add(i, n); 
+    for (int i = 0; i <= soFarList.size(); i++) {
+        List<Integer> copy = new ArrayList<>(soFarList);
+        copy.add(i, nums[k]); 
         backtrack(result, nums, copy, k + 1);
     }
 }
@@ -104,11 +102,11 @@ def permute(self, nums):
         if not nums:
             yield []
         for i, n in enumerate(nums):
-            for p in gen(nums[:i] + nums[i+1:]):
-                yield [n] + p
+            for p in gen(nums[:i] + nums[i+1:]): #(0,i)  (i+1,n)
+                yield [n] + p #current ele, rest
     return list(gen(nums))
 
-
+//######################################### SoFar technique ######################################### 
 void recSubsets(string soFar, string rest) {
    if (rest == "") cout << soFar << endl;
    else { 

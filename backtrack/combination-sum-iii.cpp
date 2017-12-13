@@ -42,12 +42,12 @@ public List<List<Integer>> combinationSum3(int k, int n) {
     return  result;
 }
 
-private void combinationSumHelper(int n,int k, int start, List<Integer> localList,List<List<Integer>> result) {
-    if(n <0) return;
-    if(n == 0 && k == 0) result.add(new ArrayList<>(localList));
+private void combinationSumHelper(int sum,int k, int start, List<Integer> localList,List<List<Integer>> result) {
+    if(sum <0) return;
+    if(sum == 0 && k == 0) result.add(new ArrayList<>(localList));
     for(int i=start;i<=9;i++) { //(start-9)
         localList.add(i);
-        combinationSumHelper(n - i, k - 1, i+1, localList, result);
+        combinationSumHelper(sum - i, k - 1, i+1, localList, result);
         localList.remove(localList.size() - 1);
     }
 }

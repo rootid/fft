@@ -18,18 +18,65 @@
 //How does it change the problem?
 //What limitation we need to add to the question to allow negative numbers?
 //
-int combinationSum4(vector<int>& nums, int target) {
+
+//######################################### Bottom-up ######################################### 
+class Solution {
+    
+    public int combinationSum4(int[] nums, int target) {
+        int[] dp = new int[target+1];
+        Arrays.fill(dp, -1); 
+        dp[0] = 1;
+        return combinationSum4Helper(nums, target,dp);
+    }
+    
+    private int combinationSum4Helper(int[] nums,int target, int[] dp) {
+        int count = 0;
+        int n = nums.length;
+        if(dp[target] != -1) return dp[target];
+        for(int i=0;i<n;i++) {
+            if(target >= nums[i]) {
+                target = target-nums[i];
+                count += combinationSum4Helper(nums,target,dp);
+                target = target+nums[i];
+            }
+        }
+        dp[target] = count;
+        return dp[target];
+    }
+}
+
+//######################################### Recursion ######################################### 
+public int combinationSum4(int[] nums, int target) {
+    return combinationSum4Helper(nums, target);
+}
+
+private int combinationSum4Helper(int[] nums, int target) {
+    int count = 0;
+    int n = nums.length;
+    if(target == 0) return count+1;
+    for(int i=0;i<n;i++) {
+        if(target >= nums[i]) {
+            target = target-nums[i];
+            count += combinationSum4Helper(nums, target);
+            target = target+nums[i];
+        }
+    }
+    return count;
+}
+
+//######################################### KnapSack with only weights - TOP Down ######################################### 
+int combinationSum4(vector<int>& nums, int target) { 
     vector<int> dp(target + 1,0);
     sort(nums.begin(),nums.end());
     //dp[0] = 1; 
-    for(int i=1;i<=target;i++) {
-        for(int j=0;j<nums.size();j++) {
+    for(int i=1;i<=target;i++) {  //i -> current weight
+        for(int j=0;j<nums.size();j++) { //iterate over sample set
             if(i - nums[j] < 0) {
                 break;
             } 
-            if ( i - nums[j] > 0) {  
+            if (i - nums[j] > 0) {   
                 dp[i] += dp[ i - nums[j] ];
-            }  else if(i == nums[j]) {
+            }  else if(i == nums[j]) { //found matched weight
                 dp[i] += 1;
             }
          

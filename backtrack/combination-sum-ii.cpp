@@ -31,7 +31,7 @@
             if(i > k && candidates[i-1] == candidates[i]) continue; // skip duplicate elements
             if(candidates[i] <= target) {
                 localList.add(candidates[i]);
-                combinationSumHelper(candidates,i+1,resultList, localList, sum + candidates[i],target);  //pick next element.
+                combinationSumHelper(candidates,i+1,resultList, localList, sum + candidates[i],target);  //pick next element 'i+1'
                 localList.remove(localList.size() - 1);
             }
         }

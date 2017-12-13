@@ -40,7 +40,7 @@ class Solution {
         for(int i=k;i<n;i++) {
             if (i == k || nums[i] != nums[i - 1]) { //Only pick the single ele when duplicates are present.
   			//if(i > k && nums[i] == nums[i-1]) continue; // skip duplicates
-                soFar.add(nums[i]);
+                soFar.add(nums[i]);  //Add each element 
                 subsetsWithDupHelper(nums,i+1,soFar,result);
                 soFar.remove(soFar.size() - 1);
             }

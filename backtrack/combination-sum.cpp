@@ -81,7 +81,7 @@ public:
      for(int i=k;i<m;i++) {
          if(candidates[i] <= target) {
              localList.add(candidates[i]);
-             combinationSumHelper(candidates,i,resultList, localList, sum + candidates[i],target); //PICK SAME ELEMENT
+             combinationSumHelper(candidates,i,resultList, localList, sum + candidates[i],target); //PICK SAME ELEMENT so use 'i' instead of k
              k += 1;
              localList.remove(localList.size() - 1);
          }
