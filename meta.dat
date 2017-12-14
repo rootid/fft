@@ -95,7 +95,7 @@
 ./backtrack/longest-line-of-consecutive-one-in-matrix.cpp
 ./backtrack/n-queens-ii.cpp
 ./backtrack/n-queens.cpp
-./backtrack/palindrome-partition.cpp
+./backtrack/palindrome-partitioning.cpp
 ./backtrack/palindrome-permutation-ii.cpp
 ./backtrack/permutation-sequence.cpp
 ./backtrack/permutation.cpp
@@ -276,7 +276,6 @@
 ./dp/paint-house-II.cpp
 ./dp/paint-house.cpp
 ./dp/palindrome-partitioning-ii.cpp
-./dp/palindrome-partitioning.cpp
 ./dp/partition-equal-subset-sum.cpp
 ./dp/pascals-triangle-ii.cpp
 ./dp/pascals-triangle.cpp
@@ -531,7 +530,7 @@
 ./strings/number-of-segments-in-a-string.cpp
 ./strings/one-edit-distance.cpp
 ./strings/optimal-division.cpp
-./strings/palindromeNumber.cpp
+./strings/palindrome-number.cpp
 ./strings/palindromic-substrings.cpp
 ./strings/read-n-characters-given-read4.cpp
 ./strings/reconstruct-original-digits-from-english.cpp

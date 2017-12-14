@@ -375,12 +375,12 @@
 375. Paint House
 376. Paint House II
 377. Palindrome Linked List
-378. Palindrome Number
-379. Palindrome Pairs
+378. Palindrome Number : 1. Compare digits and update number(first,second half) 1. Check length first and then compare digits 
+379. Palindrome Pairs 
 380. Palindrome Partitioning
 381. Palindrome Partitioning II
-382. Palindrome Permutation
-383. Palindrome Permutation II
+382. Palindrome Permutation : Check Odd/even string length, count frquency of each char
+383. Palindrome Permutation II : 382 + Backtrack with reduced(only half chars) sample set (n/2)!
 384. Palindromic Substrings
 385. Partition Equal Subset Sum
 386. Partition List

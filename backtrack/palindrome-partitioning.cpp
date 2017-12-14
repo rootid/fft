@@ -7,6 +7,36 @@
 //  ["aa","b"],
 //  ["a","a","b"]
 //]
+
+
+//####################################################### Backtrack GOOD  ####################################################### 
+//Backrack with Pruning by checking palindrome
+public List<List<String>> partition(String s) {
+    List<List<String>> result = new LinkedList<>();
+    List<String> localList = new ArrayList<>();
+    generatePartHelper(s,0,localList,result);
+    return result;
+}
+
+private void generatePartHelper(String s, int k, List<String>localList, List<List<String>> result) {
+    int len = s.length();
+    if(k == len) {
+        result.add(new ArrayList<>(localList));
+        return;
+    }
+    for(int i=k;i<len;i++) {
+        int start = k, end = i;
+        while (start < end && s.charAt(start) == s.charAt(end)) {
+            start++; end--;  //Pruning
+        }
+        if(start >= end) {
+            localList.add(s.substring(k, i+1));
+            generatePartHelper(s, i+1, localList, result);
+            localList.remove(localList.size()-1);
+        }   
+    }
+}
+
 //Backrack with Pruning by checking palindrome
 //####################################################### Backtrack GOOD  ####################################################### 
 vector<vector<string>> partition(string s) { 
