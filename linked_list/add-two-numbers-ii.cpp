@@ -9,6 +9,71 @@
 #include "../headers/global.hpp"
 #include "../headers/listnode.hpp"
 
+//############################## With Stack + Carry and Dummy Node############################## 
+public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    if(l1 == null) return l2;
+    if(l2 == null) return l1;
+    Deque<ListNode> stk1 = new ArrayDeque<>();
+    Deque<ListNode> stk2 = new ArrayDeque<>();
+    ListNode dummyNode = new ListNode(0);
+    int sum = 0;
+    while(l1 != null || l2 != null) {
+        if(l1 != null) {
+            stk1.push(l1);
+            l1 = l1.next;
+        }
+        if(l2 != null) {
+            stk2.push(l2);
+            l2 = l2.next;
+        }
+    }
+    while(!stk1.isEmpty() || !stk2.isEmpty()) {
+        if(!stk1.isEmpty()) sum += stk1.pop().val;
+        if(!stk2.isEmpty()) sum += stk2.pop().val;
+        dummyNode.val = sum % 10;
+        ListNode carryNode = new ListNode(sum/10); 
+        carryNode.next = dummyNode;
+        dummyNode = carryNode;
+        sum /= 10;
+    }
+    return dummyNode.val == 0 ? dummyNode.next : dummyNode;
+}
+
+
+//############################## With Stack ############################## 
+ public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+     if(l1 == null) return l2;
+     if(l2 == null) return l1;
+     Deque<ListNode> stk1 = new ArrayDeque<>();
+     Deque<ListNode> stk2 = new ArrayDeque<>();
+     ListNode head = null;
+     int sum = 0;
+     while(l1 != null || l2 != null) {
+         if(l1 != null) {
+             stk1.push(l1);
+             l1 = l1.next;
+         }
+         if(l2 != null) {
+             stk2.push(l2);
+             l2 = l2.next;
+         }
+     }
+     while(!stk1.isEmpty() || !stk2.isEmpty()) {
+         if(!stk1.isEmpty()) sum += stk1.pop().val;
+         if(!stk2.isEmpty()) sum += stk2.pop().val;
+         ListNode tmp = new ListNode(sum%10); 
+         tmp.next = head;
+         head = tmp;
+         sum /= 10;
+     }
+     if(sum >= 1) {
+         ListNode tmp = new ListNode(sum);
+         tmp.next = head;
+         head = tmp;
+     }
+     return head;
+ }
+
 //############################## With Stack ############################## 
 ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
        stack<int> st1; // store l1
@@ -60,7 +125,7 @@ ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
 //############################## W/O Stack ############################## 
 ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
      int n1 = getLength(l1), n2 = getLength(l2), diff = abs(n1 - n2);
-     if (n1 < n2) swap(l1, l2);
+     if (n1 < n2) swap(l1, l2); //|l1| > |l2|
      ListNode *dummy = new ListNode(0), *cur = dummy, *right = cur;
      while (diff > 0) {
          cur->next = new ListNode(l1->val);

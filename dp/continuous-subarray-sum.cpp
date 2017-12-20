@@ -14,7 +14,29 @@
 //The size() of the array won't exceed 10,000.
 //You may assume the sum of all the numbers is in the range of a signed 32-bit integer.
 #include "../headers/global.hpp"
-///################################################### O(n)
+
+//############################### Running Sum With Mod Property ############################### 
+public boolean checkSubarraySum(int[] nums, int k) { 
+    int n = nums.length;
+    int runningSum = 0;
+    // Map<Integer, Integer> sumIdxMap = new HashMap<>();
+    // sumIdxMap.put(0, -1);
+    Map<Integer, Integer> sumIdxMap = new HashMap<Integer, Integer>(){{put(0,-1);}};;
+    for(int i=0;i<n;i++) {
+        runningSum += nums[i];
+        if(k != 0) runningSum %= k;
+        // if(sumIdxMap.containsKey(runningSum)) {
+        Integer prev = sumIdxMap.get(runningSum);
+        if(prev != null) { 
+            if(i - prev >=2) return true;
+        }
+        else sumIdxMap.put(runningSum, i);
+    }
+    return false;
+}
+
+
+///################################################### O(n) ################################################### 
 bool checkSubarraySum(vector<int>& nums, int k) { 
  unordered_map<int, int> map;
  map[0] = -1; //for case [0,0] 0
@@ -78,5 +100,8 @@ bool checkSubarraySum(vector<int>& nums, int k) {
   }
   return false;
 }
+
 int main() {
 }
+
+/* vim: set ts=4 sw=4 sts=4 tw=120 et: */

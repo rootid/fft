@@ -1,19 +1,19 @@
 1.   01 Matrix  :  BFS [1. Put all 0's in q + update all 1's to MAX/m+n and do BFS with 0s, 2. 2-Way sweep L-R ([i][j-1],[i-1][j]),R-L([i][j+1],[i+1][j])
 2.   132 Pattern
 3.   2 Keys Keyboard
-4.   3Sum
-5.   3Sum Closest
-6.   3Sum Smaller
+4.   3Sum : Sort array, pick 1 and check rest i.e. a+b = -c
+5.   3Sum Closest : Use the last3Sum to compute the Closest value (Abs diff between target and sum) 
+6.   3Sum Smaller 
 7.   4 Keys Keyboard
-8.   4Sum
+8.   4Sum : Pick 2 disitnct chars and iterate over rest
 9.   4Sum II
 10.  Add Binary : 1. Iterative (like BT traversal stack.empty || root == carry, idx a, idx b), 2. Recursive (3 cases 1,1|0,0|(1,0/0,1))
 11.  Add Bold Tag in String
 12.  Add Digits : O(1) [Congruence formula dr(n) = 1 + (n - 1) % (b-1) b = base for decimal b = 10]
 13.  Add One Row to Tree
 14.  Add Strings
-15.  Add Two Numbers
-16.  Add Two Numbers II
+15.  Add Two Numbers : Recursion carry = extra/ new node
+16.  Add Two Numbers II : Represent list as a Stack 
 17.  Add and Search Word - Data structure design
 18.  Additive Number
 19.  Alien Dictionary
@@ -45,7 +45,7 @@
 45.  Binary Tree Level Order Traversal II : [3 Approaches => visit-nextvisit, 2push-1pop/#(NV)= 2* #(PV), recursion/DFS]
 46.  Binary Tree Longest Consecutive Sequence
 47.  Binary Tree Longest Consecutive Sequence II
-48.  Binary Tree Maximum Path Sum
+48.  Binary Tree Maximum Path Sum : 1. R 2. R.left + R 3. R.right + R 4. R.right + R + R.left
 49.  Binary Tree Paths
 50.  Binary Tree Postorder Traversal : Keep track of last visited, push node -> go node.left
 51.  Binary Tree Preorder Traversal  : [push node.right -> go node.left]
@@ -103,7 +103,7 @@
 103. Count The Repetitions
 104. Count Univalue Subtrees
 105. Count and Say : Iterate previous string to get the next string -533,143
-106. Count of Range Sum
+106. Count of Range Sum : Running sum with Mod property
 107. Count of Smaller Numbers After Self
 108. Counting Bits : Pattern, Bit Manipulation (How 1,2 formed from 0)
 109. Course Schedule
@@ -130,7 +130,7 @@
 130. Design Twitter
 131. Detect Capital : Regex use of matches
 132. Diagonal Traverse
-133. Diameter of Binary Tree
+133. Diameter of Binary Tree : 1. R 2. R.left + R 3. R.right + R 4. R.right + R + R.left
 134. Different Ways to Add Parentheses
 135. Distinct Subsequences : (S,T) -> Count # of chars in T in S keeping the order of T in S (left-right)
 136. Distribute Candies

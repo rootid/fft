@@ -5,6 +5,19 @@
 //Input: numbers={2, 7, 11, 15}, target=9
 //Output: index1=1, index2=2
 #include "../headers/global.hpp"
+
+//#################### In built binary search #################### 
+public int[] twoSum(int[] nums, int target) {
+    int len = nums.length;
+    for(int i=0;i<len-1;i++) {
+        int key = target - nums[i];
+        int idx =  Arrays.binarySearch(nums, i+1, len, key);
+        if(idx > 0) return new int[] {i+1 ,idx+1};
+    }
+    return new int[] {-1,-1};
+}
+
+
 //#################### GOOD #################### 
 int binary_search(vector<int>& numbers,int start,int end,int target) {
     while(start <= end) {

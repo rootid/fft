@@ -24,7 +24,7 @@ int threeSumSmaller(vector<int>& nums, int target) {
     while(left < right) {
       int sum_ = nums[i] + nums[left] + nums[right];
       if(sum_ < target) {
-        cnt += (right-left);
+        cnt += (right-left); //count all the digits where sum < target
         left += 1;
       } else {
         right -= 1;

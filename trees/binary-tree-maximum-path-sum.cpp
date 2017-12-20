@@ -12,34 +12,35 @@
 #include "../headers/treenode.h"
 
 
-//######################################### Global Max ######################################### 
+//######################################### Global Max + Bottom up ######################################### 
 class Solution {
-	int maxPathSum = Integer.MIN_VALUE;;
+    int maxPathSum = Integer.MIN_VALUE;;
 
-	private int maxPathSumHelper(TreeNode root) {
-		if(root != null) {
-			int leftMax = Math.max(0, maxPathSumHelper(root.left));
-			int rightMax = Math.max(0, maxPathSumHelper(root.right));
-			maxPathSum = Math.max(maxPathSum, leftMax + rightMax + root.val); //Compares the max value from every iteration with the current sum and updates it . 
-			return Math.max(leftMax,rightMax) + root.val; //At every node, we need to make a decision, if the sum comes from the left path larger than the right path, we pick the left path and plus the current node's value, this recursion goes all the way up to the root node.
-		}
-		return 0;
-	}
+    private int maxPathSumHelper(TreeNode root) {
+        if(root != null) {
+            int leftMax = Math.max(0, maxPathSumHelper(root.left));
+            int rightMax = Math.max(0, maxPathSumHelper(root.right));
+            maxPathSum = Math.max(maxPathSum, leftMax + rightMax + root.val); //Compares the max value from every iteration with the current sum and updates it . 
+            return Math.max(leftMax,rightMax) + root.val; //At every node, we need to make a decision, if the sum comes from the left path larger than the right path, we pick the left path and plus the current node's value, this recursion goes all the way up to the root node.
+        }
+        return 0;
+    }
 
-	public int maxPathSum(TreeNode root) {
-	   maxPathSumHelper(root);
-	   return maxPathSum;
-	}
+    public int maxPathSum(TreeNode root) {
+       maxPathSumHelper(root);
+       return maxPathSum;
+    }
 }
 
 
+//############################### MathPathSumHelper  ############################### 
 //Idea : 
 //traversal every nodes as the top of sub tree and calculate left max and right max individually, then keep update max. T
 //A path, in this problem, refers to any sequence of nodes from some starting node to any node in the tree along the parent-child connections. 
 //In the example, you start at either the 2 or 3, then traverse to its parent, the 1 at the root, then finish at the root's other child.
 // That gives 2+1+3 = 3+1+2 = 6.
 //
-//					  1
+//                      1
 //        **2**                   1
 //  10          10           1          1
 //  Ans = 22 not 26
@@ -58,14 +59,13 @@ int depth(TreeNode *root,int &res) {
   int b = depth(root->right,res);
   res = max(res,a+b+root->val);//if *root is the top node in the path (left+right+root)
 
-//									root 
+//                                    root 
 //                                 /      \   
 //                  left max value        right max value
   //From the bottom of the tree to the top, it's in post-order manner.
   return max(0,max(a, b)+root->val);//if *root is in the path, if this branch a burden or a plus (left/right + root)
   //At every node, we need to make a decision, if the sum comes from the left path larger than the right path, we pick the left path and plus the current node's value, this recursion goes all the way up to the root node.
 }
-//############################### MathPathSumHelper  ############################### 
 int maxPathSum(TreeNode *root) { 
   if(root == NULL) {
     return 0;
@@ -200,20 +200,38 @@ class Solution(object):
 //(1) computes the maximum path sum with highest node is the input node, update maximum if necessary 
 //(2) returns the maximum sum of the path that can be extended to input node's parent.
 //
-//######################################### DFS  ######################################### 
-class Solution {
-private:
-    int dfs(TreeNode* root, int& maxsum) {
-        if(!root) return 0;
-        int l = max(0,dfs(root->left,maxsum));
-        int r = max(0,dfs(root->right,maxsum));
-        maxsum = max(l+r+root->val, maxsum);
-        return root->val + max(l,r);
-    }
-public:
-    int maxPathSum(TreeNode* root) {
-        int maxsum = INT_MIN;
-        dfs(root,maxsum);
-        return maxsum;
-    }
-};
+
+//######################################### Top-down ######################################### 
+//Solution 1: Helper returning two values: (240 ms, 8 lines)
+
+def maxPathSum(self, root):
+    def maxsums(node):
+        if not node:
+            return [-2**31] * 2
+        left = maxsums(node.left)
+        right = maxsums(node.right)
+        return [node.val + max(left[0], right[0], 0),
+                max(left + right + [node.val + left[0] + right[0]])]
+    return max(maxsums(root))
+
+//My helper function returns two values:
+//The max sum of all paths ending in the given node (can be extended through the parent)
+//The max sum of all paths anywhere in tree rooted at the given node (can not be extended through the parent).
+
+//######################################### Top-down ######################################### 
+//Solution 2: Helper updating a "global" maximum: (172 ms, 10 lines)
+
+def maxPathSum(self, root):
+    def maxend(node):
+        if not node:
+            return 0
+        left = maxend(node.left)
+        right = maxend(node.right)
+        self.max = max(self.max, left + node.val + right)
+        return max(node.val + max(left, right), 0)
+    self.max = None
+    maxend(root)
+    return self.max
+//Here the helper is similar, but only returns the first of the two values (the max sum of all paths ending in the given node). Instead of returning the second value (the max sum of all paths anywhere in tree rooted at the given node), it updates a "global" maximum
+
+/* vim: set ts=4 sw=4 sts=4 tw=120 et: */

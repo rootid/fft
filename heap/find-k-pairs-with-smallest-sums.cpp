@@ -19,6 +19,17 @@
 //[1,3],[2,3]
 
 //############################################ select top k ############################################ 
+public List<int[]> kSmallestPairs(int[] nums1, int[] nums2, int k) {
+    List<int[]> result = new ArrayList<>();
+    PriorityQueue<int[]> pq = new PriorityQueue<>((a,b) -> (a[0]+a[1])  - (b[0]+b[1])) ;
+    for(int i:nums1) 
+        for(int j: nums2) pq.offer(new int[]{i,j});
+    while(k-- > 0 && !pq.isEmpty()) {
+        result.add(pq.poll());
+    }
+    return result;
+}
+//############################################ select top k ############################################ 
 vector<pair<int, int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k) {
      vector<pair<int, int>> v;
      if(nums1.empty() || nums2.empty()) return v;
@@ -27,7 +38,7 @@ vector<pair<int, int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2, in
      priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(cmp)> minHeap(cmp);
      for(auto n: nums1)
          for(auto m: nums2)
-             minHeap.emplace(n, m);
+             minHeap.emplace(n, m); 
      while(minHeap.size() && k--) {
          v.emplace_back(minHeap.top());
          minHeap.pop();

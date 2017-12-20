@@ -11,6 +11,36 @@
 using namespace std;
 
 
+//######################################### Use the last3Sum to compute the Closest  ######################################### 
+public int threeSumClosest(int[] nums, int target) {
+
+    int n = nums.length; 
+    if(n<3) return -1;
+    int last3Sum = nums[0] + nums[1] + nums[2];
+    int result = 0;
+    boolean isClosestFound = false;
+    Arrays.sort(nums);
+    for(int i=0;i<n-2;i++) {
+        if(isClosestFound == true) return target;
+        int left = i+1;
+        int right = n-1;
+        while(left < right) {
+            int s = nums[i] + nums[left] + nums[right];
+            if(Math.abs(target-s) < Math.abs(last3Sum-target)) {
+                if(s == target) {
+                    isClosestFound = true;
+                    break;
+                }
+                last3Sum = s;
+            }
+            if(s < target) left++;
+            else right--;
+        }
+    }
+    return last3Sum;
+}
+
+
 int threeSumClosest(vector<int>& nums, int target) {
 
   int len = nums.size();
