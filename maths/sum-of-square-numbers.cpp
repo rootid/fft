@@ -8,6 +8,33 @@
 //Input: 3
 //Output: False
 
+
+//########################### 2 pointer pruning - O(n) ########################### 
+public boolean judgeSquareSum(int c) {
+    if(c < 0) return false;
+    int right = (int)Math.sqrt(c);
+    int left = 0;
+    while(left <= right) {
+        int result = left*left + right*right;
+        if(result == c) return true;
+        if(result > c) right -= 1;
+        else left += 1;
+    }
+    return false;
+}
+
+//########################### 2 pointer pruning - O(n^2) ########################### 
+public boolean judgeSquareSum(int c) { 
+  int limit = c/2;
+  for(int i=0;i<=limit;i++) {
+       for(int j=0;j<=limit;j++) {
+          if(i*i + j*j == c) return true;  
+       }
+  }
+  return false;
+}
+    
+
 //########################### 2 pointer pruning ########################### 
 bool judgeSquareSum(int c) {
    int root = (int) sqrt(c);

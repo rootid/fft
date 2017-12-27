@@ -19,11 +19,30 @@
 //[1,3],[2,3]
 
 //############################################ select top k ############################################ 
+// O(kLogk)
+//pq => {nums1,nums2, nums2.count}
+public List<int[]> kSmallestPairs(int[] nums1, int[] nums2, int k) {
+    PriorityQueue<int[]> que = new PriorityQueue<>((a,b)->a[0]+a[1]-b[0]-b[1]);
+    List<int[]> res = new ArrayList<>();
+    if(nums1.length==0 || nums2.length==0 || k==0) return res; 
+    for(int i=0; i<nums1.length && i<k; i++) que.offer(new int[]{nums1[i], nums2[0], 0}); //O(K)
+    while(k-- > 0 && !que.isEmpty()){
+        int[] cur = que.poll();
+        res.add(new int[]{cur[0], cur[1]});
+        if(cur[2] == nums2.length-1) continue;
+        que.offer(new int[]{cur[0],nums2[cur[2]+1], cur[2]+1});
+    }
+    return res;
+}
+
+
+//############################################ select top k ############################################ 
+// TC : O(n^2), O(n^2 log n^2)
 public List<int[]> kSmallestPairs(int[] nums1, int[] nums2, int k) {
     List<int[]> result = new ArrayList<>();
-    PriorityQueue<int[]> pq = new PriorityQueue<>((a,b) -> (a[0]+a[1])  - (b[0]+b[1])) ;
+    PriorityQueue<int[]> pq = new PriorityQueue<>((a,b) -> (a[0]+a[1])  - (b[0]+b[1])); 
     for(int i:nums1) 
-        for(int j: nums2) pq.offer(new int[]{i,j});
+        for(int j: nums2) pq.offer(new int[]{i,j}); 
     while(k-- > 0 && !pq.isEmpty()) {
         result.add(pq.poll());
     }

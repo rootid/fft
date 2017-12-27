@@ -27,18 +27,14 @@ public:
     bool splitArray(vector<int>& nums) {
         int i=0, j=nums.size()-2;
         int s=0; vector<int> sum;
-        for(auto x: nums)
-        {
+        for(auto x: nums) {
             s+=x;
             sum.push_back(s);
         }
         int total = sum.back();
-        for(j=nums.size()-2; j>i; j--)
-        {
-            for(i=0; i<j-1; i++)
-            {
-                if(sum[i]==total-sum[j]) //found i+1 = x, j = z
-                {
+        for(j=nums.size()-2; j>i; j--) {
+            for(i=0; i<j-1; i++) {
+                if(sum[i]==total-sum[j]) { //found i+1 = x, j = z 
                     int y = total - 4*sum[i] - nums[i+1] - nums[j]; 
                     for(int k = i+1+1; k < j-1; k++)
                         if(nums[k] == y) return true;
@@ -114,7 +110,7 @@ bool splitArray(int[] nums) {
   return false;
 }
 
-
+//################################################### O(N^2) ################################################### 
 public boolean splitArray(int[] nums) {
     if (nums.length < 7) return false;
     int [] sums = new int [nums.length];
@@ -140,6 +136,7 @@ public boolean splitArray(int[] nums) {
 }
 
 
+//################################################### O(N^2) ################################################### 
 bool splitArray(vector<int>& nums) {
     vector<int> sms;
     sms.push_back(0); //store prefix sum

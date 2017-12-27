@@ -127,3 +127,5 @@ public:
 //                s, cnt = [(s+n,cnt),(n,cnt+1)][s+n>mid]
 //            lo, hi = [(lo,mid),(mid+1,hi)][cnt>m]
 //        return lo
+
+// vim: set sw=2 sts=2 tw=120 et nospell : 

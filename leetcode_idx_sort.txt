@@ -159,7 +159,7 @@
 159. Find Duplicate File in System
 160. Find Duplicate Subtrees
 161. Find K Closest Elements
-162. Find K Pairs with Smallest Sums
+162. Find K Pairs with Smallest Sums : Heap O(n log k) + O(n^2)
 163. Find Largest Value in Each Tree Row
 164. Find Leaves of Binary Tree : 1. h(node) = 1 + max(h(node.left), h(node.right)). 2. Pruning leaves
 165. Find Median from Data Stream
@@ -305,7 +305,7 @@
 305. Maximum Product Subarray
 306. Maximum Product of Three Numbers
 307. Maximum Product of Word Lengths
-308. Maximum Size Subarray Sum Equals k
+308. Maximum Size Subarray Sum Equals k :  Running sum with Mod property (106)
 309. Maximum Subarray
 310. Maximum Swap
 311. Maximum Vacation Days
@@ -414,10 +414,10 @@
 414. Random Pick Index
 415. Range Addition : Trick [Differentiation, Accumulation/ Prefix Sum]
 416. Range Addition II : Trick [Visualize Cricket LED]
-417. Range Sum Query - Immutable
-418. Range Sum Query - Mutable
-419. Range Sum Query 2D - Immutable
-420. Range Sum Query 2D - Mutable
+417. Range Sum Query - Immutable : Running sum
+418. Range Sum Query - Mutable 
+419. Range Sum Query 2D - Immutable : Running sum (1. Only rowwise Or 2. Row/Column wise)
+420. Range Sum Query 2D - Mutable 
 421. Ransom Note
 422. Read N Characters Given Read4
 423. Read N Characters Given Read4 II - Call multiple times
@@ -526,10 +526,10 @@
 526. Substring with Concatenation of All Words
 527. Subtree of Another Tree
 528. Sudoku Solver
-529. Sum Root to Leaf Numbers
+529. Sum Root to Leaf Numbers : How you identify leaf?, Preorder traversal, currentSum *= 10 + currentNode
 530. Sum of Left Leaves : sum += SL(root.left, true) + SL(root.right, false); (clock pattern)
-531. Sum of Square Numbers
-532. Sum of Two Integers
+531. Sum of Square Numbers : 2 Pointers (left = 0 , right = Math.sqrt(i/p))
+532. Sum of Two Integers :  W/O +/- -> getSum(a^b, (a&b) << 1)
 533. Summary Ranges
 534. Super Pow
 535. Super Ugly Number
@@ -538,7 +538,7 @@
 538. Swap Nodes in Pairs
 539. Symmetric Tree
 540. Tag Validator
-541. Target Sum
+541. Target Sum :Backtrack -> Pick(+/-)
 542. Task Scheduler
 543. Teemo Attacking
 544. Ternary Expression Parser
