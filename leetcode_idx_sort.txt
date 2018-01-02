@@ -326,24 +326,24 @@
 326. Minimum Depth of Binary Tree : Update ht when leaf node found
 327. Minimum Factorization
 328. Minimum Height Trees
-329. Minimum Index Sum of Two Lists
+329. Minimum Index Sum of Two Lists : T : O(m+n) : keep trakc of indices with HashMap
 330. Minimum Moves to Equal Array Elements
 331. Minimum Moves to Equal Array Elements II
 332. Minimum Number of Arrows to Burst Balloons
-333. Minimum Path Sum
+333. Minimum Path Sum : Down,right -> At destination/target we have to choose from Up and left. T - O(n^2)
 334. Minimum Size Subarray Sum
 335. Minimum Time Difference
 336. Minimum Unique Word Abbreviation
 337. Minimum Window Substring
 338. Missing Number : Swap,XOR
 339. Missing Ranges
-340. Most Frequent Subtree Sum
+340. Most Frequent Subtree Sum : O(n) - Remember maxSumCount with HashMap , O(n^2) - Compute sum for each node and maintain freqMap
 341. Move Zeroes : Trick nums[i]!=0 -> swap(nums,i,idx++)
 342. Moving Average from Data Stream
 343. Multiply Strings
 344. N-Queens
 345. N-Queens II
-346. Nested List Weight Sum
+346. Nested List Weight Sum 
 347. Nested List Weight Sum II
 348. Next Greater Element I
 349. Next Greater Element II

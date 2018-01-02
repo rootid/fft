@@ -13,6 +13,63 @@
 //2   -5
 //return [2], since 2 happens twice, however -5 only occur once.
 //Note: You may assume the sum of values in any subtree is in the range of 32-bit signed integer.
+
+
+//####################################################### O(n) ####################################################
+Map<Integer, Integer> freqMap = new HashMap<>();
+int maxCount = 0;
+
+public int[] findFrequentTreeSum(TreeNode root) { 
+	countSubtreeSums(root);
+	List<Integer> maxSums= new ArrayList<>();
+	countSubtreeSums(root);
+    for(int key : freqMap.keySet()) {
+         if(freqMap.get(key) == maxCount) 
+              maxSums.add(key);
+     }
+     return maxSums.stream().mapToInt(Integer::intValue).toArray();   
+}
+private int countSubtreeSums(TreeNode root) {
+    if(root == null) return 0;
+    int sum = root.val;
+    sum += countSubtreeSums(root.left);
+    sum += countSubtreeSums(root.right);
+    freqMap.put(sum, freqMap.getOrDefault(sum, 0) + 1);
+    maxCount = Math.max(maxCount, freqMap.get(sum));
+    return sum;
+}
+
+//####################################################### O(n^2) ####################################################
+Map<Integer, Integer> freqMap = new HashMap<>();
+List<Integer> lst = new ArrayList<>();
+int maxCount = 0;
+ 
+public int[] findFrequentTreeSum(TreeNode root) {
+     if(root == null) return  lst.stream().mapToInt(Integer::intValue).toArray();
+     getFreqSumMap(root);
+     for(int key : freqMap.keySet()) {
+         if(freqMap.get(key) == maxCount) 
+              lst.add(key);
+     }
+     return lst.stream().mapToInt(Integer::intValue).toArray();   
+ }
+ 
+private void getFreqSumMap(TreeNode root) {
+     if(root == null) return ;
+     getFreqSumMap(root.left);
+     getFreqSumMap(root.right);
+     int sum = getSum(root);
+     freqMap.put(sum, freqMap.getOrDefault(sum, 0) + 1);
+     maxCount = Math.max(freqMap.get(sum), maxCount);
+}
+ 
+ private int getSum(TreeNode node) {
+     if(node == null) return 0;
+     int sum = 0;
+     sum += node.val + getSum(node.left) + getSum(node.right);
+     return sum;
+ }
+
 //####################################################### Postorder traversal  ####################################################
 int countSubtreesums(TreeNode *r, unordered_map<int,int> &counts, int& maxCount){ 
   if(r == nullptr) 

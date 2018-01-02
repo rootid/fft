@@ -19,6 +19,30 @@
 //The index is starting from 0 to the list length minus 1.
 //No duplicates in both lists.
 
+
+//###################################### Map ###################################### 
+public String[] findRestaurant(String[] list1, String[] list2) {
+      Map<String, Integer> uMap = new HashMap<>();
+      int m = list1.length;
+      int n = list2.length;
+      int sum = m+n;
+      int currentSum = sum + 1;
+      List<String> result = new LinkedList<>();
+      for(int i=0;i<m;i++) uMap.put(list1[i], i);
+      for(int i=0;i<n;i++) {
+          if(uMap.containsKey(list2[i])) {
+              currentSum = i + uMap.get(list2[i]);
+              if(currentSum <= sum) {
+                  if(currentSum < sum) result.clear();
+                  result.add(list2[i]);
+                  sum = currentSum;
+              } 
+          }
+      }
+      return result.stream().toArray(String[]::new);
+}
+
+
 //###################################### unordred_map ###################################### 
 vector<string> findRestaurant(vector<string>& list1, vector<string>& list2) {
 	unordered_map<string, int> map;
