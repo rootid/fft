@@ -32,7 +32,82 @@
 //DFS here is basically like DP with memorization. Every cell that has been computed will not be computed again, only a value look-up is performed. So this is O(mn), m and n being the width and height of the matrix.
 //To be exact, each cell can be accessed 5 times at most: 4 times from the top, bottom, left and right and one time from the outermost double for loop. 4 of these 5 visits will be look-ups except for the first one. So the running time should be lowercase o(5mn), which is of course O(mn).
 
+//######################################### DFS  With Map ######################################### 
 public static final int[][] dirs = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+    
+public int longestIncreasingPath(int[][] matrix) {
+    if(matrix.length == 0) return 0;
+    int m = matrix.length, n = matrix[0].length;
+    Map<Integer, Integer> cache = new HashMap<>();
+    int max = 1;
+	//same as word boggle
+    for(int i = 0; i < m; i++) {
+        for(int j = 0; j < n; j++) {
+            int len = dfs(matrix, i, j, m, n, cache);
+            max = Math.max(max, len);
+        }
+    }   
+    return max;
+}
+
+public int dfs(int[][] matrix, int i, int j, int m, int n, Map<Integer, Integer> cache) {
+    if(cache.containsKey( i * matrix[0].length + j ) ) return cache.get(i * matrix[0].length + j );
+    int max = 1;
+    for(int[] dir: dirs) {
+        int x = i + dir[0], y = j + dir[1]; //x,y : Current position
+		//Pruning based on the matrix value
+        if(x < 0 || x >= m || y < 0 || y >= n || matrix[x][y] <= matrix[i][j]) continue;  
+        int len = 1 + dfs(matrix, x, y, m, n, cache);
+        max = Math.max(max, len);
+    }
+    cache.put( i * matrix[0].length + j, max);
+    return max;
+}
+
+
+//######################################### Max PQ + DP ######################################### 
+private static int[][] dir = new int[][]{{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+private int maxLen = 0;
+
+public int longestIncreasingPath(int[][] matrix) {
+    
+    // Algo thinking: reverse thinking
+    //      (1) Use a maxPQ
+    //      (2) DP
+    // time = O(N*M*lg(N*M)), space = O(N*M)
+    
+    if (matrix == null || matrix.length == 0) return 0;
+    
+    int n = matrix.length;
+    int m = matrix[0].length;
+    
+    PriorityQueue<int[]> maxPQ = new PriorityQueue<>((a, b) -> b[2] - a[2]);
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            maxPQ.offer(new int[]{i, j, matrix[i][j]});
+        }
+    }
+    
+    int[][] dp = new int[n][m];
+    while (!maxPQ.isEmpty()) {
+        int[] cell = maxPQ.poll();
+        int i = cell[0], j = cell[1];
+        dp[i][j] = 1;
+        for (int[] d: dir) {
+            int newI = i + d[0], newJ = j + d[1];
+            if (newI < 0 || newI >= n || newJ < 0 || newJ >= m || matrix[i][j] >= matrix[newI][newJ]) continue;
+            dp[i][j] = Math.max(dp[i][j], dp[newI][newJ] + 1);
+        }
+        
+        maxLen = Math.max(maxLen, dp[i][j]);
+    }
+    
+    return maxLen;
+}
+
+//######################################### DFS  ######################################### 
+public static final int[][] dirs = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+
 public int longestIncreasingPath(int[][] matrix) {
     if(matrix.length == 0) return 0;
     int m = matrix.length, n = matrix[0].length;
@@ -52,9 +127,9 @@ public int dfs(int[][] matrix, int i, int j, int m, int n, int[][] cache) {
     if(cache[i][j] != 0) return cache[i][j];
     int max = 1;
     for(int[] dir: dirs) {
-        int x = i + dir[0], y = j + dir[1];
+        int x = i + dir[0], y = j + dir[1]; //x,y : Current position
 		//Pruning based on the matrix value
-        if(x < 0 || x >= m || y < 0 || y >= n || matrix[x][y] <= matrix[i][j]) continue; 
+        if(x < 0 || x >= m || y < 0 || y >= n || matrix[x][y] <= matrix[i][j]) continue;  
         int len = 1 + dfs(matrix, x, y, m, n, cache);
         max = Math.max(max, len);
     }
@@ -220,3 +295,4 @@ public int longestIncreasingPath(int[][] matrix) {
     
     return maxLen;
 }
+

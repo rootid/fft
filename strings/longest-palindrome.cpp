@@ -17,9 +17,40 @@
 #include<vector>
 using namespace std;
 
+
+//######################################### With Set ######################################### 
+public int longestPalindrome(String s) {
+        Set<Character> set = new HashSet<>();
+        for (char c : s.toCharArray()) {
+            if (set.contains(c)) set.remove(c);
+            else set.add(c);
+        }
+
+        int odd = set.size();
+        return s.length() - (odd == 0 ? 0 : odd - 1);
+    }
+
+//######################################### With Map  ######################################### 
+//Partial Contribution(# of chars are odd)  + Full Contribution (# of chars are even) + If Partial contribution then Odd length palindrome
+public int longestPalindrome(String s) {
+    int len = s.length();
+    int palLen = 0;
+    Map<Character, Integer> freqMap = new HashMap<>();
+    boolean isOddLen = false;
+    for(int i=0;i<len;i++) freqMap.put(s.charAt(i), freqMap.getOrDefault(s.charAt(i), 0) + 1);
+    for(char key: freqMap.keySet()) {
+        if(freqMap.get(key) % 2 == 0) palLen += freqMap.get(key);
+        else {
+            palLen += freqMap.get(key) - 1;
+            isOddLen = true;
+        } 
+    }
+    return isOddLen == true ? palLen + 1 : palLen;
+}
+
+//######################################### With Array######################################### 
 int longestPalindrome(string s) {
       assert(s.size() <= 1010);
-      
       int pal_len = 0;
       vector<int> c_store(256,0);
       bool is_odd = false;
@@ -44,6 +75,7 @@ int longestPalindrome(string s) {
       cout <<  "pal_len = " << pal_len << endl;
       return pal_len;
 }
+
 int main() {
   string s = "abccccdd";
   longestPalindrome(s);

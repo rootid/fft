@@ -32,17 +32,16 @@ public class Solution {
                         curr[0][j] = curr[1][j] = curr[2][j] = curr[3][j] = 0;
                     }
                 }
-                
                 old = curr;
             }
         }
-        
         return ones;
     }
 }
 
 //######################################### Backtracking / DFS ######################################### 
 //1. Traverse  in 4 directions
+// T(n) : 
 public class Solution {
     public int longestLine(int[][] M) {
         if(M == null) return 0;

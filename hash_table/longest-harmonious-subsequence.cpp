@@ -8,6 +8,36 @@
 //Note: The length of the input array will not exceed 20,000.
 //
 
+//#############################  Map  : Single loop ########################## 
+public int findLHS(int[] nums) {
+    HashMap < Integer, Integer > map = new HashMap < > ();
+    int res = 0;
+    for (int num: nums) {
+        map.put(num, map.getOrDefault(num, 0) + 1);
+        if (map.containsKey(num + 1))
+            res = Math.max(res, map.get(num) + map.get(num + 1));
+        if (map.containsKey(num - 1))
+            res = Math.max(res, map.get(num) + map.get(num - 1));
+    }
+    return res;
+}
+//#############################  Map ########################## 
+// Maintain the freqMap of val, #of occcurances
+public int findLHS(int[] nums) {
+    Map<Integer, Integer> freqMap = new HashMap<>();
+    int maxLength = 0;
+    for(int i=0;i<nums.length;i++) 
+        freqMap.put(nums[i], freqMap.getOrDefault(nums[i], 0) + 1);
+    
+    for(int key: freqMap.keySet()) {
+         int freq = freqMap.get(key);
+         if(freqMap.containsKey(key+1)) maxLength = Math.max(maxLength, freq + freqMap.get(key+1)); // 3,4,2
+         //if(freqMap.containsKey(key-1)) maxLength = Math.max(maxLength, freq + freqMap.get(key-1)); //2 is covered when we visit 3
+    }
+    return maxLength;
+}
+
+
 //#############################  with ordered_map ########################## 
 int findLHS(vector<int>& nums) {
     map<int, int> freqs;
@@ -74,3 +104,5 @@ int findLHS(vector<int>& nums) {
 //def findLHS(self, nums):
 //        c = collections.Counter(nums)
 //        return max(c[x] + c[x + 1] if c[x + 1] else 0 for x in c) if nums else 0
+
+/* vim: set ts=4 sw=4 sts=4 tw=120 et: */

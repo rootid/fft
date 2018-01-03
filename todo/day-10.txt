@@ -1,0 +1,31 @@
+96.  Convert Sorted List to Binary Search Tree
+99.  Copy List with Random Pointer
+119. Delete Node in a Linked List
+182. Flatten Binary Tree to Linked List : Recursion (visualization)
+183. Flatten Nested List Iterator
+197. Group Anagrams : O(N log K) {String -> List} or O(N * K) : <Freq Map> #1#2#3#0#0#0...#0 -> List
+219. Insert Delete GetRandom O(1)  : 1. Use list[val] - Randomness ,Map {val,list-idx}
+222. Insertion Sort List
+230. Intersection of Two Linked Lists
+259. Linked List Cycle
+260. Linked List Cycle II
+261. Linked List Random Node
+320. Merge Two Sorted Lists
+321. Merge k Sorted Lists
+329. Minimum Index Sum of Two Lists : T : O(m+n) : keep trakc of indices with HashMap
+346. Nested List Weight Sum 
+347. Nested List Weight Sum II
+366. Odd Even Linked List
+377. Palindrome Linked List
+386. Partition List
+391. Path Sum II : Preorder DFS (Note: To add localList to list =>  list.add(new ArrayList<> localList))
+403. Plus One Linked List : 1. Recursive (carry check ,use 402 property) 2. Iterative 2 pointer (p,q) p=># < 9 q = last 9 
+436. Remove Duplicates from Sorted List
+437. Remove Duplicates from Sorted List II
+441. Remove Linked List Elements
+442. Remove Nth Node From End of List
+443. Reorder List
+451. Reverse Linked List
+452. Reverse Linked List II
+465. Rotate List
+504. Sort List

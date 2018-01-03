@@ -94,3 +94,4 @@ int minPathSum(vector<vector<int>>& a) {
     }
     return a[m-1][n-1];
 }
+/* vim: set ts=4 sw=4 sts=4 tw=120 et: */

@@ -1,0 +1,110 @@
+#################################################################################
+278. Longest Substring with At Least K Repeating Characters
+    Find the length of the longest substring T of a given string (consists of lowercase
+    letters only) such that every character in T appears no less than k times.
+    Example 1:
+    Input:
+    s = "aaabb", k = 3
+    Output:
+    3
+    The longest substring is "aaa", as 'a' is repeated 3 times.
+    Example 2:
+    Input:
+    s = "ababbc", k = 2
+    Output:
+    5
+    The longest substring is "ababb", as 'a' is repeated 2 times and 'b' is repeated 3 times.
+
+#################################################################################
+279. Longest Substring with At Most K Distinct Characters
+    Given a string, find the length of the longest substring T that contains at most k
+    distinct characters.
+    For example, Given s = “eceba” and k = 2,
+    T is "ece" which its length is 3.
+
+#################################################################################
+280. Longest Substring with At Most Two Distinct Characters
+    Given a string S, find the length of the longest substring T that contains at most two
+    distinct characters.
+    For example,
+    Given S = “eceba”,
+    T is “ece” which its length is 3.
+
+#################################################################################
+281. Longest Uncommon Subsequence I
+    Given a group of two strings, you need to find the longest uncommon subsequence of this
+    group of two strings. The longest uncommon subsequence is defined as the longest
+    subsequence of one of these strings and this subsequence should not be any subsequence of
+    the other strings.
+    A subsequence is a sequence that can be derived from one sequence by deleting some
+    characters without changing the order of the remaining elements. Trivially, any string is
+    a subsequence of itself and an empty string is a subsequence of any string.
+    The input will be two strings, and the output needs to be the length of the longest
+    uncommon subsequence. If the longest uncommon subsequence doesn't exist, return -1.
+    Example 1:
+    Input: "aba", "cdc"
+    Output: 3
+    Explanation: The longest uncommon subsequence is "aba" (or "cdc"), 
+    because "aba" is a subsequence of "aba", 
+    but not a subsequence of any other strings in the group of two strings. 
+    Note:
+    1. Both strings' lengths will not exceed 100.
+    2. Only letters from a ~ z will appear in input strings.
+
+#################################################################################
+282. Longest Uncommon Subsequence II
+    Given a list of strings, you need to find the longest uncommon subsequence among them. The
+    longest uncommon subsequence is defined as the longest subsequence of one of these strings
+    and this subsequence should not be any subsequence of the other strings.
+    A subsequence is a sequence that can be derived from one sequence by deleting some
+    characters without changing the order of the remaining elements. Trivially, any string is
+    a subsequence of itself and an empty string is a subsequence of any string.
+    The input will be a list of strings, and the output needs to be the length of the longest
+    uncommon subsequence. If the longest uncommon subsequence doesn't exist, return -1.
+    Example 1:
+    Input: "aba", "cdc", "eae"
+    Output: 3
+    Note:
+    1. All the given strings' lengths will not exceed 10.
+    2. The length of the given list will be in the range of [2, 50].
+
+#################################################################################
+283. Longest Valid Parentheses
+    Given a string containing just the characters '(' and ')', find the length of the longest
+    valid (well-formed) parentheses substring.
+    For "(()", the longest valid parentheses substring is "()", which has length = 2.
+    Another example is ")()())", where the longest valid parentheses substring is "()()",
+    which has length = 4.
+
+#################################################################################
+284. Longest Word in Dictionary through Deleting
+    Given a string and a string dictionary, find the longest string in the dictionary that can
+    be formed by deleting some characters of the given string. If there are more than one
+    possible results, return the longest word with the smallest lexicographical order. If
+    there is no possible result, return the empty string.
+    Example 1:
+    Input:
+    s = "abpcplea", d = ["ale","apple","monkey","plea"]
+    Output: 
+    "apple"
+    Example 2:
+    Input:
+    s = "abpcplea", d = ["a","b","c"]
+    Output: 
+    "a"
+    Note:
+    1. All the strings in the input will only contain lower-case letters.
+    2. The size of the dictionary won't exceed 1,000.
+    3. The length of all the strings in the input won't exceed 1,000.
+
+#################################################################################
+7 - Problems
+278. Longest Substring with At Least K Repeating Characters
+279. Longest Substring with At Most K Distinct Characters
+280. Longest Substring with At Most Two Distinct Characters
+281. Longest Uncommon Subsequence I
+282. Longest Uncommon Subsequence II
+283. Longest Valid Parentheses
+284. Longest Word in Dictionary through Deleting
+#################################################################################
+vim:tw=90:et:norl:

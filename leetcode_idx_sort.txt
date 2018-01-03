@@ -264,13 +264,13 @@
 264. Lonely Pixel II
 265. Longest Absolute File Path
 266. Longest Common Prefix
-267. Longest Consecutive Sequence
-268. Longest Continuous Increasing Subsequence
-269. Longest Harmonious Subsequence
+267. Longest Consecutive Sequence 
+268. Longest Continuous Increasing Subsequence : T - O(n) - linear traversal and compare last with current/2-pointer 
+269. Longest Harmonious Subsequence : T - O(n)  Maintain the freqMap of val, #of occcurances
 270. Longest Increasing Path in a Matrix
 271. Longest Increasing Subsequence
 272. Longest Line of Consecutive One in Matrix
-273. Longest Palindrome
+273. Longest Palindrome : Partial Contribution(# of chars are odd)  + Full Contribution (# of chars are even) + If Partial contribution then Odd length palindrome
 274. Longest Palindromic Subsequence
 275. Longest Palindromic Substring
 276. Longest Repeating Character Replacement
