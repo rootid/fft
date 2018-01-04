@@ -11,16 +11,16 @@
 //################################################### hash map ################################################### 
 public int lengthOfLongestSubstringTwoDistinct(String s) {
     Map<Character, Integer> lastSeen = new HashMap<>();
-    int low = 0, max = 0;
+    int startIdx = 0, max = 0;
     for (int i = 0; i < s.length(); i++) {
         lastSeen.put(s.charAt(i), i);
-        if (lastSeen.size() > 2) {
+        if (lastSeen.size() > 2) {  //More than 2 chars found
             int toRemoveLastSeen = i;
             for (Integer val : lastSeen.values()) toRemoveLastSeen = Math.min(val, toRemoveLastSeen);
-            lastSeen.remove(s.charAt(toRemoveLastSeen));
-            low = toRemoveLastSeen + 1;
+            lastSeen.remove(s.charAt(toRemoveLastSeen)); //remove the minIdx value
+            startIdx = toRemoveLastSeen + 1;
         }
-        max = Math.max(max, i - low + 1);
+        max = Math.max(max, i - startIdx + 1);
     }
     return max;
 }

@@ -13,6 +13,74 @@
 //5
 //The longest substring is "ababb", as 'a' is repeated 2 times and 'b' is repeated 3 times.
 
+
+//########################### Divide and Conquer ########################### 
+//O (n^2)
+//k = 5
+//a4,b4,c4.......y4,z5 as in "aaaabbbbcccc.........yyyyzzzzz"
+//answer: 5 ("zzzzz")
+public int longestSubstring(String s, int k) {
+     char[] arr = s.toCharArray();
+     return longestSubstringHelper(arr, 0, arr.length, k);
+ }
+   
+ private int longestSubstringHelper(char[] arr, int start, int end, int k) {
+     int maxLen = end - start;
+     if(maxLen < k)  //substring length shorter than k.
+         return 0; 
+     int[] map = new int[26];
+     for(int i=start;i < end;i++) map[arr[i] - 'a']++; 
+     for(int i=start;i<end;i++) {
+         if(map[arr[i] - 'a'] < k) //Divide the problem at position i where # of char < k
+             return Math.max(longestSubstringHelper(arr, start, i,k),  longestSubstringHelper(arr, i+1, end,k));
+     }
+     return maxLen;
+ }
+
+
+//########################### Divide and Conquer ########################### 
+public int longestSubstring(String s, int k) {
+    return dc(s, 0, s.length(), k);
+}
+    
+public int dc(String s, int start, int end, int k) {
+    if (end - start < k) return 0;
+    int[] cnt = new int[26];
+    for (int i = start; i < end; i++) cnt[s.charAt(i) - 'a']++;
+    for (int i = start; i < end; i++) {
+        if (cnt[s.charAt(i) - 'a'] < k)  //if found char less than k divide into 2
+            return Math.max(dc(s, start, i, k), dc(s, i + 1, end, k));
+    }
+    return end - start;
+}
+
+
+//########################### Divide and Conquer : TLE ########################### 
+   public int longestSubstring(String s, int k) {
+        char[] arr = s.toCharArray();
+        return longestSubstringHelper(arr, 0, arr.length, k);
+    }
+      
+    private int longestSubstringHelper(char[] arr, int start, int end, int k) {
+        if(end-start < k)  //substring length shorter than k.
+            return 0; 
+      Map<Character, Integer> map = new HashMap<>();
+        for(int i=start;i < end;i++) map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
+        for(Character key : map.keySet() ) {
+            if(map.get(key) < k && map.get(key) > 0) {
+                for(int j=start;j< end;j++) {
+                    if(arr[j] == key) { //divide/split the string using less frquent char
+                    int left = longestSubstringHelper(arr,start,j,k);
+                    int right = longestSubstringHelper(arr,j+1,end,k);
+                    return Math.max(left,right);
+                }
+
+                }
+            }
+        }
+        return end - start;
+    }
+
 //########################### Divide and Conquer ########################### 
 int longestSubstring(string s, int k) {
     return helper(s,0,s.size(),k);

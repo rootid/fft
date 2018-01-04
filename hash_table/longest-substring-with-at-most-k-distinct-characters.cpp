@@ -2,6 +2,8 @@
 //For example, Given s = “eceba” and k = 2,
 //T is "ece" which its length is 3.
 #include "../headers/global.hpp"
+
+
 int lengthOfLongestSubstringKDistinct(string s, int k) {
         int max_len = 0;
         int len = s.size();

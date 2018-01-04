@@ -274,10 +274,10 @@
 274. Longest Palindromic Subsequence
 275. Longest Palindromic Substring
 276. Longest Repeating Character Replacement
-277. Longest Substring Without Repeating Characters
-278. Longest Substring with At Least K Repeating Characters
-279. Longest Substring with At Most K Distinct Characters
-280. Longest Substring with At Most Two Distinct Characters
+277. Longest Substring Without Repeating Characters : 2 scenarios - Simillar Chars are either adjacent or located at extreme, use of Max between startIdx and already visited Char idx
+278. Longest Substring with At Least K Repeating Characters :  D&C  - Find the i position where freq of chars < k and  split the problem (start,i],(i+1, end]
+279. Longest Substring with At Most K Distinct Characters : Store <char,idx> upto size <= k else remove the value with min Idx and update the length
+280. Longest Substring with At Most Two Distinct Characters : Store <char,idx> upto size <= 2 else remove the value with min Idx and update the length.
 281. Longest Uncommon Subsequence I
 282. Longest Uncommon Subsequence II
 283. Longest Valid Parentheses

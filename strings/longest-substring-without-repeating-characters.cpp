@@ -7,6 +7,23 @@
 
 #include "../headers/global.hpp"
 
+//###################################################### HashMap ###################################################### 
+//2 scenarios - Simillar Chars are  adjacent or Present on extrem side use of Max between startIdx and already visited
+//Char idx
+ public int lengthOfLongestSubstring(String s) {
+    int maxLen = 0;
+    int len = s.length();
+    int startIdx = 0;
+    Map<Character, Integer> idxMap = new HashMap<>();
+    for (int i=0;i<len;i++) {
+        if(idxMap.containsKey(s.charAt(i))) 
+            startIdx = Math.max(startIdx, idxMap.get(s.charAt(i)));
+       maxLen = Math.max(maxLen, i-startIdx+1);
+       idxMap.put(s.charAt(i), i+1);
+    }
+    return maxLen;
+  }
+
 //###################################################### G ###################################################### 
 int lengthOfLongestSubstring(string s) {
     int charSet[256] = {0};
@@ -65,7 +82,7 @@ int getLongestNRSubstr(string &s) {
 //"pwwkew" : 3
 //"abba" : 2
  public int lengthOfLongestSubstring(String s) {
-		//startIdx -- Always increasing should never go back
+        //startIdx -- Always increasing should never go back
         int len = s.length();
         int max = 0;
         int[] store = new int[256];
@@ -79,21 +96,6 @@ int getLongestNRSubstr(string &s) {
     }
 }
 
-
-//######################################### HashMap  ######################################### 
-public int lengthOfLongestSubstring(String s) {
-        if (s.length()==0) return 0;
-        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
-        int max=0;
-        for (int i=0, j=0; i<s.length(); ++i){
-            if (map.containsKey(s.charAt(i))){
-                j = Math.max(j,map.get(s.charAt(i))+1);
-            }
-            map.put(s.charAt(i),i);
-            max = Math.max(max,i-j+1);
-        }
-        return max;
-    }
 
 int wrapperLR(string s) {
   int len = getLongestNRSubstr(s);
@@ -115,3 +117,4 @@ int main() {
 
 
 
+/* vim: set ts=4 sw=4 sts=4 tw=120 et: */
