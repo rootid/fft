@@ -10,7 +10,26 @@
 //         7   4
 //For example, the lowest common ancestor (LCA) of nodes 5 and 1 is 3. Another example is LCA of nodes 5 and 4 is 5, since a node can be a descendant of itself according to the LCA definition.
 
-//O(n)
+//######################################### LCA ######################################### 
+//Go untill node is not found
+public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+     if(root == null 
+        || root == p 
+        || root == q) 
+
+        return root; 
+     TreeNode rL = lowestCommonAncestor(root.left, p, q);
+     TreeNode rR = lowestCommonAncestor(root.right, p, q);
+     //if(rL == p && rR == q || (rL == q && rR == p) ) return root; //if p and q are on opposite sides of root
+     if(rL != null && rR != null) return root; //if p and q are on opposite sides of root
+     if(rL == null) //rL is after the rR (rR-->rL)
+         return rR;
+     return rL; 
+}
+
+
+//######################################### Recursion ######################################### 
+//O(n) - Verfiy whether it's O(n) or O(h)
 TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
   if(!root || p == root || q == root) {
     return root;
@@ -218,3 +237,5 @@ public:
         return pathp[n-1];
     }
 };
+
+// vim: set sw=2 sts=2 tw=120 et nospell : 

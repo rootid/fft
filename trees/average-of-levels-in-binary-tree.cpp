@@ -23,6 +23,53 @@
  * };
  */
 
+
+
+//############################### Recursion - DFS ############################### 
+//T : O(N) , S - O(h)
+public List < Double > averageOfLevels(TreeNode root) {
+    List < Integer > count = new ArrayList < > ();
+    List < Double > res = new ArrayList < > ();
+    average(root, 0, res, count);
+    for (int i = 0; i < res.size(); i++)
+        res.set(i, res.get(i) / count.get(i));
+    return res;
+}
+public void average(TreeNode t, int i, List < Double > sum, List < Integer > count) {
+    if (t == null)
+        return;
+    if (i < sum.size()) {
+        sum.set(i, sum.get(i) + t.val);
+        count.set(i, count.get(i) + 1);
+    } else {
+        sum.add(1.0 * t.val);
+        count.add(1);
+    }
+    average(t.left, i + 1, sum, count);
+    average(t.right, i + 1, sum, count);
+}
+//############################### Use of queue - BFS ############################### 
+//Keep track of - howMany visited = len, sum
+public List<Double> averageOfLevels(TreeNode root) {
+    List<Double> result = new ArrayList<>();
+    if(root == null) return result;
+    Deque<TreeNode> dq = new ArrayDeque<>();
+    dq.add(root);
+    while(!dq.isEmpty()) {
+        double sum = 0;
+        int len = dq.size();
+        for(int i=0;i<len;i++) {
+            TreeNode tmp = dq.poll();
+            sum += tmp.val;
+            if(tmp.left != null) dq.offer(tmp.left);
+            if(tmp.right != null) dq.offer(tmp.right);
+        }
+        result.add(sum/len);
+    }
+    return result;
+}
+
+
 //############################### Use of nullptr to track the level ############################### 
 vector<double> averageOfLevels(TreeNode* root) { 
   vector<double> ret; 

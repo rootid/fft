@@ -12,6 +12,15 @@
 //For example, the lowest common ancestor (LCA) of nodes 2 and 8 is 6. Another example is LCA of nodes 2 and 4 is 2, since a node can be a descendant of itself according to the LCA definition.
 
 //######################################### Recursion  ######################################### 
+//Another approach : NOTE: p/q node can be left/right of root
+public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    if(root == null) return root;
+    if( (p.val <= root.val && root.val <= q.val) || (p.val >= root.val && root.val >= q.val)) return root;
+    if(p.val < root.val && q.val < root.val) return lowestCommonAncestor(root.left, p, q);
+    return lowestCommonAncestor(root.right, p, q);
+}
+
+//######################################### Recursion  ######################################### 
 public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
     if(root == null) return root;
     if(root.val < p.val && root.val < q.val)  
@@ -21,7 +30,7 @@ public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
     return root;
 }
 
-just walk down from the whole tree's root as long as both p and q are in the same subtree (meaning their values are both smaller or both larger than root's). This walks straight from the root to the LCA, not looking at the rest of the tree, so it's pretty much as fast as it gets. A few ways to do it:
+//just walk down from the whole tree's root as long as both p and q are in the same subtree (meaning their values are both smaller or both larger than root's). This walks straight from the root to the LCA, not looking at the rest of the tree, so it's pretty much as fast as it gets. A few ways to do it:
 
 //######################################### Iterative, O(1) space ######################################### 
 //Python
@@ -87,4 +96,4 @@ def lowestCommonAncestor(self, root, p, q):
         return self.lowestCommonAncestor(root.right, p, q)
     return root
 
-
+// vim: set sw=2 sts=2 tw=120 et nospell : 

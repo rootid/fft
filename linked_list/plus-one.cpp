@@ -7,7 +7,6 @@
 //Output:
 //1->2->4
 
-
 //################################ Recursive  ################################ 
 public static ListNode plusOne(ListNode head) {
       if ( 1 == plusOneHelper(head) ) {
@@ -15,13 +14,13 @@ public static ListNode plusOne(ListNode head) {
         newNode.next = head;
         return newNode;
       }
-      return head;
-    }
+      return head; 
+}
 
 private static int plusOneHelper(ListNode head) {
       if(head == null) return 1;
       int carry = 1;
-      carry = plusOneHelper(head.next);
+      carry = plusOneHelper(head.next); //Go to last
       if(head.val < 9) { // < 9 just increament
         head.val += carry;
         return 0;
@@ -99,3 +98,4 @@ int addOne_helper(ListNode *head) {
 
 int main () {
 }
+/* vim: set ts=4 sw=4 sts=4 tw=120 et: */

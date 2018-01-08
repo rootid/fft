@@ -11,6 +11,25 @@
 
 #include "../headers/global.hpp"
 #include "../headers/listnode.hpp"
+
+//######################################### Iteration  ######################################### 
+//In place  TC - O(n), SC - O(1)
+public ListNode oddEvenList(ListNode head) {
+  
+    if(head == null || head.next == null) return head;
+    
+    ListNode odd = head;
+    ListNode even = head.next;
+    ListNode evenHead = even;
+    while(even != null && even.next != null) {
+        odd.next = odd.next.next;
+        even.next = even.next.next;
+        odd= odd.next;
+        even = even.next;
+    }
+    odd.next = evenHead; //odd->even
+    return head;
+} 
 //########################################################## 
 ListNode* oddEvenList(ListNode* head) {
     

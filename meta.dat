@@ -378,7 +378,7 @@
 ./linked_list/reverse-linked-list.cpp
 ./linked_list/reverse-nodes-in-k-group.cpp
 ./linked_list/rotate-list.cpp
-./linked_list/rotateArray.cpp
+./linked_listerotateArray.cpp
 ./linked_list/sort-list.cpp
 ./linked_list/swap-nodes-in-pairs.cpp
 ./linked_list/trash.cpp

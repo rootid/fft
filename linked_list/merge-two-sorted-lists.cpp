@@ -4,10 +4,46 @@
 #include "../headers/global.hpp"
 #include "../headers/listnode.hpp"
 
-//Iterative Good
-namespace good {
+//######################################### Recursive ######################################### 
+public ListNode mergeTwoSortedList(ListNode l1, ListNode l2) {
+    if(l1 == null) return l2;
+    if(l2 == null) return l1;
+    if(l1.data < l2.data) {
+        l1.next = mergeTwoSortedList(l1.next, l2);
+        return l1;
+    }
+    l2.next = mergeTwoSortedList(l1, l2.next);
+    return l2;
+}
+
+//######################################### Iterative ######################################### 
+public ListNode mergeTwoLists(ListNode l1, ListNode l2) { 
+    ListNode dummyNode = new ListNode(-1);
+    ListNode iter = dummyNode;
+    while(l1 != null || l2 != null) {
+        if(l1 != null & l2 != null) {
+            if(l1.val <= l2.val) {
+                iter.next = l1;
+                l1 = l1.next;
+            } else {
+                iter.next = l2;
+                l2 = l2.next;
+            }
+        } else if(l1 != null) {
+            iter.next = l1;
+            l1 = l1.next;
+        } else if(l2 != null) {
+            iter.next = l2;
+            l2 = l2.next;
+        }
+        iter = iter.next;
+    }
+    return dummyNode.next;
+}
+namespace good { 
+
+//######################################### Iteration  ######################################### 
   ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
-  
       if(l1 == NULL) { 
         return l2;
       }
@@ -77,7 +113,6 @@ namespace recursive {
   ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
        if(l1 == NULL) return l2;
        if(l2 == NULL) return l1;
-       
        if(l1->val < l2->val) {
            l1->next = mergeTwoLists(l1->next, l2);
            return l1;
@@ -88,17 +123,6 @@ namespace recursive {
   }
 }
 
-//######################################### Recursive ######################################### 
-public ListNode mergeTwoSortedList(ListNode l1, ListNode l2) {
-    if(l1 == null) return l2;
-    if(l2 == null) return l1;
-    if(l1.data < l2.data) {
-        l1.next = mergeTwoSortedList(l1.next, l2);
-        return l1;
-    }
-    l2.next = mergeTwoSortedList(l1, l2.next);
-    return l2;
-}
 
 //######################################### Merge2Lists ######################################### 
 //If both lists are non-empty, I first make sure a starts smaller, use its head as result, and merge the remainders behind it. Otherwise, i.e., if one or both are empty, I just return what's there.
@@ -119,9 +143,9 @@ def mergeTwoLists(self, a, b):
         a.next = self.mergeTwoLists(a.next, b)
     return a
 
-
 int main() {
   ListNode* l1 = new ListNode(1);
   ListNode* l2= new ListNode(1);
   mergeTwoLists(l1,l2);
 }
+/* vim: set ts=4 sw=4 sts=4 tw=120 et: */

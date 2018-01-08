@@ -42,44 +42,6 @@
 //Explanation:The maximum width existing in the fourth level with the length 8 (6,null,null,null,null,null,null,7).
 //Note: Answer will in the range of 32-bit signed integer.
 
-//######################################### Update height when leaf node found ######################################### 
-public int maxDepth(TreeNode root) {
-    if(root == null) return 0;
-    int left = maxDepth(root.left);
-    int right = maxDepth(root.right);
-    return (left == 0 || right == 0) ? left + right + 1: Math.max(left,right) + 1;
-}
-
-
-//######################################### Update height when leaf node found ######################################### 
-public static int maxDepth(TreeNode root) {
-	if (root == null)	return 0;
-	if (root.left == null)	return maxDepth(root.right) + 1;
-	if (root.right == null) return maxDepth(root.left) + 1;
-	return Math.max(maxDepth(root.left),maxDepth(root.right)) + 1;
-}
-
-//######################################### Update height when leaf node found ######################################### 
-class Solution {
-
-    int maxHt = Integer.MIN_VALUE;
-    public void maxDepthHelper(TreeNode root,int ht) {
-        if(root == null) return;
-        ht = ht + 1;
-        if(root.left == null && root.right == null) 
-            maxHt = Math.max(ht, maxHt);  
-        maxDepthHelper(root.left,ht);
-        maxDepthHelper(root.right,ht);
-    }
-    
-    public int maxDepth(TreeNode root) {
-        if(root == null) return 0;
-        maxDepthHelper(root,0);
-        return maxHt;
-    }
-}
-
-
 //Left-most and right-most nodes must be non-null
 //level ? 
 

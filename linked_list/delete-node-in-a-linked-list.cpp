@@ -8,6 +8,22 @@
 #include "../headers/global.hpp"
 #include "../headers/listnode.hpp"
 
+
+//######################################### Update val, reference ######################################### 
+public void deleteNode(ListNode node) {
+    node.val = node.next.val;
+    ListNode savedNextRef = node.next;
+    node.next = node.next.next;
+    savedNextRef = null;
+}
+
+//######################################### Update val, reference ######################################### 
+public void deleteNode(ListNode node) {
+     node.val = node.next.val;
+     node.next = node.next.next;
+}
+
+//######################################### W/o memory leak ######################################### 
 void deleteNodeWoMemoryLeak(ListNode* node) {
     node->val = node->next->val;
     ListNode* t = node->next;
@@ -15,6 +31,7 @@ void deleteNodeWoMemoryLeak(ListNode* node) {
     delete t;
 }
 
+//######################################### W/ memory leak ######################################### 
 void deleteNode(ListNode* node) {
   if(node->next == NULL)  {
     node = NULL;
@@ -66,3 +83,4 @@ int main() {
   cout << endl;
 
 }
+/* vim: set ts=4 sw=4 sts=4 tw=120 et: */

@@ -6,18 +6,18 @@
 
 
 
-//################################## Recusrion ################################## 
+//################################## Recursion  ################################## 
 public ListNode deleteDuplicates(ListNode head) {
     if(head == null || head.next == null) return head;
     ListNode kid = head.next;
-    while(kid != null && kid.val == head.val) kid = kid.next; //value check with next node
+    while(kid != null && kid.val == head.val) kid = kid.next; //Update next ref if next and head value matches
     if(kid != head.next) return deleteDuplicates(kid); //Duplicates are found and get rid of duplicates.
     head.next = deleteDuplicates(kid); //No duplicates
     return head;
 }
 
 
-//################################## Recusrion - 1 ################################## 
+//################################## Recursion  - 1 ################################## 
 ListNode* deleteDuplicates(ListNode* head) {
     if (!head || !head->next) {
       return head;
@@ -70,3 +70,4 @@ ListNode* deleteDuplicates(ListNode* head) {
   return dummy_head->next;
 }
 
+/* vim: set ts=4 sw=4 sts=4 tw=120 et: */

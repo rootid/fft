@@ -5,29 +5,40 @@
 //Can you solve it without using extra space?
 
 
-//##################### JAVA  ##################### 
-ListNode detectCycle(ListNode head) {
 
-  if(head == null) { 
-    return head;
-  }
-  ListNode slow= head;
-  ListNode fast= head;
-  while(fast.next != null && fast.next.next != null) {
-	  slow = slow.next;
-	  fast = fast.next.next;
-      if(slow == fast)  { //found cycle
-        ListNode tmp = head;  //tmp needs to travel K unit of distance from head
-        while(fast != tmp) {  
-          fast  = fast.next;
-          tmp = tmp.next;  
-        }
-        return tmp;
-      }
-  }
-  return null;
+//##################### Set - Keep track of nodes ##################### 
+//SC - O(n), TC - O(1)
+public ListNode detectCycle(ListNode head) {
+    if(head == null || head.next == null) return null;
+    Set<ListNode> hs = new HashSet<>();
+    while(head != null) {
+        if(hs.contains(head)) return head;
+        hs.add(head);
+        head = head.next;
+    }
+    return null;
 }
 
+//##################### Iteration + Floyd cycle detection ##################### 
+public ListNode detectCycle(ListNode head) { 
+    if(head == null || head.next == null) return null;
+    ListNode fast = head;
+    ListNode slow = head;
+    while(fast != null && fast.next != null) {
+        fast = fast.next.next;
+        slow = slow.next;
+        if(fast == slow) break;
+    }
+    if(fast == slow) {
+        ListNode tmp = head;
+        while(tmp != fast) {
+            tmp = tmp.next;
+            fast = fast.next;
+        }
+        return fast;
+    }
+    return null;
+}
 //##################### c++ ##################### 
 ListNode *detectCycle(ListNode *head) {
 
@@ -51,5 +62,4 @@ ListNode *detectCycle(ListNode *head) {
   return NULL;
 }
 
-
-
+/* vim: set ts=4 sw=4 sts=4 tw=120 et: */

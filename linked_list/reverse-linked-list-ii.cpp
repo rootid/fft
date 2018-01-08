@@ -9,28 +9,52 @@
 //
 
 //####################### 3 variables  ####################### 
+//1. Reverse routine between m and n + Connect beforeMPtr.next to n
+    public ListNode reverseBetween(ListNode head, int m, int n) {
+        if(m > n) return head;
+        int idx = 0;
+        ListNode dummyNode = new ListNode(0);
+        dummyNode.next = head;
+        ListNode prev = dummyNode;
+        while(idx++ < m-1 && prev != null) 
+            prev = prev.next;
+        ListNode beforeMPtr = prev.next; // store beforeM ptr
+        ListNode rest = beforeMPtr.next;
+        ListNode tmp = null;
+        //Regular  reversal
+        while(idx++ < n) {
+             tmp = rest.next;
+             rest.next = prev.next;
+             prev.next = rest;
+             rest = tmp;
+        }
+        if(n-m > 0) //Visualize the scenario
+            beforeMPtr.next = tmp;
+        return dummyNode.next;
+    }
+//####################### 3 variables  ####################### 
 public ListNode reverseBetween(ListNode head, int m, int n) {
         if(m > n) return head;
         int idx = 0;
         ListNode dummyNode = new ListNode(0);
         dummyNode.next = head;
-        ListNode past = dummyNode;
-        while(idx++ < m-1 && past != null) 
-            past = past.next;
-       
-		// 1->2->3->4->5->NULL ; m=2; n =4 ---> past = 1, current = 2, future = 3
-    	// dummy-> 1 -> 2 -> 3 -> 4 -> 5-> NULL 
-		ListNode current = past.next;
-        ListNode future = current.next;
-
+        ListNode prev = dummyNode;
+        while(idx++ < m-1 && prev != null) 
+            prev = prev.next;
+        // 1->2->3->4->5->NULL ; m=2; n =4 ---> prev = 1, current = 2, rest = 3
+        // dummy-> 1 -> 2 -> 3 -> 4 -> 5-> NULL 
+        // O/p 1->4->3->2->5->NULL.
+        //ListNode current = prev.next;
+        //ListNode rest = current.next;
+        ListNode rest = prev.next.next;
         while(idx++ < n) {
-             current.next = future.next;
-             future.next = past.next;
-             past.next = future;
-             future = current.next;
-        } 
+             ListNode tmp = rest.next;
+             rest.next = prev.next;
+             prev.next = rest;
+             rest = tmp;
+        }
         return dummyNode.next;
-    }
+}
 
 //####################### Memory leak  ####################### 
 ListNode* reverseBetween(ListNode* head, int m, int n) {
@@ -129,3 +153,4 @@ ListNode *reverseBetween(ListNode *head, int m, int n) {
    }
    return prehead.next;
 }
+/* vim: set ts=4 sw=4 sts=4 tw=120 et: */

@@ -10,6 +10,69 @@
 #include "../headers/global.hpp"
 #include "../headers/listnode.hpp"
 
+//############################### Iteration -2 Pointers ###############################  
+//TC : O(L)
+public ListNode removeNthFromEnd(ListNode head, int n) {
+    ListNode dummy = new ListNode(0);
+    dummy.next = head;
+    ListNode first = dummy;
+    ListNode second = dummy;
+    // Advances first pointer so that the gap between first and second is n nodes apart
+    for (int i = 1; i <= n + 1; i++) {
+        first = first.next; //got upto n+1 distance
+    }
+    // Move first to the end, maintaining the gap
+    while (first != null) {
+        first = first.next;
+        second = second.next;
+    }
+    second.next = second.next.next;
+}
+
+//############################### Iteration ###############################  
+//Time complexity : O(L).
+public ListNode removeNthFromEnd(ListNode head, int n) {
+    ListNode dummy = new ListNode(0);
+    dummy.next = head;
+    int distanceFromHead  = 0;
+    ListNode first = head;
+    while (first != null) {
+        distanceFromHead++;
+        first = first.next;
+    }
+    distanceFromHead -= n; //
+    first = dummy;
+    while (distanceFromHead > 0) {
+        distanceFromHead--;
+        first = first.next;
+    }
+    first.next = first.next.next;
+    return dummy.next;
+}
+
+//###############################  Recursion ###############################  
+//[1] , 1 o/p []
+public ListNode removeNthFromEnd(ListNode head, int n) {
+    int m = getLength(head);
+    int fromHeadDist = m - n;
+    return removeNodeFromStart(head, fromHeadDist);
+}
+private ListNode removeNodeFromStart(ListNode head, int n) {
+    if(n == 0) 
+        if(head != null) return head.next;
+    head.next = removeNodeFromStart(head.next, n-1);
+    return head; 
+}
+private int getLength(ListNode head) {
+    int cnt = 1;
+    while(head.next != null) {
+        head= head.next;
+        cnt++;
+    }
+    return cnt;
+}
+
+//###############################  Iteration ###############################  
 ListNode* removeNthFromEnd(ListNode* head, int n) {
 
   ListNode *dummy = new ListNode(0);
@@ -41,4 +104,4 @@ int main() {
 
 }
 
-
+/* vim: set ts=4 sw=4 sts=4 tw=120 et: */

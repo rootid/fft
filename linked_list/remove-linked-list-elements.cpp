@@ -7,11 +7,26 @@
 #include "../headers/global.hpp"
 #include "../headers/listnode.hpp"
 
+
+//######################################### Iteration ######################################### 
+public ListNode removeElements(ListNode head, int val) { 
+    //val is @ head, tail, mid
+    ListNode dummy = new ListNode(-val);
+    dummy.next = head;
+    ListNode tmp = dummy;
+    while(tmp != null && tmp.next != null) {
+        while(tmp.next != null && tmp.next.val == val) tmp.next = tmp.next.next;
+        tmp = tmp.next;
+    }
+    return dummy.next;
+}
+
 //######################################### Recursion ######################################### 
 public ListNode removeElements(ListNode head, int val) {
-    if(head == null) return head;
-    head.next = removeElements(head.next, val);
-    if(head != null && head.val == val) head = head.next;
+    //val is @ head, tail, mid
+    if(head == null) return null; //base case
+    head.next = removeElements(head.next, val); //updated head.next / outgoing as we proceed.
+    if(head != null && head.val == val) head = head.next; //update the head when given value found
     return head;
 }
 //######################################### Recursion ######################################### 
@@ -78,3 +93,5 @@ ListNode* removeElements(ListNode* head, int val) {
   }
   return head;
 }
+
+/* vim: set ts=4 sw=4 sts=4 tw=120 et: */

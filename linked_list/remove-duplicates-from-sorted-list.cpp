@@ -7,7 +7,6 @@
 #include "../headers/global.hpp"
 #include "../headers/listnode.hpp"
 
-
 //######################################### Recursion ######################################### 
 public ListNode deleteDuplicates(ListNode head) {
     if(head == null || head.next == null) return head;
@@ -52,7 +51,6 @@ ListNode* deleteDuplicates(ListNode* head) {
     if (head == NULL || head->next == NULL) {
         return head;
     }
-    
     ListNode* retHead = head;
     ListNode* first = head->next;
     while (first != NULL) {
@@ -62,7 +60,6 @@ ListNode* deleteDuplicates(ListNode* head) {
         }
         first = first->next;
     }
-    
     // release nodes to avoid memory leak
     first = head->next;
     ListNode* delNode;
@@ -71,9 +68,7 @@ ListNode* deleteDuplicates(ListNode* head) {
         first = first->next;
         delete delNode;
     }
-    
     head->next = NULL;
-    
     return retHead;
 }
 
@@ -81,3 +76,4 @@ ListNode* deleteDuplicates(ListNode* head) {
 int main() {
 
 }
+/* vim: set ts=4 sw=4 sts=4 tw=120 et: */

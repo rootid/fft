@@ -25,7 +25,7 @@
 25.  Array Nesting
 26.  Array Partition I
 27.  Assign Cookies
-28.  Average of Levels in Binary Tree
+28.  Average of Levels in Binary Tree : Queue/Deque - Offer,Poll (BFS - T/S - O(n)) Keep track of - howMany visited = len, sum , DFS NOTE - T-O(n) S-O(h)
 29.  Balanced Binary Tree
 30.  Base 7
 31.  Basic Calculator
@@ -96,8 +96,8 @@
 96.  Convert Sorted List to Binary Search Tree
 97.  Convert a Number to Hexadecimal
 98.  Convex Polygon
-99.  Copy List with Random Pointer
-100. Count Complete Tree Nodes
+99.  Copy List with Random Pointer : 1. Copy next pointer, random pointer(with Map) 2.  Modify list(Expand - with next + Random ptr) and Rollback 
+100. Count Complete Tree Nodes 
 101. Count Numbers with Unique Digits
 102. Count Primes
 103. Count The Repetitions
@@ -116,7 +116,7 @@
 116. Decode Ways
 117. Decode Ways II
 118. Delete Node in a BST
-119. Delete Node in a Linked List
+119. Delete Node in a Linked List : Update Current (Val, Ref) = Next(Val, Ref)
 120. Delete Operation for Two Strings
 121. Design Compressed String Iterator
 122. Design Excel Sum Formula
@@ -137,7 +137,7 @@
 137. Divide Two Integers
 138. Dota2 Senate
 139. Dungeon Game
-140. Edit Distance
+140. Edit Distance : String prefix 1. Find Matching prefix 2. Find opt tranformation among insert(Pick 1st prefix),delete(Pick 2nd prefix),replace.
 141. Elimination Game
 142. Encode String with Shortest Length
 143. Encode and Decode Strings
@@ -256,8 +256,8 @@
 256. Lexicographical Numbers : DFS (Multilevel D-Ary tree) D = [0-9]
 257. License Key Formatting
 258. Line Reflection
-259. Linked List Cycle
-260. Linked List Cycle II
+259. Linked List Cycle : T - O(n) 1. Set S-O(n) 2. Slow,fast O(N+K) K - cycle length, N - non cycle length
+260. Linked List Cycle II : T - O(n) 1. Set S-O(n)  2. Slow,fast O(N+K) K - cycle length, N - non cycle length (Express meeting point in terms of non-cycle length and derive/find meeting point with cycle,non-cycle i.e. by Dist(Hare) - Dist(Tortoise))
 261. Linked List Random Node
 262. Logger Rate Limiter
 263. Lonely Pixel I
@@ -268,7 +268,7 @@
 268. Longest Continuous Increasing Subsequence : T - O(n) - linear traversal and compare last with current/2-pointer 
 269. Longest Harmonious Subsequence : T - O(n)  Maintain the freqMap of val, #of occcurances
 270. Longest Increasing Path in a Matrix
-271. Longest Increasing Subsequence
+271. Longest Increasing Subsequence : Find the max length of suffix where nextElement > currentElement and keep track of max Length at each position, O(n log n) - Create an array with increasing values. 1. Use binary search to determine whether to replace(< currentVal) or append (> currentVal) the value
 272. Longest Line of Consecutive One in Matrix
 273. Longest Palindrome : Partial Contribution(# of chars are odd)  + Full Contribution (# of chars are even) + If Partial contribution then Odd length palindrome
 274. Longest Palindromic Subsequence
@@ -317,13 +317,13 @@
 317. Merge Intervals : O(n log n) Sort + traversal O(n)
 318. Merge Sorted Array : Traversal backwards O(m+n)
 319. Merge Two Binary Trees
-320. Merge Two Sorted Lists
+320. Merge Two Sorted Lists : Iteration over both list in O(n)
 321. Merge k Sorted Lists
 322. Min Stack : 1. 2 stacks 2. 1 stack(Long) - store the gap between stack.push((long) currentEle - min), during pop update min = Math.max(min - stack.pop(), min);
 323. Minesweeper
 324. Mini Parser
 325. Minimum Absolute Difference in BST : Keep track of predecessor + Minimum value in Flow manner + Inorder traversal
-326. Minimum Depth of Binary Tree : Update ht when leaf node found
+326. Minimum Depth of Binary Tree : Must get rid of Partial leaf node height , ht(partial leaf - either left/right = NULL ) = leftHt + rightHt + 1, ht(NULL) = 0
 327. Minimum Factorization
 328. Minimum Height Trees
 329. Minimum Index Sum of Two Lists : T : O(m+n) : keep trakc of indices with HashMap
@@ -363,7 +363,7 @@
 363. Number of Islands II : Quick-union not quick find TODO - Path compression 
 364. Number of Longest Increasing Subsequence
 365. Number of Segments in a String : [Regex only split]
-366. Odd Even Linked List
+366. Odd Even Linked List : 1. Connect odd nodes, even nodes , Odd node tail-> Even node Head
 367. One Edit Distance : [2 Pointer: Match v/s Non Match case] O(n)
 368. Ones and Zeroes
 369. Optimal Account Balancing
@@ -433,14 +433,14 @@
 433. Remove Duplicate Letters : O(n^2) , counter + chop-off string from R-L untill this case is valid "xyza....yzx" 
 434. Remove Duplicates from Sorted Array
 435. Remove Duplicates from Sorted Array II
-436. Remove Duplicates from Sorted List
-437. Remove Duplicates from Sorted List II
+436. Remove Duplicates from Sorted List : 1. Iteration - W/ 1 ref check current and next if they are equal/not
+437. Remove Duplicates from Sorted List II :
 438. Remove Element
 439. Remove Invalid Parentheses
 440. Remove K Digits
-441. Remove Linked List Elements
+441. Remove Linked List Elements : 1. Recursion - Update head when given value found 2. Iteration - Update outgoing link i.e. next when given value foundj:w
 442. Remove Nth Node From End of List
-443. Reorder List
+443. Reorder List : 1. Get mid, reverse mid(with Stack), connect 2. Use tail of first half (make null) and head of second half, connect
 444. Repeated DNA Sequences : substring(startidx-Inclusive,endIdx-Exclusive) Default hash or Customized Hash (Use last 2 bits  t = t << 3 & 0x3FFFFFFF | s.charAt(i) & 7;)
 445. Repeated Substring Pattern
 446. Replace Words
@@ -448,8 +448,8 @@
 448. Restore IP Addresses
 449. Reverse Bits
 450. Reverse Integer
-451. Reverse Linked List
-452. Reverse Linked List II
+451. Reverse Linked List : Use prev,current and rest with iteration and recursion -> r = c.next = p = c = r
+452. Reverse Linked List II :  Reverse routine between m and n + Connect beforeMPtr.next to n
 453. Reverse Nodes in k-Group
 454. Reverse Pairs
 455. Reverse String : [2 Pointer, in Built StringBuilder]

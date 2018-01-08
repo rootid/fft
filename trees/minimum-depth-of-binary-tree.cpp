@@ -7,6 +7,7 @@
 
 
 //######################################### Update height when leaf node found ######################################### 
+// Trick : leaf node has height = 0, non leaf node ht = leftHt + rightHt + 1
 public int minDepth(TreeNode root) {
     if(root == null) return 0;
     int left = minDepth(root.left);

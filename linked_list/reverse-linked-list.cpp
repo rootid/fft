@@ -3,16 +3,30 @@
 #include "../headers/global.hpp"
 #include "../headers/listnode.hpp"
 
-//######################################### Iterative - version ######################################### 
-public ListNode reverseList(ListNode head) {
-    ListNode prev = null;
-    while (head != null) {
-        ListNode nextHead = head.next;
-        head.next = prev;
-        prev = head;
-        head = nextHead;
+
+//######################################### Recursive  - version ######################################### 
+public class Solution {
+    public ListNode reverseList(ListNode head) {
+        if(head == null ||head.next == null){ //empty / single node
+            return head;
+        }
+        ListNode rest = reverseList(head.next); //head.next
+        head.next.next = head; //Overwrite 3rd node with 1st node, base case checks for head.next
+        head.next = null;
+        return rest; //return the rest
     }
-    return prev;
+}
+//######################################### Iterative - version ######################################### 
+public ListNode reverseList(ListNode current) {
+   if(current == null) return null;
+   ListNode prev = null;
+   while(current != null) { //1->2->null
+       ListNode rest = current.next; //Store next r=c.next=p=c=r
+       current.next = prev; //Change next -> Copy from previous
+       prev = current; //Overwrite previous
+       current = rest; //Restore next
+   }
+ return prev;
 }
 
 //######################################### Recursive - version ######################################### 
@@ -22,9 +36,9 @@ public ListNode reverseList(ListNode head) {
 
 public ListNode reverseListHelper(ListNode prev, ListNode head) {
     if(head == null) return prev;
-    ListNode nextHead = head.next; 
+    ListNode rest  = head.next; 
     head.next = prev;
-    return reverseListHelper(head, nextHead);
+    return reverseListHelper(head, rest);
 }
 
 //######################################### Dummy node approach ######################################### 
@@ -106,3 +120,4 @@ int main() {
   cout << endl;
 
 }
+/* vim: set ts=4 sw=4 sts=4 tw=120 et: */

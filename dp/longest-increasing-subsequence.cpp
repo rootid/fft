@@ -6,6 +6,42 @@
 //Your algorithm should run in O(n2) complexity.
 //Follow up: Could you improve it to O(n log n) time complexity?
 //
+
+//############################################  (n log n)############################################  
+//Idea : Create an array with increasing values.
+//1. Use binary search to determine whether to replace(< currentVal) or append (> currentVal) the value
+public int lengthOfLIS(int[] nums) {
+    int[] dp = new int[nums.length];
+    int len = 0;
+    for(int x : nums) {
+        int i = Arrays.binarySearch(dp, 0, len, x); //dp = [S....E]
+        if(i < 0) i = -(i + 1); //element not found 10,9,2->3
+        //Element can be at left or right when it is at left just replace the existing value else append the value.
+        dp[i] = x; //
+        //System.out.println(  "(i = " + i + " x = " + x + ")");
+        if(i == len) len++;
+    }
+    return len;
+}
+
+//############################################  DP ############################################  
+//Find the max length of suffix where nextElement > currentElement 
+//and keep track of max Length at each position
+public int lengthOfLIS(int[] nums) {
+    if(nums == null || nums.length == 0) return 0;
+    int m = nums.length;
+    int[] maxLenArr = new int[m];
+    Arrays.fill(maxLenArr, 1);
+    int maxLen = 1;
+    //Suffix
+    for(int i=m-2;i>=0;i--) 
+    for(int j=i+1;j<m;j++) {
+      if(nums[j] > nums[i]) maxLenArr[i] = Math.max(maxLenArr[j]+1, maxLenArr[i]);
+      maxLen = Math.max(maxLen, maxLenArr[i]);    
+    }
+    return maxLen;
+}
+
 //############################################  DP ############################################  
 // There's a typical DP solution with O(N^2) Time and O(N) space 
 // DP[i] means the result ends at i
@@ -122,7 +158,6 @@ class Solution(object):
 
 
 //#########################################  Binary search O(n log n) #########################################  
-//
 //tails[i] stores the smallest tail value for all increasing subsequences of length i+1
 //Example: nums = [4,5,19,3].
 //Increasing subsequence of length 1: [4].[5],[19],[3]. Smallest value: 3

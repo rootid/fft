@@ -6,6 +6,106 @@
 //Given {1,2,3,4}, reorder it to {1,4,2,3}.
 //
 
+//##################### Use tail of first half (make null) and head of second half, connect##################### 
+  public void reorderList(ListNode head) {
+      if (head == null || head.next == null)
+          return;
+      // step 1. cut the list to two halves
+      // prev will be the tail of 1st half
+      // slow will be the head of 2nd half
+      ListNode prev = null, slow = head, fast = head, l1 = head;
+      while (fast != null && fast.next != null) {
+        prev = slow;
+        slow = slow.next;
+        fast = fast.next.next;
+      }
+      prev.next = null; //1->2->3 //prev = 1, 1->2->3->4 ,prev = 2
+      // step 2. reverse the 2nd half
+      ListNode l2 = reverse(slow);
+      // step 3. merge the two halves
+      merge(l1, l2);
+    }
+    ListNode reverse(ListNode head) {
+      ListNode prev = null, curr = head, next = null;
+      while (curr != null) {
+        next = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = next;
+      }
+      return prev;
+    }
+    void merge(ListNode l1, ListNode l2) {
+      while (l1 != null) {
+        ListNode n1 = l1.next, n2 = l2.next;
+        l1.next = l2;
+        if (n1 == null)
+          break;
+        l2.next = n1;
+        l1 = n1;
+        l2 = n2;
+      }
+    } 
+
+//##################### With Stack + Slow and Fast Pointer ##################### 
+public void reorderList(ListNode head) {
+   //1->2->3->null; 
+   ListNode slow = head;
+   ListNode fast = head;
+   while(fast !=null && fast.next != null) {
+       slow = slow.next;
+       fast = fast.next.next;
+   }
+   if(fast != null) slow = slow.next;
+   Deque<ListNode> stk = new ArrayDeque<ListNode>();
+   ListNode ptr = slow;
+   while(ptr != null) {
+       stk.push(ptr);
+       ptr = ptr.next;
+   }
+   ptr = head;
+   while(!stk.isEmpty()) {
+       ListNode tmp = ptr.next;
+       ListNode tmp2 = stk.pop();
+       ptr.next = tmp2;
+       tmp2.next = tmp;
+       ptr = tmp;
+   }
+   if(ptr != null)
+      ptr.next = null;
+}
+
+//##################### With Stack + Compute length ##################### 
+private int getLength(ListNode head) {
+    int len = 0;
+    while(head != null) {
+        head = head.next;
+        len++;
+    }
+    return len;
+}
+public void reorderList(ListNode head) {
+      //1->2->3->null; 
+      int l = getLength(head);
+      int m = l/2 + l%2; //handle even-> startIdx = m , odd -> startIdx = m+1
+      Deque<ListNode> stk = new ArrayDeque<ListNode>();
+      ListNode ptr = head;
+      while(m-- != 0) ptr = ptr.next;
+      while(ptr != null) {
+          stk.push(ptr);
+          ptr = ptr.next;
+      }
+      ptr = head; //l0->l1...ln
+      while(!stk.isEmpty()) { 
+          ListNode tmp = ptr.next; //-- Store next //l1->l2
+          ListNode tmp2 = stk.pop(); //--- Store stk top //ln-1->ln-2
+          ptr.next = tmp2; //update  l0-> ln-1
+          tmp2.next = tmp; //update ln-1-> l1->l2
+          ptr = tmp; //Restore
+      }
+      if(ptr != null) //In case of empty list
+         ptr.next = null;
+}
 
 //L : l0->l1->l2->.....->ln-1->ln
 //l0->ln->l1->ln-1
@@ -74,36 +174,28 @@ if(!flag){
       tail->next = (*head)->next;
       (*head)->next = tail;
       *head = tail->next;
-	}
+    }
 }
 //##################### with Stack ##################### 
 void reorderList(ListNode* head) {
-    if(!head)
-    {
+    if(!head) {
         return;
     }
     ListNode* slow = head, *fast = head;
-    while(fast && fast->next)
-    {
+    while(fast && fast->next) {
         fast = fast->next->next;
         slow = slow->next;
     }
-    
     stack<ListNode*> secondHalf;
-    
-    while(slow)
-    {
+    while(slow) {
         secondHalf.push(slow);
         slow = slow->next;
     }
-    
     slow = head;
-    for(;;)
-    {
+    for(;;) {
         ListNode* last = secondHalf.top();
         secondHalf.pop();
-        if(last == slow || secondHalf.empty())
-        {
+        if(last == slow || secondHalf.empty()) {
             last->next = NULL;
             return;
         }
@@ -198,3 +290,4 @@ void reorderList(ListNode* head) {
     slow->next = NULL;
     mergeList(head,reverseList(head2));
 }
+/* vim: set ts=4 sw=4 sts=4 tw=120 et: */

@@ -6,6 +6,27 @@
 //c) Replace a character
 #include "../headers/global.hpp"
 
+// s1 = a....a
+// s2 = ab
+
+//#########################################DP#########################################
+//String prefix 1. Find Matching prefix 2. Find opt tranformation among insert(Pick 1st prefix),delete(Pick 2nd prefix),replace
+public int minDistance(String word1, String word2) {
+    //prefixes of 1 char
+    int m = word1.length();
+    int n = word2.length();
+    int[][] dp = new int[m+1][n+1];
+    //Assume word1--| word2---> and word1 is empty
+    for(int j=0;j<=n;j++) dp[0][j] = j;
+    for(int i=1;i<=m;i++) { //iterave over word1
+        dp[i][0] = i;
+        for(int j=1;j<=n;j++)
+            if(word1.charAt(i-1) != word2.charAt(j-1)) 
+                dp[i][j] = Math.min(dp[i-1][j-1], Math.min(dp[i-1][j], dp[i][j-1])) + 1;
+            else dp[i][j] = dp[i-1][j-1];
+    }
+    return dp[m][n];
+}
 
 //1.Replace word1[i - 1] by word2[j - 1] (dp[i][j] = dp[i - 1][j - 1] + 1 (for replacement));
 //2.Delete word1[i - 1] and word1[0..i - 2] = word2[0..j - 1] (dp[i][j] = dp[i - 1][j] + 1 (for deletion));
