@@ -1,0 +1,37 @@
+Backtrack
+691	Stickers to Spell Word	
+526	Beautiful Arrangement	
+425	Word Squares 	
+411	Minimum Unique Word Abbreviation 	
+401	Binary Watch	
+357	Count Numbers with Unique Digits	
+351	Android Unlock Patterns 	
+320	Generalized Abbreviation 	
+294	Flip Game II 	
+291	Word Pattern II 	
+267	Palindrome Permutation II 	
+254	Factor Combinations 	
+216	Combination Sum III	
+212	Word Search II	
+211	Add and Search Word - Data structure design	
+140	Word Break II	
+131	Palindrome Partitioning	
+126	Word Ladder II	
+93	Restore IP Addresses	
+90	Subsets II	
+89	Gray Code	
+79	Word Search	
+78	Subsets	
+77	Combinations	
+60	Permutation Sequence	
+52	N-Queens II	
+51	N-Queens	
+47	Permutations II	
+46	Permutations	
+44	Wildcard Matching	
+40	Combination Sum II	
+39	Combination Sum	
+37	Sudoku Solver	
+22	Generate Parentheses	
+17	Letter Combinations of a Phone Number	
+10	Regular Expression Matching	

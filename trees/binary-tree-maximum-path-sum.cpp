@@ -13,25 +13,25 @@
 
 
 //######################################### Global Max + Bottom up ######################################### 
+//Difference between top down and bottom up is lt and rt max computation
+//1. Top down - evaluated at last
+//2. bottom up compared with 0
 class Solution {
-    int maxPathSum = Integer.MIN_VALUE;;
-
+    int maxSum = Integer.MIN_VALUE;
     private int maxPathSumHelper(TreeNode root) {
-        if(root != null) {
-            int leftMax = Math.max(0, maxPathSumHelper(root.left));
-            int rightMax = Math.max(0, maxPathSumHelper(root.right));
-            maxPathSum = Math.max(maxPathSum, leftMax + rightMax + root.val); //Compares the max value from every iteration with the current sum and updates it . 
-            return Math.max(leftMax,rightMax) + root.val; //At every node, we need to make a decision, if the sum comes from the left path larger than the right path, we pick the left path and plus the current node's value, this recursion goes all the way up to the root node.
-        }
-        return 0;
+        if(root == null) return 0;
+        //Eg.Draw tree for  -3 and  1,2,3
+        int ltMax = Math.max(0, maxPathSumHelper(root.left)); 
+        int rtMax = Math.max(0, maxPathSumHelper(root.right)); 
+        maxSum = Math.max(maxSum, ltMax + rtMax + root.val); //(2nd maxSum = W/O parent, With parent)
+        return Math.max(ltMax, rtMax)  + root.val; // Get the max between lt/rt subtree and value
     }
-
+    
     public int maxPathSum(TreeNode root) {
-       maxPathSumHelper(root);
-       return maxPathSum;
+        maxPathSumHelper(root);
+        return maxSum;
     }
 }
-
 
 //############################### MathPathSumHelper  ############################### 
 //Idea : 
@@ -149,10 +149,10 @@ public static int maxSumPath(TreeNode root) {
 }
 public static int helper(TreeNode root, int[] res) {
     if(root == null) return 0;
-    int l = helper(root.left, res);
-    int r = helper(root.right, res);
-    res[0] = Math.max(res[0],l+r+root.data);
-    return Math.max(0, Math.max(l,r) + root.data);
+    int ltMax = helper(root.left, res);
+    int rtMax = helper(root.right, res); //get left,right max
+    res[0] = Math.max(res[0],ltMax+rtMax+root.data); 
+    return Math.max(0, Math.max(ltMax,rtMax) + root.data);
 }
 
 //######################################### Top-down ######################################### 

@@ -19,62 +19,59 @@
 // 1
 //Longest consecutive sequence path is 2-3,not 3-2-1, so return 2.
 
-//######################################### DFS ######################################### 
-//Send current value+1 to next level as a target
-public class Solution {
-    private int max = 0;
-    public int longestConsecutive(TreeNode root) {
-        if(root == null) return 0;
-        helper(root, 0, root.val);
-        return max;
-    }
-    
-    public void helper(TreeNode root, int cur, int target){
-        if(root == null) return;
-        if(root.val == target) cur++;
-        else cur = 1;
-        max = Math.max(cur, max);
-        helper(root.left, cur, root.val + 1);
-        helper(root.right, cur, root.val + 1);
-    }
-}
-
-//######################################### DFS ######################################### 
-public class Solution {
-    public int longestConsecutive(TreeNode root) {
-        return (root==null)?0:Math.max(dfs(root.left, 1, root.val), dfs(root.right, 1, root.val));
-    }
-    
-    public int dfs(TreeNode root, int count, int val){
-        if(root==null) return count;
-        count = (root.val - val == 1)?count+1:1;
-        int left = dfs(root.left, count, root.val);
-        int right = dfs(root.right, count, root.val);
-        return Math.max(Math.max(left, right), count);
-    }
-}
-
-
-//######################################### DFS ######################################### 
+//######################################### Top-down  ######################################### 
+//TC : o(n) , SC: o(n)
+private int maxLength = 0;
 public int longestConsecutive(TreeNode root) {
-	if (root == null) {
-		return 0;
-	}
-    return DFS(root, root.val + 1, 1, 1);
+    dfs(root, null, 0);
+    return maxLength;
 }
 
-private int DFS(TreeNode node, int target, int curr, int max) {
-	if (node == null) {
-		return max;
-	}
-	if (node.val == target) {
-		curr++;
-		max = Math.max(max, curr);
-	} else { 
-		curr = 1;
-	}
-	return Math.max(DFS(node.left, node.val + 1, curr, max), DFS(node.right, node.val + 1, curr, max));
+private void dfs(TreeNode p, TreeNode parent, int length) {
+    if (p == null) return;
+    length = (parent != null && p.val == parent.val + 1) ? length + 1 : 1;
+    maxLength = Math.max(maxLength, length);
+    dfs(p.left, p, length);
+    dfs(p.right, p, length);
 }
+
+
+//######################################### Top-down/Preorder ######################################### 
+//TC : o(n) , SC: o(n)
+public int longestConsecutive(TreeNode root) {
+    return dfs(root, null, 0);
+}
+
+private int dfs(TreeNode p, TreeNode parent, int length) {
+    if (p == null) return length;
+    length = (parent != null && p.val == parent.val + 1) ? length + 1 : 1;
+    return Math.max(length, Math.max(dfs(p.left, p, length),
+                                     dfs(p.right, p, length)));
+}
+
+//######################################### Bottom-up/ Postorder ######################################### 
+//TC : o(n) , SC: o(n)
+private int maxLength = 0;
+public int longestConsecutive(TreeNode root) {
+    dfs(root);
+    return maxLength;
+}
+
+private int dfs(TreeNode p) {
+    if (p == null) return 0;
+    int L = dfs(p.left) + 1;
+    int R = dfs(p.right) + 1;
+    if (p.left != null && p.val + 1 != p.left.val) {
+        L = 1; //update L = 1 when conecutive seq not found
+    }
+    if (p.right != null && p.val + 1 != p.right.val) {
+        R = 1;
+    }
+    int length = Math.max(L, R);
+    maxLength = Math.max(maxLength, length);
+    return length;
+}
+
 
 
 //######################################### DFS ######################################### 

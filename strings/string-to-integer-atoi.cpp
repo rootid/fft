@@ -11,6 +11,30 @@
 //If the first sequence of non-whitespace characters in str is not a valid integral number, or if no such sequence exists because either str is empty or it contains only whitespace characters, no conversion is performed.
 //If no valid conversion could be performed, a zero value is returned. If the correct value is out of the range of representable values, INT_MAX (2147483647) or INT_MIN (-2147483648) is returned.
 //
+
+//######################################### Iteration ######################################### 
+public int myAtoi(String str) { 
+//10 = 0 + 1*10 = 10 
+  if (str.isEmpty()) return 0;
+  int i = 0;
+  while (str.charAt(i) == ' ') i++;
+  int mult = 10;
+  int result = 0;
+  int sign = 1;
+  if (str.charAt(i) == '-' || str.charAt(i) == '+')  sign = str.charAt(i++) == '-' ? -1 : 1;
+  while(i<str.length() && Character.isDigit(str.charAt(i))) {
+     
+      //"2147483648" -> o/p 2147483647 (INT_MAX)
+      if( result > Integer.MAX_VALUE / 10 || (result == Integer.MAX_VALUE / 10 && str.charAt(i) - '0' > 7) ) return (sign == 1) ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+      
+      result = result*mult + str.charAt(i++) - '0';
+      
+  }
+  return sign*result;
+}
+
+
+//######################################### Iteration ######################################### 
 int myAtoi(string str) {
   int s = 1;
   long res = 0;
@@ -36,3 +60,4 @@ int myAtoi(string str) {
   }
   return s*res;
 }
+/* vim: set ts=2 sw=2 sts=2 tw=120 et: */

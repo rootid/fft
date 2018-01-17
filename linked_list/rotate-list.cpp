@@ -7,6 +7,28 @@
 #include "../headers/global.hpp"
 #include "../headers/listnode.hpp"
 
+
+//############################################  Iteration  ############################################  
+public ListNode rotateRight(ListNode head, int k) {
+    if(head == null) return head;
+    int len = 0;
+    ListNode fp = head, lp = head, tmp = head;
+    while(tmp != null) {
+        tmp = tmp.next; 
+        len++; //1. Get the length
+    }
+    k = k % len;  //To avoid cycle
+    k = len - k -1; //traverse till end of first part
+    while(k-- != 0) head = head.next;
+    fp = head.next; // fp is next of HEAD
+    head.next = null; // HEAD next is null NOTE : head next and next of HEAD are different.
+    if(fp == null) return lp; //K == len
+    tmp = fp; //points to kth node
+    while(tmp.next != null) tmp = tmp.next; //End of list
+    tmp.next = lp; //Connect last part of list with HEAD/ Future last part
+    return fp;
+}
+
 //############################################  GOOD ############################################  
 ListNode* rotateRight(ListNode* head, int k) {
 
@@ -80,68 +102,4 @@ ListNode* rotateRight(ListNode* head, int k) {
 
 
 
-
-//############################################  Ugly ############################################  
-int getLength(ListNode *head) {
-
-  int len = 0;
-  while(head != NULL) {
-    len += 1;
-    head = head->next;
-  }
- return len; 
-}
-
-ListNode* rotateRight(ListNode* head, int k) {
-
-  int idx1 = k;
-  ListNode *p = head;
-  ListNode *p1 = head;
-  ListNode *newHead;
-  int l = getLength(head);
-
-  if(!head || (k%l != k) ) {
-    return head;
-  }
-  while(idx1 > 0) {
-    if(p == NULL) {
-      return head;
-    }
-    p = p->next;
-    idx1 -= 1;
-  }
-  while(p->next != NULL) {
-    p = p->next;
-    p1 = p1->next;
-  }
-
-  newHead = p1->next;
-  p1->next = NULL;
-
-  ListNode *tmp = newHead;
-  while(tmp->next != NULL) {
-    tmp = tmp->next;
-  }
-  tmp->next = head;
-
-  return newHead;
-}
-int main() {
-  //1->2->3->4->5->NULL,
-  ListNode *head = new ListNode(1); 
-  head->next = new ListNode(2); 
-  head->next->next = new ListNode(3); 
-  head->next->next->next = new ListNode(4); 
-  head->next->next->next->next = new ListNode(5); 
-
-  cout << "cALL " << endl;
-  ListNode *result = rotateRight(head,2);
-
-  cout << "after cALL " << endl;
-  while(result != NULL) {
-    cout << result->val << " ";
-    result = result->next;
-  }
-  cout << endl;
-
-}
+/* vim: set ts=2 sw=2 sts=2 tw=120 et: */

@@ -147,7 +147,6 @@
 ./binary_search/topeliz.cpp
 ./binary_search/two-sum-ii-input-array-is-sorted.cpp
 ./binary_search/valid-perfect-square.cpp
-./bits/additionWoPlus.cpp
 ./bits/binary-number-with-alternating-bits.cpp
 ./bits/bit-swapping.cpp
 ./bits/bitwise-and-of-numbers-range.cpp
@@ -165,6 +164,7 @@
 ./bits/single-number-ii.cpp
 ./bits/single-number-iii.cpp
 ./bits/single-number.cpp
+./bits/sum-of-two-integers.cpp
 ./bits/tohex.cpp
 ./bits/total-hamming-distance.cpp
 ./bits/utf-8-validation.cpp
@@ -378,7 +378,7 @@
 ./linked_list/reverse-linked-list.cpp
 ./linked_list/reverse-nodes-in-k-group.cpp
 ./linked_list/rotate-list.cpp
-./linked_listerotateArray.cpp
+./linked_list/rotateArray.cpp
 ./linked_list/sort-list.cpp
 ./linked_list/swap-nodes-in-pairs.cpp
 ./linked_list/trash.cpp
@@ -451,6 +451,7 @@
 ./pattern_matching/majority-element.cpp
 ./pattern_matching/minimum-factorization.cpp
 ./pattern_matching/roman-to-integer.cpp
+./q.cpp
 ./recursion/combination.cpp
 ./recursion/employee-importance.cpp
 ./recursion/palindorme-valid.cpp
@@ -488,7 +489,6 @@
 ./stack/remove-k-digits.cpp
 ./strings/add-bold-tag-in-string.cpp
 ./strings/add-strings.cpp
-./strings/atoi.cpp
 ./strings/basic-calculator-ii.cpp
 ./strings/basic-calculator.cpp
 ./strings/canConstruct.cpp
@@ -551,6 +551,8 @@
 ./strings/shortest-word-distance.cpp
 ./strings/simplify.cpp
 ./strings/solve-the-equation.cpp
+./strings/string-compression.cpp
+./strings/string-to-integer-atoi.cpp
 ./strings/string_compression.cpp
 ./strings/student-attendance-record-i.cpp
 ./strings/student-attendance-record-ii.cpp
@@ -634,7 +636,7 @@
 ./trees/house-robber-iii.cpp
 ./trees/inorder-successor-in-bst.cpp
 ./trees/invertBT.cpp
-./trees/kthSmallest.cpp
+./trees/kth-smallest-element-in-a-bst.cpp
 ./trees/largest-bst-subtree.cpp
 ./trees/lca-bt-iterative.cpp
 ./trees/longest-univalue-path.cpp
@@ -643,7 +645,6 @@
 ./trees/maximum-binary-tree.cpp
 ./trees/maximum-depth-of-binary-tree.cpp
 ./trees/maximum-width-of-binary-tree.cpp
-./trees/maxSumBT.cpp
 ./trees/merge-two-binary-trees.cpp
 ./trees/minimum-absolute-difference-in-bst.cpp
 ./trees/minimum-depth-of-binary-tree.cpp
@@ -675,6 +676,7 @@
 ./trees/traversal/postorder.cpp
 ./trees/traversal/preorder.cpp
 ./trees/trim-a-binary-search-tree.cpp
+./trees/two-sum-iv-input-is-a-bst.cpp
 ./trees/unique-binary-search-trees-ii.cpp
 ./trees/unique-binary-search-trees.cpp
 ./trees/validate-bst.cpp
@@ -682,7 +684,6 @@
 ./trees/validateBSTUgly.cpp
 ./trees/verify-preorder-sequence-in-binary-search-tree.cpp
 ./trees/verify-preorder-serialization-of-a-binary-tree.cpp
-./trees/wo-sum-iv-input-is-a-bst.cpp
 ./trees/zig-zag.cpp
 ./trie/implement-magic-dictionary.cpp
 ./trie/map-sum-pairs.cpp

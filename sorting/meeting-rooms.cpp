@@ -4,23 +4,16 @@
 //Given [[0, 30],[5, 10],[15, 20]],
 //return false.
 
+
 //######################################### O(n log n) ######################################### 
 public boolean canAttendMeetings(Interval[] intervals) {
-	Arrays.sort(intervals, (a, b) -> {return a.start - b.start;});
-
-	//With Comparator
-	//Arrays.sort(intervals, new Comparator<Interval>() {
-	//   public int compare(Interval i1, Interval i2) {
-	//	   return i1.start - i2.start;
-	//   }
-	//});
-
-	for(int i=1;i<intervals.length;i++) {
-		if(intervals[i-1].end > intervals[i].start) return false;
-	}
-	return true;
+    if(intervals == null || intervals.length <= 1) return true;
+    Arrays.sort(intervals, (a,b) -> a.start - b.start);
+    for(int i=1;i<intervals.length;i++) {   
+         if (intervals[i].start < intervals[i - 1].end) return false;
+    }
+    return true;
 }
-
 
 //######################################### O(n log n) ######################################### 
 struct comp {
@@ -38,3 +31,5 @@ bool canAttendMeetings(vector<Interval>& intervals) {
     }
     return true;
 }
+
+/* vim: set ts=2 sw=2 sts=2 tw=120 et: */

@@ -4,6 +4,33 @@
 #include "../headers/listnode.hpp"
 
 
+//######################################### Iterative - version ######################################### 
+ public ListNode reverseList(ListNode head) {
+        if(head == null || head.next == null) return head;
+        ListNode tmp = head;
+        ListNode prev = null;
+        ListNode child = null;
+        while(tmp != null) {
+            child = tmp.next;
+            tmp.next = prev;
+            prev = tmp;
+            tmp = child;
+        }
+        return prev;
+    }
+
+//######################################### Recursive  - version ######################################### 
+private ListNode reverseList(ListNode prev, ListNode head) {      
+    if(head == null) return prev;
+        ListNode child  = head.next; 
+        head.next = prev;
+     return reverseList(head, child);
+}
+
+public ListNode reverseList(ListNode head)  {
+    return reverseList(null, head);
+}
+
 //######################################### Recursive  - version ######################################### 
 public class Solution {
     public ListNode reverseList(ListNode head) {

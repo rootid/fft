@@ -1,0 +1,126 @@
+https://discuss.leetcode.com/topic/53353/minimum-size-subarray-containing-subsequence/3
+
+1. Check if parentheses are balanced in an expression .
+2. Delete alternate node in link list.
+Take eg of -ve number
+int question (int x){
+int i=0;
+while (x){
+x=x&(x-1);
+i++
+} 
+return i;
+
+
+reverse a linked list   
+Write a function that returns the nth prime number. For example, nthPrime(1) should return 2 since 2 is the first prime number, nthPrime(2) should return 3, and so on. 
+Please delete a given node from a sorted singly-linked list.   
+
+3. implement stack .
+
+
+Onsight :
+
+1. Find longest palindrome sub-string in a given string .
+2. Find k-largest number from a huge amount of data which can not be fit in memory .
+3. Find duplicate in a huge amount of data which can not fir in memory .
+4. Generate permutation of a string .
+5. Write program to print out path in NxN maze with obstacle inside it .   
+
+algorithm for finding the largest rectangle area in the bar graph 
+
+The door toggling question. There are 100 lockers, a man runs from left to right toggling the door from open to locked, skipping every other door. Does that again and again, toggling the multiples of ith door. In the end, how many doors are open. Derive a formula.   
+Write a sudoku generator.   
+Find the closest common ancestors to 2 nodes in a n-ary tree.   
+
+ Write a function that takes the produce of two given inputs without using the multiplication operation. Try to do this as fast as you can (O(log(n) or better)  
+1 Answer
+Given a binary tree, print the tree in counter-clockwise direction (print the left side of the tree top-to-bottom, print all the leaves left-to-right, print right side of the tree bottom-to-top).  
+
+given a number, permute the digits to form the next larger permutation.  
+Asked about reversing each word in a sentence, and asked about the runtime   
+
+ Shuffle a deck of cards (given as an array) ensure a random shuffle each time  
+2 Answers
+Determine if one word is an anagram if another  
+Answer Question
+Implement to insert (put) function for a hashmap  
+Answer Question
+Implement a way to search for a key/value pair in a file in O(logn). (The file is populated based off of a bst)  
+Answer Question
+Given a number from mark which numbers you’ve “seen” and if you’re given the number -1, return all seen numbers   
+
+Given an regular expression (A+B*C)/(D-E) write a code to translate it in ABC*+DE-/ where operands come first and operation comes second. A+B => AB+ | A+B*C => A BC* + .  
+Design an ATM machine.  
+Was given 4 programming question had to choose one. I chose check if the string is palindrome or not.  
+Given a bitmap for screen and 2d coordinate to find the specified bit by coordinates and flip it.   
+
+Given root node to a binary tree, reconstruct it and return its root node  
+Given 2d matrix and a string. Write a function to check if string is contained in the 2d matrix  
+Run length encoding, write compression function given input array and output array of bytes  
+- Design an API for searching for contact information.
+- Choose a data structure for search function
+- Implement search function   
+
+ Insert item into sorted linked list  
+Answer Question
+Make a thread safe linked list. He was unclear which operations he was asking about during the process   
+
+
+OA 
+
+
+Count Numbers with Unique Digits
+
+The first question debug. Give you a large program, no grammatical mistakes make you wrong. Wrong distribution: equals and == wrong to use,> and <conditions to determine the wrong, static variable wrong to use.
+The second problem programming: similar to the sort color.
+The third title programming: similar to the unique number.
+
+60 minutes three time is very tight, I did not finish. Difficulty is to complete multiple topics in a short time. High requirements for basic skills.
+The first question is a long debug, probably meaning: a class provides add and find methods, the method void add (number) can add an item. The method find (min, max) returns the results in the range of min and max, as long as the most important method of body method signature and implementation logic, when the landlord just was the subject of 15 minutes into the pit. I have no experience with this, only lessons hope you can avoid, usually in addition to writing code, have time to practice reading code to quickly grasp the meaning of the code.
+
+
+Given an array of size n containing numbers 1 through n + 1, find the missing number.
+    Original title brush website, I use the bit algorithm
+
+2. Find out the second largest number of the given value in BST.
+    I traverse it directly, continuing to update max until equal to the given number
+
+3. Given the first two numbers, print the Reverse Fibonacci sequence
+    Very simple, direct f (n) = f (n - 1) - f (n - 2) on the line. However, a few tests, found not in line with fibonacci,
+
+1. Remove node in LinkedList, find bug
+2. "aaaabbbbcccd" to "a4b4c3d1", encode & decode.鐣欏璁哄潧-涓€浜�-涓夊垎鍦�
+3. LC 253. Meeting Rooms II
+
+
+1. Give a program that asks for bugs in the program.
+Is a simple while loop, if the condition is written in reverse, and the conditions for exiting the loop are not specified, leading to an infinite loop Waral 鍗 鍗 鍗 澶 枃 枃       
+
+2. Give a string array, each string is a phone number, the phone number may have two fixed forms, ABCDEFGHIJ or ABC-DEF-GHIJ, require that all phone numbers are changed to a uniform format: DEF-ABC-GHIJ. The topic requires minimizing the memory footprint.
+According to the length of the input string to determine what form, in-place swap char elements, on it
+
+3. A product array, each product has a different priority, high, medium and low, requires sorting, making the high priority appears in the front of array, low priority in the last, medium in the middle.
+And LC 75 sort colors the same title, similar quick sort partition step
+
+1. check balanced binary tree. At the beginning of a write up to bottom solution, and later finished and think of it better bottom to up solution, it is also written up.
+             2. To correct the problem, the title is find kth elemnt fromend of linkedlist, the error is obvious.
+             3. To a 2D matrix with only "1" and "0", 1 and 1 can be connected up and down, left and right to find the number of "1" group. Similar to https://leetcode.com/problems/nu ... n-undirected-graph /, solved with union and find.
+
+
+
+Give you a tree, each node has left, right, and next pointers. Now you want to point the next pointer to each node to the next node in the BFS. Do not require data structure (that is not allowed to use the queue to do BFS).
+
+Solution: My answer is to use recursive DFS, limit the depth of each time, and then use a global variable to record the current node, the next one to find the next to the current node, and then the current node into a new node. When the current node is no longer changed, BFS is completed.
+}. 鐣
+
+1. Remove head from LL.
+2. Compare version numbers.
+3.string to int
+
+
+1. Fix the bug and give four numbers of a, b, x, y, then give the function a to increase 1 or decrease 1 to finally become x, let b increase 1 or decrease 1 and finally become y, find 3 The wrong place
+2. Conference Room II that question
+3. Give the root of BST and 1 value and find the next largest value
+
+

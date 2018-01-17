@@ -1,9 +1,682 @@
+
+#################################################################################
+411. Print Binary Tree
+Print a binary tree in an m*n 2D string array following these rules:
+    The row number m should be equal to the height of the given binary tree.
+    The column number n should always be an odd number.
+    The root node's value (in string format) should be put in the exactly middle of the first row it can be put. The column and the row where the root node belongs will separate the rest space into two parts (left-bottom part and right-bottom part). You should print the left subtree in the left-bottom part and print the right subtree in the right-bottom part. The left-bottom part and the right-bottom part should have the same size. Even if one subtree is none while the other is not, you don't need to print anything for the none subtree but still need to leave the space as large as that for the other subtree. However, if two subtrees are none, then you don't need to leave space for both of them.
+    Each unused space should contain an empty string "".
+    Print the subtrees following the same rules.
+Example 1:
+Input:
+     1
+    /
+   2
+Output:
+[["", "1", ""],
+ ["2", "", ""]]
+Example 2:
+Input:
+     1
+    / \
+   2   3
+    \
+     4
+Output:
+[["", "", "", "1", "", "", ""],
+ ["", "2", "", "", "", "3", ""],
+ ["", "", "4", "", "", "", ""]]
+Example 3:
+Input:
+      1
+     / \
+    2   5
+   / 
+  3 
+ / 
+4 
+Output:
+[["",  "",  "", "",  "", "", "", "1", "",  "",  "",  "",  "", "", ""]
+ ["",  "",  "", "2", "", "", "", "",  "",  "",  "",  "5", "", "", ""]
+ ["",  "3", "", "",  "", "", "", "",  "",  "",  "",  "",  "", "", ""]
+ ["4", "",  "", "",  "", "", "", "",  "",  "",  "",  "",  "", "", ""]]
+Note: The height of binary tree is in the range of [1, 10]. 
+
+#################################################################################
+42.  Binary Search Tree Iterator : [Tree traversal (inorder),Stack ]
+Implement an iterator over a binary search tree (BST). Your iterator will be initialized with the root node of a BST.
+Calling next() will return the next smallest number in the BST.
+Note: next() and hasNext() should run in average O(1) time and uses O(h) memory, where h is the height of the tree. 
+
+#################################################################################
+427. Recover Binary Search Tree
+Two elements of a binary search tree (BST) are swapped by mistake.
+Recover the tree without changing its structure.
+Note:
+A solution using O(n) space is pretty straight forward. Could you devise a constant space solution? 
+
+#################################################################################
+43.  Binary Tree Inorder Traversal : [push node -> go node.left]
+Given a binary tree, return the inorder traversal of its nodes' values.
+For example:
+Given binary tree [1,null,2,3],
+   1
+    \
+     2
+    /
+   3
+return [1,3,2].
+Note: Recursive solution is trivial, could you do it iteratively?
+
+#################################################################################
+44.  Binary Tree Level Order Traversal : [3 Approaches  => 1. visit-nextvisit, 2. 2push-1pop/
+Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
+For example:
+Given binary tree [3,9,20,null,null,15,7],
+    3
+   / \
+  9  20
+    /  \
+   15   7
+return its level order traversal as:
+[
+  [3],
+  [9,20],
+  [15,7]
+]
+
+#################################################################################
+45.  Binary Tree Level Order Traversal II : [3 Approaches => visit-nextvisit, 2push-1pop/
+Given a binary tree, return the bottom-up level order traversal of its nodes' values. (ie, from left to right, level by level from leaf to root).
+For example:
+Given binary tree [3,9,20,null,null,15,7],
+    3
+   / \
+  9  20
+    /  \
+   15   7
+return its bottom-up level order traversal as:
+[
+  [15,7],
+  [9,20],
+  [3]
+]
+
+#################################################################################
+46.  Binary Tree Longest Consecutive Sequence
+Given a binary tree, find the length of the longest consecutive sequence path.
+The path refers to any sequence of nodes from some starting node to any node in the tree along the parent-child connections. The longest consecutive path need to be from parent to child (cannot be the reverse).
+For example,
+   1
+    \\
+     3
+    / \\
+   2   4
+        \\
+         5
+Longest consecutive sequence path is 3-4-5, so return 3.
+   2
+    \\
+     3
+    / 
+   2    
+  / 
+ 1
+Longest consecutive sequence path is 2-3,not3-2-1, so return 2.
+
+#################################################################################
+467. Same Tree : [Recursion]
+ Given two binary trees, write a function to check if they are the same or not.
+Two binary trees are considered the same if they are structurally identical and the nodes have the same value.
+Example 1:
+Input:     1         1
+          / \       / \
+         2   3     2   3
+        [1,2,3],   [1,2,3]
+Output: true
+Example 2:
+Input:     1         1
+          /           \
+         2             2
+        [1,2],     [1,null,2]
+Output: false
+Example 3:
+Input:     1         1
+          / \       / \
+         2   1     1   2
+        [1,2,1],   [1,1,2]
+Output: false
+
+#################################################################################
+47.  Binary Tree Longest Consecutive Sequence II
+Given a binary tree, you need to find the length of Longest Consecutive Path in Binary Tree.
+Especially, this path can be either increasing or decreasing. For example, [1,2,3,4] and [4,3,2,1] are both considered valid, but the path [1,2,4,3] is not valid. On the other hand, the path can be in the child-Parent-child order, where not necessarily be parent-child order.
+Example 1:
+Input:
+        1
+       / \
+      2   3
+Output: 2
+Explanation: The longest consecutive path is [1, 2] or [2, 1].
+ 
+Example 2:
+Input:
+        2
+       / \
+      1   3
+Output: 3
+Explanation: The longest consecutive path is [1, 2, 3] or [3, 2, 1].
+ 
+Note: All the values of tree nodes are in the range of [-1e7, 1e7].
+
+#################################################################################
+475. Second Minimum Node In a Binary Tree
+ Given a non-empty special binary tree consisting of nodes with the non-negative value, where each node in this tree has exactly two or zero sub-node. If the node has two sub-nodes, then this node's value is the smaller value among its two sub-nodes.
+Given such a binary tree, you need to output the second minimum value in the set made of all the nodes' value in the whole tree.
+If no such second minimum value exists, output -1 instead.
+Example 1:
+Input: 
+    2
+   / \
+  2   5
+     / \
+    5   7
+Output: 5
+Explanation: The smallest value is 2, the second smallest value is 5.
+Example 2:
+Input: 
+    2
+   / \
+  2   2
+Output: -1
+Explanation: The smallest value is 2, but there isn't any second smallest value.
+
+#################################################################################
+48.  Binary Tree Maximum Path Sum : 1. R 2. R.left + R 3. R.right + R 4. R.right + R + R.left
+ Given a binary tree, find the maximum path sum.
+For this problem, a path is defined as any sequence of nodes from some starting node to any node in the tree along the parent-child connections. The path must contain at least one node and does not need to go through the root.
+For example:
+Given the below binary tree,
+       1
+      / \
+     2   3
+Return 6. 
+
+#################################################################################
+480. Serialize and Deserialize Binary Tree : (1. Preorder traversal + Flow pattern for index scanning deserialization  2. BFS Q)
+Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.
+Design an algorithm to serialize and deserialize a binary tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary tree can be serialized to a string and this string can be deserialized to the original tree structure.
+For example, you may serialize the following tree
+    1
+   / \
+  2   3
+     / \
+    4   5
+as "[1,2,3,null,null,4,5]", just the same as how LeetCode OJ serializes a binary tree. You do not necessarily need to follow this format, so please be creative and come up with different approaches yourself.
+Note: Do not use class member/global/static variables to store states. Your serialize and deserialize algorithms should be stateless. 
+
+#################################################################################
+49.  Binary Tree Paths
+ Given a binary tree, return all root-to-leaf paths.
+For example, given the following binary tree:
+   1
+ /   \
+2     3
+ \
+  5
+All root-to-leaf paths are:
+["1->2->5", "1->3"]
+
+#################################################################################
+50.  Binary Tree Postorder Traversal : Keep track of last visited, push node -> go node.left
+Given a binary tree, return the postorder traversal of its nodes' values.
+For example:
+Given binary tree {1,
+#,2,3},
+   1
+    \
+     2
+    /
+   3
+return [3,2,1].
+Note: Recursive solution is trivial, could you do it iteratively?
+
+#################################################################################
+51.  Binary Tree Preorder Traversal  : [push node.right -> go node.left]
+Given a binary tree, return the preorder traversal of its nodes' values.
+For example:
+Given binary tree [1,null,2,3],
+   1
+    \
+     2
+    /
+   3
+return [1,2,3].
+Note: Recursive solution is trivial, could you do it iteratively?
+
+#################################################################################
+52.  Binary Tree Right Side View
+Given a binary tree, imagine yourself standing on the right side of it, return the values of the nodes you can see ordered from top to bottom.
+For example:
+Given the following binary tree,
+   1            <---
+ /   \
+2     3         <---
+ \     \
+  5     4       <---
+You should return [1, 3, 4]. 
+
+#################################################################################
+527. Subtree of Another Tree
+ Given two non-empty binary trees s and t, check whether tree t has exactly the same structure and node values with a subtree of s. A subtree of s is a tree consists of a node in s and all of this node's descendants. The tree s could also be considered as a subtree of itself.
+Example 1:
+Given tree s:
+     3
+    / \
+   4   5
+  / \
+ 1   2
+Given tree t:
+   4 
+  / \
+ 1   2
+Return true, because t has the same structure and node values with a subtree of s.
+Example 2:
+Given tree s:
+     3
+    / \
+   4   5
+  / \
+ 1   2
+    /
+   0
+Given tree t:
+   4
+  / \
+ 1   2
+Return false. 
+
+#################################################################################
+53.  Binary Tree Tilt
+Given a binary tree, return the tilt of the whole tree.
+The tilt of a tree node is defined as the absolute difference between the sum of all left subtree node values and the sum of all right subtree node values. Null node has tilt 0.
+The tilt of the whole tree is defined as the sum of all nodes' tilt.
+Example:
+Input: 
+         1
+       /   \
+      2     3
+Output: 1
+Explanation: 
+Tilt of node 2 : 0
+Tilt of node 3 : 0
+Tilt of node 1 : |2-3| = 1
+Tilt of binary tree : 0 + 0 + 1 = 1
+Note:
+    The sum of node values in any subtree won't exceed the range of 32-bit integer.
+    All the tilt values won't exceed the range of 32-bit integer.
+
+#################################################################################
+539. Symmetric Tree
+Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).
+For example, this binary tree [1,2,2,3,4,4,3] is symmetric:
+    1
+   / \
+  2   2
+ / \ / \
+3  4 4  3
+But the following [1,2,2,null,3,null,3] is not:
+    1
+   / \
+  2   2
+   \   \
+   3    3
+Note:
+Bonus points if you could solve it both recursively and iteratively. 
+
+#################################################################################
+54.  Binary Tree Upside Down
+ Given a binary tree where all the right nodes are either leaf nodes with a sibling (a left node that shares the same parent node) or empty, flip it upside down and turn it into a tree where the original right nodes turned into left leaf nodes. Return the new root.
+For example:
+Given a binary tree {1,2,3,4,5},
+1
+/ \
+2 3
+/ \
+4 5
+return the root of the binary tree [4,5,2,
+
+#,#,3,1].
+4
+/ \
+5 2
+  / \
+ 3 1
+
+#################################################################################
+55.  Binary Tree Vertical Order Traversal
+Given a binary tree, return the vertical order traversal of its nodes' values. (ie, from top to bottom, column by column).
+If two nodes are in the same row and column, the order should be from left to right.
+Examples:
+Given binary tree [3,9,20,null,null,15,7],
+    3
+   / \
+  9  20
+    /  \
+   15   7
+ 
+return its vertical order traversal as:
+[
+  [9],
+  [3,15],
+  [20],
+  [7]
+]
+ 
+Given binary tree [3,9,20,4,5,2,7],
+    _3_
+   /   \
+  9    20
+ / \   / \
+4   5 2   7
+ 
+return its vertical order traversal as:
+[
+  [4],
+  [9],
+  [3,5,2],
+  [20],
+  [7]
+]
+
+#################################################################################
+556. Trim a Binary Search Tree
+ Given a binary search tree and the lowest and highest boundaries as L and R, trim the tree so that all its elements lies in [L, R] (R >= L). You might need to change the root of the tree, so the result should return the new root of the trimmed binary search tree.
+Example 1:
+Input: 
+    1
+   / \
+  0   2
+  L = 1
+  R = 2
+Output: 
+    1
+      \
+       2
+Example 2:
+Input: 
+    3
+   / \
+  0   4
+   \
+    2
+   /
+  1
+  L = 1
+  R = 3
+Output: 
+      3
+     / 
+   2   
+  /
+ 1
+
+#################################################################################
+56.  Binary Tree Zigzag Level Order Traversal
+Given a binary tree, return the zigzag level order traversal of its nodes' values. (ie, from left to right, then right to left for the next level and alternate between).
+For example:
+Given binary tree [3,9,20,null,null,15,7],
+    3
+   / \
+  9  20
+    /  \
+   15   7
+return its zigzag level order traversal as:
+[
+  [3],
+  [20,9],
+  [15,7]
+]
+
+#################################################################################
+564. Unique Binary Search Trees : Catalan 
+Given n, how many structurally unique BST's (binary search trees) that store values 1...n?
+For example,
+Given n = 3, there are a total of 5 unique BST's.
+   1         3     3      2      1
+    \       /     /      / \      \
+     3     2     1      1   3      2
+    /     /       \                 \
+   2     1         2                 3
+
+#################################################################################
+565. Unique Binary Search Trees II
+Given an integer n, generate all structurally unique BST's (binary search trees) that store values 1...n.
+For example,
+Given n = 3, your program should return all 5 unique BST's shown below.
+   1         3     3      2      1
+    \       /     /      / \      \
+     3     2     1      1   3      2
+    /     /       \                 \
+   2     1         2                 3
+
+#################################################################################
+582. Validate Binary Search Tree : 1. Inorder traversal + Keep track of prev Node with flow pattern, 2. Min,Max
+ Given a binary tree, determine if it is a valid binary search tree (BST).
+Assume a BST is defined as follows:
+    The left subtree of a node contains only nodes with keys less than the node's key.
+    The right subtree of a node contains only nodes with keys greater than the node's key.
+    Both the left and right subtrees must also be binary search trees.
+Example 1:
+    2
+   / \
+  1   3
+Binary tree [2,1,3], return true.
+Example 2:
+    1
+   / \
+  2   3
+Binary tree [1,2,3], return false. 
+
+#################################################################################
+584. Verify Preorder Sequence in Binary Search Tree : How to recover inorder seq from preorder seq 
+Question:
+Given an array of numbers, verify whether it is the correct preorder traversal sequence of a binary search tree.
+You may assume each number in the sequence is unique.
+Follow up:
+Could you do it using only constant space complexity?
+
+#################################################################################
+585. Verify Preorder Serialization of a Binary Tree : Link counting (non-leaf [+2(out),-1(in)],leaf[0,-1])
+One way to serialize a binary tree is to use pre-order traversal. When we encounter a non-null node, we record the node's value. If it is a null node, we record using a sentinel value such as #.
+
+     _9_
+    /   \
+   3     2
+  / \   / \
+ 4   1  #  6
+/ \ / \   / \
+# # # #   # #
+For example, the above binary tree can be serialized to the string "9,3,4,#,#,1,#,#,2,#,6,#,#", where # represents a null node.
+Given a string of comma separated values, verify whether it is a correct preorder traversal serialization of a binary tree. Find an algorithm without reconstructing the tree.
+Each comma separated value in the string must be either an integer or a character '#' representing null pointer.
+You may assume that the input format is always valid, for example it could never contain two consecutive commas such as "1,,3".
+Example 1:
+"9,3,4,#,#,1,#,#,2,#,6,#,#"
+Return true
+Example 2:
+"1,#"
+Return false
+Example 3:
+"9,#,#,1"
+Return false
+
+#################################################################################
+60.  Boundary of Binary Tree
+Given a binary tree, return the values of its boundary in anti-clockwise direction starting from root. Boundary includes left boundary, leaves, and right boundary in order without duplicate nodes.
+Left boundary is defined as the path from root to the left-most node. Right boundary is defined as the path from root to the right-most node. If the root doesn't have left subtree or right subtree, then the root itself is left boundary or right boundary. Note this definition only applies to the input binary tree, and not applies to any subtrees.
+The left-most node is defined as a leaf node you could reach when you always firstly travel to the left subtree if exists. If not, travel to the right subtree. Repeat until you reach a leaf node.
+The right-most node is also defined by the same way with left and right exchanged.
+Example 1
+Input:
+  1
+   \
+    2
+   / \
+  3   4
+Ouput:
+[1, 3, 4, 2]
+Explanation:
+The root doesn't have left subtree, so the root itself is left boundary.
+The leaves are node 3 and 4.
+The right boundary are node 1,2,4. Note the anti-clockwise direction means you should output reversed right boundary.
+So order them in anti-clockwise without duplicates and we have [1,3,4,2].
+ 
+Example 2
+Input:
+    ____1_____
+   /          \
+  2            3
+ / \          / 
+4   5        6   
+   / \      / \
+  7   8    9  10  
+       
+Ouput:
+[1,2,4,7,8,9,10,6,3]
+Explanation:
+The left boundary are node 1,2,4. (4 is the left-most node according to definition)
+The leaves are node 4,7,8,9,10.
+The right boundary are node 1,3,6,10. (10 is the right-most node).
+So order them in anti-clockwise without duplicate nodes we have [1,2,4,7,8,9,10,6,3].
+
+#################################################################################
+71.  Closest Binary Search Tree Value
+Given a non-empty binary search tree and a target value, find the value in the BST that is closest to the target.
+Note:
+    Given target value is a floating point.
+    You are guaranteed to have only one unique value in the BST that is closest to the target.
+
+#################################################################################
+72.  Closest Binary Search Tree Value II
+Given a non-empty binary search tree and a target value, find k values in the BST that are closest to the target.
+Note:
+    Given target value is a floating point.
+    You may assume k is always valid, that is: k ≤ total nodes.
+    You are guaranteed to have only one unique set of k values in the BST that are closest to the target.
+ 
+Follow up:
+Assume that the BST is balanced, could you solve it in less than O(n) runtime (where n = total nodes)?
+Hint:
+1. Consider implement these two helper functions:
+　　i. getPredecessor(N), which returns the next smaller node to N.
+　　ii. getSuccessor(N), which returns the next larger node to N.
+2. Try to assume that each node has a parent pointer, it makes the problem much easier.
+3. Without parent pointer we just need to keep track of the path from the root to the current node using a stack.
+4. You would need two stacks to track the path in finding predecessor and successor node separately.
+
+#################################################################################
+83.  Construct Binary Tree from Inorder and Postorder Traversal
+Given inorder and postorder traversal of a tree, construct the binary tree.
+Note:
+You may assume that duplicates do not exist in the tree. 
+
+#################################################################################
+84.  Construct Binary Tree from Preorder and Inorder Traversal
+Given preorder and inorder traversal of a tree, construct the binary tree.
+Note:
+You may assume that duplicates do not exist in the tree. 
+
+#################################################################################
+85.  Construct Binary Tree from String
+You need to construct a binary tree from a string consisting of parenthesis and integers.
+The whole input represents a binary tree. It contains an integer followed by zero, one or two pairs of parenthesis. The integer represents the root's value and a pair of parenthesis contains a child binary tree with the same structure.
+You always start to construct the left child node of the parent first if it exists.
+Example:
+Input: "4(2(3)(1))(6(5))"
+Output: return the tree root node representing the following tree:
+       4
+     /   \
+    2     6
+   / \   / 
+  3   1 5   
+Note:
+    There will only be '(', ')', '-' and '0' ~ '9' in the input string.
+
+#################################################################################
+86.  Construct String from Binary Tree
+You need to construct a string consists of parenthesis and integers from a binary tree with the preorder traversing way.
+The null node needs to be represented by empty parenthesis pair "()". And you need to omit all the empty parenthesis pairs that don't affect the one-to-one mapping relationship between the string and the original binary tree.
+Example 1:
+Input: Binary tree: [1,2,3,4]
+       1
+     /   \
+    2     3
+   /    
+  4     
+Output: "1(2(4))(3)"
+Explanation: Originallay it needs to be "1(2(4)())(3()())", 
+but you need to omit all the unnecessary empty parenthesis pairs. 
+And it will be "1(2(4))(3)".
+Example 2:
+Input: Binary tree: [1,2,3,null,4]
+       1
+     /   \
+    2     3
+     \  
+      4 
+Output: "1(2()(4))(3)"
+Explanation: Almost the same as the first example, 
+except we can't omit the first parenthesis pair to break the one-to-one mapping relationship between the input and the output.
+
+#################################################################################
+94.  Convert BST to Greater Tree
+Given a Binary Search Tree (BST), convert it to a Greater Tree such that every key of the original BST is changed to the original key plus sum of all keys greater than the original key in BST.
+Example:
+Input: The root of a Binary Search Tree like this:
+              5
+            /   \
+           2     13
+Output: The root of a Greater Tree like this:
+             18
+            /   \
+          20     13
+
+#################################################################################
+95.  Convert Sorted Array to Binary Search Tree
+Given an array where elements are sorted in ascending order, convert it to a height balanced BST.
+For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node never differ by more than 1.
+Example:
+Given the sorted array: [-10,-3,0,5,9],
+One possible answer is: [0,-3,9,-10,null,5], which represents the following height balanced BST:
+      0
+     / \
+   -3   9
+   /   /
+ -10  5
+
+#################################################################################
+96.  Convert Sorted List to Binary Search Tree
+Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.
+For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node never differ by more than 1.
+Example:
+Given the sorted linked list: [-10,-3,0,5,9],
+One possible answer is: [0,-3,9,-10,null,5], which represents the following height balanced BST:
+      0
+     / \
+   -3   9
+   /   /
+ -10  5
+
+#################################################################################
+
+#################################################################################
 411. Print Binary Tree
 42.  Binary Search Tree Iterator : [Tree traversal (inorder),Stack ]
 427. Recover Binary Search Tree
 43.  Binary Tree Inorder Traversal : [push node -> go node.left]
-44.  Binary Tree Level Order Traversal : [3 Approaches  => 1. visit-nextvisit, 2. 2push-1pop/#(NV)= 2* #(PV),3. recursion/DFS]
-45.  Binary Tree Level Order Traversal II : [3 Approaches => visit-nextvisit, 2push-1pop/#(NV)= 2* #(PV), recursion/DFS]
+44.  Binary Tree Level Order Traversal : [3 Approaches  => 1. visit-nextvisit, 2. 2push-1pop/
+45.  Binary Tree Level Order Traversal II : [3 Approaches => visit-nextvisit, 2push-1pop/
 46.  Binary Tree Longest Consecutive Sequence
 467. Same Tree : [Recursion]
 47.  Binary Tree Longest Consecutive Sequence II
@@ -22,7 +695,7 @@
 550. Third Maximum Number : DS [TreeSet]
 556. Trim a Binary Search Tree
 56.  Binary Tree Zigzag Level Order Traversal
-564. Unique Binary Search Trees : Catalan # - C(n) += C(i-1)* C(n-i)  1. O(3^N)-  2. O(N^2) - memoization
+564. Unique Binary Search Trees : Catalan 
 565. Unique Binary Search Trees II
 582. Validate Binary Search Tree : 1. Inorder traversal + Keep track of prev Node with flow pattern, 2. Min,Max
 584. Verify Preorder Sequence in Binary Search Tree : How to recover inorder seq from preorder seq 
@@ -37,3 +710,5 @@
 94.  Convert BST to Greater Tree
 95.  Convert Sorted Array to Binary Search Tree
 96.  Convert Sorted List to Binary Search Tree
+#################################################################################
+vim:tw=90:et:norl:

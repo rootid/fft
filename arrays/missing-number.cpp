@@ -11,9 +11,9 @@
 public int MissingNumber(int[] nums) {
     for(int i = 0; i < nums.Length; i++) {
         while(i < nums.Length && nums[i] == i) i++;
-        while(i < nums.Length && nums[i] != i) {
+        while(i < nums.Length && nums[i] != i) { //when idx != nums[idx]
             if(nums[i] >= nums.Length || nums[i] < 0) break;
-            nums[i] = nums[i] ^ nums[nums[i]] ^ (nums[nums[i]] = nums[i]);
+            nums[i] = nums[i] ^ nums[nums[i]] ^ (nums[nums[i]] = nums[i]); //nums, i , nums[i]
         }
     }
     for(int i = 0; i < nums.Length; i++)

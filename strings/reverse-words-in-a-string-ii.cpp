@@ -6,6 +6,41 @@
 //return "blue is sky the".
 //Could you do it in-place without allocating extra space?
 
+//################################################### JAVA ################################################### 
+private void swapBetween(int start,int end, char[] str) {
+  while(start < end) {
+        char tmp = str[start];
+        str[start] = str[end];
+        str[end] = tmp;
+        start++; end--;
+    }
+}
+
+public void reverseWords(char[] str) {
+    int len = str.length;
+    int start = 0;
+    int end = len -1;
+    swapBetween(start, end, str);
+    start = 0;
+    for(int i=0;i<len;i++) {
+        if(str[i] == ' ') {
+            end = i-1;
+            swapBetween(start, end, str);
+            start = i+1;
+        }
+    }
+    swapBetween(start, len-1, str);
+}
+//################################################### To handle everything in loop ################################################### 
+//for(int i = 0, j = 0;i <= s.length;i++){ 
+//    if(i == s.length || s[i] == ' ') { 
+//        reverse(s,j,i-1); 
+//        j = i+1; 
+//    } 
+//}
+}
+
+
 //################################################### CPP ################################################### 
 void reverseWords(string &s) {
      reverse(s.begin(), s.end());
@@ -16,42 +51,6 @@ void reverseWords(string &s) {
          l = ++r;
      }
  } 
-
-//################################################### JAVA ################################################### 
-public void reverseWords(char[] s) {
-    // Three step to reverse
-    // 1, reverse the whole sentence
-    reverse(s, 0, s.length - 1);
-    // 2, reverse each word
-    int start = 0;
-    int end = -1;
-    for (int i = 0; i < s.length; i++) {
-        if (s[i] == ' ') {
-            reverse(s, start, i - 1);
-            start = i + 1;
-        }
-    }
-    // 3, reverse the last word, if there is only one word this will solve the corner case
-    reverse(s, start, s.length - 1);
-
-	//################################################### To handle everything in loop ################################################### 
-	//for(int i = 0, j = 0;i <= s.length;i++){ 
-	//	if(i == s.length || s[i] == ' ') { 
-	//		reverse(s,j,i-1); 
-	//		j = i+1; 
-	//	} 
-	//}
-}
-
-public void reverse(char[] s, int start, int end) {
-    while (start < end) {
-        char temp = s[start];
-        s[start] = s[end];
-        s[end] = temp;
-        start++;
-        end--;
-    }
-}
 
 //################################################### python  ################################################### 
 //################################################### TC : O(n) SC : O(1) ################################################### 
@@ -66,7 +65,7 @@ class Solution(object):
         start = 0
         for i, v in enumerate(s):
             if v == " ":
-            	reverse(start, i - 1)
-            	start = i + 1
+                reverse(start, i - 1)
+                start = i + 1
         s.pop()
         reverse(0, len(s) - 1)

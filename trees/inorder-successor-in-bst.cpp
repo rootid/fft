@@ -12,6 +12,16 @@
 //        /  \
 //       2    4
 
+
+//################################# Time complexity : O(h) ################################# 
+//Recursion 
+public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
+    if(root == null) return root;
+    if(root.val <= p.val) return inorderSuccessor(root.right, p);
+    TreeNode nxtNode = inorderSuccessor(root.left, p);
+    return nxtNode == null ? root : nxtNode;
+}
+
 //################################# Time complexity : O(h) ################################# 
 //Only in a balanced BST O(h) = O(log n)
 TreeNode* inorderSuccessor(TreeNode* root, TreeNode* p) {
@@ -82,31 +92,31 @@ private:
 
 
 ////######################################### Java ######################################### 
-//public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
-//    TreeNode succ = null;
-//    while (root != null) {
-//        if (p.val < root.val) {
-//            succ = root;
-//            root = root.left;
-//        }
-//        else
-//            root = root.right;
-//    }
-//    return succ;
-//}
+public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
+    TreeNode succ = null;
+    while (root != null) {
+        if (p.val < root.val) {
+            succ = root;
+            root = root.left;
+        }
+        else
+            root = root.right;
+    }
+    return succ;
+}
 //
 //######################################### Recursive ######################################### 
-//public TreeNode successor(TreeNode root, TreeNode p) {
-//  if (root == null)
-//    return null;
-//  if (root.val <= p.val) {
-//    return successor(root.right, p);
-//  } else {
-//    TreeNode left = successor(root.left, p);
-//    return (left != null) ? left : root;
-//  }
-//}
-//
+public TreeNode successor(TreeNode root, TreeNode p) {
+  if (root == null)
+    return null;
+  if (root.val <= p.val) {
+    return successor(root.right, p); //Given value larger than root
+  } else {
+    TreeNode left = successor(root.left, p);
+    return (left != null) ? left : root;
+  }
+}
+
 //######################## Avoid unnecessary recursion call line # 77 : successor(root.right, p); ######################## 
 //public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
 //    while (root != null && root.val <= p.val)
@@ -148,3 +158,5 @@ private:
 //        else:
 //            root = root.right
 //    return succ
+
+/* vim: set ts=2 sw=2 sts=2 tw=120 et: */

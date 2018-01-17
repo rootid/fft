@@ -6,9 +6,26 @@
 #include<stack>
 using namespace std;
 
+//######################################### stack + check last element is complement of current ######################################### 
+public boolean isValid(String s) {
+     int len = s.length();
+     if(len%2 == 1) return false;
+     Stack<Character> stk = new Stack<>();
+     for(int i=0;i<len;i++) {
+         if ( s.charAt(i) == '{' || s.charAt(i) == '(' || s.charAt(i) == '[' )
+             stk.push(s.charAt(i));
+         else {
+              if(stk.isEmpty()) return false;
+              char lastChar = stk.pop();
+              if( (s.charAt(i) == '}' && lastChar != '{' ) || (s.charAt(i) == ']' && lastChar != '[' ) || (s.charAt(i) == ')' && lastChar != '(' )) return false;
+             
+          }
+              
+     }
+     return stk.size() == 0 ? true : false;
+ }
 
-
-//######################################### stack ######################################### 
+//######################################### stack - Put opposite sign on the stack ######################################### 
 public boolean isValid(String s) {
     Stack<Character> stk = new Stack<>();
     for(Character c:s.toCharArray()) {
@@ -81,14 +98,14 @@ bool isValid(string s) {
 class Solution {
 public:
     bool isValid(string s) {
-	stack<char> c;
-    	for (int i = 0; i<s.size(); i++)
-    	{	
-    		if (c.empty() || (((c.top() + 0) != (s[i] - 1)) && ((c.top() + 0) != (s[i] - 2))))
-    			c.push(s[i]);
-    		else c.pop();
-    	}
-    	return c.empty();
+    stack<char> c;
+        for (int i = 0; i<s.size(); i++)
+        {    
+            if (c.empty() || (((c.top() + 0) != (s[i] - 1)) && ((c.top() + 0) != (s[i] - 2))))
+                c.push(s[i]);
+            else c.pop();
+        }
+        return c.empty();
     }
 };
 
@@ -133,3 +150,4 @@ int main () {
   }
 
 }
+// vim: set sw=2 sts=2 tw=120 et nospell : 

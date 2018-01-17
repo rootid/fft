@@ -8,14 +8,73 @@
 //Try to utilize the property of a BST.
 //What if you could modify the BST node's structure?
 //The optimal runtime complexity is O(height of BST).
-#include<iostream>
-using namespace std;
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
+
+//###### Inorder traversal + With instance variable  ######################################### 
+class Solution {
+  int count = 0;
+  int result = Integer.MIN_VALUE;
+
+  public int kthSmallest(TreeNode root, int k) {
+      traverse(root, k);
+      return result;
+  }
+
+  public void traverse(TreeNode root, int k) {
+      if(root == null) return;
+      traverse(root.left, k);
+      count ++;
+      if(count == k) {
+          result = root.val;
+          return;
+      }
+      traverse(root.right, k);       
+  }
+}
+
+//######################################### With Stack (Iterative) ######################################### 
+public int kthSmallest(TreeNode root, int k) {
+     Stack<TreeNode> stack = new Stack<TreeNode>();
+     TreeNode p = root;
+     int count = 0;
+     
+     while(!stack.isEmpty() || p != null) {
+         if(p != null) {
+             stack.push(p);  // Just like recursion
+             p = p.left;   
+             
+         } else {
+            TreeNode node = stack.pop();
+            if(++count == k) return node.val; 
+            p = node.right;
+         }
+     }
+     
+     return Integer.MIN_VALUE;
+ }
+
+
+//######################################### D&C ######################################### 
+public class Solution {
+  public int kthSmallest(TreeNode root, int k) { 
+    int left = nodeCount(root.left);  // this value can be saved in the root node
+    if(left + 1 == k) {
+        return root.val;
+    } else if (left + 1 < k) {
+        return kthSmallest(root.right, k - left - 1);
+    } else {
+        return kthSmallest(root.left, k);
+    }
+  }
+
+  private int nodeCount(TreeNode root) {
+    if(root == null) {
+        return 0;
+    }
+    return 1 + nodeCount(root.left) + nodeCount(root.right);
+  }
+}
+
+//######################################### With reference ######################################### 
 //Try the left subtree first. If that made k zero, then its answer is the overall answer and we return it right away. Otherwise, decrease k for the current node, and if that made k zero, then we return the current node's value right away. Otherwise try the right subtree and return whatever comes back from there.
 int kthSmallestHelper(TreeNode* root, int k,int& l) {
   if(root) {
@@ -51,24 +110,14 @@ int find(TreeNode* root, int& k) {
           }
         }
 }
+
 int kthSmallest(TreeNode* root, int k) {
   int l = 0;
   return kthSmallestHelper(root,k,l);
   //return find(root,k);
 }
-int main(int argc, char *argv[])
-{
-  TreeNode* t = new TreeNode(20);
-  t->left = new TreeNode(10);
-  t->left->left = new TreeNode(5);
-  t->left->right = new TreeNode(15);
-  t->left->right->right = new TreeNode(17);
-  t->right = new TreeNode(60);
-  int sum = 4;
-  int r = kthSmallest(t,sum);
-  cout << "smallest ele " << r << endl;
-  return 0;
-}
+
+//######################################### With stack ######################################### 
 //Contrainted inorder traversal with MAX k memory location instead of stack
 //Solution 2, C++ with circular vector
 //Using a vector of fixed size k and a stack pointer i into it which will be used modulo k.
@@ -86,6 +135,8 @@ int kthSmallest(TreeNode* root, int k) {
         root = root->right;
     }
 }
+
+//######################################### With Deque ######################################### 
 //Solution 3, C++ with deque
 //I really like the previous version, but the fixed size k isn't always necessary, so here's a version using a deque:
 int kthSmallest(TreeNode* root, int k) {
@@ -106,86 +157,7 @@ int kthSmallest(TreeNode* root, int k) {
 //ANS : with morris traversal
 //https://leetcode.com/discuss/43299/o-k-space-o-n-time-10-short-lines-3-solutions?show=43556#a43556
 
-//######################################### With instance variable  ######################################### 
-class Solution {
-	int count = 0;
-	TreeNode result  = null;
-	public TreeNode findKthSmallest(TreeNode root, int k) {
-		traverse(root, k);
-		return result;
-	}
-
-	public void traverse(TreeNode root, int k) {
-		if(root == null) return;
-		traverse(root.left, k);
-		count ++;
-		if(count == k) result = root;
-		traverse(root.right, k);       
-	}
-}
-
-//######################################### With Stack (Iterative) ######################################### 
- public int kthSmallest(TreeNode root, int k) {
-     Stack<TreeNode> stack = new Stack<TreeNode>();
-     TreeNode p = root;
-     int count = 0;
-     
-     while(!stack.isEmpty() || p != null) {
-         if(p != null) {
-             stack.push(p);  // Just like recursion
-             p = p.left;   
-             
-         } else {
-            TreeNode node = stack.pop();
-            if(++count == k) return node.val; 
-            p = node.right;
-         }
-     }
-     
-     return Integer.MIN_VALUE;
- }
 
 
-//######################################### D&C ######################################### 
-public class Solution {
-     public int kthSmallest(TreeNode root, int k) {
-         int left = nodeCount(root.left);  // this value can be saved in the root node
-         if(left + 1 == k) {
-             return root.val;
-         } else if (left + 1 < k) {
-             return kthSmallest(root.right, k - left - 1);
-         } else {
-             return kthSmallest(root.left, k);
-         }
-     }
-     
-     private int nodeCount(TreeNode root) {
-         if(root == null) {
-             return 0;
-         }
-         return 1 + nodeCount(root.left) + nodeCount(root.right);
-     }
- }
 
-
-//######################################### D&C ######################################### 
-public TreeNode findKthSmallest(TreeNode root, int k) {
-       
-            if(root == null) {
-                return root;
-            }
-            int left = nodeCount(root.left);  // this value can be saved in the root node
-            if(left + 1  == k) {
-                return root;
-            } else if (left + 1 < k) {
-                return findKthSmallest(root.right, k - left - 1);
-            }
-            return findKthSmallest(root.left, k);
-            
-        }
-        private int nodeCount(TreeNode root) {
-            if(root == null) {
-                return 0;
-            }
-            return 1 + nodeCount(root.left) + nodeCount(root.right);
-        }
+/* vim: set ts=2 sw=2 sts=2 tw=120 et: */

@@ -1,0 +1,119 @@
+## Solve more problem do not genralize/ do readme of other problmes	
+	
+	Number Of Corner Rectangles 	
+	Min Cost Climbing Stairs	
+	Cherry Pickup	
+	Delete and Earn	
+	Count Different Palindromic Subsequences	
+	Minimum Window Subsequence 	
+	Maximum Length of Repeated Subarray	
+	Best Time to Buy and Sell Stock with Transaction Fee	
+	Minimum ASCII Delete Sum for Two Strings	
+	Partition to K Equal Sum Subsets	
+	Stickers to Spell Word	
+	Maximum Sum of 3 Non-Overlapping Subarrays	
+	Knight Probability in Chessboard	
+	Number of Longest Increasing Subsequence	
+	Strange Printer	
+	Coin Path 	
+	4 Keys Keyboard 	
+	2 Keys Keyboard	
+	Palindromic Substrings	
+	Maximum Length of Pair Chain	
+	Decode Ways II	
+	Shopping Offers	
+	K Inverse Pairs Array	
+	Non-negative Integers without Consecutive Ones	
+	Out of Boundary Paths	
+	Maximum Vacation Days 	
+	Student Attendance Record II	
+	Remove Boxes	
+	Continuous Subarray Sum	
+	Super Washing Machines	
+	Longest Palindromic Subsequence	
+	Freedom Trail	
+	Target Sum	
+	Predict the Winner	
+	Ones and Zeroes	
+	Concatenated Words	
+	Encode String with Shortest Length 	
+	Unique Substrings in Wraparound String	
+	Count The Repetitions	
+	Can I Win	
+	Arithmetic Slices II - Subsequence	
+	Sentence Screen Fitting 	
+	Partition Equal Subset Sum	
+	Arithmetic Slices	
+	Split Array Largest Sum	
+	Frog Jump	
+	Is Subsequence	
+	Combination Sum IV	
+	Wiggle Subsequence	
+	Guess Number Higher or Lower II	
+	Largest Divisible Subset	
+	Max Sum of Rectangle No Larger Than K	
+	Bomb Enemy 	
+	Count Numbers with Unique Digits	
+	Russian Doll Envelopes	
+	Android Unlock Patterns 	
+	Integer Break	
+	Counting Bits	
+	Coin Change	
+	Create Maximum Number	
+	Burst Balloons	
+	Best Time to Buy and Sell Stock with Cooldown	
+	Range Sum Query 2D - Immutable	
+	Range Sum Query - Immutable	
+	Longest Increasing Subsequence	
+	Perfect Squares	
+	Paint Fence 	
+	Paint House II 	
+	Ugly Number II	
+	Paint House 	
+	Maximal Square	
+	House Robber II	
+	House Robber	
+	Best Time to Buy and Sell Stock IV	
+	Dungeon Game	
+	Maximum Product Subarray	
+	Word Break II	
+	Word Break	
+	Palindrome Partitioning II	
+	Best Time to Buy and Sell Stock III	
+	Best Time to Buy and Sell Stock	
+	Triangle	
+	Distinct Subsequences	
+	Interleaving String	
+	Unique Binary Search Trees	
+	Unique Binary Search Trees II	
+	Decode Ways	
+	Scramble String	
+	Maximal Rectangle	
+	Edit Distance	
+	Climbing Stairs	
+	Minimum Path Sum	
+	Unique Paths II	
+	Unique Paths	
+	Maximum Subarray	
+	Wildcard Matching	
+	Longest Valid Parentheses	
+	Regular Expression Matching
+
+
+https://people.cs.clemson.edu/~bcdean/dp_practice/
+
+Maximum Value Contiguous Subsequence. Given a sequence of n real numbers A(1) ... A(n), determine a contiguous subsequence A(i) ... A(j) for which the sum of elements in the subsequence is maximized.
+Making Change. You are given n types of coin denominations of values v(1) < v(2) < ... < v(n) (all integers). Assume v(1) = 1, so you can always make change for any amount of money C. Give an algorithm which makes change for an amount of money C with as few coins as possible. [on problem set 4]
+Longest Increasing Subsequence. Given a sequence of n real numbers A(1) ... A(n), determine a subsequence (not necessarily contiguous) of maximum length in which the values in the subsequence form a strictly increasing sequence. [on problem set 4]
+Box Stacking. You are given a set of n types of rectangular 3-D boxes, where the i^th box has height h(i), width w(i) and depth d(i) (all real numbers). You want to create a stack of boxes which is as tall as possible, but you can only stack a box on top of another box if the dimensions of the 2-D base of the lower box are each strictly larger than those of the 2-D base of the higher box. Of course, you can rotate a box so that any side functions as its base. It is also allowable to use multiple instances of the same type of box.
+Building Bridges. Consider a 2-D map with a horizontal river passing through its center. There are n cities on the southern bank with x-coordinates a(1) ... a(n) and n cities on the northern bank with x-coordinates b(1) ... b(n). You want to connect as many north-south pairs of cities as possible with bridges such that no two bridges cross. When connecting cities, you can only connect city i on the northern bank to city i on the southern bank. (Note: this problem was incorrectly stated on the paper copies of the handout given in recitation.)
+Integer Knapsack Problem (Duplicate Items Forbidden). This is the same problem as the example above, except here it is forbidden to use more than one instance of each type of item.
+Balanced Partition. You have a set of n integers each in the range 0 ... K. Partition these integers into two subsets such that you minimize |S1 - S2|, where S1 and S2 denote the sums of the elements in each of the two subsets.
+Edit Distance. Given two text strings A of length n and B of length m, you want to transform A into B with a minimum number of operations of the following types: delete a character from A, insert a character into A, or change some character in A into a new character. The minimal number of such operations required to transform A into B is called the edit distance between A and B.
+Counting Boolean Parenthesizations. You are given a boolean expression consisting of a string of the symbols 'true', 'false', 'and', 'or', and 'xor'. Count the number of ways to parenthesize the expression such that it will evaluate to true. For example, there are 2 ways to parenthesize 'true and false xor true' such that it evaluates to true.
+Optimal Strategy for a Game. Consider a row of n coins of values v(1) ... v(n), where n is even. We play a game against an opponent by alternating turns. In each turn, a player selects either the first or last coin from the row, removes it from the row permanently, and receives the value of the coin. Determine the maximum possible amount of money we can definitely win if we move first.
+
+
+https://apps.topcoder.com/forums/?module=Thread&start=0&threadID=674592
+https://www.hackerrank.com/domains/algorithms/dynamic-programming
+https://www.codechef.com/wiki/tutorial-dynamic-programming

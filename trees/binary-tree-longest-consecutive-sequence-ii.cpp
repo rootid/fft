@@ -17,30 +17,98 @@
 //Explanation: The longest consecutive path is [1, 2, 3] or [3, 2, 1].
 //
 
+//Approach #1 Brute Force [Time Limit Exceeded]
+//We can easily see that in a tree there is exactly one unique path one from one node to another. So, the number of
+//paths possible will be equal to number of pairs of nodes (N Choose 2), where N is the number of nodes.
+//Brute force solution of this problem is to find the path between every two nodes and check whether it is increasing or decreasing. In this way we can find maximum length increasing or decreasing sequence.
+//Complexity Analysis
+//    Time complexity : O(n^3). Total possible number of paths are n2 and checking every path whether it is increasing
+//    or decreasing will take O(n) for one path.
+//    Space complexity : O(n3). n2 paths each with O(n) nodes.
 
-//######################################### In order traversal ######################################### 
-public int longestConsecutive(TreeNode root) {
-    return helper(root, null);
+//######################################### POST order traversal ######################################### 
+public class Solution {
+    int res;
+    public int longestConsecutive(TreeNode root) {
+        res = 0;
+        helper(root);
+        return res;
+    }
+    public int[] helper(TreeNode root){
+        int[] cur = new int[2];
+        if(root == null) return cur;
+        int[] left = helper(root.left);
+        int[] right = helper(root.right);
+        
+        if(root.left != null){
+            if(root.left.val != root.val - 1) left[0] = 0; //No inc
+            if(root.left.val != root.val + 1) left[1] = 0; //No dec
+        }
+        if(root.right != null){
+            if(root.right.val != root.val - 1) right[0] = 0;
+            if(root.right.val != root.val + 1) right[1] = 0;
+        }
+        
+        cur[0] = Math.max(left[0], right[0]) + 1;
+        cur[1] = Math.max(left[1], right[1]) + 1;
+        
+        res = Math.max(res, cur[0] + cur[1] - 1);
+        return cur;
+    }
 }
 
-private int helper(TreeNode root, int pre) {
-    if (root == null) {
-        return 0;
+//######################################### POST order traversal ######################################### 
+//The main idea is to record each node's LCS, which is the value returned by helper function. At each helper function, we need to update max LCS.
+Binary Tree Longest Consecutive Sequence
+public class Solution {
+    int res;
+    public int longestConsecutive(TreeNode root) {
+        res = 0;
+        helper(root);
+        return res;
     }
-    int left = helper(root.left, root.val);
-    int right = helper(root.right, root.val);
-    if (left * right < 0) {
-        max = Math.max(max, 1 + Math.abs(left) + Math.abs(right));
-    } else {
-        max = Math.max(max, 1 + Math.max(Math.abs(left), Math.abs(right)));
+    public int helper(TreeNode root){
+        int cur = 0;
+        if(root == null) return cur;
+        int left = helper(root.left);
+        int right = helper(root.right);
+        if(root.left != null && root.left.val != root.val + 1) left = 0;
+        if(root.right != null && root.right.val != root.val + 1) right = 0;
+        cur = Math.max(left, right) + 1;
+        res = Math.max(cur, res);
+        return cur;
     }
-    if (root.val - pre == 1) {  //increasing seq
-        return 1 + Math.max(0, Math.max(left, right));
-    }
-    if (root.val - pre == -1) { //-ve : decreasing seq
-        return -1 + Math.min(0, Math.min(left, right));
-    }
-    return 0;
+}
+
+
+//######################################### POST order traversal ######################################### 
+//For each subtree we recursively compute the length of longest ascending and descending path starting from the subtree
+//root. Then we can efficiently check if we could join the two subtree together to get a longer child-parent-child path.
+//In another word, for each subtree, the longest child-parent-child consecutive (with root being the parent) is dec+inc-1
+//since both the ascending and descending path start from root.
+
+class Solution { 
+  private int maxlen = 0;
+
+  private int[] helper(TreeNode root) {
+      if (root == null) return new int[]{0, 0}; //store ^ & dec
+      int inc = 1, dec = 1;
+      int[] left = helper(root.left), right = helper(root.right);
+      if (root.left != null) {
+          if (root.left.val == root.val+1) inc += left[0]; //left ^
+          if (root.left.val == root.val-1) dec += left[1]; //left 
+      }
+      if (root.right != null) {
+          if (root.right.val == root.val+1) inc = Math.max(inc, 1+right[0]); //right ^  (inc and 1+right[0])
+          if (root.right.val == root.val-1) dec = Math.max(dec, 1+right[1]); //right 
+      }
+      maxlen = Math.max(inc+dec-1, maxlen);
+      return new int[]{inc, dec};
+  }
+  public int longestConsecutive(TreeNode root) {
+      helper(root);
+      return maxlen;
+  }
 }
 
 //######################################### Post order traversal ######################################### 
@@ -185,3 +253,5 @@ private int[] incdecPath(TreeNode curr){
     maxlen = Math.max(maxlen,Math.max(ret[0] + ret[3], ret[1] + ret[2]) - 1);
     return ret;
 }
+
+/* vim: set ts=2 sw=2 sts=2 tw=120 et: */

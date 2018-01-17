@@ -5,17 +5,40 @@
 //Output: "s'teL ekat edoCteeL tsetnoc"
 //Note: In the string, each word is separated by single space and there will not be any extra space in the string.
 
+//######################################## traversal O(n) ######################################## 
+private void swapBetween(int start,int end, char[] str) {
+      while(start < end) {
+        char tmp = str[start];
+        str[start] = str[end];
+        str[end] = tmp;
+        start++; end--;
+    }
+}
+
+public String reverseWords(String s1) {
+  char[] s = s1.toCharArray();
+  int len = s.length;
+
+  for(int i=0,j=0; i<=s.length;i++) {
+        if(i == len || s[i] == ' ') {
+          swapBetween(j,i-1,s);
+          j = i+1;
+      }
+    } 
+    return new String(s);
+}
+
 //######################################## istream + copy semantics ######################################## 
 string reverseWords(string s) {
-	istringstream iss{s};
-	auto iter = s.begin(); //Let's
-	for (string word; iss >> word;) {
-		iter = copy(word.rbegin(), word.rend(), iter); //Let's
-		if (iter != s.end()) {
-			++iter; //increment by space
+    istringstream iss{s};
+    auto iter = s.begin(); //Let's
+    for (string word; iss >> word;) {
+            iter = copy(word.rbegin(), word.rend(), iter); //Let's
+            if (iter != s.end()) {
+                    ++iter; //increment by space
+     }
     }
-	}
-	return s;
+    return s;
 }
 
 //######################################## simple traversal ######################################## 
@@ -39,8 +62,8 @@ string reverseWords(string s) {
 //>>> from timeit import timeit
 //>>> setup = 's = "Let\'s take LeetCode contest"'
 //>>> statements = ("' '.join(s.split()[::-1])[::-1]",
-//	          "' '.join(x[::-1] for x in s.split())",
-//	          "' '.join([x[::-1] for x in s.split()])")
+//              "' '.join(x[::-1] for x in s.split())",
+//              "' '.join([x[::-1] for x in s.split()])")
 //>>> for stmt in statements:
 //        print ' '.join('%.2f' % timeit(stmt, setup) for _ in range(5)), 'seconds for:', stmt
 //0.79 0.78 0.80 0.82 0.79 seconds for: ' '.join(s.split()[::-1])[::-1]
@@ -54,3 +77,5 @@ string reverseWords(string s) {
 //0.16 0.14 0.13 0.14 0.14 seconds for: ' '.join(s.split()[::-1])[::-1]
 //0.69 0.71 0.69 0.70 0.70 seconds for: ' '.join(x[::-1] for x in s.split())
 //0.63 0.68 0.63 0.64 0.64 seconds for: ' '.join([x[::-1] for x in s.split()])
+
+// vim: set sw=2 sts=2 tw=120 et nospell : 

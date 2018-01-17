@@ -17,6 +17,99 @@
 //Can you figure out ways to solve it with O(n) time complexity?
 //
 //
+//################################################################## O(N) - Bottom-up solution (With Array)  ################################################################## 
+//(# of nodes,minValue,maxValue)
+private int largestBSTSubtreeSize = 0;
+public int largestBSTSubtree(TreeNode root) {
+    helper(root);
+    return largestBSTSubtreeSize;
+}
+
+private int[] helper(TreeNode root) {
+    // return 3-element array:
+    // # of nodes in the subtree, leftmost value, rightmost value
+    // # of nodes in the subtree will be -1 if it is not a BST
+    int[] result = new int[3];
+    if (root == null) {
+        return result;
+    }
+    int[] leftResult = helper(root.left);
+    int[] rightResult = helper(root.right);
+    if ((leftResult[0] == 0 || leftResult[0] > 0 && leftResult[2] < root.val) &&
+        (rightResult[0] == 0 || rightResult[0] > 0 && rightResult[1] > root.val)) {
+       int size = 1 + leftResult[0] + rightResult[0];
+       largestBSTSubtreeSize = Math.max(largestBSTSubtreeSize, size);
+       int minV = leftResult[0] == 0 ? root.val : leftResult[1];
+       int maxV = rightResult[0] == 0 ? root.val : rightResult[2];
+       result[0] = size;
+       result[1] = minV;
+       result[2] = maxV;
+    } else {
+    	result[0] = -1;
+    }
+    return result;
+}
+
+//################################################################## O(N) - Bottom-up solution  ################################################################## 
+class Result {
+    int size;
+    int min;
+    int max;
+    public Result(int size, int min, int max) {
+        this.size = size;
+        this.min = min;
+        this.max = max;
+    }
+}
+
+public int largestBSTSubtree(TreeNode root) {
+    Result size = BSTSubstree(root);
+    return Math.abs(size.size);
+}
+
+private Result BSTSubstree(TreeNode root) {
+    if (root == null) return new Result(0, Integer.MAX_VALUE, Integer.MIN_VALUE);
+    Result left = BSTSubstree(root.left);
+    Result right = BSTSubstree(root.right);
+//If subtree rooted at current root is not a BST, then return the larger value returned from its children, which can be
+//positive or negative, depending on the subtrees rooted at it's children is BST or not. And since we are using sign to
+//indicate if it'a a BST and it's not, we negate the result. And since the return value its negative, it's parent will
+//never use the min, max information, so we just set them to zero.
+    if (left.size < 0 || right.size < 0 || root.val <= left.max || root.val >= right.min) {
+        return new Result(Math.max(Math.abs(left.size), Math.abs(right.size)) * -1, 0, 0);
+    } 
+    //if we say a valid BST must not contain duplicate value, you are right. 
+    //if so, to make the code right, we only need to adjust the logic where we are dealing with NULL node, 
+    //and if (left.size==-1 || right.size==-1 || root.val<left.upper || root.val>right.lower) should be if (left.size==-1 || right.size==-1 || root.val<=left.upper || root.val>=right.lower).
+    return new Result(left.size + right.size + 1, Math.min(root.val, left.min), Math.max(root.val, right.max));
+}
+
+
+//################################################################## O(N^2) ################################################################## 
+    public int largestBSTSubtree(TreeNode root) {
+        if (isBST(root)) 
+            return size(root);
+        return Math.max(largestBSTSubtree (root.left) , largestBSTSubtree(root.right) );
+    }
+    
+    private int size(TreeNode root) {
+        if(root == null) return 0;
+        return 1 + size(root.left) + size(root.right);
+    }
+    
+    private boolean isBST(TreeNode root) {
+        return isBSTHelper(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+    
+    private boolean isBSTHelper(TreeNode root, int minV, int maxV) {
+        if(root == null) return true;
+         if(root.val < minV || root.val >= maxV) return false;
+         return (isBSTHelper(root.left, minV, root.val)
+                && isBSTHelper(root.right, root.val , maxV));        
+    }
+
+
+
 //################################################################## O(N) ################################################################## 
 //it visits every node exactly once and does a constant amount of work for each.
 int largestBSTSubtree(TreeNode* root) {
@@ -282,3 +375,5 @@ int countnodes(TreeNode* root){
 //    }
 //    return maxSize;
 //}
+
+// vim: set sw=2 sts=2 tw=120 et nospell : 

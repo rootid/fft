@@ -20,6 +20,40 @@
 //Expected:
 //["JFK","ANU","EZE","AXA","TIA","ANU","JFK","TIA","ANU","TIA","JFK"]
 
+
+//################################### Iterative - With Set #################################
+//NOTE : Cannot break ties 
+public List<String> findItinerary(String[][] tickets) {
+    
+    Deque<String> set = new ArrayDeque<>();
+    set.push("JFK"); //incoming deg = 0;
+    
+    int len = tickets.length;
+    List<String> result = new ArrayList<>();
+    //Represent graph with String and Set
+    Map<String, Set<String>> graph = new HashMap<>();
+    for(int i=0;i<len;i++) {
+        String src = tickets[i][0];
+        String dest = tickets[i][1];
+        if(!graph.containsKey(src)) 
+            //graph.put(src, new TreeSet<>());
+			graph.put(src, new TreeSet<>( (s1, s2) -> s2.compareTo(s1)) ); //Compare did not work
+        graph.get(src).add(dest);
+    }
+    
+    while(!set.isEmpty()) {
+        String current = set.pop();
+        Set<String> toBeVisited = graph.getOrDefault(current, null);
+        if(toBeVisited != null)  {
+            for(String t: toBeVisited) 
+                set.push(t);
+             graph.remove(current);
+        }
+         result.add(current);
+    }
+    return result;
+}
+
 // node, <outgoing node>
 //################################### Iterative #################################
     public List<String> findItinerary(String[][] tickets) {
@@ -27,12 +61,12 @@
         Map<String, PriorityQueue<String>> itineryMap = new HashMap<>();
        // Arrays.sort(tickets); 2D sort
         for(String[] ticket: tickets) {
-            PriorityQueue<String> toCityList = null;
+            PriorityQueue<String> destListList = null;
             if(itineryMap.containsKey(ticket[0])) 
-               toCityList = itineryMap.get(ticket[0]);
-            else toCityList = new PriorityQueue<>();
-            toCityList.add(ticket[1]);
-            itineryMap.put(ticket[0],toCityList);
+               destListList = itineryMap.get(ticket[0]); 
+            else destListList = new PriorityQueue<>();
+            destListList.add(ticket[1]);
+            itineryMap.put(ticket[0],destListList);
         }
         Stack<String> stack = new Stack<>();
         stack.push("JFK");
@@ -46,17 +80,16 @@
     }
 
 //################################### Iterative #################################
-
 public List<String> findItinerary(String[][] tickets) {
     Map<String, PriorityQueue<String>> targets = new HashMap<>();
     for (String[] ticket : tickets)
-        targets.computeIfAbsent(ticket[0], k -> new PriorityQueue()).add(ticket[1]);
+        targets.computeIfAbsent(ticket[0], k -> new PriorityQueue()).add(ticket[1]); //Add to priority queue
     List<String> route = new LinkedList();
     Stack<String> stack = new Stack<>();
     stack.push("JFK");
     while (!stack.empty()) {
-        while (targets.containsKey(stack.peek()) && !targets.get(stack.peek()).isEmpty())
-            stack.push(targets.get(stack.peek()).poll());
+        while (targets.containsKey(stack.peek()) && !targets.get(stack.peek()).isEmpty()) 
+            stack.push(targets.get(stack.peek()).poll()); //after visiting the targests remove destinations
         route.add(0, stack.pop());
     }
     return route;

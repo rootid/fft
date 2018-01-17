@@ -5,6 +5,25 @@
 //return 2.
 //
 
+
+//######################################### Sort by start time and store the meetings by increasing order of end time ######################################### 
+public int minMeetingRooms(Interval[] intervals) {
+    if(intervals == null || intervals.length == 0) return 0;
+    int rooms = 0;
+    int len = intervals.length;
+    Arrays.sort(intervals, (a,b) -> a.start - b.start);
+    //pQ - acts like building store the valid meetings
+    PriorityQueue<Interval> pQ = new PriorityQueue<>(len, (a,b) -> a.end - b.end);
+    for(int i=0;i<len;i++) {
+        while(!pQ.isEmpty() && intervals[i].start >= pQ.peek().end)
+            pQ.poll();
+        pQ.offer(intervals[i]);
+        rooms = Math.max(rooms, pQ.size());
+    }
+    return rooms;
+}
+
+
 //######################################### 2 Vectors + Sort ######################################### 
 //# Very similar with what we do in real life. Whenever you want to start a meeting, 
 //# you go and check if any empty room available (available > 0) and
@@ -101,22 +120,6 @@ public int minMeetingRooms(Interval[] intervals) {
     return heap.size();
 }
 
-//######################################### Min Heap ######################################### 
-public class Solution {
-    public int minMeetingRooms(Interval[] intervals) {
-        if(intervals == null || intervals.length == 0) return 0;
-        Arrays.sort(intervals, (a, b) -> (a.start - b.start));
-        int max = 0;
-        PriorityQueue<Interval> queue = new PriorityQueue<>(intervals.length, (a, b) -> (a.end - b.end));
-        for(int i = 0; i < intervals.length; i++){
-            while(!queue.isEmpty() && intervals[i].start >= queue.peek().end)
-                queue.poll();
-            queue.offer(intervals[i]);
-            max = Math.max(max, queue.size());
-        }
-        return max;
-    }
-}
 
 //#########################################  Map  ######################################### 
 //First collect the changes: at what times the number of meetings goes up or down and by how much.
@@ -171,3 +174,4 @@ int minMeetingRooms(vector<Interval>& intervals) {
     }
     return rooms;
 }
+/* vim: set ts=2 sw=2 sts=2 tw=120 et: */
