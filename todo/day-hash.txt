@@ -1,0 +1,94 @@
+Two Sum 36.9% Easy
+Single Number 55.2% Easy
+Longest Substring Without Repeating Characters 24.6% Medium
+Encode and Decode TinyURL 73.9% Medium
+Contains Duplicate 46.7% Easy
+Happy Number 41.3% Easy
+Max Points on a Line 15.2% Hard
+Copy List with Random Pointer 26.0% Medium
+Group Anagrams 37.3% Medium
+Island Perimeter 57.7% Easy
+Contains Duplicate II 32.7% Easy
+Maximal Rectangle 29.2% Hard
+Valid Sudoku 37.0% Medium
+Valid Anagram 47.2% Easy
+Top K Frequent Elements 49.3% Medium
+First Unique Character in a String 47.3% Easy
+Intersection of Two Arrays 47.9% Easy
+Palindrome Pairs 27.0% Hard
+Keyboard Row 59.8% Easy
+Repeated DNA Sequences 32.6% Medium
+Count Primes 26.7% Easy
+Isomorphic Strings 34.5% Easy
+Minimum Window Substring 26.5% Hard
+Sudoku Solver 31.5% Hard
+Intersection of Two Arrays II 44.9% Easy
+4Sum 27.3% Medium
+Bulls and Cows 35.6% Medium
+Word Pattern 33.3% Easy
+Fraction to Recurring Decimal 17.9% Medium
+Substring with Concatenation of All Words 22.2% Hard
+Find the Difference 51.1% Easy
+Binary Tree Inorder Traversal 48.6% Medium
+Sparse Matrix Multiplication 52.2% Medium
+#################################################################################
+Find Anagram Mappings 77.9% Easy
+ Given two lists Aand B, and B is an anagram of A. B is an anagram of A means B is made by randomizing the order of the elements in A.
+ We want to find an index mapping P, from A to B. A mapping P[i] = j means the ith element in A appears in B at index j.
+ These lists A and B may contain duplicates. If there are multiple answers, output any of them.
+ For example, given
+ A = [12, 28, 46, 32, 50]
+ B = [50, 12, 32, 46, 28]
+ We should return
+ [1, 4, 3, 2, 0]
+ as P[0] = 1 because the 0th element of A appears at B[1], and P[1] = 4 because the 1st element of A appears at B[4], and so on.
+ Note:
+     1. A, B have equal lengths in range [1, 100].
+     2. A[i], B[i] are integers in range [0, 10^5].
+
+Insert Delete GetRandom O(1) 39.8% Medium
+Longest Substring with At Most K Distinct Characters 39.3% Hard
+Distribute Candies 58.3% Easy
+Find Duplicate File in System 52.6% Medium
+Smallest Range 42.4% Hard
+Employee Importance 52.2% Easy
+Sort Characters By Frequency 51.5% Medium
+H-Index 33.7% Medium
+Daily Temperatures 53.7% Medium
+Maximum Size Subarray Sum Equals k 43.3% Medium
+Find All Anagrams in a String 34.0% Easy
+Shortest Word Distance II 40.5% Medium
+Number of Boomerangs 46.2% Easy
+Palindrome Permutation 57.9% Easy
+4Sum II 47.6% Medium
+Longest Substring with At Most Two Distinct Characters 42.4% Hard
+Two Sum III - Data structure design 25.9% Easy
+Replace Words 47.7% Medium
+Group Shifted Strings 43.4% Medium
+Binary Tree Vertical Order Traversal 37.8% Medium
+Longest Palindrome 45.7% Easy
+Maximum Length of Repeated Subarray 41.0% Medium
+Set Mismatch 40.0% Easy
+Minimum Index Sum of Two Lists 46.5% Easy
+Longest Harmonious Subsequence 41.1% Easy
+Design Twitter 25.8% Medium
+Top K Frequent Words 41.6% Medium
+Strobogrammatic Number 40.2% Easy
+Number of Atoms 44.5% Hard
+Most Frequent Subtree Sum 52.4% Medium
+Insert Delete GetRandom O(1) - Duplicates allowed 29.4% Hard
+Contiguous Array 41.3% Medium
+Logger Rate Limiter 60.5% Easy
+Longest Word in Dictionary 42.0% Easy
+Unique Word Abbreviation 17.6% Medium
+Maximum Distance in Arrays 34.8% Easy
+Brick Wall 46.1% Medium
+Rearrange String k Distance Apart 31.7% Hard
+Number of Distinct Islands II 43.0% Hard
+Sentence Similarity 38.7% Easy
+Implement Magic Dictionary 49.7% Medium
+Number of Distinct Islands 45.3% Medium
+Shortest Completing Word 54.3% Medium
+Line Reflection
+#################################################################################
+vim:tw=90:et:norl:

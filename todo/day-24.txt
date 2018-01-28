@@ -1,0 +1,139 @@
+#################################################################################
+Maximum Product Subarray
+Find the contiguous subarray within an array (containing at least one number) which has
+the largest product.
+For example, given the array [2,3,-2,4],
+the contiguous subarray [2,3] has the largest product = 6.
+
+#################################################################################
+Word Break II
+Given a non-empty string s and a dictionary wordDict containing a list of non-empty
+words, add spaces in s to construct a sentence where each word is a valid dictionary word.
+You may assume the dictionary does not contain duplicate words.
+Return all such possible sentences.
+For example, given
+s = "catsanddog",
+dict = ["cat", "cats", "and", "sand", "dog"].
+A solution is ["cats and dog", "cat sand dog"].
+UPDATE (2017/1/4):
+The wordDict parameter had been changed to a list of strings (instead of a set of
+strings). Please reload the code definition to get the latest changes.
+
+#################################################################################
+Word Break
+Given a non-empty string s and a dictionary wordDict containing a list of non-empty
+words, determine if s can be segmented into a space-separated sequence of one or more
+dictionary words. You may assume the dictionary does not contain duplicate words.
+For example, given
+s = "leetcode",
+dict = ["leet", "code"].
+Return true because "leetcode" can be segmented as "leet code".
+UPDATE (2017/1/4):
+The wordDict parameter had been changed to a list of strings (instead of a set of
+strings). Please reload the code definition to get the latest changes.
+
+#################################################################################
+Palindrome Partitioning II
+Given a string s, partition s such that every substring of the partition is a palindrome.
+Return the minimum cuts needed for a palindrome partitioning of s.
+For example, given s = "aab",
+Return 1 since the palindrome partitioning ["aa","b"] could be produced using 1 cut.
+
+#################################################################################
+Best Time to Buy and Sell Stock III
+Say you have an array for which the ith element is the price of a given stock on day i.
+Design an algorithm to find the maximum profit. You may complete at most two transactions.
+Note:
+You may not engage in multiple transactions at the same time (ie, you must sell the stock
+before you buy again).
+
+#################################################################################
+Best Time to Buy and Sell Stock
+Say you have an array for which the ith element is the price of a given stock on day i.
+If you were only permitted to complete at most one transaction (ie, buy one and sell one
+share of the stock), design an algorithm to find the maximum profit.
+Example 1:
+Input: [7, 1, 5, 3, 6, 4]
+Output: 5
+max. difference = 6-1 = 5 (not 7-1 = 6, as selling price needs to be larger than buying
+price)
+Example 2:
+Input: [7, 6, 4, 3, 1]
+Output: 0
+In this case, no transaction is done, i.e. max profit = 0.
+
+#################################################################################
+Triangle
+Given a triangle, find the minimum path sum from top to bottom. Each step you may move to
+adjacent numbers on the row below.
+For example, given the following triangle
+[
+     [2],
+    [3,4],
+   [6,5,7],
+  [4,1,8,3]
+]
+The minimum path sum from top to bottom is 11 (i.e., 2 + 3 + 5 + 1 = 11).
+Note:
+Bonus point if you are able to do this using only O(n) extra space, where n is the total
+number of rows in the triangle.
+
+#################################################################################
+Distinct Subsequences
+Given a string S and a string T, count the number of distinct subsequences of S which
+equals T.
+A subsequence of a string is a new string which is formed from the original string by
+deleting some (can be none) of the characters without disturbing the relative positions of
+the remaining characters. (ie, "ACE" is a subsequence of "ABCDE" while "AEC" is not).
+Here is an example:
+S = "rabbbit", T = "rabbit"
+Return 3.
+
+#################################################################################
+Interleaving String
+Given s1, s2, s3, find whether s3 is formed by the interleaving of s1 and s2.
+For example,
+Given:
+s1 = "aabcc",
+s2 = "dbbca",
+When s3 = "aadbbcbcac", return true.
+When s3 = "aadbbbaccc", return false.
+
+#################################################################################
+Unique Binary Search Trees
+Given n, how many structurally unique BST's (binary search trees) that store values 1...n?
+For example,
+Given n = 3, there are a total of 5 unique BST's.
+   1         3     3      2      1
+    \       /     /      / \      \
+     3     2     1      1   3      2
+    /     /       \                 \
+   2     1         2                 3
+
+#################################################################################
+Unique Binary Search Trees II
+Given an integer n, generate all structurally unique BST's (binary search trees) that
+store values 1...n.
+For example,
+Given n = 3, your program should return all 5 unique BST's shown below.
+   1         3     3      2      1
+    \       /     /      / \      \
+     3     2     1      1   3      2
+    /     /       \                 \
+   2     1         2                 3
+
+#################################################################################
+Maximum Product Subarray
+Word Break II
+Word Break
+Palindrome Partitioning II
+Best Time to Buy and Sell Stock III
+Best Time to Buy and Sell Stock
+Triangle
+Distinct Subsequences
+Interleaving String
+Unique Binary Search Trees
+Unique Binary Search Trees II
+
+#################################################################################
+vim:tw=90:et:norl:

@@ -30,9 +30,9 @@
 //  [7]
 //]
 
-//######################################### BFS traversal  ######################################### 
+//######################################### BFS traversal  #########################################
 //Why DFS will not work
-//since the nodes in a column are ordered by their row number(depth) 
+//since the nodes in a column are ordered by their row number(depth)
 //we cannot process level x+2 nodes before we process level x.
 //If you do DFS, the result has the same List<Integer> elements but in the wrong order
 
@@ -49,20 +49,20 @@ public List<List<Integer>> verticalOrder(TreeNode root) {
     Map<Integer, ArrayList<Integer>> map = new HashMap<>();
     Queue<TreeNode> q = new LinkedList<>();
     Queue<Integer> cols = new LinkedList<>();
-    q.add(root); 
+    q.add(root);
     cols.add(0);
     int min = 0;
     int max = 0;
     while (!q.isEmpty()) {
         TreeNode node = q.poll();
         int col = cols.poll();
-		map.putIfAbsent(col, new ArrayList<>());
+        map.putIfAbsent(col, new ArrayList<>());
         //if (!map.containsKey(col)) {
         //    map.put(col, new ArrayList<Integer>());
         //}
         map.get(col).add(node.val);
         if (node.left != null) {
-            q.add(node.left); 
+            q.add(node.left);
             cols.add(col - 1);
             min = Math.min(min, col - 1);
         }
@@ -78,7 +78,7 @@ public List<List<Integer>> verticalOrder(TreeNode root) {
     return res;
 }
 
-//######################################### BFS traversal  ######################################### 
+//######################################### BFS traversal  #########################################
 //TC : O(n)
 //SC : O(n)
 class Solution {
@@ -87,28 +87,28 @@ public:
         vector<vector<int>> res;
         if(!root) return res;
         map<int,vector<int>> hm;  //store sorted nodelist by their height
-		//tuple of treenode and vertical distance. (root,0)
+        //tuple of treenode and vertical distance. (root,0)
         queue<pair<TreeNode*,int>> q;
-        q.push({root,0}); 
+        q.push({root,0});
         while(!q.empty()){
             TreeNode* node = q.front().first;
             int col = q.front().second;
             q.pop();
             hm[col].push_back(node->val);
             if(node->left) {
-				q.push({node->left,col-1});
-			}
-            if(node->right) { 
-				q.push({node->right,col+1});
-			}
+                q.push({node->left,col-1});
+            }
+            if(node->right) {
+                q.push({node->right,col+1});
+            }
         }
-        for(auto i:hm){ 
-		  res.push_back(i.second);
+        for(auto i:hm){
+          res.push_back(i.second);
         }
     return res;
 }
 
-//######################################### BFS queue + dict ######################################### 
+//######################################### BFS queue + dict #########################################
 def verticalOrder(self, root):
     cols = collections.defaultdict(list)
     queue = [(root, 0)]
@@ -118,7 +118,7 @@ def verticalOrder(self, root):
             queue += (node.left, i - 1), (node.right, i + 1)
     return [cols[i] for i in sorted(cols)]
 
-//######################################### BFS queue + dict ######################################### 
+//######################################### BFS queue + dict #########################################
 def verticalOrder(self, root):
     cols = collections.defaultdict(list)
     queue = collections.deque([(root, 0)])
@@ -129,7 +129,7 @@ def verticalOrder(self, root):
             queue += (node.left, i - 1), (node.right, i + 1)
     return [cols[i] for i in sorted(cols)]
 
-//######################################### BFS queue + dict ######################################### 
+//######################################### BFS queue + dict #########################################
 def verticalOrder(self, root):
     cols = collections.defaultdict(list)
     queue = [(root, 0)]
@@ -142,7 +142,7 @@ def verticalOrder(self, root):
             queue += (node.left, x - 1), (node.right, x + 1)
     return [cols[x] for x in sorted(cols)]
 
-//######################################### Python dictionary benchmarking ######################################### 
+//######################################### Python dictionary benchmarking #########################################
 from collections import defaultdict
 from timeit import timeit
 import random
@@ -168,14 +168,14 @@ def livelearn2(a):
     for i in a:
         mi = min(mi,i)
         d[i].append(i)
-    ret = [0] * len(d) 
+    ret = [0] * len(d)
     for k, v in d.items():
         ret[k-mi] = v
     return ret
-    
+
 for e in range(7):
     n = 10**e
-    
+
     a = [0]
     for _ in range(n):
         a.append(a[-1] + random.choice((1, -1)))
@@ -189,7 +189,7 @@ for e in range(7):
 
 
 
-//################################################## No hashmap ################################################## 
+//################################################## No hashmap ##################################################
 private int min = 0, max = 0;
 public List<List<Integer>> verticalOrder(TreeNode root) {
     List<List<Integer>> list = new ArrayList<>();

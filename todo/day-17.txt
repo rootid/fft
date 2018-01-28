@@ -1,37 +1,599 @@
 Backtrack
-691	Stickers to Spell Word	
-526	Beautiful Arrangement	
-425	Word Squares 	
-411	Minimum Unique Word Abbreviation 	
-401	Binary Watch	
-357	Count Numbers with Unique Digits	
-351	Android Unlock Patterns 	
-320	Generalized Abbreviation 	
-294	Flip Game II 	
-291	Word Pattern II 	
-267	Palindrome Permutation II 	
-254	Factor Combinations 	
-216	Combination Sum III	
-212	Word Search II	
-211	Add and Search Word - Data structure design	
-140	Word Break II	
-131	Palindrome Partitioning	
-126	Word Ladder II	
-93	Restore IP Addresses	
-90	Subsets II	
-89	Gray Code	
-79	Word Search	
-78	Subsets	
-77	Combinations	
-60	Permutation Sequence	
-52	N-Queens II	
-51	N-Queens	
-47	Permutations II	
-46	Permutations	
-44	Wildcard Matching	
-40	Combination Sum II	
-39	Combination Sum	
-37	Sudoku Solver	
-22	Generate Parentheses	
-17	Letter Combinations of a Phone Number	
-10	Regular Expression Matching	
+#################################################################################
+Stickers to Spell Word
+ We are given N different types of stickers. Each sticker has a lowercase English word on it.
+You would like to spell out the given target string by cutting individual letters from your collection of stickers and rearranging them.
+You can use each sticker more than once if you want, and you have infinite quantities of each sticker.
+What is the minimum number of stickers that you need to spell out the target? If the task is impossible, return -1.
+Example 1:
+Input:
+["with", "example", "science"], "thehat"
+Output:
+3
+Explanation:
+We can use 2 "with" stickers, and 1 "example" sticker.
+After cutting and rearrange the letters of those stickers, we can form the target "thehat".
+Also, this is the minimum number of stickers necessary to form the target string.
+Example 2:
+Input:
+["notice", "possible"], "basicbasic"
+Output:
+-1
+Explanation:
+We can't form the target "basicbasic" from cutting letters from the given stickers.
+Note:
+stickers has length in the range [1, 50].
+stickers consists of lowercase English words (without apostrophes).
+target has length in the range [1, 15], and consists of lowercase English letters.
+In all test cases, all words were chosen randomly from the 1000 most common US English words, and the target was chosen as a concatenation of two random words.
+The time limit may be more challenging than usual. It is expected that a 50 sticker test case can be solved within 35ms on average.
+
+#################################################################################
+Beautiful Arrangement
+ Suppose you have N integers from 1 to N. We define a beautiful arrangement as an array that is constructed by these N numbers successfully if one of the following is true for the ith position (1 <= i <= N) in this array:
+    The number at the ith position is divisible by i.
+    i is divisible by the number at the ith position.
+Now given N, how many beautiful arrangements can you construct?
+Example 1:
+Input: 2
+Output: 2
+Explanation:
+The first beautiful arrangement is [1, 2]:
+Number at the 1st position (i=1) is 1, and 1 is divisible by i (i=1).
+Number at the 2nd position (i=2) is 2, and 2 is divisible by i (i=2).
+The second beautiful arrangement is [2, 1]:
+Number at the 1st position (i=1) is 2, and 2 is divisible by i (i=1).
+Number at the 2nd position (i=2) is 1, and i (i=2) is divisible by 1.
+Note:
+    N is a positive integer and will not exceed 15.
+
+#################################################################################
+Beautiful Arrangement II
+ Given two integers n and k, you need to construct a list which contains n different positive integers ranging from 1 to n and obeys the following requirement:
+Suppose this list is [a1, a2, a3, ... , an], then the list [|a1 - a2|, |a2 - a3|, |a3 - a4|, ... , |an-1 - an|] has exactly k distinct integers.
+If there are multiple answers, print any of them.
+Example 1:
+Input: n = 3, k = 1
+Output: [1, 2, 3]
+Explanation: The [1, 2, 3] has three different positive integers ranging from 1 to 3, and the [1, 1] has exactly 1 distinct integer: 1.
+Example 2:
+Input: n = 3, k = 2
+Output: [1, 3, 2]
+Explanation: The [1, 3, 2] has three different positive integers ranging from 1 to 3, and the [2, 1] has exactly 2 distinct integers: 1 and 2.
+Note:
+    The n and k are in the range 1 <= k < n <= 104.
+
+#################################################################################
+Word Squares
+Given a set of words (without duplicates), find all word squares you can build from them.
+A sequence of words forms a valid word square if the kth row and column read the exact same string, where 0 ≤ k < max(numRows, numColumns).
+For example, the word sequence ["ball","area","lead","lady"] forms a word square because each word reads the same both horizontally and vertically.
+b a l l
+a r e a
+l e a d
+l a d y
+Note:
+    There are at least 1 and at most 1000 words.
+    All words will have the exact same length.
+    Word length is at least 1 and at most 5.
+    Each word contains only lowercase English alphabet a-z.
+Example 1:
+Input:
+["area","lead","wall","lady","ball"]
+Output:
+[
+  [ "wall",
+    "area",
+    "lead",
+    "lady"
+  ],
+  [ "ball",
+    "area",
+    "lead",
+    "lady"
+  ]
+]
+Explanation:
+The output consists of two word squares. The order of output does not matter (just the order of words in each word square matters).
+Example 2:
+Input:
+["abat","baba","atan","atal"]
+Output:
+[
+  [ "baba",
+    "abat",
+    "baba",
+    "atan"
+  ],
+  [ "baba",
+    "abat",
+    "baba",
+    "atal"
+  ]
+]
+Explanation:
+The output consists of two word squares. The order of output does not matter (just the order of words in each word square matters).
+
+#################################################################################
+Minimum Unique Word Abbreviation
+ string such as "word" contains the following abbreviations:
+["word", "1ord", "w1rd", "wo1d", "wor1", "2rd", "w2d", "wo2", "1o1d", "1or1", "w1r1", "1o2", "2r1", "3d", "w3", "4"]
+Given a target string and a set of strings in a dictionary, find an abbreviation of this target string with the smallest possible length such that it does not conflict with abbreviations of the strings in the dictionary.
+Each number or letter in the abbreviation is considered length = 1. For example, the abbreviation "a32bc" has length = 4.
+Note:
+    In the case of multiple answers as shown in the second example below, you may return any one of them.
+    Assume length of target string = m, and dictionary size = n. You may assume that m ≤ 21, n ≤ 1000, and log2(n) + m ≤ 20.
+Examples:
+"apple", ["blade"] -> "a4" (because "5" or "4e" conflicts with "blade")
+"apple", ["plain", "amber", "blade"] -> "1p3" (other valid answers include "ap3", "a3e", "2p2", "3le", "3l1").
+
+#################################################################################
+Binary Watch
+A binary watch has 4 LEDs on the top which represent the hours (0-11), and the 6 LEDs on the bottom represent the minutes (0-59).
+Each LED represents a zero or one, with the least significant bit on the right.
+For example, the above binary watch reads "3:25".
+Given a non-negative integer n which represents the number of LEDs that are currently on, return all possible times the watch could represent.
+Example:
+Input: n = 1
+Return: ["1:00", "2:00", "4:00", "8:00", "0:01", "0:02", "0:04", "0:08", "0:16", "0:32"]
+Note:
+    The order of output does not matter.
+    The hour must not contain a leading zero, for example "01:00" is not valid, it should be "1:00".
+    The minute must be consist of two digits and may contain a leading zero, for example "10:2" is not valid, it should be "10:02".
+
+#################################################################################
+Count Numbers with Unique Digits
+Given a non-negative integer n, count all numbers with unique digits, x, where 0 ≤ x < 10n.
+Example:
+Given n = 2, return 91. (The answer should be the total numbers in the range of 0 ≤ x < 100, excluding [11,22,33,44,55,66,77,88,99])
+
+#################################################################################
+Android Unlock Patterns
+ Given an Android 3x3 key lock screen and two integers m and n, where 1 ≤ m ≤ n ≤ 9, count the total number of unlock patterns of the Android lock screen, which consist of minimum of m keys and maximum n keys.
+Rules for a valid pattern:
+    Each pattern must connect at least m keys and at most n keys.
+    All the keys must be distinct.
+    If the line connecting two consecutive keys in the pattern passes through any other keys, the other keys must have previously selected in the pattern. No jumps through non selected key is allowed.
+    The order of keys used matters.
+Explanation:
+| 1 | 2 | 3 |
+| 4 | 5 | 6 |
+| 7 | 8 | 9 |
+Invalid move: 4 - 1 - 3 - 6
+Line 1 - 3 passes through key 2 which had not been selected in the pattern.
+Invalid move: 4 - 1 - 9 - 2
+Line 1 - 9 passes through key 5 which had not been selected in the pattern.
+Valid move: 2 - 4 - 1 - 3 - 6
+Line 1 - 3 is valid because it passes through key 2, which had been selected in the pattern
+Valid move: 6 - 5 - 4 - 1 - 9 - 2
+Line 1 - 9 is valid because it passes through key 5, which had been selected in the pattern.
+Example:
+Given m = 1, n = 1, return 9.
+
+#################################################################################
+Generalized Abbreviation
+Write a function to generate the generalized abbreviations of a word.
+Example:
+Given word = "word", return the following list (order does not matter):
+["word", "1ord", "w1rd", "wo1d", "wor1", "2rd", "w2d", "wo2", "1o1d", "1or1", "w1r1", "1o2", "2r1", "3d", "w3", "4"]
+
+#################################################################################
+Flip Game II
+ You are playing the following Flip Game with your friend: Given a string that contains only these two characters: + and -, you and your friend take turns to flip two consecutive "++" into "--". The game ends when a person can no longer make a move and therefore the other person will be the winner.
+Write a function to determine if the starting player can guarantee a win.
+For example, given s = "++++", return true. The starting player can guarantee a win by flipping the middle "++" to become "+--+".
+Follow up:
+Derive your algorithm's runtime complexity.
+
+#################################################################################
+Word Pattern II
+Given a pattern and a string str, find if str follows the same pattern.
+Here follow means a full match, such that there is a bijection between a letter in pattern and a non-empty substring in str.
+Examples:
+    pattern = "abab", str = "redblueredblue" should return true.
+    pattern = "aaaa", str = "asdasdasdasd" should return true.
+    pattern = "aabb", str = "xyzabcxzyabc" should return false.
+Notes:
+You may assume both pattern and str contains only lowercase letters.
+
+#################################################################################
+Word Pattern
+Given a pattern and a string str, find if str follows the same pattern.
+Here follow means a full match, such that there is a bijection between a letter in pattern and a non-empty word in str.
+Examples:
+    pattern = "abba", str = "dog cat cat dog" should return true.
+    pattern = "abba", str = "dog cat cat fish" should return false.
+    pattern = "aaaa", str = "dog cat cat dog" should return false.
+    pattern = "abba", str = "dog dog dog dog" should return false.
+Notes:
+You may assume pattern contains only lowercase letters, and str contains lowercase letters separated by a single space.
+
+#################################################################################
+Palindrome Permutation II
+ Given a string s, return all the palindromic permutations (without duplicates) of it. Return an empty list if no palindromic permutation could be form.
+For example:
+Given s = "aabb", return ["abba", "baab"].
+Given s = "abc", return [].
+
+#################################################################################
+Palindrome Permutation
+Given a string, determine if a permutation of the string could form a palindrome.
+For example,
+"code" -> False, "aab" -> True, "carerac" -> True.
+
+#################################################################################
+Factor Combinations
+Numbers can be regarded as product of its factors. For example,
+8 = 2 x 2 x 2;
+  = 2 x 4.
+Write a function that takes an integer n and return all possible combinations of its factors.
+Note:
+    You may assume that n is always positive.
+    Factors should be greater than 1 and less than n.
+Examples:
+input: 1
+output:
+[]
+input: 37
+output:
+[]
+input: 12
+output:
+[
+  [2, 6],
+  [2, 2, 3],
+  [3, 4]
+]
+input: 32
+output:
+[
+  [2, 16],
+  [2, 2, 8],
+  [2, 2, 2, 4],
+  [2, 2, 2, 2, 2],
+  [2, 4, 4],
+  [4, 8]
+]
+
+#################################################################################
+Combination Sum III
+Find all possible combinations of k numbers that add up to a number n, given that only numbers from 1 to 9 can be used and each combination should be a unique set of numbers.
+Example 1:
+Input: k = 3, n = 7
+Output:
+[[1,2,4]]
+Example 2:
+Input: k = 3, n = 9
+Output:
+[[1,2,6], [1,3,5], [2,3,4]]
+
+#################################################################################
+Word Break II
+ Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, add spaces in s to construct a sentence where each word is a valid dictionary word. You may assume the dictionary does not contain duplicate words.
+Return all such possible sentences.
+For example, given
+s = "catsanddog",
+dict = ["cat", "cats", "and", "sand", "dog"].
+A solution is ["cats and dog", "cat sand dog"].
+UPDATE (2017/1/4):
+The wordDict parameter had been changed to a list of strings (instead of a set of strings). Please reload the code definition to get the latest changes.
+
+#################################################################################
+Palindrome Partitioning
+ Given a string s, partition s such that every substring of the partition is a palindrome.
+Return all possible palindrome partitioning of s.
+For example, given s = "aab",
+Return
+[
+  ["aa","b"],
+  ["a","a","b"]
+]
+
+#################################################################################
+Palindrome Partitioning II
+ Given a string s, partition s such that every substring of the partition is a palindrome.
+Return the minimum cuts needed for a palindrome partitioning of s.
+For example, given s = "aab",
+Return 1 since the palindrome partitioning ["aa","b"] could be produced using 1 cut.
+
+#################################################################################
+Word Ladder II
+ Given two words (beginWord and endWord), and a dictionary's word list, find all shortest transformation sequence(s) from beginWord to endWord, such that:
+    Only one letter can be changed at a time
+    Each transformed word must exist in the word list. Note that beginWord is not a transformed word.
+For example,
+Given:
+beginWord = "hit"
+endWord = "cog"
+wordList = ["hot","dot","dog","lot","log","cog"]
+Return
+  [
+    ["hit","hot","dot","dog","cog"],
+    ["hit","hot","lot","log","cog"]
+  ]
+Note:
+    Return an empty list if there is no such transformation sequence.
+    All words have the same length.
+    All words contain only lowercase alphabetic characters.
+    You may assume no duplicates in the word list.
+    You may assume beginWord and endWord are non-empty and are not the same.
+UPDATE (2017/1/20):
+The wordList parameter had been changed to a list of strings (instead of a set of strings). Please reload the code definition to get the latest changes.
+
+#################################################################################
+Restore IP Addresses
+Given a string containing only digits, restore it by returning all possible valid IP
+address combinations.
+For example:
+Given "25525511135",
+return ["255.255.11.135", "255.255.111.35"]. (Order does not matter)
+
+#################################################################################
+Subsets II
+ Given a collection of integers that might contain duplicates, nums, return all possible subsets (the power set).
+Note: The solution set must not contain duplicate subsets.
+For example,
+If nums = [1,2,2], a solution is:
+[
+  [2],
+  [1],
+  [1,2,2],
+  [2,2],
+  [1,2],
+  []
+]
+
+#################################################################################
+Gray Code
+The gray code is a binary numeral system where two successive values differ in only one bit.
+Given a non-negative integer n representing the total number of bits in the code, print the sequence of gray code. A gray code sequence must begin with 0.
+For example, given n = 2, return [0,1,3,2]. Its gray code sequence is:
+00 - 0
+01 - 1
+11 - 3
+10 - 2
+Note:
+For a given n, a gray code sequence is not uniquely defined.
+For example, [0,2,3,1] is also a valid gray code sequence according to the above definition.
+For now, the judge is able to judge based on one instance of gray code sequence. Sorry about that.
+
+#################################################################################
+Word Search
+ Given a 2D board and a word, find if the word exists in the grid.
+The word can be constructed from letters of sequentially adjacent cell, where "adjacent" cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once.
+For example,
+Given board =
+[
+  ['A','B','C','E'],
+  ['S','F','C','S'],
+  ['A','D','E','E']
+]
+word = "ABCCED", -> returns true,
+word = "SEE", -> returns true,
+word = "ABCB", -> returns false.
+
+#################################################################################
+Subsets
+ Given a set of distinct integers, nums, return all possible subsets (the power set).
+Note: The solution set must not contain duplicate subsets.
+For example,
+If nums = [1,2,3], a solution is:
+[
+  [3],
+  [1],
+  [2],
+  [1,2,3],
+  [1,3],
+  [2,3],
+  [1,2],
+  []
+]
+
+#################################################################################
+Combinations
+ Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.
+For example,
+If n = 4 and k = 2, a solution is:
+[
+  [2,4],
+  [3,4],
+  [2,3],
+  [1,2],
+  [1,3],
+  [1,4],
+]
+
+#################################################################################
+Permutation Sequence
+The set [1,2,3,…,n] contains a total of n! unique permutations.
+By listing and labeling all of the permutations in order,
+We get the following sequence (ie, for n = 3):
+    "123"
+    "132"
+    "213"
+    "231"
+    "312"
+    "321"
+Given n and k, return the kth permutation sequence.
+Note: Given n will be between 1 and 9 inclusive.
+
+#################################################################################
+N-Queens II
+Follow up for N-Queens problem.
+Now, instead outputting board configurations, return the total number of distinct solutions.
+
+#################################################################################
+N-Queens
+The n-queens puzzle is the problem of placing n queens on an n×n chessboard such that no two queens attack each other.
+Given an integer n, return all distinct solutions to the n-queens puzzle.
+Each solution contains a distinct board configuration of the n-queens' placement, where 'Q' and '.' both indicate a queen and an empty space respectively.
+For example,
+There exist two distinct solutions to the 4-queens puzzle:
+[
+ [".Q..",  // Solution 1
+  "...Q",
+  "Q...",
+  "..Q."],
+ ["..Q.",  // Solution 2
+  "Q...",
+  "...Q",
+  ".Q.."]
+]
+
+#################################################################################
+Permutations II
+ Given a collection of numbers that might contain duplicates, return all possible unique permutations.
+For example,
+[1,1,2] have the following unique permutations:
+[
+  [1,1,2],
+  [1,2,1],
+  [2,1,1]
+]
+
+#################################################################################
+Permutations
+ Given a collection of distinct numbers, return all possible permutations.
+For example,
+[1,2,3] have the following permutations:
+[
+  [1,2,3],
+  [1,3,2],
+  [2,1,3],
+  [2,3,1],
+  [3,1,2],
+  [3,2,1]
+]
+
+#################################################################################
+Wildcard Matching
+Implement wildcard pattern matching with support for '?' and '*'.
+'?' Matches any single character.
+'*' Matches any sequence of characters (including the empty sequence).
+The matching should cover the entire input string (not partial).
+The function prototype should be:
+bool isMatch(const char *s, const char *p)
+Some examples:
+isMatch("aa","a") → false
+isMatch("aa","aa") → true
+isMatch("aaa","aa") → false
+isMatch("aa", "*") → true
+isMatch("aa", "a*") → true
+isMatch("ab", "?*") → true
+isMatch("aab", "c*a*b") → false
+
+#################################################################################
+Combination Sum II
+ Given a collection of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.
+Each number in C may only be used once in the combination.
+Note:
+    All numbers (including target) will be positive integers.
+    The solution set must not contain duplicate combinations.
+For example, given candidate set [10, 1, 2, 7, 6, 1, 5] and target 8,
+A solution set is:
+[
+  [1, 7],
+  [1, 2, 5],
+  [2, 6],
+  [1, 1, 6]
+]
+
+#################################################################################
+Combination Sum
+ Given a set of candidate numbers (C) (without duplicates) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.
+The same repeated number may be chosen from C unlimited number of times.
+Note:
+    All numbers (including target) will be positive integers.
+    The solution set must not contain duplicate combinations.
+For example, given candidate set [2, 3, 6, 7] and target 7,
+A solution set is:
+[
+  [7],
+  [2, 2, 3]
+]
+
+#################################################################################
+Sudoku Solver
+Write a program to solve a Sudoku puzzle by filling the empty cells.
+Empty cells are indicated by the character '.'.
+You may assume that there will be only one unique solution.
+A sudoku puzzle...
+...and its solution numbers marked in red.
+
+#################################################################################
+Generate Parentheses
+ Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+For example, given n = 3, a solution set is:
+[
+  "((()))",
+  "(()())",
+  "(())()",
+  "()(())",
+  "()()()"
+]
+
+#################################################################################
+Letter Combinations of a Phone Number
+Given a digit string, return all possible letter combinations that the number could represent.
+A mapping of digit to letters (just like on the telephone buttons) is given below.
+Input:Digit string "23"
+Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
+Note:
+Although the above answer is in lexicographical order, your answer could be in any order you want.
+
+#################################################################################
+Regular Expression Matching
+Implement regular expression matching with support for '.' and '*'.
+'.' Matches any single character.
+'*' Matches zero or more of the preceding element.
+The matching should cover the entire input string (not partial).
+The function prototype should be:
+bool isMatch(const char *s, const char *p)
+Some examples:
+isMatch("aa","a") → false
+isMatch("aa","aa") → true
+isMatch("aaa","aa") → false
+isMatch("aa", "a*") → true
+isMatch("aa", ".*") → true
+isMatch("ab", ".*") → true
+isMatch("aab", "c*a*b") → true
+
+#################################################################################
+Stickers to Spell Word
+Beautiful Arrangement
+Word Squares
+Minimum Unique Word Abbreviation
+Binary Watch
+Count Numbers with Unique Digits
+Android Unlock Patterns
+Generalized Abbreviation
+Flip Game II
+Word Pattern II
+Palindrome Permutation II
+Factor Combinations
+Combination Sum III
+Word Search II
+Add and Search Word - Data structure design
+Word Break II
+Palindrome Partitioning
+Word Ladder II
+Restore IP Addresses
+Subsets II
+Gray Code
+Word Search
+Subsets
+Combinations
+Permutation Sequence
+N-Queens II
+N-Queens
+Permutations II
+Permutations
+Wildcard Matching
+Combination Sum II
+Combination Sum
+Sudoku Solver
+Generate Parentheses
+Letter Combinations of a Phone Number
+Regular Expression Matching
+#################################################################################
+vim:tw=90:et:norl:

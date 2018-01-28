@@ -1,0 +1,386 @@
+#################################################################################
+Non-negative Integers without Consecutive Ones
+Given a positive integer n, find the number of non-negative integers less than or equal to
+n, whose binary representations do NOT contain consecutive ones.
+Example 1:
+Input: 5
+Output: 5
+Explanation:
+Here are the non-negative integers <= 5 with their corresponding binary representations:
+0 : 0
+1 : 1
+2 : 10
+3 : 11
+4 : 100
+5 : 101
+Among them, only integer 3 disobeys the rule (two consecutive ones) and the other 5
+satisfy the rule.
+Note: 1 <= n <= 109
+
+#################################################################################
+Out of Boundary Paths
+There is an m by n grid with a ball. Given the start coordinate (i,j) of the ball, you can
+move the ball to adjacent cell or cross the grid boundary in four directions (up, down,
+left, right). However, you can at most move N times. Find out the number of paths to move
+the ball out of grid boundary. The answer may be very large, return it after mod 109 + 7.
+Example 1:
+Input:m = 2, n = 2, N = 2, i = 0, j = 0
+Output: 6
+Explanation:
+Example 2:
+Input:m = 1, n = 3, N = 3, i = 0, j = 1
+Output: 12
+Explanation:
+Note:
+    Once you move the ball out of boundary, you cannot move it back.
+    The length and height of the grid is in range [1,50].
+    N is in range [0,50].
+
+#################################################################################
+Maximum Vacation Days
+ LeetCode wants to give one of its best employees the option to travel among N cities to
+collect algorithm problems. But all work and no play makes Jack a dull boy, you could take
+vacations in some particular cities and weeks. Your job is to schedule the traveling to
+maximize the number of vacation days you could take, but there are certain rules and
+restrictions you need to follow.
+Rules and restrictions:
+    You can only travel among N cities, represented by indexes from 0 to N-1. Initially,
+you are in the city indexed 0 on Monday.
+    The cities are connected by flights. The flights are represented as a N*N matrix (not
+necessary symmetrical), called flights representing the airline status from the city i to
+the city j. If there is no flight from the city i to the city j, flights[i][j] = 0;
+Otherwise, flights[i][j] = 1. Also, flights[i][i] = 0 for all i.
+    You totally have K weeks (each week has 7 days) to travel. You can only take flights
+at most once per day and can only take flights on each week's Monday morning. Since flight
+time is so short, we don't consider the impact of flight time.
+    For each city, you can only have restricted vacation days in different weeks, given an
+N*K matrix called days representing this relationship. For the value of days[i][j], it
+represents the maximum days you could take vacation in the city i in the week j.
+You're given the flights matrix and days matrix, and you need to output the maximum
+vacation days you could take during K weeks.
+Example 1:
+Input:flights = [[0,1,1],[1,0,1],[1,1,0]], days = [[1,3,1],[6,0,3],[3,3,3]]
+Output: 12
+Explanation:
+Ans = 6 + 3 + 3 = 12.
+One of the best strategies is:
+1st week : fly from city 0 to city 1 on Monday, and play 6 days and work 1 day.
+(Although you start at city 0, we could also fly to and start at other cities since it is
+Monday.)
+2nd week : fly from city 1 to city 2 on Monday, and play 3 days and work 4 days.
+3rd week : stay at city 2, and play 3 days and work 4 days.
+Example 2:
+Input:flights = [[0,0,0],[0,0,0],[0,0,0]], days = [[1,1,1],[7,7,7],[7,7,7]]
+Output: 3
+Explanation:
+Ans = 1 + 1 + 1 = 3.
+Since there is no flights enable you to move to another city, you have to stay at city 0
+for the whole 3 weeks.
+For each week, you only have one day to play and six days to work.
+So the maximum number of vacation days is 3.
+Example 3:
+Input:flights = [[0,1,1],[1,0,1],[1,1,0]], days = [[7,0,0],[0,7,0],[0,0,7]]
+Output: 21
+Explanation:
+Ans = 7 + 7 + 7 = 21
+One of the best strategies is:
+1st week : stay at city 0, and play 7 days.
+2nd week : fly from city 0 to city 1 on Monday, and play 7 days.
+3rd week : fly from city 1 to city 2 on Monday, and play 7 days.
+Note:
+    N and K are positive integers, which are in the range of [1, 100].
+    In the matrix flights, all the values are integers in the range of [0, 1].
+    In the matrix days, all the values are integers in the range [0, 7].
+    You could stay at a city beyond the number of vacation days, but you should work on
+the extra days, which won't be counted as vacation days.
+    If you fly from the city A to the city B and take the vacation on that day, the
+deduction towards vacation days will count towards the vacation days of city B in that
+week.
+    We don't consider the impact of flight hours towards the calculation of vacation days.
+
+#################################################################################
+Student Attendance Record II
+Given a positive integer n, return the number of all possible attendance records with
+length n, which will be regarded as rewardable. The answer may be very large, return it
+after mod 109 + 7.
+A student attendance record is a string that only contains the following three characters:
+    'A' : Absent.
+    'L' : Late.
+    'P' : Present.
+A record is regarded as rewardable if it doesn't contain more than one 'A' (absent) or
+more than two continuous 'L' (late).
+Example 1:
+Input: n = 2
+Output: 8
+Explanation:
+There are 8 records with length 2 will be regarded as rewardable:
+"PP" , "AP", "PA", "LP", "PL", "AL", "LA", "LL"
+Only "AA" won't be regarded as rewardable owing to more than one absent times.
+Note: The value of n won't exceed 100,000.
+
+#################################################################################
+Remove Boxes
+Given several boxes with different colors represented by different positive numbers.
+You may experience several rounds to remove boxes until there is no box left. Each time
+you can choose some continuous boxes with the same color (composed of k boxes, k >= 1),
+remove them and get k*k points.
+Find the maximum points you can get.
+Example 1:
+Input:
+[1, 3, 2, 2, 2, 3, 4, 3, 1]
+Output:
+23
+Explanation:
+[1, 3, 2, 2, 2, 3, 4, 3, 1]
+----> [1, 3, 3, 4, 3, 1] (3*3=9 points)
+----> [1, 3, 3, 3, 1] (1*1=1 points)
+----> [1, 1] (3*3=9 points)
+----> [] (2*2=4 points)
+Note: The number of boxes n would not exceed 100.
+
+#################################################################################
+Continuous Subarray Sum
+ Given a list of non-negative numbers and a target integer k, write a function to check if
+the array has a continuous subarray of size at least 2 that sums up to the multiple of k,
+that is, sums up to n*k where n is also an integer.
+Example 1:
+Input: [23, 2, 4, 6, 7],  k=6
+Output: True
+Explanation: Because [2, 4] is a continuous subarray of size 2 and sums up to 6.
+Example 2:
+Input: [23, 2, 6, 4, 7],  k=6
+Output: True
+Explanation: Because [23, 2, 6, 4, 7] is an continuous subarray of size 5 and sums up to
+42.
+Note:
+    The length of the array won't exceed 10,000.
+    You may assume the sum of all the numbers is in the range of a signed 32-bit integer.
+
+#################################################################################
+Super Washing Machines
+You have n super washing machines on a line. Initially, each washing machine has some
+dresses or is empty.
+For each move, you could choose any m (1 ≤ m ≤ n) washing machines, and pass one dress of
+each washing machine to one of its adjacent washing machines at the same time .
+Given an integer array representing the number of dresses in each washing machine from
+left to right on the line, you should find the minimum number of moves to make all the
+washing machines have the same number of dresses. If it is not possible to do it, return
+-1.
+Example1
+Input: [1,0,5]
+Output: 3
+Explanation:
+1st move:    1     0 <-- 5    =>    1     1     4
+2nd move:    1 <-- 1 <-- 4    =>    2     1     3
+3rd move:    2     1 <-- 3    =>    2     2     2
+Example2
+Input: [0,3,0]
+Output: 2
+Explanation:
+1st move:    0 <-- 3     0    =>    1     2     0
+2nd move:    1     2 --> 0    =>    1     1     1
+Example3
+Input: [0,2,0]
+Output: -1
+Explanation:
+It's impossible to make all the three washing machines have the same number of dresses.
+Note:
+    The range of n is [1, 10000].
+    The range of dresses number in a super washing machine is [0, 1e5].
+
+#################################################################################
+Longest Palindromic Subsequence
+ Given a string s, find the longest palindromic subsequence's length in s. You may assume
+that the maximum length of s is 1000.
+Example 1:
+Input:
+"bbbab"
+Output:
+4
+One possible longest palindromic subsequence is "bbbb".
+Example 2:
+Input:
+"cbbd"
+Output:
+2
+One possible longest palindromic subsequence is "bb".
+
+#################################################################################
+Freedom Trail
+ In the video game Fallout 4, the quest "Road to Freedom" requires players to reach a
+metal dial called the "Freedom Trail Ring", and use the dial to spell a specific keyword
+in order to open the door.
+Given a string ring, which represents the code engraved on the outer ring and another
+string key, which represents the keyword needs to be spelled. You need to find the minimum
+number of steps in order to spell all the characters in the keyword.
+Initially, the first character of the ring is aligned at 12:00 direction. You need to
+spell all the characters in the string key one by one by rotating the ring clockwise or
+anticlockwise to make each character of the string key aligned at 12:00 direction and then
+by pressing the center button.
+At the stage of rotating the ring to spell the key character key[i]:
+    You can rotate the ring clockwise or anticlockwise one place, which counts as 1 step.
+The final purpose of the rotation is to align one of the string ring's characters at the
+12:00 direction, where this character must equal to the character key[i].
+    If the character key[i] has been aligned at the 12:00 direction, you need to press the
+center button to spell, which also counts as 1 step. After the pressing, you could begin
+to spell the next character in the key (next stage), otherwise, you've finished all the
+spelling.
+Example:
+Input: ring = "godding", key = "gd"
+Output: 4
+Explanation:
+ For the first key character 'g', since it is already in place, we just need 1 step to
+spell this character.
+ For the second key character 'd', we need to rotate the ring "godding" anticlockwise by
+two steps to make it become "ddinggo".
+ Also, we need 1 more step for spelling.
+ So the final output is 4.
+Note:
+    Length of both ring and key will be in range 1 to 100.
+    There are only lowercase letters in both strings and might be some duplcate characters
+in both strings.
+    It's guaranteed that string key could always be spelled by rotating the string ring.
+
+#################################################################################
+Target Sum
+ You are given a list of non-negative integers, a1, a2, ..., an, and a target, S. Now you
+have 2 symbols + and -. For each integer, you should choose one from + and - as its new
+symbol.
+Find out how many ways to assign symbols to make sum of integers equal to target S.
+Example 1:
+Input: nums is [1, 1, 1, 1, 1], S is 3.
+Output: 5
+Explanation:
+-1+1+1+1+1 = 3
++1-1+1+1+1 = 3
++1+1-1+1+1 = 3
++1+1+1-1+1 = 3
++1+1+1+1-1 = 3
+There are 5 ways to assign symbols to make the sum of nums be target 3.
+Note:
+    The length of the given array is positive and will not exceed 20.
+    The sum of elements in the given array will not exceed 1000.
+    Your output answer is guaranteed to be fitted in a 32-bit integer.
+
+#################################################################################
+Predict the Winner
+Given an array of scores that are non-negative integers. Player 1 picks one of the numbers
+from either end of the array followed by the player 2 and then player 1 and so on. Each
+time a player picks a number, that number will not be available for the next player. This
+continues until all the scores have been chosen. The player with the maximum score wins.
+Given an array of scores, predict whether player 1 is the winner. You can assume each
+player plays to maximize his score.
+Example 1:
+Input: [1, 5, 2]
+Output: False
+Explanation: Initially, player 1 can choose between 1 and 2.
+If he chooses 2 (or 1), then player 2 can choose from 1 (or 2) and 5. If player 2 chooses
+5, then player 1 will be left with 1 (or 2).
+So, final score of player 1 is 1 + 2 = 3, and player 2 is 5.
+Hence, player 1 will never be the winner and you need to return False.
+Example 2:
+Input: [1, 5, 233, 7]
+Output: True
+Explanation: Player 1 first chooses 1. Then player 2 have to choose between 5 and 7. No
+matter which number player 2 choose, player 1 can choose 233.
+Finally, player 1 has more score (234) than player 2 (12), so you need to return True
+representing player1 can win.
+Note:
+    1 <= length of the array <= 20.
+    Any scores in the given array are non-negative integers and will not exceed
+10,000,000.
+    If the scores of both players are equal, then player 1 is still the winner.
+
+#################################################################################
+Ones and Zeroes
+In the computer world, use restricted resource you have to generate maximum benefit is
+what we always want to pursue.
+For now, suppose you are a dominator of m 0s and n 1s respectively. On the other hand,
+there is an array with strings consisting of only 0s and 1s.
+Now your task is to find the maximum number of strings that you can form with given m 0s
+and n 1s. Each 0 and 1 can be used at most once.
+Note:
+    The given numbers of 0s and 1s will both not exceed 100
+    The size of given string array won't exceed 600.
+Example 1:
+Input: Array = {"10", "0001", "111001", "1", "0"}, m = 5, n = 3
+Output: 4
+Explanation: This are totally 4 strings can be formed by the using of 5 0s and 3 1s, which
+are “10,”0001”,”1”,”0”
+Example 2:
+Input: Array = {"10", "0", "1"}, m = 1, n = 1
+Output: 2
+Explanation: You could form "10", but then you'd have nothing left. Better form "0" and
+"1".
+
+#################################################################################
+Concatenated Words
+Given a list of words (without duplicates), please write a program that returns all
+concatenated words in the given list of words.
+A concatenated word is defined as a string that is comprised entirely of at least two
+shorter words in the given array.
+Example:
+Input:
+["cat","cats","catsdogcats","dog","dogcatsdog","hippopotamuses","rat","ratcatdogcat"]
+Output: ["catsdogcats","dogcatsdog","ratcatdogcat"]
+Explanation: "catsdogcats" can be concatenated by "cats", "dog" and "cats";
+ "dogcatsdog" can be concatenated by "dog", "cats" and "dog";
+"ratcatdogcat" can be concatenated by "rat", "cat", "dog" and "cat".
+Note:
+    The number of elements of the given array will not exceed 10,000
+    The length sum of elements in the given array will not exceed 600,000.
+    All the input string will only include lower case letters.
+    The returned elements order does not matter.
+
+#################################################################################
+Encode String with Shortest Length
+Given a non-empty string, encode the string such that its encoded length is the shortest.
+The encoding rule is: k[encoded_string], where the encoded_string inside the square
+brackets is being repeated exactly k times.
+Note:
+    k will be a positive integer and encoded string will not be empty or have extra space.
+    You may assume that the input string contains only lowercase English letters. The
+string's length is at most 160.
+    If an encoding process does not make the string shorter, then do not encode it. If
+there are several solutions, return any of them is fine.
+Example 1:
+Input: "aaa"
+Output: "aaa"
+Explanation: There is no way to encode it such that it is shorter than the input string,
+so we do not encode it.
+Example 2:
+Input: "aaaaa"
+Output: "5[a]"
+Explanation: "5[a]" is shorter than "aaaaa" by 1 character.
+Example 3:
+Input: "aaaaaaaaaa"
+Output: "10[a]"
+Explanation: "a9[a]" or "9[a]a" are also valid solutions, both of them have the same
+length = 5, which is the same as "10[a]".
+Example 4:
+Input: "aabcaabcd"
+Output: "2[aabc]d"
+Explanation: "aabc" occurs twice, so one answer can be "2[aabc]d".
+Example 5:
+Input: "abbbabbbcabbbabbbc"
+Output: "2[2[abbb]c]"
+Explanation: "abbbabbbc" occurs twice, but "abbbabbbc" can also be encoded to "2[abbb]c",
+so one answer can be "2[2[abbb]c]".
+
+#################################################################################
+Non-negative Integers without Consecutive Ones
+Out of Boundary Paths
+Maximum Vacation Days
+Student Attendance Record II
+Remove Boxes
+Continuous Subarray Sum
+Super Washing Machines
+Longest Palindromic Subsequence
+Freedom Trail
+Target Sum
+Predict the Winner
+Ones and Zeroes
+Concatenated Words
+Encode String with Shortest Length
+#################################################################################
+vim:tw=90:et:norl:

@@ -1,0 +1,261 @@
+#################################################################################
+Combination Sum IV
+ Given an integer array with all positive numbers and no duplicates, find the number of possible combinations that add up to a positive integer target.
+Example:
+nums = [1, 2, 3]
+target = 4
+The possible combination ways are:
+(1, 1, 1, 1)
+(1, 1, 2)
+(1, 2, 1)
+(1, 3)
+(2, 1, 1)
+(2, 2)
+(3, 1)
+Note that different sequences are counted as different combinations.
+Therefore the output is 7.
+Follow up:
+What if negative numbers are allowed in the given array?
+How does it change the problem?
+What limitation we need to add to the question to allow negative numbers
+
+#################################################################################
+Wiggle Subsequence
+A sequence of numbers is called a wiggle sequence if the differences between successive numbers strictly alternate between positive and negative. The first difference (if one exists) may be either positive or negative. A sequence with fewer than two elements is trivially a wiggle sequence.
+For example, [1,7,4,9,2,5] is a wiggle sequence because the differences (6,-3,5,-7,3) are alternately positive and negative. In contrast, [1,4,7,2,5] and [1,7,4,5,5] are not wiggle sequences, the first because its first two differences are positive and the second because its last difference is zero.
+Given a sequence of integers, return the length of the longest subsequence that is a wiggle sequence. A subsequence is obtained by deleting some number of elements (eventually, also zero) from the original sequence, leaving the remaining elements in their original order.
+Examples:
+Input: [1,7,4,9,2,5]
+Output: 6
+The entire sequence is a wiggle sequence.
+Input: [1,17,5,10,13,15,10,5,16,8]
+Output: 7
+There are several subsequences that achieve this length. One is [1,17,10,13,10,16,8].
+Input: [1,2,3,4,5,6,7,8,9]
+Output: 2
+Follow up:
+Can you do it in O(n) time?
+
+#################################################################################
+Guess Number Higher or Lower II
+We are playing the Guess Game. The game is as follows:
+I pick a number from 1 to n. You have to guess which number I picked.
+Every time you guess wrong, I'll tell you whether the number I picked is higher or lower.
+However, when you guess a particular number x, and you guess wrong, you pay $x. You win the game when you guess the number I picked.
+Example:
+n = 10, I pick 8.
+First round:  You guess 5, I tell you that it's higher. You pay $5.
+Second round: You guess 7, I tell you that it's higher. You pay $7.
+Third round:  You guess 9, I tell you that it's lower. You pay $9.
+Game over. 8 is the number I picked.
+You end up paying $5 + $7 + $9 = $21.
+Given a particular n ≥ 1, find out how much money you need to have to guarantee a win.
+
+#################################################################################
+Largest Divisible Subset
+ Given a set of distinct positive integers, find the largest subset such that every pair (Si, Sj) of elements in this subset satisfies: Si % Sj = 0 or Sj % Si = 0.
+If there are multiple solutions, return any subset is fine.
+Example 1:
+nums: [1,2,3]
+Result: [1,2] (of course, [1,3] will also be ok)
+Example 2:
+nums: [1,2,4,8]
+Result: [1,2,4,8]
+
+#################################################################################
+Max Sum of Rectangle No Larger Than K
+Given a non-empty 2D matrix matrix and an integer k, find the max sum of a rectangle in the matrix such that its sum is no larger than k.
+Example:
+Given matrix = [
+  [1,  0, 1],
+  [0, -2, 3]
+]
+k = 2
+The answer is 2. Because the sum of rectangle [[0, 1], [-2, 3]] is 2 and 2 is the max number no larger than k (k = 2).
+Note:
+    The rectangle inside the matrix must have an area > 0.
+    What if the number of rows is much larger than the number of columns?
+
+#################################################################################
+Bomb Enemy
+Given a 2D grid, each cell is either a wall 'W', an enemy 'E' or empty '0' (the number zero), return the maximum enemies you can kill using one bomb.
+The bomb kills all the enemies in the same row and column from the planted point until it hits the wall since the wall is too strong to be destroyed.
+Note that you can only put the bomb at an empty cell.
+Example:
+For the given grid
+0 E 0 0
+E 0 W E
+0 E 0 0
+return 3. (Placing a bomb at (1,1) kills 3 enemies)
+
+#################################################################################
+Count Numbers with Unique Digits
+Given a non-negative integer n, count all numbers with unique digits, x, where 0 ≤ x < 10n.
+Example:
+Given n = 2, return 91. (The answer should be the total numbers in the range of 0 ≤ x < 100, excluding [11,22,33,44,55,66,77,88,99])
+
+#################################################################################
+Russian Doll Envelopes
+You have a number of envelopes with widths and heights given as a pair of integers (w, h). One envelope can fit into another if and only if both the width and height of one envelope is greater than the width and height of the other envelope.
+What is the maximum number of envelopes can you Russian doll? (put one inside other)
+Example:
+Given envelopes = [[5,4],[6,4],[6,7],[2,3]], the maximum number of envelopes you can Russian doll is 3 ([2,3] => [5,4] => [6,7]).
+
+#################################################################################
+Android Unlock Patterns
+ Given an Android 3x3 key lock screen and two integers m and n, where 1 ≤ m ≤ n ≤ 9, count the total number of unlock patterns of the Android lock screen, which consist of minimum of m keys and maximum n keys.
+Rules for a valid pattern:
+    Each pattern must connect at least m keys and at most n keys.
+    All the keys must be distinct.
+    If the line connecting two consecutive keys in the pattern passes through any other keys, the other keys must have previously selected in the pattern. No jumps through non selected key is allowed.
+    The order of keys used matters.
+Explanation:
+| 1 | 2 | 3 |
+| 4 | 5 | 6 |
+| 7 | 8 | 9 |
+Invalid move: 4 - 1 - 3 - 6
+Line 1 - 3 passes through key 2 which had not been selected in the pattern.
+Invalid move: 4 - 1 - 9 - 2
+Line 1 - 9 passes through key 5 which had not been selected in the pattern.
+Valid move: 2 - 4 - 1 - 3 - 6
+Line 1 - 3 is valid because it passes through key 2, which had been selected in the pattern
+Valid move: 6 - 5 - 4 - 1 - 9 - 2
+Line 1 - 9 is valid because it passes through key 5, which had been selected in the pattern.
+Example:
+Given m = 1, n = 1, return 9.
+
+#################################################################################
+Integer Break
+Given a positive integer n, break it into the sum of at least two positive integers and maximize the product of those integers. Return the maximum product you can get.
+For example, given n = 2, return 1 (2 = 1 + 1); given n = 10, return 36 (10 = 3 + 3 + 4).
+Note: You may assume that n is not less than 2 and not larger than 58.
+
+#################################################################################
+Counting Bits
+Given a non negative integer number num. For every numbers i in the range 0 ≤ i ≤ num calculate the number of 1's in their binary representation and return them as an array.
+Example:
+For num = 5 you should return [0,1,1,2,1,2].
+Follow up:
+    It is very easy to come up with a solution with run time O(n*sizeof(integer)). But can you do it in linear time O(n) /possibly in a single pass?
+    Space complexity should be O(n).
+    Can you do it like a boss? Do it without using any builtin function like __builtin_popcount in c++ or in any other language.
+
+#################################################################################
+Coin Change
+ You are given coins of different denominations and a total amount of money amount. Write a function to compute the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1.
+Example 1:
+coins = [1, 2, 5], amount = 11
+return 3 (11 = 5 + 5 + 1)
+Example 2:
+coins = [2], amount = 3
+return -1.
+Note:
+You may assume that you have an infinite number of each kind of coin.
+
+#################################################################################
+Create Maximum Number
+ Given two arrays of length m and n with digits 0-9 representing two numbers. Create the maximum number of length k <= m + n from digits of the two. The relative order of the digits from the same array must be preserved. Return an array of the k digits. You should try to optimize your time and space complexity.
+Example 1:
+nums1 = [3, 4, 6, 5]
+nums2 = [9, 1, 2, 5, 8, 3]
+k = 5
+return [9, 8, 6, 5, 3]
+Example 2:
+nums1 = [6, 7]
+nums2 = [6, 0, 4]
+k = 5
+return [6, 7, 6, 0, 4]
+Example 3:
+nums1 = [3, 9]
+nums2 = [8, 9]
+k = 3
+return [9, 8, 9]
+
+#################################################################################
+Burst Balloons
+ Given n balloons, indexed from 0 to n-1. Each balloon is painted with a number on it represented by array nums. You are asked to burst all the balloons. If the you burst balloon i you will get nums[left] * nums[i] * nums[right] coins. Here left and right are adjacent indices of i. After the burst, the left and right then becomes adjacent.
+Find the maximum coins you can collect by bursting the balloons wisely.
+Note:
+(1) You may imagine nums[-1] = nums[n] = 1. They are not real therefore you can not burst them.
+(2) 0 ≤ n ≤ 500, 0 ≤ nums[i] ≤ 100
+Example:
+Given [3, 1, 5, 8]
+Return 167
+    nums = [3,1,5,8] --> [3,5,8] -->   [3,8]   -->  [8]  --> []
+   coins =  3*1*5      +  3*5*8    +  1*3*8      + 1*8*1   = 167
+
+#################################################################################
+Best Time to Buy and Sell Stock with Cooldown
+Say you have an array for which the ith element is the price of a given stock on day i.
+Design an algorithm to find the maximum profit. You may complete as many transactions as you like (ie, buy one and sell one share of the stock multiple times) with the following restrictions:
+    You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).
+    After you sell your stock, you cannot buy stock on next day. (ie, cooldown 1 day)
+Example:
+prices = [1, 2, 3, 0, 2]
+maxProfit = 3
+transactions = [buy, sell, cooldown, buy, sell]
+
+#################################################################################
+Range Sum Query 2D - Immutable
+Given a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1, col1) and lower right corner (row2, col2).
+Range Sum Query 2D
+The above rectangle (with the red border) is defined by (row1, col1) = (2, 1) and (row2, col2) = (4, 3), which contains sum = 8.
+Example:
+Given matrix = [
+  [3, 0, 1, 4, 2],
+  [5, 6, 3, 2, 1],
+  [1, 2, 0, 1, 5],
+  [4, 1, 0, 1, 7],
+  [1, 0, 3, 0, 5]
+]
+sumRegion(2, 1, 4, 3) -> 8
+sumRegion(1, 1, 2, 2) -> 11
+sumRegion(1, 2, 2, 4) -> 12
+Note:
+    You may assume that the matrix does not change.
+    There are many calls to sumRegion function.
+    You may assume that row1 ≤ row2 and col1 ≤ col2.
+
+#################################################################################
+Range Sum Query - Immutable
+Given an integer array nums, find the sum of the elements between indices i and j (i ≤ j), inclusive.
+Example:
+Given nums = [-2, 0, 3, -5, 2, -1]
+sumRange(0, 2) -> 1
+sumRange(2, 5) -> -1
+sumRange(0, 5) -> -3
+Note:
+    You may assume that the array does not change.
+    There are many calls to sumRange function.
+
+#################################################################################
+Longest Increasing Subsequence
+ Given an unsorted array of integers, find the length of longest increasing subsequence.
+For example,
+Given [10, 9, 2, 5, 3, 7, 101, 18],
+The longest increasing subsequence is [2, 3, 7, 101], therefore the length is 4. Note that there may be more than one LIS combination, it is only necessary for you to return the length.
+Your algorithm should run in O(n2) complexity.
+Follow up: Could you improve it to O(n log n) time complexity?
+
+#################################################################################
+Combination Sum IV
+Wiggle Subsequence
+Guess Number Higher or Lower II
+Largest Divisible Subset
+Max Sum of Rectangle No Larger Than K
+Bomb Enemy
+Count Numbers with Unique Digits
+Russian Doll Envelopes
+Android Unlock Patterns
+Integer Break
+Counting Bits
+Coin Change
+Create Maximum Number
+Burst Balloons
+Best Time to Buy and Sell Stock with Cooldown
+Range Sum Query 2D - Immutable
+Range Sum Query - Immutable
+Longest Increasing Subsequence
+
+#################################################################################
+vim:tw=90:et:norl:

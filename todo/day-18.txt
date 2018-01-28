@@ -1,0 +1,382 @@
+#################################################################################
+Longest Word in Dictionary
+Given a list of strings words representing an English Dictionary, find the longest word in words that can be built one character at a time by other words in words. If there is more than one possible answer, return the longest word with the smallest lexicographical order.
+If there is no answer, return the empty string.
+Example 1:
+Input:
+words = ["w","wo","wor","worl", "world"]
+Output: "world"
+Explanation:
+The word "world" can be built one character at a time by "w", "wo", "wor", and "worl".
+Example 2:
+Input:
+words = ["a", "banana", "app", "appl", "ap", "apply", "apple"]
+Output: "apple"
+Explanation:
+Both "apply" and "apple" can be built from other words in the dictionary. However, "apple" is lexicographically smaller than "apply".
+Note:
+All the strings in the input will only contain lowercase letters.
+The length of words will be in the range [1, 1000].
+The length of words[i] will be in the range [1, 30].
+
+#################################################################################
+Palindrome Pairs
+ Given a list of unique words, find all pairs of distinct indices (i, j) in the given
+list, so that the concatenation of the two words, i.e. words[i] + words[j] is a
+palindrome.
+Example 1:
+Given words = ["bat", "tab", "cat"]
+Return [[0, 1], [1, 0]]
+The palindromes are ["battab", "tabbat"]
+Example 2:
+Given words = ["abcd", "dcba", "lls", "s", "sssll"]
+Return [[0, 1], [1, 0], [3, 2], [2, 4]]
+The palindromes are ["dcbaabcd", "abcddcba", "slls", "llssssll"]
+
+#################################################################################
+Maximum XOR of Two Numbers in an Array
+Given a non-empty array of numbers, a0, a1, a2, … , an-1, where 0 ≤ ai < 231.
+Find the maximum result of ai XOR aj, where 0 ≤ i, j < n.
+Could you do this in O(n) runtime?
+Example:
+Input: [3, 10, 5, 25, 2, 8]
+Output: 28
+Explanation: The maximum result is 5 ^ 25 = 28.
+
+#################################################################################
+Implement Trie (Prefix Tree)
+ Implement a trie with insert, search, and startsWith methods.
+Note:
+You may assume that all inputs are consist of lowercase letters a-z.
+
+#################################################################################
+Word Search II
+ Given a 2D board and a list of words from the dictionary, find all words in the board.
+Each word must be constructed from letters of sequentially adjacent cell, where "adjacent"
+cells are those horizontally or vertically neighboring. The same letter cell may not be
+used more than once in a word.
+For example,
+Given words = ["oath","pea","eat","rain"] and board =
+[
+  ['o','a','a','n'],
+  ['e','t','a','e'],
+  ['i','h','k','r'],
+  ['i','f','l','v']
+]
+Return ["eat","oath"].
+Note:
+You may assume that all inputs are consist of lowercase letters a-z.
+click to show hint.
+You would need to optimize your backtracking to pass the larger test. Could you stop
+backtracking earlier?
+If the current candidate does not exist in all words' prefix, you could stop backtracking
+immediately. What kind of data structure could answer such query efficiently? Does a hash
+table work? Why or why not? How about a Trie? If you would like to learn how to implement
+a basic trie, please work on this problem: Implement Trie (Prefix Tree) first.
+
+#################################################################################
+Replace Words
+ In English, we have a concept called root, which can be followed by some other words to
+form another longer word - let's call this word successor. For example, the root an,
+followed by other, which can form another word another.
+Now, given a dictionary consisting of many roots and a sentence. You need to replace all
+the successor in the sentence with the root forming it. If a successor has many roots can
+form it, replace it with the root with the shortest length.
+You need to output the sentence after the replacement.
+Example 1:
+Input: dict = ["cat", "bat", "rat"]
+sentence = "the cattle was rattled by the battery"
+Output: "the cat was rat by the bat"
+Note:
+    The input will only have lower-case letters.
+    1 <= dict words number <= 1000
+    1 <= sentence words number <= 1000
+    1 <= root length <= 100
+    1 <= sentence words length <= 1000
+
+#################################################################################
+Add and Search Word - Data structure design
+ Design a data structure that supports the following two operations:
+void addWord(word)
+bool search(word)
+search(word) can search a literal word or a regular expression string containing only
+letters a-z or .. A . means it can represent any one letter.
+For example:
+addWord("bad")
+addWord("dad")
+addWord("mad")
+search("pad") -> false
+search("bad") -> true
+search(".ad") -> true
+search("b..") -> true
+Note:
+You may assume that all words are consist of lowercase letters a-z.
+click to show hint.
+You should be familiar with how a Trie works. If not, please work on this problem:
+Implement Trie (Prefix Tree) first.
+
+#################################################################################
+Top K Frequent Words
+Given a non-empty list of words, return the k most frequent elements.
+Your answer should be sorted by frequency from highest to lowest. If two words have the
+same frequency, then the word with the lower alphabetical order comes first.
+Example 1:
+Input: ["i", "love", "leetcode", "i", "love", "coding"], k = 2
+Output: ["i", "love"]
+Explanation: "i" and "love" are the two most frequent words.
+    Note that "i" comes before "love" due to a lower alphabetical order.
+Example 2:
+Input: ["the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"], k = 4
+Output: ["the", "is", "sunny", "day"]
+Explanation: "the", "is", "sunny" and "day" are the four most frequent words,
+    with the number of occurrence being 4, 3, 2 and 1 respectively.
+Note:
+    You may assume k is always valid, 1 ≤ k ≤ number of unique elements.
+    Input words contain only lowercase letters.
+Follow up:
+    Try to solve it in O(n log k) time and O(n) extra space.
+
+#################################################################################
+Longest Word in Dictionary
+Given a list of strings words representing an English Dictionary, find the longest word in
+words that can be built one character at a time by other words in words. If there is more
+than one possible answer, return the longest word with the smallest lexicographical order.
+If there is no answer, return the empty string.
+Example 1:
+Input:
+words = ["w","wo","wor","worl", "world"]
+Output: "world"
+Explanation:
+The word "world" can be built one character at a time by "w", "wo", "wor", and "worl".
+Example 2:
+Input:
+words = ["a", "banana", "app", "appl", "ap", "apply", "apple"]
+Output: "apple"
+Explanation:
+Both "apply" and "apple" can be built from other words in the dictionary. However, "apple"
+is lexicographically smaller than "apply".
+Note:
+All the strings in the input will only contain lowercase letters.
+The length of words will be in the range [1, 1000].
+The length of words[i] will be in the range [1, 30].
+
+#################################################################################
+Design Search Autocomplete System
+Design a search autocomplete system for a search engine. Users may input a sentence (at
+least one word and end with a special character '
+#'). For each character they type except
+'
+#', you need to return the top 3 historical hot sentences that have prefix the same as
+the part of sentence already typed. Here are the specific rules:
+    The hot degree for a sentence is defined as the number of times a user typed the
+exactly same sentence before.
+    The returned top 3 hot sentences should be sorted by hot degree (The first is the
+hottest one). If several sentences have the same degree of hot, you need to use ASCII-code
+order (smaller one appears first).
+    If less than 3 hot sentences exist, then just return as many as you can.
+    When the input is a special character, it means the sentence ends, and in this case,
+you need to return an empty list.
+Your job is to implement the following functions:
+The constructor function:
+AutocompleteSystem(String[] sentences, int[] times): This is the constructor. The input is
+historical data. Sentences is a string array consists of previously typed sentences. Times
+is the corresponding times a sentence has been typed. Your system should record these
+historical data.
+Now, the user wants to input a new sentence. The following function will provide the next
+character the user types:
+List<String> input(char c): The input c is the next character typed by the user. The
+character will only be lower-case letters ('a' to 'z'), blank space (' ') or a special
+character ('
+#'). Also, the previously typed sentence should be recorded in your system.
+The output will be the top 3 historical hot sentences that have prefix the same as the
+part of sentence already typed.
+Example:
+Operation: AutocompleteSystem(["i love you", "island","ironman", "i love leetcode"],
+[5,3,2,2])
+The system have already tracked down the following sentences and their corresponding
+times:
+"i love you" : 5 times
+"island" : 3 times
+"ironman" : 2 times
+"i love leetcode" : 2 times
+Now, the user begins another search:
+Operation: input('i')
+Output: ["i love you", "island","i love leetcode"]
+Explanation:
+There are four sentences that have prefix "i". Among them, "ironman" and "i love leetcode"
+have same hot degree. Since ' ' has ASCII code 32 and 'r' has ASCII code 114, "i love
+leetcode" should be in front of "ironman". Also we only need to output top 3 hot
+sentences, so "ironman" will be ignored.
+Operation: input(' ')
+Output: ["i love you","i love leetcode"]
+Explanation:
+There are only two sentences that have prefix "i ".
+Operation: input('a')
+Output: []
+Explanation:
+There are no sentences that have prefix "i a".
+Operation: input('
+#')
+Output: []
+Explanation:
+The user finished the input, the sentence "i a" should be saved as a historical sentence
+in system. And the following input will be counted as a new search.
+Note:
+    The input sentence will always start with a letter and end with '
+#', and only one
+blank space will exist between two words.
+    The number of complete sentences that to be searched won't exceed 100. The length of
+each sentence including those in the historical data won't exceed 100.
+    Please use double-quote instead of single-quote when you write test cases even for a
+character input.
+    Please remember to RESET your class variables declared in class AutocompleteSystem, as
+static/class variables are persisted across multiple test cases. Please see here for more
+details.
+
+#################################################################################
+Word Squares
+Given a set of words (without duplicates), find all word squares you can build from them.
+A sequence of words forms a valid word square if the kth row and column read the exact
+same string, where 0 ≤ k < max(numRows, numColumns).
+For example, the word sequence ["ball","area","lead","lady"] forms a word square because
+each word reads the same both horizontally and vertically.
+b a l l
+a r e a
+l e a d
+l a d y
+Note:
+    There are at least 1 and at most 1000 words.
+    All words will have the exact same length.
+    Word length is at least 1 and at most 5.
+    Each word contains only lowercase English alphabet a-z.
+Example 1:
+Input:
+["area","lead","wall","lady","ball"]
+Output:
+[
+  [ "wall",
+    "area",
+    "lead",
+    "lady"
+  ],
+  [ "ball",
+    "area",
+    "lead",
+    "lady"
+  ]
+]
+Explanation:
+The output consists of two word squares. The order of output does not matter (just the
+order of words in each word square matters).
+Example 2:
+Input:
+["abat","baba","atan","atal"]
+Output:
+[
+  [ "baba",
+    "abat",
+    "baba",
+    "atan"
+  ],
+  [ "baba",
+    "abat",
+    "baba",
+    "atal"
+  ]
+]
+Explanation:
+The output consists of two word squares. The order of output does not matter (just the
+order of words in each word square matters).
+
+#################################################################################
+Concatenated Words
+Given a list of words (without duplicates), please write a program that returns all
+concatenated words in the given list of words.
+A concatenated word is defined as a string that is comprised entirely of at least two
+shorter words in the given array.
+Example:
+Input:
+["cat","cats","catsdogcats","dog","dogcatsdog","hippopotamuses","rat","ratcatdogcat"]
+Output: ["catsdogcats","dogcatsdog","ratcatdogcat"]
+Explanation: "catsdogcats" can be concatenated by "cats", "dog" and "cats";
+ "dogcatsdog" can be concatenated by "dog", "cats" and "dog";
+"ratcatdogcat" can be concatenated by "rat", "cat", "dog" and "cat".
+Note:
+    The number of elements of the given array will not exceed 10,000
+    The length sum of elements in the given array will not exceed 600,000.
+    All the input string will only include lower case letters.
+    The returned elements order does not matter.
+
+#################################################################################
+Map Sum Pairs
+ Implement a MapSum class with insert, and sum methods.
+For the method insert, you'll be given a pair of (string, integer). The string represents
+the key and the integer represents the value. If the key already existed, then the
+original key-value pair will be overridden to the new one.
+For the method sum, you'll be given a string representing the prefix, and you need to
+return the sum of all the pairs' value whose key starts with the prefix.
+Example 1:
+Input: insert("apple", 3), Output: Null
+Input: sum("ap"), Output: 3
+Input: insert("app", 2), Output: Null
+Input: sum("ap"), Output: 5
+
+#################################################################################
+Implement Magic Dictionary
+ Implement a magic directory with buildDict, and search methods.
+For the method buildDict, you'll be given a list of non-repetitive words to build a
+dictionary.
+For the method search, you'll be given a word, and judge whether if you modify exactly one
+character into another character in this word, the modified word is in the dictionary you
+just built.
+Example 1:
+Input: buildDict(["hello", "leetcode"]), Output: Null
+Input: search("hello"), Output: False
+Input: search("hhllo"), Output: True
+Input: search("hell"), Output: False
+Input: search("leetcoded"), Output: False
+Note:
+    You may assume that all the inputs are consist of lowercase letters a-z.
+    For contest purpose, the test data is rather small by now. You could think about
+highly efficient algorithm after the contest.
+    Please remember to RESET your class variables declared in class MagicDictionary, as
+static/class variables are persisted across multiple test cases. Please see here for more
+details.
+
+#################################################################################
+Prefix and Suffix Search
+ Given many words, words[i] has weight i.
+Design a class WordFilter that supports one function, WordFilter.f(String prefix, String
+suffix). It will return the word with given prefix and suffix with maximum weight. If no
+word exists, return -1.
+Examples:
+Input:
+WordFilter(["apple"])
+WordFilter.f("a", "e") // returns 0
+WordFilter.f("b", "") // returns -1
+Note:
+    words has length in range [1, 15000].
+    For each test case, up to words.length queries WordFilter.f may be made.
+    words[i] has length in range [1, 10].
+    prefix, suffix have lengths in range [0, 10].
+    words[i] and prefix, suffix queries consist of lowercase letters only.
+
+#################################################################################
+Longest Word in Dictionary
+Palindrome Pairs
+Maximum XOR of Two Numbers in an Array
+Implement Trie (Prefix Tree)
+Word Search II
+Replace Words
+Add and Search Word - Data structure design
+Top K Frequent Words
+Longest Word in Dictionary
+Design Search Autocomplete System
+Word Squares
+Concatenated Words
+Map Sum Pairs
+Implement Magic Dictionary
+Prefix and Suffix Search
+
+#################################################################################
+vim:tw=90:et:norl:

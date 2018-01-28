@@ -11,10 +11,10 @@
 using namespace std;
 
 
-//######################################### Use the last3Sum to compute the Closest  ######################################### 
+//######################################### Use the last3Sum to compute the Closest  #########################################
 public int threeSumClosest(int[] nums, int target) {
 
-    int n = nums.length; 
+    int n = nums.length;
     if(n<3) return -1;
     int last3Sum = nums[0] + nums[1] + nums[2];
     int result = 0;
@@ -59,7 +59,7 @@ int threeSumClosest(vector<int>& nums, int target) {
       continue;
     }
     int left = i+1;
-    int right = len-1; 
+    int right = len-1;
     while(left < right) {
        // optimization
        //if(left > i+1 && nums[left+1] == nums[left]) {
@@ -89,3 +89,4 @@ int threeSumClosest(vector<int>& nums, int target) {
 int main() {
 
 }
+/* vim: set ts=2 sw=2 sts=2 tw=120 et: */

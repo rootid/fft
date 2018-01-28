@@ -1,19 +1,21 @@
-######################################### StringBuilder  ######################################### 
+######################################### StringBuilder  #########################################
 insert(0, char) == append+reverse
 
-######################################### Arrays ######################################### 
+######################################### Arrays #########################################
 Arrays.sort([]); : Sort
 Arrays.equals([], []) : Compare
+Arrays.binarySearch() : int index = Arrays.binarySearch(sortedArray, key);
+//If element not found ~idex (1's complement - gives position to be added)
 
-######################################### PECS ###################################################  
+######################################### PECS ###################################################
 Producer extends : e.g. List<? extends Integer> , pushAll(<? extends T> E)
 Consumer super : e.g. List<? super Integer> , popAll(<? super T> E)
-######################################### Logical v/s bit operator######################################### 
+######################################### Logical v/s bit operator#########################################
 Bit (single) : &,|,^,!
-Logical (more) : && , || 
-######################################### Primitive data type ######################################### 
+Logical (more) : && , ||
+######################################### Primitive data type #########################################
 
-8 bits --> 1 byte/octet --> 2 nibble/hex 
+8 bits --> 1 byte/octet --> 2 nibble/hex
 
 ------------------------------------------------------------------------------------------------------------
 Type    | Description               |  Default  |   Size      |  Example Literals
@@ -27,7 +29,7 @@ long    | twos complement integer   |  0        |  (8)64 bits |  -2L, -1L, 0L, 1
 float   | IEEE 754 floating point   |  0.0      |  (4)32 bits |  1.23e100f, -1.23e-100f, .3f, 3.14F
 double  | IEEE 754 floating point   |  0.0      |  (8)64 bits |  1.23456e300d, -1.23456e-300d, 1e1d
 ------------------------------------------------------------------------------------------------------------
-######################################### Objects API ######################################### 
+######################################### Objects API #########################################
 Objects.nonNull() : (boolean) Returns true if the provided reference is non-null otherwise returns
 false.
 Objects.isNull() : (boolean) Returns true if the provided reference is null otherwise returns false.
@@ -35,13 +37,13 @@ Objects.isNull() : (boolean) Returns true if the provided reference is null othe
 targets.computeIfAbsent(ticket[0], k -> new PriorityQueue()).add(ticket[1]);
 
 https://stackoverflow.com/questions/34585444/java-lambdas-20-times-slower-than-anonymous-classes
-It's not computeIfAbsent, it's lambdas. 
-If you replace the lambda with an ugly anonymous class, it will work 20 times faster 
-or so (and slightly faster than containsKey because you don't look up the key twice). 
+It's not computeIfAbsent, it's lambdas.
+If you replace the lambda with an ugly anonymous class, it will work 20 times faster
+or so (and slightly faster than containsKey because you don't look up the key twice).
 That's probably because the OJ doesn't include lambda
 warm-up phase in its benchmarks. See my question about that on StackOverflow.
 
-######################################### Must Know ######################################### 
+######################################### Must Know #########################################
 
 Q. result.add(new ArrayList(currentResult)); V/S result.add(currentResult);
 => when you use add/addAll function of List, it just add a copy of reference of the object into the List instead of a new copy of the object.
@@ -51,7 +53,7 @@ Q. Use of ArrayDeque
 => LinkedList is not the best choice to implement a queue in Java. https://docs.oracle.com/javase/7/docs/api/java/util/Queue.html
    Queue<UndirectedGraphNode> q = new ArrayDeque<>; this way if you change
 
-######################################### Sort ######################################### 
+######################################### Sort #########################################
 1. Pair Sort
    Collections.sort(intervalsList, (Interval a, Interval b) -> a.start - b.start);
    //OR
@@ -63,46 +65,46 @@ Q. Use of ArrayDeque
 2. Reverse Sort
     Collections.sort(list, Collections.reverseOrder());
 
-######################################### Stack ######################################### 
+######################################### Stack #########################################
 Deque<Character> p = new ArrayDeque<>(s.length()); //push,pop
 Stack<Character> p = new Stack<>(); //push,pop
 
-######################################### Map ######################################### 
+######################################### Map #########################################
 1. LinkedHashMap : DLL (maintains the insertion order)
 2. containsKey(Key k) : boolean
-3. entrySet() : Set<Map.Entry<K,V>> 
-4. keySet() :  Set<K> 
+3. entrySet() : Set<Map.Entry<K,V>>
+4. keySet() :  Set<K>
 
-######################################### valueOf v/s parseInt ######################################### 
+######################################### valueOf v/s parseInt #########################################
 //Convert String to Integer/int
 Integer.valueOf() returns an Integer object,
 while Integer.parseInt() returns an int primitive.
-######################################### Regex ######################################### 
-######################################### Replace (()|[]|{}) with empty string ######################################### 
+######################################### Regex #########################################
+######################################### Replace (()|[]|{}) with empty string #########################################
 String newString = input.replaceAll("(\\(\\)|\\[\\]|\\{\\})", "");
 
-####################### Convert currentSet to list ####################### 
+####################### Convert currentSet to list #######################
 List<String> copy = currentSet.stream().collect(Collectors.toList());
-####################### Convert currentList to list ####################### 
+####################### Convert currentList to list #######################
 List<Integer> copy = currentList.stream().collect(Collectors.toList());
-####################### Convert currentArr to list ####################### 
+####################### Convert currentArr to list #######################
 List<Integer> lst =  IntStream.of(currentArr).boxed().collect(Collectors.toList());
 
-####################### Copy nums to Rest ####################### 
+####################### Copy nums to Rest #######################
 int[] rest = Arrays.copyOf(nums, nums.length);
 
 
-####################### Create List ####################### 
+####################### Create List #######################
 List<String> list = new ArrayList<String>(Arrays.asList("one", "two", "three"));
 
-################### Bits ################### 
+################### Bits ###################
  1. Use -diff instead of ~(diff - 1) Usage to get the last set bit int a = a & -a;
 
-################### Count set bit  ################### 
+################### Count set bit  ###################
 Integer.bitCount()
 eg.  Integer.bitCount(x ^ y); # count set bits for x ^ y
 
-######################################### Int java  ######################################### 
+######################################### Int java  #########################################
 An Integer in Java has 32 bits or 4 bytes , e.g. 00101000011110010100001000011010.
 To count the 1s in the Integer representation we put the input int
 n in bit AND with 1 (that is represented as
@@ -113,7 +115,7 @@ n = n>>>1; //Unsigned/logical right shift operation.
 Integer.MAX_VALUE == 2147483647 == 2^31 - 1 == 0111 1111 1111 1111 1111 1111 1111 1111
 Integer.MAX_VALUE + 1 == -2147483648 ==        1000 0000 0000 0000 0000 0000 0000 0000 == Integer.MIN_VALUE
 
-################### Bit shifting ################### 
+################### Bit shifting ###################
 n >>>= 1 (logical/unsigned bit shift)
 Integer.MAX_VALUE + 1 should look like this:
 0100 0000 0000 0000 0000 0000 0000 0000
@@ -129,7 +131,7 @@ A few shifts of Integer.MAX_VALUE + 1 using the >> operator would look like this
 ...
 1111 1111 1111 1111 1111 1111 1111 1111, to infinity, which would never exit our n != 0 condition.
 
-Eg. 
+Eg.
 -5：11111111 11111111 11111111 11111011 (complement)
 -5>>1：11111111 11111111 11111111 11111101 (-3)
 -5>>>1：01111111 11111111 11111111 11111101 (2147483645)

@@ -1,0 +1,93 @@
+Add Two Numbers 28.3% Medium
+Roman to Integer 47.4% Easy
+Palindrome Number 35.7% Easy
+Integer to Roman 45.8% Medium
+Reverse Integer 24.4% Easy
+Encode and Decode TinyURL 73.9% Medium
+Plus One 39.4% Easy
+Add Digits 51.6% Easy
+Happy Number 41.3% Easy
+Factorial Trailing Zeroes 36.7% Easy
+Max Points on a Line 15.2% Hard
+Excel Sheet Column Number 48.1% Easy
+Pow(x, n) 26.0% Medium
+Add Binary 33.6% Easy
+String to Integer (atoi) 13.9% Medium
+Bulb Switcher 42.8% Medium
+Power of Three 40.6% Easy
+Rectangle Area 33.5% Medium
+Number of Digit One 28.8% Hard
+Self Crossing 25.9% Hard
+Divide Two Integers 15.8% Medium
+Integer to English Words 22.6% Hard
+Missing Number 44.7% Easy
+Sqrt(x) 28.6% Easy
+Multiply Strings 27.8% Medium
+Perfect Squares 37.7% Medium
+Power of Two 40.6% Easy
+Ugly Number 39.6% Easy
+Count Primes 26.7% Easy
+Valid Number 12.9% Hard
+Excel Sheet Column Title 27.0% Easy
+Basic Calculator 28.2% Hard
+#################################################################################
+Self Dividing Numbers 67.5% Easy
+A self-dividing number is a number that is divisible by every digit it contains.
+For example, 128 is a self-dividing number because 128 % 1 == 0, 128 % 2 == 0, and 128 % 8 == 0.
+Also, a self-dividing number is not allowed to contain the digit zero.
+Given a lower and upper number bound, output a list of every possible self dividing number, including the bounds if possible.
+Example 1:
+Input:
+left = 1, right = 22
+Output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22]
+Note:
+The boundaries of each input argument are 1 <= left <= right <= 10000.
+#################################################################################
+Minimum Moves to Equal Array Elements 48.0% Easy
+Fraction to Recurring Decimal 17.9% Medium
+Maximum Product of Three Numbers 45.0% Easy
+Integer Break 46.4% Medium
+Ugly Number II 33.2% Medium
+Best Meeting Point 52.2% Hard
+Count Numbers with Unique Digits 46.1% Medium
+Permutation Sequence 29.2% Medium
+Super Pow 34.6% Medium
+Add Strings 41.7% Easy
+Arithmetic Slices 54.7% Medium
+Rotate Function 33.7% Medium
+Super Ugly Number 38.2% Medium
+Largest Divisible Subset 33.8% Medium
+Nth Digit 30.2% Easy
+Valid Perfect Square 38.6% Easy
+Bulb Switcher II 48.9% Medium
+Sum of Square Numbers 32.4% Easy
+Perfect Number 33.0% Easy
+Maximum Swap 38.5% Medium
+Set Mismatch 40.0% Easy
+Range Addition II 48.3% Easy
+Complex Number Multiplication 63.8% Medium
+Arranging Coins 36.4% Easy
+Reconstruct Original Digits from English 44.5% Medium
+Minimum Moves to Equal Array Elements II 51.9% Medium
+Optimal Division 55.1% Medium
+Strobogrammatic Number 40.2% Easy
+Strobogrammatic Number III 32.4% Hard
+Super Washing Machines 36.5% Hard
+Strobogrammatic Number II 40.8% Medium
+Water and Jug Problem 27.9% Medium
+Integer Replacement 30.3% Medium
+Sort Transformed Array 44.8% Medium
+Valid Square 40.2% Medium
+Fraction Addition and Subtraction 46.0% Medium
+Continuous Subarray Sum 23.4% Medium
+Remove 9 48.6% Hard
+Solve the Equation 39.0% Medium
+Find the Derangement of An Array 35.4% Medium
+Smallest Good Base 33.7% Hard
+Minimum Factorization 31.3% Medium
+Convex Polygon 34.0% Medium
+4 Keys Keyboard 49.3% Medium
+Line Reflection 30.2% Medium
+Squirrel Simulation 52.7% Medium
+Reach a Number 24.4% Medium
+Cracking the Safe 40.3% Hard

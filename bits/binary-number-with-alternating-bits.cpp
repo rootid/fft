@@ -22,7 +22,7 @@
 //The binary representation of 10 is: 1010.
 //
 
-//############################### only get last bit ############################### 
+//############################### only get last bit ###############################
 class Solution {
     public boolean hasAlternatingBits(int n) { //pass by value so no need to create copy
         int lastBit = n & 1;
@@ -34,7 +34,7 @@ class Solution {
     }
 }
 
-//############################### python ############################### 
+//############################### python ###############################
 class Solution:
     def hasAlternatingBits(self, n):
         if not n:
