@@ -1,0 +1,109 @@
+#################################################################################
+Ransom Note
+Given an arbitrary ransom note string and another string containing letters from all the magazines, write a function that will return true if the ransom note can be constructed from the magazines ; otherwise, it will return false.
+Each letter in the magazine string can only be used once in your ransom note.
+Note:
+You may assume that both strings contain only lowercase letters.
+canConstruct("a", "b") -> false
+canConstruct("aa", "ab") -> false
+canConstruct("aa", "aab") -> true
+
+#################################################################################
+Simplify Path
+Given an absolute path for a file (Unix-style), simplify it.
+For example,
+path = "/home/", => "/home"
+path = "/a/./b/../../c/", => "/c"
+click to show corner cases.
+Corner Cases:
+    Did you consider the case where path = "/../"?
+    In this case, you should return "/".
+    Another corner case is the path might contain multiple slashes '/' together, such as "/home//foo/".
+    In this case, you should ignore redundant slashes and return "/home/foo".
+
+#################################################################################
+Given a list of a company's employees in the form name,boss,title,year produce an organizational chart
+by printing out each employee followed by everyone that employee manages indented by dashes.
+Sample Input:3
+Fred,Karl,Technician,2010--Karl,Cathy,VP,2009--Cathy,NULL,CEO,2007
+Adam,Karl,Technician,2010--Bob,Karl,Technician,2012--Cathy,Karl,Technician,2013--Karl,Nancy,Manager,2009--Wendy,Nancy,Technician,2012--Nancy,NULL,CEO,2007
+Fred,Cathy,Technician,2010--Nancy,Wendy,Technician,2013--Vince,Karl,VP,2009--Bob,Susan,Manager,2010--Adam,Susan,Technician,2011--Ned,Wendy,Technician,2009--Liam,Wendy,Technician,2007--Dan,Ryan,Director,2008--Carl,Susan,Technician,2010--Ed,Wendy,Technician,2007--Patty,Wendy,Technician,2008--Tom,Susan,Technician,2011--Sam,Susan,Technician,2008--Lilly,Jack,Manager,2007--Amy,Jill,Technician,2012--Wendy,Dan,Manager,2010--Cathy,Vince,Director,2006--Susan,Vince,Director,2009--Betty,Cathy,Manager,2012--Oscar,Betty,Technician,2006--Jill,Dan,Manager,2012--Katie,Jill,Technician,2007--Paul,Bob,Technician,2007--Ryan,Karl,VP,2007--Mary,Lilly,Technician,2013--Matt,Jill,Technician,2007--Karl,NULL,CEO,2005--Jack,Ryan,Director,2009
+Sample Output:
+Case #1
+Cathy (CEO) 2007
+-Karl (VP) 2009
+--Fred (Technician) 2010
+Case #2
+Nancy (CEO) 2007
+-Karl (Manager) 2009
+--Adam (Technician) 2010
+--Bob (Technician) 2012
+--Cathy (Technician) 2013
+-Wendy (Technician) 2012
+Case #3
+Karl (CEO) 2005
+-Ryan (VP) 2007
+--Dan (Director) 2008
+---Jill (Manager) 2012
+----Amy (Technician) 2012
+----Katie (Technician) 2007
+----Matt (Technician) 2007
+---Wendy (Manager) 2010
+----Ed (Technician) 2007
+----Liam (Technician) 2007
+----Nancy (Technician) 2013
+----Ned (Technician) 2009
+----Patty (Technician) 2008
+--Jack (Director) 2009
+---Lilly (Manager) 2007
+----Mary (Technician) 2013
+-Vince (VP) 2009
+--Cathy (Director) 2006
+---Betty (Manager) 2012
+----Oscar (Technician) 2006
+---Fred (Technician) 2010
+--Susan (Director) 2009
+---Adam (Technician) 2011
+---Bob (Manager) 2010
+----Paul (Technician) 2007
+---Carl (Technician) 2010
+---Sam (Technician) 2008
+---Tom (Technician) 2011
+
+#################################################################################
+Integer to English Words
+Convert a non-negative integer to its english words representation. Given input is guaranteed to be less than 231 - 1.
+For example,
+123 -> "One Hundred Twenty Three"
+12345 -> "Twelve Thousand Three Hundred Forty Five"
+1234567 -> "One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven"
+Hint:
+Did you see a pattern in dividing the number into chunk of words? For example, 123 and 123000.
+Group the number by thousands (3 digits). You can write a helper function that takes a number less than pow(10,3) and convert just that chunk to words.
+There are many edge cases. What are some good test cases? Does your code work with input such as 0? Or pow(10,3)010? (middle chunk is zero and should not be printed out)
+
+#################################################################################
+Kth Longest by endtime
+ two hashmap (jobname-> endtime, jobid-> jobname) to be clear logic,
+ the third point is the first k longest running time to consider
+ There will be followup optimization (heap), the fourth point is to write the style of the
+program better
+
+
+#################################################################################
+SQL (Inner , Outer join)
+
+#################################################################################
+Encode decode String
+Tiny URL
+Given an array of integers, find the Kth largest element
+Virtualization types 1 vs 2
+
+#################################################################################
+(Parsing question)
+Mini Parser
+Parse Lisp Expression
+Tag Validator
+Ternary Expression Parser
+
+vim:tw=90:sw=2:et:norl:

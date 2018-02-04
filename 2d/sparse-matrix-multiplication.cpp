@@ -19,27 +19,43 @@
 //
 
 
-//#########################################  Naive optimization #########################################  
-// Time:  O(m * n * l), A is m x n matrix, B is n x l matrix
-// Space: O(m * l)
-class Solution {
-public:
-    vector<vector<int>> multiply(vector<vector<int>>& A, vector<vector<int>>& B) { 
-		int m = A.size(), n = B.size(), p = B[0].size();
-        vector<vector<int>> C(m, vector<int>(p, 0));
-        for (int i = 0; i < m; i++) { 
-			for (int j = 0; j < n; j++) { 
-				if (A[i][j]) 
-					for (int k = 0; k < p; k++) { // bug: k < n should be k < p
-                        C[i][k] += A[i][j] * B[j][k];
-					} 
-			} 
-		}
-        return C;
-    }
-};
+//Viterbi Algorithm
 
-//#########################################  Sparse matrix (col #,value) ######################################### 
+//#########################################  Sprase matrix #########################################
+//Store in col number and value but still O(n^3)
+class Solution {
+    public int[][] multiply(int[][] A, int[][] B) {
+      int rA  = A.length;
+      int rP = A[0].length;
+      int rB = B[0].length;
+      int[][] result = new int[rA][rB];
+      List<List<int[]>> sparseA = new ArrayList<>(rA);
+      for(int i=0;i<rA;i++) {
+        List<int[]> tmp = new ArrayList<>();
+        for(int j=0; j<rP;j++) {
+          if(A[i][j] != 0) tmp.add(new int[] {j, A[i][j]});
+        }
+        sparseA.add(tmp);
+      }
+
+      forrrAA (int i = 0; i < rA; i++)  {
+        for (int[] noZeros : sparseA.get(i)) {
+          // System.out.println(noZeros[0]);
+          for (int j = 0; j < rB; j++) {
+            // System.out.println(noZeros[0] + " j = " + j);
+            if(B[noZeros[0]][j] != 0) {
+              result[i][j] += noZeros[1] * B[noZeros[0]][j];
+            }
+          }
+        }
+      }
+      return result;
+    }
+
+}
+
+
+//#########################################  Sparse matrix (col #,value) #########################################
 public int[][] multiply(int[][] A, int[][] B) {
     int n = A.length, m = A[0].length, mb = B[0].length;
     int[][] res = new int[n][mb];
@@ -52,7 +68,7 @@ public int[][] multiply(int[][] A, int[][] B) {
             if (A[i][j] != 0) nzA[j].add(new int[]{i, A[i][j]});
 		}
 	}
-            
+
     for (int i = 0; i < m; i++)
         for (int[] a : nzA[i]) // put it to inner will be 200ms
             for (int j = 0; j < mb; j++)
@@ -60,7 +76,7 @@ public int[][] multiply(int[][] A, int[][] B) {
     return res;
 }
 
-//#########################################  Sparse matrix ######################################### 
+//#########################################  Sparse matrix #########################################
 vector<vector<int>> multiply(vector<vector<int>>& A, vector<vector<int>>& B) {
     const int rowA = A.size(), rowB = B.size();
     const int colA = A[0].size(), colB = B[0].size();
@@ -77,7 +93,7 @@ vector<vector<int>> multiply(vector<vector<int>>& A, vector<vector<int>>& B) {
      for (auto noZeros : sparseA[i]) {
       for (int j = 0; j < rowB; ++j) {
           if(B[noZeros.first][j] != 0) {
-			  res[i][j] += noZeros.second * B[noZeros.first][j]; 
+			  res[i][j] += noZeros.second * B[noZeros.first][j];
 		  }
 	  }
 	 }
@@ -86,7 +102,7 @@ vector<vector<int>> multiply(vector<vector<int>>& A, vector<vector<int>>& B) {
 }
 
 
-//######################################### Pytonic ######################################### 
+//######################################### Pytonic #########################################
 def multiply(self, A, B):
     cols = [[(j, b) for j, b in enumerate(col) if b]
             for col in zip(*B)]
@@ -95,7 +111,7 @@ def multiply(self, A, B):
             for row in A]
 
 
-//######################################### Pytonic + Sparse matrix######################################### 
+//######################################### Pytonic + Sparse matrix#########################################
 class Solution(object):
     def multiply(self, A, B):
         """

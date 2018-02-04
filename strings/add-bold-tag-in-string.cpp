@@ -1,13 +1,13 @@
 //Add Bold Tag in String
 //Given a string s and a list of strings dict, you need to add a closed pair of bold tag <b> and </b> to wrap the substrings in s that exist in dict. If two such substrings overlap, you need to wrap them together by only one pair of closed bold tag. Also, if two substrings wrapped by bold tags are consecutive, you need to combine them.
 //Example 1:
-//Input: 
+//Input:
 //s = "abcxyz123"
 //dict = ["abc","123"]
 //Output:
 //"<b>abc</b>xyz<b>123</b>"
 //Example 2:
-//Input: 
+//Input:
 //s = "aaabbcc"
 //dict = ["aaa","aab","bc"]
 //Output:
@@ -17,7 +17,7 @@
 //All the strings in input have length in range [1, 100]
 //
 
-//######################################## Trie ######################################## 
+//######################################## Trie ########################################
 
 class trie{
 public:
@@ -30,7 +30,7 @@ public:
 class Solution {
 public:
     string addBoldTag(string s, vector<string>& dict) {
-        
+
         // Create trie
         trie* root = new trie();
         for(auto& word : dict){
@@ -43,7 +43,7 @@ public:
             }
             node->isWord=true;
         }
-        
+
         // "last" is the index of last character that currently belong to word
         string res="";
         int last = -1;
@@ -63,7 +63,7 @@ public:
             if(i==last)
                 res+="</b>";
         }
-        
+
         //Delete adjacent </b> and <b>
         for(int i =0; i<res.size()-6; i++){
             if(res.substr(i,7)=="</b><b>")
@@ -74,7 +74,7 @@ public:
 };
 
 
-//#################################### Merge interval + find #################################### 
+//#################################### Merge interval + find ####################################
 class Solution {
 public:
     string addBoldTag(string s, vector<string>& dict) {
@@ -111,7 +111,7 @@ private:
                 r[j].second = max(r[j].second, a[i].second);
             }
         }
-        
+
         return r;
     }
 
@@ -122,7 +122,7 @@ private:
 
 
 
-//#################################### With HashMap #################################### 
+//#################################### With HashMap ####################################
 class Solution {
 private:
   int searchMaxLen(string& s, int start, vector<string> words) {
@@ -140,7 +140,7 @@ public :
       for(string word : dict) {
           wdict[word[0]].push_back(word);
       }
-      
+
       for(int i=0; i<s.length(); ++i) {
           if(wdict.count(s[i]) == 0) continue;
           int len = searchMaxLen(s, i, wdict[s[i]]);
@@ -158,7 +158,7 @@ public :
 
 };
 
-//#################################### Find matching char with start and end index #################################### 
+//#################################### Find matching char with start and end index ####################################
 class Solution {
 public:
     string addBoldTag(string s, vector<string>& dict) {
@@ -191,8 +191,8 @@ public:
 
 
 
-//############################################ Pytonic ############################################ 
-//######################################## Trie ######################################## 
+//############################################ Pytonic ############################################
+//######################################## Trie ########################################
 //We put all the words in our given wordlist into a trie. Then, let's paint any letter in our string that should be bolded. For every starting position i in our string, let's find the longest word that S[i:] starts with, and paint S[i:i+len(word)].
 //Afterwards, we have a boolean array where paint[i] = True iff S[i] is bolded. Let's write our letters from left to right. If we are on a bolded letter and there is an unbolded letter to the left (or if we are at the leftmost letter), we should start a <b> tag. Similarly for </b> tags: they start when our bolded letter has an unbolded right neighbor (or we are at the right-most letter.)
 //
@@ -200,13 +200,13 @@ public:
 //    END = False
 //    _trie = lambda: collections.defaultdict(_trie)
 //    trie = _trie()
-//    
+//
 //    for word in A:
 //        cur = trie
 //        for letter in word:
 //            cur = cur[letter]
 //        cur[END] = END
-//    
+//
 //    paint = [False] * len(S)
 //    for i in xrange(len(S)):
 //        cur = trie
@@ -217,7 +217,7 @@ public:
 //            if END in cur:
 //                end = j + 1
 //        paint[i:end] = [True] * (end - i)
-//    
+//
 //    ans = []
 //    for i, u in enumerate(S):
 //        if paint[i] and (i == 0 or not paint[i-1]):
@@ -225,11 +225,11 @@ public:
 //        ans.append(u)
 //        if paint[i] and (i == len(S) - 1 or not paint[i+1]):
 //            ans.append('</b>')
-//        
+//
 //    return "".join(ans)
 //
-//################################# Non-trie ################################# 
-//def addBoldTag(self, S, A): 
+//################################# Non-trie #################################
+//def addBoldTag(self, S, A):
 //    paint = [False] * len(S)
 //    for i in xrange(len(S)):
 //        block = S[i:]
@@ -244,5 +244,7 @@ public:
 //        ans.append(u)
 //        if paint[i] and (i == len(S) - 1 or not paint[i+1]):
 //            ans.append('</b>')
-//        
+//
 //    return "".join(ans)
+
+// vim: set sw=2 sts=2 tw=120 et nospell :

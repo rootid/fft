@@ -1,28 +1,47 @@
-//Reverse Linked List 
+//Reverse Linked List
 
 #include "../headers/global.hpp"
 #include "../headers/listnode.hpp"
 
+//######################################### Recursion #########################################
+//n1 → … → nk-1 → nk → nk+1 ← … ← nm
+//1. nk+1 shud point to nk i.e. nk.next.next = nk
+//2. nk.next = null
+//
+public ListNode reverseList(ListNode head) {
+    if(head == null || head.next == null) return head;
+    ListNode tmp = reverseList(head.next);
+    head.next.next = head;
+    head.next = null;
+    return tmp;
+}
 
-//######################################### Iterative - version ######################################### 
- public ListNode reverseList(ListNode head) {
-        if(head == null || head.next == null) return head;
-        ListNode tmp = head;
+//######################################### Iterative - version #########################################
+//cnstrt
+//1. SLL/DLL ?
+//2. Partial rev/ complete reverse?
+
+//Ida
+//1. 2 nodes @ tm -> swp them -> rtrn head
+
+class Solution {
+    public ListNode reverseList(ListNode head) {
         ListNode prev = null;
-        ListNode child = null;
+        ListNode tmp = head;  //1->2 => 2->1
         while(tmp != null) {
-            child = tmp.next;
-            tmp.next = prev;
-            prev = tmp;
-            tmp = child;
+            tmp = head.next;
+            head.next = prev;
+            prev = head;
+            head = tmp;
         }
         return prev;
     }
+}
 
-//######################################### Recursive  - version ######################################### 
-private ListNode reverseList(ListNode prev, ListNode head) {      
+//######################################### Recursive  - version #########################################
+private ListNode reverseList(ListNode prev, ListNode head) {
     if(head == null) return prev;
-        ListNode child  = head.next; 
+        ListNode child  = head.next;
         head.next = prev;
      return reverseList(head, child);
 }
@@ -31,7 +50,7 @@ public ListNode reverseList(ListNode head)  {
     return reverseList(null, head);
 }
 
-//######################################### Recursive  - version ######################################### 
+//######################################### Recursive  - version #########################################
 public class Solution {
     public ListNode reverseList(ListNode head) {
         if(head == null ||head.next == null){ //empty / single node
@@ -43,7 +62,7 @@ public class Solution {
         return rest; //return the rest
     }
 }
-//######################################### Iterative - version ######################################### 
+//######################################### Iterative - version #########################################
 public ListNode reverseList(ListNode current) {
    if(current == null) return null;
    ListNode prev = null;
@@ -56,28 +75,28 @@ public ListNode reverseList(ListNode current) {
  return prev;
 }
 
-//######################################### Recursive - version ######################################### 
+//######################################### Recursive - version #########################################
 public ListNode reverseList(ListNode head) {
     return reverseListHelper(null, head);
 }
 
 public ListNode reverseListHelper(ListNode prev, ListNode head) {
     if(head == null) return prev;
-    ListNode rest  = head.next; 
+    ListNode rest  = head.next;
     head.next = prev;
     return reverseListHelper(head, rest);
 }
 
-//######################################### Dummy node approach ######################################### 
+//######################################### Dummy node approach #########################################
 ListNode* reverseList(ListNode* head) {
         ListNode* new_head = new ListNode(0);
         new_head->next = head;
         ListNode* pre = new_head;
-        ListNode* cur = head; 
+        ListNode* cur = head;
         while (cur && cur->next) {
             ListNode* temp = pre->next;
             pre->next = cur->next;
-            cur->next = cur->next->next; 
+            cur->next = cur->next->next;
             pre->next->next = temp;
         }
         return new_head->next;
@@ -111,12 +130,12 @@ ListNode* reverseListRec(ListNode* head) {
     return head;
   }
   ListNode *nextP = reverseListRec(head->next);
-  nextP->next->next = head; 
+  nextP->next->next = head;
   head->next = NULL;
   return nextP;
 }
 
-//######################################### Recursion - Making the head null recursively ######################################### 
+//######################################### Recursion - Making the head null recursively #########################################
 public ListNode reverseList(ListNode head) {
     if(head == null || head.next == null) {
         return head;
@@ -130,11 +149,11 @@ public ListNode reverseList(ListNode head) {
 
 int main() {
   //1->2->3->4->5->NULL,
-  ListNode *head = new ListNode(1); 
-  head->next = new ListNode(2); 
-  head->next->next = new ListNode(3); 
-  head->next->next->next = new ListNode(4); 
-  head->next->next->next->next = new ListNode(5); 
+  ListNode *head = new ListNode(1);
+  head->next = new ListNode(2);
+  head->next->next = new ListNode(3);
+  head->next->next->next = new ListNode(4);
+  head->next->next->next->next = new ListNode(5);
 
   cout << "cALL " << endl;
   ListNode *result = reverseList(head);

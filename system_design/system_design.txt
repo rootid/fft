@@ -1,0 +1,14 @@
+## System design examples
+https://www.hiredintech.com/classrooms/system-design/lesson/61
+
+### Grokking system design
+https://www.educative.io/collection/page/5668639101419520/5649050225344512/5668600916475904
+
+### Book
+http://highscalability.com/blog/2017/12/18/explain-the-cloud-like-im-10.html
+
+Payment
+Elevator
+Parking Lot
+Text Editor
+File System
