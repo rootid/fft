@@ -1,15 +1,34 @@
 #################################################################################
 Paint House
-
 #################################################################################
 Nested List Weight Sum II
+Given a nested list of integers, return the sum of all integers in the list weighted by their depth.
+Each element is either an integer, or a list -- whose elements may also be integers or other lists.
+Different from the previous question where weight is increasing from root to leaf, now the weight is defined from bottom up. i.e., the leaf level integers have weight 1, and the root level integers have the largest weight.
+Example 1:
+Given the list [[1,1],2,[1,1]], return 8. (four 1's at depth 1, one 2 at depth 2)
+Example 2:
+Given the list [1,[4,[6]]], return 17. (one 1 at depth 3, one 4 at depth 2, and one 6 at depth 1; 1*3 + 4*2 + 6*1 = 17)
 
 #################################################################################
-Sparse Matrix Multiplication
-
+Sparse Matrix Multiplication (Opt O(n^3) /w spc)
+Given two sparse matrices A and B, return the result of AB.
+You may assume that A's column number is equal to B's row number.
+Example:
+A = [
+  [ 1, 0, 0],
+  [-1, 0, 3]
+]
+B = [
+  [ 7, 0, 0 ],
+  [ 0, 0, 0 ],
+  [ 0, 0, 1 ]
+]
+     |  1 0 0 |   | 7 0 0 |   |  7 0 0 |
+AB = | -1 0 3 | x | 0 0 0 | = | -7 0 3 |
+                  | 0 0 1 |
 #################################################################################
 Binary Tree Upside Down
-
 #################################################################################
 Factor Combinations
   Numbers can be regarded as product of its factors. For example,
@@ -44,20 +63,14 @@ Factor Combinations
     [2, 4, 4],
     [4, 8]
   ]
-
 #################################################################################
 Partition to K Equal Sum Subsets
-
 #################################################################################
 Find the Celebrity
-
 #################################################################################
 Max Stack
-
 #################################################################################
 Count Different Palindromic Subsequences
-
-
 #################################################################################
 Paint House
 Nested List Weight Sum II
@@ -69,6 +82,5 @@ Partition to K Equal Sum Subsets
 Find the Celebrity
 Max Stack
 Count Different Palindromic Subsequences
-
 #################################################################################
 vim:tw=90:et:norl:

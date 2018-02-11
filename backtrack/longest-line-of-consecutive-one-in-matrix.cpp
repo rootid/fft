@@ -7,14 +7,146 @@
 // [0,0,0,1]]
 //Output: 3
 //Hint: The number of elements in the given matrix will not exceed 10,000.
-//
 
-//######################################### DP ######################################### 
+
+//######################################### Brute force #########################################
+//TC : O(n^2)
+//SC : O(1)
+public class Solution {
+    public int longestLine(int[][] M) {
+        if (M.length == 0)
+            return 0;
+        int ones = 0;
+        //horizontal
+        for (int i = 0; i < M.length; i++) {
+            int count = 0;
+            for (int j = 0; j < M[0].length; j++) {
+                if (M[i][j] == 1) {
+                    count++;
+                    ones = Math.max(ones, count);
+                } else
+                    count = 0;
+            }
+        }
+        //vertical
+        for (int i = 0; i < M[0].length; i++) {
+            int count = 0;
+            for (int j = 0; j < M.length; j++) {
+                if (M[j][i] == 1) {
+                    count++;
+                    ones = Math.max(ones, count);
+                } else
+                    count = 0;
+            }
+        }
+        //upper diagonal
+        for (int i = 0; i < M[0].length || i < M.length; i++) {
+            int count = 0;
+            for (int x = 0, y = i; x < M.length && y < M[0].length; x++, y++) {
+                if (M[x][y] == 1) {
+                    count++;
+                    ones = Math.max(ones, count);
+                } else
+                    count = 0;
+            }
+        }
+        //lower diagonal
+        for (int i = 0; i < M[0].length || i < M.length; i++) {
+            int count = 0;
+            for (int x = i, y = 0; x < M.length && y < M[0].length; x++, y++) {
+                if (M[x][y] == 1) {
+                    count++;
+                    ones = Math.max(ones, count);
+                } else
+                    count = 0;
+            }
+        }
+        //upper anti-diagonal
+        for (int i = 0; i < M[0].length || i < M.length; i++) {
+            int count = 0;
+            for (int x = 0, y = M[0].length - i - 1; x < M.length && y >= 0; x++, y--) {
+                if (M[x][y] == 1) {
+                    count++;
+                    ones = Math.max(ones, count);
+                } else
+                    count = 0;
+            }
+        }
+        //lower anti-diagonal
+        for (int i = 0; i < M[0].length || i < M.length; i++) {
+            int count = 0;
+            for (int x = i, y = M[0].length - 1; x < M.length && y >= 0; x++, y--) {
+                //System.out.println(x+" "+y);
+                if (M[x][y] == 1) {
+                    count++;
+                    ones = Math.max(ones, count);
+                } else
+                    count = 0;
+            }
+        }
+        return ones;
+
+    }
+}
+
+//######################################### DP - 3D array #########################################
+//TC : O(n*m)
+//SC : O(n*m) = 4 (m*m)
+public class Solution {
+    public int longestLine(int[][] M) {
+        if (M.length == 0)
+            return 0;
+        int ones = 0;
+        int[][][] dp = new int[M.length][M[0].length][4];
+        for (int i = 0; i < M.length; i++) {
+            for (int j = 0; j < M[0].length; j++) {
+                if (M[i][j] == 1) {
+                    dp[i][j][0] = j > 0 ? dp[i][j - 1][0] + 1 : 1;
+                    dp[i][j][1] = i > 0 ? dp[i - 1][j][1] + 1 : 1;
+                    dp[i][j][2] = (i > 0 && j > 0) ? dp[i - 1][j - 1][2] + 1 : 1;
+                    dp[i][j][3] = (i > 0 && j < M[0].length - 1) ? dp[i - 1][j + 1][3]+1 : 1;
+                    ones = Math.max(ones, Math.max(Math.max(dp[i][j][0], dp[i][j][1]), Math.max(dp[i][j][2], dp[i][j][3])));
+                }
+            }
+        }
+        return ones;
+    }
+}
+
+//######################################### DP - 2D array #########################################
+public class Solution {
+    public int longestLine(int[][] M) {
+        if (M.length == 0)
+            return 0;
+        int ones = 0;
+        int[][] dp = new int[M[0].length][4];
+        for (int i = 0; i < M.length; i++) {
+            int old = 0;
+            for (int j = 0; j < M[0].length; j++) {
+                if (M[i][j] == 1) {
+                    dp[j][0] = j > 0 ? dp[j - 1][0] + 1 : 1;
+                    dp[j][1] = i > 0 ? dp[j][1] + 1 : 1;
+                    int prev = dp[j][2];
+                    dp[j][2] = (i > 0 && j > 0) ? old + 1 : 1;
+                    old = prev;
+                    dp[j][3] = (i > 0 && j < M[0].length - 1) ? dp[j + 1][3] + 1 : 1;
+                    ones = Math.max(ones, Math.max(Math.max(dp[j][0], dp[j][1]), Math.max(dp[j][2], dp[j][3])));
+                } else {
+                    old = dp[j][2];
+                    dp[j][0] = dp[j][1] = dp[j][2] = dp[j][3] = 0;
+                }
+            }
+        }
+        return ones;
+    }
+}
+
+//######################################### DP #########################################
 //TC : O(m*n)
 //SC : O(n)
 public class Solution {
     public int longestLine(int[][] M) {
-        
+
         int m = M.length, ones = 0;
         if (m > 0) {
             int n = M[0].length;
@@ -39,9 +171,9 @@ public class Solution {
     }
 }
 
-//######################################### Backtracking / DFS ######################################### 
+//######################################### Backtracking / DFS #########################################
 //1. Traverse  in 4 directions
-// T(n) : 
+// T(n) :
 public class Solution {
     public int longestLine(int[][] M) {
         if(M == null) return 0;
@@ -72,14 +204,14 @@ public class Solution {
         }
         return res;
     }
-    
+
     private boolean isValidPosition(int M[][], int i, int j){
         return (i<M.length && j<M[0].length && i>=0 && j>=0);
     }
 }
 
 
-//######################################### DP (3 - 1D array) ######################################### 
+//######################################### DP (3 - 1D array) #########################################
 This is very similar to N-Queens. You can use the below approach and DFS to easily tackle down N-Queens problems.
 public int longestLine(int[][] M) {
     if (M.length == 0 || M[0].length == 0) {
@@ -113,18 +245,18 @@ public int longestLine(int[][] M) {
 }
 
 
-//######################################### DP (3D array) ######################################### 
+//######################################### DP (3D array) #########################################
 public int longestLine(int[][] M) {
     int n = M.length, max = 0;
     if (n == 0) return max;
     int m = M[0].length;
     int[][][] dp = new int[n][m][4];
-    for (int i=0;i<n;i++) 
+    for (int i=0;i<n;i++)
         for (int j=0;j<m;j++) {
-            if (M[i][j] == 0) 
+            if (M[i][j] == 0)
 				continue;
 			//4 position/ groups (0: ht, 2: rt-dg, 3: lt-dg, 4: vt)
-            for (int k=0;k<4;k++) 
+            for (int k=0;k<4;k++)
 				dp[i][j][k] = 1;
             if (j > 0) dp[i][j][0] += dp[i][j-1][0]; // horizontal line
             if (j > 0 && i > 0) dp[i][j][1] += dp[i-1][j-1][1]; // anti-diagonal line
@@ -136,8 +268,8 @@ public int longestLine(int[][] M) {
     return max;
 }
 
-//######################################### Grouping + Counting ######################################### 
-//We can separate the problem into two subproblems. 
+//######################################### Grouping + Counting #########################################
+//We can separate the problem into two subproblems.
 //The first subproblem is, given a 1 dimensional list of 0's and 1's, what is the longest chain of consecutive 1s?
 //The second subproblem is to generate every line (row, column, diagonal, and anti-diagonal).
 //The first problem is common. We keep track of the number of 1's we've seen before. If we see a 1, we add to our count and update our answer. If we see a 0, we reset. Alternatively, we can also use itertools.groupby. Straightforward code for the first part looks like this:
@@ -153,7 +285,7 @@ def score(line):
   return ans
 //The second part is more complex. We can try to manipulate indices of the grid,
 //but there is a trick.
-//Each element in the grid belongs to exactly 4 lines: 
+//Each element in the grid belongs to exactly 4 lines:
 //1. the r-th row,
 //2. c-th column,
 //3. (r+c)-th diagonal,
@@ -161,11 +293,11 @@ def score(line):
 
 def longestLine(self, A):
     if not A: return 0
-    
+
     def score(line):
-        return max(len(list(v)) if k else 0 
+        return max(len(list(v)) if k else 0
                    for k, v in itertools.groupby(line))
-    
+
     groups = collections.defaultdict(list)
     for r, row in enumerate(A):
         for c, val in enumerate(row):
@@ -173,19 +305,19 @@ def longestLine(self, A):
             groups[1, c] += [val]
             groups[2, r+c] += [val]
             groups[3, r-c] += [val]
-    
+
     return max(map(score, groups.itervalues()))
 
-//######################################### TODO  ######################################### 
-//TODO : Identify pattern in the stored location 
+//######################################### TODO  #########################################
+//TODO : Identify pattern in the stored location
 int numberOfConsectuiveOnes(vector<vector<int> >&mat) {
 	if(mat.isEmpty()) return 0;
 	int n = mat.size();
 	int m = mat[0].size();
 	int result = 0;
 	vector<int> ones;
-	for(int i=0;i<m;i++)  
-	for(int j=0;j<n;j++) 
+	for(int i=0;i<m;i++)
+	for(int j=0;j<n;j++)
 		ones.push_back(i*n + j);
 
 	//find the pattern in ones vector

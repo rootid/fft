@@ -8,12 +8,12 @@
 //       4
 //     /   \
 //    2     6
-//   / \   / 
-//  3   1 5   
+//   / \   /
+//  3   1 5
 //Note:
 //There will only be '(', ')', '-' and '0' ~ '9' in the input string.
 //
-//######################################### Recursion ######################################### 
+//######################################### Recursion #########################################
 //For example, we have string 4(2(3)(1))(6(5)), to construct a binary tree, we can split the string to 3 parts:
 //4
 //(2(3)(1))
@@ -23,6 +23,7 @@
 //(6(5)) is right tree;
 //Left subtree determined by # of parenthesis
 
+//######################################### Recursion #########################################
 public TreeNode str2tree(String s) {
     if (s == null || s.length() == 0) return null;
     int firstParen = s.indexOf("(");
@@ -40,11 +41,11 @@ public TreeNode str2tree(String s) {
 }
 
 
-//######################################### Recursion with Q  ######################################### 
-public TreeNode str2tree(String s) { 
+//######################################### Recursion with Q  #########################################
+public TreeNode str2tree(String s) {
 	if(s.length()==0) return null;
     Queue<Character> queue = new LinkedList<Character>();
-    for(int i=0;i<s.length();i++) {    
+    for(int i=0;i<s.length();i++) {
         queue.offer(s.charAt(i));
     }
     return buildTree(queue);
@@ -61,11 +62,11 @@ public TreeNode buildTree(Queue<Character> queue) {
             else node.right = buildTree(queue);
         } else if(top==')') {
             break; // visited node already
-        } else { 
-			if(top=='-') { 
+        } else {
+			if(top=='-') {
 				sign=-1;
                 continue;
-            } 
+            }
 			value=value*10+(top-'0');
         }
     }
@@ -73,8 +74,8 @@ public TreeNode buildTree(Queue<Character> queue) {
     return node;
 }
 
-//######################################### Reverse preorder + Iterative version ######################################### 
-public TreeNode str2tree(String s) { 
+//######################################### Reverse preorder + Iterative version #########################################
+public TreeNode str2tree(String s) {
 	Stack<TreeNode> stack = new Stack<>();
     for(int i = 0, j = i; i < s.length(); i++, j = i){
         char c = s.charAt(i);
@@ -94,8 +95,8 @@ public TreeNode str2tree(String s) {
 }
 
 
-//######################################### Reverse preorder + Iterative version ######################################### 
- TreeNode* str2tree(string s) { 
+//######################################### Reverse preorder + Iterative version #########################################
+ TreeNode* str2tree(string s) {
 	 if (s == "") return nullptr;
      stack<TreeNode*> sk;
      int n = s.size(), i = 0;
@@ -104,26 +105,26 @@ public TreeNode str2tree(String s) {
      TreeNode *root = new TreeNode(stoi(s.substr(0, i)));
      sk.push(root);
      while (i < n) {
-         if (s[i++] == ')') 
+         if (s[i++] == ')')
              sk.pop();
          else {
              int j = i;
              while(i < n && s[i] != '(' && s[i] != ')')
                 i++;
              TreeNode *p = new TreeNode(stoi(s.substr(j, i-j)));
-             if (sk.top()->left) 
+             if (sk.top()->left)
                  sk.top()->right = p;
              else
                  sk.top()->left = p;
              sk.push(p);
          }
      }
-     return root; 
+     return root;
  }
 
 
-   
-//######################################### Recursive version ######################################### 
+
+//######################################### Recursive version #########################################
 class Solution {
     int i;
     public TreeNode str2tree(String s) {
@@ -155,7 +156,7 @@ class Solution {
     }
 }
 
-//######################################### Python ######################################### 
+//######################################### Python #########################################
 //We perform a recursive solution. There are four cases for what the string might look like:
 //empty
 //[integer]
@@ -168,7 +169,7 @@ def str2tree(self, S):
     ix = S.find('(')
     if ix < 0:
         return TreeNode(int(S)) if S else None
-        
+
     bal = 0
     for jx, u in enumerate(S):
         if u == '(': bal += 1

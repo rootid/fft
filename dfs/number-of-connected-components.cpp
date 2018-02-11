@@ -13,7 +13,7 @@
 //Note:
 //You can assume that no duplicate edges will appear in edges. Since all edges are undirected, [0, 1] is the same as [1, 0] and thus will not appear together in edges.
 
-//######################################### Union Find + Path Compression  ######################################### 
+//######################################### Union Find + Path Compression  #########################################
 //M quick union + path compression on N objects should be N + MlgN, In this problem, M = 2E, N = V, so O(V + 2ElgV),
 //1. n points = n islands = n trees = n roots.
 //2. With each edge added, check which island is e[0] or e[1] belonging to.
@@ -25,20 +25,19 @@ public int countComponents(int n, int[][] edges) {
     int[] roots = new int[n];
 	//initialization to add the roots
     for(int i = 0; i < n; i++) {
-		roots[i] = i; 
+		roots[i] = i;
 	}
     for(int[] e : edges) {
-        int from = findRoot(roots, e[0]); //from 
+        int from = findRoot(roots, e[0]); //from
         int to = findRoot(roots, e[1]); //to
-        if(from != to) {   //no parent found 
-            roots[from] = to;  // union or join 
+        if(from != to) {   //no parent found
+            roots[from] = to;  // union or join
             n--;
         }
     }
     return n;
 }
 
-//######################################### Path Compression reduces complexity  ######################################### 
 public int findRoot(int[] roots, int id) {
     while(roots[id] != id) { //find "to" value in case of connected components.
         roots[id] = roots[roots[id]];  // optional: path compression
@@ -47,7 +46,7 @@ public int findRoot(int[] roots, int id) {
     return id;
 }
 
-//######################################### DFS ######################################### 
+//######################################### DFS #########################################
 //1. start dfsVisit with sources 0-n-1,
 //2. count number of unvisited sources.
 public class Solution {
@@ -72,19 +71,19 @@ public class Solution {
         }
         return count;
     }
-  
+
 	//TODO :NEED to check visited set updates or not
     private void dfsVisit(int i, Map<Integer, List<Integer>> map, Set<Integer> visited) {
 		//retrieve adjacent vertices from the list
         for (int j : map.get(i)) {
-            if (visited.add(j)) { //check already visited vertex 
+            if (visited.add(j)) { //check already visited vertex
 				dfsVisit(j, map, visited);
 			}
         }
     }
 }
 
-//######################################### DFS traversal ######################################### 
+//######################################### DFS traversal #########################################
 //SC : O(n)
 //TC : O(n)
 class Solution {
@@ -114,7 +113,7 @@ public:
     }
 };
 
-//######################################### DFS ######################################### 
+//######################################### DFS #########################################
 def countComponents(n, edges):
         def dfs(n, g, visited):
             if visited[n]:
@@ -122,13 +121,13 @@ def countComponents(n, edges):
             visited[n] = 1
             for x in g[n]:
                 dfs(x, g, visited)
-                
+
         visited = [0] * n
         g = {x:[] for x in xrange(n)}
         for x, y in edges:
             g[x].append(y)
             g[y].append(x)
-            
+
         ret = 0
         for i in xrange(n):
             if not visited[i]:
@@ -136,13 +135,13 @@ def countComponents(n, edges):
                 ret += 1
         return ret
 
-//######################################### BFS  ######################################### 
+//######################################### BFS  #########################################
 def countComponents(n, edges):
         g = {x:[] for x in xrange(n)}
         for x, y in edges:
             g[x].append(y)
             g[y].append(x)
-            
+
         ret = 0
         for i in xrange(n):
             queue = [i]
@@ -154,13 +153,13 @@ def countComponents(n, edges):
 
         return ret
 
-//######################################### Union Find  ######################################### 
+//######################################### Union Find  #########################################
 def countComponents(n, edges):
         def find(x):
             if parent[x] != x:
                 parent[x] = find(parent[x])
             return parent[x]
-            
+
         def union(xy):
             x, y = map(find, xy)
             if rank[x] < rank[y]:
@@ -169,12 +168,12 @@ def countComponents(n, edges):
                 parent[y] = x
                 if rank[x] == rank[y]:
                     rank[x] += 1
-        
+
         parent, rank = range(n), [0] * n
         map(union, edges)
         return len({find(x) for x in parent})
 
-//######################################### Union Find  ######################################### 
+//######################################### Union Find  #########################################
 def countComponents(self, n, edges):
     p = range(n)
     def find(v):
@@ -186,7 +185,7 @@ def countComponents(self, n, edges):
     return len(set(map(find, p)))
 
 
-//######################################### Union Find  ######################################### 
+//######################################### Union Find  #########################################
 def countComponents(self, n, edges):
     p = range(n)
     def find(v):
@@ -199,7 +198,7 @@ def countComponents(self, n, edges):
         n -= v != w
     return n
 
-//######################################### Union Find  ######################################### 
+//######################################### Union Find  #########################################
 int countComponents(int n, vector<pair<int, int>>& edges) {
     vector<int> p(n);
     iota(begin(p), end(p), 0);
@@ -213,7 +212,7 @@ int countComponents(int n, vector<pair<int, int>>& edges) {
     return n;
 }
 
-//######################################### Union Find  ######################################### 
+//######################################### Union Find  #########################################
 int countComponents(int n, vector<pair<int, int>>& edges) {
     vector<int> p(n);
     iota(begin(p), end(p), 0);

@@ -4,13 +4,13 @@
 //Example 1:
 //Input: 2
 //Output: (1,2)
-//Explanation: 
+//Explanation:
 //Initially, we have the team 1 and the team 2, placed like: 1,2.
 //Then we pair the team (1,2) together with '(', ')' and ',', which is the final answer.
 //Example 2:
 //Input: 4
 //Output: ((1,4),(2,3))
-//Explanation: 
+//Explanation:
 //In the first round, we pair the team 1 and 4, the team 2 and 3 together, as we need to make the strong team and weak team together.
 //And we got (1,4),(2,3).
 //In the second round, the winners of (1,4) and (2,3) need to play again to generate the final winner, so you need to add the paratheses outside them.
@@ -18,7 +18,7 @@
 //Example 3:
 //Input: 8
 //Output: (((1,8),(4,5)),((2,7),(3,6)))
-//Explanation: 
+//Explanation:
 //First round: (1,8),(2,7),(3,6),(4,5)
 //Second round: ((1,8),(4,5)),((2,7),(3,6))
 //Third round: (((1,8),(4,5)),((2,7),(3,6)))
@@ -26,3 +26,54 @@
 //Note:
 //The n is in range [2, 212].
 //We ensure that the input n can be converted into the form 2k, where k is a positive integer.
+//
+
+//######################################### w/ array  #########################################
+public String findContestMatch(int n) {
+     String[] m = new String[n];
+     for (int i = 0; i < n; i++) {
+         m[i] = String.valueOf(i + 1);
+     }
+
+     while (n > 1) {
+         for (int i = 0; i < n / 2; i++) {
+             m[i] = "(" + m[i] + "," + m[n - 1 - i] + ")";
+         }
+         n /= 2;
+     }
+
+     return m[0];
+ }
+
+//######################################### W/ arraylist#########################################
+public String findContestMatch(int n) {
+    List<String> matches = new ArrayList<>();
+    for(int i = 1; i <= n; i++) matches.add(String.valueOf(i));
+    while(matches.size() != 1){
+        List<String> newRound = new ArrayList<>();
+        for(int i = 0; i < matches.size()/2; i++)
+            newRound.add("(" + matches.get(i) + "," + matches.get(matches.size() - i - 1) + ")");
+        matches = newRound;
+    }
+    return matches.get(0);
+}
+
+//#########################################  #########################################
+class Solution {
+public:
+    string findContestMatch(int n) {
+        vector<string> m(n);
+        for (int i = 0; i < n; i++) {
+            m[i] = to_string(i + 1);
+        }
+
+        while (n > 1) {
+            for (int i = 0; i < n / 2; i++) {
+                m[i] = "(" + m[i] + "," + m[n - 1 - i] + ")";
+            }
+            n /= 2;
+        }
+
+        return m[0];
+    }
+};

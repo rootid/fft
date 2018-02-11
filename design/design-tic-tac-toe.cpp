@@ -41,15 +41,68 @@
 //Could you trade extra space such that move() operation can be done in O(1)?
 //You need two arrays: int rows[n], int cols[n], plus two variables: diagonal, anti_diagonal.
 //Solution:
-//Use addtional arrays rows[n], cols[n] and two varialbes diagonal, anti_diagonal to mark the number of Xs and Os. 
+//Use addtional arrays rows[n], cols[n] and two varialbes diagonal, anti_diagonal to mark the number of Xs and Os.
 
 
-//########################################################### Good ########################################################### 
+//############################ ############################
+//if ((row - col) == 0) diag += toAdd;
+//if ((row + col) == (n - 1)) antidiag += toAdd;
+//On an n x n matrix, you can compute the (anti-)diagonal of a cell by using x + y or x - y. Since given y = mx + b, and m = {1, -1}, then y = {1, -1}x + b, thus y + {1, -1}x = b. If 'b' = 0 then it's the diagonal starting from the bottom, if 'b' = n then it's the diagonal starting from the top.
+//And of course, the 'b' value creates an equivalency relation, which means you can generalize this property to partition all diagonals using the 'b' value. So two spots having the same b value are on the same diagonal.
+public class TicTacToe {
+  private int[] rows;
+  private int[] cols;
+  private int diagonal;
+  private int antiDiagonal;
+
+  /** Initialize your data structure here. */
+  public TicTacToe(int n) {
+      rows = new int[n];
+      cols = new int[n];
+  }
+
+  /** Player {player} makes a move at ({row}, {col}).
+      @param row The row of the board.
+      @param col The column of the board.
+      @param player The player, can be either 1 or 2.
+      @return The current winning condition, can be either:
+              0: No one wins.
+              1: Player 1 wins.
+              2: Player 2 wins. */
+  public int move(int row, int col, int player) {
+      int toAdd = player == 1 ? 1 : -1;
+
+      rows[row] += toAdd;
+      cols[col] += toAdd;
+      if (row == col)
+      {
+          diagonal += toAdd;
+      }
+
+      if (col == (cols.length - row - 1))
+      {
+          antiDiagonal += toAdd;
+      }
+
+      int size = rows.length;
+      if (Math.abs(rows[row]) == size ||
+          Math.abs(cols[col]) == size ||
+          Math.abs(diagonal) == size  ||
+          Math.abs(antiDiagonal) == size)
+      {
+          return player;
+      }
+
+      return 0;
+  }
+}
+
+//########################################################### Good ###########################################################
 //Add +/- 1, check with /n
 class TicTacToe {
 public:
     TicTacToe(int n) : n(n), rows(n), cols(n), diag(0), diag2(0) {}
-    
+
     int move(int row, int col, int player) {
         int add = player == 1 ? 1 : -1;
         if ((rows[row] += add) / n ||
@@ -65,7 +118,7 @@ private:
     vector<int> rows, cols;
 };
 
-//########################################################### Good ########################################################### 
+//########################################################### Good ###########################################################
 class TicTacToe {
 private:
     //count parameter: player 1 + : player 2: -
@@ -84,7 +137,7 @@ public:
         anti += row == total - col - 1 ? add : 0;
         rowJudge[row] += add;
         colJudge[col] += add;
-        if(abs(rowJudge[row]) == total || abs(colJudge[col]) == total || abs(diag) == total || abs(anti) == total) 
+        if(abs(rowJudge[row]) == total || abs(colJudge[col]) == total || abs(diag) == total || abs(anti) == total)
             return player;
         return 0;
     }
@@ -97,7 +150,7 @@ public:
         rows.resize(n, 0), cols.resize(n, 0);
         diagonal = anti_diagonal = 0;
     }
-    
+
     int move(int row, int col, int player) {
         if (player == 1) {
             ++rows[row], ++cols[col];
@@ -126,14 +179,14 @@ private:
     int sz;
 };
 
-//########################################################### Ugly  ########################################################### 
+//########################################################### Ugly  ###########################################################
 class TicTacToe {
 private:
     //status:
     // 0: no one fill
     // 1 or 2: player fill
     //-1 : invalid
-    //pair: 
+    //pair:
     //first:player, second:count
     vector<pair<int,int>> rowJudge;
     vector<pair<int,int>> colJudge;
@@ -142,7 +195,7 @@ private:
 public:
     /** Initialize your data structure here. */
     TicTacToe(int n):total(n), rowJudge(n), colJudge(n){}
-    
+
     /** Player {player} makes a move at ({row}, {col}).
         @param row The row of the board.
         @param col The column of the board.
@@ -162,7 +215,7 @@ public:
         else {
             rowJudge[row].first = -1;
         }
-        
+
         if(colJudge[col].first == 0 || colJudge[col].first == player){
             colJudge[col].first = player;
             colJudge[col].second++;
@@ -173,8 +226,8 @@ public:
         else {
             colJudge[col].first = -1;
         }
-        
-        
+
+
         if(row == col){
             if(diag.first == 0 || diag.first == player){
                 diag.first = player;
@@ -203,12 +256,12 @@ public:
     }
 };
 
-//########################### 6*n X 3 ########################### 
+//########################### 6*n X 3 ###########################
 public class TicTacToe {
     public TicTacToe(int n) {
         count = new int[6*n][3];
     }
-    
+
     public int move(int row, int col, int player) {
         int n = count.length / 6;
         for (int x : new int[]{row, n+col, 2*n+row+col, 5*n+row-col})
@@ -216,7 +269,7 @@ public class TicTacToe {
                 return player;
         return 0;
     }
-    
+
     int[][] count;
 }
 
@@ -224,7 +277,7 @@ public class TicTacToe {
 //[[3],[0,0,1],[0,2,2],[2,2,1],[1,1,2],[2,0,1],[1,0,2],[2,1,1]]
 
 
-//############################ Pytonic  ############################ 
+//############################ Pytonic  ############################
 
 //class TicTacToe(object):
 //    def __init__(self, n):
@@ -246,7 +299,7 @@ public class TicTacToe {
 //
 //    def __init__(self, n):
 //        self.row, self.col, self.diag, self.anti_diag, self.n = [0] * n, [0] * n, 0, 0, n
-//        
+//
 //    def move(self, row, col, player):
 //        offset = player * 2 - 3
 //        self.row[row] += offset
@@ -261,9 +314,9 @@ public class TicTacToe {
 //            return 1
 //        return 0
 //
-//################################################## For k players ################################################## 
+//################################################## For k players ##################################################
 //public class TicTacToe {
-//    
+//
 //    int[][] rows;
 //    int[][] cols;
 //    int[][] diags;
@@ -276,7 +329,7 @@ public class TicTacToe {
 //        this.diags = new int[2][playerNum];
 //        this.n = n;
 //    }
-//    
+//
 //    public int move(int row, int col, int player) {
 //        rows[row][player-1] ++;
 //        cols[col][player-1] ++;
@@ -284,7 +337,7 @@ public class TicTacToe {
 //        diags[1][player-1] += row + col == n - 1 ? 1 : 0;
 //        if (rows[row][player - 1] == n || cols[col][player - 1] == n // n could be placed with K
 //                || diags[0][player - 1] == n || diags[1][player - 1] == n) {
-//            return player;            
+//            return player;
 //        }
 //        return 0;
 //    }

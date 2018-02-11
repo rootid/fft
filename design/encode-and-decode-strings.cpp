@@ -21,7 +21,69 @@
 //Do not use class member/global/static variables to store states. Your encode and decode algorithms should be stateless.
 //Do not rely on any library method such as eval or serialize methods. You should implement your own encode/decode algorithm.
 
-//################################################### or each str in strs, encode it as <length> + '@' + str ################################################### 
+
+//################################################### Use length  ###################################################
+   // Encodes a list of strings to a single string.
+    public String encode(List<String> strs) {
+        StringBuilder sb = new StringBuilder();
+        for(String s : strs) {
+            sb.append(s.length()).append('/').append(s);
+        }
+        return sb.toString();
+    }
+
+    // Decodes a single string to a list of strings.
+    public List<String> decode(String s) {
+        List<String> ret = new ArrayList<String>();
+        int i = 0;
+        while(i < s.length()) {
+            int slash = s.indexOf('/', i);
+            int size = Integer.valueOf(s.substring(i, slash));
+            ret.add(s.substring(slash + 1, slash + size + 1));
+            i = slash + size + 1;
+        }
+        return ret;
+    }
+//################################################### Use # ###################################################
+//Double any hashes inside the strings, then use standalone hashes (surrounded by spaces) to mark string endings. For example:
+//{"abc", "def"}    =>  "abc # def # "
+//{'abc', '#def'}   =>  "abc # ##def # "
+//{'abc##', 'def'}  =>  "abc#### # def # "
+//For decoding, just do the reverse: First split at standalone hashes, then undo the doubling in each string.
+
+public String encode(List<String> strs) {
+    StringBuffer out = new StringBuffer();
+    for (String s : strs)
+        out.append(s.replace("#", "##")).append(" # ");
+    return out.toString();
+}
+
+public List<String> decode(String s) {
+    List strs = new ArrayList();
+    String[] array = s.split(" # ", -1);
+    for (int i=0; i<array.length-1; ++i)
+        strs.add(array[i].replace("##", "#"));
+    return strs;
+}
+
+
+//################################################### Streaming ###################################################
+public String encode(List<String> strs) {
+    return strs.stream()
+               .map(s -> s.replace("#", "##") + " # ")
+               .collect(Collectors.joining());
+}
+
+public List<String> decode(String s) {
+    List strs = Stream.of(s.split(" # ", -1))
+                      .map(t -> t.replace("##", "#"))
+                      .collect(Collectors.toList());
+    strs.remove(strs.size() - 1);
+    return strs;
+}
+
+
+//################################################### or each str in strs, encode it as <length> + '@' + str ###################################################
 class Codec {
 public:
 
@@ -32,7 +94,7 @@ public:
             int len = str.size();
             encoded += to_string(len) + "@" + str;
         }
-        
+
         return encoded;
     }
 
@@ -47,14 +109,14 @@ public:
             r.push_back(s.substr(head, len));
             head += len;
         }
-        
+
         return r;
     }
 };
 
-//################################################### or each str in strs, encode it as <length> + '/' + str ################################################### 
+//################################################### or each str in strs, encode it as <length> + '/' + str ###################################################
 public class Codec {
-    
+
     // Encodes a list of strings to a single string.
     public String encode(List<String> strs) {
         StringBuilder sb = new StringBuilder();

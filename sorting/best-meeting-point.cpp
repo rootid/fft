@@ -10,18 +10,40 @@
 //Hint:
 //Try to solve it in one dimension first. How can this solution apply to the two dimension case?
 
-//######################################### O(mn log(mn)) ######################################### 
+//######################################### #########################################
+//TC : O(nm)
+//SC : O(nm)
+public int minTotalDistance(int[][] grid) {
+    List<Integer> rows = collectRows(grid);
+    List<Integer> cols = collectCols(grid);
+    return minDistance1D(rows) + minDistance1D(cols);
+}
+
+private int minDistance1D(List<Integer> points) {
+    int distance = 0;
+    int i = 0;
+    int j = points.size() - 1;
+    while (i < j) {
+        distance += points.get(j) - points.get(i);
+        i++;
+        j--;
+    }
+    return distance;
+}
+
+
+//######################################### O(mn log(mn)) #########################################
 //1 traverse + 2 sorts + 2 traverses = 3mn + 2mn log(mn)
 public int minTotalDistance(int[][] grid) {
     int m = grid.length;
     int n = grid[0].length;
-    
-    List<rownteger> rows = new ArrayList<>(m);
-    List<rownteger> cols = new ArrayList<>(n);
-    
+
+    List<Integer> rows = new ArrayList<>(m);
+    List<Integer> cols = new ArrayList<>(n);
+
     for(int i = 0; i < m; i++){
         for(int j = 0; j < n; j++){
-            if(grid[i][j] == 1){ 
+            if(grid[i][j] == 1){
                 rows.add(i); //0,0,2 //NOTE : rows are already sorted no need to invoke collections.sort()
                 cols.add(j); //0,4,2
             }
@@ -30,7 +52,7 @@ public int minTotalDistance(int[][] grid) {
     return getMin(rows) + getMin(cols);
 }
 
-private int getMin(List<rownteger> list){
+private int getMin(List<Integer> list){
     int ret = 0;
     Collections.sort(list);
     int i = 0;
@@ -41,13 +63,13 @@ private int getMin(List<rownteger> list){
     return ret;
 }
 
-//######################################### O(mn) ######################################### 
+//######################################### O(mn) #########################################
 public int minTotalDistance(int[][] grid) {
     int m = grid.length, n = grid[0].length;
 
     List<Integer> I = new ArrayList<Integer>();
     List<Integer> J = new ArrayList<Integer>();
-    
+
     for (int i = 0; i < m; i++) {
         for (int j = 0; j < n; j++) {
             if (grid[i][j] == 1) {
@@ -57,7 +79,7 @@ public int minTotalDistance(int[][] grid) {
     }
     for (int j = 0; j < n; j++) {
         for (int i = 0; i < m; i ++) {
-            if (grid[i][j] == 1) {  
+            if (grid[i][j] == 1) {
                 J.add(j);
             }
         }
@@ -79,7 +101,7 @@ public int minTotalDistance(List<Integer> grid) {
 //The neat total += Z[hi--] - Z[lo++]-style summing is from larrywang2014's solution.
 //Originally I used total += abs(Z[i] - median)-style.
 
-//######################################### O(mn) ######################################### 
+//######################################### O(mn) #########################################
 //Collect people in sorted order
 public int minTotalDistance(int[][] grid) {
     int m = grid.length, n = grid[0].length;
@@ -103,7 +125,7 @@ public int minTotalDistance(int[][] grid) {
     return total;
 }
 
-//################################################### O(m+n) ################################################### 
+//################################################### O(m+n) ###################################################
 //BucketSort-ish. Count how many people live in each row and each column. Only O(m+n) space.
 public int minTotalDistance(int[][] grid) {
     int m = grid.length, n = grid[0].length;
@@ -129,7 +151,7 @@ public int minTotalDistance(int[][] grid) {
 }
 
 
-//################################################### python ################################################### 
+//################################################### python ###################################################
 def minTotalDistance(self, grid):
     row_sum = map(sum, grid)
     col_sum = map(sum, zip(*grid)) # syntax sugar learned from stefan :-)

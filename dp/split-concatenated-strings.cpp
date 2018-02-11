@@ -6,9 +6,9 @@
 //Example:
 //Input: "abc", "xyz"
 //Output: "zyxcba"
-//Explanation: You can get the looped string "-abcxyz-", "-abczyx-", "-cbaxyz-", "-cbazyx-", 
-//where '-' represents the looped status. 
-//The answer string came from the fourth looped one, 
+//Explanation: You can get the looped string "-abcxyz-", "-abczyx-", "-cbaxyz-", "-cbazyx-",
+//where '-' represents the looped status.
+//The answer string came from the fourth looped one,
 //where you could cut from the middle character 'a' and get "zyxcba".
 //Note:
 //The input strings will only contain lowercase letters.
@@ -21,7 +21,92 @@
 //o/p : zbbzabzaa
 //
 
-//#########################################  O(N^2) #########################################  
+//######################################### Optimized #########################################
+public class Solution {
+    public String splitLoopedString(String[] strs) {
+        for (int i = 0; i < strs.length; i++) {
+            String rev = new StringBuilder(strs[i]).reverse().toString();
+            if (strs[i].compareTo(rev) < 0)
+                strs[i] = rev;
+        }
+        String res = "";
+        for (int i = 0; i < strs.length; i++) {
+            String rev = new StringBuilder(strs[i]).reverse().toString();
+            for (String st: new String[] {strs[i], rev}) {
+                for (int k = 0; k < st.length(); k++) {
+                    StringBuilder t = new StringBuilder(st.substring(k));
+                    for (int j = i + 1; j < strs.length; j++)
+                        t.append(strs[j]);
+                    for (int j = 0; j < i; j++)
+                        t.append(strs[j]);
+                    t.append(st.substring(0, k));
+                    if (t.toString().compareTo(res) > 0)
+                        res = t.toString();
+                }
+            }
+        }
+        return res;
+    }
+}
+
+//We are given a list of strings: s1,s2,s3,..,sns_1, s_2, s_3,.., s_n. We need to concatenate all these strings in a circular fashion in the same given order, but we can reverse every individual string before concatenating. Now, we need to make a cut in the final concatenated string such that the new string formed is the largest one possible in the lexicographic sense
+//######################################### DFS  #########################################
+//TC : O(2^n)
+//SC : O(n)
+public class Solution {
+    String res = "";
+    public String splitLoopedString(String[] strs) {
+        dfs(strs, "", 0, strs.length);
+        return res;
+    }
+    public void dfs(String[] strs, String s, int i, int n) {
+        if (i < n) {
+            dfs(strs, s + strs[i], i + 1, n);
+            dfs(strs, s + new StringBuffer(strs[i]).reverse().toString(), i + 1, n);
+        } else {
+            for (int j = 0; j < s.length(); j++) {
+                String t = s.substring(j) + s.substring(0, j);
+                if (t.compareTo(res) > 0)
+                    res = t;
+            }
+        }
+    }
+}
+
+//######################################### BFS  #########################################
+//TC : O(2^n)
+//SC : O(2^n)
+public class Solution {
+
+    public String splitLoopedString(String[] strs) {
+        Queue < String > queue = new LinkedList < > ();
+        String res = "";
+        int i = 0, j = 0;
+        queue.add("");
+        while (i < strs.length) {
+            String t = queue.remove();
+            queue.add(t + strs[i]);
+            queue.add(t + new StringBuffer(strs[i]).reverse().toString());
+            j++;
+            if (j == 1 << i) {
+                i++;
+                j = 0;
+            }
+        }
+        while (!queue.isEmpty()) {
+            String t = queue.remove();
+            for (int k = 0; k < t.length(); k++) {
+                String t1 = t.substring(k) + t.substring(0, k);
+                if (t1.compareTo(res) > 0)
+                    res = t1;
+            }
+        }
+        return res;
+    }
+}
+
+
+//#########################################  O(N^2) #########################################
 //1. We know the cut point must come from the one string, assumed it is called c-string.
 //2. Then except the c-string, all the other string must become its lexicographically biggest status, assumed it is called b-status. Since only in this situation, we could get the lexicographically biggest string after cutting.
 //3. To reach the point 2, we need to first let all the string reach its b-status for the convenience of traversing all the strings afterward.
@@ -47,7 +132,7 @@ public static String splitLoopedString(String[] strs) {
     return result;
 }
 
-//#########################################  O(N^2) #########################################  
+//#########################################  O(N^2) #########################################
 public class Solution {
     public String splitLoopedString(String[] strs) {
         int n = strs.length;
@@ -57,7 +142,7 @@ public class Solution {
             String reversed = new StringBuilder(s).reverse().toString();
             lst.add((s.compareTo(reversed) > 0) ? s : reversed);
         }
-        String res = ""; 
+        String res = "";
         for (int i = 0; i < n; i++) {
             String[] temp = new String[] {strs[i], new StringBuilder(strs[i]).reverse().toString()};
             for (String start : temp) {
@@ -77,7 +162,7 @@ public class Solution {
     }
 }
 
-//#########################################  O(N^2) #########################################  
+//#########################################  O(N^2) #########################################
 //Repeated sring problem
 //auto twice = strs;
 //twice.insert(twice.end(), strs.begin(), strs.end());
@@ -108,10 +193,10 @@ string splitLoopedString(vector<string>& strs) {
     return result;
 }
 
-//#########################################  pytonic ######################################### 
-//B : For every starting direction and letter, let's determine the best string we can make. 
+//#########################################  pytonic #########################################
+//B : For every starting direction and letter, let's determine the best string we can make.
 //For subsequent fragments we encounter, we always want them flipped in the orientation that makes them largest.
-//Thus, for every token, for every starting direction, for every starting letter in the token, 
+//Thus, for every token, for every starting direction, for every starting letter in the token,
 //we can compute the candidate string directly. We take the maximum of these.
 def splitLoopedString(self, A):
     B = [max(x, x[::-1]) for x in A]
@@ -131,4 +216,4 @@ def splitLoopedString(self, strs):
                for j in xrange(len(s)))
 //The one "real" difference is that I don't do the + 1 in the range for j. I don't think it's necessary or even meaningful, as in that case your start really isn't the start but only the end.
 
-// vim: set sw=2 sts=2 tw=120 et nospell : 
+// vim: set sw=2 sts=2 tw=120 et nospell :

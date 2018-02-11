@@ -3,7 +3,7 @@
 //The picture is represented by a 2D char array consisting of 'B' and 'W', which means black and white pixels respectively.
 //A black lonely pixel is character 'B' that located at a specific position where the same row and same column don't have any other black pixels.
 //Example:
-//Input: 
+//Input:
 //[['W', 'W', 'B'],
 // ['W', 'B', 'W'],
 // ['B', 'W', 'W']]
@@ -18,7 +18,7 @@
 //o/p : 0
 
 
-//################################################### T : O(mn), S = O(m+n)  ###################################################  
+//################################################### T : O(mn), S = O(m+n)  ###################################################
 /**
  * suppose matrix is m*n, there is at most min(m, n) lonely pixels, because there could be no more than 1 in each row, or column;
  * therefore, if we record num of black pixel on each row and column, we can easily tell whether each pixel is lonely or NO.
@@ -26,7 +26,7 @@
  *  0 | 0 0 1   rows[0] = 1
  *  1 | 0 1 0   rows[1] = 1
  *  2 | 1 0 0   rows[2] = 1
- * 
+ *
  * cols[0][1][2]
  *     1  1  1
  */
@@ -53,7 +53,7 @@ public:
     }
 };
 
-//################################################### T : O(mn), S = O(m+n) + One Pass  ###################################################  
+//################################################### T : O(mn), S = O(m+n) + One Pass  ###################################################
 public class Solution {
     public int findLonelyPixel(char[][] picture) {
         int m = picture.length, n = picture[0].length;
@@ -79,36 +79,38 @@ public class Solution {
     }
 }
 
-//################################################### T : O(mn), S = O(1)  ###################################################  
+//################################################### T : O(mn), S = O(1)  ###################################################
 //mutate the first row and first column of the given matrix to store the counts of items in the row/column.
 //W + 1 = X --> one item in the row/column
 //B + 1 = C --> one item in the row/column, and the first row is the black pixel
 //W + 2 = Y --> two items in the row/column
 //W - 1 = V --> this prevents wrap-around past W if there are more than 255 black pixels in a row/column
-//public int findLonelyPixel(char[][] picture) {
+
+public int findLonelyPixel(char[][] picture) {
     int n = picture.length, m = picture[0].length;
 
-    
+
     int firstRowCount = 0;
-    for (int i=0;i<n;i++) 
-        for (int j=0;j<m;j++) 
-            if (picture[i][j] == 'B') {   
+    for (int i=0;i<n;i++)
+        for (int j=0;j<m;j++)
+            if (picture[i][j] == 'B') {
                 if (picture[0][j] < 'Y' && picture[0][j] != 'V') picture[0][j]++;
                 if (i == 0) firstRowCount++;
                 else if (picture[i][0] < 'Y' && picture[i][0] != 'V') picture[i][0]++;
             }
 
     int count = 0;
-    for (int i=0;i<n;i++) 
-        for (int j=0;j<m;j++) 
-            if (picture[i][j] < 'W' && (picture[0][j] == 'C' || picture[0][j] == 'X')) { 
+    for (int i=0;i<n;i++)
+        for (int j=0;j<m;j++)
+            if (picture[i][j] < 'W' && (picture[0][j] == 'C' || picture[0][j] == 'X')) {
                 if (i == 0) count += firstRowCount == 1 ? 1 : 0;
                 else if (picture[i][0] == 'C' || picture[i][0] == 'X') count++;
             }
-                
+
     return count;
 }
-//################################################### JAVA ###################################################  
+
+//################################################### JAVA ###################################################
 public class Solution {
     public int findLonelyPixel(char[][] pic) {
         int m = pic.length;
@@ -130,12 +132,12 @@ public class Solution {
             }
         }
 
-        return lonely;     
+        return lonely;
     }
 }
 
-//################################################### Python ###################################################  
-///################################################### Omn) ################################################### 
+//################################################### Python ###################################################
+///################################################### Omn) ###################################################
 //go through the columns, count how many have exactly one black pixel and it's in a row that also has exactly one black pixel.
 def findLonelyPixel(self, picture):
     return sum(col.count('B') == 1 == picture[col.index('B')].count('B') for col in zip(*picture))

@@ -6,7 +6,7 @@
 //Given n = 5 and edges = [[0, 1], [0, 2], [0, 3], [1, 4]], return true.
 //Given n = 5 and edges = [[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]], return false.
 
-//######################################### Union Find ######################################### 
+//######################################### Union Find #########################################
 //Tree must have unique parent,if node shares 2 parent then graph is not a valid tree
 //TODO : In case of self loop find will recursively iterate over the same recursive function. (Req fix).
 public class Solution {
@@ -14,30 +14,30 @@ public class Solution {
         // initialize n isolated islands
         int[] nums = new int[n];
         Arrays.fill(nums, -1);
-        
+
         // perform union find
         for (int i = 0; i < edges.length; i++) {
             int x = find(nums, edges[i][0]);
             int y = find(nums, edges[i][1]);
-            
+
             // if two vertices happen to be in the same set
             // then there's a cycle
-            if (x == y) return false; 
-            
+            if (x == y) return false;
+
             // union
             nums[x] = y;
         }
-        
+
         return edges.length == n - 1;
     }
-    
+
     private int find(int nums[], int i) {
         if (nums[i] == -1) return i; //first visit of the vertex
-        return find(nums, nums[i]);  
+        return find(nums, nums[i]);
     }
 }
 
-//######################################### Cycle Test ######################################### 
+//######################################### Cycle Test #########################################
 //To tell whether a graph is a valid tree, we have to: (necessary and sufficient condition)
 //1. Make sure there is no cycle in the graph - this has to be a none-cyclic graph;
 //2. Make sure every node is reached - this has to be a connected graph;
@@ -52,18 +52,18 @@ bool validTree(int n, vector<pair<int, int>>& edges) {
 		//pick the vertices
         int f = edges[i].first;
         int s = edges[i].second;
-		//Improve the speed by path compression 
+		//Improve the speed by path compression
 		//if using compatization by adding nodes[f] = nodes[nodes[f]]; // and similar for s in the root searching loops.
         while(nodes[f] != f) f = nodes[f]; //find the parent of vertiex f
         while(nodes[s] != s) s = nodes[s]; //find the parent of vertiex s
         if(nodes[f] == nodes[s]) return false; //if both the vertices share the same parent then graph is not tree
         nodes[s] = f; //union
-    } 
-	//For given valid tree # of edges = n-1 where n = # of vertices 
-	return edges.size() == n-1; 
+    }
+	//For given valid tree # of edges = n-1 where n = # of vertices
+	return edges.size() == n-1;
 }
 
-//######################################### Union Find ######################################### 
+//######################################### Union Find #########################################
 //In all of them, I check one of these tree characterizations:
 //Has n-1 edges and is acyclic.
 //Has n-1 edges and is connected.
@@ -81,7 +81,7 @@ def validTree(self, n, edges):
 
 //A version without using all(...), to be closer to other programming languages:
 
-//######################################### Union Find ######################################### 
+//######################################### Union Find #########################################
 def validTree(self, n, edges):
     parent = range(n)
     def find(x):
@@ -94,7 +94,7 @@ def validTree(self, n, edges):
     return len(edges) == n - 1
 //A version checking len(edges) != n - 1 first, as parent = range(n) could fail for huge n:
 
-//######################################### Union Find ######################################### 
+//######################################### Union Find #########################################
 def validTree(self, n, edges):
     if len(edges) != n - 1:
         return False
@@ -107,7 +107,7 @@ def validTree(self, n, edges):
         return x != y
     return all(map(union, edges))
 
-//######################################### DFS ######################################### 
+//######################################### DFS #########################################
 def validTree(self, n, edges):
     neighbors = {i: [] for i in range(n)}
     for v, w in edges:
@@ -118,7 +118,7 @@ def validTree(self, n, edges):
     visit(0)
     return len(edges) == n-1 and not neighbors
 
-//######################################### Fast DFS ######################################### 
+//######################################### Fast DFS #########################################
 //Or check the number of edges first, to be faster and to survive unreasonably huge n:
 
 def validTree(self, n, edges):
@@ -137,7 +137,7 @@ def validTree(self, n, edges):
     while stack:
         stack += neighbors.pop(stack.pop(), [])
 
-//######################################### BFS ######################################### 
+//######################################### BFS #########################################
 //Just like DFS above, but replace the three "visit" lines with
     queue = [0]
     for v in queue:
@@ -148,7 +148,7 @@ or, since that is not guaranteed to work, the safer
     while queue:
         queue.extend(neighbors.pop(queue.popleft(), []))
 
-//######################################### Union Find cpp  ######################################### 
+//######################################### Union Find cpp  #########################################
 
 class Solution {
 public:
