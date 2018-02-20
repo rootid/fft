@@ -85,4 +85,4 @@ int main(){
 //    }
 //
 //    cout<<abs(d1-d2)<<endl; //Absolute difference of the sums across the diagonals
-//}   
+//}

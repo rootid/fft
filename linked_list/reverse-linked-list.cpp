@@ -11,8 +11,8 @@
 public ListNode reverseList(ListNode head) {
     if(head == null || head.next == null) return head;
     ListNode tmp = reverseList(head.next);
-    head.next.next = head;
-    head.next = null;
+    head.next.next = head; //Fix GrandChild first
+    head.next = null; //Then Fix child
     return tmp;
 }
 

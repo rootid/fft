@@ -4,10 +4,29 @@
 #include "../headers/global.hpp"
 #include "../headers/listnode.hpp"
 
-//######################################### Recursive ######################################### 
-public ListNode mergeTwoSortedList(ListNode l1, ListNode l2) {
+
+//######################################### Recursive #########################################
+public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
     if(l1 == null) return l2;
     if(l2 == null) return l1;
+    ListNode mergeHd = null;
+    if(l1.val < l2.val) {
+        mergeHd = l1;
+        mergeHd.next = mergeTwoLists(l1.next, l2);
+        return mergeHd;
+    }
+    mergeHd = l2;
+    mergeHd.next = mergeTwoLists(l1, l2.next);
+    return mergeHd;
+}
+
+//######################################### Recursive #########################################
+public ListNode mergeTwoSortedList(ListNode l1, ListNode l2) {
+    //base case
+    if(l1 == null) return l2;
+    if(l2 == null) return l1;
+
+    //Recursion case - only modify the pointer
     if(l1.data < l2.data) {
         l1.next = mergeTwoSortedList(l1.next, l2);
         return l1;
@@ -16,38 +35,35 @@ public ListNode mergeTwoSortedList(ListNode l1, ListNode l2) {
     return l2;
 }
 
-//######################################### Iterative ######################################### 
-public ListNode mergeTwoLists(ListNode l1, ListNode l2) { 
-    ListNode dummyNode = new ListNode(-1);
-    ListNode iter = dummyNode;
-    while(l1 != null || l2 != null) {
-        if(l1 != null & l2 != null) {
-            if(l1.val <= l2.val) {
-                iter.next = l1;
-                l1 = l1.next;
-            } else {
-                iter.next = l2;
-                l2 = l2.next;
-            }
-        } else if(l1 != null) {
-            iter.next = l1;
-            l1 = l1.next;
-        } else if(l2 != null) {
-            iter.next = l2;
+//######################################### Iterative #########################################
+public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+     if(l1 == null) return l2;
+     if(l2 == null) return l1;
+     ListNode nextHead = new ListNode(42);
+     ListNode tmpNode = nextHead;
+     while(l1 != null || l2 != null) {
+         if(l2 == null ||  (l1 != null && l1.val < l2.val) )  {
+             tmpNode.next = l1;
+             l1 = l1.next;
+         } else {
+            tmpNode.next = l2;
             l2 = l2.next;
-        }
-        iter = iter.next;
-    }
-    return dummyNode.next;
+         }
+         tmpNode = tmpNode.next;
+     }
+     tmpNode.next = null;
+     return nextHead.next;
 }
-namespace good { 
 
-//######################################### Iteration  ######################################### 
+
+namespace good {
+
+//######################################### Iteration  #########################################
   ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
-      if(l1 == NULL) { 
+      if(l1 == NULL) {
         return l2;
       }
-      if(l2 == NULL) { 
+      if(l2 == NULL) {
         return l1;
       }
      ListNode *dummy = new ListNode(0);
@@ -61,7 +77,7 @@ namespace good {
              l2 = l2->next;
          }
          l3 = l3->next;
-     } 
+     }
      if(l1) {
          l3->next = l1;
      }
@@ -89,10 +105,10 @@ ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
             l3 = l3->next;
             l3->next = l2;
             l2 = l2->next;
-   
+
         }
         l3 = l3->next;
-    } 
+    }
     while(l1) {
         l3->next = l1;
         l1 = l1->next;
@@ -124,7 +140,7 @@ namespace recursive {
 }
 
 
-//######################################### Merge2Lists ######################################### 
+//######################################### Merge2Lists #########################################
 //If both lists are non-empty, I first make sure a starts smaller, use its head as result, and merge the remainders behind it. Otherwise, i.e., if one or both are empty, I just return what's there.
 class Solution:
     def mergeTwoLists(self, a, b):
@@ -133,7 +149,7 @@ class Solution:
                 a, b = b, a
             a.next = self.mergeTwoLists(a.next, b)
         return a or b
-//######################################### Return b  ######################################### 
+//######################################### Return b  #########################################
 //First make sure that a is the "better" one (meaning b is None or has larger/equal value).
 //Then merge the remainders behind a.
 def mergeTwoLists(self, a, b):

@@ -7,16 +7,136 @@
 //Given this linked list: 1->2->3->4->5
 //For k = 2, you should return: 2->1->4->3->5
 //For k = 3, you should return: 3->2->1->4->5
+
+
 //-1 -> 1 -> 2 -> 3 -> 4 -> 5
-// |    |    |    | 
+// |    |    |    |
 //pre  cur  nex  tmp
 //-1 -> 2 -> 1 -> 3 -> 4 -> 5
-// |         |    |    | 
+// |         |    |    |
 //pre       cur  nex  tmp
 //-1 -> 3 -> 2 -> 1 -> 4 -> 5
-// |              |    |    | 
+// |              |    |    |
 //pre            cur  nex  tmp
 
+//######################################### Recursion k-groups #########################################
+public ListNode reverseKGroup(ListNode head, int k) {
+    ListNode curr = head;
+    int count = 0;
+    while (curr != null && count != k) { // find the k+1 node
+        curr = curr.next;
+        count++;
+    }
+    if (count == k) { // if k+1 node is found
+        curr = reverseKGroup(curr, k); // reverse list with k+1 node as head
+        // head - head-pointer to direct part,
+        // curr - head-pointer to reversed part;
+        while (count-- > 0) { // reverse current k-group:
+            ListNode tmp = head.next; // tmp - next head in direct part
+            head.next = curr; // preappending "direct" head to the reversed list
+            curr = head; // move head of reversed part to a new node
+            head = tmp; // move "direct" head to the next node in direct part
+        }
+        head = curr;
+    }
+    return head;
+}
+
+
+Similar idea to yours with explanation.
+
+For example,
+
+list = 1 -> 2 -> 3 -> 4 -> 5, k = 3
+
+    Use a dummy head to simplify operations.
+
+Dummy -> 1 -> 2 -> 3 -> 4 -> 5
+
+    Use three pointers. The operation is similar to Leetcode#92 Reverse Linked List II.
+
+    The pointer n will go k steps further.
+    (If there are no k nodes further, it means we don’t have to reverse these k nodes. ==> Stop. )
+    The pointer p is always at the fixed position in this for-loop.
+    The pointer c = p.next, which means the current node we want to move.
+    The pointer start means the starting node for the next loop.
+
+Dummy -> 1 -> 2 -> 3 -> 4 -> 5
+   p     c         n
+         start
+
+Dummy -> 2 -> 3 -> 1 -> 4 -> 5
+   p     c    n    start
+
+Dummy -> 3 -> 2 -> 1 -> 4 -> 5
+   p     c         start
+         n
+
+class Solution {
+    public ListNode reverseKGroup(ListNode head, int k) {
+        ListNode dummy = new ListNode(0), start = dummy;
+        dummy.next = head;
+        while(true) {
+            ListNode p = start, c, n = p;
+            start = p.next;
+            for(int i = 0; i < k && n != null; i++) n = n.next;
+            if(n == null) break;
+            for(int i = 0; i < k-1; i++) {
+                c = p.next;
+                p.next = c.next;
+                c.next = n.next;
+                n.next = c;
+            }
+        }
+        return dummy.next;
+    }
+}
+
+
+
+//######################################### Iteration #########################################
+ public class Solution {
+        public ListNode reverseKGroup(ListNode head, int k) {
+            if (head==null||head.next==null||k<2) return head;
+
+            ListNode dummy = new ListNode(0);
+            dummy.next = head;
+
+            ListNode tail = dummy, prev = dummy,temp;
+            int count;
+            while(true){
+                count =k;
+                while(count>0&&tail!=null){
+                    count--;
+                    tail=tail.next;
+                }
+                if (tail==null) break;//Has reached the end
+
+
+                head=prev.next;//for next cycle
+            // prev-->temp-->...--->....--->tail-->....
+            // Delete @temp and insert to the next position of @tail
+            // prev-->...-->...-->tail-->head-->...
+            // Assign @temp to the next node of @prev
+            // prev-->temp-->...-->tail-->...-->...
+            // Keep doing until @tail is the next node of @prev
+                while(prev.next!=tail){
+                    temp=prev.next;//Assign
+                    prev.next=temp.next;//Delete
+
+                    temp.next=tail.next;
+                    tail.next=temp;//Insert
+
+                }
+
+                tail=head;
+                prev=head;
+
+            }
+            return dummy.next;
+
+        }
+    }
 
 ListNode* reverseKGroup(ListNode* head, int k) {
      if(head == NULL|| k== 1) {
@@ -51,7 +171,7 @@ ListNode *reverseKGroup(ListNode *head, int k) {
      ListNode *preheader = new ListNode(-1);
      preheader->next = head;
      ListNode *cur = preheader, *nex, *pre = preheader;
-     while(cur = cur->next) 
+     while(cur = cur->next)
          len++;
      while(len>=k) {
          cur = pre->next;

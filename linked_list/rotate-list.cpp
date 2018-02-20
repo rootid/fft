@@ -1,4 +1,4 @@
-//Rotate Linked List 
+//Rotate Linked List
 //Given a list, rotate the list to the right by k places, where k is non-negative.
 //For example:
 //Given 1->2->3->4->5->NULL and k = 2,
@@ -8,13 +8,36 @@
 #include "../headers/listnode.hpp"
 
 
-//############################################  Iteration  ############################################  
+
+//############################################  Iteration  ############################################
+public ListNode rotateRight(ListNode head, int k) {
+      ListNode fake = new ListNode(-1), slow = fake, fast = fake;
+      fake.next = head;
+
+      int len = 0;
+      while(fast.next != null){   // fast REACH tail && Count len
+          fast = fast.next; len++;
+      }
+      if(len == 0) return null;   // CHECK null
+      k %= len; //To avoid cycle
+
+      for(int i=0; i<len-k; i++)  // slow REACH before the rotated point
+          slow = slow.next;
+
+      fast.next = fake.next;      // CONNECT
+      fake.next = slow.next;
+      slow.next = null;
+
+      return fake.next;
+}
+
+//############################################  Iteration  ############################################
 public ListNode rotateRight(ListNode head, int k) {
     if(head == null) return head;
     int len = 0;
     ListNode fp = head, lp = head, tmp = head;
     while(tmp != null) {
-        tmp = tmp.next; 
+        tmp = tmp.next;
         len++; //1. Get the length
     }
     k = k % len;  //To avoid cycle
@@ -29,7 +52,7 @@ public ListNode rotateRight(ListNode head, int k) {
     return fp;
 }
 
-//############################################  GOOD ############################################  
+//############################################  GOOD ############################################
 ListNode* rotateRight(ListNode* head, int k) {
 
   if(!head) {
@@ -37,7 +60,7 @@ ListNode* rotateRight(ListNode* head, int k) {
   }
   ListNode *newHead = head;
   ListNode *tail = head;
-  int count = 1; 
+  int count = 1;
   while(tail->next != NULL) {
     tail = tail->next;
     count += 1;
@@ -54,14 +77,14 @@ ListNode* rotateRight(ListNode* head, int k) {
   return newHead;
 }
 
-//############################################  GOOD ############################################  
+//############################################  GOOD ############################################
 int getLength(ListNode *head) {
   int len = 0;
   while(head != NULL) {
     len += 1;
     head = head->next;
   }
- return len; 
+ return len;
 }
 
 ListNode* reverse(ListNode* head, int m,int n) {

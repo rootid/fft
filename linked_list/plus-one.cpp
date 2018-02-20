@@ -7,14 +7,14 @@
 //Output:
 //1->2->4
 
-//################################ Recursive  ################################ 
+//################################ Recursive  + Inplace ################################
 public static ListNode plusOne(ListNode head) {
       if ( 1 == plusOneHelper(head) ) {
         ListNode newNode = new ListNode(1);
         newNode.next = head;
         return newNode;
       }
-      return head; 
+      return head;
 }
 
 private static int plusOneHelper(ListNode head) {
@@ -30,34 +30,34 @@ private static int plusOneHelper(ListNode head) {
 }
 
 
-//################################ Iterative ################################ 
+//################################ Iterative ################################
 ListNode* plusOne(ListNode* head) {
       ListNode *newHead = new ListNode(0);
       newHead->next = head;
       ListNode *p = newHead, *q = head;
-      
+
       while (q) {
           if (q->val != 9)
               p = q;
           q = q->next;
       }
-      
+
       ++(p->val);
       p = p->next;
       while (p) {
           p->val = 0;
           p = p->next;
       }
-      
+
       if (newHead->val)
       	head = newHead;
       else
       	delete newHead;
-      
+
       return head;
   }
 
-//################################ Recursive ################################ 
+//################################ Recursive ################################
 int addOne(ListNode *head) {
     //for empty node add one to the node
     if(!head) {
@@ -82,7 +82,7 @@ ListNode* plusOne(ListNode* head) {
      return head;
 }
 
-//################################ Recursive - helper ################################ 
+//################################ Recursive - helper ################################
 //another to express the helper function
 int addOne_helper(ListNode *head) {
      if(!head) {

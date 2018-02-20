@@ -2,7 +2,27 @@
 //A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.
 //Return a deep copy of the list.
 
-//######################################### Iteration + Modify list(Expand) and Rollback ######################################### 
+
+//######################################### Iteration #########################################
+public RandomListNode copyRandomList(RandomListNode head) {
+    RandomListNode dummyNode = new RandomListNode(42);
+    RandomListNode nh = dummyNode;
+    Map<RandomListNode, RandomListNode> rndLstMap = new HashMap<>();
+    while(head != null) {
+        nh.next = new RandomListNode(head.label);
+        nh = nh.next;
+        rndLstMap.put(head, nh); //Str mping bt (Copied Node, Old Node)
+        head = head.next;
+    }
+    for(RandomListNode oldNode: rndLstMap.keySet()) { //traverse old node
+           RandomListNode rndNodeSrc = oldNode.random;
+           RandomListNode destNode = rndLstMap.get(oldNode);
+           destNode.random = rndLstMap.getOrDefault(rndNodeSrc, null);
+    }
+    return dummyNode.next;
+}
+
+//######################################### Iteration + Modify list(Expand) and Rollback #########################################
     public RandomListNode copyRandomList(RandomListNode head) {
         if(head == null) return null;
         RandomListNode tmp = null;
@@ -16,10 +36,10 @@
             iter = tmp; //Get the stored P1
         }
         //Copy random pointer
-         iter = head;
+        iter = head;
         while(iter != null) {
-            if(iter.random != null) 
-                iter.next.random = iter.random.next; 
+            if(iter.random != null)
+                iter.next.random = iter.random.next;
             iter = iter.next.next;
         }
         tmp = copyRef;
@@ -30,12 +50,12 @@
             iter = iter.next;  //increment expanded node
             tmp = tmp.next; //increment copied node
         }
-               
+
         return copyRef.next;
     }
 
 
-//######################################### Iteration + Map  ######################################### 
+//######################################### Iteration + Map  #########################################
 //1. Copy next pointer
 //2. Copy random pointer
 public RandomListNode copyRandomList(RandomListNode head) {
@@ -61,8 +81,8 @@ public RandomListNode copyRandomList(RandomListNode head) {
     return dummyNode.next;
 }
 
-//######################################### Iteration  ######################################### 
-RandomListNode *copyRandomList(RandomListNode *head) { 
+//######################################### Iteration  #########################################
+RandomListNode *copyRandomList(RandomListNode *head) {
   if (head == NULL) return NULL;
   RandomListNode *newlist = new RandomListNode(head->label);
   RandomListNode *newlistHead = newlist;

@@ -5,7 +5,7 @@
 //Output: 7 -> 0 -> 8
 //
 
-//NOTE : To avoid memory leak 
+//NOTE : To avoid memory leak
 //ListNode sentinel(0);
 //ListNode *curr = &sentinel;
 //return sentinel.next;
@@ -14,30 +14,30 @@
 #include "../headers/listnode.hpp"
 
 
-//##################################################### Recursion GOOD  ##################################################### 
-  public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        return addTwoNumbersHelper(l1,l2);
+//##################################################### Recursion GOOD  #####################################################
+public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    return addTwoNumbersHelper(l1,l2);
+}
+
+ private ListNode addTwoNumbersHelper(ListNode l1, ListNode l2) {
+    if(l1 == null && l2 == null) return l1;
+    if(l1 == null) return l2;
+    if(l2 == null) return l1;
+    int carry = l1.val + l2.val;
+    ListNode head = new ListNode(carry % 10);
+    head.next = addTwoNumbersHelper(l1.next, l2.next);
+    if(carry >= 10) { //max sum = 18 [9+9]
+        head.next = addTwoNumbersHelper(head.next, new ListNode(1));
     }
-    
-     private ListNode addTwoNumbersHelper(ListNode l1, ListNode l2) {        
-        if(l1 == null && l2 == null) return l1;
-        if(l1 == null) return l2;
-        if(l2 == null) return l1;
-        int carry = l1.val + l2.val;
-        ListNode head = new ListNode(carry % 10);
-        head.next = addTwoNumbersHelper(l1.next, l2.next);
-        if(carry >= 10) { //max sum = 18 [9+9]
-            head.next = addTwoNumbersHelper(head.next, new ListNode(1));
-        }
-        return head;
-     }
+    return head;
+ }
 
 
-//##################################################### Recursion GOOD  ##################################################### 
-ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) { 
+//##################################################### Recursion GOOD  #####################################################
+ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
     if (l1 == NULL and l2 == NULL) return NULL;
-    else if (l1 == NULL) return l2; 
-    else if (l2 == NULL) return l1; 
+    else if (l1 == NULL) return l2;
+    else if (l2 == NULL) return l1;
     int carry  = l1->val + l2->val;
     ListNode *p = new ListNode(carry % 10);
     p->next = addTwoNumbers(l1->next,l2->next);
@@ -47,7 +47,7 @@ ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
     return p;
 }
 
-//##################################################### GOOD ##################################################### 
+//##################################################### GOOD #####################################################
 ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
   ListNode *sentinel = new ListNode(0);
   ListNode *tmp = sentinel;
@@ -70,7 +70,7 @@ ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
   return sentinel->next;
 }
 
-//##################################################### UGLY ##################################################### 
+//##################################################### UGLY #####################################################
 ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
        ListNode *sumHeadNode = new ListNode(0);
        ListNode *tmp = sumHeadNode;

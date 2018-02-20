@@ -8,7 +8,79 @@
 //1 ≤ m ≤ n ≤ length of list.
 //
 
-//####################### 3 variables  ####################### 
+
+//####################### W/ dummy + 1 pass #######################
+//
+public ListNode reverseBetween(ListNode head, int m, int n) {
+    if(head == null) return null;
+    ListNode dummy = new ListNode(0);
+    dummy.next = head;
+    ListNode pre = dummy, cur = head;
+    int idx = 1;
+    while(cur.next != null && idx++ != m){
+        cur = cur.next;
+        pre = pre.next;
+    }
+    while(cur.next != null && idx++ != n+1){
+        ListNode preNext = pre.next;
+        pre.next = cur.next;
+        ListNode next = cur.next;
+        cur.next = next.next;
+        next.next = preNext;
+    }
+    return dummy.next;
+}
+
+//####################### 1 pass  #######################
+public ListNode reverseBetween(ListNode head, int m, int n) {
+    if(head == null) return null;
+    ListNode dummy = new ListNode(0); // create a dummy node to mark the head of this list
+    dummy.next = head;
+    ListNode pre = dummy; // make a pointer pre as a marker for the node before reversing
+    for(int i = 0; i<m-1; i++) pre = pre.next;
+
+    ListNode start = pre.next; // a pointer to the beginning of a sub-list that will be reversed
+    ListNode then = start.next; // a pointer to a node that will be reversed
+
+    // 1 - 2 -3 - 4 - 5 ; m=2; n =4 ---> pre = 1, start = 2, then = 3
+    // dummy-> 1 -> 2 -> 3 -> 4 -> 5
+
+    for(int i=0; i<n-m; i++) {
+        start.next = then.next;
+        then.next = pre.next;
+        pre.next = then;
+        then = start.next;
+    }
+    // first reversing : dummy->1 - 3 - 2 - 4 - 5; pre = 1, start = 2, then = 4
+    // second reversing: dummy->1 - 4 - 3 - 2 - 5; pre = 1, start = 2, then = 5 (finish)
+    return dummy.next;
+}
+
+//####################### 3 variables  #######################
+public ListNode reverseBetween(ListNode head, int m, int n) {
+        if(m > n) return head;
+        int idx = 0;
+        ListNode dummyNode = new ListNode(0);
+        dummyNode.next = head;
+        ListNode prev = dummyNode;
+        while(idx++ < m-1 && prev != null)
+            prev = prev.next;
+        // 1->2->3->4->5->NULL ; m=2; n =4 ---> prev = 1, current = 2, rest = 3
+        // dummy-> 1 -> 2 -> 3 -> 4 -> 5-> NULL
+        // O/p 1->4->3->2->5->NULL.
+        //ListNode current = prev.next;
+        //ListNode rest = current.next;
+        ListNode rest = prev.next.next;
+        while(idx++ < n) {
+             ListNode tmp = rest.next; //store next
+             rest.next = prev.next; //
+             prev.next = rest;
+             rest = tmp;
+        }
+        return dummyNode.next;
+}
+
+//####################### 3 variables  #######################
 //1. Reverse routine between m and n + Connect beforeMPtr.next to n
     public ListNode reverseBetween(ListNode head, int m, int n) {
         if(m > n) return head;
@@ -16,7 +88,7 @@
         ListNode dummyNode = new ListNode(0);
         dummyNode.next = head;
         ListNode prev = dummyNode;
-        while(idx++ < m-1 && prev != null) 
+        while(idx++ < m-1 && prev != null)
             prev = prev.next;
         ListNode beforeMPtr = prev.next; // store beforeM ptr
         ListNode rest = beforeMPtr.next;
@@ -32,31 +104,8 @@
             beforeMPtr.next = tmp;
         return dummyNode.next;
     }
-//####################### 3 variables  ####################### 
-public ListNode reverseBetween(ListNode head, int m, int n) {
-        if(m > n) return head;
-        int idx = 0;
-        ListNode dummyNode = new ListNode(0);
-        dummyNode.next = head;
-        ListNode prev = dummyNode;
-        while(idx++ < m-1 && prev != null) 
-            prev = prev.next;
-        // 1->2->3->4->5->NULL ; m=2; n =4 ---> prev = 1, current = 2, rest = 3
-        // dummy-> 1 -> 2 -> 3 -> 4 -> 5-> NULL 
-        // O/p 1->4->3->2->5->NULL.
-        //ListNode current = prev.next;
-        //ListNode rest = current.next;
-        ListNode rest = prev.next.next;
-        while(idx++ < n) {
-             ListNode tmp = rest.next;
-             rest.next = prev.next;
-             prev.next = rest;
-             rest = tmp;
-        }
-        return dummyNode.next;
-}
 
-//####################### Memory leak  ####################### 
+//####################### Memory leak  #######################
 ListNode* reverseBetween(ListNode* head, int m, int n) {
       int idx = 0;
       ListNode* dummy_head = new ListNode(0);
@@ -77,25 +126,25 @@ ListNode* reverseBetween(ListNode* head, int m, int n) {
         idx++;
     }
     // }
-   return dummy_head->next; 
+   return dummy_head->next;
 }
-//####################### Avoid memory leak  ####################### 
+//####################### Avoid memory leak  #######################
 ListNode* reverseBetween(ListNode* head, int m, int n) {
-       
+
        if (head == NULL || m == n) return head;
-       
+
        ListNode dummy(0); // aviod memory leak;
        dummy.next = head;
-       
+
        ListNode *pre = &dummy;
        int diff = n - m;
-       
+
        // decreaes m, then check if m > 0
        while(--m) pre = pre->next;
-       
-       ListNode *cur = pre->next; 
+
+       ListNode *cur = pre->next;
        ListNode *curNext = cur->next;
-       
+
        // rotating the nodes that need to be reversed.
        while (diff--){
            ListNode* rot = curNext;
@@ -107,7 +156,7 @@ ListNode* reverseBetween(ListNode* head, int m, int n) {
        return dummy.next;
 }
 
-//####################### W/O dummy head ####################### 
+//####################### W/O dummy head #######################
 ListNode *reverseBetween(ListNode *head, int m, int n) {
         ListNode *prev = NULL;
         ListNode *tail = head;
@@ -128,21 +177,21 @@ ListNode *reverseBetween(ListNode *head, int m, int n) {
         }
         if (prev) {
             return head;
-        } 
+        }
         return front;
-} 
+}
 
-//####################### ####################### 
+//####################### #######################
 ListNode *reverseBetween(ListNode *head, int m, int n) {
    if(m==n) {
-     return head; 
+     return head;
    }
    n-=m;
    ListNode prehead(0);
    prehead.next=head;
    ListNode* pre=&prehead;
    while(--m) {
-     pre=pre->next;        
+     pre=pre->next;
    }
    ListNode* pstart = pre->next;
    while(n--) {

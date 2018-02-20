@@ -1,0 +1,12 @@
+### Lnked list
+1. LL, DLL, CLL, LL w/ rnd ref
+2. Ref v/s val v/s ptr
+
+3. Tools
+ Recursion
+ Itern
+ DS
+ trvrsl
+ dummy node
+ reve
+

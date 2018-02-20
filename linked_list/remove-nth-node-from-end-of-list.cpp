@@ -10,8 +10,31 @@
 #include "../headers/global.hpp"
 #include "../headers/listnode.hpp"
 
-//############################### Iteration -2 Pointers ###############################  
+//############################### Iteration -2 Pointers ###############################
+public ListNode removeNthFromEnd(ListNode head, int n) {
+
+    ListNode start = new ListNode(0);
+    ListNode slow = start, fast = start;
+    slow.next = head;
+
+    //Move fast in front so that the gap between slow and fast becomes n
+    for(int i=1; i<=n+1; i++)   {
+        fast = fast.next;
+    }
+    //Move fast to the end, maintaining the gap
+    while(fast != null) {
+        slow = slow.next;
+        fast = fast.next;
+    }
+    //Skip the desired node
+    slow.next = slow.next.next;
+    return start.next;
+}
+
+//############################### Iteration -2 Pointers ###############################
 //TC : O(L)
+//
+
 public ListNode removeNthFromEnd(ListNode head, int n) {
     ListNode dummy = new ListNode(0);
     dummy.next = head;
@@ -29,7 +52,7 @@ public ListNode removeNthFromEnd(ListNode head, int n) {
     second.next = second.next.next;
 }
 
-//############################### Iteration ###############################  
+//############################### Iteration ###############################
 //Time complexity : O(L).
 public ListNode removeNthFromEnd(ListNode head, int n) {
     ListNode dummy = new ListNode(0);
@@ -50,7 +73,7 @@ public ListNode removeNthFromEnd(ListNode head, int n) {
     return dummy.next;
 }
 
-//###############################  Recursion ###############################  
+//###############################  Recursion ###############################
 //[1] , 1 o/p []
 public ListNode removeNthFromEnd(ListNode head, int n) {
     int m = getLength(head);
@@ -58,10 +81,10 @@ public ListNode removeNthFromEnd(ListNode head, int n) {
     return removeNodeFromStart(head, fromHeadDist);
 }
 private ListNode removeNodeFromStart(ListNode head, int n) {
-    if(n == 0) 
+    if(n == 0)
         if(head != null) return head.next;
     head.next = removeNodeFromStart(head.next, n-1);
-    return head; 
+    return head;
 }
 private int getLength(ListNode head) {
     int cnt = 1;
@@ -72,15 +95,15 @@ private int getLength(ListNode head) {
     return cnt;
 }
 
-//###############################  Iteration ###############################  
+//###############################  Iteration ###############################
 ListNode* removeNthFromEnd(ListNode* head, int n) {
 
   ListNode *dummy = new ListNode(0);
   dummy->next = head;
   ListNode *h1 = dummy;
   ListNode *h2 = dummy;
-  n += 1; //Note 1->2->3 ( 2 ways 
-          //1. delete the current node (Avoid copy operation eg. node size 512MB)  
+  n += 1; //Note 1->2->3 ( 2 ways
+          //1. delete the current node (Avoid copy operation eg. node size 512MB)
           //2.delete the prev node (adjust pointer)
   while(n != 0) {
     n--;
@@ -97,11 +120,6 @@ ListNode* removeNthFromEnd(ListNode* head, int n) {
   tmp = NULL;
   delete (tmp);
   return dummy->next;
-}
-
-
-int main() {
-
 }
 
 /* vim: set ts=4 sw=4 sts=4 tw=120 et: */
