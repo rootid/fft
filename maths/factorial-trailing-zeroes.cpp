@@ -2,19 +2,26 @@
 //Given an integer n, return the number of trailing zeroes in n!.
 //Note: Your solution should be in logarithmic time complexity.
 
+//Traling zeros - count # of 5s in the prime factor of n!
+
+//Trailing 0s in n! = Count of 5s in prime factors of n!
+//                  = floor(n/5) + floor(n/25) + floor(n/125) + ..
+//######################################### Maths #########################################
 int trailingZeroes(int n) {
   int count = 0;
 	int tmp=0;
 	while(n/5>0) {
 		tmp=n/5;
 		count+=tmp;
-		n=tmp; 
+		n=tmp;
   }
    // for (long i=5; n/i>=1; i *= 5) { //TO avoid overflow
    //     count += n/i;
    // }
    return count;
 }
+
+//######################################### Maths #########################################
 //Ruby          (1..13).map{|e| n/5**e}.reduce(:+)
 //              z=0; (1..13).each{|e| z+=n/5**e}; z
 //              n > 0 ? trailing_zeroes(n/=5) + n : 0              Maybe unsafe
