@@ -1,13 +1,15 @@
 //Maximum Distance in Arrays
-//Given m arrays, and each array is sorted in ascending order. Now you can pick up two integers from two different arrays (each array picks one) and calculate the distance. We define the distance between two integers a and b to be their absolute difference |a-b|. Your task is to find the maximum distance.
+//Given m arrays, and each array is sorted in ascending order. Now you can pick up two integers from two different
+//arrays (each array picks one) and calculate the distance. We define the distance between two integers a and b to be
+//their absolute difference |a-b|. Your task is to find the maximum distance.
 //
 //Example 1:
-//Input: 
+//Input:
 //[[1,2,3],
 // [4,5],
 // [1,2,3]]
 //Output: 4
-//Explanation: 
+//Explanation:
 //One way to reach the maximum distance 4 is to pick 1 in the first or third array and pick 5 in the second array.
 //Note:
 //Each given array will have at least 1 number. There will be at least two non-empty arrays.
@@ -16,7 +18,7 @@
 //
 
 //###################################### traversal ###########################################
-int maxDistance(vector<vector<int>>& arrays) { 
+int maxDistance(vector<vector<int>>& arrays) {
   int maxDif = 0, curMin = 10000, curMax = -10000;
   for (auto& a : arrays) {
       maxDif = max(maxDif, max(a.back()-curMin, curMax-a.front()));
@@ -37,7 +39,7 @@ int maxDistance(vector<vector<int>>& aa) {
     if (minid != maxid) {
         return aa[maxid].back() - aa[minid].front();
     }
-    
+
     int maxdist = INT_MIN;
     for (int i = 0; i < aa.size(); i++) {
         if (i != minid) {
@@ -59,7 +61,8 @@ int maxDistance(vector<vector<int>>& aa) {
 //    return res
 //
 //
-//MAX and MIN from the head and the tail. Remember keep track of the index of MAX and MIN since the two numbers can NOT be in the same array.
+//MAX and MIN from the head and the tail. Remember keep track of the index of MAX and MIN since the two numbers can NOT
+//be in the same array.
 //class Solution(object):
 //    def maxDistance(self, arrays):
 //        """
@@ -75,4 +78,4 @@ int maxDistance(vector<vector<int>>& aa) {
 //
 //
 //
-// vim: set sw=2 sts=2 tw=120 et nospell : 
+// vim: set sw=2 sts=2 tw=120 et nospell :

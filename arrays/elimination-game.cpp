@@ -59,13 +59,20 @@ int lastRemaining(int n,bool go=true) {
 
 }
 //When do we eliminate our value?
-//Our value is eliminated on a forward pass or if there are an odd number of elements.
+//Our value is eliminated on a forward pass or if there are an odd number of
+//elements.
 //How do we find the next value when our's is eliminated?
-//This is probably the trickiest part of the solution. You will probably need to draw this out to see it but turns out if you start with 1 and double each iteration you'll be calculating the number of steps you'll need to take to reach the next available number.
+//This is probably the trickiest part of the solution. You will probably need
+//to draw this out to see it but turns out if you start with 1 and double each
+//iteration you'll be calculating the number of steps you'll need to take to
+//reach the next available number.
 //How do we know when we only have 1 value remaining?
-//Each iteration reduces the elements by half and in the case of odd that extra one is removed, so this becomes a simple size/2 integer division
-//1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 - > 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
-//1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 - > 2 4 6 8 10 12 14 16 18 20 22 24
+//Each iteration reduces the elements by half and in the case of odd that extra
+//one is removed, so this becomes a simple size/2 integer division
+//1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 - > 1 2 3 4 5
+//6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
+//1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 - > 2 4 6 8 10
+//12 14 16 18 20 22 24
 //2 4 6 8 10 12 14 16 18 20 22 24 - > 2 6 10 14 18 22
 //2 6 10 14 18 22 - > 6 14 22
 //6 14 22 - > 14

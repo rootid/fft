@@ -1,5 +1,8 @@
-//Assume you have an array of length n initialized with all 0's and are given k update operations.
-//Each operation is represented as a triplet: [startIndex, endIndex, inc] which increments each element of subarray A[startIndex ... endIndex] (startIndex and endIndex inclusive) with inc.
+//Assume you have an array of length n initialized with all 0's and are given k
+//update operations.
+//Each operation is represented as a triplet: [startIndex, endIndex, inc] which
+//increments each element of subarray A[startIndex ... endIndex] (startIndex
+//and endIndex inclusive) with inc.
 //Return the modified array after all k operations were executed.
 //Example:
 //Given:
@@ -21,8 +24,10 @@
 //After applying operation [0, 2, -2]:
 //[-2, 0, 3, 5, 3 ]
 //Hint:
-//Thinking of using advanced data structures? You are thinking it too complicated.
-//For each update operation, do you really need to update all elements between i and j?
+//Thinking of using advanced data structures? You are thinking it too
+//complicated.
+//For each update operation, do you really need to update all elements between
+//i and j?
 //Update only the first and end element is sufficient.
 //The optimal time complexity is O(k + n) and uses O(1) extra space.
 #include "../headers/global.hpp"
@@ -34,7 +39,7 @@
 //res[0, 2, 5, 5, 0]
 
 //#########################################O(k+n)#########################################
-public int[] getModifiedArray(int length, int[][] updates) { 
+public int[] getModifiedArray(int length, int[][] updates) {
 	int[] res = new int[length];
     for(int[] update : updates) {
        int value = update[2];
@@ -43,7 +48,7 @@ public int[] getModifiedArray(int length, int[][] updates) {
        res[start] += value;
        if(end < length - 1)
            res[end + 1] -= value;
-        
+
     }
     int sum = 0;
     for(int i = 0; i < length; i++) {
@@ -54,7 +59,7 @@ public int[] getModifiedArray(int length, int[][] updates) {
 }
 
 //#########################################O(k+n)#########################################
-//[ 0, 0, 0, 0, 0 ] 
+//[ 0, 0, 0, 0, 0 ]
 //[ -2, 0, 0, 2, 0 ] <= [1, 3, 2]
 //[ -2, -3, 0, 2, 3 ] <= [2, 4, 3]
 //[ -2, -3, -2, 2, 3 ] <= [0, 2, -2]
@@ -65,7 +70,7 @@ vector<int> getModifiedArray(int length, vector<vector<int>>& updates) {
          int s_idx = updates[i][0];
          int e_idx = updates[i][1];
          int inc = updates[i][2];
-         if(s_idx > 0) { 
+         if(s_idx > 0) {
            a[s_idx - 1] -= inc;
          }
          a[e_idx] += inc;

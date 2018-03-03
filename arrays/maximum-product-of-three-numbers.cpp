@@ -11,8 +11,8 @@
 //Multiplication of any three numbers in the input won't exceed the range of 32-bit signed integer.
 //
 
-//############################ pick always 2 (- * - = +) ############################ 
-//Either product of 3 biggest positive values will be maxProduct 
+//############################ pick always 2 (- * - = +) ############################
+//Either product of 3 biggest positive values will be maxProduct
 //or if there are negative values then pick the 2 biggest negative values and multiply with biggest positive value
 int maximumProduct(vector<int>& nums) {
     sort(nums.begin(), nums.end());
@@ -45,7 +45,7 @@ public:
     }
 };
 
-//############################ pytonic ############################ 
+//############################ pytonic ############################
 //
 //class Solution(object):
 //    def maximumProduct(self, nums):
@@ -56,13 +56,14 @@ public:
 //        nums.sort()
 //        return max(nums[-1]*nums[-2]*nums[-3], nums[0]*nums[1]*nums[-1])
 
-//Sort the array. Any "middle" numbers not in the first 3 or last 3 cannot be used in the final answer. 
-//If we are using a middle number, it must have both a left-neighbor and a right-neighbor, and switching to one of these neighbors will increase the product.
+//Sort the array. Any "middle" numbers not in the first 3 or last 3 cannot be used in the final answer.
+//If we are using a middle number, it must have both a left-neighbor and a right-neighbor, and switching to one of these
+//neighbors will increase the product.
 //def maximumProduct(self, A):
 //    A.sort()
 //    if len(A) > 6:
 //        A = A[:3] + A[-3:]
-//    
+//
 //    return max(A[i] * A[j] * A[k]
 //    	       for i in xrange(len(A))
 //    	       for j in xrange(i+1, len(A))
@@ -74,4 +75,4 @@ public:
 //    del A[3:-3]
 //    return max(a * b * c for a, b, c in itertools.combinations(A, 3))
 
-// vim: set sw=2 sts=2 tw=120 et nospell : 
+// vim: set sw=2 sts=2 tw=120 et nospell :

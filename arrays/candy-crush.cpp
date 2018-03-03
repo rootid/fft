@@ -1,11 +1,18 @@
 //Candy Crush
-//This question is about implementing a basic elimination algorithm for Candy Crush.
-//Given a 2D integer array board representing the grid of candy, different positive integers board[i][j] represent different types of candies. A value of board[i][j] = 0 represents that the cell at position (i, j) is empty. The given board represents the state of the game following the player's move. Now, you need to restore the board to a stable state by crushing candies according to the following rules:
+//This question is about implementing a basic elimination algorithm for Candy
+//Crush.
+//Given a 2D integer array board representing the grid of candy, different
+//positive integers board[i][j] represent different types of candies. A value
+//of board[i][j] = 0 represents that the cell at position (i, j) is empty. The
+//given board represents the state of the game following the player's move.
+//Now, you need to restore the board to a stable state by crushing candies
+//according to the following rules:
 //    If three or more candies of the same type are adjacent vertically or horizontally, "crush" them all at the same time - these positions become empty.
 //    After crushing all candies simultaneously, if an empty space on the board has candies on top of itself, then these candies will drop until they hit a candy or bottom at the same time. (No new candies will drop outside the top boundary.)
 //    After the above steps, there may exist more candies that can be crushed. If so, you need to repeat the above steps.
 //    If there does not exist more candies that can be crushed (ie. the board is stable), then return the current board.
-//You need to perform the above rules until the board becomes stable, then return the current board.
+//You need to perform the above rules until the board becomes stable, then
+//return the current board.
 //Example 1:
 //Input:
 //board =
@@ -22,22 +29,37 @@
 
 //Approach #1: Ad-Hoc [Accepted]
 //Intuition
-//We need to simply perform the algorithm as described. It consists of two major steps: a crush step, and a gravity step. We work through each step individually.
+//We need to simply perform the algorithm as described. It consists of two
+//major steps: a crush step, and a gravity step. We work through each step
+//individually.
 //Algorithm
 //Crushing Step
-//When crushing, one difficulty is that we might accidentally crush candy that is part of another row. For example, if the board is:
+//When crushing, one difficulty is that we might accidentally crush candy that
+//is part of another row. For example, if the board is:
 //123
 //145
 //111
-//and we crush the vertical row of 1s early, we may not see there was also a horizontal row.
-//To remedy this, we should flag candy that should be crushed first. We could use an auxillary toCrush boolean array, or we could mark it directly on the board by making the entry negative (ie. board[i][j] = -Math.abs(board[i][j]))
-//As for how to scan the board, we have two approaches. Let's call a line any row or column of the board.
-//For each line, we could use a sliding window (or itertools.groupby in Python) to find contiguous segments of the same character. If any of these segments have length 3 or more, we should flag them.
-//Alternatively, for each line, we could look at each width-3 slice of the line: if they are all the same, then we should flag those 3.
+//and we crush the vertical row of 1s early, we may not see there was also a
+//horizontal row.
+//To remedy this, we should flag candy that should be crushed first. We could
+//use an auxillary toCrush boolean array, or we could mark it directly on the
+//board by making the entry negative (ie. board[i][j] = -Math.abs(board[i][j]))
+//As for how to scan the board, we have two approaches. Let's call a line any
+//row or column of the board.
+//For each line, we could use a sliding window (or itertools.groupby in Python)
+//to find contiguous segments of the same character. If any of these segments
+//have length 3 or more, we should flag them.
+//Alternatively, for each line, we could look at each width-3 slice of the
+//line: if they are all the same, then we should flag those 3.
 //After, we can crush the candy by setting all flagged board cells to zero.
 //Gravity Step
-//For each column, we want all the candy to go to the bottom. One way is to iterate through and keep a stack of the (uncrushed) candy, popping and setting as we iterate through the column in reverse order.
-//Alternatively, we could use a sliding window approach, maintaining a read and write head. As the read head iterates through the column in reverse order, when the read head sees candy, the write head will write it down and move one place. Then, the write head will write zeroes to the remainder of the column.
+//For each column, we want all the candy to go to the bottom. One way is to
+//iterate through and keep a stack of the (uncrushed) candy, popping and
+//setting as we iterate through the column in reverse order.
+//Alternatively, we could use a sliding window approach, maintaining a read and
+//write head. As the read head iterates through the column in reverse order,
+//when the read head sees candy, the write head will write it down and move one
+//place. Then, the write head will write zeroes to the remainder of the column.
 //We showcase the simplest approaches to these steps in the solutions below.
 
 class Solution {

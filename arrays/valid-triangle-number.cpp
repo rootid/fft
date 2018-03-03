@@ -1,10 +1,12 @@
 //Valid Triangle Number
-//Given an array consists of non-negative integers, your task is to count the number of triplets chosen from the array that can make triangles if we take them as side lengths of a triangle.
+//Given an array consists of non-negative integers, your task is to count the
+//number of triplets chosen from the array that can make triangles if we take
+//them as side lengths of a triangle.
 //Example 1:
 //Input: [2,2,3,4]
 //Output: 3
 //Explanation:
-//Valid combinations are: 
+//Valid combinations are:
 //2,3,4 (using the first 2)
 //2,3,4 (using the second 2)
 //2,2,3
@@ -13,8 +15,9 @@
 //The integers in the given array are in the range of [0, 1000].
 
 // a+b>c : triangle number constraint
-//after soring the array, if a<b<c, it only need to find (a,b) pairs their sum is greater than c
-//################################### O(n^2) ################################### 
+//after soring the array, if a<b<c, it only need to find (a,b) pairs their sum
+//is greater than c
+//################################### O(n^2) ###################################
 
 /** we need to find 3 number, i < j < k, and a[i] + a[j] > a[k];
 * if we sort the array, then we can easily use two pointer to find all the pairs we need.
@@ -32,7 +35,7 @@ int triangleNumber(vector<int>& nums) {
 	}
     	sort(nums.begin(), nums.end());
 	int count = 0;
-	
+
 	for (int i = 0; i < nums.size(); i++) {
 		int left = 0, right = i-1;
 		while (left < right) {
@@ -44,13 +47,15 @@ int triangleNumber(vector<int>& nums) {
 			}
 		}
 	}
-	
+
 	return count;
 }
 
-//r-l keeps track of number of pairs from r to l 
-//that forms a valid triplet (follows triangle inequality property) with the third side represented by i
-//In this case -> [2,4] and [2,4] are the two pairs (using first 2 and second 2)
+//r-l keeps track of number of pairs from r to l
+//that forms a valid triplet (follows triangle inequality property) with the
+//third side represented by i
+//In this case -> [2,4] and [2,4] are the two pairs (using first 2 and second
+//2)
 int triangleNumber(vector<int>& nums) {
     sort(nums.begin(), nums.end());
     int count = 0, n = nums.size();
@@ -61,21 +66,24 @@ int triangleNumber(vector<int>& nums) {
                 count += r-l;
                 r--;
             } else {
-		l++; 
+		l++;
 	   }
 	}
     }
     return count;
 }
-//use [2,2,4,5], (2(index 0)+4(index 2)) > 5. Why to increase the count by 2 rather than 1?
+//use [2,2,4,5], (2(index 0)+4(index 2)) > 5. Why to increase the count by 2
+//rather than 1?
 //1. The array is sorted.
-//2. By (1), the elements at the right side of the first 2 are guaranteed to be larger than or equal to the first 2.
-//3. By (2), if the sum of the first 2 and 4 is larger than 5, it implies that the sum of 4 and the numbers to the right of the first 2 is larger than 5.
+//2. By (1), the elements at the right side of the first 2 are guaranteed to be
+//larger than or equal to the first 2.
+//3. By (2), if the sum of the first 2 and 4 is larger than 5, it implies that
+//the sum of 4 and the numbers to the right of the first 2 is larger than 5.
 //4. By (3), you can safely include all pairs between r-l to the solution.
 
-//################################### sort  ################################### 
+//################################### sort  ###################################
 
-//################################### O(n^2) ################################### 
+//################################### O(n^2) ###################################
 
 //def triangleNumber(self, nums):
 //    n, res = len(nums), 0
@@ -116,7 +124,7 @@ int triangleNumber(vector<int>& nums) {
 //    P = [0]
 //    for x in B:
 //        P.append(P[-1] + C[x])
-//        
+//
 //    ans = 0
 //    for j, v in enumerate(B):
 //        k = len(B) - 1

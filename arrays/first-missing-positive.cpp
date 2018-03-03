@@ -9,7 +9,14 @@
 
 
 //Why it is O(n)?
-//Since we only see each element at most twice as @makuiyu mentioned, the time complexity should be O(2n) = O(n). Sometimes we might see some negative numbers more than twice, but when that happens we will only see the positive number we swapped with that negative number once. In conclusion, it is equivalent we see all the positive number twice and negative number once. Let's assume k is the number of the positive numbers in the array, where k < n. The time complexity is O(2k + n - k) = O(n + k), where worst case is O(2n) = O(n).
+//Since we only see each element at most twice as @makuiyu mentioned, the time
+//complexity should be O(2n) = O(n). Sometimes we might see some negative
+//numbers more than twice, but when that happens we will only see the positive
+//number we swapped with that negative number once. In conclusion, it is
+//equivalent we see all the positive number twice and negative number once.
+//Let's assume k is the number of the positive numbers in the array, where k <
+//n. The time complexity is O(2k + n - k) = O(n + k), where worst case is O(2n)
+//= O(n).
 //
 //
 //
@@ -17,10 +24,10 @@
 //Move 1 to 0th index
 public int firstMissingPositive(int[] nums) {
    int n = nums.length;
-   for(int i=0;i<n;i++) 
-       while(nums[i] > 0 && nums[i] <= n && nums[i] != nums[nums[i] - 1]) 
+   for(int i=0;i<n;i++)
+       while(nums[i] > 0 && nums[i] <= n && nums[i] != nums[nums[i] - 1])
            swap(nums,i,nums[i]-1);
-    for(int i=0;i<n;i++) 
+    for(int i=0;i<n;i++)
         if(nums[i] != i+1) return i+1;
     return n+1;
 }
