@@ -24,7 +24,184 @@
  * bool param_2 = obj.search(word);
  * bool param_3 = obj.startsWith(prefix);
  */
-//##################################### C-style initialization ######################### 
+
+//##################################### Recursive version #########################
+//Apis
+class Trie {
+
+    //ADT
+    class TrieNode {
+
+        TrieNode[] kids = new TrieNode[26];
+        boolean isLeaf;
+
+    }
+
+    TrieNode root;
+
+    /** Initialize your data structure here. */
+    public Trie() {
+        root = new TrieNode();
+    }
+
+    /** Inserts a word into the trie. */
+    public void insert(String word) {
+        root = insertHelper(word, 0, root);
+    }
+
+    /** Returns if the word is in the trie. */
+    public boolean search(String word) {
+        return searchHelper(word,0,root);
+    }
+
+    /** Returns if there is any word in the trie that starts with the given prefix. */
+    public boolean startsWith(String prefix) {
+        return startsWithHelper(prefix,0,root);
+    }
+
+    private boolean searchHelper(String word, int d, TrieNode x) {
+        if(x == null) return false;
+        if(d == word.length()) return x.isLeaf;
+        char c = (char)(word.charAt(d) - 'a');
+        x = x.kids[c];
+        return searchHelper(word, d+1, x);
+    }
+
+    private boolean startsWithHelper(String word, int d, TrieNode x) {
+        if(x == null) return false;
+        if(d == word.length()) return true;
+        char c = (char)(word.charAt(d) - 'a');
+        x = x.kids[c];
+        return startsWithHelper(word, d+1, x);
+    }
+
+    private TrieNode insertHelper(String word, int d, TrieNode x) {
+        if(x == null) x = new TrieNode();
+        if(word.length() == d) {
+            x.isLeaf = true;
+            return x;
+        }
+        char c = (char)(word.charAt(d) - 'a');
+        x.kids[c] = insertHelper(word, d+1, x.kids[c]);
+        return x;
+    }
+}
+
+//##################################### Iterative version #########################
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie obj = new Trie();
+ * obj.insert(word);
+ * boolean param_2 = obj.search(word);
+ * boolean param_3 = obj.startsWith(prefix);
+ */
+
+
+class TrieNode {
+    public char val;
+    public boolean isWord;
+    public TrieNode[] children = new TrieNode[26];
+    public TrieNode() {}
+    TrieNode(char c){
+        TrieNode node = new TrieNode();
+        node.val = c;
+    }
+}
+
+public class Trie {
+    private TrieNode root;
+    public Trie() {
+        root = new TrieNode();
+        root.val = ' ';
+    }
+
+    public void insert(String word) {
+        TrieNode ws = root;
+        for(int i = 0; i < word.length(); i++){
+            char c = word.charAt(i);
+            if(ws.children[c - 'a'] == null){
+                ws.children[c - 'a'] = new TrieNode(c);
+            }
+            ws = ws.children[c - 'a'];
+        }
+        ws.isWord = true;
+    }
+
+    public boolean search(String word) {
+        TrieNode ws = root;
+        for(int i = 0; i < word.length(); i++){
+            char c = word.charAt(i);
+            if(ws.children[c - 'a'] == null) return false;
+            ws = ws.children[c - 'a'];
+        }
+        return ws.isWord;
+    }
+
+    public boolean startsWith(String prefix) {
+        TrieNode ws = root;
+        for(int i = 0; i < prefix.length(); i++){
+            char c = prefix.charAt(i);
+            if(ws.children[c - 'a'] == null) return false;
+            ws = ws.children[c - 'a'];
+        }
+        return true;
+    }
+}
+
+
+//##################################### Python -Iterative #########################
+class TrieNode:
+        # Initialize your data structure here.
+        def __init__(self):
+            self.word=False
+            self.children={}
+
+    class Trie:
+
+        def __init__(self):
+            self.root = TrieNode()
+
+        # @param {string} word
+        # @return {void}
+        # Inserts a word into the trie.
+        def insert(self, word):
+            node=self.root
+            for i in word:
+                if i not in node.children:
+                    node.children[i]=TrieNode()
+                node=node.children[i]
+            node.word=True
+
+        # @param {string} word
+        # @return {boolean}
+        # Returns if the word is in the trie.
+        def search(self, word):
+            node=self.root
+            for i in word:
+                if i not in node.children:
+                    return False
+                node=node.children[i]
+            return node.word
+
+        # @param {string} prefix
+        # @return {boolean}
+        # Returns if there is any word in the trie
+        # that starts with the given prefix.
+        def startsWith(self, prefix):
+            node=self.root
+            for i in prefix:
+                if i not in node.children:
+                    return False
+                node=node.children[i]
+            return True
+
+
+    # Your Trie object will be instantiated and called as such:
+    # trie = Trie()
+    # trie.insert("somestring")
+    # trie.search("key")
+
+//##################################### C-style initialization #########################
 class TrieNode {
 public:
     TrieNode():isWord(false) {
@@ -38,9 +215,9 @@ public:
     bool isWord;
 };
 class Trie {
-public: 
-  Trie() { 
-    root = new TrieNode(); 
+public:
+  Trie() {
+    root = new TrieNode();
   }
   void insert(string word) {
       TrieNode *p = root;
@@ -78,43 +255,43 @@ public:
       }
       return true;
   }
-private: 
+private:
   TrieNode* root;
 };
-//############################################# Recursive way ############################################### 
+//############################################# Recursive way ###############################################
 //https://www.topcoder.com/community/data-science/data-science-tutorials/using-tries/
 class TrieNode {
-public: 
-  TrieNode() { 
-    words = 0; 
+public:
+  TrieNode() {
+    words = 0;
     prefixs = 0;
     for(int i=0;i<26;i++) {
-       links[i]=NULL; 
-    } 
+       links[i]=NULL;
+    }
   }
   int words;
   int prefixs;
   TrieNode* links[26];
 };
 class Trie {
-public: 
-  Trie() { 
-    root = new TrieNode(); 
+public:
+  Trie() {
+    root = new TrieNode();
   }
-  void insert(string word) { 
+  void insert(string word) {
     insertHelper(root,word,0);
   }
-  bool search(string word) { 
+  bool search(string word) {
     return searchHelper(root,word,0) != 0;
   }
-  bool startsWith(string prefix) { 
+  bool startsWith(string prefix) {
     return startsWithHelper(root,prefix,0)!=0;
   }
   void insertHelper(TrieNode * node,string &word,int pos) {
       if(pos == word.size()) { //reached to end-of the string
           node->words++;
           node->prefixs++;
-      } else { 
+      } else {
         node->prefixs++;
         int char_code=word[pos]-'a';
         if(node->links[char_code]== NULL) {
@@ -129,10 +306,10 @@ public:
           return node->words;
       } else if(node->links[char_code]==NULL) {
           return 0;
-      } 
+      }
       return searchHelper(node->links[char_code],word,pos+1);
   }
-  
+
   int startsWithHelper(TrieNode * node,string &word,int pos) {
       int char_code=word[pos]-'a';
       if(pos==word.size())
@@ -144,11 +321,12 @@ public:
 private:
     TrieNode* root;
 };
+
 // Your Trie object will be instantiated and called as such:
 // Trie trie;
 // trie.insert("somestring");
 // trie.search("key");
-//####################################################### Ugly ####################################################### 
+//####################################################### Ugly #######################################################
 struct TrieNode {
     char data;
     int leafValue; //To check for the leaf node
@@ -158,7 +336,7 @@ struct TrieNode {
     {
     };
 };
-//insert,search 
+//insert,search
 void insertInTrie (vector<string>& inputVec,vector<int>& leafValue,TrieNode** rootHead) {
     if (*rootHead == NULL) {
         *rootHead = new TrieNode(-1,-1);
@@ -180,12 +358,12 @@ void insertInTrie (vector<string>& inputVec,vector<int>& leafValue,TrieNode** ro
         }
     }
 }
-bool queryFromTrie(TrieNode* root,string& input) { 
-  for (int i=0;i<input.length();i++) { 
-    if (root && root->next[input[i] - 'a'] && input[i] == root->next[input[i] - 'a']->data) { 
-      root = root->next[input[i] - 'a']; 
-    } else { 
-      return false; 
+bool queryFromTrie(TrieNode* root,string& input) {
+  for (int i=0;i<input.length();i++) {
+    if (root && root->next[input[i] - 'a'] && input[i] == root->next[input[i] - 'a']->data) {
+      root = root->next[input[i] - 'a'];
+    } else {
+      return false;
     }
    }
    if (root->leafValue != -1) {
@@ -195,6 +373,7 @@ bool queryFromTrie(TrieNode* root,string& input) {
        return false;
    }
 }
+
 void test (string query,TrieNode *root) {
     if ( queryFromTrie (root,query) ) {
         cout << "query = (" << query << ") found in the tree." << endl;
@@ -202,6 +381,8 @@ void test (string query,TrieNode *root) {
         cout << "query = (" << query << ") not found in the tree." << endl;
     }
 }
+
+
 int main () {
     TrieNode *root = NULL;
     string inputSet[] = {"she","sells","sea","shells"};
@@ -212,17 +393,7 @@ int main () {
     //string query = "she";
     test ("she",root);
     test ("sells",root);
-    test ("shee",root); 
+    test ("shee",root);
 }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+// vim: set sw=2 sts=2 tw=120 et nospell :

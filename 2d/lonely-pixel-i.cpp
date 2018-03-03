@@ -1,7 +1,9 @@
 //Lonely Pixel I
-//Given a picture consisting of black and white pixels, find the number of black lonely pixels.
-//The picture is represented by a 2D char array consisting of 'B' and 'W', which means black and white pixels respectively.
-//A black lonely pixel is character 'B' that located at a specific position where the same row and same column don't have any other black pixels.
+//Given a picture consisting of black and white pixels, find the number of black lonely pixels.  The
+//picture is represented by a 2D char array consisting of 'B' and 'W', which means black and white
+//pixels respectively.
+//A black lonely pixel is character 'B' that located at a specific position where the same row and
+//same column don't have any other black pixels.
 //Example:
 //Input:
 //[['W', 'W', 'B'],
@@ -80,11 +82,13 @@ public class Solution {
 }
 
 //################################################### T : O(mn), S = O(1)  ###################################################
-//mutate the first row and first column of the given matrix to store the counts of items in the row/column.
+//mutate the first row and first column of the given matrix to store the counts of items in the
+//row/column.
 //W + 1 = X --> one item in the row/column
 //B + 1 = C --> one item in the row/column, and the first row is the black pixel
 //W + 2 = Y --> two items in the row/column
-//W - 1 = V --> this prevents wrap-around past W if there are more than 255 black pixels in a row/column
+//W - 1 = V --> this prevents wrap-around past W if there are more than 255 black pixels in a
+//row/column
 
 public int findLonelyPixel(char[][] picture) {
     int n = picture.length, m = picture[0].length;
@@ -138,7 +142,8 @@ public class Solution {
 
 //################################################### Python ###################################################
 ///################################################### Omn) ###################################################
-//go through the columns, count how many have exactly one black pixel and it's in a row that also has exactly one black pixel.
+//go through the columns, count how many have exactly one black pixel and it's in a row that also
+//has exactly one black pixel.
 def findLonelyPixel(self, picture):
     return sum(col.count('B') == 1 == picture[col.index('B')].count('B') for col in zip(*picture))
 

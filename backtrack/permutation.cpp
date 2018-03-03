@@ -14,8 +14,9 @@
 
 #include "../headers/global.hpp"
 
-//##################################### Recursive insert version ##################################### 
+//##################################### Recursive insert version #####################################
 //Each iteration create a new copy of list by picking next element
+//Took space and more efficent
 public List<List<Integer>> permute(int[] nums) {
     List<List<Integer>> result = new ArrayList<>();
     if (nums.length == 0) return result;
@@ -28,32 +29,59 @@ private void backtrack(List<List<Integer>> result, int[] nums, List<Integer> soF
         result.add(soFarList);
         return ;
     }
-    for (int i = 0; i <= soFarList.size(); i++) {
+    for (int i = 0; i <= soFarList.size(); i++) { //insert elment at start
         List<Integer> copy = new ArrayList<>(soFarList);
-        copy.add(i, nums[k]); 
-        backtrack(result, nums, copy, k + 1);
+        copy.add(i, nums[k]); //k is the level/depth
+        backtrack(result, nums, copy, k + 1); //increase the depth
     }
 }
 
-//##################################### Recursive Swap version ##################################### 
+//##################################### Recursive insert version #####################################
 class Solution {
-    
+
+   public List<List<Integer>> permute(int[] nums) {
+      List<List<Integer>> result = new ArrayList<>();
+      if (nums.length == 0) return result;
+      backtrack(result, nums, new ArrayList<>(), 0);
+      return result;
+  }
+
+  private void backtrack(List<List<Integer> > result, int[] nums, List<Integer> soFarList, int k) {
+      if (k == nums.length) {
+          result.add(new ArrayList(soFarList));
+          return ;
+      }
+      for (int i = 0; i <= k; i++) {
+          soFarList.add(i, nums[k]);
+          backtrack(result, nums, soFarList, k + 1);
+          soFarList.remove(i);
+      }
+  }
+}
+
+//##################################### Recursive Swap version #####################################
+//Not effcient
+class Solution {
+
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
-        permuteHelper(nums,0,result); 
+        permuteHelper(nums,0,result);
         return result;
     }
 
     public void permuteHelper(int[] nums,int k,List<List<Integer>> result) {
-        int n = nums.length;
-        if(k == n) result.add(new ArrayList(Arrays.stream(nums).boxed().collect(Collectors.toList())));
-        for(int i=k;i<n;i++) {
-            doSwap(nums,i,k);
-            permuteHelper(nums,k+1,result);
-            doSwap(nums,k,i);
-        }
+
+       Arrays.stream(nums).boxed().forEach(System.out::print);
+       System.out.println("");
+       int n = nums.length;
+       if(k == n) result.add(new ArrayList(Arrays.stream(nums).boxed().collect(Collectors.toList())));
+       for(int i=k;i<n;i++) { //n *  n-1 * n-2...
+           doSwap(nums,i,k);
+           permuteHelper(nums,k+1,result);
+           doSwap(nums,k,i);
+       }
     }
-   
+
     private void doSwap(int[] nums,int i,int j) {
         int tmp = nums[i];
         nums[i] = nums[j];
@@ -61,7 +89,7 @@ class Solution {
     }
 }
 
-//##################################### Recursive version ##################################### 
+//##################################### Recursive version #####################################
 //Recursive, take any number as first
 def permute(self, nums):
     return [[n] + p
@@ -106,15 +134,15 @@ def permute(self, nums):
                 yield [n] + p #current ele, rest
     return list(gen(nums))
 
-//######################################### SoFar technique ######################################### 
+//######################################### SoFar technique #########################################
 void recSubsets(string soFar, string rest) {
    if (rest == "") cout << soFar << endl;
-   else { 
+   else {
 		// add to subset, remove from rest, recur
 		recSubsets(soFar + rest[0], rest.substr(1));
 		// don't add to subset, remove from rest,recur
-		recSubsets(soFar, rest.substr(1)); 
-  } 
+		recSubsets(soFar, rest.substr(1));
+  }
 }
 void listSubsets(string str) {
    recSubsets("", str);
@@ -123,7 +151,7 @@ void listSubsets(string str) {
 
 
 //1,2,3
-//##################################### Iterative version ##################################### 
+//##################################### Iterative version #####################################
 vector<vector<int> > permute(vector<int>& nums) {
 
   vector< vector<int> > result;
@@ -171,18 +199,18 @@ vector<vector<int>> permute(vector<int>& nums) {
 vector<vector<int>> permute(vector<int>& nums) {
     vector<vector<int> > ret;
     int n = nums.size();
-    if (n == 0) 
+    if (n == 0)
         return ret;
     if (n == 1) {
         ret.push_back(nums);
         return ret;
     }
-    
+
     int i = 0, j = 0, len = 0;
     vector<int> curNums;
     vector<int> per;
     vector<vector<int>> temp;
-    
+
     for (i = 0; i < n; i++) {
         curNums = nums;
         curNums.erase(curNums.begin()+i);
@@ -197,7 +225,7 @@ vector<vector<int>> permute(vector<int>& nums) {
     return ret;
 }
 
-//######################### procedural recursion  ######################### 
+//######################### procedural recursion  #########################
 private:
 vector<vector<int> > v;
 vector<int> save;
@@ -206,12 +234,12 @@ public:
   vector<vector<int> > permute(vector<int> &num) {
       v.clear();
       int size = num.size();
-      
+
       visit.resize(size);
       save.resize(size);
-      
+
       fill(visit.begin(), visit.end(), false);
-  
+
       dfs(num, 0, size);
       return v;
   }

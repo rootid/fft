@@ -13,7 +13,10 @@
 //(((2*3)-4)*5) = 10
 //Output: [-34, -14, -10, -10, 10]
 
-//#### Compute all operations
+//1. Divide w/ symbols 2-> multiply to 3 or rest
+//2. Combine the result
+
+//#### Compute all operations ####
 vector<int> diffWaysToCompute(string input) {
     vector<int> output;
     for (int i=0; i<input.size(); i++) {
@@ -26,7 +29,7 @@ vector<int> diffWaysToCompute(string input) {
     return output.size() ? output : vector<int>{stoi(input)};
 }
 
-//### Avoid duplicate operations
+//### Avoid duplicate operations ### hw 2 use pruning
 vector<int> compute(string input, unordered_map<string, vector<int>>& str_to_vec){
      if(str_to_vec.find(input)!=str_to_vec.end())
          return str_to_vec[input];
@@ -44,12 +47,12 @@ vector<int> diffWaysToCompute(string input) {
      return compute(input, str_to_vec);
 }
 
-//################# Recursion ################# 
+//################# Recursion #################
 vector<int> diffWaysToCompute(string input) {
 		if(input.size()==0)return vector<int>();
         return solve(input);
 }
-    
+
 vector<int> solve(string input){
   vector<int> ret;
   int i;
@@ -74,11 +77,11 @@ vector<int> solve(string input){
   }
   return ret;
 }
-    
+
     bool isOperator(char c){
         return c=='+'||c=='-'||c=='*';
     }
-	
+
 	int operate(char c, int left, int right){
 		switch(c){
 			case '+': return left+right;
@@ -90,7 +93,7 @@ vector<int> solve(string input){
 	}
 
 
-//######################## Recursive  ######################## 
+//######################## Recursive  ########################
   vector<int> diffWaysToCompute(string input) {
         vector<int> result;
         int size = input.size();
@@ -107,7 +110,7 @@ vector<int> solve(string input){
                         else if (cur == '-')
                             result.push_back(n1 - n2);
                         else
-                            result.push_back(n1 * n2);    
+                            result.push_back(n1 * n2);
                     }
                 }
             }
@@ -118,7 +121,7 @@ vector<int> solve(string input){
         return result;
     }
 
-//######################## DP ######################## 
+//######################## DP ########################
 
 	vector<int> diffWaysToCompute(string input) {
 		unordered_map<string, vector<int>> dpMap;
@@ -145,7 +148,7 @@ vector<int> solve(string input){
 					result2 = dpMap[substr];
 				else
 					result2 = computeWithDP(substr, dpMap);
-				
+
 				for (auto n1 : result1) {
 					for (auto n2 : result2) {
 						if (cur == '+')

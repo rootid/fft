@@ -6,7 +6,7 @@
 #include<stack>
 using namespace std;
 
-//######################################### stack + check last element is complement of current ######################################### 
+//######################################### stack + check last element is complement of current #########################################
 public boolean isValid(String s) {
      int len = s.length();
      if(len%2 == 1) return false;
@@ -18,14 +18,14 @@ public boolean isValid(String s) {
               if(stk.isEmpty()) return false;
               char lastChar = stk.pop();
               if( (s.charAt(i) == '}' && lastChar != '{' ) || (s.charAt(i) == ']' && lastChar != '[' ) || (s.charAt(i) == ')' && lastChar != '(' )) return false;
-             
+
           }
-              
+
      }
      return stk.size() == 0 ? true : false;
  }
 
-//######################################### stack - Put opposite sign on the stack ######################################### 
+//######################################### stack - Put opposite sign on the stack #########################################
 public boolean isValid(String s) {
     Stack<Character> stk = new Stack<>();
     for(Character c:s.toCharArray()) {
@@ -33,7 +33,7 @@ public boolean isValid(String s) {
             case '{' : stk.push('}'); break;
             case '(' : stk.push(')'); break;
             case '[' : stk.push(']'); break;
-            case '}'  : case ']' : case ')' : 
+            case '}'  : case ']' : case ')' :
                 if(stk.isEmpty() || stk.pop() != c) return false;
         }
     }
@@ -42,31 +42,32 @@ public boolean isValid(String s) {
 }
 
 
-//######################################### stack ######################################### 
+//######################################### stack #########################################
+//Key - rt paren, Val - lt
 class Solution:
     # @return a boolean
     def isValid(self, s):
         stack = []
         dict = {"]":"[", "}":"{", ")":"("}
-        for char in s:
-            if char in dict.values():
-                stack.append(char)
-            elif char in dict.keys():
-                if stack == [] or dict[char] != stack.pop():
+        for ch in s:
+            if ch in dict.values():
+                stack.append(ch)
+            elif ch in dict.keys():
+                if stack == [] or dict[ch] != stack.pop():
                     return False
             else:
                 return False
         return stack == []
 
-//######################################### stack ######################################### 
+//######################################### stack #########################################
 class Solution {
 public:
     bool isValid(string s) {
         stack<char> paren;
         for (char& c : s) {
             switch (c) {
-                case '(': 
-                case '{': 
+                case '(':
+                case '{':
                 case '[': paren.push(c); break;
                 case ')': if (paren.empty() || paren.top()!='(') return false; else paren.pop(); break;
                 case '}': if (paren.empty() || paren.top()!='{') return false; else paren.pop(); break;
@@ -78,7 +79,7 @@ public:
     }
 };
 
-//######################################### map ######################################### 
+//######################################### map #########################################
 bool isValid(string s) {
     stack<char> temp;
     map<char, char> m = { {']','['},{')','('},{'}','{'} };
@@ -94,13 +95,13 @@ bool isValid(string s) {
     return temp.empty();
 }
 
-//######################################### check only ascii values ######################################### 
+//######################################### check only ascii values #########################################
 class Solution {
 public:
     bool isValid(string s) {
     stack<char> c;
         for (int i = 0; i<s.size(); i++)
-        {    
+        {
             if (c.empty() || (((c.top() + 0) != (s[i] - 1)) && ((c.top() + 0) != (s[i] - 2))))
                 c.push(s[i]);
             else c.pop();
@@ -150,4 +151,4 @@ int main () {
   }
 
 }
-// vim: set sw=2 sts=2 tw=120 et nospell : 
+// vim: set sw=2 sts=2 tw=120 et nospell :

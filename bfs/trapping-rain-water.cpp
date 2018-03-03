@@ -1,31 +1,32 @@
 //Trapping Rain Water
-//Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.
-//For example, 
+//Given n non-negative integers representing an elevation map where the width
+//of each bar is 1, compute how much water it is able to trap after raining.
+//For example,
 //Given [0,1,0,2,1,0,1,3,2,1,2,1], return 6.
 
 #include "../headers/global.hpp"
 
-//############################### W/O stack only reduction ############################### 
+//############################### W/O stack only reduction ###############################
 int trap(vector<int>& height) {
   int l = 0, r = height.size()-1, level = 0, water = 0;
   while (l < r) {
     //cout << "l = " << l << "," << height[l] << " r = " << r << "," << height[r] << endl;
     int lower;
-    if(height[l] < height[r]) 
+    if(height[l] < height[r])
       lower = height[l++];
-     else 
+     else
       lower = height[r--];
-    
+
     //int lower = height[height[l] < height[r] ? l++ : r--];
     level = max(level, lower);
-    water += level - lower; 
+    water += level - lower;
     //cout << "level = " <<  level << " water = " << water  << " lower = " << lower<< endl;
   }
-  
+
   return water;
 }
 
-//############################### with stack + store monotonically decreasing ############################### 
+//############################### with stack + store monotonically decreasing ###############################
 int trap(vector<int>& height)  {
   stack<int> s;
   int max_water(0);
@@ -40,7 +41,7 @@ int trap(vector<int>& height)  {
           max_water += s.empty() ? 0 : ( (min(height[i],height[s.top()])-oldTop) * (i-s.top()-1));
 	   }
   }
-  return max_water; 
+  return max_water;
 }
 
 

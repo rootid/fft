@@ -1,5 +1,6 @@
 //24 Game
-//You have 4 cards each containing a number from 1 to 9. You need to judge whether they could operated through *, /, +, -, (, ) to get the value of 24.
+//You have 4 cards each containing a number from 1 to 9. You need to judge
+//whether they could operated through *, /, +, -, (, ) to get the value of 24.
 //Example 1:
 //Input: [4, 1, 8, 7]
 //Output: True
@@ -8,13 +9,15 @@
 //Input: [1, 2, 1, 2]
 //Output: False
 //Note:
-//1. The division operator / represents real division, not integer division. For example, 4 / (1 - 2/3) = 12.
-//2. Every operation done is between two numbers. In particular, we cannot use - as a unary operator. For example, with [1, 1, 1, 1] as input, the expression -1 - 1 - 1 - 1 is not allowed.
-//You cannot concatenate numbers together. For example, if the input is [1, 2, 1, 2], we cannot write this as 12 + 12.
-
+//1. The division operator / represents real division, not integer division. For
+//example, 4 / (1 - 2/3) = 12.  2. Every operation done is between two numbers.
+//In particular, we cannot use - as a unary operator. For example, with [1, 1,
+//1, 1] as input, the expression -1 - 1 - 1 - 1 is not allowed.
+//You cannot concatenate numbers together. For example, if the input is [1, 2,
+//1, 2], we cannot write this as 12 + 12.
 //Use python 3
 
-//######################################### Backtrack ######################################### 
+//######################################### Backtrack #########################################
 class Solution {
 
     boolean res = false;
@@ -41,7 +44,7 @@ class Solution {
                 next.addAll(Arrays.asList(p1+p2, p1-p2, p2-p1, p1*p2));
                 if(Math.abs(p2) > eps)  next.add(p1/p2);
                 if(Math.abs(p1) > eps)  next.add(p2/p1);
-                
+
                 arr.remove(i);
                 arr.remove(j);
                 for (Double n: next){
@@ -56,7 +59,7 @@ class Solution {
     }
 }
 
-//######################################### Backtrack ######################################### 
+//######################################### Backtrack #########################################
 def judgePoint24(self, nums):
     if len(nums) == 1:
         return math.isclose(nums[0], 24)
@@ -70,7 +73,7 @@ def judgePoint24(self, nums):
 
 //In the top call I go through 4!=24 permutations and thus 24 recursive calls instead of just 4*3=12. But it gets accepted in about 440 ms, so that's not a problem.
 //I also wrote a version that prevents those duplicates and more, it gets accepted in about 160 ms:
-//######################################### Avoid duplicates ######################################### 
+//######################################### Avoid duplicates #########################################
 def judgePoint24(self, nums):
     if len(nums) == 1:
         return math.isclose(nums[0], 24)
@@ -80,7 +83,7 @@ def judgePoint24(self, nums):
                     for x in (a+b, a-b, a*b, b and a/b)}))
 //Another version, using global memoization (i.e., across all test cases), fast enough to use Fraction (gets accepted in about 750 ms):
 
-//######################################### Memoization ######################################### 
+//######################################### Memoization #########################################
 from functools import lru_cache as memoize
 from fractions import Fraction
 
@@ -97,13 +100,13 @@ def judge(nums):
                     for a, b, *rest in itertools.permutations(nums)
                     for x in (a+b, a-b, a*b, b and Fraction(a, b))}))
 
-//######################################### Backtrack ######################################### 
+//######################################### Backtrack #########################################
 bool judgePoint24(vector<int>& nums){ return judge24({nums.begin(), nums.end()}); }
 
 static bool judge24(vector<double> nums) {
     auto n = nums.size();
     if(n == 1) return abs(nums[0] - 24) < 1e-10;
-    
+
     sort(nums.begin(), nums.end());
     // For each permutation,
     do {
@@ -112,7 +115,7 @@ static bool judge24(vector<double> nums) {
         auto a = nums[n-1], b = nums[n-2];
         for(auto num: {a+b, a-b, a*b, a?b/a:0}){
             // For each merged number, combine with the rest and test it
-            temp.back() = num; 
+            temp.back() = num;
             if(judge24(temp)) return true;
         }
     } while(next_permutation(nums.begin(), nums.end()));
@@ -120,7 +123,7 @@ static bool judge24(vector<double> nums) {
     return false;
 }
 
-//######################################### Python functional ######################################### 
+//######################################### Python functional #########################################
 //We write a function apply that takes two sets of possibilities for A and B and returns all possible results operator(A, B) or operator(B, A) for all possible operators.
 //Ignoring reflection, there are only two ways we can apply the operators: (AB)(CD) or ((AB)C)D. When C and D are ordered, this becomes three ways - the third way is ((AB)D)C.
 //This solution is a little slow because it has to manage sets - my article has a solution that is almost 10x faster. I think this one is cool though.
@@ -136,7 +139,7 @@ def judgePoint24(self, nums):
             if op is not truediv or y: ans.add(op(x, y))
             if op is not truediv or x: ans.add(op(y, x))
         return ans
-    
+
     A = [{x} for x in map(Fraction, nums)]
     for i, j in itertools.combinations(range(4), 2):
         r1 = apply(A[i], A[j])
@@ -144,10 +147,10 @@ def judgePoint24(self, nums):
         if 24 in apply(apply(r1, A[k]), A[l]): return True
         if 24 in apply(apply(r1, A[l]), A[k]): return True
         if 24 in apply(r1, apply(A[k], A[l])): return True
-    
+
     return False
 
-//######################################### Python ######################################### 
+//######################################### Python #########################################
 //Use itertools.permutations to generate all the possible operands and operators to form an array of length 7, representing an equation of 4 operands and 3 operators.
 //The possible function tries to evaluate the equation with different combinations of brackets, terminating as soon as an equation evaluates to 24. Each time evaluate is called, it reduces the length of the equation by 2, as it takes a triplet (operand, operator, operand) and evaluates into a value.
 //Compare the final result of the equation with a small delta because of floating point inaccuracies.
@@ -208,7 +211,7 @@ class Solution(object):
                     return True
         return False
 
-//######################################### BT ######################################### 
+//######################################### BT #########################################
  bool flag=false;
     bool judgePoint24(vector<int>& nums) {
         vector<double> ns;
@@ -216,7 +219,7 @@ class Solution(object):
         BT(ns);
         return flag;
     }
-    
+
     void BT(vector<double> ns) {
         if(flag) return;
         if(ns.size()==1&&abs(ns[0]-24.0)<0.001) flag=true;
@@ -240,7 +243,7 @@ class Solution(object):
         }
     }
 
-//######################################### BT ######################################### 
+//######################################### BT #########################################
 //we can find all the permutation of the input array, then for each permutation we can evaluate the result from left to right or half and half.
 //
 //the complexity would be O(4! * 6^3), where 4! is number of all permutation, and two number can have 6 operation result, 4 number have 3 operations. After all, we cannot call it O(1). Should be O(n! * 6^(n-1)).
@@ -249,7 +252,7 @@ public:
     bool judgePoint24(vector<int>& nums) {
         return perm(nums, 0);
     }
-    
+
     bool perm(vector<int>& nums, int idx)
     {
         if(idx == 3)
@@ -259,11 +262,11 @@ public:
             if(j > idx && nums[j] == nums[idx]) continue;
             swap(nums[j], nums[idx]);
             if(perm(nums, idx+1)) return true;
-            swap(nums[j], nums[idx]);            
+            swap(nums[j], nums[idx]);
         }
         return false;
     }
-    
+
     bool leftRight(vector<int>& nums)
     {
         unordered_set<double> val1, val2;
@@ -277,12 +280,12 @@ public:
         {
             unordered_set<double> tmp = getVal(e, nums[3]);
             for(auto e : tmp)
-                if(e == 24) 
+                if(e == 24)
                     return true;
         }
         return false;
     }
-    
+
     bool halfHalf(vector<int>& nums)
     {
         unordered_set<double> val1 = getVal(nums[0], nums[1]);
@@ -293,20 +296,20 @@ public:
             {
                 unordered_set<double> tmp = getVal(e, f);
                 for(auto e : tmp)
-                    if(e == 24) 
+                    if(e == 24)
                         return true;
             }
         }
         return false;
     }
-    
+
     unordered_set<double> getVal(double n1, double n2)
     {
         return unordered_set<double>{n1+n2, n1*n2, n1-n2, n2-n1, n1/(n2?n2:1), n2/(n1?n1:1)};
     }
 };
 
-//######################################### BT ######################################### 
+//######################################### BT #########################################
     def judgePoint24(self, nums):
         def f(s1, s2):
             res = []

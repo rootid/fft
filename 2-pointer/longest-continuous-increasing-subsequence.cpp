@@ -3,22 +3,29 @@
 //Example 1:
 //Input: [1,3,5,4,7]
 //Output: 3
-//Explanation: The longest continuous increasing subsequence is [1,3,5], its length is 3. 
-//Even though [1,3,5,7] is also an increasing subsequence, it's not a continuous one where 5 and 7 are separated by 4. 
+//Explanation: The longest continuous increasing subsequence is [1,3,5], its length is 3.
+//Even though [1,3,5,7] is also an increasing subsequence, it's not a continuous one where 5 and 7 are separated by 4.
 //Example 2:
 //Input: [2,2,2,2,2]
 //Output: 1
-//Explanation: The longest continuous increasing subsequence is [2], its length is 1. 
+//Explanation: The longest continuous increasing subsequence is [2], its length is 1.
 //Note: Length of the array will not exceed 10,000
 
+//Cnstrnt :
+//1. range
+//3. Duplicate handle?
 
-//######################################### Linear traversal  ######################################### 
+//Ida
+//1. Pick 1 and check le and find max O(n^2)
+//2. Use the suggestion, continuous and linear traverse with compare the last/prev elemet
+
+//######################################### Linear traversal  #########################################
 public int findLengthOfLCIS(int[] nums) {
     if(nums == null || nums.length == 0) return 0;
     int maxLength = 1;
     int cLen = 1;
     for(int i=1;i<nums.length;i++) {
-        if(nums[i-1] < nums[i]) 
+        if(nums[i-1] < nums[i])
             cLen++;
         else cLen = 1;
         maxLength = Math.max(cLen, maxLength);
@@ -26,7 +33,7 @@ public int findLengthOfLCIS(int[] nums) {
     return maxLength;
 }
 
-//######################################### 2 Pointer ######################################### 
+//######################################### 2 Pointer #########################################
  int findLengthOfLCIS(vector<int>& nums) {
         if(nums.empty()) return 0;
         int i = 0, j = 1, maxlen = 1;
@@ -37,7 +44,7 @@ public int findLengthOfLCIS(int[] nums) {
         }
         return maxlen;
     }
-//##################### T: O(N) ##################### 
+//##################### T: O(N) #####################
 public int findLengthOfLCIS(int[] nums) {
     if(nums.length <= 1) return nums.length;
     int j = 0, maxlen = 0, len = 1;
@@ -50,7 +57,7 @@ public int findLengthOfLCIS(int[] nums) {
     return maxlen;
 }
 
-//##################### T: O(N) ##################### 
+//##################### T: O(N) #####################
 class Solution(object):
     def findLengthOfLCIS(self, nums):
         """
@@ -71,7 +78,7 @@ class Solution(object):
             prev = num
         return max(max_count, count)
 
-//######################################### DP S:(N) , T : O(N)######################################### 
+//######################################### DP S:(N) , T : O(N)#########################################
 //dp[i] represents the longest continuous increasing subsequence end at index i
 //The logic is if nums[i]>nums[i-1], dp[i] = dp[i-1] + 1, otherwise dp[i] = 1
 

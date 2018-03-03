@@ -1,8 +1,10 @@
 //Battleships in a Board
-//Given an 2D board, count how many battleships are in it. The battleships are represented with 'X's, empty slots are represented with '.'s. You may assume the following rules:
-//You receive a valid board, made of only battleships or empty slots.
-//Battleships can only be placed horizontally or vertically. In other words, they can only be made of the shape 1xN (1 row, N columns) or Nx1 (N rows, 1 column), where N can be of any size.
-//At least one horizontal or vertical cell separates between two battleships - there are no adjacent battleships.
+//Given an 2D board, count how many battleships are in it. The battleships are represented with 'X's, empty slots are
+//represented with '.'s. You may assume the following rules: You receive a valid board, made of only battleships or
+//empty slots.
+//Battleships can only be placed horizontally or vertically. In other words, they can only be made of the shape 1xN (1
+//row, N columns) or Nx1 (N rows, 1 column), where N can be of any size.  At least one horizontal or vertical cell
+//separates between two battleships - there are no adjacent battleships.
 //Example:
 //X..X
 //...X
@@ -16,8 +18,8 @@
 //Follow up:
 //Could you do it in one-pass, using only O(1) extra memory and without modifying the value of the board?
 
-//######################################### traversal O(mn) ######################################### 
-int countBattleships(vector<vector<char>>& board) { 
+//######################################### traversal O(mn) #########################################
+int countBattleships(vector<vector<char>>& board) {
   int result = 0;
   if(board.empty()) {
       return result;
@@ -27,14 +29,14 @@ int countBattleships(vector<vector<char>>& board) {
       //verify adjacent cells : must be empty
       if (board[i][j] == 'X' && (i == 0 || board[i - 1][j] == '.') && (j == 0 || board[i][j - 1] == '.')) {
         result++;
-      } 
-    } 
-  } 
-  return result; 
+      }
+    }
+  }
+  return result;
 }
 
-//######################################### traversal O(mn) ######################################### 
-int countBattleships(vector<vector<char>>& b) { 
+//######################################### traversal O(mn) #########################################
+int countBattleships(vector<vector<char>>& b) {
   int cnt = 0;
   for (int i = 0; i < b.size(); ++i)
     for (int j = 0; j < b[0].size(); ++j)
@@ -42,10 +44,10 @@ int countBattleships(vector<vector<char>>& b) {
   return cnt;
 }
 
-//######################################### DFS ######################################### 
+//######################################### DFS #########################################
 class Solution {
 public:
-    int m, n; 
+    int m, n;
     vector<vector<bool>> flag;
     int go[4][2] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 
@@ -70,7 +72,7 @@ public:
     }
 };
 
-//######################################### BFS ######################################### 
+//######################################### BFS #########################################
 class Solution {
 public:
     int go[4][2] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
@@ -103,7 +105,7 @@ public:
 };
 
 
-//######################################### pytonic ######################################### 
+//######################################### pytonic #########################################
 //class Solution(object):
 //    def countBattleships(self, board):
 //        if len(board) == 0: return 0
@@ -111,7 +113,9 @@ public:
 //        count = 0
 //        for i in range(m):
 //            for j in range(n):
-//                if board[i][j] == 'X' and (i == 0 or board[i-1][j] == '.') and (j == 0 or board[i][j-1] == '.'):
+//                if board[i][j] == 'X'
+//                and (i == 0 or board[i-1][j] == '.')
+//                and (j == 0 or board[i][j-1] == '.'):
 //                    count += 1
 //        return count
 //
@@ -127,5 +131,15 @@ public:
 //                total += flag
 //    return total
 
+    def countBattleships(self, board):
+        count = 0
+        for i in xrange(len(board)):
+            for j in xrange(len(board[0])):
+                # meet X
+                # check if it is on border horizontally or has . in the left. i
+                # check if it is on top of board or have dot above him.
+                # if both check are OK - this is a ship and we have not counted him yet.
+                if board[i][j] == 'X' and (i == 0 or board[i-1][j] == '.') and (j==0 or board[i][j-1] == '.'): count += 1
+        return coun
 
-// vim: set sw=2 sts=2 tw=120 et nospell : 
+// vim: set sw=2 sts=2 tw=120 et nospell :

@@ -1,8 +1,18 @@
 //Container With Most Water
-//Given n non-negative integers a1, a2, ..., an, where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water.
-//Note: You may not slant the container and n is at least 2.
+//Given n non-negative integers a1, a2, ..., an, where each represents a point
+//at coordinate (i, ai). n vertical lines are drawn such that the two endpoints
+//of line i is at (i, ai) and (i, 0). Find two lines, which together with
+//x-axis forms a container, such that the container contains the most water.
+//Note: You may not slant the container and n is at least 2. i.e. width
 
-//############################################ Reduction ############################################ 
+//cnstrnt
+//1. fnd 2 cntnr w/ most h20
+//2. range for x-y axis -min , max
+//3. 2 euqal areas
+//Ida
+//1. fnd max area most ht by shrinking width
+//2. hw to pick rt/left
+//############################################ Reduction ############################################
   //Max width to Max height
     public int maxArea(int[] height) {
         int maxArea = 0;
@@ -20,7 +30,7 @@
     }
 
 
-//############################################ Reduction ############################################ 
+//############################################ Reduction ############################################
 //Idea same as  bfs/trapping-rain-water.cpp
 int maxArea(vector<int>& height) {
     int water = 0;
@@ -40,12 +50,12 @@ int maxArea(vector<int>& height) {
 }
 
 
-//############################################ Same as above added extra equn ############################################ 
-//           / max{v(i, j), S(i...j-1)};  height(i) >= height(j)
+//############################################ Same as above added extra equn ############################################
+//           / max{v(i, j), S(i...j-1)};  height(i) >= height(j) //pick rt
 //S(i..j) = |
-//           \ max{v(i, j), S(i+1...j)};  height(i) < height(j)
+//           \ max{v(i, j), S(i+1...j)};  height(i) < height(j) //Pick left
 
-int maxArea(vector<int>& height) { 
+int maxArea(vector<int>& height) {
   int lo = 0;
   int hi = height.length - 1;
   int maxV = 0;
@@ -55,7 +65,7 @@ int maxArea(vector<int>& height) {
       while(lo <= hi && height[lo] <= min) {
         lo++;
       }
-      while(lo <= hi && height[hi] <= min) { 
+      while(lo <= hi && height[hi] <= min) {
         hi--;
       }
   }

@@ -1,5 +1,6 @@
 //Search a 2D Matrix
-//Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:
+//Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the
+//following properties:
 //Integers in each row are sorted from left to right.
 //The first integer of each row is greater than the last integer of the previous row.
 //For example,
@@ -11,7 +12,7 @@
 //]
 //Given target = 3, return true.
 
-//###################################### Assume 2d matrix as a linear array ######################################  
+//###################################### Assume 2d matrix as a linear array ######################################
 //TC : O(log(m) + log(n)), or in other words, O(log(mn)).
 public boolean searchMatrix(int[][] matrix, int target) {
     int m = matrix.length;
@@ -27,20 +28,20 @@ public boolean searchMatrix(int[][] matrix, int target) {
     }
     return false;
 }
-//###################################### Assume 2d matrix as a linear array ######################################  
-bool searchMatrix(vector<vector<int>>& matrix, int target) { 
+//###################################### Assume 2d matrix as a linear array ######################################
+bool searchMatrix(vector<vector<int>>& matrix, int target) {
   if(matrix.empty()) {
         return false;
-    } 
+    }
   int rows = matrix.size();
   int cols = matrix[0].size();
   int s = 0, e = rows* cols - 1;
-  
+
   while(s<=e) {
-      int m = s+(e-s)/2; 
+      int m = s+(e-s)/2;
       if(matrix[m/cols][m%cols] == target) { //3*4 - 1
           return true;
-      }else if(matrix[m/cols][m%cols]>target) { 
+      }else if(matrix[m/cols][m%cols]>target) {
           e = m -1; //left of key element
       }else {
           s = m + 1; //right of key element
@@ -50,14 +51,14 @@ bool searchMatrix(vector<vector<int>>& matrix, int target) {
 }
 
 
-//###################################### Search in 2-d ######################################  
+//###################################### Search in 2-d ######################################
 //1. Search possible row O(log n)
 //2. BS in entire possible row O(log n)
-bool searchMatrix(vector<vector<int>>& matrix, int target) { 
+bool searchMatrix(vector<vector<int>>& matrix, int target) {
   if(matrix.empty() || matrix.front().empty()) {
     return false;
   }
-  //Row search 
+  //Row search
   //u : total row count
   int l = 0, u = matrix.size() - 1, r = -1;
   while (l <= u) {
@@ -69,8 +70,8 @@ bool searchMatrix(vector<vector<int>>& matrix, int target) {
           u = m - 1;
       }
   }
-  if (r == - 1) { 
-    return false; 
+  if (r == - 1) {
+    return false;
   }
   //simple linear binary search
   l = 0, u = matrix.front().size() - 1;
@@ -84,5 +85,5 @@ bool searchMatrix(vector<vector<int>>& matrix, int target) {
           u = m - 1;
       }
   }
-  return false; 
+  return false;
 }

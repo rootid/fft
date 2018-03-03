@@ -1,8 +1,12 @@
 //Elimination Game
-//There is a list of sorted integers from 1 to n. Starting from left to right, remove the first number and every other number afterward until you reach the end of the list.
-//Repeat the previous step again, but this time from right to left, remove the right most number and every other number from the remaining numbers.
-//We keep repeating the steps again, alternating left to right and right to left, until a single number remains.
-//Find the last number that remains starting with a list of length n.
+//There is a list of sorted integers from 1 to n. Starting from left to right,
+//remove the first number and every other number afterward until you reach the
+//end of the list.  Repeat the previous step again, but this time from right to
+//left, remove the right most number and every other number from the remaining
+//numbers.
+//We keep repeating the steps again, alternating left to right and right to
+//left, until a single number remains.  Find the last number that remains
+//starting with a list of length n.
 //Example:
 //Input:
 //n = 9,
@@ -18,7 +22,7 @@ int lastRemaining(int n) {
  int step = 1;
  int head = 1;
   while (remaining > 1) {
-    if (fwd_pass || remaining % 2 == 1) { 
+    if (fwd_pass || remaining % 2 == 1) {
           head = head + step;
         //Our value is eliminated on a forward pass or if there are an odd number of elements.
       }
@@ -52,7 +56,7 @@ public:
 //right to left when total number is odd keep even, else keep odd
 int lastRemaining(int n,bool go=true) {
     return n==1?1:2*lastRemaining(n/2,!go)+!go*(n%2-1);
-    
+
 }
 //When do we eliminate our value?
 //Our value is eliminated on a forward pass or if there are an odd number of elements.

@@ -12,14 +12,22 @@
 #include "../headers/global.hpp"
 
 
-//######################################### Iterative  ######################################### 
+
+//######################################### Iterative  #########################################
+public boolean isPalindrome(String s) {
+    String actual = s.replaceAll("[^A-Za-z0-9]", "").toLowerCase(); //replace all non alphnemeric chars w/ empty string
+    String rev = new StringBuffer(actual).reverse().toString();
+    return actual.equals(rev);
+}
+
+//######################################### Iterative  #########################################
 public boolean isPalindrome(String s) {
      char[] arr = s.toCharArray();
      int end = s.length() -1;
      int start = 0;
      while(start < end) {
          if(!Character.isDigit(arr[start]) && !Character.isAlphabetic(arr[start])) start++;
-         else if(!Character.isDigit(arr[end]) && !Character.isAlphabetic(arr[end])) end--;                   
+         else if(!Character.isDigit(arr[end]) && !Character.isAlphabetic(arr[end])) end--;
          else if(Character.toUpperCase(arr[start]) == Character.toUpperCase(arr[end])) {
              start++;
              end--;
@@ -28,7 +36,7 @@ public boolean isPalindrome(String s) {
      return true;
 }
 
-//######################################### Iterative  ######################################### 
+//######################################### Iterative  #########################################
 bool isPalindrome(string s) {
    int i = 0, j = s.size() - 1;
    while(i < j)
@@ -42,7 +50,33 @@ bool isPalindrome(string s) {
    return true;
 }
 
-//#################### Ugly #################### 
+//######################################### Recursive  #########################################
+//For large input getting stack overflow
+class Solution {
+    public boolean isPalindrome(String s) {
+        if(s == null || s.length() == 0) return true;
+        String dummyS = s.toLowerCase();
+        int end = dummyS.length() - 1;
+        int start = 0;
+        return isPalindromeHelper(dummyS, start, end);
+    }
+
+    private boolean isPalindromeHelper(String s, int start, int end) {
+        //System.out.println( "(strt = " + start + " , end = " + end + " )");
+        if(start < end) {
+           if(!Character.isLetterOrDigit(s.charAt(start)))
+               return isPalindromeHelper(s, start+1, end);
+           if(!Character.isLetterOrDigit(s.charAt(end)))
+               return isPalindromeHelper(s, start, end-1);
+           if(s.charAt(start) == s.charAt(end))
+                return isPalindromeHelper(s, start+1, end-1);
+           return false;
+        }
+        return true;
+    }
+}
+
+//#################### Ugly ####################
 bool isValid(char c) {
   if( (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') ) {
     return true;
@@ -57,7 +91,7 @@ char getLower(char c) {
   }
   return c;
 }
-  
+
 bool isPalindrome(string s) {
 
   int n = s.size();

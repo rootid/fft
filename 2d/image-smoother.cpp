@@ -1,6 +1,9 @@
 //Image Smoother
-//Given a 2D integer matrix M representing the gray scale of an image, you need to design a smoother to make the gray scale of each cell becomes the average gray scale (rounding down) of all the 8 surrounding cells and itself. If a cell has less than 8 surrounding cells, then use as many as you can.
-//Example 1:
+//Given a 2D integer matrix M representing the gray scale of an image, you need
+//to design a smoother to make the gray scale of each cell becomes the average
+//gray scale (rounding down) of all the 8 surrounding cells and itself. If a
+//cell has less than 8 surrounding cells, then use as many as you can.  Example
+//1:
 //Input:
 //[[1,1,1],
 // [1,0,1],
@@ -18,8 +21,9 @@
 //The length and width of the given matrix are in the range of [1, 150].
 
 
-//######################################### nbr check  ######################################### 
-//check function to check the boundary and a inner double loop to traverse the 9 potential candidates:
+//######################################### nbr check  #########################################
+//check function to check the boundary and a inner double loop to traverse the 9 potential
+//candidates:
 public class ImageSmoother {
 
     public int[][] imageSmoother(int[][] M) {
@@ -56,22 +60,22 @@ public class ImageSmoother {
 }
 
 
-//###############################  Count 8 nbrs + sum  ###############################  
+//###############################  Count 8 nbrs + sum  ###############################
 //  (x-1,y-1)| (x-1,y) |(x-1,y+1)
 //  (x, y-1) |  {x,y}  |(x-1,y+1)
 //  (x+1,y-1)| (x+1,y) |(x+1,y+1)
 //
 public int[][] imageSmoother(int[][] M) {
-        int row = M.length, col = M[0].length;       
-        int[][] result = new int[row][col];            
-        for(int i=0;i<row;++i){ 
-            for(int j=0;j<col;++j){      
+        int row = M.length, col = M[0].length;
+        int[][] result = new int[row][col];
+        for(int i=0;i<row;++i){
+            for(int j=0;j<col;++j){
                 int total = 0, points = 0;
-                     for(int k=i-1;k<i+2;++k){ 
+                     for(int k=i-1;k<i+2;++k){
                          if(k>-1 && k<row){
-                             for(int l=j-1;l<j+2;++l){      
+                             for(int l=j-1;l<j+2;++l){
                                   if (l>-1 && l<col){
-                                      total+=M[k][l];        
+                                      total+=M[k][l];
                                       ++points;
                                   }
                               }
@@ -80,18 +84,18 @@ public int[][] imageSmoother(int[][] M) {
                 result[i][j] = (int) Math.floor(total/(double)points);
             }
         }
-        
+
         return result;
     }
 
-//###############################  count 8 nbrs + sum  ###############################  
+//###############################  count 8 nbrs + sum  ###############################
 class Solution {
     public int[][] imageSmoother(int[][] M) {
         if(M==null||M.length==0) return new int[][];
         int n=M.length;
         int m=M[0].length;
         int res[][]=new int[n][m];
-        
+
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
                 res[i][j]=avg(M,i,j,n,m);
@@ -99,28 +103,30 @@ class Solution {
         }
         return res;
     }
-    
+
     public int avg(int[][] M,int x,int y,int n,int m){
         int sum=0;
         int count=0;
         int[] valueAndCount=new int[]{0,0};
-        
+
         for(int[] co:new int[][]{{x,y},{x,y-1},{x,y+1},{x-1,y},{x+1,y},{x+1,y-1},{x+1,y+1},{x-1,y-1},{x-1,y+1}}){
             valueAndCount=valueAndCount(M,co[0],co[1],n,m);
             sum+=valueAndCount[0];
-            count+=valueAndCount[1]; 
+            count+=valueAndCount[1];
         }
         return sum/count;
     }
-    
+
     public int[] valueAndCount(int[][] M,int x,int y,int n,int m){
         boolean valid=x>=0&&x<n&&y>=0&&y<m;
         return new int[]{valid?M[x][y]:0,valid?1:0};
     }
 }
 
-//######################################### Bits ######################################### 
-//Derived from StefanPochmann's idea in "game of life": the board has ints in [0, 255], hence only 8-bit is used, we can use the middle 8-bit to store the new state (average value), replace the old state with the new state by shifting all values 8 bits to the right.
+//######################################### Bits #########################################
+//Derived from StefanPochmann's idea in "game of life": the board has ints in [0, 255], hence only
+//8-bit is used, we can use the middle 8-bit to store the new state (average value), replace the old
+//state with the new state by shifting all values 8 bits to the right.
 vector<vector<int>> imageSmoother(vector<vector<int>>& M) {
      int m = M.size(), n = M[0].size();
      if (m == 0 || n == 0) return {{}};
@@ -145,7 +151,7 @@ vector<vector<int>> imageSmoother(vector<vector<int>>& M) {
      return M;
  }
 
-//############################### Enlarge matrix ############################### 
+//############################### Enlarge matrix ###############################
 class Solution(object):
     def imageSmoother(self, M):
         """

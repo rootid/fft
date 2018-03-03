@@ -1,5 +1,6 @@
 //Search a 2D Matrix II
-//Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:
+//Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the
+//following properties:
 //Integers in each row are sorted in ascending from left to right.
 //Integers in each column are sorted in ascending from top to bottom.
 //For example,
@@ -27,9 +28,9 @@ bool searchMatrix(vector<vector<int>>& matrix, int target) {
   int r = 0;
   int c = n-1; //idx starts from zero
   while (r < m && c >= 0) {
-    if (matrix[r][c] == target) { 
+    if (matrix[r][c] == target) {
       return true;
-    } else if (matrix[r][c] > target) { 
+    } else if (matrix[r][c] > target) {
       c -= 1;
     } else {
       r += 1;
@@ -37,25 +38,25 @@ bool searchMatrix(vector<vector<int>>& matrix, int target) {
   }
   return false;
 }
-//################################## Dandc : Ham-sandwhich tree analysis ################################## 
-bool searchMatrix(vector<vector<int>>& matrix, int target) { 
+//################################## Dandc : Ham-sandwhich tree analysis ##################################
+bool searchMatrix(vector<vector<int>>& matrix, int target) {
   if(matrix.empty() || matrix.front().empty()) {
     return false;
   }
-  return searchRect(matrix,target,0,0,matrix.size()-1,matrix.front().size()-1); 
+  return searchRect(matrix,target,0,0,matrix.size()-1,matrix.front().size()-1);
 }
-bool searchRect(vector<vector<int>>& matrix, int target, 
+bool searchRect(vector<vector<int>>& matrix, int target,
                            int top, int left, int bottom, int right) {
     //search if the target is inside the rectangular matrix[top:bottom][left:right]
     //each time we discard 1/4 of all elements
     //T(Q) = T(Q/2) + T(Q/4) + O(1) : Drop 1/4 elements + invoke 2 recursive call T(Q/2)
     if(top>bottom || left>right)
         return false;
-    
+
     int x = (top+bottom)/2;
     int y = (left+right)/2;
     int center = matrix[x][y];
-    
+
     if(center > target) {
         return
             searchRect(matrix,target,top,left,x-1,right) ||
@@ -70,24 +71,24 @@ bool searchRect(vector<vector<int>>& matrix, int target,
 }
 
 
-//################################## O(m logn) ################################## 
-bool searchMatrix(vector<vector<int>>& matrix, int target) { 
+//################################## O(m logn) ##################################
+bool searchMatrix(vector<vector<int>>& matrix, int target) {
   if(matrix.empty() || matrix.front().empty()) {
     return false;
-  } 
-  return searchMatrix(matrix, target, 0, matrix.size() - 1); 
+  }
+  return searchMatrix(matrix, target, 0, matrix.size() - 1);
 }
 
-bool searchMatrix(vector<vector<int>>& matrix, int target, int top, int bottom) { 
-  if (top > bottom) { 
-    return false; 
-  } 
+bool searchMatrix(vector<vector<int>>& matrix, int target, int top, int bottom) {
+  if (top > bottom) {
+    return false;
+  }
   int mid = top + (bottom - top) / 2;
   if (matrix[mid].front() <= target && target <= matrix[mid].back())
   if (searchVector(matrix[mid], target)) return true;
   if (searchMatrix(matrix, target, top, mid - 1)) return true;
   if (searchMatrix(matrix, target, mid + 1, bottom)) return true;
-  return false; 
+  return false;
 }
 
 bool searchVector(vector<int>& v, int target) {
@@ -101,5 +102,5 @@ bool searchVector(vector<int>& v, int target) {
   	else
   		right = mid - 1;
   }
-  return false; 
+  return false;
 }

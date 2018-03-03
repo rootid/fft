@@ -1,12 +1,20 @@
 //Pour Water
-//We are given an elevation map, heights[i] representing the height of the terrain at that index. The width at each index is 1. After V units of water fall at index K, how much water is at each index?
-//Water first drops at index K and rests on top of the highest terrain or water at that index. Then, it flows according to the following rules:
+//We are given an elevation map, heights[i] representing the height of the
+//terrain at that index. The width at each index is 1. After V units of water
+//fall at index K, how much water is at each index?  Water first drops at index
+//K and rests on top of the highest terrain or water at that index. Then, it
+//flows according to the following rules:
 //If the droplet would eventually fall by moving left, then move left.
-//Otherwise, if the droplet would eventually fall by moving right, then move right.
-//Otherwise, rise at it's current position.
-//Here, "eventually fall" means that the droplet will eventually be at a lower level if it moves in that direction. Also, "level" means the height of the terrain plus any water in that column.
-//We can assume there's infinitely high terrain on the two sides out of bounds of the array. Also, there could not be partial water being spread out evenly on more than 1 grid block - each unit of water has to be in exactly one block.
-//Example 1:
+//Otherwise, if the droplet would eventually fall by moving right, then move
+//right.
+//Otherwise, rise at it's current position.  Here, "eventually fall" means that
+//the droplet will eventually be at a lower level if it moves in that
+//direction. Also, "level" means the height of the terrain plus any water in
+//that column.
+//We can assume there's infinitely high terrain on the two sides out of bounds
+//of the array. Also, there could not be partial water being spread out evenly
+//on more than 1 grid block - each unit of water has to be in exactly one
+//block.  Example 1:
 //Input: heights = [2,1,1,2,1,2,2], V = 4, K = 3
 //Output: [2,2,2,3,2,2,2]
 //Explanation:
@@ -79,8 +87,8 @@
 //Input: heights = [1,2,3,4], V = 2, K = 2
 //Output: [2,3,3,4]
 //Explanation:
-//The last droplet settles at index 1, since moving further left would not cause it to eventually fall to a lower height.
-//Example 3:
+//The last droplet settles at index 1, since moving further left would not
+//cause it to eventually fall to a lower height.  Example 3:
 //Input: heights = [3,1,3], V = 5, K = 1
 //Output: [4,4,4]
 //Note:
@@ -92,10 +100,17 @@
 //######################################### Simulation ######################################### p
 //Intuition and Algorithm
 //We attempt to perform the steps directly as described.
-//First, notice that an index with terrain or with water is indistinguishable with respect to the flow of water. Thus, we can model heights as the total level of terrain and water directly as we perform our simulation.
-//When a droplet falls, we should check if it is possible for it to fall left. For our left pointer i = K, if i - 1 is in bounds and heights[i - 1] <= heights[i], the water will fall to a candidate block in that direction. We keep track of every time we actually fall at index best. If we "eventually fall" (best != K) as described in the problem statement, then we will drop the water there.
-//Otherwise, (if moving left will not cause the droplet to eventually fall), we can perform a similar check for i = K going right, and otherwise the droplet stays in place.
-//For convenience, we will name the initial array H = heights.
+//First, notice that an index with terrain or with water is indistinguishable
+//with respect to the flow of water. Thus, we can model heights as the total
+//level of terrain and water directly as we perform our simulation.  When a
+//droplet falls, we should check if it is possible for it to fall left. For our
+//left pointer i = K, if i - 1 is in bounds and heights[i - 1] <= heights[i],
+//the water will fall to a candidate block in that direction. We keep track of
+//every time we actually fall at index best. If we "eventually fall" (best !=
+//K) as described in the problem statement, then we will drop the water there.
+//Otherwise, (if moving left will not cause the droplet to eventually fall), we
+//can perform a similar check for i = K going right, and otherwise the droplet
+//stays in place.  For convenience, we will name the initial array H = heights.
 
 class Solution {
     public int[] pourWater(int[] H, int V, int K) {

@@ -9,7 +9,7 @@
 //]
 
 
-//####################################################### Backtrack GOOD  ####################################################### 
+//####################################################### Backtrack GOOD  #######################################################
 //Backrack with Pruning by checking palindrome
 public List<List<String>> partition(String s) {
     List<List<String>> result = new LinkedList<>();
@@ -33,13 +33,13 @@ private void generatePartHelper(String s, int k, List<String>localList, List<Lis
             localList.add(s.substring(k, i+1));
             generatePartHelper(s, i+1, localList, result);
             localList.remove(localList.size()-1);
-        }   
+        }
     }
 }
 
 //Backrack with Pruning by checking palindrome
-//####################################################### Backtrack GOOD  ####################################################### 
-vector<vector<string>> partition(string s) { 
+//####################################################### Backtrack GOOD  #######################################################
+vector<vector<string>> partition(string s) {
   vector<vector<string> > res;
   vector<string> tmp;
   getPartition(s, 0, tmp, res);
@@ -60,7 +60,7 @@ void getPartition(string& s, int idx, vector<string>& tmp, vector<vector<string>
         }
     }
 }
-//####################################################### Backtrack BAD ####################################################### 
+//####################################################### Backtrack BAD #######################################################
 bool is_palindrome(string s) {
     int end = s.length()-1;
     int start = 0;
@@ -96,13 +96,13 @@ vector<vector<string> > partition(string s) {
     enum_palindrome (s,0,result_stack,op);
     return op;
 }
-//############################## DP + DFS  ############################## 
+//############################## DP + DFS  ##############################
 vector<vector<string>> partition(string s) {
     //first step is to find all the palindromes in the string
     //then use dfs method to walk though the whole word using palindrome records
-    
+
     //dp[startindex][len] indicates whether s[start]~[start+len] is palindome
-    vector<vector<bool> > dp(s.size(), vector<bool>(s.size()+1, false)); 
+    vector<vector<bool> > dp(s.size(), vector<bool>(s.size()+1, false));
     for(int i=0;i<s.size();++i){
         dp[i][0]=dp[i][1]=true;
     }
@@ -130,7 +130,7 @@ void dfs(string &s, int index, vector<string> &curRes, vector<vector<string>> &f
     }
 }
 
-//##################################### NEED to fix O(n^2) ##################################### 
+//##################################### NEED to fix O(n^2) #####################################
 vector<vector<string>> partition(string s) {
 	int len = s.length();
 	vector<vector<string> >result;
@@ -140,10 +140,10 @@ vector<vector<string>> partition(string s) {
 		for (int left = 0; left <= i; left++) {
 			if (s[left] == s[i] && (i-left <= 1 || pair[left + 1][i - 1])) {
 				pair[left][i] = true;
-	
+
 				string str = s.substr(left, len- i + 1);
 				for (auto r : result[left]) {
-					vector<string> ri; 
+					vector<string> ri;
                     ri.push_back(r);
 					ri.push_back(str);
 					result.push_back(ri);

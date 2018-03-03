@@ -1,6 +1,7 @@
 //Spiral Matrix
 
-//Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.
+//Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral
+//order.
 //For example,
 //Given the following matrix:
 //[
@@ -14,10 +15,10 @@
 #include<vector>
 using namespace std;
 
-//######################################### 4 indices solution ######################################### 
+//######################################### 4 indices solution #########################################
 public List<Integer> spiralOrder(int[][] matrix) {
        List<Integer> rsLst = new LinkedList<>();
-       
+
        int m = matrix.length;
        if(m == 0) return rsLst;
        int n = matrix[0].length;
@@ -25,9 +26,9 @@ public List<Integer> spiralOrder(int[][] matrix) {
        int rEnd = m-1;
        int cStart = 0;
        int cEnd = n-1;
-       
+
        while(rStart<= rEnd && cStart <= cEnd) {
-           for(int i=cStart;i<=cEnd;i++) 
+           for(int i=cStart;i<=cEnd;i++)
                rsLst.add(matrix[rStart][i]);
            rStart++;
            for(int i=rStart;i<=rEnd;i++)
@@ -51,7 +52,7 @@ public List<Integer> spiralOrder(int[][] matrix) {
 vector<int> spiralOrder(vector<vector<int> >& matrix) {
   int m = matrix.size();
   int n = matrix[0].size();
-  
+
   int col = -1;
   int row = 0;
   while (row != col) {
@@ -113,9 +114,9 @@ vector<int> spiralOrder(vector<vector<int>>& matrix) {
              }
            }
            colMin +=1;
-           
+
        }
-      return res;    
+      return res;
 }
 
 int main() {

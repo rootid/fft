@@ -15,7 +15,113 @@
 //You may assume that all words are consist of lowercase letters a-z.
 //click to show hint.
 //You should be familiar with how a Trie works. If not, please work on this problem: Implement Trie (Prefix Tree) first.
-//######################################################  TrieNode + Rec find ######################################################  
+
+//######################################################  TrieNode + Rec add+find ######################################################
+class WordDictionary {
+
+    TrieNode root;
+
+    /** Initialize your data structure here. */
+    public WordDictionary() {
+        root = new TrieNode();
+    }
+
+    public void addWord(String word) {
+       root = addWordHelper(word, 0, root); //Like BT Addition
+    }
+
+    // Adds a word into the data structure.
+    // Iterative search
+    public void addWordIterative(String word) {
+        TrieNode node = root;
+        for (char c : word.toCharArray()) {
+            if (node.kids[c - 'a'] == null)
+                node.kids[c - 'a'] = new TrieNode();
+            node = node.kids[c - 'a'];
+        }
+        node.isLeaf = true;
+    }
+
+    private TrieNode addWordHelper(String word, int d, TrieNode tmpNode) {
+        if(tmpNode == null) tmpNode = new TrieNode();
+        if(d == word.length()) {
+            tmpNode.isLeaf = true;
+            return tmpNode;
+        }
+        char c = (char) (word.charAt(d) - 'a');
+        tmpNode.kids[c] = addWordHelper(word, d+1, tmpNode.kids[c]);
+        return tmpNode;
+    }
+
+    public boolean search(String word) {
+        return match(word.toCharArray(), 0, root);
+    }
+
+    private boolean match(char[] chs, int k, TrieNode node) {
+        if (k == chs.length) return node.isLeaf;
+        if (chs[k] != '.') return node.kids[chs[k] - 'a'] != null && match(chs, k + 1, node.kids[chs[k] - 'a']); //Regex search
+        else {
+            for (int i = 0; i < node.kids.length; i++) {
+                if (node.kids[i] != null)
+                    if (match(chs, k + 1, node.kids[i])) return true;
+            }
+        }
+        return false;
+    }
+}
+
+class TrieNode {
+    //sttc api, class lvel api?
+    //xpose var/not?
+    TrieNode[] kids = new TrieNode[26];
+    boolean isLeaf;
+}
+
+/**
+ * Your WordDictionary object will be instantiated and called as such:
+ * WordDictionary obj = new WordDictionary();
+ * obj.addWord(word);
+ * boolean param_2 = obj.search(word);
+ */
+
+
+//######################################################  TrieNode + BFS search ######################################################
+//Complexity analysis: if you have e.g. ["aaaaa", "aaaab", "aaaac"] and search for "....." it will index all the words (linear to the number of total characters).
+//If you exclude wildcards (.), worst-case-search will iterate through the longest word (i.e. linear to the maximum number of characters in a word).
+//With wildcards it will iterate through the whole tree in the worst case (see above), making it the same complexity as the indexing
+
+public class WordDictionary {
+  private final Node root = new Node();
+
+  public void addWord(String word) {
+    Node node = root;
+    for (char c : word.toCharArray())
+      node = node.children.computeIfAbsent(c, k -> new Node());
+    node.terminal = word;
+  }
+
+  public boolean search(String word) {
+    Deque<Node> level = new ArrayDeque<>(Arrays.asList(root));
+    for (char c : word.toCharArray())
+      for (int i = level.size(); i > 0; i--) {
+        Map<Character, Node> children = level.removeFirst().children;
+        switch (c) {
+          case '.': level.addAll(children.values()); break;
+          default: if (children.containsKey(c)) level.addLast(children.get(c)); break;
+        }
+      }
+    return level.stream().anyMatch(n -> n.terminal != null);
+  }
+
+  private class Node {
+    public Map<Character, Node> children = new HashMap<>();
+    public String terminal;
+  }
+}
+
+
+
+//######################################################  TrieNode + Rec find ######################################################
 class TrieNode {
 public:
     bool isLeaf;
@@ -27,9 +133,9 @@ public:
 
 class WordDictionary {
 
-public: 
-  WordDictionary() { 
-    root = new TrieNode(); 
+public:
+  WordDictionary() {
+    root = new TrieNode();
   }
   // Adds a word into the data structure.
   void addWord(string word) {
@@ -50,8 +156,8 @@ public:
   }
 
 private:
-    TrieNode* root; 
-    
+    TrieNode* root;
+
     bool query(const char* word, TrieNode* node) {
         TrieNode* current = node;
         for (int i = 0; word[i]; i++) {
@@ -67,7 +173,7 @@ private:
             }
             else break;
         }
-        return current && current -> isLeaf; 
+        return current && current -> isLeaf;
     }
 };
 /**
@@ -77,7 +183,7 @@ private:
  * bool param_2 = obj.search(word);
  */
 
-//######################################################  TrieNode compact struct + Rec find + ######################################################  
+//######################################################  TrieNode compact struct + Rec find + ######################################################
 class TrieNode {
 public:
     TrieNode *next[26]{};
@@ -114,8 +220,8 @@ private:
 };
 
 
-//################################################### TrieNode + vector ################################################### 
-struct Trie 
+//################################################### TrieNode + vector ###################################################
+struct Trie
 {
      vector<Trie *> child;
      bool isWord;
@@ -155,13 +261,12 @@ bool search(const char *ch, Trie *cur) {
 }
 };
 
-//#################################### pytonic  ################################################################ 
-//#################################### recursive  ################################################################ 
+//#################################### recursive  ################################################################
 //class WordDictionary:
 //
 //    def __init__(self):
 //        self.root = {}
-//    
+//
 //    def addWord(self, word):
 //        node = self.root
 //        for char in word:
@@ -177,7 +282,7 @@ bool search(const char *ch, Trie *cur) {
 //                return char in node and find(word, node[char])
 //            return any(find(word, kid) for kid in node.values() if kid)
 //        return find(word, self.root)
-//########################################### iterative search ########################################### 
+//########################################### iterative search ###########################################
 //    def search(self, word):
 //        nodes = [self.root]
 //        for char in word:
@@ -186,7 +291,7 @@ bool search(const char *ch, Trie *cur) {
 //                     for key, kid in node.items()
 //                     if char in (key, '.') and kid]
 //        return any(None in node for node in nodes)
-//or 
+//or
 //
 //  def search(self, word):
 //        nodes = [self.root]
@@ -201,7 +306,7 @@ bool search(const char *ch, Trie *cur) {
 //
 //    def __init__(self):
 //        self.root = {}
-//    
+//
 //    def addWord(self, word):
 //        node = self.root
 //        for char in word:
@@ -238,28 +343,30 @@ bool search(const char *ch, Trie *cur) {
 //def _trie():
 //    return defaultdict(_trie)
 //
-//class Trie(object):                                                              
-//                                                                                 
-//    def __init__(self):                                                          
-//        self.trie = _trie()                                                      
-//                                                                                 
-//    def insert(self, word):                                                      
-//        self._insert(word, self.trie)                                            
-//                                                                                 
-//    def _insert(self, word, trie):                                               
-//        self._insert(word[1:], trie[word[0]]) if word else trie['$']             
-//                                                                                 
-//    def search(self, word):                                                      
-//        return self._search(self.trie, word)                                     
-//                                                                                 
-//    def _search(self, trie, word, prefix=False):                                 
+//class Trie(object):
+//
+//    def __init__(self):
+//        self.trie = _trie()
+//
+//    def insert(self, word):
+//        self._insert(word, self.trie)
+//
+//    def _insert(self, word, trie):
+//        self._insert(word[1:], trie[word[0]]) if word else trie['$']
+//
+//    def search(self, word):
+//        return self._search(self.trie, word)
+//
+//    def _search(self, trie, word, prefix=False):
 //        return True if not word and ('$' in trie or prefix) else self._search(trie[word[0]], word[1:], prefix=prefix) if word and word[0] in trie else False
-//                                                                                 
-//    def startsWith(self, prefix):                                                
+//
+//    def startsWith(self, prefix):
 //        return self._search(self.trie, prefix, True)
-//######################################## updated insert and search ######################################## 
+//######################################## updated insert and search ########################################
 //def insert(self, word):
 //    reduce(operator.getitem, word + '$', self.trie)
 //
-//def _search(self, trie, word, prefix=False):                                 
+//def _search(self, trie, word, prefix=False):
 //    return word[0] in trie and self._search(trie[word[0]], word[1:], prefix) if word else '$' in trie or prefix
+
+// vim: set sw=2 sts=2 tw=120 et nospell :

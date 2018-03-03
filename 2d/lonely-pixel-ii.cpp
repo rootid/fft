@@ -1,7 +1,10 @@
 //Lonely Pixel II
-//Given a picture consisting of black and white pixels, and a positive integer N, find the number of black pixels located at some specific row R and column C that align with all the following rules:
+//Given a picture consisting of black and white pixels, and a positive integer N, find the number of
+//black pixels located at some specific row R and column C that align with all the following rules:
 //Row R and column C both contain exactly N black pixels.
-//For all rows that have a black pixel at column C, they should be exactly the same as row R The picture is represented by a 2D char array consisting of ‘B’ and ‘W’, which means black and white pixels respectively.
+//For all rows that have a black pixel at column C, they should be exactly the same as row R The
+//picture is represented by a 2D char array consisting of ‘B’ and ‘W’, which means black and white
+//pixels respectively.
 //Example:
 //Input:
 //[['W', 'B', 'W', 'B', 'B', 'W'],
@@ -19,7 +22,8 @@
 //row index
 //Take 'B' at row R = 0 and column C = 1 as an example:
 //Rule 1, row R = 0 and column C = 1 both have exactly N = 3 black pixels.
-//Rule 2, the rows have black pixel at column C = 1 are row 0, row 1 and row 2. They are exactly the same as row R = 0.
+//Rule 2, the rows have black pixel at column C = 1 are row 0, row 1 and row 2. They are exactly the
+//same as row R = 0.
 //Note:
 //1. The range of width and height of the input 2D array is [1,200].
 
@@ -96,7 +100,8 @@ public int findBlackPixel(char[][] picture, int N) {
 //######################################### Python #########################################
 //Group and count equal rows.
 //Look for rows that appear N times and that have N black pixels.
-//If you find one, add N for each of its black columns that doesn't have extra black pixels (in other rows)
+//If you find one, add N for each of its black columns that doesn't have extra black pixels (in
+//other rows)
 def findBlackPixel(self, picture, N):
     ctr = collections.Counter(map(tuple, picture))
     cols = [col.count('B') for col in zip(*picture)]

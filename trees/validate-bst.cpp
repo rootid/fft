@@ -20,7 +20,7 @@ struct TreeNode {
 };
 
 
-//######################################### Inorder traversal ######################################### 
+//######################################### Inorder traversal #########################################
    private TreeNode prev; //With class variable
    private boolean isValidBSTHelper(TreeNode root) {
        if(root == null) return true;
@@ -33,11 +33,11 @@ struct TreeNode {
        return isValidBSTHelper(root);
    }
 
-//######################################### min,max  ######################################### 
+//######################################### min,max  #########################################
     public boolean isValidBST(TreeNode root) {
         return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
     }
-    
+
     public boolean isValidBST(TreeNode root, long minVal, long maxVal) {
         if (root == null) return true;
         if (root.val >= maxVal || root.val <= minVal) return false;
@@ -45,11 +45,11 @@ struct TreeNode {
         return isValidBST(root.left, minVal, root.val) && isValidBST(root.right, root.val, maxVal);
     }
 
-//######################################### Inorder traversal  ######################################### 
+//######################################### Inorder traversal  #########################################
 bool bstValidCheckHelper(TreeNode* root,TreeNode*& prev) {
 
   if(!root) return true;
-  if (!bstValidCheckHelper(root->left,prev) ) return false; 
+  if (!bstValidCheckHelper(root->left,prev) ) return false;
   if(prev != NULL && prev->val >= root->val) return false;
   prev = root;
   return (bstValidCheckHelper(root->right,prev) );

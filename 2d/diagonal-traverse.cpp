@@ -1,5 +1,6 @@
 //Diagonal Traverse
-//Given a matrix of M x N elements (M rows, N columns), return all elements of the matrix in diagonal order as shown in the below image.
+//Given a matrix of M x N elements (M rows, N columns), return all elements of the matrix in
+//diagonal order as shown in the below image.
 //Example:
 //Input:
 //[
@@ -12,7 +13,7 @@
 //Note:
 //The total number of elements of the given matrix will not exceed 10,000.
 
-//########################## Good ########################## 
+//########################## Good ##########################
 vector<int> findDiagonalOrder(vector<vector<int> >& matrix) {
         int nrow = matrix.size();
         int ncol = matrix.empty() ? 0 : matrix[0].size();
@@ -30,7 +31,7 @@ vector<int> findDiagonalOrder(vector<vector<int> >& matrix) {
         }
         return out;
 }
-//##################### Iterative ##################### 
+//##################### Iterative #####################
 vector<int> findDiagonalOrder(vector<vector<int>>& matrix) {
      vector<int> res;
      if (matrix.empty()) return res;
@@ -43,7 +44,7 @@ vector<int> findDiagonalOrder(vector<vector<int>>& matrix) {
      }
      return res;
  }
- 
+
  void diag(vector<vector<int>>& matrix, vector<int>& res, int i, int j, int& direct) {
      if (direct == 1) { // if upward
          pair<int, int> start;

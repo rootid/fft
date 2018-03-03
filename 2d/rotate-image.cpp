@@ -6,20 +6,20 @@
 #include "../headers/global.hpp"
 
 
-//######################################### 90deg + Ring by Ring ######################################### 
+//######################################### 90deg + Ring by Ring #########################################
 def rotate(self, matrix):
     n = len(matrix)
     for l in xrange(n / 2):
         r = n - 1 - l
         for p in xrange(l, r):
-            q = n - 1 - p  # or q = ~p 
+            q = n - 1 - p  # or q = ~p
             cache = matrix[l][p]
             matrix[l][p] = matrix[q][l]
             matrix[q][l] = matrix[r][q]
             matrix[r][q] = matrix[p][r]
             matrix[p][r] = cache
 
-//######################################### 90deg + Ring by Ring ######################################### 
+//######################################### 90deg + Ring by Ring #########################################
 public void rotate(int[][] matrix) {
     int n = matrix.length;
     for (int i = 0; i < n / 2; ++i) {
@@ -36,7 +36,7 @@ public void rotate(int[][] matrix) {
 }
 
 
-//######################################### 90deg ######################################### 
+//######################################### 90deg #########################################
 //Rotate 90deg clockwise (Ring-By-Ring solution)
 public void rotate(int[][] matrix) {
     int n = matrix.length, temp;
@@ -50,7 +50,7 @@ public void rotate(int[][] matrix) {
 		}
 }
 
-//######################################### 90deg ######################################### 
+//######################################### 90deg #########################################
 void rotate(vector<vector<int>>& matrix) {
       int m = matrix.size();
        for(int i=m-1;i>=0;i--) {
@@ -71,17 +71,26 @@ void rotate(vector<vector<int>>& matrix) {
       }
 }
 
-//######################################### Python ######################################### 
-//While these solutions are Python, I think they're understandable/interesting for non-Python coders as well. But before I begin: No mathematician would call a matrix matrix, so I'll use the usual A. Also, btw, the 40 ms reached by two of the solutions is I think the fastest achieved by Python solutions so far.
+//######################################### Python #########################################
+//While these solutions are Python, I think they're understandable/interesting for non-Python coders
+//as well. But before I begin: No mathematician would call a matrix matrix, so I'll use the usual A.
+//Also, btw, the 40 ms reached by two of the solutions is I think the fastest achieved by Python
+//solutions so far.
 //Most Pythonic - [::-1] and zip - 44 ms
-//The most pythonic solution is a simple one-liner using [::-1] to flip the matrix upside down and then zip to transpose it. It assigns the result back into A, so it's "in-place" in a sense and the OJ accepts it as such, though some people might not.
+//The most pythonic solution is a simple one-liner using [::-1] to flip the matrix upside down and
+//then zip to transpose it. It assigns the result back into A, so it's "in-place" in a sense and the
+//OJ accepts it as such, though some people might not.
 
 class Solution:
     def rotate(self, A):
         A[:] = zip(*A[::-1])
 
-//######################################### Most direct ######################################### 
-//A 100% in-place solution. It even reads and writes each matrix element only once and doesn't even use an extra temporary variable to hold them. It walks over the "top-left quadrant" of the matrix and directly rotates each element with the three corresponding elements in the other three quadrants. Note that I'm moving the four elements in parallel and that [~i] is way nicer than [n-1-i].
+//######################################### Most direct #########################################
+//A 100% in-place solution. It even reads and writes each matrix element only once and doesn't even
+//use an extra temporary variable to hold them. It walks over the "top-left quadrant" of the matrix
+//and directly rotates each element with the three corresponding elements in the other three
+//quadrants. Note that I'm moving the four elements in parallel and that [~i] is way nicer than
+//[n-1-i].
 class Solution:
     def rotate(self, A):
         n = len(A)
@@ -90,7 +99,7 @@ class Solution:
                 A[i][j], A[~j][i], A[~i][~j], A[j][~i] = \
                          A[~j][i], A[~i][~j], A[j][~i], A[i][j]
 
-//######################################### Most direct ######################################### 
+//######################################### Most direct #########################################
 //While the OJ accepts the above solution, the the result rows are actually tuples, not lists,
 // so it's a bit dirty. To fix this, we can just apply list to every row:
 class Solution:
@@ -104,7 +113,8 @@ class Solution:
         A[:] = [[row[i] for row in A[::-1]] for i in range(len(A))]
 
 //#########################################Almost as Direct - 40 ms#########################################
-//If you don't like the little repetitive code of the above "Most Direct" solution, we can instead do each four-cycle of elements by using three swaps of just two elements.
+//If you don't like the little repetitive code of the above "Most Direct" solution, we can instead
+//do each four-cycle of elements by using three swaps of just two elements.
 class Solution:
     def rotate(self, A):
         n = len(A)
@@ -115,7 +125,9 @@ class Solution:
                 i = ~j
 
 //#########################################Flip Flip - 40 ms#########################################
-//Basically the same as the first solution, but using reverse instead of [::-1] and transposing the matrix with loops instead of zip. It's 100% in-place, just instead of only moving elements around, it also moves the rows around.
+//Basically the same as the first solution, but using reverse instead of [::-1] and transposing the
+//matrix with loops instead of zip. It's 100% in-place, just instead of only moving elements around,
+//it also moves the rows around.
 class Solution:
     def rotate(self, A):
         A.reverse()
@@ -124,7 +136,8 @@ class Solution:
                 A[i][j], A[j][i] = A[j][i], A[i][j]
 
 //Flip Flip, all by myself - 48 ms
-//Similar again, but I first transpose and then flip left-right instead of upside-down, and do it all by myself in loops. This one is 100% in-place again in the sense of just moving the elements.
+//Similar again, but I first transpose and then flip left-right instead of upside-down, and do it
+//all by myself in loops. This one is 100% in-place again in the sense of just moving the elements.
 
 class Solution:
     def rotate(self, A):
