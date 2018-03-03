@@ -1,19 +1,21 @@
 //Decode ways
-//A message containing letters from A-Z is being encoded to numbers using the following mapping:
+//A message containing letters from A-Z is being encoded to numbers using the
+//following mapping:
 //'A' -> 1
 //'B' -> 2
 //...
 //'Z' -> 26
-//Given an encoded message containing digits, determine the total number of ways to decode it.
+//Given an encoded message containing digits, determine the total number of
+//ways to decode it.
 //For example,
 //Given encoded message "12", it could be decoded as "AB" (1 2) or "L" (12).
 //The number of ways decoding "12" is 2.
 
-//######################################### Lmabda  ######################################### 
+//######################################### Lmabda  #########################################
 def numDecodings(self, s):
     return reduce(lambda(v,w,p),d:(w,(d>'0')*w+(9<int(p+d)<27)*v,d),s,(0,s>'',''))[1]*1
 
-//######################################### Iteration ######################################### 
+//######################################### Iteration #########################################
 def numDecodings(self, s):
     v, w, p = 0, int(s>''), ''
     for d in s:
@@ -24,12 +26,13 @@ def numDecodings(self, s):
 //d is the current digit
 //p is the previous digit
 
-//############################### DP with Array S : O(n) ############################### 
+//############################### DP with Array S : O(n) ###############################
 //Fibonacci series type memomization
-//used a dp array of size n + 1 to save subproblem solutions. 
-//dp[0] means an empty string will have one way to decode, 
-//dp[1] means the way to decode a string of size 1. 
-//Then check one digit and two digit combination and save the results along the way. 
+//used a dp array of size n + 1 to save subproblem solutions.
+//dp[0] means an empty string will have one way to decode,
+//dp[1] means the way to decode a string of size 1.
+//Then check one digit and two digit combination and save the results along the
+//way.
 //In the end, dp[n] will be the end result.
 public class Solution {
     public int numDecodings(String s) {
@@ -44,8 +47,8 @@ public class Solution {
             int first = Integer.valueOf(s.substring(i-1, i));
             int second = Integer.valueOf(s.substring(i-2, i));
 
-            if(first >= 1 && first <= 9) { 
-               dp[i] += dp[i-1];  
+            if(first >= 1 && first <= 9) {
+               dp[i] += dp[i-1];
             }
             if(second >= 10 && second <= 26) {
                 dp[i] += dp[i-2];
@@ -55,10 +58,10 @@ public class Solution {
     }
 }
 
-//############################### DP with 2 Vars S : O(1) ############################### 
+//############################### DP with 2 Vars S : O(1) ###############################
 int numDecodings(string s) {
     if (!s.size() || s.front() == '0') return 0;
-    // r2: decode ways of s[i-2] , r1: decode ways of s[i-1] 
+    // r2: decode ways of s[i-2] , r1: decode ways of s[i-1]
     int r1 = 1, r2 = 1;
     for (int i = 1; i < s.size(); i++) {
         // zero voids ways of the last because zero cannot be used separately
@@ -77,9 +80,9 @@ int numDecodings(string s) {
     return r1;
 }
 
-//######################################### Recursion ######################################### 
+//######################################### Recursion #########################################
 int numDecodings(string s) {
-    return s.empty() ? 0: numDecodings(0,s);    
+    return s.empty() ? 0: numDecodings(0,s);
 }
 int numDecodings(int p, string& s) {
     int n = s.size();

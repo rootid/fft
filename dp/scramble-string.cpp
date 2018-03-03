@@ -1,5 +1,6 @@
 //Scramble String
-//Given a string s1, we may represent it as a binary tree by partitioning it to two non-empty substrings recursively.
+//Given a string s1, we may represent it as a binary tree by partitioning it to
+//two non-empty substrings recursively.
 //Below is one possible representation of s1 = "great":
 //    great
 //   /    \
@@ -8,8 +9,10 @@
 //g   r  e   at
 //           / \
 //          a   t
-//To scramble the string, we may choose any non-leaf node and swap its two children.
-//For example, if we choose the node "gr" and swap its two children, it produces a scrambled string "rgeat".
+//To scramble the string, we may choose any non-leaf node and swap its two
+//children.
+//For example, if we choose the node "gr" and swap its two children, it
+//produces a scrambled string "rgeat".
 //    rgeat
 //   /    \
 //  rg    eat
@@ -18,7 +21,8 @@
 //           / \
 //          a   t
 //We say that "rgeat" is a scrambled string of "great".
-//Similarly, if we continue to swap the children of nodes "eat" and "at", it produces a scrambled string "rgtae".
+//Similarly, if we continue to swap the children of nodes "eat" and "at", it
+//produces a scrambled string "rgtae".
 //    rgtae
 //   /    \
 //  rg    tae
@@ -27,10 +31,11 @@
 //       / \
 //      t   a
 //We say that "rgtae" is a scrambled string of "great".
-//Given two strings s1 and s2 of the same length, determine if s2 is a scrambled string of s1.
+//Given two strings s1 and s2 of the same length, determine if s2 is a
+//scrambled string of s1.
 
 //recursive (without cache) is O(a^n), dp is O(n^a)
-//##############################################  Recursion ##############################################  
+//##############################################  Recursion ##############################################
 bool isScramble(string s1, string s2) {
     if(s1==s2)
         return true;
@@ -54,12 +59,12 @@ bool isScramble(string s1, string s2) {
     }
     return false;
 }
-//########################################## DP with 3-d vector ########################################## 
+//########################################## DP with 3-d vector ##########################################
 bool isScramble(string s1, string s2) {
     if( s1.size() != s2.size() )
         return false;
     int n = s1.size();
-    vector<vector<vector<bool> > > dp(n + 1, 
+    vector<vector<vector<bool> > > dp(n + 1,
             vector<vector<bool> >(n, vector<bool>(n, false)));
     //first for loop enumerate string length;
     //second and third for loop enumerate the string begin position;
@@ -94,7 +99,7 @@ bool isScramble(string s1, string s2) {
     //}
     //return false;
 }
-//##############################################  DP + Map  ##############################################  
+//##############################################  DP + Map  ##############################################
 bool dpHelper(unordered_map<string, bool> &isScramblePair, string s1, string s2) {
     int i,len = s1.size();
     bool res = false;
@@ -102,7 +107,7 @@ bool dpHelper(unordered_map<string, bool> &isScramblePair, string s1, string s2)
     else if(1==len) {
       return s1 == s2;
     } else {
-        if(isScramblePair.count(s1+s2)) 
+        if(isScramblePair.count(s1+s2))
           return isScramblePair[s1+s2]; // checked before, return intermediate result directly
         if(s1 == s2) res=true;
         else {
@@ -121,8 +126,9 @@ bool isScramble(string s1, string s2) {
    return dpHelper(isScramblePair, s1, s2);
 }
 
-//##############################################  DP + Array  ##############################################  
-//isS[len][i][j], which indicates whether s1[i..i+len-1] is a scramble of s2[j..j+len-1].
+//##############################################  DP + Array  ##############################################
+//isS[len][i][j], which indicates whether s1[i..i+len-1] is a scramble of
+//s2[j..j+len-1].
 //O(N^4)
 bool isScramble(string s1, string s2) {
       int sSize = s1.size(), len, i, j, k;
@@ -133,7 +139,7 @@ bool isScramble(string s1, string s2) {
       for(i=0; i<sSize; ++i)
           for(j=0; j<sSize; ++j)
               isS[1][i][j] = s1[i] == s2[j]; //for length 1 string
-              
+
       for(len=2; len <=sSize; ++len)
           for(i=0; i<=sSize-len; ++i)
               for(j=0; j<=sSize-len; ++j) {
@@ -143,15 +149,15 @@ bool isScramble(string s1, string s2) {
                           isS[len][i][j] = isS[len][i][j] || (isS[k][i+len-k][j] && isS[len-k][i][j+k]);
                       }
               }
-      return isS[sSize][0][0];            
+      return isS[sSize][0][0];
 }
-//##############################################  Recusrion + Cache + Check for repeated chars  ##############################################  
+//##############################################  Recusrion + Cache + Check for repeated chars  ##############################################
 //hist : check for the chars
 bool DP_helper(string &s1, string &s2, int idx1, int idx2, int len, char isS[]) {
     int sSize = s1.size(),i, j, k, hist[26] , zero_count =0;
     if(isS[(len*sSize+idx1)*sSize+idx2]) return isS[(len*sSize+idx1)*sSize+idx2]==1;
     bool res = false;
-    
+
     fill_n(hist, 26, 0);
     for(k=0; k<len;++k) { // check if s1[idx1:idx1+len-1] and s2[idx2:idx2+len-1] have same characters
         zero_count +=  (0==hist[s1[idx1+k]-'a']) - (0== ++hist[s1[idx1+k]-'a']);
@@ -175,43 +181,45 @@ bool isScramble(string s1, string s2) {
     return DP_helper(s1, s2, 0, 0, sSize, isS);
 }
 
-//##############################################  DP with 3d array ##############################################  
-bool isScramble(string s1, string s2) { 
-  if(s1.size() != s2.size()) { 
-    return false; 
+//##############################################  DP with 3d array ##############################################
+bool isScramble(string s1, string s2) {
+  if(s1.size() != s2.size()) {
+    return false;
   }
   bool dp[s1.size()][s1.size()][s1.size()];
   memset(dp, 0, s1.size()*s1.size()*s1.size());
-  for(int l=1; l<=s1.size(); l++) { 
-    for(int i=0; i+l<=s1.size(); i++) { 
-      for(int j=0; j+l<=s1.size(); j++) { 
-        if(l==1) { 
-          dp[i][j][0] = s1[i]==s2[j]; 
-        } else { 
+  for(int l=1; l<=s1.size(); l++) {
+    for(int i=0; i+l<=s1.size(); i++) {
+      for(int j=0; j+l<=s1.size(); j++) {
+        if(l==1) {
+          dp[i][j][0] = s1[i]==s2[j];
+        } else {
           int cnt[26] = {0};
           int zeros= 0;
           for(int p =0; p<l; p++) {
-              zeros+=(cnt[s1[i+p]-'a']==0)-(++cnt[s1[i+p]-'a']==0); 
-              zeros+=(cnt[s2[j+p]-'a']==0)-(--cnt[s2[j+p]-'a']==0); 
+              zeros+=(cnt[s1[i+p]-'a']==0)-(++cnt[s1[i+p]-'a']==0);
+              zeros+=(cnt[s2[j+p]-'a']==0)-(--cnt[s2[j+p]-'a']==0);
           }
           if(zeros) {
             dp[i][j][l-1]=false;
             continue;
           }
           for(int p = i+1; p-i<l; p++){
-              if(dp[i][j][l-1]) 
+              if(dp[i][j][l-1])
                 break;
               dp[i][j][l-1] = (dp[i][j][p-i-1]&&dp[p][j+p-i][l-(p-i)-1])||(dp[i][j+l-(p-i)][p-i-1]&&dp[p][j][l-(p-i)-1]);
-          } 
-        } 
-      } 
+          }
+        }
+      }
     }
   }
-  return dp[0][0][s1.size()-1]; 
+  return dp[0][0][s1.size()-1];
 }
 
-//############################################# DP with 3-d array different interpretion ############################################# 
-//For the DP matrix "scramble", scramble[i][j][k] means the substring of 's1' start at 'i' with length 'k' and the substring of 's2' start at 'j' with length'k' is scramble.
+//############################################# DP with 3-d array different interpretion #############################################
+//For the DP matrix "scramble", scramble[i][j][k] means the substring of 's1'
+//start at 'i' with length 'k' and the substring of 's2' start at 'j' with
+//length'k' is scramble.
 public boolean isScramble(String s1, String s2) {
         boolean[][][] scramble = new boolean[s1.length() + 1][s1.length() + 1][s1.length() + 1];
         boolean[][][] visited = new boolean[s1.length() + 1][s1.length() + 1][s1.length() + 1];
@@ -223,16 +231,16 @@ public boolean isScramble(String s1, String s2) {
         }
         return isScramble(s1, s2, 0, 0, s1.length(), scramble, visited);
     }
-    
+
     public boolean isScramble(String s1, String s2, int i1, int i2, int len, boolean[][][] scramble, boolean[][][] visited) {
         if (visited[i1][i2][len]) return scramble[i1][i2][len];
         visited[i1][i2][len] = true;
-        
+
         if (s1.equals(s2)) {
             scramble[i1][i2][len] = true;
             return true;
         }
-        
+
         boolean result = false;
         for (int i = 1; i < s1.length(); i++) {
             String s11 = s1.substring(0, i);
@@ -247,7 +255,7 @@ public boolean isScramble(String s1, String s2) {
                 return true;
             }
         }
-        
+
         scramble[i1][i2][len] = false;
         return false;
     }
@@ -287,33 +295,33 @@ bool isScramble(string s1, string s2) {
 }
 
 //###################################################### DP+3-d array ############################################################
-bool isScramble(string s1, string s2) {  
-    // Start typing your C/C++ solution below  
-    // DO NOT write int main() function  
-    if (s1.length() != s2.length()) {  
-        return false;  
-    }  
-    int length = s1.length();  
-    bool f[length][length][length];  
-    memset(f, false, sizeof(bool) * length * length * length);  
-      
-    for (int k = 1; k <= length; k++) {  
-        for (int i = 0; i <= length - k; i++) {  
-            for (int j = 0; j <= length - k; j++) {  
-                if (k == 1) {  
-                    f[i][j][k] = s1[i] == s2[j];  
-                }  
-                else {  
-                    for (int l = 1; l < k; l++) {  
-                        if ((f[i][j][l] && f[i + l][j + l][k - l]) || (f[i][j + k - l][l] && f[i + l][j][k - l])) {  
-                            f[i][j][k] = true;  
-                            break;  
-                        }                              
-                    }  
-                }  
-            }  
-        }              
-    }  
-              
-    return f[0][0][length];  
+bool isScramble(string s1, string s2) {
+    // Start typing your C/C++ solution below
+    // DO NOT write int main() function
+    if (s1.length() != s2.length()) {
+        return false;
+    }
+    int length = s1.length();
+    bool f[length][length][length];
+    memset(f, false, sizeof(bool) * length * length * length);
+
+    for (int k = 1; k <= length; k++) {
+        for (int i = 0; i <= length - k; i++) {
+            for (int j = 0; j <= length - k; j++) {
+                if (k == 1) {
+                    f[i][j][k] = s1[i] == s2[j];
+                }
+                else {
+                    for (int l = 1; l < k; l++) {
+                        if ((f[i][j][l] && f[i + l][j + l][k - l]) || (f[i][j + k - l][l] && f[i + l][j][k - l])) {
+                            f[i][j][k] = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return f[0][0][length];
 }

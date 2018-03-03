@@ -1,49 +1,57 @@
 //Add One Row to Tree
-//Given the root of a binary tree, then value v and depth d, you need to add a row of nodes with value v at the given depth d. The root node is at depth 1.
-//The adding rule is: given a positive integer depth d, for each NOT null tree nodes N in depth d-1, create two tree nodes with value v as N's left subtree root and right subtree root. And N's original left subtree should be the left subtree of the new left subtree root, its original right subtree should be the right subtree of the new right subtree root. If depth d is 1 that means there is no depth d-1 at all, then create a tree node with value v as the new root of the whole original tree, and the original tree is the new root's left subtree.
+//Given the root of a binary tree, then value v and depth d, you need to add a
+//row of nodes with value v at the given depth d. The root node is at depth 1.
+//The adding rule is: given a positive integer depth d, for each NOT null tree
+//nodes N in depth d-1, create two tree nodes with value v as N's left subtree
+//root and right subtree root. And N's original left subtree should be the left
+//subtree of the new left subtree root, its original right subtree should be
+//the right subtree of the new right subtree root. If depth d is 1 that means
+//there is no depth d-1 at all, then create a tree node with value v as the new
+//root of the whole original tree, and the original tree is the new root's left
+//subtree.
 //Example 1:
-//Input: 
+//Input:
 //A binary tree as following:
 //       4
 //     /   \
 //    2     6
-//   / \   / 
-//  3   1 5   
+//   / \   /
+//  3   1 5
 //v = 1
 //d = 2
-//Output: 
+//Output:
 //       4
 //      / \
 //     1   1
 //    /     \
 //   2       6
-//  / \     / 
-// 3   1   5   
+//  / \     /
+// 3   1   5
 //Example 2:
-//Input: 
+//Input:
 //A binary tree as following:
 //      4
-//     /   
-//    2    
-//   / \   
-//  3   1    
+//     /
+//    2
+//   / \
+//  3   1
 //v = 1
 //d = 3
-//Output: 
+//Output:
 //      4
-//     /   
+//     /
 //    2
-//   / \    
+//   / \
 //  1   1
-// /     \  
+// /     \
 //3       1
 //Note:
 //The given d is in range [1, maximum depth of the given tree + 1].
 //The given binary tree has at least one tree node.
 
-//################################### Recursive + reduce depth at each level ################################### 
+//################################### Recursive + reduce depth at each level ###################################
 //0 : attach to right
-//1 : attach to left 
+//1 : attach to left
 TreeNode* addOneRow(TreeNode* root, int v, int d) {
     if (d == 1) {
         TreeNode* newroot = new TreeNode(v);
@@ -68,7 +76,7 @@ TreeNode* addOneRow(TreeNode* root, int v, int d) {
 }
 
 
-//########################################### DFS  ########################################### 
+//########################################### DFS  ###########################################
 public:
     TreeNode* addOneRow(TreeNode* root, int v, int d) {
           //Given : depth d is 1 that means there is no depth d-1 at all, then create a tree node with value v as the new root of the whole original tree
@@ -86,7 +94,7 @@ private:
         if (d == 1) {
             TreeNode *pl = new TreeNode(v), *pr = new TreeNode(v);
             //adjust the ptr, p : actual node
-            pl->left = p->left; 
+            pl->left = p->left;
             pr->right = p->right;
             p->left = pl;
             p->right = pr;
@@ -97,9 +105,9 @@ private:
         }
     }
 
-//########################################### Bad  ########################################### 
-TreeNode* addOneRow(TreeNode* root, int v, int d) { 
-  if (d == 0 || d == 1) { 
+//########################################### Bad  ###########################################
+TreeNode* addOneRow(TreeNode* root, int v, int d) {
+  if (d == 0 || d == 1) {
     TreeNode* newroot = new TreeNode(v);
     (d ? newroot->left : newroot->right) = root;
     return newroot;
@@ -108,10 +116,10 @@ TreeNode* addOneRow(TreeNode* root, int v, int d) {
       root->left  = addOneRow(root->left,  v, d > 2 ? d - 1 : 1);
       root->right = addOneRow(root->right, v, d > 2 ? d - 1 : 0);
   }
-  return root; 
+  return root;
 }
 
-//########################################### Good  ########################################### 
+//########################################### Good  ###########################################
 TreeNode* addOneRow(TreeNode* root, int v, int d) {
     if (d < 2) {
         TreeNode* newroot = new TreeNode(v);
@@ -126,7 +134,7 @@ TreeNode* addOneRow(TreeNode* root, int v, int d) {
 }
 
 
-//########################################### BFS  ########################################### 
+//########################################### BFS  ###########################################
 TreeNode* addOneRow(TreeNode* root, int v, int d) {
         if (d == 1) {
             TreeNode *newRoot = new TreeNode(v);
@@ -159,7 +167,7 @@ TreeNode* addOneRow(TreeNode* root, int v, int d) {
     }
 
 
-//######################################## pytonic ######################################## 
+//######################################## pytonic ########################################
 //Go row by row to the row at depth d-1, then insert the new nodes there.
 //def addOneRow(self, root, v, d):
 //    dummy, dummy.left = TreeNode(None), root
@@ -182,9 +190,12 @@ TreeNode* addOneRow(TreeNode* root, int v, int d) {
 //            root.left = self.addOneRow(root.left, v, d - 1 if d > 2 else 1)
 //            root.right = self.addOneRow(root.right, v, d - 1 if d > 2 else 0)
 //            return root
-//##############################  Recursive  ##############################  
-//When d is 1, depending on the direction we went previously (default is left), we need to make a node with value v and put the rest of the tree as either the left or right child.
-//Otherwise, we'll recursively perform our operation on the children of our node, with the depth decremented by 1.
+//##############################  Recursive  ##############################
+//When d is 1, depending on the direction we went previously (default is left),
+//we need to make a node with value v and put the rest of the tree as either
+//the left or right child.
+//Otherwise, we'll recursively perform our operation on the children of our
+//node, with the depth decremented by 1.
 //def addOneRow(self, root, v, d, direction = 'left'):
 //    if d == 1:
 //        ans = TreeNode(v)
@@ -195,7 +206,7 @@ TreeNode* addOneRow(TreeNode* root, int v, int d) {
 //        root.right = self.addOneRow(root.right, v, d-1, 'right')
 //        return root
 //
-//########################################## BFS ########################################## 
+//########################################## BFS ##########################################
 //def addOneRow(self, root, v, d):
 //    # special case where depth is one
 //    if d == 1:
@@ -215,7 +226,7 @@ TreeNode* addOneRow(TreeNode* root, int v, int d) {
 //                curr.left, curr.right = TreeNode(v), TreeNode(v)
 //                curr.left.left, curr.right.right = old_left, old_right
 //            else:
-//                if curr.left: 
+//                if curr.left:
 //                    queue.append(curr.left)
 //                if curr.right:
 //                    queue.append(curr.right)

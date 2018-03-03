@@ -1,5 +1,6 @@
 //Merge Two Sorted Lists
-//Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists
+//Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes
+//of the first two lists
 
 #include "../headers/global.hpp"
 #include "../headers/listnode.hpp"
@@ -141,7 +142,8 @@ namespace recursive {
 
 
 //######################################### Merge2Lists #########################################
-//If both lists are non-empty, I first make sure a starts smaller, use its head as result, and merge the remainders behind it. Otherwise, i.e., if one or both are empty, I just return what's there.
+//If both lists are non-empty, I first make sure a starts smaller, use its head as result, and merge the remainders
+//behind it. Otherwise, i.e., if one or both are empty, I just return what's there.
 class Solution:
     def mergeTwoLists(self, a, b):
         if a and b:

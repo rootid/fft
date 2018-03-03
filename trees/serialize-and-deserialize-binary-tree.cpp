@@ -1,7 +1,13 @@
 //Serialize and Deserialize Binary Tree
-//Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.
+//Serialization is the process of converting a data structure or object into a
+//sequence of bits so that it can be stored in a file or memory buffer, or
+//transmitted across a network connection link to be reconstructed later in the
+//same or another computer environment.
 //
-//Design an algorithm to serialize and deserialize a binary tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary tree can be serialized to a string and this string can be deserialized to the original tree structure.
+//Design an algorithm to serialize and deserialize a binary tree. There is no
+//restriction on how your serialization/deserialization algorithm should work.
+//You just need to ensure that a binary tree can be serialized to a string and
+//this string can be deserialized to the original tree structure.
 //
 //For example, you may serialize the following tree
 //
@@ -10,12 +16,15 @@
 //  2   3
 //     / \
 //    4   5
-//as "[1,2,3,null,null,4,5]", just the same as how LeetCode OJ serializes a binary tree. You do not necessarily need to follow this format, so please be creative and come up with different approaches yourself.
-//Note: Do not use class member/global/static variables to store states. Your serialize and deserialize algorithms should be stateless.
+//as "[1,2,3,null,null,4,5]", just the same as how LeetCode OJ serializes a
+//binary tree. You do not necessarily need to follow this format, so please be
+//creative and come up with different approaches yourself.
+//Note: Do not use class member/global/static variables to store states. Your
+//serialize and deserialize algorithms should be stateless.
 
-//######################################### Preorder TRaversal  ######################################### 
+//######################################### Preorder TRaversal  #########################################
 
-//######################################### Serialize ######################################### 
+//######################################### Serialize #########################################
 public String serializeTree(TreeNode root){
     StringBuilder sb = new StringBuilder();
     serializeTree(root, sb);
@@ -27,10 +36,10 @@ public void serializeTree(TreeNode root, StringBuilder sb){
     else {
         sb.append(root.data).append(",");
         serializeTree(root.left, sb);
-        serializeTree(root.right, sb); 
+        serializeTree(root.right, sb);
 	}
 }
-//######################################### Deserialize ######################################### 
+//######################################### Deserialize #########################################
 public TreeNode restoreTree(String str){
     if(str == null) return null;
     return restoreTree(new LinkedList(Arrays.asList(str.split(","))));
@@ -39,7 +48,7 @@ public TreeNode restoreTree(String str){
 public TreeNode restoreTree(LinkedList<String> arr){
     String data = arr.remove(0);
     if(data.equals("null")) return null;
-    
+
     TreeNode curr = new TreeNode(Integer.parseInt(data));
     curr.left = restoreTree(arr);
     curr.right = restoreTree(arr);
@@ -47,7 +56,7 @@ public TreeNode restoreTree(LinkedList<String> arr){
 }
 
 
-//######################################### Python ######################################### 
+//######################################### Python #########################################
 class Codec:
 
     def serialize(self, root):
@@ -56,7 +65,7 @@ class Codec:
             code += "," * (node != root) + "#" * (not node) + (str(node.val) if node else "")
             if node: queue += node.left, node.right,
         return code
-        
+
     def deserialize(self, data):
         data = collections.deque(data.split(","))
         val = data.popleft()
@@ -70,8 +79,8 @@ class Codec:
             queue += node.left, node.right,
         return root
 
-		
-//######################################### Python ######################################### 
+
+//######################################### Python #########################################
 class Codec:
 
     def serialize(self, root):
@@ -98,7 +107,7 @@ class Codec:
         vals = iter(data.split())
         return doit()
 
-//######################################### Recursive ######################################### 
+//######################################### Recursive #########################################
 /**
  * Definition for a binary tree node.
  * public class TreeNode {

@@ -1,6 +1,7 @@
 //Basic Calculator
 //Implement a basic calculator to evaluate a simple expression string.
-//The expression string may contain open ( and closing parentheses ), the plus + or minus sign -, non-negative integers and empty spaces .
+//The expression string may contain open ( and closing parentheses ), the plus
+//+ or minus sign -, non-negative integers and empty spaces .
 //You may assume that the given expression is always valid.
 //Some examples:
 //"1 + 1" = 2
@@ -8,7 +9,7 @@
 //"(1+(4+5+2)-3)+(6+8)" = 23
 //Note: Do not use the eval built-in library function.
 
-//############################### Traverse from R-L ############################### 
+//############################### Traverse from R-L ###############################
 int calculate(string s) {
     stack<int> operands;
     stack<char> operations;
@@ -45,12 +46,12 @@ void compute(stack<int>& operands, stack<char>& operations) {
     operations.pop();
     if (op == '+') operands.push(left + right);
     if (op == '-') operands.push(left - right);
-} 
+}
 
 
-//############################### sign stack evaluation ############################### 
+//############################### sign stack evaluation ###############################
 //  remaining   sign stack      total
-//3-(2+(9-4))   [1, 1]            0 
+//3-(2+(9-4))   [1, 1]            0
 // -(2+(9-4))   [1]               3 //if \d+ remove sign from top
 //  (2+(9-4))   [1, -1]           3 //if - add inverted sign to top
 //   2+(9-4))   [1, -1, -1]       3 //if ( add sign to top
@@ -62,10 +63,10 @@ void compute(stack<int>& operands, stack<char>& operations) {
 //         ))   [1, -1, -1]      -4
 //          )   [1, -1]          -4
 //              [1]              -4
-int calculate(string s) { 
+int calculate(string s) {
   int total = 0;
   vector<int> signs(2, 1);
-  for (int i=0; i<s.size(); i++) { 
+  for (int i=0; i<s.size(); i++) {
     char c = s[i];
     if (c >= '0') {
         int number = 0;

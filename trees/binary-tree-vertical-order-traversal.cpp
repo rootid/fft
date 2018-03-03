@@ -1,6 +1,8 @@
 //Binary Tree Vertical Order Traversal
-//Given a binary tree, return the vertical order traversal of its nodes' values. (ie, from top to bottom, column by column).
-//If two nodes are in the same row and column, the order should be from left to right.
+//Given a binary tree, return the vertical order traversal of its nodes'
+//values. (ie, from top to bottom, column by column).
+//If two nodes are in the same row and column, the order should be from left to
+//right.
 //Examples:
 //Given binary tree [3,9,20,null,null,15,7],
 //    3
@@ -34,7 +36,8 @@
 //Why DFS will not work
 //since the nodes in a column are ordered by their row number(depth)
 //we cannot process level x+2 nodes before we process level x.
-//If you do DFS, the result has the same List<Integer> elements but in the wrong order
+//If you do DFS, the result has the same List<Integer> elements but in the
+//wrong order
 
 //1. BFS, put node, col into queue at the same time
 //2. Every left child access col - 1 while right child col + 1
@@ -223,10 +226,23 @@ private void computeRange(TreeNode root, int idx){
     computeRange(root.right, idx + 1);
 }
 
-//1. Never use LinkedList unless you want instant insertions/removals in the middle. Use ArrayDeque instead.
-//2. Better yet, while you're computing the range, compute the number of the nodes in the tree. If the tree is relatively balanced, the number of the nodes on the lowest level should be bounded by (n + 1) / 2—use this value as the initial capacity of the ArrayDeque. If the tree is not balanced, this will introduce more initial allocation overhead than needed.
-//3.Since we know the number of elements in list in advance (max - min + 1), we can create it with exact capacity.
-//4.Or even better, since the size is fixed anyway, create an array instead and then return Arrays.asList(list).
-//5.This is debatable—possibly use one queue instead of two to halve the number of enqueue/dequeue operations. You'll have to create a helper class for that and introduce additional overhead because of that. But then again, here you have boxing/unboxing overhead which is pretty much the same.
-//6.With all of these, I get 4 ms. But your solution also yields 4 ms now. Moreover, if I use a separate Range class instead of those two ugly not-really-state-field variables, I get 5 ms, so I guess it's within the margin of error anyway
+//1. Never use LinkedList unless you want instant insertions/removals in the
+//middle. Use ArrayDeque instead.
+//2. Better yet, while you're computing the range, compute the number of the
+//nodes in the tree. If the tree is relatively balanced, the number of the
+//nodes on the lowest level should be bounded by (n + 1) / 2—use this value as
+//the initial capacity of the ArrayDeque. If the tree is not balanced, this
+//will introduce more initial allocation overhead than needed.
+//3.Since we know the number of elements in list in advance (max - min + 1), we
+//can create it with exact capacity.
+//4.Or even better, since the size is fixed anyway, create an array instead and
+//then return Arrays.asList(list).
+//5.This is debatable—possibly use one queue instead of two to halve the number
+//of enqueue/dequeue operations. You'll have to create a helper class for that
+//and introduce additional overhead because of that. But then again, here you
+//have boxing/unboxing overhead which is pretty much the same.
+//6.With all of these, I get 4 ms. But your solution also yields 4 ms now.
+//Moreover, if I use a separate Range class instead of those two ugly
+//not-really-state-field variables, I get 5 ms, so I guess it's within the
+//margin of error anyway
 //

@@ -1,5 +1,6 @@
 //Minimum Absolute Difference in BST
-//Given a binary search tree with non-negative values, find the minimum absolute difference between values of any two nodes.
+//Given a binary search tree with non-negative values, find the minimum
+//absolute difference between values of any two nodes.
 //Example:
 //Input:
 //   1
@@ -10,32 +11,33 @@
 //Output:
 //1
 //Explanation:
-//The minimum absolute difference is 1, which is the difference between 2 and 1 (or between 2 and 3).
+//The minimum absolute difference is 1, which is the difference between 2 and 1
+//(or between 2 and 3).
 //Note: There are at least two nodes in this BST.
 
 #include "../headers/global.hpp"
 
-//######################## Keep track of predecessor value ######################## 
+//######################## Keep track of predecessor value ########################
 class Solution {
     int minDiff = Integer.MAX_VALUE;
     int preVal =  Integer.MAX_VALUE;
-    
+
     public void getMinimumDifferenceHelper(TreeNode root) {
          if(root == null) return;
          getMinimumDifferenceHelper(root.left);
          minDiff = Math.min(minDiff , Math.abs(preVal - root.val));
          preVal = root.val;
-         getMinimumDifferenceHelper(root.right); 
-         
+         getMinimumDifferenceHelper(root.right);
+
     }
-    
+
     public int getMinimumDifference(TreeNode root) {
        getMinimumDifferenceHelper(root);
-       return minDiff;  
+       return minDiff;
     }
 }
 
-//######################## Keep track of predecessor value ######################## 
+//######################## Keep track of predecessor value ########################
 public class Solution {
     private int min = Integer.MAX_VALUE;
     private TreeNode pre = null;
@@ -55,7 +57,7 @@ public class Solution {
 }
 
 
-//######################## With only predecessor ######################## 
+//######################## With only predecessor ########################
 void helper(TreeNode *node, TreeNode *&prev, int &ans) {
        if (!node)
            return;
@@ -92,11 +94,11 @@ int getMinimumDifference(TreeNode* root) {
         root = sk.top();
         sk.pop();
         //suc = (!sk.empty()) ? sk.top() : nullptr;
-        if (!sk.empty()) { 
+        if (!sk.empty()) {
           suc = sk.top();
-        } else { 
+        } else {
           suc = nullptr;
-        } 
+        }
         if(pre){
             res = min(res, abs(root->val - pre->val));
         }

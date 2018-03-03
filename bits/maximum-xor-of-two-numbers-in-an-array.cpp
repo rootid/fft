@@ -19,20 +19,25 @@
 //i = 0, prefix = {1110, 1011, 0111, 0010}, max = 1100
 //The mask is 1000, 1100, 1110, 1111.
 //
-//Idea : Instead of choosing 2 from n, we verify if we can achieve maximum value 
+//Idea : Instead of choosing 2 from n, we verify if we can achieve maximum
+//value
 //
-//To iteratively determine what would be each bit of the final result from left to right. 
+//To iteratively determine what would be each bit of the final result from left
+//to right.
 //i.e. Find the maximum XOR
 //And it narrows down the candidate group iteration by iteration. e
-//.g. assume input are a,b,c,d,...z, 26 integers in total. 
-//In first iteration, if you found that (a, d, e, h, u) differs on the MSB(most significant bit)
-//so you are sure your final result's MSB is set. 
-//Now in second iteration, you try to see if among (a, d, e, h, u) there are 
-//at least two numbers make the 2nd MSB differs, 
-//if yes, then definitely, the 2nd MSB will be set in the final result. 
-//And maybe at this point the candidate group shinks from (a,d,e,h,u) to (a, e, h). 
-//Implicitly, every iteration, you are narrowing down the candidate group, 
-//but you don't need to track how the group is shrinking, you only cares about the final result.
+//.g. assume input are a,b,c,d,...z, 26 integers in total.
+//In first iteration, if you found that (a, d, e, h, u) differs on the MSB(most
+//significant bit)
+//so you are sure your final result's MSB is set.
+//Now in second iteration, you try to see if among (a, d, e, h, u) there are
+//at least two numbers make the 2nd MSB differs,
+//if yes, then definitely, the 2nd MSB will be set in the final result.
+//And maybe at this point the candidate group shinks from (a,d,e,h,u) to (a, e,
+//h).
+//Implicitly, every iteration, you are narrowing down the candidate group,
+//but you don't need to track how the group is shrinking, you only cares about
+//the final result.
 
 int findMaximumXOR(vector<int>& nums) {
         int max = 0, mask = 0;
@@ -44,7 +49,7 @@ int findMaximumXOR(vector<int>& nums) {
                 prefix.insert(mask & n);
             }
             int candidate = max | (1<<i);
-            for (int p : prefix) {          
+            for (int p : prefix) {
                 //NOTE : This step makes sure that we pick only 2 elements
                 if (prefix.find(p ^ candidate) != prefix.end()) {  //if a^b=c, then a^c=b, b^c=a.
                     max = candidate;
@@ -57,10 +62,10 @@ int findMaximumXOR(vector<int>& nums) {
             }
         }
         return max;
-}   
+}
 
 
-//######################## Wtih Trie ######################## 
+//######################## Wtih Trie ########################
 //
     public int findMaximumXOR(int[] nums) {
         if(nums == null || nums.length == 0) {

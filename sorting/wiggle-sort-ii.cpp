@@ -1,7 +1,8 @@
 //Wiggle Sort II
-//Given an unsorted array nums, reorder it such that nums[0] < nums[1] > nums[2] < nums[3]....
+//Given an unsorted array nums, reorder it such that nums[0] < nums[1] >
+//nums[2] < nums[3]....
 //Example:
-//(1) Given nums = [1, 5, 1, 1, 6, 4], one possible answer is [1, 4, 1, 5, 1, 6]. 
+//(1) Given nums = [1, 5, 1, 1, 6, 4], one possible answer is [1, 4, 1, 5, 1, 6].
 //(2) Given nums = [1, 3, 2, 2, 3, 1], one possible answer is [2, 3, 1, 3, 1, 2].
 //Note:
 //You may assume all input has valid answer.
@@ -9,17 +10,17 @@
 //Can you do it in O(n) time and/or in-place with O(1) extra space?
 #include "../headers/global.hpp"
 
-//######################################### Sort + Arrangement (even<odd) ######################################### 
+//######################################### Sort + Arrangement (even<odd) #########################################
     public void wiggleSort(int[] nums) {
         Arrays.sort(nums);
         int n = nums.length;
         int[] tmp = Arrays.copyOf(nums, n);
         int i, k = (n+1)/2, j=n; //(n+1)/2 - To handle odd length
         for(i=0; i<n; i++)
-            nums[i] = (i%2 == 1)? tmp[--j]:tmp[--k];  
+            nums[i] = (i%2 == 1)? tmp[--j]:tmp[--k];
     }
 
-//######################################### Median find + Dutch partition with Wiggled indices  ######################################### 
+//######################################### Median find + Dutch partition with Wiggled indices  #########################################
 //
 //Original Indices:    0  1  2  3  4  5  6  7  8  9 10 11
 //Mapped Indices:      1  3  5  7  9 11  0  2  4  6  8 10
@@ -30,16 +31,16 @@
 	void wiggleSort(vector<int>& nums) {
 		if (nums.empty()) {
 			return;
-		}    
+		}
 		int n = nums.size();
-		
-		// Step 1: Find the median    		
+
+		// Step 1: Find the median
 		vector<int>::iterator nth = next(nums.begin(), n / 2);
 		nth_element(nums.begin(), nth, nums.end());
 		int median = *nth;
 
-		// Step 2: Tripartie partition within O(n)-time & O(1)-space.    		
-		auto m = [n](int idx) { return (2 * idx + 1) % (n | 1); };    		
+		// Step 2: Tripartie partition within O(n)-time & O(1)-space.
+		auto m = [n](int idx) { return (2 * idx + 1) % (n | 1); };
 		int first = 0, mid = 0, last = n - 1;
 		while (mid <= last) {
 			if (nums[m(mid)] > median) {
@@ -50,32 +51,32 @@
 			else if (nums[m(mid)] < median) {
 				swap(nums[m(mid)], nums[m(last)]);
 				--last;
-			}				
+			}
 			else {
 				++mid;
 			}
 		}
-	}   
+	}
 
 
-//######################################### Median find + Virtual indxing  ######################################### 
+//######################################### Median find + Virtual indxing  #########################################
 void wiggleSort(vector<int>& nums) {
     int n = nums.size();
     // Find a median.
     auto midptr = nums.begin() + n / 2;
     nth_element(nums.begin(), midptr, nums.end());
     int mid = *midptr; //15
-    
+
     // Index-rewiring. if n is even n|1 -> odd
-    #define A(i) nums[(1+2*(i)) % (n|1)] 
+    #define A(i) nums[(1+2*(i)) % (n|1)]
     // 3-way-partition-to-wiggly in O(n) time with O(1) space.
-    // 3 way-partiioing with virtual indexing 
+    // 3 way-partiioing with virtual indexing
     int i = 0, j = 0, k = n - 1;
     while (j <= k) {
         if (A(j) > mid) {
             swap(A(i++), A(j++)); //move the ele to lt if > mid
         } else if (A(j) < mid) {
-            swap(A(j), A(k--)); //move the ele to rt if< mid 
+            swap(A(j), A(k--)); //move the ele to rt if< mid
         } else {
             j++;
         }
@@ -92,7 +93,7 @@ void wiggleSort(vector<int>& nums) {
 //Accessing A(8) actually accesses nums[6].
 //Accessing A(9) actually accesses nums[8].
 //
-///############################ Extra space 
+///############################ Extra space
 class Solution {
 public:
     void wiggleSort(vector<int>& nums) {
@@ -119,7 +120,7 @@ private:
         if (nums[i] != nums[idx]) swap(nums[i], nums[idx]);
         return i;
     }
-    
+
     double find_kth(vector<int> &nums, int k) {
         int i = 0, j = n-1;
         while (i<j) {
@@ -136,7 +137,7 @@ private:
         }
         return nums[i];
     }
-    
+
     double find_medin(vector<int> &nums) {
         if (n&1) {
             return find_kth(nums, 1+(n>>1));
@@ -144,8 +145,8 @@ private:
             return (find_kth(nums,n>>1) + find_kth(nums, 1+(n>>1)))/2;
         }
     }
-    
-    //Dutch Flag Srot (reversed order) 
+
+    //Dutch Flag Srot (reversed order)
     void dfs(vector<int> &nums, double target) {
         int i = 0, j = n-1, k = 0;
         while (k<=j) {
@@ -163,7 +164,7 @@ private:
         else return 1+(i<<1);
     }
     // giving up to think a legitimate O(1) space solution.
-    // cheat by using a mask to show whether it has 
+    // cheat by using a mask to show whether it has
     // been visited or not. This sub-problem is much harder compare
     // to array rotation, I cannot use a count and increase
     // the start by one whenever count < limit.
@@ -177,7 +178,7 @@ private:
         }
     }
 };
-//############################################## T: O(n log n)  s:O(n) ############################################## 
+//############################################## T: O(n log n)  s:O(n) ##############################################
 void wiggleSort(vector<int>& nums) {
     vector<int> sorted(nums);
     sort(sorted.begin(), sorted.end());
@@ -189,8 +190,9 @@ void wiggleSort(vector<int>& nums) {
 //Large half:    . 9 . 8 . 7 . 6 . 5
 //----------------------------------
 //Together:      4 9 3 8 2 7 1 6 0 5
-//So write nums from the back, interweaving sorted[0..4] (indexed by j) and sorted[5..9] (indexed by k).
-//################## Find the median by guessing  ################## 
+//So write nums from the back, interweaving sorted[0..4] (indexed by j) and
+//sorted[5..9] (indexed by k).
+//################## Find the median by guessing  ##################
 public void wiggleSort(int[] nums) {
     if (nums.length <= 1) {
         return;
@@ -254,16 +256,31 @@ private int bsSelect(int[] nums, int k) {
     throw new AssertionError();
 }
 
-//why bother with all those algorithms if we know that possible values of the median lie between INT_MIN and INT_MAX. We can use binary search on the entire range! And since checking whether some number is the median or not takes O(n), then the whole thing is just O(n log 2^32). But log 2^32 is a constant, so it's technically still O(n).
-//  
+//why bother with all those algorithms if we know that possible values of the
+//median lie between INT_MIN and INT_MAX. We can use binary search on the
+//entire range! And since checking whether some number is the median or not
+//takes O(n), then the whole thing is just O(n log 2^32). But log 2^32 is a
+//constant, so it's technically still O(n).
 //
-//It almost feels like cheating. But according to that post on Quora, that's exactly what the interviewers expect. Thinking out of the box and such.
-//This thing runs on my PC for 500 million elements in 31 seconds if the array is sorted and in 38 seconds if it's wiggle-sorted to begin with. This is slower than the median of medians solution (22 and 12 seconds), but this time it's true O(1) space.
-//Note that I moved the argument check to the beginning because the old variant was really bugged. And I fixed the binary search because I forgot to do the mid + 1 / mid - 1 part. That turned 15 ms into 18 ms for some reason, and if I put while (true) there then it raises the runtime to 20 ms. Figures. But at least it's not bugged now (I hope). Note that integer overflows aren't possible because if mid is either INT_MIN or INT_MAX then the respective condition for decreasing/increasing it would be false.
-//As noted in the comment below, mid = (left + right) / 2 may overflow, so it was replaced by that ugly, but overflow-aware line.
+//
+//It almost feels like cheating. But according to that post on Quora, that's
+//exactly what the interviewers expect. Thinking out of the box and such.
+//This thing runs on my PC for 500 million elements in 31 seconds if the array
+//is sorted and in 38 seconds if it's wiggle-sorted to begin with. This is
+//slower than the median of medians solution (22 and 12 seconds), but this time
+//it's true O(1) space.
+//Note that I moved the argument check to the beginning because the old variant
+//was really bugged. And I fixed the binary search because I forgot to do the
+//mid + 1 / mid - 1 part. That turned 15 ms into 18 ms for some reason, and if
+//I put while (true) there then it raises the runtime to 20 ms. Figures. But at
+//least it's not bugged now (I hope). Note that integer overflows aren't
+//possible because if mid is either INT_MIN or INT_MAX then the respective
+//condition for decreasing/increasing it would be false.
+//As noted in the comment below, mid = (left + right) / 2 may overflow, so it
+//was replaced by that ugly, but overflow-aware line.
 
 
-//############################################## Median of medians ############################################## 
+//############################################## Median of medians ##############################################
 
 public void wiggleSort(int[] nums) {
     if (nums.length <= 1) {
@@ -300,7 +317,7 @@ public void wiggleSort(int[] nums) {
  * Finds the kth order statistic in linear time. Thanks to Blum, Floyd, Pratt, Rivest and Tarjan,
  * hence this funny name BFPRT. Or just the Median of Medians, but really it can find more
  * than just medians. And anyway, "bfprtSelect" is shorter than "medianOfMediansSelect".
- * 
+ *
  * @param nums the input array
  * @param start the start of the input array
  * @param length the length of the input array
@@ -371,8 +388,9 @@ private static int[] dnfPartition(int[] nums, int start, int length, int p) {
 int main () {
 }
 
-//######################################### Sort + merge ######################################### 
-//Roughly speaking I put the smaller half of the numbers on the even indexes and the larger half on the odd indexes.
+//######################################### Sort + merge #########################################
+//Roughly speaking I put the smaller half of the numbers on the even indexes
+//and the larger half on the odd indexes.
 
 def wiggleSort(self, nums):
     nums.sort()
@@ -384,9 +402,10 @@ def wiggleSort(self, nums):
     half = len(nums[::2]) - 1
     nums[::2], nums[1::2] = nums[half::-1], nums[:half:-1]
 //Explanation / Proof
-//I put the smaller half of the numbers on the even indexes and the larger half on the odd indexes, both from right to left:
+//I put the smaller half of the numbers on the even indexes and the larger half
+//on the odd indexes, both from right to left:
 //
-//Example nums = [1,2,...,7]      Example nums = [1,2,...,8] 
+//Example nums = [1,2,...,7]      Example nums = [1,2,...,8]
 //
 //Small half:  4 . 3 . 2 . 1      Small half:  4 . 3 . 2 . 1 .
 //Large half:  . 7 . 6 . 5 .      Large half:  . 8 . 7 . 6 . 5
@@ -398,27 +417,40 @@ def wiggleSort(self, nums):
 //Since I put the larger numbers on the odd indexes, clearly I already have:
 //
 //Odd-index numbers are larger than or equal to their neighbors.
-//Could they be "equal to"? That would require some number M to appear both in the smaller and the larger half. It would be the largest in the smaller half and the smallest in the larger half. Examples again, where S means some number smaller than M and L means some number larger than M.
+//Could they be "equal to"? That would require some number M to appear both in
+//the smaller and the larger half. It would be the largest in the smaller half
+//and the smallest in the larger half. Examples again, where S means some
+//number smaller than M and L means some number larger than M.
 //
 //Small half:  M . S . S . S      Small half:  M . S . S . S .
 //Large half:  . L . L . M .      Large half:  . L . L . L . M
 //--------------------------      --------------------------
 //Together:    M L S L S M S      Together:    M L S L S L S M
-//You can see the two M are quite far apart. Of course M could appear more than just twice, for example:
+//You can see the two M are quite far apart. Of course M could appear more than
+//just twice, for example:
 //
 //Small half:  M . M . S . S      Small half:  M . S . S . S .
 //Large half:  . L . L . M .      Large half:  . L . M . M . M
 //--------------------------      --------------------------
 //Together:    M L M L S M S      Together:    M L S M S M S M
-//You can see that with seven numbers, three M are no problem. And with eight numbers, four M are no problem. Should be easy to see that in general, with n numbers, floor(n/2) times M is no problem. Now, if there were more M than that, then my method would fail. But... it would also be impossible:
+//You can see that with seven numbers, three M are no problem. And with eight
+//numbers, four M are no problem. Should be easy to see that in general, with n
+//numbers, floor(n/2) times M is no problem. Now, if there were more M than
+//that, then my method would fail. But... it would also be impossible:
 //
-//If n is even, then having more than n/2 times the same number clearly is unsolvable, because you'd have to put two of them next to each other, no matter how you arrange them.
-//If n is odd, then the only way to successfully arrange a number appearing more than floor(n/2) times is if it appears exactly floor(n/2)+1 times and you put them on all the even indexes. And to have the wiggle-property, all the other numbers would have to be larger. But then we wouldn't have an M in both the smaller and the larger half.
+//If n is even, then having more than n/2 times the same number clearly is
+//unsolvable, because you'd have to put two of them next to each other, no
+//matter how you arrange them.
+//If n is odd, then the only way to successfully arrange a number appearing
+//more than floor(n/2) times is if it appears exactly floor(n/2)+1 times and
+//you put them on all the even indexes. And to have the wiggle-property, all
+//the other numbers would have to be larger. But then we wouldn't have an M in
+//both the smaller and the larger half.
 //So if the input has a valid answer at all, then my code will find one.
 //
 
 
-//######################################### T : O(n) , S: O(n) ######################################### 
+//######################################### T : O(n) , S: O(n) #########################################
 public class Solution {
 	public void wiggleSort(int[] nums) {
 		int median = selectKth(nums, 0, nums.length-1, nums.length%2==0 ? nums.length/2 : nums.length/2+1);
@@ -446,7 +478,7 @@ public class Solution {
      else
          return k-1;
  }
- 
+
  private int[] partition(int[] nums, int lb, int hb) {
      int pVal = nums[lb]; // use random genarater is better in performance
      int i = lb;
@@ -462,7 +494,7 @@ public class Solution {
      res[0] = lb; res[1] = hb;
      return res;
  }
- 
+
  private void swap(int[] nums, int i, int j) {
      int tmp = nums[i];
      nums[i] = nums[j];

@@ -1,5 +1,6 @@
 //Majority Element II
-//Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times. The algorithm should run in linear time and in O(1) space.
+//Given an integer array of size n, find all elements that appear more than ⌊
+//n/3 ⌋ times. The algorithm should run in linear time and in O(1) space.
 
 #include<iostream>
 #include<vector>
@@ -7,15 +8,18 @@ using namespace std;
 
 
 //# 3 cases
-//1. there are no elements that appears more than n/3 times, then whatever the algorithm 
+//1. there are no elements that appears more than n/3 times, then whatever the
+//algorithm
 // got from 1st round wound be rejected in the second round.
-//2. there are only one elements that appears more than n/3 times, after 1st round one of 
+//2. there are only one elements that appears more than n/3 times, after 1st
+//round one of
 // the candicate must be that appears more than n/3 times(<2n/3 other elements could only
-// pair out for <n/3 times), the other candicate is not necessarily be the second most frequent 
+// pair out for <n/3 times), the other candicate is not necessarily be the second most frequent
 // but it would be rejected in 2nd round.
-//3. there are two elments appears more than n/3 times, candicates would contain both of
+//3. there are two elments appears more than n/3 times, candicates would
+//contain both of
 // them. (<n/3 other elements couldn't pair out any of the majorities.)
-//#########################################  ######################################### 
+//#########################################  #########################################
 public List<Integer> majorityElement(int[] nums) {
      Integer major1 = null, major2 = null, cnt1 = 0, cnt2 = 0;
      for (Integer num : nums) {
@@ -34,19 +38,19 @@ public List<Integer> majorityElement(int[] nums) {
              cnt2--;
          }
      }
-     
+
      cnt1 = cnt2 = 0;
      for (Integer num : nums) {
          if (num.equals(major1)) cnt1++;
          else if (num.equals(major2)) cnt2++;
      }
-     
+
      List<Integer> result = new ArrayList<>();
      if (cnt1 > nums.length / 3) result.add(major1);
      if (cnt2 > nums.length / 3) result.add(major2);
      return result;
  }
-//######################################### Boyer-Moore Majority  ######################################### 
+//######################################### Boyer-Moore Majority  #########################################
 vector<int> majorityElement(vector<int>& nums) {
 
   int len = nums.size();
@@ -92,7 +96,7 @@ vector<int> majorityElement(vector<int>& nums) {
             count++;
           }
       }
-      if(count > len/3) { 
+      if(count > len/3) {
         result.push_back(candidate[i]);
       }
   }

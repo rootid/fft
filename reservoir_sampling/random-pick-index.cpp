@@ -1,7 +1,10 @@
 //Random Pick Index
-//Given an array of integers with possible duplicates, randomly output the index of a given target number. You can assume that the given target number must exist in the array.
+//Given an array of integers with possible duplicates, randomly output the
+//index of a given target number. You can assume that the given target number
+//must exist in the array.
 //Note:
-//The array size can be very large. Solution that uses too much extra space will not pass the judge.
+//The array size can be very large. Solution that uses too much extra space
+//will not pass the judge.
 //Example:
 //int[] nums = new int[] {1,2,3,3,3};
 //Solution solution = new Solution(nums);
@@ -10,11 +13,11 @@
 //// pick(1) should return 0. Since in the array only nums[0] is equal to 1.
 //solution.pick(1);
 //
-//############## binary search: O(N) memory, O(N lg N) init, O(lg N) pick. ############## 
-class Solution { 
+//############## binary search: O(N) memory, O(N lg N) init, O(lg N) pick. ##############
+class Solution {
   typedef pair<int, int> pp; // <value, index>
-  static bool comp(const pp& i, const pp& j) { 
-    return (i.first < j.first); 
+  static bool comp(const pp& i, const pp& j) {
+    return (i.first < j.first);
   }
   vector<pp> mNums;
   Solution(vector<int> nums) {
@@ -38,13 +41,13 @@ class Solution {
 }
 //O(N) memory, O(N) init, O(1) pick.
 
-//############## Reservoir Sampling. O(1) init, O(1) memory, but O(N) to pick. ############## 
+//############## Reservoir Sampling. O(1) init, O(1) memory, but O(N) to pick. ##############
 class Solution {
     vector<int> v;
     vector<int>& vect = v;
     int n;
     public:
-    
+
     Solution(vector<int> nums){
         vect = nums;
         n = nums.size();

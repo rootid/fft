@@ -1,5 +1,6 @@
 //Generate Parentheses
-//Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+//Given n pairs of parentheses, write a function to generate all combinations
+//of well-formed parentheses.
 //For example, given n = 3, a solution set is:
 //[
 //  "((()))",
@@ -75,7 +76,8 @@ public:
 
 
 //######################################### Recursive : List #########################################
-//For 2, it should place one "()" and add another one insert it but none tail it,
+//For 2, it should place one "()" and add another one insert it but none tail
+//it,
 //'(' f(1) ')' f(0)
 //or add none insert it but tail it by another one,
 //'(' f(0) ')' f(1)
@@ -191,7 +193,8 @@ def generateParenthesis(self, n):
         comp_list.append(res)
     return comp_list[-1]
 //######################################### Backtracking  #########################################
-//p is the parenthesis-string built so far, left and right tell the number of left and right parentheses still to add, and parens collects the parentheses.
+//p is the parenthesis-string built so far, left and right tell the number of
+//left and right parentheses still to add, and parens collects the parentheses.
 def generateParenthesis(self, n):
     def generate(p, left, right, parens=[]):
         if left:         generate(p + '(', left-1, right)
@@ -201,7 +204,8 @@ def generateParenthesis(self, n):
     return generate('', n, n)
 
 //######################################### yield + python 3 #########################################
-//put the yield q at the end of the line because it's not that bad and because in "real life" I use Python 3 where I just say yield from generate(...).
+//put the yield q at the end of the line because it's not that bad and because
+//in "real life" I use Python 3 where I just say yield from generate(...).
 def generateParenthesis(self, n):
     def generate(p, left, right):
         if right >= left >= 0:
@@ -212,8 +216,10 @@ def generateParenthesis(self, n):
     return list(generate('', n, n))
 
 //######################################### optimized #########################################
-//Parameter open tells the number of "already opened" parentheses, and I continue the recursion
-//as long as I still have to open parentheses (n > 0) and I haven't made a mistake yet (open >= 0).
+//Parameter open tells the number of "already opened" parentheses, and I
+//continue the recursion
+//as long as I still have to open parentheses (n > 0) and I haven't made a
+//mistake yet (open >= 0).
 
 def generateParenthesis(self, n, open=0):
     if n > 0 <= open:

@@ -1,5 +1,6 @@
 // Longest Palindrome
-//Given a string which consists of lowercase or uppercase letters, find the length of the longest palindromes that can be built with those letters.
+//Given a string which consists of lowercase or uppercase letters, find the
+//length of the longest palindromes that can be built with those letters.
 //This is case sensitive, for example "Aa" is not considered a palindrome here.
 //Note:
 //Assume the length of given string will not exceed 1,010.
@@ -18,7 +19,7 @@
 using namespace std;
 
 
-//######################################### With Set ######################################### 
+//######################################### With Set #########################################
 public int longestPalindrome(String s) {
         Set<Character> set = new HashSet<>();
         for (char c : s.toCharArray()) {
@@ -30,8 +31,9 @@ public int longestPalindrome(String s) {
         return s.length() - (odd == 0 ? 0 : odd - 1);
     }
 
-//######################################### With Map  ######################################### 
-//Partial Contribution(# of chars are odd)  + Full Contribution (# of chars are even) + If Partial contribution then Odd length palindrome
+//######################################### With Map  #########################################
+//Partial Contribution(# of chars are odd)  + Full Contribution (# of chars are
+//even) + If Partial contribution then Odd length palindrome
 public int longestPalindrome(String s) {
     int len = s.length();
     int palLen = 0;
@@ -43,12 +45,12 @@ public int longestPalindrome(String s) {
         else {
             palLen += freqMap.get(key) - 1;
             isOddLen = true;
-        } 
+        }
     }
     return isOddLen == true ? palLen + 1 : palLen;
 }
 
-//######################################### With Array######################################### 
+//######################################### With Array#########################################
 int longestPalindrome(string s) {
       assert(s.size() <= 1010);
       int pal_len = 0;
@@ -67,11 +69,11 @@ int longestPalindrome(string s) {
             is_odd = true;
         }
       }
-      
+
       if(is_odd) {
            pal_len += 1;
       }
-     
+
       cout <<  "pal_len = " << pal_len << endl;
       return pal_len;
 }

@@ -2,12 +2,13 @@
 //Examples:
 //Given "abcabcbb", the answer is "abc", which the length is 3.
 //Given "bbbbb", the answer is "b", with the length of 1.
-//Given "pwwkew", the answer is "wke", with the length of 3. Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
+//Given "pwwkew", the answer is "wke", with the length of 3. Note that the answer must be a substring, "pwke" is a
+//subsequence and not a substring.
 //
 
 #include "../headers/global.hpp"
 
-//###################################################### HashMap ###################################################### 
+//###################################################### HashMap ######################################################
 //2 scenarios - Simillar Chars are  adjacent or Present on extrem side use of Max between startIdx and already visited
 //Char idx
  public int lengthOfLongestSubstring(String s) {
@@ -16,7 +17,7 @@
     int startIdx = 0;
     Map<Character, Integer> idxMap = new HashMap<>();
     for (int i=0;i<len;i++) {
-        if(idxMap.containsKey(s.charAt(i))) 
+        if(idxMap.containsKey(s.charAt(i)))
             startIdx = Math.max(startIdx, idxMap.get(s.charAt(i)));
        maxLen = Math.max(maxLen, i-startIdx+1);
        idxMap.put(s.charAt(i), i+1);
@@ -24,7 +25,7 @@
     return maxLen;
   }
 
-//###################################################### G ###################################################### 
+//###################################################### G ######################################################
 int lengthOfLongestSubstring(string s) {
     int charSet[256] = {0};
     int minLen = 0;
@@ -78,7 +79,7 @@ int getLongestNRSubstr(string &s) {
   return maxLen;
 }
 
-//######################################### O(n) ######################################### 
+//######################################### O(n) #########################################
 //"pwwkew" : 3
 //"abba" : 2
  public int lengthOfLongestSubstring(String s) {
@@ -87,7 +88,7 @@ int getLongestNRSubstr(string &s) {
         int max = 0;
         int[] store = new int[256];
         for(int i=0,startIdx=0 ;i<len;i++) {
-            if(store[s.charAt(i)] != 0) 
+            if(store[s.charAt(i)] != 0)
               startIdx = Math.max(startIdx, store[s.charAt(i)]); //"abba" : 2 a
             store[s.charAt(i)] = i + 1;
             max = Math.max(max,  i - startIdx + 1);

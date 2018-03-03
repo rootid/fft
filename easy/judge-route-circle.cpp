@@ -1,6 +1,11 @@
 //Judge Route Circle
-//Initially, there is a Robot at position (0, 0). Given a sequence of its moves, judge if this robot makes a circle, which means it moves back to the original place.
-//The move sequence is represented by a string. And each move is represent by a character. The valid robot moves are R (Right), L (Left), U (Up) and D (down). The output should be true or false representing whether the robot makes a circle.
+//Initially, there is a Robot at position (0, 0). Given a sequence of its
+//moves, judge if this robot makes a circle, which means it moves back to the
+//original place.
+//The move sequence is represented by a string. And each move is represent by a
+//character. The valid robot moves are R (Right), L (Left), U (Up) and D
+//(down). The output should be true or false representing whether the robot
+//makes a circle.
 //Example 1:
 //Input: "UD"
 //Output: true
@@ -8,7 +13,7 @@
 //Input: "LL"
 //Output: false
 
-//######################################### T: O(n) + S : O(k) ######################################### 
+//######################################### T: O(n) + S : O(k) #########################################
   bool judgeCircle(string moves) {
         int v = 0;
         int h = 0;
@@ -23,7 +28,7 @@
         return v == 0 && h == 0;
     }
 
-//######################################### T: O(n) + S : O(k) ######################################### 
+//######################################### T: O(n) + S : O(k) #########################################
 public boolean judgeCircle(String moves) {
     int x = 0;
     int y = 0;
@@ -35,7 +40,7 @@ public boolean judgeCircle(String moves) {
     }
     return x == 0 && y == 0;
 }
-//######################################### T: O(n) + S : O(k) ######################################### 
+//######################################### T: O(n) + S : O(k) #########################################
 bool judgeCircle(string moves) {
     int x = 0, y = 0;
     for(char c: moves){
@@ -44,7 +49,7 @@ bool judgeCircle(string moves) {
     return x == 0 && y == 0;
 }
 
-//######################################### T: O(n) + S : O(k) ######################################### 
+//######################################### T: O(n) + S : O(k) #########################################
 public boolean judgeCircle(String moves) {
     int x = 0, y = 0;
     for(char c: moves.toCharArray()){
@@ -65,7 +70,7 @@ def judgeCircle(self, moves):
 def judgeCircle(self, moves):
     return not sum(map({'U': 1, 'D': -1, 'L': 1j, 'R': -1j}.get, moves))
 
-//######################################### python 3 ######################################### 
+//######################################### python 3 #########################################
 def judgeCircle(self, moves):
     return not sum(map(1j.__pow__, map('RUL'.find, moves)))
 

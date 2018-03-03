@@ -1,7 +1,9 @@
 //3Sum
-//Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.
+//Given an array S of n integers, are there elements a, b, c in S such that a +
+//b + c = 0? Find all unique triplets in the array which gives the sum of zero.
 //Note:
-//Elements in a triplet (a,b,c) must be in non-descending order. (ie, a ≤ b ≤ c)
+//Elements in a triplet (a,b,c) must be in non-descending order. (ie, a ≤ b ≤
+//c)
 //The solution set must not contain duplicate triplets.
 //    For example, given array S = {-1 0 1 2 -1 -4},
 //    A solution set is:
@@ -15,11 +17,11 @@ using namespace std;
 
 
 
-//################################################### O(n^2) ################################################### 
+//################################################### O(n^2) ###################################################
 public List<List<Integer>> threeSum(int[] nums) {
-    //sort array 
+    //sort array
     //pick 1 and check rest i.e. a+b = -c
-    //for duplicates continue or pick last 
+    //for duplicates continue or pick last
     Arrays.sort(nums);
     int n = nums.length;
     List<List<Integer>> result = new ArrayList<>();
@@ -40,7 +42,7 @@ public List<List<Integer>> threeSum(int[] nums) {
     }
     return result;
 }
-//################################################### O(n^2) ################################################### 
+//################################################### O(n^2) ###################################################
 vector<vector<int>> threeSum(vector<int>& nums) {
     sort(nums.begin(), nums.end());
     vector<vector<int>> res;
@@ -63,7 +65,7 @@ vector<vector<int>> threeSum(vector<int>& nums) {
     return res;
 }
 
-//################################################### O(n^2) ################################################### 
+//################################################### O(n^2) ###################################################
 vector<vector<int> > threeSum(vector<int>& nums) {
   vector<vector<int> > triplet;
   int len = nums.size();
@@ -85,16 +87,16 @@ vector<vector<int> > threeSum(vector<int>& nums) {
         triplet.push_back({a,b,c});
         while(b == nums[j+1] && j<k) {
           j++;
-        } 
+        }
         while(c == nums[k-1] && j<k) {
           k--;
-        } 
+        }
         j++;
         k--;
       } else if (a+b+c < 0) {
         while( j<k && b == nums[j+1] ) {
           j++;
-        } 
+        }
         j++;
       } else {
         while(j<k && c == nums[k-1] ) {
@@ -110,7 +112,7 @@ vector<vector<int> > threeSum(vector<int>& nums) {
   return triplet;
 }
 
-//##################################################### O(n^2) ##################################################### 
+//##################################################### O(n^2) #####################################################
 //O(n^2) : can we do better?
 vector<vector<int>> threeSum(vector<int>& nums) {
     vector<vector<int>> result;
@@ -132,7 +134,7 @@ vector<vector<int>> threeSum(vector<int>& nums) {
                 result.push_back(vector<int>{nums[i], nums[l], nums[u]});
                 while (nums[++l] == nums[l - 1]);  // Processing duplicates of Number 2
                 while (nums[--u] == nums[u + 1]);  // Processing duplicates of Number 3
-            } 
+            }
 
         }
 
@@ -144,7 +146,7 @@ vector<vector<int>> threeSum(vector<int>& nums) {
 }
 
 
-//######################################### 3Sum using 2 Sum ######################################### 
+//######################################### 3Sum using 2 Sum #########################################
 void twoSum(vector<int>& nums,int cIdx,int ltIdx,int rtIdx,int target,vector<vector<int>>& result) {
     while(ltIdx < rtIdx) {
         if(nums[ltIdx] + nums[rtIdx] > target) {
@@ -166,7 +168,7 @@ void twoSum(vector<int>& nums,int cIdx,int ltIdx,int rtIdx,int target,vector<vec
 }
 
 vector<vector<int>> threeSum(vector<int>& nums) {
-  int len = nums.size(); 
+  int len = nums.size();
   if(len <=2) return {};
   sort(nums.begin(),nums.end());
   vector<vector<int>> result;
@@ -184,7 +186,7 @@ vector<vector<int>> threeSum(vector<int>& nums) {
 }
 int main(int argc, char *argv[])
 {
- 
+
   //int a[] =  {1,-1,-1,0};
   //int a[] =  {-2,0,0,2,2};
   //int a[] = {-2,0,1,1,2};

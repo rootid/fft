@@ -18,14 +18,15 @@
 //           5
 //            \
 //             6
-//If you notice carefully in the flattened tree, each node's right child points to the next node of a pre-order traversal.
+//If you notice carefully in the flattened tree, each node's right child points
+//to the next node of a pre-order traversal.
 //
 //
 //
 
 //######################################### Recursive approach#########################################
-public void flatten(TreeNode root) {    
-    if(root == null) return;      
+public void flatten(TreeNode root) {
+    if(root == null) return;
     TreeNode tmp = root;
     TreeNode lastRight = root.right;
     root.right = root.left;
@@ -56,26 +57,26 @@ void flatten(TreeNode* root) {
 //#########################################Iterative approach#########################################
 void flatten(TreeNode *root) {
         stack<TreeNode *> stk;
-        if(root==NULL) 
+        if(root==NULL)
            return;
-        
+
         stk.push(root);
         TreeNode *oldptr=NULL;
-        
+
         while(!stk.empty()){            // preorder traversal using a stack
-            TreeNode *ptr=stk.top();    // Using ptr to do travesal 
+            TreeNode *ptr=stk.top();    // Using ptr to do travesal
             stk.pop();
-            if(ptr->right) 
+            if(ptr->right)
                stk.push(ptr->right);
-            if(ptr->left) 
+            if(ptr->left)
                stk.push(ptr->left);
-            if(oldptr!=NULL){            // Using oldptr to change left and right pointer 
+            if(oldptr!=NULL){            // Using oldptr to change left and right pointer
                oldptr->left=NULL;
                oldptr->right=ptr;
             }
             oldptr=ptr;
         }
-       
+
 }
 
 int main() {

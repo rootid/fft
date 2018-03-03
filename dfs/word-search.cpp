@@ -1,5 +1,7 @@
 //Given a 2D board and a word, find if the word exists in the grid.
-//The word can be constructed from letters of sequentially adjacent cell, where "adjacent" cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once.
+//The word can be constructed from letters of sequentially adjacent cell, where
+//"adjacent" cells are those horizontally or vertically neighboring. The same
+//letter cell may not be used more than once.
 //For example,
 //Given board =
 //[
@@ -15,14 +17,14 @@
 bool dfs(vector<vector<char>>& board,int i,int j,int k,string word) {
     if(k > word.size()) {
         return false;
-    } 
+    }
     if(k == word.size()) {
         return true;
     }
     if ((i<0) || (i >= board.size()) || (j <0) || (j >= board[i].size())) {
       return false;
     }
-    
+
     if(board[i][j] == word[k]) {
         board[i][j] = '\0';
         if(i < board.size()) {
@@ -60,7 +62,7 @@ bool exist(vector<vector<char>>& board, string word) {
 
 
 
-//######################################### In place ######################################### 
+//######################################### In place #########################################
 //T(k)=4(T(k-1))=4*4T(k-2)=....=.. which will be 4^k.
 class Solution {
 public:
@@ -72,7 +74,7 @@ public:
                     return true;
         return false;
     }
-private: 
+private:
     bool search(vector<vector<char>>& board, int r, int c, const char* word) {
         if (!word[0]) return true;
         int m = board.size(), n = board[0].size();
@@ -86,7 +88,7 @@ private:
     }
 };
 
-//######################################### In place ######################################### 
+//######################################### In place #########################################
 public class Solution {
 public boolean exist(char[][] board, String word) {
     for(int i = 0; i < board.length; i++)
@@ -110,10 +112,12 @@ private boolean exist(char[][] board, int i, int j, String word, int ind){
 }
 }
 
-//######################################### Bit wise solution ######################################### 
+//######################################### Bit wise solution #########################################
 //apply bit mask for every visited cell. Please check board[y][x] ^= 256;
-//board[y][x] ^= 256 it's a marker that the letter at position x,y is a part of word we search.
-//After board[y][x] ^= 256 the char became not a valid letter. After second board[y][x] ^= 256
+//board[y][x] ^= 256 it's a marker that the letter at position x,y is a part of
+//word we search.
+//After board[y][x] ^= 256 the char became not a valid letter. After second
+//board[y][x] ^= 256
 //it became a valid letter again.
 public boolean exist(char[][] board, String word) {
     char[] w = word.toCharArray();
@@ -138,7 +142,7 @@ private boolean exist(char[][] board, int y, int x, char[] word, int i) {
 	return exist;
 }
 
-//######################################### DFS ######################################### 
+//######################################### DFS #########################################
 def exist(self, board, word):
     if not board:
         return False
@@ -148,14 +152,14 @@ def exist(self, board, word):
                 return True
     return False
 
-# check whether can find word, start at (i,j) position    
+# check whether can find word, start at (i,j) position
 def dfs(self, board, i, j, word):
     if len(word) == 0: # all the characters are checked
         return True
     if i<0 or i>=len(board) or j<0 or j>=len(board[0]) or word[0]!=board[i][j]:
         return False
     tmp = board[i][j]  # first character is found, check the remaining part
-    board[i][j] = "#"  # avoid visit agian 
+    board[i][j] = "#"  # avoid visit agian
     # check whether can find "word" along one direction
     res = self.dfs(board, i+1, j, word[1:]) or self.dfs(board, i-1, j, word[1:]) \
     or self.dfs(board, i, j+1, word[1:]) or self.dfs(board, i, j-1, word[1:])
@@ -163,8 +167,9 @@ def dfs(self, board, i, j, word):
     return res
 
 
-//######################################### Bound check variation ######################################### 
-//compare board[row][col] with word[start], if they match, change board[row][col] to '*' to mark it as visited.
+//######################################### Bound check variation #########################################
+//compare board[row][col] with word[start], if they match, change
+//board[row][col] to '*' to mark it as visited.
 // Then move to the next one (i.e. word[start+1]) and compare it to the current neighbors ( doing it by recursion)
 class Solution {
 private:
@@ -182,7 +187,7 @@ private:
         board[row][col] = curC;
         return res;
     }
-    
+
 public:
     bool exist(vector<vector<char>>& board, string word) {
         int M,N,i,j,sLen = word.size();

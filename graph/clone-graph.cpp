@@ -1,13 +1,17 @@
 //Clone Graph
-//Clone an undirected graph. Each node in the graph contains a label and a list of its neighbors.
+//Clone an undirected graph. Each node in the graph contains a label and a list
+//of its neighbors.
 //OJ's undirected graph serialization:
 //Nodes are labeled uniquely.
-//We use # as a separator for each node, and , as a separator for node label and each neighbor of the node.
+//We use # as a separator for each node, and , as a separator for node label
+//and each neighbor of the node.
 //As an example, consider the serialized graph {0,1,2#1,2#2,2}.
-//The graph has a total of three nodes, and therefore contains three parts as separated by #.
+//The graph has a total of three nodes, and therefore contains three parts as
+//separated by #.
 //First node is labeled as 0. Connect node 0 to both nodes 1 and 2.
 //Second node is labeled as 1. Connect node 1 to node 2.
-//Third node is labeled as 2. Connect node 2 to node 2 (itself), thus forming a self-cycle.
+//Third node is labeled as 2. Connect node 2 to node 2 (itself), thus forming a
+//self-cycle.
 //Visually, the graph looks like the following:
 //       1
 //      / \
@@ -16,7 +20,7 @@
 //         / \
 //         \_/
 
-//######################################### DFS  ######################################### 
+//######################################### DFS  #########################################
 public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
     if(node == null) return node;
     Stack<UndirectedGraphNode> vStack = new Stack<>();
@@ -37,7 +41,7 @@ public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
     return storeMap.get(node);
 }
 
-//######################################### Recursion/DFS  ######################################### 
+//######################################### Recursion/DFS  #########################################
 class Solution {
     Map<UndirectedGraphNode, UndirectedGraphNode> storeMap = new HashMap<>();
     //BFS  , DFS  (traversal -> maintain adjacency)
@@ -52,7 +56,7 @@ class Solution {
 }
 
 
-//######################################### BFS ######################################### 
+//######################################### BFS #########################################
 class Solution {
 public:
     UndirectedGraphNode *cloneGraph(UndirectedGraphNode *node) {
@@ -73,17 +77,17 @@ public:
                 mp[cur] -> neighbors.push_back(mp[neigh]);
             }
         }
-        return copy; 
+        return copy;
     }
 private:
     unordered_map<UndirectedGraphNode*, UndirectedGraphNode*> mp;
 };
 
-//######################################## DFS Recursive  ######################################## 
+//######################################## DFS Recursive  ########################################
 class Solution(object):
     def __init__(self):
         self.visited = {}
-        
+
     def cloneGraph(self, node):
         if not node:
             return None
@@ -92,12 +96,12 @@ class Solution(object):
 
         clone = UndirectedGraphNode(node.label)
         self.visited[node.label] = clone
-            
+
         for n in node.neighbors:
             clone.neighbors.append(self.cloneGraph(n))
         return clone
 
-//######################################## DFS Stack ######################################## 
+//######################################## DFS Stack ########################################
 def cloneGraph(self, node):
     if not node:
         return node
@@ -112,5 +116,5 @@ def cloneGraph(self, node):
                 stack.append(n)
                 visit[n.label] = UndirectedGraphNode(n.label)
             visit[top.label].neighbors.append(visit[n.label])
-    
+
     return root

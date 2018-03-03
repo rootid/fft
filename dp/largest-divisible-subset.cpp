@@ -1,5 +1,7 @@
 //Largest Divisible Subset
-//Given a set of distinct positive integers, find the largest subset such that every pair (Si, Sj) of elements in this subset satisfies: Si % Sj = 0 or Sj % Si = 0.
+//Given a set of distinct positive integers, find the largest subset such that
+//every pair (Si, Sj) of elements in this subset satisfies: Si % Sj = 0 or Sj %
+//Si = 0.
 //If there are multiple solutions, return any subset is fine.
 //Example 1:
 //nums: [1,2,3]
@@ -8,7 +10,7 @@
 //nums: [1,2,4,8]
 //Result: [1,2,4,8]
 
-//################################################### DP bottom-up ###########################################  
+//################################################### DP bottom-up ###########################################
 vector<int> largestDivisibleSubset(vector<int>& nums) {
       sort(nums.begin(), nums.end());
       vector< vector<int> > result(nums.size()); //2-d vector
@@ -28,11 +30,12 @@ vector<int> largestDivisibleSubset(vector<int>& nums) {
   }
 
 
-//################################################### DP bottom-up ###########################################  
-//T[n] = the length of the largest divisible subset whose largest number is a[n] 
-vector<int> largestDivisibleSubset(vector<int>& nums) { 
+//################################################### DP bottom-up ###########################################
+//T[n] = the length of the largest divisible subset whose largest number is
+//a[n]
+vector<int> largestDivisibleSubset(vector<int>& nums) {
   int i,j,len=nums.size(),m=0,mi;
-  vector<int> T(len,0); //max length of seq 
+  vector<int> T(len,0); //max length of seq
   vector<int> sos(len,0); //store the start of seqe
   sort(nums.begin(),nums.end());
   for(i=0;i<len;i++) {
@@ -52,10 +55,10 @@ vector<int> largestDivisibleSubset(vector<int>& nums) {
       re.insert(re.begin(),nums[mi]);
       mi = sos[mi];
   }
-  return re; 
+  return re;
 }
 
-//################################################### DP top-down   ###########################################  
+//################################################### DP top-down   ###########################################
 vector<int> largestDivisibleSubset(vector<int>& nums) {
     sort(nums.begin(), nums.end());
     vector<int> T(nums.size(), 0);
@@ -73,7 +76,7 @@ vector<int> largestDivisibleSubset(vector<int>& nums) {
                 // if a[j] mod a[i] == 0, it means T[j] can form a larger subset by putting a[i] into T[j]
                 T[i] = 1 + T[j];
                 parent[i] = j;
-                
+
                 if(T[i] > m) {
                     m = T[i];
                     mi = i;
@@ -87,11 +90,11 @@ vector<int> largestDivisibleSubset(vector<int>& nums) {
         mi = parent[mi];
     }
     // sort(ret.begin(), ret.end()); // if we go by extending larger ends, the largest "answer" element will come first since the candidate element we observe will become larger and larger as i increases in the outermost "for" loop above.
-   // alternatively, we can sort nums in decreasing order obviously. 
+   // alternatively, we can sort nums in decreasing order obviously.
     return ret;
 }
 
-//########################################### sort + backtrack ########################################### 
+//########################################### sort + backtrack ###########################################
 //O(2^n) : 2 state pick/don't pick num[i]
 //TC: O(2^n), SC: O(n).
 private :
@@ -117,7 +120,7 @@ private :
   }
 public:
     vector<int> largestDivisibleSubset(vector<int>& numsOrig) {
-        if ( (nSz=numsOrig.size())<=1 ) return numsOrig; 
+        if ( (nSz=numsOrig.size())<=1 ) return numsOrig;
         nums = numsOrig;
         sol = vector<int>(nSz);
         sort (nums.begin(), nums.end());
@@ -125,11 +128,11 @@ public:
         return best;
     }
 
-//########################################### sort + backtrack + prune ########################################### 
-private : 
+//########################################### sort + backtrack + prune ###########################################
+private :
   int bSz=0, sPos=0, nSz, largest;
   vector<int> nums, sol, furthest, best=vector<int>(0);
-  
+
   int passes(int v, int i) {
       if ( sPos==0 ) return 1;
       if ( (sPos>furthest[i]) && ((v%sol[sPos-1])==0) ) {
@@ -154,7 +157,7 @@ private :
   }
 public:
     vector<int> largestDivisibleSubset(vector<int>& numsOrig) {
-        if ( (nSz=numsOrig.size())<=1 ) return numsOrig; 
+        if ( (nSz=numsOrig.size())<=1 ) return numsOrig;
         nums = numsOrig;
         sol = vector<int>(nSz);
         furthest = vector<int>(nSz,0);

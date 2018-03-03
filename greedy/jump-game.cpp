@@ -1,21 +1,23 @@
 //Jump Game
-//Given an array of non-negative integers, you are initially positioned at the first index of the array.
-//Each element in the array represents your maximum jump length at that position.
+//Given an array of non-negative integers, you are initially positioned at the
+//first index of the array.
+//Each element in the array represents your maximum jump length at that
+//position.
 //Determine if you are able to reach the last index.
 //For example:
 //A = [2,3,1,1,4], return true.
 //A = [3,2,1,0,4], return false.
 
-//################################### O(n) : linear traversal ################################### 
+//################################### O(n) : linear traversal ###################################
 public boolean canJump(int[] nums) {
    int m = 0; // m : tells the maximum index we can reach so far.
    for(int i=0;i<nums.length;i++) {
-       if(i > m) return false;   
-       m = Math.max(m, i + nums[i]);    
+       if(i > m) return false;
+       m = Math.max(m, i + nums[i]);
    }
    return true;
 }
-//################################### BFS with indexes ################################### 
+//################################### BFS with indexes ###################################
 public boolean canJump(int[] nums) {
      int dIdx = nums.length -1;
      if(dIdx == 0) return true;
@@ -36,7 +38,7 @@ public boolean canJump(int[] nums) {
 }
 
 //iterate and update the maximal index that can reached
-//###################################   ################################### 
+//###################################   ###################################
 bool canJump(vector<int>& nums) {
     int len = nums.size();
     int global_reach = 0;
@@ -46,7 +48,7 @@ bool canJump(vector<int>& nums) {
     return global_reach == len;
 }
 
-//######################## Traversing right to left + O(n) space ######################## 
+//######################## Traversing right to left + O(n) space ########################
 bool canJump(vector<int>& nums) {
     int len = nums.size();
     vector<bool> b(len,false);

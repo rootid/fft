@@ -1,4 +1,6 @@
-//Find all possible combinations of k numbers that add up to a number n, given that only numbers from 1 to 9 can be used and each combination should be a unique set of numbers.
+//Find all possible combinations of k numbers that add up to a number n, given
+//that only numbers from 1 to 9 can be used and each combination should be a
+//unique set of numbers.
 //Example 1:
 //Input: k = 3, n = 7
 //Output:
@@ -12,7 +14,7 @@
 
 
 
-//######################################### DFS - Backtracking ######################################### 
+//######################################### DFS - Backtracking #########################################
 public List<List<Integer>> combinationSum3(int k, int n) {
         List<List<Integer>> result = new LinkedList<>();
     List<Integer> localList = new ArrayList<>();
@@ -22,7 +24,7 @@ public List<List<Integer>> combinationSum3(int k, int n) {
 
 private void combinationSumHelper(int n,int k, int start, List<Integer> localList,List<List<Integer>> result) {
     if(n <0 || localList.size() > k) return;
-    if(localList.size() == k && n ==0) 
+    if(localList.size() == k && n ==0)
         result.add(new ArrayList<>(localList));
     for(int i=start;i<=9;i++) {
         if(n-i >= 0) { //Pruning to pick only + sum
@@ -31,10 +33,10 @@ private void combinationSumHelper(int n,int k, int start, List<Integer> localLis
             localList.remove(localList.size() - 1);
         }
     }
-    
+
 }
 
-//######################################### DFS - Backtracking  ######################################### 
+//######################################### DFS - Backtracking  #########################################
 public List<List<Integer>> combinationSum3(int k, int n) {
     List<List<Integer>> result = new LinkedList<>();
     List<Integer> localList = new ArrayList<>();
@@ -52,9 +54,9 @@ private void combinationSumHelper(int sum,int k, int start, List<Integer> localL
     }
 }
 
-//######################################### DFS ######################################### 
+//######################################### DFS #########################################
 void dfs(vector<vector <int> > &res,vector<int>& cv,int start,int k,int n) {
-      
+
       if(n < 0 || cv.size() > k) {
           return; // prune
       }
@@ -68,12 +70,12 @@ void dfs(vector<vector <int> > &res,vector<int>& cv,int start,int k,int n) {
           cv.pop_back();
         }
       }
-      
+
   }
-  
+
 vector<vector<int> > combinationSum3(int k, int n) {
       //iv : sz = 9
-      vector<vector<int> > res;    
+      vector<vector<int> > res;
       vector<int> cv;
       int start = 1;
       dfs(res,cv,start,k,n);

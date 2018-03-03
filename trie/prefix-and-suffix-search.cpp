@@ -1,5 +1,6 @@
 //Given many words, words[i] has weight i.
-//Design a class WordFilter that supports one function, WordFilter.f(String prefix, String suffix). It will return the word with given prefix and suffix with maximum weight. If no word exists, return -1.
+//Design a class WordFilter that supports one function, WordFilter.f(String prefix, String suffix). It will return the
+//word with given prefix and suffix with maximum weight. If no word exists, return -1.
 //Examples:
 //Input:
 //WordFilter(["apple"])
@@ -105,8 +106,11 @@ class WordFilter {
 //######################################### W/ Trie #########################################
 
 //######################################### Paired Trie #########################################
-//Say we are inserting the word apple. We could insert ('a', 'e'), ('p', 'l'), ('p', 'p'), ('l', 'p'), ('e', 'a') into our trie. Then, if we had equal length queries like prefix = "ap", suffix = "le", we could find the node trie['a', 'e']['p', 'l'] in our trie. This seems promising.
-//What about queries that aren't equal? We should just insert them like normal. For example, to capture a case like prefix = "app", suffix = "e", we could create nodes trie['a', 'e']['p', None]['p', None].
+//Say we are inserting the word apple. We could insert ('a', 'e'), ('p', 'l'), ('p', 'p'), ('l', 'p'), ('e', 'a') into
+//our trie. Then, if we had equal length queries like prefix = "ap", suffix = "le", we could find the node trie['a',
+//'e']['p', 'l'] in our trie. This seems promising.
+//What about queries that aren't equal? We should just insert them like normal. For example, to capture a case like
+//prefix = "app", suffix = "e", we could create nodes trie['a', 'e']['p', None]['p', None].
 //After inserting these pairs into our trie, our searches are straightforward.
 //TC : O(NK^2+QK) where N is the number of words, K is the maximum length of a word, and Q is the number of queries.
 //SC : O(NK^2), the size of the trie.
@@ -176,8 +180,10 @@ class TrieNode {
 }
 
 //######################################### Trie of Suffix Wrapped Words #########################################
-//Consider the word 'apple'. For each suffix of the word, we could insert that suffix, followed by '#', followed by the word, all into the trie.
-//For example, we will insert '#apple', 'e#apple', 'le#apple', 'ple#apple', 'pple#apple', 'apple#apple' into the trie. Then for a query like prefix = "ap", suffix = "le", we can find it by querying our trie for le#ap.
+//Consider the word 'apple'. For each suffix of the word, we could insert that suffix, followed by '#', followed by the
+//word, all into the trie.
+//For example, we will insert '#apple', 'e#apple', 'le#apple', 'ple#apple', 'pple#apple', 'apple#apple' into the trie.
+//Then for a query like prefix = "ap", suffix = "le", we can find it by querying our trie for le#ap.
 //TC: O(NK^2+QK) where N is the number of words, K is the maximum length of a word, and Q is the number of queries.
 //SC: O(NK^2), the size of the trie.
 

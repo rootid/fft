@@ -2,8 +2,9 @@
 //Two elements of a binary search tree (BST) are swapped by mistake.
 //Recover the tree without changing its structure.
 //Note:
-//A solution using O(n) space is pretty straight forward. Could you devise a constant space solution?
-//############################### Recursion + inorder + space O(log n) ############################### 
+//A solution using O(n) space is pretty straight forward. Could you devise a
+//constant space solution?
+//############################### Recursion + inorder + space O(log n) ###############################
 void dfsDetectSwap(TreeNode* root,TreeNode*& prev,TreeNode*& first,TreeNode*& second){
     if(root==NULL)  return;
     dfsDetectSwap(root->left,prev,first,second);
@@ -23,19 +24,19 @@ void recoverTree(TreeNode* root) {
   dfsDetectSwap(root,prev,first,second);
   swap(first->val, second->val);
 }
-//############################### Morris + inorder + space O(1) ############################### 
+//############################### Morris + inorder + space O(1) ###############################
 //
- void recoverTree(struct TreeNode* root) { 
-   TreeNode *pre=NULL, *first=NULL, *second=NULL; 
-   while(root) { 
-     if(root->left == NULL) { 
-       if(pre && pre->val > root->val) { 
-         if(!first) first = pre; 
-         second = root; 
-       } 
+ void recoverTree(struct TreeNode* root) {
+   TreeNode *pre=NULL, *first=NULL, *second=NULL;
+   while(root) {
+     if(root->left == NULL) {
+       if(pre && pre->val > root->val) {
+         if(!first) first = pre;
+         second = root;
+       }
        pre = root;
-       root = root->right; 
-     } else { 
+       root = root->right;
+     } else {
        TreeNode *t = root->left;
        while(t->right && t->right!=root) t = t->right;
        if(!t->right) {
@@ -49,14 +50,14 @@ void recoverTree(TreeNode* root) {
            }
            pre = root;
            root = root->right;
-       } 
-     } 
-   } 
-   if(first && second) 
-     swap(first->val, second->val); 
+       }
+     }
+   }
+   if(first && second)
+     swap(first->val, second->val);
 }
 
-//##################### Morris traversal modifies tree  O(1) traveresal ##################### 
+//##################### Morris traversal modifies tree  O(1) traveresal #####################
 //connects right subtree to root
 void inorderMorrisTraversal(TreeNode *root) {
     TreeNode *cur = root, *prev = NULL;
@@ -71,9 +72,9 @@ void inorderMorrisTraversal(TreeNode *root) {
                 prev = prev->right;
             }
             if (prev->right == NULL) { // 2.a) node connect
-                prev->right = cur; //5->6 
-                cur = cur->left; //visit next left subtree node 
-            } else { // 2.a)   
+                prev->right = cur; //5->6
+                cur = cur->left; //visit next left subtree node
+            } else { // 2.a)
                 prev->right = NULL;
                 printf("%d ", cur->val);
                 cur = cur->right;

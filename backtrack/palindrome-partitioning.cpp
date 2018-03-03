@@ -1,5 +1,6 @@
 //Palindrome Partitioning
-//Given a string s, partition s such that every substring of the partition is a palindrome.
+//Given a string s, partition s such that every substring of the partition is a
+//palindrome.
 //Return all possible palindrome partitioning of s.
 //For example, given s = "aab",
 //Return
@@ -153,10 +154,13 @@ vector<vector<string>> partition(string s) {
 	}
 	return result;
 }
-//Check each suffix of the given string, if the suffix is a palindrome, add it to each solution for subproblem of the matching prefix, else skip it.
-//result[0..right] = result[0..left-1] + s[left..right] if s[left..right] is a palindrome
+//Check each suffix of the given string, if the suffix is a palindrome, add it
+//to each solution for subproblem of the matching prefix, else skip it.
+//result[0..right] = result[0..left-1] + s[left..right] if s[left..right] is a
+//palindrome
 //To check if a substring is a palindrome, we can use a 2D boolean array:
-//p[left,right] = true if right-left<=1 or s[left] == s[right] && p[left+1,right-1]
+//p[left,right] = true if right-left<=1 or s[left] == s[right] &&
+//p[left+1,right-1]
 //p will look something like this:
 //
 //   0 1 2 3 ...
@@ -165,8 +169,11 @@ vector<vector<string>> partition(string s) {
 //2      x x
 //3        x
 //...
-//Result of prev row can be use to calculate current row. You may wonder if we are wrong to access next row by checking p[left+1,right-1], but the right-left<=1 condition effectively prevents it.
-//Use 2 pointers to keep track of left & right (where left <= right obviously) and we have a DP solution.
+//Result of prev row can be use to calculate current row. You may wonder if we
+//are wrong to access next row by checking p[left+1,right-1], but the
+//right-left<=1 condition effectively prevents it.
+//Use 2 pointers to keep track of left & right (where left <= right obviously)
+//and we have a DP solution.
 //O(n^2)
 public static List<List<String>> partition(String s) {
 		int len = s.length();

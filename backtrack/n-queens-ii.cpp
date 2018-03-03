@@ -1,5 +1,6 @@
 //N-Queens II
-//Instead outputting board configurations, return the total number of distinct solutions.
+//Instead outputting board configurations, return the total number of distinct
+//solutions.
 
 //https://www.cs.utexas.edu/users/EWD/transcriptions/EWD03xx/EWD316.9.html#contents
 /* Things to consider
@@ -25,7 +26,7 @@ void enum_queen(int input,int k,int c,int solution_size
     } else {
         k = k + 1; //iterate over row
         for (int i=0;i<c;i++) { //iterate over columns
-            //Think of board 
+            //Think of board
             //left diag = row+col , right digonal = row-col + (no_of_queen - 1)
             if (col[i] && left_diag[k+i] && right_diag[k-i+(input -1)]) {
                 //cout << "( " << i << "," << k+i << "," << k-i+3 << ")" << endl;
@@ -39,14 +40,14 @@ void enum_queen(int input,int k,int c,int solution_size
                 col[i] = true;
                 left_diag[k+i]= true;
                 right_diag[k-i+(input -1)] = true;
-            } 
+            }
         }
     }
 }
 
 int totalNQueens(int n) {
-    bool col[n]; 
-    bool left_diag[ (n * 2) -1]; //# of left digonals 
+    bool col[n];
+    bool left_diag[ (n * 2) -1]; //# of left digonals
     bool right_diag[(n * 2) -1]; //# of right digonals
     int row[n];
     for (int i=0;i<n;i++) {
@@ -64,6 +65,6 @@ int totalNQueens(int n) {
 
 int main () {
     int no_of_queens = 5 ;
-    
+
     cout << "solution_cnt = " << totalNQueens(no_of_queens) << endl;
 }

@@ -1,19 +1,24 @@
 //All O`one Data Structure
 //Implement a data structure supporting the following operations:
-//Inc(Key) - Inserts a new key with value 1. Or increments an existing key by 1. Key is guaranteed to be a non-empty string.
-//Dec(Key) - If Key's value is 1, remove it from the data structure. Otherwise decrements an existing key by 1. If the key does not exist, this function does nothing. Key is guaranteed to be a non-empty string.
-//GetMaxKey() - Returns one of the keys with maximal value. If no element exists, return an empty string "".
-//GetMinKey() - Returns one of the keys with minimal value. If no element exists, return an empty string "".
+//Inc(Key) - Inserts a new key with value 1. Or increments an existing key by
+//1. Key is guaranteed to be a non-empty string.
+//Dec(Key) - If Key's value is 1, remove it from the data structure. Otherwise
+//decrements an existing key by 1. If the key does not exist, this function
+//does nothing. Key is guaranteed to be a non-empty string.
+//GetMaxKey() - Returns one of the keys with maximal value. If no element
+//exists, return an empty string "".
+//GetMinKey() - Returns one of the keys with minimal value. If no element
+//exists, return an empty string "".
 //Challenge: Perform all these in O(1) time complexity.
 
-//####################################### 2-d struct to add the keys ####################################### 
+//####################################### 2-d struct to add the keys #######################################
 
 class AllOne {
 
 public:
     /** Initialize your data structure here. */
     AllOne() {
-        
+
     }
     /** Inserts a new key <Key> with value 1. Or increments an existing key by 1. */
     void inc(string key) {
@@ -43,7 +48,7 @@ public:
             if (row->strs.empty()) matrix.erase(row);
         }
     }
-    
+
     /** Decrements an existing key by 1. If Key's value is 1, remove it from the data structure. */
     void dec(string key) {
         if (strmap.find(key) == strmap.end()) {
@@ -71,12 +76,12 @@ public:
             if (row->strs.empty()) matrix.erase(row);
         }
     }
-    
+
     /** Returns one of the keys with maximal value. */
     string getMaxKey() {
         return matrix.empty() ?  "" : matrix.front().strs.front();
     }
-    
+
     /** Returns one of the keys with Minimal value. */
     string getMinKey() {
         return matrix.empty() ?  "" : matrix.back().strs.front();
@@ -92,7 +97,7 @@ private :
     list<Row> matrix;
 };
 
-//####################################### Hashmap  ####################################### 
+//####################################### Hashmap  #######################################
 class AllOne {
 public:
     AllOne() {
@@ -115,7 +120,7 @@ public:
         }
         reset_min_value(value);
     }
-    
+
     /** Decrements an existing key by 1. If Key's value is 1, remove it from the data structure. */
     void dec(string key) {
         unordered_map<string,int>::iterator it = kv.find(key);
@@ -135,7 +140,7 @@ public:
         }
         reset_min_value(value);
     }
-    
+
     /** Returns one of the keys with maximal value. */
     string getMaxKey() {
         if (max_value == 0) {
@@ -158,8 +163,11 @@ public:
 private:
     unordered_map<string,int> kv; //inc + dec O(1)
     vector<unordered_set<string> > index; //min/max key
-//array with keys as reversed index in order to save every value and keys have that value.
-//Some one may say that I used a loop to modify minKey/maxKey, but the cost is shared equally when we made the position gap between the 'missed' minKey/maxKey and the new one.
+//array with keys as reversed index in order to save every value and keys have
+//that value.
+//Some one may say that I used a loop to modify minKey/maxKey, but the cost is
+//shared equally when we made the position gap between the 'missed'
+//minKey/maxKey and the new one.
     int max_value;
     int min_value;
     void reset_min_value(int value) {
@@ -193,13 +201,13 @@ private:
 };
 
 //################################# Assumption hashtable are not O(1) given all collision input  ###############################
-//For each value(freq), I have a bucket with all keys which have that value. 
+//For each value(freq), I have a bucket with all keys which have that value.
 // The buckets are in a list, sorted by value. That allows constant time insertion/erasure and iteration to the next higher/lower value bucket. A bucket stores its keys in a hash set for easy constant time insertion/erasure/check (see first two posts here if you're worried). I also have one hash map to look up which bucket a given key is in.
 class AllOne {
 public:
     /** Initialize your data structure here. */
     AllOne() {
-        
+
     }
 
     void inc(string key) {
@@ -207,7 +215,7 @@ public:
         if (!bucketOfKey.count(key)) {
             bucketOfKey[key] = buckets.insert(buckets.begin(), {0, {key}}); //freq,key
         }
-            
+
         // Insert the key in next bucket and update the lookup.
         auto next = bucketOfKey[key], bucket = next++; //next  : pos inside the buketofKeys
         if (next == buckets.end() || next->value > bucket->value + 1) {
@@ -215,7 +223,7 @@ public:
         }
         next->keys.insert(key);
         bucketOfKey[key] = next;
-        
+
         // Remove the key from its old bucket.
         bucket->keys.erase(key);
         if (bucket->keys.empty())
@@ -236,7 +244,7 @@ public:
             prev->keys.insert(key);
             bucketOfKey[key] = prev;
         }
-        
+
         // Remove the key from its old bucket.
         bucket->keys.erase(key);
         if (bucket->keys.empty())
@@ -246,7 +254,7 @@ public:
     string getMaxKey() {
         return buckets.empty() ? "" : *(buckets.rbegin()->keys.begin());
     }
-    
+
     string getMinKey() {
         return buckets.empty() ? "" : *(buckets.begin()->keys.begin());
     }
@@ -257,7 +265,7 @@ private:
     struct Bucket { int value; unordered_set<string> keys; };
     list<Bucket> buckets;
     unordered_map<string, list<Bucket>::iterator> bucketOfKey;
-    
+
 };
 /**
  * Your AllOne object will be instantiated and called as such:

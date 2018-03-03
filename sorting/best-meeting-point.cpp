@@ -1,14 +1,19 @@
 //Best Meeting Point
-//A group of two or more people wants to meet and minimize the total travel distance. You are given a 2D grid of values 0 or 1, where each 1 marks the home of someone in the group. The distance is calculated using Manhattan Distance, where distance(p1, p2) = |p2.x - p1.x| + |p2.y - p1.y|.
+//A group of two or more people wants to meet and minimize the total travel
+//distance. You are given a 2D grid of values 0 or 1, where each 1 marks the
+//home of someone in the group. The distance is calculated using Manhattan
+//Distance, where distance(p1, p2) = |p2.x - p1.x| + |p2.y - p1.y|.
 //For example, given three people living at (0,0), (0,4), and (2,2):
 //1 - 0 - 0 - 0 - 1
 //|   |   |   |   |
 //0 - 0 - 0 - 0 - 0
 //|   |   |   |   |
 //0 - 0 - 1 - 0 - 0
-//The point (0,2) is an ideal meeting point, as the total travel distance of 2+2+2=6 is minimal. So return 6.
+//The point (0,2) is an ideal meeting point, as the total travel distance of
+//2+2+2=6 is minimal. So return 6.
 //Hint:
-//Try to solve it in one dimension first. How can this solution apply to the two dimension case?
+//Try to solve it in one dimension first. How can this solution apply to the
+//two dimension case?
 
 //######################################### #########################################
 //TC : O(nm)
@@ -96,9 +101,13 @@ public int minTotalDistance(List<Integer> grid) {
 }
 
 
-//As long as you have different numbers of people on your left and on your right, moving a little to the side with more people decreases the sum of distances. So to minimize it, you must have equally many people on your left and on your right. Same with above/below.
+//As long as you have different numbers of people on your left and on your
+//right, moving a little to the side with more people decreases the sum of
+//distances. So to minimize it, you must have equally many people on your left
+//and on your right. Same with above/below.
 //Two O(mn) solutions, both take 2ms.
-//The neat total += Z[hi--] - Z[lo++]-style summing is from larrywang2014's solution.
+//The neat total += Z[hi--] - Z[lo++]-style summing is from larrywang2014's
+//solution.
 //Originally I used total += abs(Z[i] - median)-style.
 
 //######################################### O(mn) #########################################
@@ -126,7 +135,8 @@ public int minTotalDistance(int[][] grid) {
 }
 
 //################################################### O(m+n) ###################################################
-//BucketSort-ish. Count how many people live in each row and each column. Only O(m+n) space.
+//BucketSort-ish. Count how many people live in each row and each column. Only
+//O(m+n) space.
 public int minTotalDistance(int[][] grid) {
     int m = grid.length, n = grid[0].length;
     int[] I = new int[m], J = new int[n];

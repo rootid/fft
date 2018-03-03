@@ -1,5 +1,7 @@
 //Permutation in String
-//Given two strings s1 and s2, write a function to return true if s2 contains the permutation of s1. In other words, one of the first string's permutations is the substring of the second string.
+//Given two strings s1 and s2, write a function to return true if s2 contains
+//the permutation of s1. In other words, one of the first string's permutations
+//is the substring of the second string.
 //Example 1:
 //Input:s1 = "ab" s2 = "eidbaooo"
 //Output:True
@@ -11,7 +13,7 @@
 //The input strings only contain lower case letters.
 //The length of both given strings is in range [1, 10,000].
 
-//####################### window solution ####################### 
+//####################### window solution #######################
 bool checkInclusion(string s1, string s2) {
     int s1s = s1.size(), s2s = s2.size(), start = 0, cnt = 0, arr[26] = {};
     for (auto l : s1) {
@@ -27,7 +29,7 @@ bool checkInclusion(string s1, string s2) {
     }
     return cnt == s1s; //cnt : window size
 }
-//####################### window solution ####################### 
+//####################### window solution #######################
 /**
  * 1. try find a window (i, j) where s2.substr(i, j + 1 - i) contains all chars in s1;
  * i.e. j+1-i = s1.size()
@@ -42,9 +44,9 @@ bool checkInclusion(string s1, string s2) {
     int left = s1.size();
     for (int i = 0, j = 0; j < s2.size(); j++) {
         if (cnts[s2[j]]-- > 0) { //j : determine rt limit of string
-            left--;  //move window 
+            left--;  //move window
         }
-        while (left == 0) { //found all chars 
+        while (left == 0) { //found all chars
             if (j + 1 - i == s1.size()) { //criteria : to make sure that we traversed the the string
                 return true;
             } if (++cnts[s2[i++]] > 0) { // i : denotes lt limit of string
@@ -54,7 +56,7 @@ bool checkInclusion(string s1, string s2) {
     }
     return false;
 }
-//####################### fix me ####################### 
+//####################### fix me #######################
 bool checkInclusion(string s1, string s2) {
   unordered_map<char,int> freq_map;
   for(auto c:s1) {
@@ -63,14 +65,14 @@ bool checkInclusion(string s1, string s2) {
   unordered_map<char,int> traverse_map;
   for(auto c:s2) {
     if(freq_map[c].count() > 0) {
-        //avoid repeated initilization 
+        //avoid repeated initilization
         //Idea
         //1. reduce the count for every char
         //
     }
   }
 }
-//###################### Anagram ###################### 
+//###################### Anagram ######################
 bool checkInclusion(string s1, string s2) {
     return findAnagrams(s2, s1).size();
 }
@@ -91,11 +93,11 @@ vector<int> findAnagrams(string s, string p) {
     }
     return result;
 }
-//###################### pytonic ###################### 
+//###################### pytonic ######################
 //class Solution(object):
 //    def checkInclusion(self, s1, s2):
 //        return len(self.minWindow(s2, s1)) == len(s1)
-//    
+//
 //    # Copied&pasted old problem's solution
 //    def minWindow(self, s, t):
 //        need, missing = collections.Counter(t), len(t)
@@ -111,4 +113,4 @@ vector<int> findAnagrams(string s, string p) {
 //                    I, J = i, j
 //        return s[I:J]
 //
-//    
+//

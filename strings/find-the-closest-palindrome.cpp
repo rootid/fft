@@ -1,17 +1,20 @@
 //Find the Closest Palindrome
-//Given an integer n, find the closest integer (not including itself), which is a palindrome.
-//The 'closest' is defined as absolute difference minimized between two integers.
+//Given an integer n, find the closest integer (not including itself), which is
+//a palindrome.
+//The 'closest' is defined as absolute difference minimized between two
+//integers.
 //Example 1:
 //Input: "123"
 //Output: "121"
 //Note:
-//The input n is a positive integer represented by string, whose length will not exceed 18.
+//The input n is a positive integer represented by string, whose length will
+//not exceed 18.
 //If there is a tie, return the smaller one as answer.
 
 
 
 //#################################################### compare only 5 nuos  ##########################################################
-string nearestPalindromic(string n) { 
+string nearestPalindromic(string n) {
   int l = n.size();
   set<long> candidates;
   // biggest, one more digit, 10...01
@@ -36,29 +39,29 @@ string nearestPalindromic(string n) {
           minVal = min(minVal, val);
       }
   }
-  return to_string(minVal); 
+  return to_string(minVal);
 }
 
 //#################################################### +1,-1 and 0 mid ##########################################################
-string makePalindromic(string s) { 
+string makePalindromic(string s) {
   for (int i = 0, j = (int)s.length() - 1; i < j; i++, j--)
     s[j] = s[i];
   return s;
 }
 
-string nearestPalindromic(string n) { 
-  if (n == "0") 
+string nearestPalindromic(string n) {
+  if (n == "0")
     return "1";
 
   long long orgVal = stoll(n);
-  
+
   // candidate #1 (ex: 123xx -> 12321, 123xxx -> 123321)
   string res = makePalindromic(n);
   long long resVal = stoll(res);
   long long diff = abs(resVal - orgVal);
-  
+
   long long scale = (long long)pow(10, (int)n.length() / 2);
-  
+
   // candidate #2 (ex: 123xx -> 12221, 123xxx -> 122221, 100xx -> 9999)
   string smaller = makePalindromic(to_string((orgVal / scale) * scale - 1)); //-1
   // candidate #3 (ex: 123xx -> 12421, 123xxx -> 124421, 99xx -> 10001)
@@ -73,16 +76,25 @@ string nearestPalindromic(string n) {
   long long biggerVal = stoll(bigger);
   if (abs(orgVal - biggerVal) < diff)
       res = bigger;
-  
+
   return res;
 }
 //#############################################################
 //
-//The basic idea is to find the smallest palindromic integer up > n and the largest palindromic integer low < n. This can be done by first adjust n into a palindrome number called pal by copying left half of n into right half in the mirror way. This pal may be smaller, equal or larger than n. Let us assume pal < n. Then pal = low.
-//To find up, just consider the left half of the low as an integer and add 1 into it, then copy this new left half into right half in the mirror way. For example, low = 1991, then up = 2002 as 19 + 1 = 20. Also, low = 292, then up = 303 as 29+1 = 30. For the special case if the left half of low is 9, 99, ..., the corresponding value is 11, 101, 1001, ...
-//For the case pal > n, the similar idea can apply. If pal = n, we need to find out low and up but using the same approach
+//The basic idea is to find the smallest palindromic integer up > n and the
+//largest palindromic integer low < n. This can be done by first adjust n into
+//a palindrome number called pal by copying left half of n into right half in
+//the mirror way. This pal may be smaller, equal or larger than n. Let us
+//assume pal < n. Then pal = low.
+//To find up, just consider the left half of the low as an integer and add 1
+//into it, then copy this new left half into right half in the mirror way. For
+//example, low = 1991, then up = 2002 as 19 + 1 = 20. Also, low = 292, then up
+//= 303 as 29+1 = 30. For the special case if the left half of low is 9, 99,
+//..., the corresponding value is 11, 101, 1001, ...
+//For the case pal > n, the similar idea can apply. If pal = n, we need to find
+//out low and up but using the same approach
    string palindromeStr(const string& s) {
-        int i = 0; 
+        int i = 0;
         int j = s.size() - 1;
         string ret = s;
         while (i<=j) {
@@ -92,10 +104,10 @@ string nearestPalindromic(string n) {
         }
         return ret;
     }
-    
+
     string dec2Palindrome(const string& s) {
         string pal = s;
-        int left = (int) (s.size() - 1) / 2; 
+        int left = (int) (s.size() - 1) / 2;
         int right = (int) s.size() / 2;
         while (left >= 0) {
             if (pal[left] > '0') {
@@ -116,11 +128,11 @@ string nearestPalindromic(string n) {
         }
         return pal;
     }
-    
+
     string inc2Palindrome(const string& s) {
         string pal = s;
-        int left = (int) (s.size() - 1) / 2; 
-        int right = (int) s.size() / 2; 
+        int left = (int) (s.size() - 1) / 2;
+        int right = (int) s.size() / 2;
         while (left >= 0) {
             if (pal[left] < '9') {
                 pal[left] = pal[left] + 1;
@@ -138,9 +150,9 @@ string nearestPalindromic(string n) {
             pal.back() = '1';
             pal.insert(pal.begin(), '1');
         }
-        return pal;        
+        return pal;
     }
-    
+
     string nearestPalindromic(string n) {
         if (n == "0") {
             return "-1";
@@ -153,10 +165,10 @@ string nearestPalindromic(string n) {
         string lowPal;
         string upPal;
         if (pal == n) {
-            //For n is a palindrome number, find the two closest palindrome integer, 
+            //For n is a palindrome number, find the two closest palindrome integer,
             //one is larger than n and the other is less than n
             lowPal = dec2Palindrome(n);
-            upPal = inc2Palindrome(n);            
+            upPal = inc2Palindrome(n);
         }
         //For the other cases, find the corresponding another palindrome integer
         else if (pal < n) {
@@ -176,8 +188,16 @@ string nearestPalindromic(string n) {
     }
 
 //#################################################  pytonic #####################################################
-//If the final answer has the same number of digits as the input string S, then the answer must be the middle digits + (-1, 0, or 1) flipped into a palindrome. For example, 23456 had middle part 234, and 233, 234, 235 flipped into a palindrome yields 23332, 23432, 23532. Given that we know the number of digits, the prefix 235 (for example) uniquely determines the corresponding palindrome 23532, so all palindromes with larger prefix like 23732 are strictly farther away from S than 23532 >= S.
-//If the final answer has a different number of digits, it must be of the form 999....999 or 1000...0001, as any palindrome smaller than 99....99 or bigger than 100....001 will be farther away from S.
+//If the final answer has the same number of digits as the input string S, then
+//the answer must be the middle digits + (-1, 0, or 1) flipped into a
+//palindrome. For example, 23456 had middle part 234, and 233, 234, 235 flipped
+//into a palindrome yields 23332, 23432, 23532. Given that we know the number
+//of digits, the prefix 235 (for example) uniquely determines the corresponding
+//palindrome 23532, so all palindromes with larger prefix like 23732 are
+//strictly farther away from S than 23532 >= S.
+//If the final answer has a different number of digits, it must be of the form
+//999....999 or 1000...0001, as any palindrome smaller than 99....99 or bigger
+//than 100....001 will be farther away from S.
 //def nearestPalindromic(self, S):
 //    K = len(S)
 //    candidates = [str(10**k + d) for k in (K-1, K) for d in (-1, 1)]
@@ -185,10 +205,10 @@ string nearestPalindromic(string n) {
 //    P = int(prefix)
 //    for start in map(str, (P-1, P, P+1)):
 //        candidates.append(start + (start[:-1] if K%2 else start)[::-1])
-//    
+//
 //    def delta(x):
 //        return abs(int(S) - int(x))
-//    
+//
 //    ans = None
 //    for cand in candidates:
 //        if cand != S and not cand.startswith('00'):
@@ -214,9 +234,9 @@ string nearestPalindromic(string n) {
 //  1           0 LOAD_NAME                0 (str)
 //              3 LOAD_CONST               5 (1000000001)
 //              6 CALL_FUNCTION            1
-//              9 POP_TOP             
+//              9 POP_TOP
 //             10 LOAD_CONST               3 (None)
-//             13 RETURN_VALUE        
+//             13 RETURN_VALUE
 //
 //class Solution(object):
 //    def nearestPalindromic(self, n):
@@ -236,7 +256,7 @@ string nearestPalindromic(string n) {
 //        return min(candidates, key=lambda x: (abs(int(x) - int(n)), int(x)))
 //
 //
-//########################################## With operator overloading ########################################## 
+//########################################## With operator overloading ##########################################
 string mathop(const string &s1, const string &s2, bool is_plus) {
     string result;
     for (int i1 = s1.size() - 1, i2 = s2.size() - 1, c = 0; i1 >= 0 || i2 >= 0 || c != 0; -- i1, -- i2) {
@@ -253,7 +273,7 @@ string mathop(const string &s1, const string &s2, bool is_plus) {
 string operator+(const string &s1, const string &s2) {
     return mathop(s1, s2, true);
 }
-string operator-(const string &s1, const string &s2) {   
+string operator-(const string &s1, const string &s2) {
    return mathop(s1, s2, false);
 }
 bool operator<(const string &s1, const string &s2) {
@@ -275,7 +295,7 @@ class Solution {
         else if (tag < 0)
         {
             result = s - midone;
-            if (result.size() % 2 == 1 && s.size() % 2 == 0) 
+            if (result.size() % 2 == 1 && s.size() % 2 == 0)
                 result[result.size()/2] = '9'; //Special case here.
         }
         for (int i = 0; i <= result.size()/2. - 1; ++i)
@@ -294,25 +314,25 @@ public:
 };
 
 //
-//###################################################### NEED to verify  ###################################################### 
+//###################################################### NEED to verify  ######################################################
 //https://discuss.leetcode.com/topic/88897/java-solution-with-detailed-proof
 public String nearestPalindromic(String n) {
     char[] arr = n.toCharArray();
     for (int i = 0, j = arr.length - 1; i < j; i++, j--) arr[j] = arr[i];
-        
+
     String curP = String.valueOf(arr);
     String preP = nearestPalindrom(curP, false);
     String nextP = nearestPalindrom(curP, true);
-        
+
     long num = Long.valueOf(n);
     long cur = Long.valueOf(curP);
     long pre = Long.valueOf(preP);
     long next = Long.valueOf(nextP);
-        
+
     long d1 = Math.abs(num - pre);
     long d2 = Math.abs(num - cur);
     long d3 = Math.abs(num - next);
-        
+
     if (num == cur) {
         return d1 <= d3 ? preP : nextP;
     } else if (num > cur) {
@@ -321,17 +341,17 @@ public String nearestPalindromic(String n) {
         return d1 <= d2 ? preP : curP;
     }
 }
-    
+
 private String nearestPalindrom(String curP, boolean dir) {
     int k = curP.length() >> 1, p = curP.length() - k;
     int l = Integer.valueOf(curP.substring(0, p));
     l += (dir ? 1 : -1);
-    	
+
     if (l == 0) return k == 0 ? "0" : "9";
-    	
+
     String left = String.valueOf(l);
     StringBuilder right = new StringBuilder(left).reverse();
     if (k > left.length()) right.append("9");
-    	
+
     return left + right.substring(right.length() - k);
 }

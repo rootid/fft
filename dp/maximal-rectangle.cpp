@@ -1,5 +1,6 @@
 //Maximal Rectangle
-//Given a 2D binary matrix filled with 0's and 1's, find the largest rectangle containing only 1's and return its area.
+//Given a 2D binary matrix filled with 0's and 1's, find the largest rectangle
+//containing only 1's and return its area.
 //For example, given the following matrix:
 //1 0 1 0 0
 //1 0 1 1 1
@@ -7,10 +8,12 @@
 //1 0 0 1 0
 //Return 6.
 //
-//############################################ stack   ################################  
-//maintain a row length of Integer array H recorded its height of '1's, and scan and update row by row to find out the largest rectangle of each row.
+//############################################ stack   ################################
+//maintain a row length of Integer array H recorded its height of '1's, and
+//scan and update row by row to find out the largest rectangle of each row.
 //For each row, if matrix[row][i] == '1'. H[i] +=1, or reset the H[i] to zero.
-//and accroding the algorithm of [Largest Rectangle in Histogram], to update the maximum area.
+//and accroding the algorithm of [Largest Rectangle in Histogram], to update
+//the maximum area.
 int maximalRectangle(vector<vector<char> > &matrix) {
     if(matrix.empty()) {
         return 0;
@@ -42,9 +45,10 @@ int maximalRectangle(vector<vector<char> > &matrix) {
     return ret;
 }
 
-//################################################### DP  ################################################### 
-//height counts the number of successive '1's above (plus the current one). 
-//The value of left & right means the boundaries of the rectangle which contains the current point with a height of value height.
+//################################################### DP  ###################################################
+//height counts the number of successive '1's above (plus the current one).
+//The value of left & right means the boundaries of the rectangle which
+//contains the current point with a height of value height.
 //
 //
 //matrix
@@ -52,7 +56,9 @@ int maximalRectangle(vector<vector<char> > &matrix) {
 //0 0 1 1 1 0 0
 //0 1 1 1 1 1 0
 //height means from top to this position, there are how many '1'
-//left means at current position, what is the index of left bound of the rectangle with height[j]. 0 means at this position, no rectangle. (现在这个矩形的左边的下标)
+//left means at current position, what is the index of left bound of the
+//rectangle with height[j]. 0 means at this position, no rectangle.
+//(现在这个矩形的左边的下标)
 //right means the right bound index of this rectangle. 'n' means no rectangle.
 //0th row: 0 0 0 1 0 0 0
 //height: 0 0 0 1 0 0 0
@@ -60,7 +66,7 @@ int maximalRectangle(vector<vector<char> > &matrix) {
 //right 7 7 7 4 7 7 7
 //
 //1st row: 0 0 1 1 1 0 0
-//height: 0 0 1 2 1 0 0 
+//height: 0 0 1 2 1 0 0
 //left: 0 0 2 3 2 0 0
 //right: 7 7 5 4 5 7 7
 //
@@ -88,44 +94,44 @@ int maximalRectangle(vector<vector<char> > &matrix) {
 //1th area:                      2th area:
 //                                       ***
 //0  0  0  1  0  0  0            0  0  0 *1* 0  0  0
-//     *********                         * *      
+//     *********                         * *
 //0  0 *1  1  1* 0  0            0  0  1 *1* 1  0  0
-//     *********                         ***            
+//     *********                         ***
 //0  1  1  1  1  1  0            0  1  1  1  1  1  0
 //
-//3th area: 
-//                                   
-//0  0  0  1  0  0  0            
-//     *********                               
-//0  0 *1  1  1* 0  0           
-//     ********* 
-//0  1  1  1  1  1  0   
+//3th area:
+//
+//0  0  0  1  0  0  0
+//     *********
+//0  0 *1  1  1* 0  0
+//     *********
+//0  1  1  1  1  1  0
 //
 //#the 3th row: calculate the are from left to right
-//1th area:                      2th area:                
+//1th area:                      2th area:
 //
-//0  0  0  1  0  0  0            0  0  0  1  0  0  0   
+//0  0  0  1  0  0  0            0  0  0  1  0  0  0
 //                                    *********
 //0  0  1  1  1  0  0            0  0 *1  1  1* 0  0
 //  ***************                   *       *
 //0 *1  1  1  1  1* 0            0  1 *1  1  1* 1  0
 //  ***************                   *********
-//3th area:                      4th area:                
+//3th area:                      4th area:
 //        ***
-//0  0  0 *1* 0  0  0            0  0  0  1  0  0  0   
+//0  0  0 *1* 0  0  0            0  0  0  1  0  0  0
 //        * *                         *********
 //0  0  1 *1* 1  0  0            0  0 *1  1  1* 0  0
 //        * *                         *       *
 //0  1  1 *1* 1  1  0            0  1 *1  1  1* 1  0
 //        ***                         *********
-//5th area:                                     
+//5th area:
 //
-//0  0  0  1  0  0  0          
-//                                   
-//0  0  1  1  1  0  0         
-//  ***************               
-//0 *1  1  1  1  1* 0          
-//  ***************           
+//0  0  0  1  0  0  0
+//
+//0  0  1  1  1  0  0
+//  ***************
+//0 *1  1  1  1  1* 0
+//  ***************
 int maximalRectangle(vector<vector<char>>& matrix) {
   if(matrix.empty()) return 0;
   const int m = matrix.size();
@@ -134,9 +140,9 @@ int maximalRectangle(vector<vector<char>>& matrix) {
   fill_n(left,n,0); fill_n(right,n,n); fill_n(height,n,0);
   int maxA = 0;
   for(int i=0; i<m; i++) {
-      int cur_left=0, cur_right=n-1; 
+      int cur_left=0, cur_right=n-1;
       for(int j=0; j<n; j++) { // compute height (can do this from either side)
-          if(matrix[i][j]=='1') height[j]++; 
+          if(matrix[i][j]=='1') height[j]++;
           else height[j]=0;
       }
       for(int j=0; j<n; j++) { // compute left (from left to right)
@@ -146,7 +152,7 @@ int maximalRectangle(vector<vector<char>>& matrix) {
       // compute right (from right to left)
       for(int j=n-1; j>=0; j--) {
           if(matrix[i][j]=='1') right[j]=min(right[j],cur_right);
-          else {right[j]=n-1; cur_right=j-1;}    
+          else {right[j]=n-1; cur_right=j-1;}
       }
       // compute the area of rectangle (can do this from either side)
       for(int j=0; j<n; j++)
@@ -155,7 +161,7 @@ int maximalRectangle(vector<vector<char>>& matrix) {
   return maxA;
 }
 
-//######################################## pytonic  ######################################## 
+//######################################## pytonic  ########################################
 //def maximalRectangle(self, matrix):
 //    if not matrix or not matrix[0]:
 //        return 0
@@ -174,4 +180,7 @@ int maximalRectangle(vector<vector<char>>& matrix) {
 //            stack.append(i)
 //    return ans
 //
-//The solution is based on largest rectangle in histogram solution. Every row in the matrix is viewed as the ground with some buildings on it. The building height is the count of consecutive 1s from that row to above rows. The rest is then the same as this solution for largest rectangle in histogram
+//The solution is based on largest rectangle in histogram solution. Every row
+//in the matrix is viewed as the ground with some buildings on it. The building
+//height is the count of consecutive 1s from that row to above rows. The rest
+//is then the same as this solution for largest rectangle in histogram

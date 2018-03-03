@@ -1,17 +1,19 @@
 //Single Number II
-//Given an array of integers, every element appears three times except for one, which appears exactly once. Find that single one.
+//Given an array of integers, every element appears three times except for one,
+//which appears exactly once. Find that single one.
 //Note:
-//Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
+//Your algorithm should have a linear runtime complexity. Could you implement
+//it without using extra memory?
 
 #include "../headers/global.hpp"
 
-//######################################### Count # of set bit ######################################### 
+//######################################### Count # of set bit #########################################
 public int singleNumber(int[] nums) {
     int result = 0;
     int k = 3; //# is repeated 3 times
     for(int i=0;i<32;i++) {
         int sum = 0;
-        for(int num:nums) 
+        for(int num:nums)
             if((num >>> i & 1) == 1) sum++; //only right bit shift worked
         sum = sum % k;
         result |= sum << i;
@@ -19,7 +21,7 @@ public int singleNumber(int[] nums) {
     return result;
 }
 
-//######################################### Count # of set bit ######################################### 
+//######################################### Count # of set bit #########################################
 int singleNumber(int[] nums) {
 	int result = 0;
 	int k = 3;
@@ -27,14 +29,14 @@ int singleNumber(int[] nums) {
 	for(int i=0;i<32;i++) {
 		x = 1 << i;	 //set i-th bit
 		int sum = 0;
-		for(int num:nums) 
+		for(int num:nums)
 			if((num & x) == 1) sum++;
 		if(sum % k == 1) result |= x; //set i-th bit
 	}
 	return result;
 }
 
-//######################################### Count # of bits ######################################### 
+//######################################### Count # of bits #########################################
 int singleNumber(vector<int>& nums) {
     int number = 0;
     int idx;
@@ -43,7 +45,7 @@ int singleNumber(vector<int>& nums) {
     for(auto &c:nums) {
       idx = 0;
       while(idx < 32) {
-        if(c & (1 << idx)) { 
+        if(c & (1 << idx)) {
           bit_count[idx] += 1;
           bit_count[idx] %= k;
         }

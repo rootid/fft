@@ -1,10 +1,14 @@
 //Gas Station
-//There are N gas stations along a circular route, where the amount of gas at station i is gas[i].
-//You have a car with an unlimited gas tank and it costs cost[i] of gas to travel from station i to its next station (i+1). You begin the journey with an empty tank at one of the gas stations.
-//Return the starting gas station's index if you can travel around the circuit once, otherwise return -1.
+//There are N gas stations along a circular route, where the amount of gas at
+//station i is gas[i].
+//You have a car with an unlimited gas tank and it costs cost[i] of gas to
+//travel from station i to its next station (i+1). You begin the journey with
+//an empty tank at one of the gas stations.
+//Return the starting gas station's index if you can travel around the circuit
+//once, otherwise return -1.
 //Note:
 //The solution is guaranteed to be unique.
-//####################### Please NOTE : solution is guaranteed to be unique. ####################### 
+//####################### Please NOTE : solution is guaranteed to be unique. #######################
 // if the sum of gas is greater than the sum of cost, then there's a solution
 // the start station of the solution exists after the greatest net deficit(GND) station
 // 0-------k--n  given net[0-n] > 0,  station k is GND

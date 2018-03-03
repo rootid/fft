@@ -3,14 +3,16 @@
 //What if duplicates are allowed at most twice?
 //For example,
 //Given sorted array nums = [1,1,1,2,2,3],
-//Your function should return length = 5, with the first five elements of nums being 1, 1, 2, 2 and 3. It doesn't matter what you leave beyond the new length.
+//Your function should return length = 5, with the first five elements of nums
+//being 1, 1, 2, 2 and 3. It doesn't matter what you leave beyond the new
+//length.
 
 #include "../headers/global.hpp"
 
 //#################################################################################
 public int removeDuplicates(int[] nums) {
     int lastIdx = 0;
-    for(int i=0;i<nums.length;i++)  { 
+    for(int i=0;i<nums.length;i++)  {
        // nums[i] > nums[lastIdx - 2] : (1,1,3) current element differ from last 2 elements
        if(lastIdx < 2 || nums[i] > nums[lastIdx - 2]) nums[lastIdx++] = nums[i];
     }

@@ -1,7 +1,10 @@
 //Maximum Length of Pair Chain
-//You are given n pairs of numbers. In every pair, the first number is always smaller than the second number.
-//Now, we define a pair (c, d) can follow another pair (a, b) if and only if b < c. Chain of pairs can be formed in this fashion.
-//Given a set of pairs, find the length longest chain which can be formed. You needn't use up all the given pairs. You can select pairs in any order.
+//You are given n pairs of numbers. In every pair, the first number is always
+//smaller than the second number.
+//Now, we define a pair (c, d) can follow another pair (a, b) if and only if b
+//< c. Chain of pairs can be formed in this fashion.
+//Given a set of pairs, find the length longest chain which can be formed. You
+//needn't use up all the given pairs. You can select pairs in any order.
 //Example 1:
 //Input: [[1,2], [2,3], [3,4]]
 //Output: 2
@@ -9,7 +12,7 @@
 //Note:
 //The number of given pairs will be in the range [1, 1000].
 
-//############################### O(n log n) ############################### 
+//############################### O(n log n) ###############################
 class Solution {
 public:
     int findLongestChain(vector<vector<int>>& pairs) {
@@ -33,7 +36,7 @@ private:
 };
 
 
-//############################### O(n log n) ############################### 
+//############################### O(n log n) ###############################
 public int findLongestChain(int[][] pairs) {
     Arrays.sort(pairs, (p1,p2)->p1[1]-p2[1] );
     int count = 0, end = Integer.MIN_VALUE;
@@ -47,15 +50,18 @@ public int findLongestChain(int[][] pairs) {
 }
 
 
-//######################################### Pythonic  ######################################### 
-//######################################### DP + O(n log n) /######################################### 
+//######################################### Pythonic  #########################################
+//######################################### DP + O(n log n) /#########################################
 //Let's remember dp[k] = the lowest right-coordinate of the chain of length k.
-//Now, let's process elements (x, y) of A in ascending order of right-coordinate.
-//The best way to explain the following code is a worked example on [[1,2],[2,3],[3,4]].
+//Now, let's process elements (x, y) of A in ascending order of
+//right-coordinate.
+//The best way to explain the following code is a worked example on
+//[[1,2],[2,3],[3,4]].
 //After [1, 2], dp = [-inf, 2]
-//After [2, 3], dp = [-inf, 2] : we cannot extend [2, 3] onto [1, 2], 
+//After [2, 3], dp = [-inf, 2] : we cannot extend [2, 3] onto [1, 2],
 //	  and the length-1 chain ending in 2 dominates the chain [[2,3]] ending in 3.
-//After [3, 4], dp = [-inf, 2, 4] : we can extend the chain ending in 2 to be a chain one larger ending in 4.
+//After [3, 4], dp = [-inf, 2, 4] : we can extend the chain ending in 2 to be a
+//chain one larger ending in 4.
 def findLongestChain(self, A):
     dp = [float('-inf')]
     for x, y in sorted(A, key = lambda z: z[1]):
@@ -67,7 +73,7 @@ def findLongestChain(self, A):
     return len(dp) - 1
 
 //############################### DP ################################
-//T : O(N^2) S : O(N) 
+//T : O(N^2) S : O(N)
 //sort the array and apply LIS algorithm over it.
 class Solution:
     def findLongestChain(self, pairs):
@@ -80,5 +86,5 @@ class Solution:
         for i in range(1, len(pairs)):
             for j in range(i):
                 LIS[i] = max(LIS[i], LIS[j]+1) if pairs[j][1] < pairs[i][0] else LIS[i]
-        return LIS[-1]			
+        return LIS[-1]
 

@@ -1,6 +1,9 @@
-//Given a string containing just the characters '(' and ')', find the length of the longest valid (well-formed) parentheses substring.
-//For "(()", the longest valid parentheses substring is "()", which has length = 2.
-//Another example is ")()())", where the longest valid parentheses substring is "()()", which has length = 4.
+//Given a string containing just the characters '(' and ')', find the length of
+//the longest valid (well-formed) parentheses substring.
+//For "(()", the longest valid parentheses substring is "()", which has length
+//= 2.
+//Another example is ")()())", where the longest valid parentheses substring is
+//"()()", which has length = 4.
 
 #include "../headers/global.hpp"
 
@@ -11,7 +14,7 @@ int longestValidParentheses(string s) {
     int len = s.size();
     for (int idx=0;idx<len;idx++) {
           if(s[idx] == '(') {
-             stack.push(idx);     
+             stack.push(idx);
           } else {
               if(!stack.empty()) {
                   if( s[stack.top()] == '(' ) {
@@ -19,7 +22,7 @@ int longestValidParentheses(string s) {
                   } else {
                       stack.push(idx);
                   }
-              } 
+              }
               else {
                  stack.push(idx);
               }
@@ -27,7 +30,7 @@ int longestValidParentheses(string s) {
     }
     if(stack.empty()) {
         return len;
-    } 
+    }
     int a = len;
     while(!stack.empty()) {
         int b = stack.top();

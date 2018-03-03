@@ -1,7 +1,11 @@
 //LRU Cache
-//Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and put.
-//get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.
-//put(key, value) - Set or insert the value if the key is not already present. When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.
+//Design and implement a data structure for Least Recently Used (LRU) cache. It
+//should support the following operations: get and put.
+//get(key) - Get the value (will always be positive) of the key if the key
+//exists in the cache, otherwise return -1.
+//put(key, value) - Set or insert the value if the key is not already present.
+//When the cache reached its capacity, it should invalidate the least recently
+//used item before inserting a new item.
 //Follow up:
 //Could you do both operations in O(1) time complexity?
 //Example:
@@ -24,12 +28,12 @@
  */
 
 
-//######################################### LinkedHashMap ######################################### 
+//######################################### LinkedHashMap #########################################
 public class LRUCache {
 	//LinkedHashMap : hashMap with DLL
     LinkedHashMap<Integer,Integer> cache=new LinkedHashMap<>();
     int cap=0;
-    
+
     public LRUCache(int capacity) {
         cap=capacity;
     }
@@ -55,12 +59,14 @@ public class LRUCache {
 }
 
 
-//######################################### DLL + HAshTable ######################################### 
-//the "head" node is a pseudo node that marks the head. The double linked list can be represented 
+//######################################### DLL + HAshTable #########################################
+//the "head" node is a pseudo node that marks the head. The double linked list
+//can be represented
 //as head (pseudo) <--> head <--> ....tail <--> tail (pseudo)
-//by adding two pseudo nodes to make the boundaries, we could reduce the 
-//boundary checking code such as if (head != null), making the code more concise and also more efficient.
-private Hashtable<Integer, DLinkedNode> 
+//by adding two pseudo nodes to make the boundaries, we could reduce the
+//boundary checking code such as if (head != null), making the code more
+//concise and also more efficient.
+private Hashtable<Integer, DLinkedNode>
 	cache = new Hashtable<Integer, DLinkedNode>();
 private int count;
 private int capacity;
@@ -69,14 +75,14 @@ private DLinkedNode head, tail;
 public LRUCache(int capacity) {
 	this.count = 0;
 	this.capacity = capacity;
-	
+
 	//Add dummy nodes at head and tail
 	head = new DLinkedNode();
 	head.pre = null;
-	
+
 	tail = new DLinkedNode();
 	tail.post = null;
-	
+
 	head.post = tail;
 	tail.pre = head;
 }
@@ -97,12 +103,12 @@ public void put(int key, int value) {
 		DLinkedNode newNode = new DLinkedNode();
 		newNode.key = key;
 		newNode.value = value;
-		
+
 		this.cache.put(key, newNode);
 		this.addNode(newNode);
-		
+
 		++count;
-		
+
 		if(count > capacity){
 			// pop the tail
 			DLinkedNode tail = this.popTail();
@@ -130,7 +136,7 @@ class DLinkedNode {
 private void addNode(DLinkedNode node){
 	node.pre = head;
 	node.post = head.post;
-	
+
 	head.post.pre = node;
 	head.post = node;
 }
@@ -153,7 +159,7 @@ private void moveToHead(DLinkedNode node){
 	this.addNode(node);
 }
 
-// pop the current tail. 
+// pop the current tail.
 private DLinkedNode popTail(){
 	DLinkedNode res = tail.pre;
 	this.removeNode(res);
@@ -161,7 +167,7 @@ private DLinkedNode popTail(){
 }
 
 
-//######################################### HashMap + LL ######################################### 
+//######################################### HashMap + LL #########################################
 class LRUCache{
 
 private:
@@ -175,14 +181,14 @@ public:
         this->capacity = capacity;
     }
     int get(int key) {
-        if(mp.count(key)) { 
+        if(mp.count(key)) {
           moveToEnd(key); //key exists move the page to end
           return mp[key];
         }
         return -1;
     }
     void put(int key, int value) {
-        if(mp.count(key)) {    
+        if(mp.count(key)) {
             mp[key] = value; //key exists move the page to end
             moveToEnd(key);
         } else if(mp.size()<capacity) {

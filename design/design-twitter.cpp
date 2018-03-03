@@ -1,7 +1,12 @@
 //Design Twitter
-//Design a simplified version of Twitter where users can post tweets, follow/unfollow another user and is able to see the 10 most recent tweets in the user's news feed. Your design should support the following methods:
+//Design a simplified version of Twitter where users can post tweets,
+//follow/unfollow another user and is able to see the 10 most recent tweets in
+//the user's news feed. Your design should support the following methods:
 //postTweet(userId, tweetId): Compose a new tweet.
-//getNewsFeed(userId): Retrieve the 10 most recent tweet ids in the user's news feed. Each item in the news feed must be posted by users who the user followed or by the user herself. Tweets must be ordered from most recent to least recent.
+//getNewsFeed(userId): Retrieve the 10 most recent tweet ids in the user's news
+//feed. Each item in the news feed must be posted by users who the user
+//followed or by the user herself. Tweets must be ordered from most recent to
+//least recent.
 //follow(followerId, followeeId): Follower follows a followee.
 //unfollow(followerId, followeeId): Follower unfollows a followee.
 //Example:
@@ -23,7 +28,7 @@
 //// since user 1 is no longer following user 2.
 //twitter.getNewsFeed(1);
 
-//############################################################# struct approach ############################################################# 
+//############################################################# struct approach #############################################################
 class Twitter {
     struct Tweet {
         int time;
@@ -35,9 +40,10 @@ class Twitter {
     unordered_map<int, unordered_set<int>> following_map; // [u] = array of users followed by u
     int time;
 
-//Use std::vector to store tweets, 
-//std::unordered_set to store followed users, 
-//std::unordered_map to associate each user with their tweets and followed users.
+//Use std::vector to store tweets,
+//std::unordered_set to store followed users,
+//std::unordered_map to associate each user with their tweets and followed
+//users.
 
 public:
     Twitter() : time(0) {}
@@ -91,7 +97,7 @@ public:
 };
 
 
-//################################################### Friend approach ################################################### 
+//################################################### Friend approach ###################################################
 class Tweet {
     friend class Twitter;
     friend class Compare;
@@ -115,13 +121,13 @@ private:
     unordered_map<int, vector<Tweet>> tweets;
 public:
     Twitter( int time=0) : time(time) {
-        
+
     }
-    
+
     void postTweet(int userId, int tweetId) {
         tweets[userId].insert(tweets[userId].begin(),Tweet(tweetId,time++));
     }
-    
+
     vector<int> getNewsFeed(int userId) {
 
         priority_queue<pair<vector<Tweet>::iterator,vector<Tweet>::iterator>, vector<pair<vector<Tweet>::iterator,vector<Tweet>::iterator>>, Compare> pq;
@@ -140,18 +146,18 @@ public:
         }
         return res;
     }
-    
+
     void follow(int followerId, int followeeId) {
         if (followerId != followeeId) followmap[followerId].insert(followeeId);
     }
-    
+
     void unfollow(int followerId, int followeeId) {
         if (followmap.count(followerId)) followmap[followerId].erase(followeeId);
     }
 };
 
 
-//######################################## pytonic ######################################## 
+//######################################## pytonic ########################################
 
 //class Twitter(object):
 //
@@ -175,7 +181,8 @@ public:
 //
 //
 //
-//You could've used a heap in which you store only the heads and then do 10 extractions (similar to what we do when we merge k sorted linked lists
+//You could've used a heap in which you store only the heads and then do 10
+//extractions (similar to what we do when we merge k sorted linked lists
 //
 //import heapq
 //
@@ -185,13 +192,13 @@ public:
 //        self.time = 0
 //        self.tweets = {}
 //        self.followee = {}
-//        
+//
 //
 //    def postTweet(self, user, tweet):
 //        self.time += 1
 //        self.tweets[user] = self.tweets.get(user, []) + [(-self.time,  tweet)]
-//        
-//        
+//
+//
 //
 //    def getNewsFeed(self, user):
 //        h, tweets = [], self.tweets
@@ -210,13 +217,13 @@ public:
 //                    new_time, new_tweet = tweets[person][idx-1]
 //                    heapq.heappush(h, (new_time, new_tweet, person, idx - 1))
 //        return news
-//        
-//        
+//
+//
 //
 //    def follow(self, follower, other):
 //        self.followee[follower] = self.followee.get(follower, set()) | set([other])
-//        
-//        
+//
+//
 //
 //    def unfollow(self, follower, other):
 //        if follower in self.followee:

@@ -7,14 +7,15 @@
 //  9  20
 //    /  \
 //   15   7
-//There are two left leaves in the binary tree, with values 9 and 15 respectively. Return 24.
+//There are two left leaves in the binary tree, with values 9 and 15
+//respectively. Return 24.
 
 #include<iostream>
 #include "../headers/treenode.h"
 using namespace std;
 
 
-//######################################### Recursion ######################################### 
+//######################################### Recursion #########################################
 public int sumOfLeftLeaves(TreeNode root) {
     return sumOfLeftLeavesHelper(root, false);
 }
@@ -25,7 +26,7 @@ private int sumOfLeftLeavesHelper(TreeNode root, boolean isLeftLeaf) {
         sum += sumOfLeftLeavesHelper(root.left, true) + sumOfLeftLeavesHelper(root.right, false);
         if(root.left == null && root.right == null && isLeftLeaf) return root.val;
         else return sum;
-    }   
+    }
     return sum;
 }
 
@@ -37,7 +38,7 @@ int sumOfLeftLeavesHelper(TreeNode *root,bool isLeftLeaf) {
   if(!root->left && !root->right) {
     if(isLeftLeaf == true) {
       return root->val;
-    } 
+    }
     return 0;
   }
   return sumOfLeftLeavesHelper(root->left,true) + sumOfLeftLeavesHelper(root->right,false);
@@ -53,19 +54,19 @@ int sumOfLeftLeaves_1(TreeNode* root) {
   }
   if( root->left != NULL  && root->left->left == NULL && root->left->right == NULL) {
       return root->left->val + sumOfLeftLeaves_1(root->right);
-  } 
+  }
   return sumOfLeftLeaves_1(root->left) + sumOfLeftLeaves_1(root->right);
 }
 
 int BFSSoln (TreeNode* root) {
-   
+
   if(root == NULL || root->left == NULL && root->right == NULL)  {
     return 0;
   }
   int res = 0;
   queue<TreeNode*> queue;
   queue.push(root);
-  
+
   while(!queue.empty()) {
       TreeNode* curr = queue.front();
       queue.pop();
@@ -75,7 +76,7 @@ int BFSSoln (TreeNode* root) {
       if(curr->left != null) {
         queue.push(curr->left);
       }
-      if(curr->right != null) { 
+      if(curr->right != null) {
         queue.push(curr->right);
       }
   }

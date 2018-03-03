@@ -1,5 +1,6 @@
 //Given an array of integers A and let n to be its length.
-//Assume Bk to be an array obtained by rotating the array A k positions clock-wise, we define a "rotation function" F on A as follow:
+//Assume Bk to be an array obtained by rotating the array A k positions
+//clock-wise, we define a "rotation function" F on A as follow:
 //F(k) = 0 * Bk[0] + 1 * Bk[1] + ... + (n-1) * Bk[n-1].
 //Calculate the maximum value of F(0), F(1), ..., F(n-1).
 //Note:
@@ -22,29 +23,29 @@
 //f(0) -> f(1) -> f(2) -> f(3)
 //f(i) = f(i - 1) - SUM(A -> D) + N * A[i - 1]
 
-//######################################### DP ######################################### 
+//######################################### DP #########################################
  public int maxRotateFunction(int[] A) {
-        
+
         int n = A.length;
         int sum = IntStream.of(A).sum();
         int result = 0;
         int tmp = 0;
-        int pastResult = result; 
-        
+        int pastResult = result;
+
         for(int i=1;i<n;i++) {
             result += A[i] * (i);
         }
-       
+
         for(int i=1;i<n;i++) {
             tmp = pastResult + sum - n * A[n-i];
             result = Math.max(result, tmp);
             pastResult = tmp;
         }
-        
+
         return Math.max(result, pastResult);
     }
 
-//######################################### DP ######################################### 
+//######################################### DP #########################################
 int maxRotateFunction(vector<int>& A) {
      int sum = 0;
      int la = A.size();

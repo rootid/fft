@@ -1,5 +1,9 @@
 //Create Maximum Number
-//Given two arrays of length m and n with digits 0-9 representing two numbers. Create the maximum number of length k <= m + n from digits of the two. The relative order of the digits from the same array must be preserved. Return an array of the k digits. You should try to optimize your time and space complexity.
+//Given two arrays of length m and n with digits 0-9 representing two numbers.
+//Create the maximum number of length k <= m + n from digits of the two. The
+//relative order of the digits from the same array must be preserved. Return an
+//array of the k digits. You should try to optimize your time and space
+//complexity.
 //Example 1:
 //nums1 = [3, 4, 6, 5]
 //nums2 = [9, 1, 2, 5, 8, 3]
@@ -17,10 +21,13 @@
 //return [9, 8, 9]
 
 
-//To create max number of length k from two arrays, you need to create max number of length i from array one and max number of length k-i from array two, then combine them together. After trying all possible i, you will get the max number created from two arrays.
+//To create max number of length k from two arrays, you need to create max
+//number of length i from array one and max number of length k-i from array
+//two, then combine them together. After trying all possible i, you will get
+//the max number created from two arrays.
 //
 
-//######################################## O(n+m)^3 ######################################## 
+//######################################## O(n+m)^3 ########################################
 class Solution {
 public:
     #define MIN(a,b) (a<b?a:b)
@@ -85,7 +92,7 @@ public:
     		else result[i++] = num2[k++];
     	}
     }
-    
+
     vector<int> maxNumber(vector<int>& nums1, vector<int>& nums2, int k){
     	int soi = sizeof(int), len1 = nums1.size(), len2 = nums2.size(), step = k*soi;
     	int minL1 = MAX(0, k - len2), maxL1 = MIN(k, len1), minL2 = k - maxL1, maxL2 = k - minL1, range = maxL1 - minL1 + 1;
@@ -113,14 +120,14 @@ public:
     	return resv;
     }
 };
-//######################################## O(n+m)^3 ######################################## 
+//######################################## O(n+m)^3 ########################################
 class Solution {
 public:
     vector<int> maxNumber(vector<int>& nums1, vector<int>& nums2, int k) {
         vector<int> result(k), tmp_result(k);
         vector<vector<int> > max_num1(k + 1), max_num2(k + 1);
         //generate max numbers of size k
-        genDP(nums1, max_num1, k);  
+        genDP(nums1, max_num1, k);
         genDP(nums2, max_num2, k);
         for(int i = 0; i <= k; i++) {
             if(max_num1[i].size() + max_num2[k - i].size() < k)
@@ -131,7 +138,7 @@ public:
         }
         return result;
     }
-    
+
 private:
     void genDP(vector<int>& nums, vector<vector<int> >& max_num, int k) {
         int i, start;
@@ -142,7 +149,7 @@ private:
             nums.erase(nums.begin() + i);
         }
     }
-    
+
     void merge(vector<int>& tmp_result, vector<vector<int> >& max_num1, vector<vector<int> >& max_num2, int n, int k) {
         int i, j, ii, jj;
         for(i = j = 0; i < max_num1[n].size() && j < max_num2[k - n].size(); ) {
@@ -157,7 +164,7 @@ private:
         for( ; j < max_num2[k - n].size(); j++)
             tmp_result[i + j] = max_num2[k - n][j];
     }
-    
+
     bool smaller(vector<int>& result, vector<int>& tmp_result) {
         int i;
         for(i = 0; i < result.size() && result[i] == tmp_result[i]; i++);
@@ -167,16 +174,16 @@ private:
     }
 };
 
-//######################################## O(n+m)^3 ######################################## 
+//######################################## O(n+m)^3 ########################################
 class Solution {
 private:
     //get the max k-length number of array nums ...
     vector<int> helper(vector<int>& nums, int k) {
         int n=nums.size();
-        int j=0; // the count of the stacked array 
+        int j=0; // the count of the stacked array
         vector<int> result(k,0);
         for(int i=0; i<n; i++){
-            //result[j-1] stores the top of the stack 
+            //result[j-1] stores the top of the stack
             while(j>0 && n-i+j>k && nums[i]>result[j-1])  j--;
             if(j<k) result[j++]=nums[i];
         }
@@ -191,7 +198,7 @@ private:
         for(auto num:nums2)  num_str2 << num;
         str1= num_str1.str();
         str2= num_str2.str();
-        for(int i=0, j=0, r=0; r<k; r++) { 
+        for(int i=0, j=0, r=0; r<k; r++) {
           //pick max char between str1 and str2
           result[r] = str1.substr(i).compare(str2.substr(j)) > 0 ? nums1[i++] : nums2[j++];
         }

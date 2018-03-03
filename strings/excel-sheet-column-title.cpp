@@ -1,5 +1,6 @@
 //Excel Sheet Column Title
-//Given a positive integer, return its corresponding column title as appear in an Excel sheet.
+//Given a positive integer, return its corresponding column title as appear in
+//an Excel sheet.
 //For example:
 //    1 -> A
 //    2 -> B
@@ -7,7 +8,7 @@
 //    ...
 //    26 -> Z
 //    27 -> AA
-//    28 -> AB 
+//    28 -> AB
 #include<iostream>
 #include<assert.h>
 #include<string>
@@ -15,7 +16,7 @@
 using namespace std;
 
 
-//######################################### Iteration ######################################### 
+//######################################### Iteration #########################################
 public static String convertToTitle(int n) {
     String result = "";
     while(n > 0) {
@@ -27,12 +28,12 @@ public static String convertToTitle(int n) {
     return new StringBuffer(result).reverse().toString();
 }
 
-//######################################### Recursion ######################################### 
+//######################################### Recursion #########################################
 String convertToTitle(int n) {
   return n == 0 ? "" : convertToTitle((n - 1) / 26) + (char) ((n - 1) % 26 + 'A') ;
 }
 
-//######################################### Iteration ######################################### 
+//######################################### Iteration #########################################
 string convertToTitle(int n) {
     string title;
     assert(n > 0);

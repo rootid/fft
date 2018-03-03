@@ -1,6 +1,8 @@
 //Count of Range Sum
-//Given an integer array nums, return the number of range sums that lie in [lower, upper] inclusive.
-//Range sum S(i, j) is defined as the sum of the elements in nums between indices i and j (i ≤ j), inclusive.
+//Given an integer array nums, return the number of range sums that lie in
+//[lower, upper] inclusive.
+//Range sum S(i, j) is defined as the sum of the elements in nums between
+//indices i and j (i ≤ j), inclusive.
 //Note:
 //A naive algorithm of O(n2) is trivial. You MUST do better than that.
 //Example:
@@ -8,56 +10,59 @@
 //	  Return 3.
 //	  The three ranges are : [0, 0], [2, 2], [0, 2] and their respective sums are: -2, -1, 2
 
-//######################################### Merge Sort ######################################### 
-//y implementation of this algorithm in Java with manual merging subroutine (had to use long for prefix, as some testcases contain Integer.MAX_VALUE and Integer.MIN_VALUE instances). O(n log n) time, O(n) heap space, O(log n) stack space.
+//######################################### Merge Sort #########################################
+//y implementation of this algorithm in Java with manual merging subroutine
+//(had to use long for prefix, as some testcases contain Integer.MAX_VALUE and
+//Integer.MIN_VALUE instances). O(n log n) time, O(n) heap space, O(log n)
+//stack space.
 public class Solution {
     public int countRangeSum(int[] nums, int lower, int upper) {
         long[] prefix = new long[nums.length + 1];
         for(int i = 1; i <= nums.length; i++) prefix[i] = prefix[i-1] + nums[i-1];
         return countingMergeSort(prefix, new long[prefix.length], 0, prefix.length - 1, lower, upper);
     }
-    
+
     private int countingMergeSort(long[] prefix, long[] helper, int low, int high, long lower, long upper) {
         if (low >= high)
             return 0;
-            
+
         int mid = (high + 1 - low) / 2 + low; // start of right part
-        int count = countingMergeSort(prefix, helper, low, mid - 1, lower, upper) 
+        int count = countingMergeSort(prefix, helper, low, mid - 1, lower, upper)
                   + countingMergeSort(prefix, helper, mid, high, lower, upper);
-        
+
         int rangeStart = mid, rangeEnd = mid;  // start inclusive, end exclusive
         for(int i = low; i < mid; i++) {
             while(rangeStart <= high && prefix[rangeStart] - prefix[i] < lower)
                 rangeStart++;
-            while(rangeEnd <= high && prefix[rangeEnd] - prefix[i] <= upper) 
+            while(rangeEnd <= high && prefix[rangeEnd] - prefix[i] <= upper)
                 rangeEnd++;
-            
+
             count += rangeEnd - rangeStart;
         }
-        
+
         merge(prefix, helper, low, mid, high);
         return count;
     }
-    
+
     private void merge(long[] prefix, long[] helper, int low, int mid, int high) {
         int left = low, right = mid, idx = low;
-        
+
         while(left < mid && right <= high) {
             if (prefix[left] <= prefix[right])
                 helper[idx++] = prefix[left++];
             else
                 helper[idx++] = prefix[right++];
         }
-        
+
         while(left < mid)
             helper[idx++] = prefix[left++];
         while(right <= high)
             helper[idx++] = prefix[right++];
-            
+
         System.arraycopy(helper, low, prefix, low, high + 1 - low);
     }
 }
-//######################################### O(n log n)  ######################################### 
+//######################################### O(n log n)  #########################################
 def countRangeSum(self, nums, lower, upper):
     first = [0]
     for num in nums:
@@ -78,12 +83,29 @@ def countRangeSum(self, nums, lower, upper):
 //First compute the prefix sums: first[m] is the sum of the first m numbers.
 //Then the sum of any subarray nums[i:k] is simply first[k] - first[i].
 //So we just need to count those where first[k] - first[i] is in [lower,upper].
-//To find those pairs, I use mergesort with embedded counting. The pairs in the left half and the pairs in the right half get counted in the recursive calls. We just need to also count the pairs that use both halves.
-//For each left in first[lo:mid] I find all right in first[mid:hi] so that right - left lies in [lower, upper]. Because the halves are sorted, these fitting right values are a subarray first[i:j]. With increasing left we must also increase right, meaning must we leave out first[i] if it's too small and and we must include first[j] if it's small enough.
-//Besides the counting, I also need to actually merge the halves for the sorting. I let sorted do that, which uses Timsort and takes linear time to recognize and merge the already sorted halves.
-//With Divide and Conquer, you first suppose you sovled two halves of array fisrt[i] = sum (0..i) and counted the possible qualified ranges (sum of subarray of [lower, upper]) in each half. Then if you find all the qualified range crossing left half and right half then you complete the answer.
+//To find those pairs, I use mergesort with embedded counting. The pairs in the
+//left half and the pairs in the right half get counted in the recursive calls.
+//We just need to also count the pairs that use both halves.
+//For each left in first[lo:mid] I find all right in first[mid:hi] so that
+//right - left lies in [lower, upper]. Because the halves are sorted, these
+//fitting right values are a subarray first[i:j]. With increasing left we must
+//also increase right, meaning must we leave out first[i] if it's too small and
+//and we must include first[j] if it's small enough.
+//Besides the counting, I also need to actually merge the halves for the
+//sorting. I let sorted do that, which uses Timsort and takes linear time to
+//recognize and merge the already sorted halves.
+//With Divide and Conquer, you first suppose you sovled two halves of array
+//fisrt[i] = sum (0..i) and counted the possible qualified ranges (sum of
+//subarray of [lower, upper]) in each half. Then if you find all the qualified
+//range crossing left half and right half then you complete the answer.
 //
-//Note you’ve already sorted first[i] in left half and right half. You pick a left element of first array in left half, call it “left”. And you then pick a right in right half. For each left: Right – left is a range sum across left half and right half. Check it meet [lower, upper] or not. If the range sum is too small? Simply increase right. Too large? Stop, you don’t need to increase right pointer anymore, because first is sorted and increasing right can only make the sum larger.
+//Note you’ve already sorted first[i] in left half and right half. You pick a
+//left element of first array in left half, call it “left”. And you then pick a
+//right in right half. For each left: Right – left is a range sum across left
+//half and right half. Check it meet [lower, upper] or not. If the range sum is
+//too small? Simply increase right. Too large? Stop, you don’t need to increase
+//right pointer anymore, because first is sorted and increasing right can only
+//make the sum larger.
 //
 //Therefore for each left, you
 //
@@ -91,13 +113,19 @@ def countRangeSum(self, nums, lower, upper):
 //
 //find max right index (j) that meets right – left > upper,
 //
-//the j – i is the number of valid range sums. Then you iterate next left and search the according answer.
+//the j – i is the number of valid range sums. Then you iterate next left and
+//search the according answer.
 //
-//A side note is when left increase one element, the right-left can only become smaller, what you only need to do is increase right to find larger range sum so that it is valid. Therefore the two loops only takes linear time.
+//A side note is when left increase one element, the right-left can only become
+//smaller, what you only need to do is increase right to find larger range sum
+//so that it is valid. Therefore the two loops only takes linear time.
 
-//######################################### O(n^2) ######################################### 
-//Preprocess to calculate the prefix sums S[i] = S(0, i), then S(i, j) = S[j] - S[i]. 
-//Note that here we define S(i, j) as the sum of range [i, j) where j exclusive and j > i. With these prefix sums, it is trivial to see that with O(n^2) time we can find all S(i, j) in the range [lower, upper]
+//######################################### O(n^2) #########################################
+//Preprocess to calculate the prefix sums S[i] = S(0, i), then S(i, j) = S[j] -
+//S[i].
+//Note that here we define S(i, j) as the sum of range [i, j) where j exclusive
+//and j > i. With these prefix sums, it is trivial to see that with O(n^2) time
+//we can find all S(i, j) in the range [lower, upper]
 public int countRangeSum(int[] nums, int lower, int upper) {
     int n = nums.length;
     long[] sums = new long[n + 1];
@@ -112,19 +140,30 @@ public int countRangeSum(int[] nums, int lower, int upper) {
 }
 
 
-//######################################### Merge Sort ######################################### 
+//######################################### Merge Sort #########################################
 //Recall count smaller number after self where we encountered the problem
 //count[i] = count of nums[j] - nums[i] < 0 with j > i
 //Here, after we did the preprocess, we need to solve the problem
 //count[i] = count of a <= S[j] - S[i] <= b with j > i
 //ans = sum(count[:])
-//Therefore the two problems are almost the same. We can use the same technique used in that problem to solve this problem. One solution is merge sort based; another one is Balanced BST based. The time complexity are both O(n log n).
-//The merge sort based solution counts the answer while doing the merge. During the merge stage, we have already sorted the left half [start, mid) and right half [mid, end). We then iterate through the left half with index i. For each i, we need to find two indices k and j in the right half where
+//Therefore the two problems are almost the same. We can use the same technique
+//used in that problem to solve this problem. One solution is merge sort based;
+//another one is Balanced BST based. The time complexity are both O(n log n).
+//The merge sort based solution counts the answer while doing the merge. During
+//the merge stage, we have already sorted the left half [start, mid) and right
+//half [mid, end). We then iterate through the left half with index i. For each
+//i, we need to find two indices k and j in the right half where
 //j is the first index satisfy sums[j] - sums[i] > upper and
 //k is the first index satisfy sums[k] - sums[i] >= lower.
-//Then the number of sums in [lower, upper] is j-k. We also use another index t to copy the elements satisfy sums[t] < sums[i] to a cache in order to complete the merge sort.
-//Despite the nested loops, the time complexity of the "merge & count" stage is still linear. Because the indices k, j, t will only increase but not decrease, each of them will only traversal the right half once at most. The total time complexity of this divide and conquer solution is then O(n log n).
-//One other concern is that the sums may overflow integer. So we use long instead.
+//Then the number of sums in [lower, upper] is j-k. We also use another index t
+//to copy the elements satisfy sums[t] < sums[i] to a cache in order to
+//complete the merge sort.
+//Despite the nested loops, the time complexity of the "merge & count" stage is
+//still linear. Because the indices k, j, t will only increase but not
+//decrease, each of them will only traversal the right half once at most. The
+//total time complexity of this divide and conquer solution is then O(n log n).
+//One other concern is that the sums may overflow integer. So we use long
+//instead.
 
 public int countRangeSum(int[] nums, int lower, int upper) {
     int n = nums.length;
@@ -136,7 +175,7 @@ public int countRangeSum(int[] nums, int lower, int upper) {
 private int countWhileMergeSort(long[] sums, int start, int end, int lower, int upper) {
     if (end - start <= 1) return 0;
     int mid = (start + end) / 2;
-    int count = countWhileMergeSort(sums, start, mid, lower, upper) 
+    int count = countWhileMergeSort(sums, start, mid, lower, upper)
               + countWhileMergeSort(sums, mid, end, lower, upper);
     int j = mid, k = mid, t = mid;
     long[] cache = new long[end - start];
@@ -153,10 +192,22 @@ private int countWhileMergeSort(long[] sums, int start, int end, int lower, int 
 
 
 
-//There are BST solutions, but they suffer from unbalance in the worst-case, degrading to O(n^2). What's worse, the worst case, no pun intended, is a very regular case when all numbers are positive or negative. So we need to keep our tree balanced, and that immediately rings a bell: Red-Black Trees.
-//The only trick is that we need to keep track of node counts in subtrees so that we can quickly count the number of elements less than or equal to something without traversing around (like TreeMap.subMap().size() does). It is also important to update those node counts when performing rotations.
-//This solution is not terribly efficient: only 72 ms, and I can't think of any ways to optimize it. In fact, Java TreeMap sources look very similar except that they use more branches and don't use explicit NIL nodes. Maybe the fact that RBT is not perfectly balanced also plays its role: some paths can be twice as long as others. And we also need to perform the search twice on each loop iteration, which also doesn't make it any faster.
-//The conclusion is that this solution is probably only of theoretical interest.
+//There are BST solutions, but they suffer from unbalance in the worst-case,
+//degrading to O(n^2). What's worse, the worst case, no pun intended, is a very
+//regular case when all numbers are positive or negative. So we need to keep
+//our tree balanced, and that immediately rings a bell: Red-Black Trees.
+//The only trick is that we need to keep track of node counts in subtrees so
+//that we can quickly count the number of elements less than or equal to
+//something without traversing around (like TreeMap.subMap().size() does). It
+//is also important to update those node counts when performing rotations.
+//This solution is not terribly efficient: only 72 ms, and I can't think of any
+//ways to optimize it. In fact, Java TreeMap sources look very similar except
+//that they use more branches and don't use explicit NIL nodes. Maybe the fact
+//that RBT is not perfectly balanced also plays its role: some paths can be
+//twice as long as others. And we also need to perform the search twice on each
+//loop iteration, which also doesn't make it any faster.
+//The conclusion is that this solution is probably only of theoretical
+//interest.
 
 public int countRangeSum(int[] nums, int lower, int upper) {
     long sum = 0;
@@ -192,9 +243,9 @@ private static int countLE(RedBlackTree.Node root, long sum) {
 }
 
 static class RedBlackTree {
-    
+
     Node root = Node.NIL;
-    
+
     void add(long value) {
         Node current = root, prev = Node.NIL;
         while (current != Node.NIL && current.value != value) {
@@ -249,7 +300,7 @@ static class RedBlackTree {
         }
         root.color = Node.Color.BLACK;
     }
-    
+
     void rotate(Node node, boolean left) {
         Node parent = node.parent;
         Node child = left ? node.right : node.left;
@@ -272,29 +323,29 @@ static class RedBlackTree {
         node.parent = child;
         Node.NIL.left = Node.NIL.right = Node.NIL.parent = Node.NIL; // fix it up in case we've messed it up
     }
-    
+
     static class Node {
         static final Node NIL = new Node();
-        
+
         static { // need this because we can't initialize fields to NIL until it is created
             NIL.left = NIL.right = NIL.parent = NIL;
         }
-        
+
         long value;
         int valueCount, totalCount;
         Node parent = NIL, left = NIL, right = NIL;
         Color color;
-        
+
         private Node() { // NIL constructor
             this.color = Color.BLACK;
         }
-        
+
         Node(long value) {
             this.value = value;
             this.valueCount = this.totalCount = 1;
             this.color = Color.BLACK;
         }
-        
+
         enum Color {
             RED, BLACK
         }

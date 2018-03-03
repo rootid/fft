@@ -1,7 +1,8 @@
 //Two Sum IV - Input is a BST
-//Given a Binary Search Tree and a target number, return true if there exist two elements in the BST such that their sum is equal to the given target.
+//Given a Binary Search Tree and a target number, return true if there exist
+//two elements in the BST such that their sum is equal to the given target.
 //Example 1:
-//Input: 
+//Input:
 //    5
 //   / \
 //  3   6
@@ -10,7 +11,7 @@
 //Target = 9
 //Output: True
 //Example 2:
-//Input: 
+//Input:
 //    5
 //   / \
 //  3   6
@@ -21,7 +22,7 @@
 
 
 
-//############################################# Recursive DFS ############################################# 
+//############################################# Recursive DFS #############################################
 class Solution {
     set<int> s;
     bool dfs(TreeNode *cur, int k) {
@@ -39,7 +40,7 @@ public:
 
 
 // T: O(n) , S : O(n)
-//############################################# Inorder traversal + Binary Search ############################################# 
+//############################################# Inorder traversal + Binary Search #############################################
 class Solution {
 public:
     bool findTarget(TreeNode* root, int k) {
@@ -74,7 +75,7 @@ private:
 };
 
 //T :O(n) , S:(n)
-//############################################# Operator overloading + Inorder traversal + Binary Search ############################################# 
+//############################################# Operator overloading + Inorder traversal + Binary Search #############################################
 class BSTIterator {
     stack<TreeNode*> s;
     TreeNode* node;
@@ -114,8 +115,8 @@ public:
     }
 };
 
-//######################################### Pythonic ######################################### 
-//######################################### BFS  ######################################### 
+//######################################### Pythonic #########################################
+//######################################### BFS  #########################################
 def findTarget(self, root, k):
         if not root: return False
         bfs, s = [root], set()

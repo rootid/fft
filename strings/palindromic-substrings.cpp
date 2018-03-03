@@ -1,6 +1,8 @@
 //Palindromic Substrings
-//Given a string, your task is to count how many palindromic substrings in this string.
-//The substrings with different start indexes or end indexes are counted as different substrings even they consist of same characters.
+//Given a string, your task is to count how many palindromic substrings in this
+//string.
+//The substrings with different start indexes or end indexes are counted as
+//different substrings even they consist of same characters.
 //Example 1:
 //Input: "abc"
 //Output: 3
@@ -12,10 +14,13 @@
 //Note:
 //1. The input string length won't exceed 1000.
 
-//############################### Time: O(N^2) + Space: O(1) ############################### 
-//Idea : count the number of different palindromic substrings from their respective middle.
-//when we consider the substring s[i-j, ..., i+j], i is the middle index of the substring; 
-//When we consider the substring s[i-1-j, ..., i+j], (i-1, i) is the middle index of the substring.
+//############################### Time: O(N^2) + Space: O(1) ###############################
+//Idea : count the number of different palindromic substrings from their
+//respective middle.
+//when we consider the substring s[i-j, ..., i+j], i is the middle index of the
+//substring;
+//When we consider the substring s[i-1-j, ..., i+j], (i-1, i) is the middle
+//index of the substring.
 int countSubstrings(string s) {
     int res = 0, n = s.length();
     for(int i = 0; i < n; i++) {
@@ -30,7 +35,7 @@ int countSubstrings(string s) {
 }
 
 
-//############################### DP + Time : O(N^2) ############################### 
+//############################### DP + Time : O(N^2) ###############################
 int countSubstrings(string s) {
      int cnt = 0;
      int n = s.size();
@@ -40,15 +45,15 @@ int countSubstrings(string s) {
              cnt += isp[i][j] = i == j || s[i] == s[j] && (i + 1 == j || isp[i + 1][j - 1]);
          }
      }
-     return cnt; 
+     return cnt;
 }
 
-//############################### O(n) ############################### 
+//############################### O(n) ###############################
 def countSubstrings(self, s):
     return sum(s[i:j] == s[i:j][::-1] for j in range(len(s) + 1) for i in range(j))
 
 
-//############################### DP Space : O(n) ############################### 
+//############################### DP Space : O(n) ###############################
 class Solution(object):
     def countSubstrings(self, s):
         """
@@ -57,7 +62,7 @@ class Solution(object):
         """
         dp = [False] * (len(s))
         res = 0
-        
+
         for i in range(len(s)):
             res += 1
             dp[i] = True
@@ -67,19 +72,23 @@ class Solution(object):
                     res+=1
                 else:
                     dp[j] = False
-                             
+
         return res
 
-//############################### : O(n) ############################### 
-//Let N = len(S). 
-//There are 2N-1 possible centers for the palindrome: 
-//we could have a center at S[0], 
+//############################### : O(n) ###############################
+//Let N = len(S).
+//There are 2N-1 possible centers for the palindrome:
+//we could have a center at S[0],
 //   between S[0] and S[1],
 //   at S[1], between S[1] and S[2],
 //   at S[2], .
-//To iterate over each of the 2N-1 centers, we will move the left pointer every 2 times, and the right pointer every 2 times starting with the second (index 1). Hence, left = center / 2, right = center / 2 + center % 2.
-//From here, finding every palindrome starting with that center is straightforward: 
-//while the ends are valid and have equal characters, record the answer and expand.
+//To iterate over each of the 2N-1 centers, we will move the left pointer every
+//2 times, and the right pointer every 2 times starting with the second (index
+//1). Hence, left = center / 2, right = center / 2 + center % 2.
+//From here, finding every palindrome starting with that center is
+//straightforward:
+//while the ends are valid and have equal characters, record the answer and
+//expand.
 
 def countSubstrings(self, S):
     N = len(S)
@@ -94,10 +103,14 @@ def countSubstrings(self, S):
     return ans
 
 
-//############################### T : O(n) : Manchester's algo ############################### 
+//############################### T : O(n) : Manchester's algo ###############################
 //
-//Each integer in manachers(S) represents the maximum half-length of a palindrome at some center. 
-//For example, if the center is at the capital letter, 'A' will be 1, 'bAb' will be 3, 'cbAbc' will be 5. If the center is between two letters, say at |, then 'a|a' will be 2, 'ba|ab' will be 4, etc. From these numbers, (v+1)/2 is the correct count of the number of palindromes with this center.
+//Each integer in manachers(S) represents the maximum half-length of a
+//palindrome at some center.
+//For example, if the center is at the capital letter, 'A' will be 1, 'bAb'
+//will be 3, 'cbAbc' will be 5. If the center is between two letters, say at |,
+//then 'a|a' will be 2, 'ba|ab' will be 4, etc. From these numbers, (v+1)/2 is
+//the correct count of the number of palindromes with this center.
 def countSubstrings(self, S):
     def manachers(S):
         A = '@#' + '#'.join(S) + '#$'

@@ -1,6 +1,8 @@
 //Basic Calculator II
 //Implement a basic calculator to evaluate a simple expression string.
-//The expression string contains only non-negative integers, +, -, *, / operators and empty spaces . The integer division should truncate toward zero.
+//The expression string contains only non-negative integers, +, -, *, /
+//operators and empty spaces . The integer division should truncate toward
+//zero.
 //You may assume that the given expression is always valid.
 //Some examples:
 //"3+2*2" = 7
@@ -8,19 +10,19 @@
 //" 3+5 / 2 " = 5
 //Note: Do not use the eval built-in library function.
 
-//########################################################### Linear traversal and evaluate  ########################################################### 
-int nextNum(string &s, int &i) { 
-  int num = 0; 
+//########################################################### Linear traversal and evaluate  ###########################################################
+int nextNum(string &s, int &i) {
+  int num = 0;
   int len = s.size();
   for (;i<len; i++) {
     if(isspace(s[i])) {
       continue;
-    } else if (s[i] >='0' && s[i] <= '9') { 
+    } else if (s[i] >='0' && s[i] <= '9') {
       num = num*10 + s[i]-'0';
     } else {
       break;
     }
-  } 
+  }
   return num;
 }
 
@@ -48,6 +50,6 @@ int calculate(string s) {
       return cur;
     } else if (last_op == '+') {
       return result+cur;
-    } 
+    }
     return result-cur;
 }

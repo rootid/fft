@@ -1,5 +1,6 @@
 //Binary Tree Level Order Traversal II
-//Given a binary tree, return the bottom-up level order traversal of its nodes' values. (ie, from left to right, level by level from leaf to root).
+//Given a binary tree, return the bottom-up level order traversal of its nodes'
+//values. (ie, from left to right, level by level from leaf to root).
 //For example:
 //Given binary tree [3,9,20,null,null,15,7],
 //    3
@@ -15,7 +16,7 @@
 //]
 
 //############################### BFS  ###############################
-  public List<List<Integer>> levelOrderBottom(TreeNode root) {     
+  public List<List<Integer>> levelOrderBottom(TreeNode root) {
         List<List<Integer>> result = new ArrayList<>();
         if(root == null) return result;
         Queue<TreeNode> q = new ArrayDeque<>();
@@ -40,7 +41,7 @@
         levelOrderBottomHelper(root,result,0);
         return result;
     }
-    
+
     private void levelOrderBottomHelper(TreeNode root, List<List<Integer>> result, int level) {
         if(root != null) {
             if(result.size() == level) result.add(0, new ArrayList<>()); // inject list at 0th position
@@ -86,7 +87,7 @@ def dfs(self, root, level, res):
         res[-(level+1)].append(root.val)
         self.dfs(root.left, level+1, res)
         self.dfs(root.right, level+1, res)
-        
+
 //###############################dfs+ stack###############################
 def levelOrderBottom2(self, root):
     stack = [(root, 0)]
@@ -100,7 +101,7 @@ def levelOrderBottom2(self, root):
             stack.append((node.right, level+1))
             stack.append((node.left, level+1))
     return res
- 
+
 //###############################bfs + queue###############################
 def levelOrderBottom(self, root):
     queue, res = collections.deque([(root, 0)]), []

@@ -1,14 +1,19 @@
 //Merge k Sorted Lists
-//Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.
+//Merge k sorted linked lists and return it as one sorted list. Analyze and
+//describe its complexity.
 //
 //
 //NOTE :  push_back, erase are time consuming,
 //
-//During 1st iteration, we merge two lists(every list is N) into one, this will make K down to K / 2.
-//During 2nd iteration, we merge two lists(every list is 2N) into one, this will make K / 2 down to k /4.
-//During 3rd iteration, we merge two lists(every list is 4N) into one, this will make K / 4 down to k /8.
+//During 1st iteration, we merge two lists(every list is N) into one, this will
+//make K down to K / 2.
+//During 2nd iteration, we merge two lists(every list is 2N) into one, this
+//will make K / 2 down to k /4.
+//During 3rd iteration, we merge two lists(every list is 4N) into one, this
+//will make K / 4 down to k /8.
 //And so forth...
-//I think when we merge two lists, the complexity is O(list1.length) + O(list2.length).
+//I think when we merge two lists, the complexity is O(list1.length) +
+//O(list2.length).
 //So the total complexity is:
 //(2N) * (K / 2) +
 //(4N) * (K / 4) +
@@ -20,9 +25,15 @@
 
 //############################################# Merge sort #############################################
 //
-//I think my code’s complexity is also O(nlogk) and not using heap or priority queue, n means the total elements and k means the size of list.
-//The mergeTwoLists functiony in my code comes from the problem Merge Two Sorted Lists whose complexity obviously is O(n), n is the sum of length of l1 and l2.
-//To put it simpler, assume the k is 2^x, So the progress of combination is like a full binary tree, from bottom to top. So on every level of tree, the combination complexity is n, beacause every level have all n numbers without repetition. The level of tree is x, ie logk. So the complexity is O(nlogk).
+//I think my code’s complexity is also O(nlogk) and not using heap or priority
+//queue, n means the total elements and k means the size of list.
+//The mergeTwoLists functiony in my code comes from the problem Merge Two
+//Sorted Lists whose complexity obviously is O(n), n is the sum of length of l1
+//and l2.
+//To put it simpler, assume the k is 2^x, So the progress of combination is
+//like a full binary tree, from bottom to top. So on every level of tree, the
+//combination complexity is n, beacause every level have all n numbers without
+//repetition. The level of tree is x, ie logk. So the complexity is O(nlogk).
 //    for example, 8 ListNode, and the length of every ListNode is x1, x2,
 //    x3, x4, x5, x6, x7, x8, total is n.
 //    on level 3: x1+x2, x3+x4, x5+x6, x7+x8 sum: n
@@ -142,7 +153,9 @@ ListNode *mergeKLists(vector<ListNode *> &lists) {
 }
 
 
-//1.Heap is a kind of data structure. It is a name for a particular way of storing data that makes certain operations very efficient. We can use a tree or array to describe it.
+//1.Heap is a kind of data structure. It is a name for a particular way of
+//storing data that makes certain operations very efficient. We can use a tree
+//or array to describe it.
 //
 //   18
 //  /	\
@@ -151,7 +164,9 @@ ListNode *mergeKLists(vector<ListNode *> &lists) {
 //9  5  8  12
 //
 //18, 10, 16, 9, 5, 8, 12
-//2.Priority queue is an abstract datatype. It is a shorthand way of describing a particular interface and behavior, and says nothing about the underlying implementation.
+//2.Priority queue is an abstract datatype. It is a shorthand way of describing
+//a particular interface and behavior, and says nothing about the underlying
+//implementation.
 //####################################### priority queue ##################################
 //priority_queue : we can only get the top element
 
@@ -264,13 +279,16 @@ public ListNode mergeKLists(ListNode[] lists) {
 //######################################### Divide and Conquer #########################################
 //1.If there is a single list, return it as the result
 //2.If there are two lists, return their merged lists as the result
-//3.Split the list into two halves, recursively merge the lower half and the upper half, and then return the merge of the two halves as the result
+//3.Split the list into two halves, recursively merge the lower half and the
+//upper half, and then return the merge of the two halves as the result
 //Let there be n elements on average in all the k lists.
 //for n number of items of all lists, k for the number of list
 //Time :
-//We perform merge log(k) times, and in the worst case merge takes O(nk) time, so the worst case time complexity is O(nklogk).
+//We perform merge log(k) times, and in the worst case merge takes O(nk) time,
+//so the worst case time complexity is O(nklogk).
 //Space :
-//We perform merge log(k) times, and in the worst case merge takes O(1) space, so the worst case space complexity is O(logk).
+//We perform merge log(k) times, and in the worst case merge takes O(1) space,
+//so the worst case space complexity is O(logk).
 public class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
         if (lists == null)  return null;
@@ -338,9 +356,15 @@ public class Solution {
 }
 
 //######################################### D&C #########################################
-//I think my code's complexity is also O(nlogk) and not using heap or priority queue, n means the total elements and k means the size of list.
-//The mergeTwoLists functiony in my code comes from the problem Merge Two Sorted Lists whose complexity obviously is O(n), n is the sum of length of l1 and l2.
-//To put it simpler, assume the k is 2^x, So the progress of combination is like a full binary tree, from bottom to top. So on every level of tree, the combination complexity is n, beacause every level have all n numbers without repetition. The level of tree is x, ie logk. So the complexity is O(nlogk).
+//I think my code's complexity is also O(nlogk) and not using heap or priority
+//queue, n means the total elements and k means the size of list.
+//The mergeTwoLists functiony in my code comes from the problem Merge Two
+//Sorted Lists whose complexity obviously is O(n), n is the sum of length of l1
+//and l2.
+//To put it simpler, assume the k is 2^x, So the progress of combination is
+//like a full binary tree, from bottom to top. So on every level of tree, the
+//combination complexity is n, beacause every level have all n numbers without
+//repetition. The level of tree is x, ie logk. So the complexity is O(nlogk).
 //for example, 8 ListNode, and the length of every ListNode is x1, x2,
 //x3, x4, x5, x6, x7, x8, total is n.
 //on level 3: x1+x2, x3+x4, x5+x6, x7+x8 sum: n
@@ -383,7 +407,9 @@ public class Solution {
 
 //################################## pytonic hack  ##################################
 //"I figured out that OJ converts Python list into a ListNode automatically"
-//I think what really happens is that the OJ serializes the result to a string, and both Python lists and ListNode lists look the same when serialized (if they have the same contents).
+//I think what really happens is that the OJ serializes the result to a string,
+//and both Python lists and ListNode lists look the same when serialized (if
+//they have the same contents).
 //In any case, I think it's bad to exploit this. It's wrong,
 //and it makes your solutions incomparable to those that do it right.
 //class Solution(object):

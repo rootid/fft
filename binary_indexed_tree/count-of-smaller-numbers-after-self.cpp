@@ -1,5 +1,7 @@
 //Count of Smaller Numbers After Self
-//You are given an integer array nums and you have to return a new counts array. The counts array has the property where counts[i] is the number of smaller elements to the right of nums[i].
+//You are given an integer array nums and you have to return a new counts
+//array. The counts array has the property where counts[i] is the number of
+//smaller elements to the right of nums[i].
 //Example:
 //Given nums = [5, 2, 6, 1]
 //To the right of 5 there are 2 smaller elements (2 and 1).
@@ -8,7 +10,7 @@
 //To the right of 1 there is 0 smaller element.
 //Return the array [2, 1, 1, 0].
 //############################################# Binary search O(n log n) + Additional Space O(n)  #####################################
-vector<int> countSmaller(vector<int>& nums) { 
+vector<int> countSmaller(vector<int>& nums) {
   vector<int> ans(nums.size(), 0), sortedNums;
   for(int i = nums.size() - 1; i >= 0; i--){
       int idx = binarySearch(sortedNums, nums[i]);
@@ -21,7 +23,7 @@ vector<int> countSmaller(vector<int>& nums) {
 int binarySearch(vector<int>& sortedNums, int target){
     int l = 0, r = sortedNums.size();
     while(l < r) {
-        int m = l + (r - l) / 2; 
+        int m = l + (r - l) / 2;
         if(sortedNums[m] < target) {
           l = m + 1;
         } else {
@@ -93,7 +95,7 @@ vector<int> countSmaller(vector<int>& nums) {
     mergeSort(v, res, 0, nums.size()-1);
     return res;
 }
-    
+
 void mergeSort(vector<pair<int, int>>& v, vector<int>& res, int l, int r) {
     if (l >= r) return;
     int mid = l + (r - l) / 2;
@@ -109,7 +111,7 @@ void mergeSort(vector<pair<int, int>>& v, vector<int>& res, int l, int r) {
     inplace_merge(v.begin()+l, v.begin()+mid+1, v.begin()+r+1, compare);
 }
 //############################################# same as above + divide and conquer + O(n log n) #####################################
-void merge_countSmaller(vector<int>& indices, int first, int last, 
+void merge_countSmaller(vector<int>& indices, int first, int last,
                         vector<int>& results, vector<int>& nums) {
     int count = last - first;
     if (count > 1) {
@@ -124,10 +126,10 @@ void merge_countSmaller(vector<int>& indices, int first, int last,
         int semicount = 0;
         while ((idx1 < mid) || (idx2 < last)) {
             if ((idx2 == last) || ((idx1 < mid) &&
-                   (nums[indices[idx1]] <= nums[indices[idx2]]))) { 
+                   (nums[indices[idx1]] <= nums[indices[idx2]]))) {
                 tmp.push_back(indices[idx1]);
                 //update the precedence array i.e. results
-                results[indices[idx1]] += semicount; 
+                results[indices[idx1]] += semicount;
                 ++idx1;
             } else {
                 //while choosing the element from the second array do not update the precedence arrar
@@ -150,7 +152,7 @@ public:
     }
 
 //############################################# Naive O(n^2) #####################################
-vector<int> countSmaller(vector<int>& nums) { 
+vector<int> countSmaller(vector<int>& nums) {
   vector<int> res(nums.size(),0);
   // cout << nums.size() << endl;
   int len = nums.size();
@@ -162,11 +164,11 @@ vector<int> countSmaller(vector<int>& nums) {
           }
       }
   }
-  return res; 
+  return res;
 }
 
 
-//################################ Pytonic ################################ 
+//################################ Pytonic ################################
 def countSmaller(self, nums):
     def sort(enum):
         half = len(enum) / 2
@@ -183,7 +185,7 @@ def countSmaller(self, nums):
     sort(list(enumerate(nums)))
     return smaller
 
-//################################ Pytonic ################################ 
+//################################ Pytonic ################################
 def countSmaller(self, nums):
     def sort(enum):
         half = len(enum) / 2
@@ -212,7 +214,7 @@ def countSmaller(self, nums):
 //        self.end = end
 //        self.children = []
 //
-////###################################### SegmentTree ###################################### 
+////###################################### SegmentTree ######################################
 //class SegmentTree(object):
 //    def __init__(self, n):
 //        self.root = self.build(0, n - 1)
@@ -293,7 +295,7 @@ def countSmaller(self, nums):
 //        return r[::-1]
 //
 //
-////#################################### BST 
+////#################################### BST
 //
 //class BinarySearchTreeNode(object):
 //    def __init__(self, val):
@@ -341,7 +343,7 @@ def countSmaller(self, nums):
 //            for i in xrange(len(nums) - 1, -1, -1)
 //        ][::-1]
 //
-//#########################  BST Rank tree ################### 
+//#########################  BST Rank tree ###################
 //class TreeNode(object):
 //    def __init__(self, x):
 //        self.val = x
@@ -363,7 +365,7 @@ def countSmaller(self, nums):
 //                root.right = _insert(root.right, val)
 //            return root
 //        self.root = _insert(self.root, val)
-//    
+//
 //    def get_rank(self, val):
 //        def _get_rank(root, val):
 //            if not root:

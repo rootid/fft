@@ -1,4 +1,5 @@
-//Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
+//Design a stack that supports push, pop, top, and retrieving the minimum
+//element in constant time.
 //push(x) -- Push element x onto stack.
 //pop() -- Removes the element on top of the stack.
 //top() -- Get the top element.
@@ -16,7 +17,7 @@
 #include "../headers/global.hpp"
 
 
-//######################################### 1 Stack ######################################### 
+//######################################### 1 Stack #########################################
 public class MinStack {
 
   long min = Integer.MAX_VALUE;
@@ -48,7 +49,7 @@ public class MinStack {
 
 }
 
-//######################################### 2 Stacks ######################################### 
+//######################################### 2 Stacks #########################################
 class MinStack {
 public:
     /** initialize your data structure here. */
@@ -60,7 +61,7 @@ public:
             this->min_stack.push(x);
         }
     }
-    
+
     void pop() {
         if(!this->data_stack.empty()) {
             int tmp = this->top();
@@ -70,15 +71,15 @@ public:
             this->data_stack.pop();
         }
     }
-    
+
     int top() {
         return this->data_stack.top();
     }
-    
+
     int getMin() {
          return this->min_stack.top();
     }
-    
+
 private :
     stack<int> min_stack;
     stack<int> data_stack;

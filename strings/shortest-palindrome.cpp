@@ -1,5 +1,7 @@
 //Shortest Palindrome
-//Given a string S, you are allowed to convert it to a palindrome by adding characters in front of it. Find and return the shortest palindrome you can find by performing this transformation.
+//Given a string S, you are allowed to convert it to a palindrome by adding
+//characters in front of it. Find and return the shortest palindrome you can
+//find by performing this transformation.
 //For example:
 //Given "aacecaaa", return "aaacecaaa".
 //Given "abcd", return "dcbabcd".
@@ -12,8 +14,8 @@ string shortestPalindrome(string s) {
       string rev_s = s;
       reverse(rev_s.begin(), rev_s.end());
       string l = s + "#" + rev_s;
-     
-     //abaca : p1 = a,p2 = ab ,p3 = aba 
+
+     //abaca : p1 = a,p2 = ab ,p3 = aba
       vector<int> p(l.size(), 0);
       for (int i = 1; i < l.size(); i++) {
           int j = p[i - 1]; //Take the previous prefix val
@@ -29,7 +31,7 @@ string shortestPalindrome(string s) {
       return rev_s.substr(0, s.size() - p[l.size() - 1]) + s;
 }
 
-//######################### Time limit exceeded ######################### 
+//######################### Time limit exceeded #########################
 bool is_part_of(string s,string rs) {
     int idx = 0;
     while(idx < rs.size()) {
@@ -37,7 +39,7 @@ bool is_part_of(string s,string rs) {
       if(s[idx] == rs[idx]) {
         idx++;
         continue;
-      } 
+      }
       return false;
     }
     return true;

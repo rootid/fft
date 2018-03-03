@@ -1,25 +1,26 @@
 //Number of Segments in a String
-//Count the number of segments in a string, where a segment is defined to be a contiguous sequence of non-space characters.
+//Count the number of segments in a string, where a segment is defined to be a
+//contiguous sequence of non-space characters.
 //Please note that the string does not contain any non-printable characters.
 //Example:
 //Input: "Hello, my name is John"
 //Output: 5
 #include "../headers/global.hpp"
 
-//##################################### With Split ##################################### 
+//##################################### With Split #####################################
 public int countSegments(String s) {
     if(s == null || s.length() == 0) return 0;
-    //" a ".split("\\s+").length() will return 2 so added extra prefex char : 
+    //" a ".split("\\s+").length() will return 2 so added extra prefex char :
     //" a ".split(" +").length() will return true
     return ("x "+ s).split("\\s+").length - 1;
 }
-//##################################### With Regex ##################################### 
+//##################################### With Regex #####################################
 int countSegments(string s) {
-  cout << s << endl; 
+  cout << s << endl;
   return regex_replace(regex_replace(s, regex("\\S+"), "x"),regex("\\s+"), "").size();
 }
 
-//############################### W/O Regex ############################## 
+//############################### W/O Regex ##############################
 int countSegments(string s) {
       int res = 0;
       for (int i = 0; i < s.size(); i++) {

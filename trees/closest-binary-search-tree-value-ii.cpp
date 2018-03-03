@@ -1,29 +1,35 @@
 //Closest Binary Search Tree Value II
-//Given a non-empty binary search tree and a target value, find k values in the BST that are closest to the target.
+//Given a non-empty binary search tree and a target value, find k values in the
+//BST that are closest to the target.
 //Note:
 //Given target value is a floating point.
 //You may assume k is always valid, that is: k ≤ total nodes.
-//You are guaranteed to have only one unique set of k values in the BST that are closest to the target.
+//You are guaranteed to have only one unique set of k values in the BST that
+//are closest to the target.
 //Follow up:
-//Assume that the BST is balanced, could you solve it in less than O(n) runtime (where n = total nodes)?
+//Assume that the BST is balanced, could you solve it in less than O(n) runtime
+//(where n = total nodes)?
 //Hint:
 //Consider implement these two helper functions:
 //getPredecessor(N), which returns the next smaller node to N.
 //getSuccessor(N), which returns the next larger node to N.
-//Try to assume that each node has a parent pointer, it makes the problem much easier.
-//Without parent pointer we just need to keep track of the path from the root to the current node using a stack.
-//You would need two stacks to track the path in finding predecessor and successor node separately.
+//Try to assume that each node has a parent pointer, it makes the problem much
+//easier.
+//Without parent pointer we just need to keep track of the path from the root
+//to the current node using a stack.
+//You would need two stacks to track the path in finding predecessor and
+//successor node separately.
 //
 //
-//######################################### Heap + O(n log n) ######################################### 
+//######################################### Heap + O(n log n) #########################################
 void dfs(TreeNode* root, priority_queue<pair<double, int>>& pq, double target, int k) {
     if(!root) return;
-    
+
     pq.push(make_pair(fabs(target - double(root->val)), root->val));
-    
-    if(pq.size() > k) 
+
+    if(pq.size() > k)
         pq.pop();
-        
+
     dfs(root->left, pq, target, k);
     dfs(root->right, pq, target, k);
 }
@@ -31,19 +37,20 @@ void dfs(TreeNode* root, priority_queue<pair<double, int>>& pq, double target, i
 vector<int> closestKValues(TreeNode* root, double target, int k) {
     priority_queue<pair<double, int>> pq;
     vector<int> result;
-    
+
     dfs(root, pq, target, k);
     while(!pq.empty()) {
         result.push_back(pq.top().second);
         pq.pop();
     }
-    
+
     return result;
 }
 
-//######################################### O(log(n) + k) ######################################### 
+//######################################### O(log(n) + k) #########################################
 //Building each of the stacks takes O(log(n)) assuming BST is balanced.
-//Each call to getNextPred/Succ has an amortized cost of O(1), since every node is pushed and popped at most once.
+//Each call to getNextPred/Succ has an amortized cost of O(1), since every node
+//is pushed and popped at most once.
 class Solution {
 public:
     stack<TreeNode*> pre;
@@ -111,7 +118,7 @@ public:
 };
 
 
-//######################################### Inorder O(n) + Window size k ######################################### 
+//######################################### Inorder O(n) + Window size k #########################################
 public class Solution {
 
     public List<Integer> closestKValues(TreeNode root, double target, int k) {
@@ -126,7 +133,7 @@ public class Solution {
 
         if (res.size() == k) {
             //if size k, add curent and remove head if it's optimal, otherwise return
-            if (Math.abs(target - root.val) < Math.abs(target - res.peekFirst())) 
+            if (Math.abs(target - root.val) < Math.abs(target - res.peekFirst()))
                 res.removeFirst();
             else return;
         }
@@ -136,7 +143,7 @@ public class Solution {
 }
 
 
-//######################################### O(k + logN) ######################################### 
+//######################################### O(k + logN) #########################################
 public class Solution {
     public List<Integer> closestKValues(TreeNode root, double target, int k) {
         List<Integer> ret = new LinkedList<>();
@@ -192,7 +199,7 @@ public class Solution {
             }
         }
     }
-    
+
     private int getNextSuccessor(Stack<TreeNode> succ) {
         TreeNode curr = succ.pop();
         int ret = curr.val;
@@ -217,10 +224,20 @@ public class Solution {
 }
 
 
-//### 
-//For the follow-up question, this is O(k log n) and maybe O(k + log n), haven't thought it through yet. Probably by far the longest solution I've posted here, I even felt the need to include comments :-P
-//Imagine you didn't have a BST but a simple sorted array. How would you find the k values closest to the target value? You could do binary search to find the closest value and then move outwards with two index variables, collecting the k closest values. That's what I do here, except instead of simple array indexes I have two tree iterators in the form of root-to-node paths.
-//Finding the initial iterator=path to the closest value takes O(h) time, where h is the height of the tree. Increasing or decreasing these iterators=paths also takes O(h) time. So O(kh) overall. And maybe better, as moving an iterator=path will often be quick. I mean, it's just an inorder traversal, so I'd expect O(1) amortized moving time at least if we're traversing the entir
+//###
+//For the follow-up question, this is O(k log n) and maybe O(k + log n),
+//haven't thought it through yet. Probably by far the longest solution I've
+//posted here, I even felt the need to include comments :-P
+//Imagine you didn't have a BST but a simple sorted array. How would you find
+//the k values closest to the target value? You could do binary search to find
+//the closest value and then move outwards with two index variables, collecting
+//the k closest values. That's what I do here, except instead of simple array
+//indexes I have two tree iterators in the form of root-to-node paths.
+//Finding the initial iterator=path to the closest value takes O(h) time, where
+//h is the height of the tree. Increasing or decreasing these iterators=paths
+//also takes O(h) time. So O(kh) overall. And maybe better, as moving an
+//iterator=path will often be quick. I mean, it's just an inorder traversal, so
+//I'd expect O(1) amortized moving time at least if we're traversing the entir
 def closestKValues(self, root, target, k):
 
     # Helper, takes a path and makes it the path to the next node

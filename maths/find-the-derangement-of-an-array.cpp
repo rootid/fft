@@ -1,6 +1,8 @@
 //Find the Derangement of An Array
-//In combinatorial mathematics, a derangement is a permutation of the elements of a set, such that no element appears in its original position.
-//There's originally an array consisting of n integers from 1 to n in ascending order, you need to find the number of derangement it can generate.
+//In combinatorial mathematics, a derangement is a permutation of the elements of a set, such that no element appears in
+//its original position.
+//There's originally an array consisting of n integers from 1 to n in ascending order, you need to find the number of
+//derangement it can generate.
 //Also, since the answer may be very large, you should return the output mod 10^9 + 7.
 //Example 1:
 //Input: 3
@@ -72,12 +74,15 @@ public class Solution {
 //T(n) = T(n-1) + T(n-2)
 //H(n) = (n-1) ( H(n-1)*H(n-2) )
 //######################################### DP  #########################################
-//Let D(N) be the required answer. The recursion for the number of derangements of N is: D(N) = (N-1) * (D(N-1) + D(N-2)).
+//Let D(N) be the required answer. The recursion for the number of derangements of N is: D(N) = (N-1) * (D(N-1) +
+//D(N-2)).
 //With this recursion in hand, the problem becomes similar to finding the N-th fibonacci number.
 //To prove it, suppose there are people and hats labelled 1...N.
 //We want the number of ways to put a hat on each person such that no person is wearing their hat.
 //The first person has N-1 choices to put on a hat, say he wears hat X.
-//Now consider what hat person X is wearing. Either he takes hat 1, and we have D(N-2) ways to arrange the remaining hats among people; or he doesn't take hat 1, which if we relabelled it as hat X, would have D(N-1) ways to arrange the remaining hats.
+//Now consider what hat person X is wearing. Either he takes hat 1, and we have D(N-2) ways to arrange the remaining
+//hats among people; or he doesn't take hat 1, which if we relabelled it as hat X, would have D(N-1) ways to arrange the
+//remaining hats.
 def findDerangement(self, N):
     MOD = 10**9 + 7
     X, Y = 1, 0

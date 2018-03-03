@@ -1,6 +1,8 @@
 //Balanced Binary Tree
 //Given a binary tree, determine if it is height-balanced.
-//For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node never differ by more than 1.
+//For this problem, a height-balanced binary tree is defined as a binary tree
+//in which the depth of the two subtrees of every node never differ by more
+//than 1.
 
 #include<iostream>
 #include<stdlib.h>
@@ -15,7 +17,7 @@ struct TreeNode {
 //
 //[1,2,2,3,3,null,null,4,4] :   expected false
 void getBothHeightByRef(TreeNode *root,int& ltHt,int& rtHt) {
-  
+
   if(!root) {
     return ;
   } else {
@@ -31,12 +33,12 @@ void getBothHeightByRef(TreeNode *root,int& ltHt,int& rtHt) {
 }
 
 int getDepth(TreeNode *root) {
-  
+
   int l = 0;
   int r = 0;
   if(!root) {
     return 0;
-  } 
+  }
   if(root->left) {
     l += 1 + getDepth(root->left);
     //cout << "l = " << l << endl;
@@ -50,13 +52,13 @@ int getDepth(TreeNode *root) {
 }
 
 bool isBalanced(TreeNode* root) {
- 
+
   if(!root) {
     return true;
   }
   if(getDepth (root) > 1) {
     return false;
-  } 
+  }
   bool l = isBalanced(root->left);
   bool r = isBalanced(root->right);
   return l & r;
@@ -73,11 +75,11 @@ int main() {
   //t->right->right = new TreeNode(5);
   //t->right->right = new TreeNode(5);
   //t->right->right->right = new TreeNode(5);
-    
+
   //int ltHt = 0;
   //int rtHt = 0;
   //getHeightByRef(t,ltHt,rtHt );
-   
+
   if( isBalanced(t) ) {
     cout << "IS BALANCED " << endl;
   } else {

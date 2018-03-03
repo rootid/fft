@@ -1,5 +1,6 @@
 //One Edit Distance
-//Given two strings S and T, determine if they are both one edit distance apart.
+//Given two strings S and T, determine if they are both one edit distance
+//apart.
 //
 #include "../headers/global.hpp"
 //Input:  s1 = "geeks", s2 = "geek"
@@ -28,7 +29,7 @@
         if(m == n) {
           i++; j++;
         } else if(m < n) {
-          j++; //== delete char from t 
+          j++; //== delete char from t
         } else {
           i++;
         }
@@ -49,9 +50,12 @@
 
 //S: k i t t e n
 //T: k i t *t* e n
-//In fact, cases 1 (substitue), 2(insert) and 3(delete) can be further handled using the same piece of code.
-//For strings of the same length, once we find a mismatch, we just substitute one to be another and check whether
-//they are now the same. For strings of one apart in lengths, we insert the deleted character of the longer string
+//In fact, cases 1 (substitue), 2(insert) and 3(delete) can be further handled
+//using the same piece of code.
+//For strings of the same length, once we find a mismatch, we just substitute
+//one to be another and check whether
+//they are now the same. For strings of one apart in lengths, we insert the
+//deleted character of the longer string
 //into the shorter one and compare whether they are the same.
 //S = "ab" and T = "abc".
 bool isOneEditDistance(string s, string t) {
@@ -64,35 +68,40 @@ bool isOneEditDistance(string s, string t) {
             else s.insert(i, 1, t[i]); //insert/delete case
             break;
         }
-    return s.equals(t) || t.equals(s + t[n - 1]); 
+    return s.equals(t) || t.equals(s + t[n - 1]);
 }
 
-//If s and t are one distance away then no matter it is insert or delete or replace the count of common characters must be max(m, n) - 1, where m is the length of s and n is the length of t. It is easy to see that the reverse is also true.
-//Assume the length of common prefix (from left to right) is i and the length of common suffix after i (from right to left) is j, the answer is then max(m, n) - 1 == i + j
+//If s and t are one distance away then no matter it is insert or delete or
+//replace the count of common characters must be max(m, n) - 1, where m is the
+//length of s and n is the length of t. It is easy to see that the reverse is
+//also true.
+//Assume the length of common prefix (from left to right) is i and the length
+//of common suffix after i (from right to left) is j, the answer is then max(m,
+//n) - 1 == i + j
 //Example 1 (1 replace)
 //s = "abcdefg", m = 7
-//t = "abcxefg", n = 7 
+//t = "abcxefg", n = 7
 //i = 3, j = 3
 //max(m, n) - 1 == i + j is true
 //Example 2 (0 edit)
 //s = "abcdefg", m = 7
-//t = "abcdefg", n = 7 
+//t = "abcdefg", n = 7
 //i = 7, j = 0
 //max(m, n) - 1 == i + j is false
 //Example 3 (1 insert)
 //s = "abcdefg", m = 7
-//t = "abcefg", n = 6 
+//t = "abcefg", n = 6
 //i = 3, j = 3
 //max(m, n) - 1 == i + j is true
 //Example 4 (1 delete 1 insert)
 //s = "abcdefg", m = 7
-//t = "abcefgh", n = 7 
+//t = "abcefgh", n = 7
 //i = 3, j = 0
 //max(m, n) - 1 == i + j is false
 //The method is O(m+n) since any character is visited at most once.
 
 
-//######################################### JAVA ######################################### 
+//######################################### JAVA #########################################
 public boolean isOneEditDistance(String s, String t) {
     int m = s.length(), n = t.length();
     if (Math.abs(m - n) > 1) return false;
@@ -105,7 +114,7 @@ public boolean isOneEditDistance(String s, String t) {
     return m + n - k - 1 == i + j;
 }
 // Runtime : 2ms
-//######################################### Python ######################################### 
+//######################################### Python #########################################
 def isOneEditDistance(self, s, t):
     n, m = len(s), len(t)
     if abs(n - m) > 1:

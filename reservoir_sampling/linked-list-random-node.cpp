@@ -1,6 +1,8 @@
-//Given a singly linked list, return a random node's value from the linked list. Each node must have the same probability of being chosen.
+//Given a singly linked list, return a random node's value from the linked
+//list. Each node must have the same probability of being chosen.
 //Follow up:
-//What if the linked list is extremely large and its length is unknown to you? Could you solve this efficiently without using extra space?
+//What if the linked list is extremely large and its length is unknown to you?
+//Could you solve this efficiently without using extra space?
 //Example:
 //// Init a singly linked list [1,2,3].
 //ListNode head = new ListNode(1);
@@ -18,7 +20,7 @@
  * };
  */
 class Solution {
-    
+
 private :
     ListNode* p_head = NULL;
 public:
@@ -27,7 +29,7 @@ public:
     Solution(ListNode* head) {
         p_head = head;
     }
-    
+
     /** Returns a random node's value. */
     int getRandom() {
         //reservoir sampling

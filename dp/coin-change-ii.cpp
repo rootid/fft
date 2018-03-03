@@ -1,5 +1,7 @@
 //Coin Change 2
-//You are given coins of different denominations and a total amount of money. Write a function to compute the number of combinations that make up that amount. You may assume that you have infinite number of each kind of coin.
+//You are given coins of different denominations and a total amount of money.
+//Write a function to compute the number of combinations that make up that
+//amount. You may assume that you have infinite number of each kind of coin.
 //Note: You can assume that
 //0 <= amount <= 5000
 //1 <= coin <= 5000
@@ -18,20 +20,24 @@
 //Output: 0
 //Explanation: the amount of 3 cannot be made up just with coins of 2.
 //Example 3:
-//Input: amount = 10, coins = [10] 
+//Input: amount = 10, coins = [10]
 //Output: 1
 
 //T & S  =  O(m*n)
-//######################################### Knapsack  ######################################### 
-//dp[i][j] : the number of combinations to make up amount j by using the first i types of coins
+//######################################### Knapsack  #########################################
+//dp[i][j] : the number of combinations to make up amount j by using the first
+//i types of coins
 //State transition:
-//not using the ith coin, only using the first i-1 coins to make up amount j, then we have dp[i-1][j] ways.
-//using the ith coin, since we can use unlimited same coin, we need to know how many way to make up amount j - coins[i] by using first i coins(including ith), which is dp[i][j-coins[i]]
+//not using the ith coin, only using the first i-1 coins to make up amount j,
+//then we have dp[i-1][j] ways.
+//using the ith coin, since we can use unlimited same coin, we need to know how
+//many way to make up amount j - coins[i] by using first i coins(including
+//ith), which is dp[i][j-coins[i]]
 //Initialization: dp[i][0] = 1
 int change(int amount, int[] coins) {
         int[][] dp = new int[coins.length+1][amount+1];
         dp[0][0] = 1;
-        
+
         for (int i = 1; i <= coins.length; i++) {
             dp[i][0] = 1;
             for (int j = 1; j <= amount; j++) {
@@ -41,12 +47,12 @@ int change(int amount, int[] coins) {
         return dp[coins.length][amount];
     }
 
-//######################################### DP + O(n) spance ######################################### 
+//######################################### DP + O(n) spance #########################################
 public static int makeChange(int[] coins, int amount) {
     int m = coins.length;
     if (amount <= 0 || m < 0) {
         return 0;
-    } 
+    }
     int[] dp = new int[amount + 1];
     dp[0] = 1;
     for (int coin : coins) {
@@ -58,7 +64,7 @@ public static int makeChange(int[] coins, int amount) {
 }
 
 
-//######################################### Iterative ######################################### 
+//######################################### Iterative #########################################
    public int change(int amount, int[] coins) {
         int[] dp = new int[amount + 1];
         dp[0] = 1;
@@ -70,7 +76,7 @@ public static int makeChange(int[] coins, int amount) {
         return dp[amount];
     }
 
-//######################################### Iterative ######################################### 
+//######################################### Iterative #########################################
   def change(self, amount, coins):
         """
         :type amount: int

@@ -1,9 +1,11 @@
 //Minimum Factorization
-//Given a positive integer a, find the smallest positive integer b whose multiplication of each digit equals to a.
-//If there is no answer or the answer is not fit in 32-bit signed integer, then return 0.
+//Given a positive integer a, find the smallest positive integer b whose
+//multiplication of each digit equals to a.
+//If there is no answer or the answer is not fit in 32-bit signed integer, then
+//return 0.
 //Example 1
 //Input:
-//48 
+//48
 //Output:
 //68
 //Example 2
@@ -15,7 +17,8 @@
 //
 
 //################################################### Start with largest factor 9 and put factors from RHS to LHS ###################################################
-//Time complexity : O(8loga). Outer loop will iterate only 8 times, while inner loop takes O(logi) for particular ii.
+//Time complexity : O(8loga). Outer loop will iterate only 8 times, while inner
+//loop takes O(logi) for particular ii.
 //Space complexity : O(1). Constant space is used.
 int smallestFactorization(int a) {
     if (a < 10) return a;
@@ -35,7 +38,7 @@ public class Solution {
     public int smallestFactorization(int n) {
         // Case 1: If number is smaller than 10
         if (n < 10) return n;
-        
+
         // Case 2: Start with 9 and try every possible digit
         List<Integer> res = new ArrayList<>();
         for (int i = 9; i > 1; i--) {
@@ -56,14 +59,15 @@ public class Solution {
             result = result * 10 + res.get(i);
             if (result > Integer.MAX_VALUE) return 0;
         }
-        
+
         return (int)result;
     }
 }
 
-//################################################### Pick / Skip ######################################### 
+//################################################### Pick / Skip #########################################
 //Time complexity : O(l). Here l refers to total number of combinations.
-//Space complexity : O(log(a)). In worst case, depth of recursion tree can go upto the O(log(a))O(log(a)) .
+//Space complexity : O(log(a)). In worst case, depth of recursion tree can go
+//upto the O(log(a))O(log(a)) .
 public class Solution  {
     long ans;
     public int smallestFactorization(int a) {
@@ -90,7 +94,7 @@ public class Solution  {
 }
 
 
-//######################################### build a long number and stop at the 10th digit ######################################### 
+//######################################### build a long number and stop at the 10th digit #########################################
 class Solution {
 public:
     int smallestFactorization(int a) {
@@ -106,7 +110,7 @@ public:
     }
 };
 
-//######################################### build a string and stop at the 10th digit ######################################### 
+//######################################### build a string and stop at the 10th digit #########################################
 class Solution {
 public:
     int smallestFactorization(int a) {
@@ -122,7 +126,7 @@ public:
     }
 };
 
-//################################################### build a string all the way to the end ################################################### 
+//################################################### build a string all the way to the end ###################################################
 class Solution {
 public:
     int smallestFactorization(int a) {
@@ -138,14 +142,23 @@ public:
     }
 }
 
-//############################################################# python  ############################################################# 
-//Suppose N > 1. Let's greedily try to divide N by 9, 8, 7, ..., 2. If we can't divide by some factor here (eg. N = 13) then it's invalid.
-//Otherwise, we have some set of digits in descending order whose product equals N. This set is also the smallest possible size (*proof below.) Let's write these digits in sorted order. If it would overflow a 32 bit int, we'll write zero instead.
-//Let's prove the set is smallest. If N has factors of 5 or 7, there's only one way to write them. Also, if N = 2^(3w + x) + 3^(2y + z) where 0 <= x < 3 and 0 <= z < 2, then writing 8's and 9's are at least as efficient as optimal. So now we want to write 2^x * 3^z only. If x = 0 or z = 0 we're fine writing 9, 3 or 8, 4, 2. If (x, z) = (1, 1) then we'll write a 6 optimally; if (x, z) = (2, 1) then we'll write 6 * 2 which can't be beaten.
+//############################################################# python  #############################################################
+//Suppose N > 1. Let's greedily try to divide N by 9, 8, 7, ..., 2. If we can't
+//divide by some factor here (eg. N = 13) then it's invalid.
+//Otherwise, we have some set of digits in descending order whose product
+//equals N. This set is also the smallest possible size (*proof below.) Let's
+//write these digits in sorted order. If it would overflow a 32 bit int, we'll
+//write zero instead.
+//Let's prove the set is smallest. If N has factors of 5 or 7, there's only one
+//way to write them. Also, if N = 2^(3w + x) + 3^(2y + z) where 0 <= x < 3 and
+//0 <= z < 2, then writing 8's and 9's are at least as efficient as optimal. So
+//now we want to write 2^x * 3^z only. If x = 0 or z = 0 we're fine writing 9,
+//3 or 8, 4, 2. If (x, z) = (1, 1) then we'll write a 6 optimally; if (x, z) =
+//(2, 1) then we'll write 6 * 2 which can't be beaten.
 def smallestFactorization(self, N):
     if N == 1:
         return 1
-        
+
     A = []
     while N > 1:
         for d in xrange(9, 1, -1):
@@ -155,6 +168,6 @@ def smallestFactorization(self, N):
                 break
         else:
             return 0
-    
+
     ans = int("".join(map(str, A[::-1])))
     return ans if ans < 2**31 else 0

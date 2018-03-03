@@ -1,18 +1,21 @@
 //Trim a Binary Search Tree
-//Given a binary search tree and the lowest and highest boundaries as L and R, trim the tree so that all its elements lies in [L, R] (R >= L). You might need to change the root of the tree, so the result should return the new root of the trimmed binary search tree.
+//Given a binary search tree and the lowest and highest boundaries as L and R,
+//trim the tree so that all its elements lies in [L, R] (R >= L). You might
+//need to change the root of the tree, so the result should return the new root
+//of the trimmed binary search tree.
 //Example 1:
-//Input: 
+//Input:
 //    1
 //   / \
 //  0   2
 //  L = 1
 //  R = 2
-//Output: 
+//Output:
 //    1
 //      \
 //       2
 //Example 2:
-//Input: 
+//Input:
 //    3
 //   / \
 //  0   4
@@ -22,14 +25,14 @@
 //  1
 //  L = 1
 //  R = 3
-//Output: 
+//Output:
 //      3
-//     / 
-//   2   
+//     /
+//   2
 //  /
 // 1
 
-//######################################### O(n) + O(log n) ######################################### 
+//######################################### O(n) + O(log n) #########################################
 public TreeNode trimBST(TreeNode root, int L, int R) {
 
   if (root == null) return null;
@@ -38,7 +41,7 @@ public TreeNode trimBST(TreeNode root, int L, int R) {
   root.left = trimBST(root.left, L, R);
   root.right = trimBST(root.right, L, R);
   return root;
-    
+
 }
 
 ///If the root value in the range [L, R]
@@ -49,7 +52,7 @@ public TreeNode trimBST(TreeNode root, int L, int R) {
 ///else
 ///      similarly we need return trimmed left subtree.
 //
-//######################################### Memory leak ######################################### 
+//######################################### Memory leak #########################################
 class Solution {
 public:
     TreeNode* trimBST(TreeNode* root, int L, int R) {
@@ -62,7 +65,7 @@ public:
     }
 };
 
-//######################################### No memory leak ######################################### 
+//######################################### No memory leak #########################################
 TreeNode* trimBST(TreeNode* root, int L, int R, bool top=true) {
     if (!root)
         return root;
@@ -76,7 +79,7 @@ TreeNode* trimBST(TreeNode* root, int L, int R, bool top=true) {
     return result;
 }
 
-//######################################### python ######################################### 
+//######################################### python #########################################
 class Solution(object):
     def trimBST(self, root, L, R):
         """
@@ -96,10 +99,12 @@ class Solution(object):
         return root
 
 
-//######################################### python - Recursion ######################################### 
+//######################################### python - Recursion #########################################
 //Let trim(node) be the answer for the subtree at that node.
-//When node.val > R, we know the trimmed binary tree must occur to the left of the node.
-//Similarly, when node.val < L, the trimmed binary tree occurs to the right of the node. Otherwise, we will trim both sides of the tree.
+//When node.val > R, we know the trimmed binary tree must occur to the left of
+//the node.
+//Similarly, when node.val < L, the trimmed binary tree occurs to the right of
+//the node. Otherwise, we will trim both sides of the tree.
 def trimBST(self, root, L, R):
     def trim(node):
         if node:

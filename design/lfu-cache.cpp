@@ -1,7 +1,13 @@
 //LFU Cache
-//Design and implement a data structure for Least Frequently Used (LFU) cache. It should support the following operations: get and put.
-//get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.
-//put(key, value) - Set or insert the value if the key is not already present. When the cache reaches its capacity, it should invalidate the least frequently used item before inserting a new item. For the purpose of this problem, when there is a tie (i.e., two or more keys that have the same frequency), the least recently used key would be evicted.
+//Design and implement a data structure for Least Frequently Used (LFU) cache.
+//It should support the following operations: get and put.
+//get(key) - Get the value (will always be positive) of the key if the key
+//exists in the cache, otherwise return -1.
+//put(key, value) - Set or insert the value if the key is not already present.
+//When the cache reaches its capacity, it should invalidate the least
+//frequently used item before inserting a new item. For the purpose of this
+//problem, when there is a tie (i.e., two or more keys that have the same
+//frequency), the least recently used key would be evicted.
 //Follow up:
 //Could you do both operations in O(1) time complexity?
 //Example:
@@ -15,7 +21,7 @@
 //cache.put(4, 4);    // evicts key 1.
 //cache.get(1);       // returns -1 (not found)
 //cache.get(3);       // returns 3
-//cache.get(4);       // returns 
+//cache.get(4);       // returns
 
 
 
@@ -28,26 +34,28 @@
 //              |        |        |
 //            +-+-+    +-+-+    +-+-+     |
 //            |2,3|    |4,3|    |6,2|     |
-//            +-+-+    +-+-+    +-+-+     | Most recent 
+//            +-+-+    +-+-+    +-+-+     | Most recent
 //                       |        |       |
 //                     +-+-+    +-+-+     |
 // key,value pairs     |1,2|    |7,9|     |
 //                     +---+    +---+     v
 
 
-//######################################### 3 Maps ######################################### 
-//1 the least recently+frequently used value to be removed is the first element in LinkedHashSet with the lowest count/frequency.
+//######################################### 3 Maps #########################################
+//1 the least recently+frequently used value to be removed is the first element
+//in LinkedHashSet with the lowest count/frequency.
 //2. min is used to track the group of elements with least frequency
-//3. lists maps frequency to groups, each element in same group has the same count
+//3. lists maps frequency to groups, each element in same group has the same
+//count
 public class LFUCache {
-    
+
     private int min;
 
     private final int capacity;
     private final HashMap<Integer, Integer> keyToVal;
     private final HashMap<Integer, Integer> keyToCount;
     private final HashMap<Integer, LinkedHashSet<Integer>> countToLRUKeys;
-    
+
     public LFUCache(int capacity) {
         this.min = -1;
         this.capacity = capacity;
@@ -55,47 +63,47 @@ public class LFUCache {
         this.keyToCount = new HashMap<>();
         this.countToLRUKeys = new HashMap<>();
     }
-    
+
     public int get(int key) {
         if (!keyToVal.containsKey(key)) return -1;
-        
+
         int count = keyToCount.get(key);
         countToLRUKeys.get(count).remove(key); // remove key from current count (since we will inc count)
         if (count == min && countToLRUKeys.get(count).size() == 0) min++; // nothing in the current min bucket
-        
+
         putCount(key, count + 1);
         return keyToVal.get(key);
     }
-    
+
     public void put(int key, int value) {
         if (capacity <= 0) return;
-        
+
         if (keyToVal.containsKey(key)) {
             keyToVal.put(key, value); // update key's value
             get(key); // update key's count
             return;
-        } 
-        
+        }
+
         if (keyToVal.size() >= capacity)
             evict(countToLRUKeys.get(min).iterator().next()); // evict LRU from this min count bucket
-        
+
         min = 1;
         putCount(key, min); // adding new key and count
         keyToVal.put(key, value); // adding new key and value
     }
-    
+
     private void evict(int key) {
         countToLRUKeys.get(min).remove(key);
         keyToVal.remove(key);
     }
-    
+
     private void putCount(int key, int count) {
         keyToCount.put(key, count);
         countToLRUKeys.computeIfAbsent(count, ignore -> new LinkedHashSet<>());
         countToLRUKeys.get(count).add(key);
     }
 }
-//######################################### Priority Queue + HashMap ######################################### 
+//######################################### Priority Queue + HashMap #########################################
 class LFUCache {
     Node head = null;
     final int capacity;
@@ -164,8 +172,8 @@ class LFUCache {
         }
     }
 }
-//######################################### Priority Queue + HashMap ######################################### 
-//PriorityQueue + HashMap: put O(capacity) get O(capacity)) 
+//######################################### Priority Queue + HashMap #########################################
+//PriorityQueue + HashMap: put O(capacity) get O(capacity))
 //Operations involved 1. Search in PQ 2. Insert in PQ 3. Delete in PQ
 //NOTE : Heap search requires O(n)
 long stamp;
@@ -195,21 +203,21 @@ public void put(int key, int value) {
     if (hashMap.containsKey(key)) {
         Pair old = hashMap.get(key);
         minHeap.remove(old);
-        
+
         Pair newNode = new Pair(key, value, old.times + 1, stamp++);
-        
+
         hashMap.put(key, newNode);
         minHeap.offer(newNode);
     } else if (num == capacity) {
         Pair old = minHeap.poll();
         hashMap.remove(old.key);
-        
+
         Pair newNode = new Pair(key, value, 1, stamp++);
-        
+
         hashMap.put(key, newNode);
         minHeap.offer(newNode);
     } else {
-        num++; 
+        num++;
         Pair pair = new Pair(key, value, 1, stamp++);
         hashMap.put(key, pair);
         minHeap.offer(pair);
@@ -224,9 +232,9 @@ public int get(int key) {
     if (hashMap.containsKey(key)) {
         Pair old = hashMap.get(key);
         minHeap.remove(old);
-        
+
         Pair newNode = new Pair(key, old.value, old.times + 1, stamp++);
-        
+
         hashMap.put(key, newNode);
         minHeap.offer(newNode);
         return hashMap.get(key).value;
@@ -246,18 +254,18 @@ class Pair implements Comparable<Pair> {
         this.times = times;
         this.stamp = stamp;
     }
-    
-    public int compareTo(Pair that) { 
+
+    public int compareTo(Pair that) {
 		//First frquency compare and then age bit compare
         if (this.times == that.times) {
             return (int)(this.stamp - that.stamp);
         } else {
-            return this.times - that.times;    
+            return this.times - that.times;
         }
     }
 }
 
-//######################################### Sorting ######################################### 
+//######################################### Sorting #########################################
 class LFUCache {
  public:
   struct LRUNode {
@@ -338,7 +346,7 @@ class LFUCache {
  * obj.put(key,value);
  */
 
-//########################################################## HashTable + BST  ########################################################## 
+//########################################################## HashTable + BST  ##########################################################
 struct CacheNode{
     int key;
     int val;
@@ -357,7 +365,7 @@ public:
     LFUCache(int capacity) {
         size = capacity;
     }
-    
+
     int get(int key) {
         auto it = cacheMap.find(key);
         if (size == 0 || it == cacheMap.end()) return -1;
@@ -367,7 +375,7 @@ public:
         cacheMap[key] = cacheSet.insert(temp);
         return temp.val;
     }
-    
+
     void set(int key, int value) {
         if(size == 0) return;
         auto it = cacheMap.find(key);
@@ -386,14 +394,14 @@ public:
         cacheSet.erase(it->second);
         cacheMap[key] = cacheSet.insert(temp);
     }
-    
+
 private:
     int size;
     std::multiset<CacheNode, Compare> cacheSet; //sort based on frquencies
     unordered_map<int, std::multiset<CacheNode, Compare>::iterator> cacheMap;
 };
 
-//######################## with PQ ######################## 
+//######################## with PQ ########################
 
 class LFUCache {
 public:
@@ -412,7 +420,7 @@ public:
         pq.push_back(dummy); // The pq start from pq[1].
         ts = 0;
     }
-    
+
     int get(int key) {
         if(!mp.count(key)) return -1;
         int index = mp[key];
@@ -422,7 +430,7 @@ public:
         sink(index);
         return val;
     }
-    
+
     void set(int key, int value) {
         if(Cap <= 0) return;
 	if(mp.count(key)) {
@@ -447,7 +455,7 @@ public:
 	    }
 	}
     }
-    
+
 private:
 	vector<Node*> pq; // A priority queue, with the least usage frequency and least recently used element at the top.
 	unordered_map<int, int> mp; // A mapping from the key of the element to its index in the priority queue.
@@ -456,13 +464,13 @@ private:
 
     /*
      * Recursively sink a node in priority queue. A node will be sinked, when its frequency is larger than any of its
-     * children nodes, or the node has the same frequency with a child, but it is recently updated. 
+     * children nodes, or the node has the same frequency with a child, but it is recently updated.
      */
 	void sink(int index) {
 	    int left = 2 * index, right = 2 * index + 1, target = index;
 	    if(left < pq.size() && pq[left]->fre <= pq[target]->fre) // If the left child has the same frequency, we probably need to swap the parent node and the child node, because the parent node is recently accessed, and the left child node was accessed at an older time stamp.
                target = left;
-            if(right < pq.size()) { 
+            if(right < pq.size()) {
                 if(pq[right]->fre < pq[target]->fre || (pq[right]->fre == pq[target]->fre && pq[right]->timeStamp < pq[target]->timeStamp)) // If right child has the same frequency and an older time stamp, we must swap it.
                      target = right;
 		}
@@ -471,7 +479,7 @@ private:
 	            sink(target);
 		}
 	}
-    
+
     /*a
      * Recursively swim a node in priority queue. A node will be swimmed, when its frequency is less than its
      * parent node. If the node has the same frequency with its parent, it is not needed to be swimmed, because
@@ -593,7 +601,7 @@ void put(int key, int value) {
     insert(key, value);
 }
 };
-//####################################################  Freq + bucket + DLL ####################################################  
+//####################################################  Freq + bucket + DLL ####################################################
 
 //LFU cache holds:
 //Doubly linked list of buckets sorted by frequency: BucketNode*
@@ -611,18 +619,18 @@ private:
         int value;
         ListNode* prev;
         ListNode* next;
-        ListNode(int k, int v) : key(k), value(v), prev(NULL), next(NULL) {}; 
+        ListNode(int k, int v) : key(k), value(v), prev(NULL), next(NULL) {};
     };
-    
+
     struct BucketNode {
         int freq;
         ListNode* head;
         ListNode* tail;
         BucketNode* prev;
         BucketNode* next;
-        
+
         BucketNode(int f) : freq(f), prev(NULL), next(NULL), head(NULL), tail(NULL) {};
-        
+
         void removeOne(ListNode* node) {
             if (node == head && node == tail) {
                 tail = head = NULL;
@@ -638,7 +646,7 @@ private:
             }
             node->prev = node->next = NULL;
         }
-        
+
         void addOne(ListNode* node) {
             if (head == NULL) {
                 head = tail = node;
@@ -648,24 +656,24 @@ private:
                 head = node;
             }
         }
-        
+
         bool empty() { return head == NULL; }
     };
-    
+
 public:
     LFUCache(int capacity) : mCapacity(capacity) {
         head = tail = NULL;
     }
-    
+
     int get(int key) {
         if (mCapacity == 0) return -1;
         ListNode* node = promote(key);
         return node ? node->value : -1;
     }
-    
+
     void put(int key, int value) {
         if (mCapacity == 0) return;
-        
+
         ListNode* node = promote(key);
         if (node) {
             node->value = value;
@@ -691,7 +699,7 @@ public:
             freqTable[key] = pair<BucketNode*, ListNode*>(bucket, node);
         }
     }
-    
+
 private:
     inline ListNode* promote(int key) {
         auto it = freqTable.find(key);
@@ -717,15 +725,15 @@ private:
             newBucket = bucket->prev;
             newBucket->addOne(node);
         }
-        
+
         it->second.first = newBucket;
         it->second.second = node;
-        
+
         if (bucket->empty()) removeBucket(bucket);
-        
+
         return node;
     }
-    
+
     inline void removeBucket(BucketNode* bucket) {
         if (bucket == head && bucket == tail) {
             head = tail = NULL;
@@ -741,7 +749,7 @@ private:
         }
         delete bucket;
     }
-    
+
     inline void evictLast() {
         ListNode* node = tail->tail;
         freqTable.erase(node->key);
@@ -749,7 +757,7 @@ private:
         delete node;
         if (tail->empty()) removeBucket(tail);
     }
-    
+
 private:
     int mCapacity;
     BucketNode* head;
@@ -760,16 +768,18 @@ private:
 //################ splice function
 //
 
-//FLIST = list<pair<int, int>> is the list save data entry with the same frequency count, with list you can easier splice item to next frequency list.
+//FLIST = list<pair<int, int>> is the list save data entry with the same
+//frequency count, with list you can easier splice item to next frequency list.
 //map<int, pair<int, int>> saves all the data in a map of frequency to list.
-//unordered_map<int, pair<int, FLIST::iterator>> index key to pair of frequency and list iterator.
+//unordered_map<int, pair<int, FLIST::iterator>> index key to pair of frequency
+//and list iterator.
 
 class LFUCache {
 public:
 LFUCache(int capacity) : capacity_(capacity) {
 }
 int get(int key) {
-    if (capacity_ < 1 || idx.count(key) == 0) return -1; 
+    if (capacity_ < 1 || idx.count(key) == 0) return -1;
     int f = idx[key].first++;
     dat[f+1].splice(dat[f+1].end(), dat[f], idx[key].second);
     if (dat[f].empty()) dat.erase(f);
@@ -803,7 +813,7 @@ unordered_map<int, pair<int, FLIST::iterator>> idx;
 };
 
 
-//#########################################  ######################################### 
+//#########################################  #########################################
 class ListNode(object):
     def __init__(self, key, val):
         self.prev = None
@@ -819,7 +829,7 @@ class LFUCache(object):
 
     def __init__(self, capacity):
         """
-        
+
         :type capacity: int
         """
         self.cap = capacity
@@ -888,7 +898,7 @@ class LFUCache(object):
         node.connect(loc)
         self.cnt[cnt] = node
         self.kv[key] = [node, cnt]
-        
+
 
 
 # Your LFUCache object will be instantiated and called as such:

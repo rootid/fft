@@ -1,9 +1,14 @@
 //Convex Polygon
-//Given a list of points that form a polygon when joined sequentially, find if this polygon is convex (Convex polygon definition) [https://en.wikipedia.org/wiki/Convex_polygon].
+//Given a list of points that form a polygon when joined sequentially, find if
+//this polygon is convex (Convex polygon definition)
+//[https://en.wikipedia.org/wiki/Convex_polygon].
 //Note:
 //There are at least 3 and at most 10,000 points.
 //Coordinates are in the range -10,000 to 10,000.
-//You may assume the polygon formed by given points is always a simple polygon (Simple polygon definition) [https://en.wikipedia.org/wiki/Simple_polygon] . In other words, we ensure that exactly two edges intersect at each vertex, and that edges otherwise don't intersect each other.
+//You may assume the polygon formed by given points is always a simple polygon
+//(Simple polygon definition) [https://en.wikipedia.org/wiki/Simple_polygon] .
+//In other words, we ensure that exactly two edges intersect at each vertex,
+//and that edges otherwise don't intersect each other.
 //Example 1:
 //[[0,0],[0,1],[1,1],[1,0]]
 //Answer: True
@@ -14,11 +19,17 @@
 //Explanation:
 //
 //#########################################  #########################################
-//Well, I have to say that this problem is beyond my knowledge. @Ipeq1 and @zzg_zzm have explained how to solve this problem in their posts
+//Well, I have to say that this problem is beyond my knowledge. @Ipeq1 and
+//@zzg_zzm have explained how to solve this problem in their posts
 //https://discuss.leetcode.com/topic/70643/i-believe-this-time-it-s-far-beyond-my-ability-to-get-a-good-grade-of-the-contest
 //https://discuss.leetcode.com/topic/70664/c-7-line-o-n-solution-to-check-convexity-with-cross-product-of-adajcent-vectors-detailed-explanation
-//The algorithm itself is not hard but I have no idea there exists such a way to determine if a polygon is convex or not. Laugh at me for my ignorance... I believe 90% of programmers can solve this problem if they were given the formula.
-//Anyway, following is the Java solution with in-line explanation. Accepted, 32ms. Reference: http://csharphelper.com/blog/2014/07/determine-whether-a-polygon-is-convex-in-c/
+//The algorithm itself is not hard but I have no idea there exists such a way
+//to determine if a polygon is convex or not. Laugh at me for my ignorance... I
+//believe 90% of programmers can solve this problem if they were given the
+//formula.
+//Anyway, following is the Java solution with in-line explanation. Accepted,
+//32ms. Reference:
+//http://csharphelper.com/blog/2014/07/determine-whether-a-polygon-is-convex-in-c/
 
 public class Solution {
     public boolean isConvex(List<List<Integer>> points) {

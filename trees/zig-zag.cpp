@@ -1,5 +1,7 @@
 //Binary Tree Zigzag Level Order Traversal
-//Given a binary tree, return the zigzag level order traversal of its nodes' values. (ie, from left to right, then right to left for the next level and alternate between).
+//Given a binary tree, return the zigzag level order traversal of its nodes'
+//values. (ie, from left to right, then right to left for the next level and
+//alternate between).
 //For example:
 //Given binary tree [3,9,20,null,null,15,7],
 //    3
@@ -14,7 +16,7 @@
 //  [15,7]
 //]
 
-//######################################### Recursion ######################################### 
+//######################################### Recursion #########################################
 //T : O(N)
 public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
     List<List<Integer>> res = new ArrayList<List<Integer>>();
@@ -31,10 +33,10 @@ public void addList(List<List<Integer>> res, TreeNode root, int level){
     else res.get(level).add(0, root.val);
     addList(res, root.right, level + 1);
     addList(res, root.left, level + 1);
-    
+
 }
 
-//######################################### Iterative  ######################################### 
+//######################################### Iterative  #########################################
 public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         List<List<Integer>> res = new ArrayList<>();
         if (root == null) return res;
@@ -65,7 +67,7 @@ public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         return res;
     }
 
-//######################################### Recursion ######################################### 
+//######################################### Recursion #########################################
 void help(vector<vector<int>>& res,  int level, TreeNode* root) {
 	if (res.size() <= level) res.push_back({ root->val });
 	else if(level%2) res[level].insert(res[level].begin(),root->val);

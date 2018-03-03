@@ -1,9 +1,13 @@
 //Android Unlock Patterns
-//Given an Android 3x3 key lock screen and two integers m and n, where 1 ≤ m ≤ n ≤ 9, count the total number of unlock patterns of the Android lock screen, which consist of minimum of m keys and maximum n keys.
+//Given an Android 3x3 key lock screen and two integers m and n, where 1 ≤ m ≤
+//n ≤ 9, count the total number of unlock patterns of the Android lock screen,
+//which consist of minimum of m keys and maximum n keys.
 //Rules for a valid pattern:
 //Each pattern must connect at least m keys and at most n keys.
 //All the keys must be distinct.
-//If the line connecting two consecutive keys in the pattern passes through any other keys, the other keys must have previously selected in the pattern. No jumps through non selected key is allowed.
+//If the line connecting two consecutive keys in the pattern passes through any
+//other keys, the other keys must have previously selected in the pattern. No
+//jumps through non selected key is allowed.
 //The order of keys used matters.
 //Explanation:
 //| 1 | 2 | 3 |
@@ -14,14 +18,17 @@
 //Invalid move: 4 - 1 - 9 - 2
 //Line 1 - 9 passes through key 5 which had not been selected in the pattern.
 //Valid move: 2 - 4 - 1 - 3 - 6
-//Line 1 - 3 is valid because it passes through key 2, which had been selected in the pattern
+//Line 1 - 3 is valid because it passes through key 2, which had been selected
+//in the pattern
 //Valid move: 6 - 5 - 4 - 1 - 9 - 2
-//Line 1 - 9 is valid because it passes through key 5, which had been selected in the pattern.
+//Line 1 - 9 is valid because it passes through key 5, which had been selected
+//in the pattern.
 //Example:
 //Given m = 1, n = 1, return 9.
 
 //######################################### Optimization #########################################
-//The optimization idea is that 1,3,7,9 are symmetric, 2,4,6,8 are also symmetric. Hence we only calculate one among each group and multiply by 4.
+//The optimization idea is that 1,3,7,9 are symmetric, 2,4,6,8 are also
+//symmetric. Hence we only calculate one among each group and multiply by 4.
 public class Solution {
     // cur: the current position
     // remain: the steps remaining
@@ -62,16 +69,28 @@ public class Solution {
 
 //######################################### Backtracing #########################################
 //TC : O(n!)
-//The algorithm computes each pattern once and no element can appear in the pattern twice. The time complexity is proportional to the number of the computed patterns. One upper bound of the number of all possible combinations is :
+//The algorithm computes each pattern once and no element can appear in the
+//pattern twice. The time complexity is proportional to the number of the
+//computed patterns. One upper bound of the number of all possible combinations
+//is :
 //SC : O(n) - rec stk
-//The algorithm uses backtracking technique to enumerate all possible kkk combinations of numbers [1… 9]
-//where m≤k≤nm \leq k \leq nm≤k≤n. During the generation of the recursive solution tree, the algorithm cuts all the branches which lead to patterns which doesn't satisfy the rules and counts only the valid patterns. In order to compute a valid pattern, the algorithm performs the following steps:
+//The algorithm uses backtracking technique to enumerate all possible kkk
+//combinations of numbers [1… 9]
+//where m≤k≤nm \leq k \leq nm≤k≤n. During the generation of the recursive
+//solution tree, the algorithm cuts all the branches which lead to patterns
+//which doesn't satisfy the rules and counts only the valid patterns. In order
+//to compute a valid pattern, the algorithm performs the following steps:
 //    Select a digit iii which is not used in the pattern till this moment. This is done with the help of a usedusedused array which stores all available digits.
 //    We need to keep last inserted digit lastlastlast. The algorithm makes a check whether one of the following conditions is valid.
 //        There is a knight move (as in chess) from lastlastlast towards iii or lastlastlast and iii are adjacent digits in a row, in a column. In this case the sum of both digits should be an odd number.
 //        The middle element midmidmid in the line which connects iii and lastlastlast was previously selected. In case iii and lastlastlast are positioned at both ends of the diagonal, digit midmidmid = 5 should be previously selected.
 //        lastlastlast and iii are adjacent digits in a diagonal
-//In case one of the conditions above is satisfied, digit iii becomes part of partially generated valid pattern and the algorithm continues with the next candidate digit till the pattern is fully generated. Then it counts it. In case none of the conditions are satisfied, the algorithm rejects the current digit iii, backtracks and continues to search for other valid digits among the unused ones.
+//In case one of the conditions above is satisfied, digit iii becomes part of
+//partially generated valid pattern and the algorithm continues with the next
+//candidate digit till the pattern is fully generated. Then it counts it. In
+//case none of the conditions are satisfied, the algorithm rejects the current
+//digit iii, backtracks and continues to search for other valid digits among
+//the unused ones.
 public class Solution {
 
     private boolean used[] = new boolean[9];

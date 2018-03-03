@@ -1,5 +1,6 @@
 //Solve the Equation
-//Solve a given equation and return the value of x in the form of string "x=#value". The equation contains only '+', '-' operation, the variable x and its coefficient.
+//Solve a given equation and return the value of x in the form of string "x=#value". The equation contains only '+', '-'
+//operation, the variable x and its coefficient.
 //If there is no solution for the equation, return "No solution".
 //If there are infinite solutions for the equation, return "Infinite solutions".
 //If there is exactly one solution for the equation, we ensure that the value of x is an integer.
@@ -19,8 +20,8 @@
 //Input: "x=x+2"
 //Output: "No solution"
 
-//######################################### Traversal O(n) ######################################### 
-//the coefficient of x and the total sum. On the left and right side of '=', 
+//######################################### Traversal O(n) #########################################
+//the coefficient of x and the total sum. On the left and right side of '=',
 //we have to use opposite signs for each numbers, so I define a sign variable, which will flip if '=' is seen.
 string solveEquation(string equation) {
      //coeff : value of x
@@ -41,7 +42,7 @@ string solveEquation(string equation) {
                  coeff += sign;
              else if (equation[j-1] == '-')
                  coeff -= sign;
-             else 
+             else
                  coeff += sign*stoi(equation.substr(i, j-i));
              i = j+1;
          }
@@ -64,9 +65,9 @@ string solveEquation(string equation) {
  }
 
 
-//######################################### Regex O(n) ######################################### 
+//######################################### Regex O(n) #########################################
 
-private : 
+private :
   pair<int, int> coef(string s) {
       // split the side into form of (+/-)123x
       auto e = regex("(^|[+-])\\d+x?");
@@ -79,7 +80,7 @@ private :
       return {a, b};
   }
 
-public : 
+public :
   string solveEquation(string equation) {
       // normalize the equation, add 1 for x's which have no coefficient: x => 1x
       equation = regex_replace(equation, regex("(^|[+=-])x"), "$011x");
@@ -95,11 +96,13 @@ public :
       return a != 0 ? "x=" + to_string(b/a) : b != 0 ? "No solution" : "Infinite solutions";
   }
 
-//######################################### pytonic ######################################### 
+//######################################### pytonic #########################################
 //
 //
 
-//It's easy to change an equation like 2+3x=5x-7 to an expression for a complex number like 2+3i-(5i-7). Then I let Ruby evaluate that and it gives me the total of "x numbers" and the total of "non-x numbers" as the imaginary and real part of the complex number.
+//It's easy to change an equation like 2+3x=5x-7 to an expression for a complex number like 2+3i-(5i-7). Then I let Ruby
+//evaluate that and it gives me the total of "x numbers" and the total of "non-x numbers" as the imaginary and real part
+//of the complex number.
 //Same in Python:
 //def solveEquation(self, equation):
 //    z = eval(equation.replace('x', 'j').replace('=', '-(') + ')', {'j': 1j})
@@ -157,7 +160,7 @@ public :
 //        lhs_co = co_p.findall(lhs)
 //        rhs_co = co_p.findall(rhs)
 //        # find the list of all signed numbers after removing the coefficient
-//        # Notice that, I replace the coeffiecients with an '*' symbol to extract the remaining numbers. 
+//        # Notice that, I replace the coeffiecients with an '*' symbol to extract the remaining numbers.
 //        # And I retrieve the numbers with the sign.
 //        lhs_num_list = num_p.findall(re.sub('-?\d*x', '*', lhs))
 //        rhs_num_list = num_p.findall(re.sub('-?\d*x', '*', rhs))
@@ -196,4 +199,4 @@ public :
 //        result = (rhs_sum - lhs_sum) / (lhs_coeff_sum - rhs_coeff_sum)
 //        return "x=" + str(result)
 
-// vim: set sw=2 sts=2 tw=120 et nospell : 
+// vim: set sw=2 sts=2 tw=120 et nospell :

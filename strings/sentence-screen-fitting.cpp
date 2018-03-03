@@ -1,5 +1,6 @@
 //
-//Given a rows x cols screen and a sentence represented by a list of words, find how many times the given sentence can be fitted on the screen.
+//Given a rows x cols screen and a sentence represented by a list of words, find how many times the given sentence can
+//be fitted on the screen.
 //Note:
 //A word cannot be split into two lines.
 //The order of words in the sentence must remain unchanged.
@@ -10,7 +11,7 @@
 //Example 1:
 //Input:
 //rows = 2, cols = 8, sentence = ["hello", "world"]
-//Output: 
+//Output:
 //1
 //Explanation:
 //hello---
@@ -19,17 +20,17 @@
 //Example 2:
 //Input:
 //rows = 3, cols = 6, sentence = ["a", "bcd", "e"]
-//Output: 
+//Output:
 //2
 //Explanation:
-//a-bcd- 
+//a-bcd-
 //e-a---
 //bcd-e-
 //The character '-' signifies an empty space on the screen.
 //Example 3:
 //Input:
 //rows = 4, cols = 5, sentence = ["I", "had", "apple", "pie"]
-//Output: 
+//Output:
 //1
 //Explanation:
 //I-had
@@ -57,19 +58,19 @@ int wordsTyping(vector<string>& sentence, int rows, int cols) {
         int cycle = 0;
         while(rowIndex <= rows) {
             if(index == 0 && wc <= remainingCols) { //case where we can fit all the words in a single line
-                cycle += (remainingCols) / wc; 
+                cycle += (remainingCols) / wc;
                 remainingCols = remainingCols % wc;
             } else {
                 //can accomodate the word
-                if(wlen[index] <= remainingCols) {  
+                if(wlen[index] <= remainingCols) {
                     if(index == size-1) { //all words traversed
                         cycle++;
                     }
-                    remainingCols = remainingCols - wlen[index]; //update remainingCols 
-                    remainingCols -= 1; //add space 
+                    remainingCols = remainingCols - wlen[index]; //update remainingCols
+                    remainingCols -= 1; //add space
                     index = (index + 1)%size; //Fetch the next word
                 } else { //cannot accomodate the word
-                    rowIndex++;  //increase row 
+                    rowIndex++;  //increase row
                     remainingCols = cols; //reset the remainingCols count
                 }
             }
@@ -84,4 +85,4 @@ int main () {
   wordsTyping(strs,3,5);
 }
 
-// vim: set sw=2 sts=2 tw=120 et nospell : 
+// vim: set sw=2 sts=2 tw=120 et nospell :

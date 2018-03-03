@@ -1,6 +1,9 @@
 //Binary Tree Longest Consecutive Sequence
-//Given a binary tree, find the length of the longest consecutive sequence path.
-//The path refers to any sequence of nodes from some starting node to any node in the tree along the parent-child connections. The longest consecutive path need to be from parent to child (cannot be the reverse).
+//Given a binary tree, find the length of the longest consecutive sequence
+//path.
+//The path refers to any sequence of nodes from some starting node to any node
+//in the tree along the parent-child connections. The longest consecutive path
+//need to be from parent to child (cannot be the reverse).
 //For example,
 //   1
 //    \
@@ -13,13 +16,13 @@
 //   2
 //    \
 //     3
-//    / 
-//   2    
-//  / 
+//    /
+//   2
+//  /
 // 1
 //Longest consecutive sequence path is 2-3,not 3-2-1, so return 2.
 
-//######################################### Top-down  ######################################### 
+//######################################### Top-down  #########################################
 //TC : o(n) , SC: o(n)
 private int maxLength = 0;
 public int longestConsecutive(TreeNode root) {
@@ -36,7 +39,7 @@ private void dfs(TreeNode p, TreeNode parent, int length) {
 }
 
 
-//######################################### Top-down/Preorder ######################################### 
+//######################################### Top-down/Preorder #########################################
 //TC : o(n) , SC: o(n)
 public int longestConsecutive(TreeNode root) {
     return dfs(root, null, 0);
@@ -49,7 +52,7 @@ private int dfs(TreeNode p, TreeNode parent, int length) {
                                      dfs(p.right, p, length)));
 }
 
-//######################################### Bottom-up/ Postorder ######################################### 
+//######################################### Bottom-up/ Postorder #########################################
 //TC : o(n) , SC: o(n)
 private int maxLength = 0;
 public int longestConsecutive(TreeNode root) {
@@ -74,13 +77,13 @@ private int dfs(TreeNode p) {
 
 
 
-//######################################### DFS ######################################### 
+//######################################### DFS #########################################
 class Solution {
 public:
     int longestConsecutive(TreeNode* root) {
         return search(root, nullptr, 0);
     }
-    
+
     int search(TreeNode *root, TreeNode *parent, int len) {
         if (!root) return len;
         len = (parent && root->val == parent->val + 1)?len+1:1;
@@ -89,10 +92,10 @@ public:
 };
 
 
-//######################################### DFS + recursive ######################################### 
+//######################################### DFS + recursive #########################################
 class Solution(object):
     def longestConsecutive(self, root):
-        
+
         def _dfs(node, parent, cur_l):
             if not node:
                 return cur_l
@@ -100,12 +103,13 @@ class Solution(object):
                 cur_l = 0
             cur_l += 1
             return max(_dfs(node.left, node.val, cur_l), _dfs(node.right, node.val, cur_l), cur_l)
-            
+
         return _dfs(root, None, 0)
 
-//######################################### BFS + Iterative ######################################### 
-//Every node is attached with a property "length" when pushed into the queue. 
-//It is the length of longest consecutive sequence end with that node. The answer is then the max of all popped lengths. 
+//######################################### BFS + Iterative #########################################
+//Every node is attached with a property "length" when pushed into the queue.
+//It is the length of longest consecutive sequence end with that node. The
+//answer is then the max of all popped lengths.
 from collections import deque
 def longestConsecutive(self, root):
     if not root:
@@ -121,9 +125,10 @@ def longestConsecutive(self, root):
     return ans
 
 
-//######################################### DFS + Iterative ######################################### 
-//Every node is attached with a property "length" when pushed into the stack. 
-//It is the length of longest consecutive sequence end with that node. The answer is then the max of all popped lengths. 
+//######################################### DFS + Iterative #########################################
+//Every node is attached with a property "length" when pushed into the stack.
+//It is the length of longest consecutive sequence end with that node. The
+//answer is then the max of all popped lengths.
 def longestConsecutive(self, root):
     if not root:
         return 0

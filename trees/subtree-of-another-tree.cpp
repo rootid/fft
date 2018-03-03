@@ -1,5 +1,8 @@
 //Subtree of Another Tree
-//Given two non-empty binary trees s and t, check whether tree t has exactly the same structure and node values with a subtree of s. A subtree of s is a tree consists of a node in s and all of this node's descendants. The tree s could also be considered as a subtree of itself.
+//Given two non-empty binary trees s and t, check whether tree t has exactly
+//the same structure and node values with a subtree of s. A subtree of s is a
+//tree consists of a node in s and all of this node's descendants. The tree s
+//could also be considered as a subtree of itself.
 //Example 1:
 //Given tree s:
 //     3
@@ -8,10 +11,11 @@
 //  / \
 // 1   2
 //Given tree t:
-//   4 
+//   4
 //  / \
 // 1   2
-//Return true, because t has the same structure and node values with a subtree of s.
+//Return true, because t has the same structure and node values with a subtree
+//of s.
 //Example 2:
 //Given tree s:
 //     3
@@ -27,7 +31,7 @@
 // 1   2
 //Return false.
 
-//#################################################### recursion #################################################### 
+//#################################################### recursion ####################################################
 public:
     bool isSubtree(TreeNode* s, TreeNode* t) {
         return !t || s && (isSameTree(s, t) || isSubtree(s->left, t) || isSubtree(s->right, t));
@@ -38,7 +42,7 @@ private:
     }
 
 
-//#################################################### recursion #################################################### 
+//#################################################### recursion ####################################################
 public:
     bool isSubtree(TreeNode* s, TreeNode* t) {
         return !t || s && (same(s, t) || isSubtree(s->left, t) || isSubtree(s->right, t));
@@ -47,13 +51,13 @@ private :
   bool same(TreeNode* s, TreeNode* t) {
     return (!s && !t) || (s && t) && (s->val == t->val) && same(s->left, t->left) && same(s->right, t->right);
   }
-  bool same(TreeNode* s, TreeNode* t) { 
+  bool same(TreeNode* s, TreeNode* t) {
     return (!s || !t) ? (s == t) : (s->val == t->val) && same(s->left, t->left) && same(s->right, t->right);
   }
 
-//######################################## Linear  ######################################## 
+//######################################## Linear  ########################################
 //
-//######################## Use of Preorder  ######################## 
+//######################## Use of Preorder  ########################
 //
 //public class Solution {
 //    StringBuilder spre = new StringBuilder();
@@ -74,16 +78,19 @@ private :
 //    }
 //}
 //
-////######################### Conversion + KMP  ######################### 
+////######################### Conversion + KMP  #########################
 //NOTE : find api may not be linear
-//The key idea is to serialize the tree into a string so that any subtree in that tree will be a consecutive substring. Then the problem turns into substring finding problem. Here is the non-recursive code in case the tree is quite deep (depth > 10000) to prevent stack overflow.
+//The key idea is to serialize the tree into a string so that any subtree in
+//that tree will be a consecutive substring. Then the problem turns into
+//substring finding problem. Here is the non-recursive code in case the tree is
+//quite deep (depth > 10000) to prevent stack overflow.
 
 class
 class Solution {
 public:
     vector<int> preKMP(string substr) {
         int m = substr.size();
-        vector<int> f(m);        
+        vector<int> f(m);
         int k;
         f[0] = -1;
         for (int i = 1; i < m; i++) {
@@ -98,14 +105,14 @@ public:
         }
         return f;
     }
- 
+
     bool KMP(string substr, string str) {
         int m = substr.size();
         int n = str.size();
         vector<int> f;
-        f = preKMP(substr);     
+        f = preKMP(substr);
         int i = 0;
-        int k = 0;        
+        int k = 0;
         while (i < n) {
             if (k == -1) {
                 i++;
@@ -152,7 +159,7 @@ public:
         }
         return str;
     }
-    
+
     bool isSubtree(TreeNode* s, TreeNode* t) {
         string post_t = postOrderTraversal(t);
         string post_s = postOrderTraversal(s);
@@ -162,8 +169,8 @@ public:
     }
 };
 
-//######################################### pytonic ######################################### 
-//######################################### Serialization  ######################################### 
+//######################################### pytonic #########################################
+//######################################### Serialization  #########################################
 //class Solution(object):
 //    def isSubtree(self, s, t):
 //        """
@@ -196,7 +203,7 @@ public:
 //        """
 //        def convert(p):
 //            return "^" + str(p.val) + "#" + convert(p.left) + convert(p.right) if p else "$"
-//        
+//
 //        return convert(t) in convert(s)
 //
 //@TIME
@@ -222,16 +229,16 @@ public:
 //5.134004260046098
 //20.76774636109795
 
-//######################################### Merkel hashing ######################################### 
+//######################################### Merkel hashing #########################################
 // O(|s| + |t|) (Merkle hashing):
-// hashing the concatenation of the merkle of the left child, the node's value, and the merkle of the right child. Then, two trees are identical if and only if the merkle hash of their roots are equal 
+// hashing the concatenation of the merkle of the left child, the node's value, and the merkle of the right child. Then, two trees are identical if and only if the merkle hash of their roots are equal
 def isSubtree(self, s, t):
     from hashlib import sha256
     def hash_(x):
         S = sha256()
         S.update(x)
         return S.hexdigest()
-        
+
     def merkle(node):
         if not node:
             return '#'
@@ -239,33 +246,35 @@ def isSubtree(self, s, t):
         m_right = merkle(node.right)
         node.merkle = hash_(m_left + str(node.val) + m_right)
         return node.merkle
-        
+
     merkle(s)
     merkle(t)
     def dfs(node):
         if not node:
             return False
-        return (node.merkle == t.merkle or 
+        return (node.merkle == t.merkle or
                 dfs(node.left) or dfs(node.right))
-                    
+
     return dfs(s)
 
-//######################################### Naive ######################################### 
+//######################################### Naive #########################################
 // Naive approach, O(|s| * |t|)
-//For each node of s, let's check if it's subtree equals t. 
-//We can do that in a straightforward way by an isMatch function: 
-//1. check if s and t match at the values of their roots, plus their subtrees match. 
-//2. Then, in our main function, we want to check if s and t match, or if t is a subtree of a child of s.
+//For each node of s, let's check if it's subtree equals t.
+//We can do that in a straightforward way by an isMatch function:
+//1. check if s and t match at the values of their roots, plus their subtrees
+//match.
+//2. Then, in our main function, we want to check if s and t match, or if t is
+//a subtree of a child of s.
 //def isMatch(self, s, t):
 //    if not(s and t):
 //        return s is t
-//    return (s.val == t.val and 
-//            self.isMatch(s.left, t.left) and 
+//    return (s.val == t.val and
+//            self.isMatch(s.left, t.left) and
 //            self.isMatch(s.right, t.right))
 //
 //def isSubtree(self, s, t):
-//    if self.isMatch(s, t): 
+//    if self.isMatch(s, t):
 //      return True
-//    if not s: 
+//    if not s:
 //      return False
 //    return self.isSubtree(s.left, t) or self.isSubtree(s.right, t)

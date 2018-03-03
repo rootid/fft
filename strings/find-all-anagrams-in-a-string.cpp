@@ -1,6 +1,8 @@
 //Find All Anagrams in a String
-//Given a string s and a non-empty string p, find all the start indices of p's anagrams in s.
-//Strings consists of lowercase English letters only and the length of both strings s and p will not be larger than 20,100.
+//Given a string s and a non-empty string p, find all the start indices of p's
+//anagrams in s.
+//Strings consists of lowercase English letters only and the length of both
+//strings s and p will not be larger than 20,100.
 //The order of output does not matter.
 //Example 1:
 //Input:
@@ -25,9 +27,9 @@ using namespace std;
 
 
 vector<int> findAnagrams(string s, string p) {
-       
+
        vector<int> result;
-   
+
        int ls = s.size();
        int lp = p.size();
        if(ls < lp) {
@@ -48,12 +50,12 @@ vector<int> findAnagrams(string s, string p) {
            if(sv == pv) {
                result.push_back(i-lp+1);
            }
-       } 
-       return result;   
+       }
+       return result;
 }
 //Fails for large cases
 vector<int> findAnagrams(string s, string p) {
-       
+
        vector<int> result;
        int hash_a = 0;
        int ls = s.size();
@@ -68,7 +70,7 @@ vector<int> findAnagrams(string s, string p) {
        //cout <<  "h_a" << hash_a << endl;
        int hash_b = 0;
        for(int j=0;j<lp-1;j++) {
-           hash_b += PRIME*s[j]; 
+           hash_b += PRIME*s[j];
        }
        //cout << s << endl;
        //cout << p << endl;
@@ -81,12 +83,12 @@ vector<int> findAnagrams(string s, string p) {
                //cout <<  "h_b " << hash_b  << " | i-1 = " << i-lp << endl;
                result.push_back(i-lp+1);
            }
-       } 
+       }
        //if(hash_b == hash_a) {
        //    //cout <<  "h_b " << hash_b  << " | i-1 = " << i-lp << endl;
        //    result.push_back(ls-lp);
        //}
-       return result;   
+       return result;
 }
 int main() {
   findAnagrams("cbaebabacd","abc");

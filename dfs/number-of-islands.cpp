@@ -1,5 +1,8 @@
 //Number of Islands
-//Given a 2d grid map of '1's (land) and '0's (water), count the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
+//Given a 2d grid map of '1's (land) and '0's (water), count the number of
+//islands. An island is surrounded by water and is formed by connecting
+//adjacent lands horizontally or vertically. You may assume all four edges of
+//the grid are all surrounded by water.
 //Example 1:
 //11110
 //11010
@@ -18,51 +21,51 @@
 
 class Solution {
     int[][] distance = {{1,0},{-1,0},{0,1},{0,-1}};
-    public int numIslands(char[][] grid) {  
+    public int numIslands(char[][] grid) {
         if (grid == null || grid.length == 0 || grid[0].length == 0)  {
-            return 0;  
+            return 0;
         }
-        UnionFind uf = new UnionFind(grid);  
-        int rows = grid.length;  
-        int cols = grid[0].length;  
-        for (int i = 0; i < rows; i++) {  
-            for (int j = 0; j < cols; j++) {  
-                if (grid[i][j] == '1') {  
+        UnionFind uf = new UnionFind(grid);
+        int rows = grid.length;
+        int cols = grid[0].length;
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (grid[i][j] == '1') {
                     for (int[] d : distance) {
                         int x = i + d[0];
                         int y = j + d[1];
-                        if (x >= 0 && x < rows && y >= 0 && y < cols && grid[x][y] == '1') {  
+                        if (x >= 0 && x < rows && y >= 0 && y < cols && grid[x][y] == '1') {
                             int id1 = i*cols+j; //convert 2-D points to 1-D
                             int id2 = x*cols+y;
-                            uf.union(id1, id2);  
-                        }  
-                    }  
-                }  
-            }  
-        }  
-        return uf.count;  
+                            uf.union(id1, id2);
+                        }
+                    }
+                }
+            }
+        }
+        return uf.count;
     }
 }
 
 class UnionFind {
-        int[] father;  
+        int[] father;
         int m, n;
         int count = 0;
-        UnionFind(char[][] grid) {  
-            m = grid.length;  
-            n = grid[0].length;  
+        UnionFind(char[][] grid) {
+            m = grid.length;
+            n = grid[0].length;
             father = new int[m*n]; //Convert 2D array to 1D
-            for (int i = 0; i < m; i++) {  
-                for (int j = 0; j < n; j++) {  
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < n; j++) {
                     if (grid[i][j] == '1') {
                         int id = i * n + j;
                         father[id] = id;
                         count++;
                     }
-                }  
-            }  
+                }
+            }
         }
-        public void union(int node1, int node2) {  
+        public void union(int node1, int node2) {
             int find1 = find(node1);
             int find2 = find(node2);
             if(find1 != find2) {
@@ -70,11 +73,11 @@ class UnionFind {
                 count--;
             }
         }
-        public int find (int node) {  
-            if (father[node] == node) {  
+        public int find (int node) {
+            if (father[node] == node) {
                 return node;
             }
-            father[node] = find(father[node]);  
+            father[node] = find(father[node]);
             return father[node];
         }
     }
@@ -95,7 +98,7 @@ class Solution {
                 }
         return cnt;
     }
-    
+
     private void dfs(char grid[][],int i,int j) {
         int[] dirs = {0,1,0,-1,0};
         int m = grid.length;
@@ -106,7 +109,7 @@ class Solution {
                 int dx = i+ dirs[l];
                 int dy = j + dirs[l+1];
                 if(dx < m && dy < n && dx >=0 && dy >=0) dfs(grid,dx,dy);
-            }   
+            }
         }
     }
 }
@@ -154,7 +157,7 @@ int numIslands(vector<vector<char>>& grid) {
         }
     }
     for(int i=0;i<to_be_visited.size();i++) {
-        
+
         int v = to_be_visited[i];
         if(visited.find(v) == visited.end()) {
             queue<int> bfsq;
@@ -192,7 +195,7 @@ int numIslands(vector<vector<char>>& grid) {
                           visited.insert(x+ (y+1)*m);
                     }
                 }
-                
+
             }
             }
     }

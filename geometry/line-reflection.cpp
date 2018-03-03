@@ -1,5 +1,6 @@
 //Line Reflection
-//Given n points on a 2D plane, find if there is such a line parallel to y-axis that reflect the given points.
+//Given n points on a 2D plane, find if there is such a line parallel to y-axis
+//that reflect the given points.
 //Example 1:
 //Given points = [[1,1],[-1,1]], return true.
 //Example 2:
@@ -9,11 +10,13 @@
 //
 //
 
-//The key point is if there is one line to reflects all the points, it must in the middle of maxX and minX.
+//The key point is if there is one line to reflects all the points, it must in
+//the middle of maxX and minX.
 //Say its at (minX + maxX)/2 = m
 //you can get the reflecting point for any given point x on the given plane
 //to be at 2m - x = minX + maxX - x
-//Finding maxX and minX, replacing every point to its reflected point, and comparing whether the two sets are the same, are all linear operations.
+//Finding maxX and minX, replacing every point to its reflected point, and
+//comparing whether the two sets are the same, are all linear operations.
 
 //################################################### HashSet ###################################################
    public boolean isReflected(int[][] points) {
@@ -65,8 +68,11 @@
         return x << 32 | y;
     }
 
-//Reflect the points by replacing every x with minX+maxX-x and then check whether you get the same points.
-//Why minX+maxX-x? I actually thought of it as minX+(maxX-x), i.e., first the subtraction (maxX-x). That's how far x is away from the max, so instead go that distance from the min.
+//Reflect the points by replacing every x with minX+maxX-x and then check
+//whether you get the same points.
+//Why minX+maxX-x? I actually thought of it as minX+(maxX-x), i.e., first the
+//subtraction (maxX-x). That's how far x is away from the max, so instead go
+//that distance from the min.
 //################################################### duplicates + O(n) ###################################################
 def isReflected(self, points):
     if not points: return True

@@ -1,33 +1,39 @@
 //Most Frequent Subtree sum
-//Given the root of a tree, you are asked to find the most frequent subtree sum. The subtree sum of a node is defined as the sum of all the node values formed by the subtree rooted at that node (including the node itself). So what is the most frequent subtree sum value? If there is a tie, return all the values with the highest frequency in any order.
+//Given the root of a tree, you are asked to find the most frequent subtree
+//sum. The subtree sum of a node is defined as the sum of all the node values
+//formed by the subtree rooted at that node (including the node itself). So
+//what is the most frequent subtree sum value? If there is a tie, return all
+//the values with the highest frequency in any order.
 //Examples 1
 //Input:
 //  5
 // /  \
 //2   -3
-//return [2, -3, 4], since all the values happen only once, return all of them in any order.
+//return [2, -3, 4], since all the values happen only once, return all of them
+//in any order.
 //Examples 2
 //Input:
 //  5
 // /  \
 //2   -5
 //return [2], since 2 happens twice, however -5 only occur once.
-//Note: You may assume the sum of values in any subtree is in the range of 32-bit signed integer.
+//Note: You may assume the sum of values in any subtree is in the range of
+//32-bit signed integer.
 
 
 //####################################################### O(n) ####################################################
 Map<Integer, Integer> freqMap = new HashMap<>();
 int maxCount = 0;
 
-public int[] findFrequentTreeSum(TreeNode root) { 
+public int[] findFrequentTreeSum(TreeNode root) {
 	countSubtreeSums(root);
 	List<Integer> maxSums= new ArrayList<>();
 	countSubtreeSums(root);
     for(int key : freqMap.keySet()) {
-         if(freqMap.get(key) == maxCount) 
+         if(freqMap.get(key) == maxCount)
               maxSums.add(key);
      }
-     return maxSums.stream().mapToInt(Integer::intValue).toArray();   
+     return maxSums.stream().mapToInt(Integer::intValue).toArray();
 }
 private int countSubtreeSums(TreeNode root) {
     if(root == null) return 0;
@@ -43,17 +49,17 @@ private int countSubtreeSums(TreeNode root) {
 Map<Integer, Integer> freqMap = new HashMap<>();
 List<Integer> lst = new ArrayList<>();
 int maxCount = 0;
- 
+
 public int[] findFrequentTreeSum(TreeNode root) {
      if(root == null) return  lst.stream().mapToInt(Integer::intValue).toArray();
      getFreqSumMap(root);
      for(int key : freqMap.keySet()) {
-         if(freqMap.get(key) == maxCount) 
+         if(freqMap.get(key) == maxCount)
               lst.add(key);
      }
-     return lst.stream().mapToInt(Integer::intValue).toArray();   
+     return lst.stream().mapToInt(Integer::intValue).toArray();
  }
- 
+
 private void getFreqSumMap(TreeNode root) {
      if(root == null) return ;
      getFreqSumMap(root.left);
@@ -62,7 +68,7 @@ private void getFreqSumMap(TreeNode root) {
      freqMap.put(sum, freqMap.getOrDefault(sum, 0) + 1);
      maxCount = Math.max(freqMap.get(sum), maxCount);
 }
- 
+
  private int getSum(TreeNode node) {
      if(node == null) return 0;
      int sum = 0;
@@ -71,17 +77,17 @@ private void getFreqSumMap(TreeNode root) {
  }
 
 //####################################################### Postorder traversal  ####################################################
-int countSubtreesums(TreeNode *r, unordered_map<int,int> &counts, int& maxCount){ 
-  if(r == nullptr) 
+int countSubtreesums(TreeNode *r, unordered_map<int,int> &counts, int& maxCount){
+  if(r == nullptr)
     return 0;
-  int sum = r->val; 
+  int sum = r->val;
   sum += countSubtreesums(r->left, counts, maxCount);
   sum += countSubtreesums(r->right, counts, maxCount);
   ++counts[sum];
   maxCount = max(maxCount, counts[sum]);
   return sum;
 }
-vector<int> findFrequentTreesum(TreeNode* root) { 
+vector<int> findFrequentTreesum(TreeNode* root) {
   unordered_map<int,int> counts;
   int maxCount = 0;
   countSubtreesums(root, counts, maxCount);
@@ -132,4 +138,4 @@ vector<int> findFrequentTreeSum(TreeNode* root) {
    }
    return (rlist);
 }
-    
+

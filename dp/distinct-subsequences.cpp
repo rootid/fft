@@ -1,12 +1,14 @@
 //Distinct Subsequences
 //Given a string S and a string T, count the number of distinct subsequences of T in S.
-//A subsequence of a string is a new string which is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (ie, "ACE" is a subsequence of "ABCDE" while "AEC" is not).
+//A subsequence of a string is a new string which is formed from the original string by deleting some (can be none) of
+//the characters without disturbing the relative positions of the remaining characters. (ie, "ACE" is a subsequence of
+//"ABCDE" while "AEC" is not).
 //Here is an example:
 //S = "rabbbit", T = "rabbit"
 //Return 3.
 
 
-//########################### DP ########################### 
+//########################### DP ###########################
 //S: [acdabefbc] and T: [ab]
 //first we check with a:
 //            *  *
@@ -33,17 +35,17 @@ public int numDistinct(String s, String t) {
     Arrays.fill(memST[0],1);
     for(int i=1;i<=t.length();i++) {
         for(int j=1;j<=s.length();j++) {
-            if(t.charAt(i-1) == s.charAt(j-1)) 
+            if(t.charAt(i-1) == s.charAt(j-1))
                 memST[i][j] = memST[i-1][j-1] + memST[i][j-1];
-            else 
+            else
                 memST[i][j] = memST[i][j-1];
         }
     }
     return memST[m][n];
 }
 
-//########################### DP ########################### 
-int numDistinct(string s, string t) { 
+//########################### DP ###########################
+int numDistinct(string s, string t) {
     int m = t.length(), n = s.length();
     vector<vector<int>> dp(m + 1, vector<int> (n + 1, 0));
     //t is empty
@@ -59,12 +61,12 @@ int numDistinct(string s, string t) {
     return dp[m][n];
 }
 
-//############################ Space optimized ############################ 
-int numDistinct(string s, string t) { 
+//############################ Space optimized ############################
+int numDistinct(string s, string t) {
     int m = t.length(), n = s.length();
     vector<int> cur(m + 1, 0);
     cur[0] = 1;
-    for (int j = 1; j <= n; j++) { 
+    for (int j = 1; j <= n; j++) {
         int pre = 1;
         for (int i = 1; i <= m; i++) {
             int temp = cur[i];

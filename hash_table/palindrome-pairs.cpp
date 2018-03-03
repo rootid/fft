@@ -1,5 +1,7 @@
 //Palindrome Pairs
-//Given a list of unique words, find all pairs of distinct indices (i, j) in the given list, so that the concatenation of the two words, i.e. words[i] + words[j] is a palindrome.
+//Given a list of unique words, find all pairs of distinct indices (i, j) in
+//the given list, so that the concatenation of the two words, i.e. words[i] +
+//words[j] is a palindrome.
 //Example 1:
 //Given words = ["bat", "tab", "cat"]
 //Return [[0, 1], [1, 0]]
@@ -21,13 +23,13 @@ public:
             reverse(tmp.begin(), tmp.end());
             dict[tmp] = i; //store reverse string in map
         }
-        
+
         for(i = 0; i < size; i++) {
             for(j = 0; j < words[i].size(); j++) {
-                left = words[i].substr(0, j); //left(first half of string) + right 
+                left = words[i].substr(0, j); //left(first half of string) + right
                 right = words[i].substr(j);  //abcd,dcba
                 if(dict.find(left) != dict.end() && dict[left] != i && isPalindrome(right)) {
-                    result.push_back({i, dict[left]});  
+                    result.push_back({i, dict[left]});
                     if(left.empty()) { //a,"" -> need to o/p [0,1],[1,0]
                         result.push_back({dict[left], i}); //reverse pair
                     }
@@ -38,7 +40,7 @@ public:
         }
         return result;
     }
-    
+
 private:
     bool isPalindrome(string s) {
         int start, end, size = s.size();
@@ -67,7 +69,7 @@ private:
                         result.push_back({i, dict[suffix]});
                     }
                 }
-                //check the prefix word 
+                //check the prefix word
                 if(j > 0 && is_palindrome(words[i], 0, j - 1)) {
                     string prefix = words[i].substr(j);
                     reverse(prefix.begin(), prefix.end());
@@ -79,7 +81,7 @@ private:
         }
         return result;
     }
-    
+
     bool is_palindrome(string& s, int start, int end) {
         while(start < end) {
             if(s[start++] != s[end--]) {
@@ -87,7 +89,7 @@ private:
             }
         }
         return true;
-        
+
     }
 
 //###########################################  pal-list  naive #########################################

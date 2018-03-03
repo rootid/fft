@@ -1,7 +1,8 @@
 //01 Matrix
-//Given a matrix consists of 0 and 1, find the distance of the nearest 0 for each cell.
+//Given a matrix consists of 0 and 1, find the distance of the nearest 0 for
+//each cell.
 //The distance between two adjacent cells is 1.
-//Example 1: 
+//Example 1:
 //Input:
 //0 0 0
 //0 1 0
@@ -10,7 +11,7 @@
 //0 0 0
 //0 1 0
 //0 0 0
-//Example 2: 
+//Example 2:
 //Input:
 //0 0 0
 //0 1 0
@@ -24,7 +25,7 @@
 //There are at least one 0 in the given matrix.
 //The cells are adjacent in only four directions: up, down, left and right.
 
-//##############################################  BFS ##################################################  
+//##############################################  BFS ##################################################
 vector<pair<int,int> > dir = {{1,0},{-1,0},{0,1},{0,-1}};
 
 vector<vector<int> > updateMatrix(vector<vector<int> >& matrix) {
@@ -34,21 +35,21 @@ vector<vector<int> > updateMatrix(vector<vector<int> >& matrix) {
     int m = matrix.size();
     int n = matrix[0].size();
     queue<pair<int,int>> zeros;
-    for(int i = 0; i < m; ++i) { 
-      for(int j = 0; j < n; ++j) { 
-        if(matrix[i][j] == 0) { 
-          zeros.push({i,j}); 
-        } else { 
-          matrix[i][j] = INT_MAX; 
-        } 
+    for(int i = 0; i < m; ++i) {
+      for(int j = 0; j < n; ++j) {
+        if(matrix[i][j] == 0) {
+          zeros.push({i,j});
+        } else {
+          matrix[i][j] = INT_MAX;
+        }
       }
-    } 
+    }
     while(!zeros.empty()){
         auto xy = zeros.front();
         zeros.pop();
         int i = xy.first, j = xy.second;
         for(auto d : dir) { //move in all 4 diretions
-            int ii = i + d.first, jj = j + d.second; 
+            int ii = i + d.first, jj = j + d.second;
             if(ii < m && ii >= 0 && jj < n && jj >= 0) {
                 if(matrix[ii][jj] >= matrix[i][j] + 1) {
                     matrix[ii][jj] = matrix[i][j] + 1; //update the cost
@@ -60,10 +61,12 @@ vector<vector<int> > updateMatrix(vector<vector<int> >& matrix) {
     return matrix;
 }
 
-//##############################################  BFS ##################################################  
-//In the first sweep, we visit each entry in natural order (L-R) and res[i][j] = min(MAX, min(res[i - 1][j], res[i][j - 1]) + 1).
-//in the second sweep, we visit each entry in reverse order(R-L) and res[i][j] = min(res[i][j], min(res[i + 1][j], res[i][j + 1]) + 1).
-vector<vector<int> > updateMatrix(vector<vector<int> >& matrix) { 
+//##############################################  BFS ##################################################
+//In the first sweep, we visit each entry in natural order (L-R) and res[i][j]
+//= min(MAX, min(res[i - 1][j], res[i][j - 1]) + 1).
+//in the second sweep, we visit each entry in reverse order(R-L) and res[i][j]
+//= min(res[i][j], min(res[i + 1][j], res[i][j + 1]) + 1).
+vector<vector<int> > updateMatrix(vector<vector<int> >& matrix) {
   if(matrix.empty()) {
     return matrix;
   }
@@ -72,29 +75,29 @@ vector<vector<int> > updateMatrix(vector<vector<int> >& matrix) {
   for(int i = 0; i < m; i++) {
      for(int j = 0; j < n; j++) {
          res[i][j] = (matrix[i][j] == 0) ? 0 : m+n;
-     } 
+     }
   }
   //Traverse with natural order L-R and check from left and top
   for(int i = 0; i < m; i++) {
       for(int j = 0; j < n; j++) {
-          int left =(j-1 >= 0) ? res[i][j - 1]: res[i][j]; 
-          int top = (i-1 >= 0) ? res[i - 1][j]: res[i][j]; 
-          res[i][j] = min(res[i][j], min(top, left) + 1); 
+          int left =(j-1 >= 0) ? res[i][j - 1]: res[i][j];
+          int top = (i-1 >= 0) ? res[i - 1][j]: res[i][j];
+          res[i][j] = min(res[i][j], min(top, left) + 1);
       }
-  } 
+  }
 
   //Traverse with natural order R-L and check from right to bottom
   for(int i = m-1; i >=0 ; i--) {
-    for(int j = n-1; j >= 0; j--) { 
-      int right = (j+1 < n) ? res[i][j+1]: res[i][j]; 
-      int down = (i+1 < m) ? res[i+1][j]: res[i][j]; 
-      res[i][j] = min(res[i][j], min(down, right) + 1); 
+    for(int j = n-1; j >= 0; j--) {
+      int right = (j+1 < n) ? res[i][j+1]: res[i][j];
+      int down = (i+1 < m) ? res[i+1][j]: res[i][j];
+      res[i][j] = min(res[i][j], min(down, right) + 1);
     }
   }
   return res;
 }
 
-///######################## Same as above w/o extra space  ######################## 
+///######################## Same as above w/o extra space  ########################
 
 public List<List<Integer>> updateMatrix(List<List<Integer>> matrix) {
         if (matrix ==null || matrix.size() <= 0 || matrix.get(0).size() <= 0) return matrix;

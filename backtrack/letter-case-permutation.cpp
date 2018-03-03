@@ -1,5 +1,7 @@
 //Letter Case Permutation
-//Given a string S, we can transform every letter individually to be lowercase or uppercase to create another string.  Return a list of all possible strings we could create.
+//Given a string S, we can transform every letter individually to be lowercase
+//or uppercase to create another string.  Return a list of all possible strings
+//we could create.
 //Examples:
 //Input: S = "a1b2"
 //Output: ["a1b2", "a1B2", "A1b2", "A1B2"]
@@ -12,7 +14,8 @@
 //    S will consist only of letters or digits.
 
 //#########################################  DFS + Avoid duplicates #########################################
-//It is just simply two states and if you add at the end of recursion… definitely no duplication
+//It is just simply two states and if you add at the end of recursion…
+//definitely no duplication
 class Solution {
     public List<String> letterCasePermutation(String S) {
         List<String> ans=new ArrayList<>();
@@ -159,7 +162,8 @@ def letterCasePermutation(self, S):
 
 
 //#########################################  #########################################
-//Time Complexity: O(2^{N} * N), where N is the length of S. This reflects the cost of writing the answer.
+//Time Complexity: O(2^{N} * N), where N is the length of S. This reflects the
+//cost of writing the answer.
 //Space Complexity:O(2^N * N).
 //
 class Solution {

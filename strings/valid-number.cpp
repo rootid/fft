@@ -6,14 +6,17 @@
 //"abc" => false
 //"1 a" => false
 //"2e10" => true
-//Note: It is intended for the problem statement to be ambiguous. You should gather all requirements up front before implementing one.
+//Note: It is intended for the problem statement to be ambiguous. You should
+//gather all requirements up front before implementing one.
 //Update (2015-02-10):
-//The signature of the C++ function had been updated. If you still see your function signature accepts a const char * argument, please click the reload button  to reset your code definition.
+//The signature of the C++ function had been updated. If you still see your
+//function signature accepts a const char * argument, please click the reload
+//button  to reset your code definition.
 
-//###################################### DFA : with flag  ###################################### 
-bool isNumber(string str) { 
+//###################################### DFA : with flag  ######################################
+bool isNumber(string str) {
   int state=0, flag=0; // flag to judge the special case "."
-  while(str[0]==' ')  str.erase(0,1);//delete the  prefix whitespace 
+  while(str[0]==' ')  str.erase(0,1);//delete the  prefix whitespace
   while(str[str.length()-1]==' ') str.erase(str.length()-1, 1);//delete the suffix whitespace
   for(int i=0; i<str.length(); i++){
       if('0'<=str[i] && str[i]<='9'){
@@ -35,12 +38,12 @@ bool isNumber(string str) {
       }
       else return false;
   }
-  return (state==2 || state==5 || (flag&&state==6) || state==7); 
+  return (state==2 || state==5 || (flag&&state==6) || state==7);
 }
-//##################################### DFA : without flag skip state2-state6 ##################################### 
-bool isNumber(string s) { 
-  while(!s.empty() && s[0] == ' ') { 
-    s.erase(s.begin()); 
+//##################################### DFA : without flag skip state2-state6 #####################################
+bool isNumber(string s) {
+  while(!s.empty() && s[0] == ' ') {
+    s.erase(s.begin());
   }
   while (!s.empty() && s[s.size()-1] == ' ') {
       s.erase(s.end()-1);
@@ -49,17 +52,17 @@ bool isNumber(string s) {
     return false;
   }
   int state = 0;
-  for(int i=0; i<s.size(); i++) { 
-    if(s[i] == '-' || s[i] == '+') { 
-      if(state == 0 || state == 3) { 
-        state ++; 
-      } else { 
-        return false; 
-      } 
-    } else if(s[i] == '.') { 
-      if(state == 2) {   
+  for(int i=0; i<s.size(); i++) {
+    if(s[i] == '-' || s[i] == '+') {
+      if(state == 0 || state == 3) {
+        state ++;
+      } else {
+        return false;
+      }
+    } else if(s[i] == '.') {
+      if(state == 2) {
           state = 7; //6
-        }else if(state == 0|| state == 1) { 
+        }else if(state == 0|| state == 1) {
           state = 6;
         }else{
           return false;
@@ -83,10 +86,10 @@ bool isNumber(string s) {
   if(state == 2 || state == 7 || state == 5) {
     return true;
   }
-  return false; 
+  return false;
 }
-//################################# NO DFA  ################################# 
-bool isNumber(string s) { 
+//################################# NO DFA  #################################
+bool isNumber(string s) {
   int i = 0, n = s.length();
   // Skip the leading spaces
   while (i < n && isspace(s[i])) i++;
@@ -94,7 +97,7 @@ bool isNumber(string s) {
   if (s[i] == '+' || s[i] == '-') i++;
   // Check for the following significant parts
   int digits = 0, dots = 0;
-  while (i < n && (isdigit(s[i]) || s[i] == '.')) { 
+  while (i < n && (isdigit(s[i]) || s[i] == '.')) {
       if (isdigit(s[i])) digits++;
       else dots++;
       i++;
@@ -115,5 +118,5 @@ bool isNumber(string s) {
   }
   // Skip the trailing spaces
   while (i < n && isspace(s[i])) i++;
-  return i == n; 
+  return i == n;
 }

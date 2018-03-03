@@ -1,5 +1,6 @@
 //Valid Anagram
-//Given two strings s and t, write a function to determine if t is an anagram of s.
+//Given two strings s and t, write a function to determine if t is an anagram
+//of s.
 //
 //For example,
 //s = "anagram", t = "nagaram", return true.
@@ -13,14 +14,14 @@
 
 using namespace std;
 
-//######################################### O(n log n + m log m) ######################################### 
+//######################################### O(n log n + m log m) #########################################
 public boolean isAnagram(String s, String t) {
     if(s.length() != t.length()) return false;
     char[] sA = s.toCharArray();
     char[] tA = t.toCharArray();
     Arrays.sort(sA);
     Arrays.sort(tA);
-	return Arrays.equals(sA, tA);   
+	return Arrays.equals(sA, tA);
     //int idx = 0;
     //while(idx < sA.length) {
     //    if(sA[idx] != tA[idx]) return false;
@@ -29,13 +30,15 @@ public boolean isAnagram(String s, String t) {
     //return true;
 }
 
-//######################################### O(n log n + m log m) ######################################### 
-//I don't think LeetCode tells the compiler to optimize, though, and when you do, the difference shrinks. I tried this on my PC.
-//Without optimizer, your way took 3724 ms and mine took 1965 ms. With compiler flag -O3, yours took 481 ms and mine took 435 ms. 
+//######################################### O(n log n + m log m) #########################################
+//I don't think LeetCode tells the compiler to optimize, though, and when you
+//do, the difference shrinks. I tried this on my PC.
+//Without optimizer, your way took 3724 ms and mine took 1965 ms. With compiler
+//flag -O3, yours took 481 ms and mine took 435 ms.
 //(Time without sorting, i.e., for preparing the strings, was only 19 ms.)
 #include <iostream>
 #include <algorithm>
-#include <chrono> //Measure time 
+#include <chrono> //Measure time
 using namespace std;
 
 int main () {
@@ -52,7 +55,7 @@ int main () {
 }
 
 
-//######################################### O(n) ######################################### 
+//######################################### O(n) #########################################
 bool isAnagrams(string &s,string &s1) {
 
   int MAX_CHAR = 26;
@@ -68,7 +71,7 @@ bool isAnagrams(string &s,string &s1) {
         return false;
       }
     }
-    return true; 
+    return true;
   }
   return false;
 }
@@ -86,10 +89,10 @@ void testMe(string& s,string& s1) {
 
 int main() {
     string s = "quick";
-    string s1 = "fox"; 
+    string s1 = "fox";
     testMe(s1,s);
 
     s = "anagram";
-    s1 = "nagaram"; 
+    s1 = "nagaram";
     testMe(s1,s);
 }

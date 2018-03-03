@@ -1,7 +1,10 @@
 //N-Queens
-//The n-queens puzzle is the problem of placing n queens on an n×n chessboard such that no two queens attack each other.
+//The n-queens puzzle is the problem of placing n queens on an n×n chessboard
+//such that no two queens attack each other.
 //Given an integer n, return all distinct solutions to the n-queens puzzle.
-//Each solution contains a distinct board configuration of the n-queens' placement, where 'Q' and '.' both indicate a queen and an empty space respectively.
+//Each solution contains a distinct board configuration of the n-queens'
+//placement, where 'Q' and '.' both indicate a queen and an empty space
+//respectively.
 //For example,
 //There exist two distinct solutions to the 4-queens puzzle:
 //[
@@ -15,7 +18,7 @@
 //  ".Q.."]
 //]
 //
-//################################################### Solve with Columns  ################################################### 
+//################################################### Solve with Columns  ###################################################
 
 class Solution {
 public:
@@ -56,9 +59,9 @@ private:
 
 //################################################### Iteration ###################################################
 bool ok(vector<int> &col, int c, int idx) {
-// Validates last queen with all previous queens. 
+// Validates last queen with all previous queens.
     for (int i = 0; i < idx; i++)
-            if (col[i] == c || abs(col[i] - c) == abs(i - idx)) 
+            if (col[i] == c || abs(col[i] - c) == abs(i - idx))
                 return false; // Clash!
     return true;
 }
@@ -74,7 +77,7 @@ vector<vector<string> > solveNQueens(int n) {
             vector<string> t(n, str);
             for (int i = 0; i < n; i++) t[col[i]][i] = 'Q';
             ans.push_back(t);
-            
+
             col[--row]++; // go back to previous row and increment that queen by 1 column.
         }
         else if (col[row] == n) {
@@ -88,7 +91,7 @@ vector<vector<string> > solveNQueens(int n) {
         else row++;   // everything's perfect, lets go to queen in next row.
     }
     return ans;
-} 
+}
 
 //################################################### bitmask + 90,45,135 (1-array) + Space optimization ###################################################
 class Solution {
@@ -126,7 +129,7 @@ private:
   *    O O O               O O O               O O O
   *    | | |              / / / /             \ \ \ \
   *    O O O               O O O               O O O
-  *    | | |              / / / /             \ \ \ \ 
+  *    | | |              / / / /             \ \ \ \
   *    O O O               O O O               O O O
   *    | | |              / / /                 \ \ \
   *   3 columns        5 45° diagonals     5 135° diagonals    (when n is 3)
@@ -201,13 +204,19 @@ private:
 
 
 
-//####################################################  pytonic ####################################################  
+//####################################################  pytonic ####################################################
 
-//Use the DFS helper function to find solutions recursively. A solution will be found when the length of queens is equal to n ( queens is a list of the indices of the queens).
-//In this problem, whenever a location (x, y) is occupied, any other locations (p, q) where p + q == x + y or p - q == x - y would be invalid. We can use this information to keep track of the indicators (xy_dif and xy_sum ) of the invalid positions and then call DFS recursively with valid positions only. 
+//Use the DFS helper function to find solutions recursively. A solution will be
+//found when the length of queens is equal to n ( queens is a list of the
+//indices of the queens).
+//In this problem, whenever a location (x, y) is occupied, any other locations
+//(p, q) where p + q == x + y or p - q == x - y would be invalid. We can use
+//this information to keep track of the indicators (xy_dif and xy_sum ) of the
+//invalid positions and then call DFS recursively with valid positions only.
 //
-//At the end, we convert the result (a list of lists; each sublist is the indices of the queens) into the desire format.
-//####################################################  Recursive #################################################### 
+//At the end, we convert the result (a list of lists; each sublist is the
+//indices of the queens) into the desire format.
+//####################################################  Recursive ####################################################
 //def solveNQueens(self, n):
 //    def DFS(queens, xy_dif, xy_sum):
 //        p = len(queens)
@@ -215,14 +224,14 @@ private:
 //            result.append(queens)
 //            return None
 //        for q in range(n):
-//            if q not in queens and p-q not in xy_dif and p+q not in xy_sum: 
-//                DFS(queens+[q], xy_dif+[p-q], xy_sum+[p+q])  
+//            if q not in queens and p-q not in xy_dif and p+q not in xy_sum:
+//                DFS(queens+[q], xy_dif+[p-q], xy_sum+[p+q])
 //    result = []
 //    DFS([],[],[])
 //    return [ ["."*i + "Q" + "."*(n-i-1) for i in sol] for sol in result]
 
 
-//####################################################  Iterative #################################################### 
+//####################################################  Iterative ####################################################
 //def solveNQueens(self, n):
 //        results = [[]]
 //        for i in range(n):
@@ -241,7 +250,7 @@ private:
 //        return [['.'*j + 'Q' + '.'*(n-j-1) for j in ares] for ares in results]
 //
 //
-//####################################################  Pytonic with lambda  #################################################### 
+//####################################################  Pytonic with lambda  ####################################################
 //class Solution:
 //def dfs(self,ret,pos,row,n):
 //    if row == n:
@@ -250,11 +259,11 @@ private:
 //    for j in range(n):
 //        if j not in pos \
 //            and all(map(lambda r: pos[r] != j - (row - r), range(row))) \
-//            and all(map(lambda r: pos[r] != j + (row - r), range(row))):  
+//            and all(map(lambda r: pos[r] != j + (row - r), range(row))):
 //                pos.append(j)
 //                self.dfs(ret,pos,row+1,n)
 //                pos.pop()
-//                
+//
 //# @return a list of lists of string
 //def solveNQueens(self, n):
 //    ret=[]

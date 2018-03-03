@@ -1,5 +1,6 @@
 //Reverse Pairs
-//Given an array nums, we call (i, j) an important reverse pair if i < j and nums[i] > 2*nums[j].
+//Given an array nums, we call (i, j) an important reverse pair if i < j and
+//nums[i] > 2*nums[j].
 //You need to return the number of important reverse pairs in the given array.
 //Example1:
 //Input: [1,3,2,3,1]
@@ -46,7 +47,7 @@ private :
                 l++;
             }
         }
-       // worst case might be nlog(n) 
+       // worst case might be nlog(n)
         sort(nums.begin() + start, nums.begin() + end + 1);
         return;
         //every step sort
@@ -66,8 +67,8 @@ public:
         mergeSort(nums,0,nums.size()-1);
         return count;
     }
-  
-//######################################################### Fenwick tree ######################################################### 
+
+//######################################################### Fenwick tree #########################################################
  class Fenwick {
   private:
   	// tree is one unit shiftd from a virtual vector arr[]
@@ -77,7 +78,7 @@ public:
   	Fenwick(long size) {
   		tree = vector<long>(size + 1, 0);
   	}
-  
+
   	// the following function sums up arr[0..id]
   	long sum(long id) {
   		id++;
@@ -88,7 +89,7 @@ public:
   		}
   		return ret;
   	}
-  
+
   	// the following function increases arr[id]
   	void add(long id, long val) {
   		long n = tree.size();
@@ -98,7 +99,7 @@ public:
   			id += lsb(id);
   		}
   	}
-  
+
   };
 class Solution {
   public:
@@ -107,12 +108,12 @@ class Solution {
   		for(long i : nums) {
   			nums2.push_back(2*i);
   		}
-  
+
   		sort(nums2.begin(), nums2.end());
   		// order maps the original order to sorted order, it doesn't matter if duplicated is present
   		unordered_map<long, long> order;
-  		
-  		// binary search result, notice that this is index<->index map 
+
+  		// binary search result, notice that this is index<->index map
   		unordered_map<long, long> biorder;
   		long ret = 0;
   		long n = nums.size();
@@ -120,7 +121,7 @@ class Solution {
   			biorder[i] = lower_bound(nums2.begin(), nums2.end(), nums[i]) - nums2.begin();
   			order[nums2[i]/2] = i;
   		}
-  
+
   		Fenwick fw(n);
   		for(long i = n-1; i>=0; --i) {
   			ret += fw.sum(biorder[i]-1);

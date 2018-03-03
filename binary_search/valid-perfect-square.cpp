@@ -1,5 +1,6 @@
 //Valid Perfect Square
-//Given a positive integer num, write a function which returns True if num is a perfect square else False.
+//Given a positive integer num, write a function which returns True if num is a
+//perfect square else False.
 //Note: Do not use any built-in library function such as sqrt.
 //Example 1:
 //Input: 16
@@ -8,7 +9,7 @@
 //Input: 14
 //Returns: False
 
-//################################### Good ################################### 
+//################################### Good ###################################
 bool isPerfectSquare(int num) {
     int start = 0, end = num;
     while(start <= end) {
@@ -20,11 +21,11 @@ bool isPerfectSquare(int num) {
         else
             return true;
     }
-    
+
     return false;
 }
 
-//################################### Good ################################### 
+//################################### Good ###################################
 bool isPerfectSquare(int num) {
   int start = 1;
   int end = num - 1;

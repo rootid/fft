@@ -1,15 +1,16 @@
-//Given a binary tree, collect a tree's nodes as if you were doing this: Collect and remove all leaves, repeat until the tree is empty.
+//Given a binary tree, collect a tree's nodes as if you were doing this:
+//Collect and remove all leaves, repeat until the tree is empty.
 //Example:
-//Given binary tree 
+//Given binary tree
 //          1
 //         / \
 //        2   3
-//       / \     
-//      4   5    
+//       / \
+//      4   5
 //Returns [4, 5, 3], [2], [1].
 
 
-//######################################### Recursion -> Compute ht of each node ######################################### 
+//######################################### Recursion -> Compute ht of each node #########################################
 public List<List<Integer>> findLeaves(TreeNode root) {
     List<List<Integer>> res = new ArrayList<>();
     height(root, res);
@@ -23,8 +24,9 @@ private int height(TreeNode node, List<List<Integer>> res){
     return level;
 }
 
-//######################################### Pruning ######################################### 
-//simply prune the leaves at each iteration of the while loop until the root itself is prune
+//######################################### Pruning #########################################
+//simply prune the leaves at each iteration of the while loop until the root
+//itself is prune
 public class Solution {
     private TreeNode removeLeaves(TreeNode root, List<Integer> result)
     {
@@ -37,31 +39,31 @@ public class Solution {
         root.right = removeLeaves(root.right, result);
         return root;
     }
-    
+
     public List<List<Integer>> findLeaves(TreeNode root) {
         List<List<Integer>> results = new ArrayList<List<Integer>>();
         if (root == null) return results;
-        
+
         while (root != null) {
             List<Integer> leaves = new ArrayList<Integer>();
             root = removeLeaves(root, leaves);
             results.add(leaves);
         }
-        
+
         return results;
     }
 }
 
-//######################################### Recursion -> Compute ht of each node ######################################### 
+//######################################### Recursion -> Compute ht of each node #########################################
 //Explanation:
 //1. Removing the leaves [4, 5, 3] would result in this tree:
 //          1
-//         / 
-//        2          
+//         /
+//        2
 //2. Now removing the leaf [2] would result in this tree:
-//          1          
+//          1
 //3. Now removing the leaf [1] would result in the empty tree:
-//          []         
+//          []
 //Returns [4, 5, 3], [2], [1].
 int helper(TreeNode * root,vector< vector<int> >& result) {
     if(root == nullptr)
@@ -87,7 +89,7 @@ vector<vector<int>> findLeaves(TreeNode* root) {
     return result;
 }
 
-//######################################### Recursion + Dummy node ######################################### 
+//######################################### Recursion + Dummy node #########################################
 void helper(TreeNode* parent,TreeNode* child,vector< vector<int> >& result,vector<int>& tmp) {
      if(child == NULL) {
          result.push_back(tmp);
@@ -102,7 +104,7 @@ void helper(TreeNode* parent,TreeNode* child,vector< vector<int> >& result,vecto
      helper(child,child->left,result,tmp);
      helper(child,child->right,result,tmp);
 }
- 
+
 vector<vector<int>> findLeaves(TreeNode* root) {
      vector< vector<int> > result;
      vector<int> tmp;

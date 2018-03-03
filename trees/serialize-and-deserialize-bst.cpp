@@ -1,11 +1,18 @@
 //Serialize and Deserialize BST
-//Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.
-//Design an algorithm to serialize and deserialize a binary search tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary search tree can be serialized to a string and this string can be deserialized to the original tree structure.
+//Serialization is the process of converting a data structure or object into a
+//sequence of bits so that it can be stored in a file or memory buffer, or
+//transmitted across a network connection link to be reconstructed later in the
+//same or another computer environment.
+//Design an algorithm to serialize and deserialize a binary search tree. There
+//is no restriction on how your serialization/deserialization algorithm should
+//work. You just need to ensure that a binary search tree can be serialized to
+//a string and this string can be deserialized to the original tree structure.
 //The encoded string should be as compact as possible.
-//Note: Do not use class member/global/static variables to store states. Your serialize and deserialize algorithms should be stateless.
+//Note: Do not use class member/global/static variables to store states. Your
+//serialize and deserialize algorithms should be stateless.
 
-//######################################### Recursion ######################################### 
-// Deserialize = Preorder + Inorder 
+//######################################### Recursion #########################################
+// Deserialize = Preorder + Inorder
 // Serialize = Preorder
 class Codec:
     def serialize(self, root):
@@ -36,7 +43,7 @@ class Codec:
         return build(None)
 
 
-//######################################### Recursion ######################################### 
+//######################################### Recursion #########################################
 class Codec {
 public:
 
@@ -61,7 +68,7 @@ public:
 		// preorder traversal
 		string ret;
 		if(!root) return ret;
-		
+
 		stack<TreeNode*> stk;
 		stk.push(root);
 		while(!stk.empty()){
@@ -78,7 +85,7 @@ public:
   // Decodes your encoded data to tre.
 	TreeNode* deserialize(string data) {
 	    if(data.size() == 0) return nullptr;
-	    
+
 		int id = 0;
 		// take root at first
 		int r = id;

@@ -1,5 +1,6 @@
-//Reverse Vowels of a String  
-//Write a function that takes a string as input and reverse only the vowels of a string.
+//Reverse Vowels of a String
+//Write a function that takes a string as input and reverse only the vowels of
+//a string.
 //Example 1:
 //Given s = "hello", return "holle".
 //Example 2:
@@ -25,9 +26,9 @@ string reverseVowels(string s) {
 
 int main(int argc, char *argv[])
 {
- 
-  string s = "hello"; 
-  string t = reverseVowels(s); 
+
+  string s = "hello";
+  string t = reverseVowels(s);
   cout << " reversal " << t << endl;
   return 0;
 }

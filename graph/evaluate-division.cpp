@@ -1,17 +1,23 @@
 //Evaluate Division
-//Equations are given in the format A / B = k, where A and B are variables represented as strings, and k is a real number (floating point number). Given some queries, return the answers. If the answer does not exist, return -1.0.
+//Equations are given in the format A / B = k, where A and B are variables
+//represented as strings, and k is a real number (floating point number). Given
+//some queries, return the answers. If the answer does not exist, return -1.0.
 //Example:
-//Given a / b = 2.0, b / c = 3.0. 
-//queries are: a / c = ?, b / a = ?, a / e = ?, a / a = ?, x / x = ? . 
+//Given a / b = 2.0, b / c = 3.0.
+//queries are: a / c = ?, b / a = ?, a / e = ?, a / a = ?, x / x = ? .
 //return [6.0, 0.5, -1.0, 1.0, -1.0 ].
-//The input is: vector<pair<string, string>> equations, vector<double>& values, vector<pair<string, string>> queries , where equations.size() == values.size(), and the values are positive. This represents the equations. Return vector<double>.
+//The input is: vector<pair<string, string>> equations, vector<double>& values,
+//vector<pair<string, string>> queries , where equations.size() ==
+//values.size(), and the values are positive. This represents the equations.
+//Return vector<double>.
 //According to the example above:
 //equations = [ ["a", "b"], ["b", "c"] ],
 //values = [2.0, 3.0],
-//queries = [ ["a", "c"], ["b", "a"], ["a", "e"], ["a", "a"], ["x", "x"] ]. 
-//The input is always valid. You may assume that evaluating the queries will result in no division by zero and there is no contradiction.
+//queries = [ ["a", "c"], ["b", "a"], ["a", "e"], ["a", "a"], ["x", "x"] ].
+//The input is always valid. You may assume that evaluating the queries will
+//result in no division by zero and there is no contradiction.
 
-//################################################## BFS ################################################ 
+//################################################## BFS ################################################
 // BFS to get the value. I think the time complexity is O(N^2*query.size()), where N is the nodes number in the graph.
 vector<double> calcEquation(vector<pair<string, string>> equations, vector<double>& values, vector<pair<string, string>> query) {
         unordered_map<string,unordered_map<string,double>> g;
@@ -21,7 +27,7 @@ vector<double> calcEquation(vector<pair<string, string>> equations, vector<doubl
             g[equations[i].second].emplace(equations[i].first,1.0/values[i]);
             g[equations[i].second].emplace(equations[i].second,1.0);
         }
-        
+
         vector<double> res;
         for(auto item:query){
             if(!g.count(item.first)||!g.count(item.second)) res.push_back(-1.0);
@@ -36,14 +42,14 @@ vector<double> calcEquation(vector<pair<string, string>> equations, vector<doubl
                     while(!qs.empty()&&!find){
                         pair<string,double> tp = qs.front();
                         qs.pop();
-                        
+
                         //check whether we find the divident
                         if(tp.first == item.second){
                             find = true;
                             res.push_back(tp.second);
                             break;
                         }
-                        
+
                         for(pair<string,double> values:g[tp.first]){
                             if(used.find(values.first) == used.end()){
                                 values.second *= tp.second;
@@ -52,21 +58,21 @@ vector<double> calcEquation(vector<pair<string, string>> equations, vector<doubl
                             }
                         }
                     }
-                    
+
                     qs = nex;
                 }
-                
+
                 if(!find) res.push_back(-1.0);
             }
         }
-        
+
         return res;
     }
-//################################################# DFS ############################################### 
-vector<double> calcEquation(vector<pair<string, string>> equations, vector<double>& values, vector<pair<string, string>> query) { 
-  vector<double> ans(query.size()); 
+//################################################# DFS ###############################################
+vector<double> calcEquation(vector<pair<string, string>> equations, vector<double>& values, vector<pair<string, string>> query) {
+  vector<double> ans(query.size());
   if(query.empty()) {
-    return ans; 
+    return ans;
   }
   unordered_map<string, unordered_map<string,double> > mp;
   unordered_set<string> vis;
@@ -88,16 +94,16 @@ vector<double> calcEquation(vector<pair<string, string>> equations, vector<doubl
           vis.insert(query[i].first);
           dfs(query[i].first, query[i].second, res, tmpres, canReach, mp, vis);
           ans[i] = res;
-      } 
+      }
   }
   return ans;
 }
-    
-void dfs(string &sta, string &ends, double &res, double &tmpres, bool &canReach, unordered_map<string, unordered_map<string,double>> &mp, unordered_set<string> &vis) { 
-  if(sta == ends) { 
+
+void dfs(string &sta, string &ends, double &res, double &tmpres, bool &canReach, unordered_map<string, unordered_map<string,double>> &mp, unordered_set<string> &vis) {
+  if(sta == ends) {
     res = tmpres;
     canReach = true;
-    return ; 
+    return ;
   }
   unordered_map<string,double>::iterator it = mp[sta].begin();
   double vres = 1.0;
@@ -109,9 +115,9 @@ void dfs(string &sta, string &ends, double &res, double &tmpres, bool &canReach,
       u = it->first;
       vis.insert(it->first);
       dfs(u, ends, res, vres, canReach, mp, vis);
-  } 
+  }
 }
-//######################################### Union find ######################################### 
+//######################################### Union find #########################################
  vector<double> calcEquation(vector<pair<string, string>> equations, vector<double>& values, vector<pair<string, string>> queries) {
         unordered_map<string, Node*> map;
         vector<double> res;
@@ -143,14 +149,14 @@ void dfs(string &sta, string &ends, double &res, double &tmpres, bool &canReach,
         }
         return res;
     }
-    
+
 private:
     struct Node {
         Node* parent;
         double value = 0.0;
         Node()  {parent = this;}
     };
-    
+
     void unionNodes(Node* node1, Node* node2, double num, unordered_map<string, Node*>& map) {
         Node* parent1 = findParent(node1), *parent2 = findParent(node2);
         double ratio = node2 -> value * num / node1 -> value;
@@ -159,7 +165,7 @@ private:
                 it -> second -> value *= ratio;
         parent1 -> parent = parent2;
     }
-    
+
     Node* findParent(Node* node) {
         if (node -> parent == node)
             return node;
@@ -168,7 +174,7 @@ private:
     }
 
 
-//############################### FLoyd warshall ############################### 
+//############################### FLoyd warshall ###############################
 
 // "a / b = 2.0" means from point a to point b there is an edge, and its weight is 2.0. So the question is, given a query "e / f", we need to check whether e and f are connected. If yes, calculate the value, otherwise return -1. Thus, we can use Floyd method in graph to solve it.
 //
@@ -182,7 +188,7 @@ vector<double> calcEquation(vector<pair<string, string>> equations, vector<doubl
     }
     for (auto& kv: m)
       kv.second[kv.first] = 1.0;
-    
+
     for (auto k = m.begin(); k != m.end(); ++k) {
       for (auto i = m.begin(); i != m.end(); ++i) {
         for (auto j = m.begin(); j != m.end(); ++j) {
@@ -195,10 +201,12 @@ vector<double> calcEquation(vector<pair<string, string>> equations, vector<doubl
       auto val = m[q.first][q.second];
       res.push_back(val ? val: -1.0);
     }
-    return res; 
+    return res;
 }
 
-//A variation of Floyd–Warshall, computing quotients instead of shortest paths. An equation A/B=k is like a graph edge A->B, and (A/B)*(B/C)*(C/D) is like the path A->B->C->D. Submitted once, accepted in 35 ms.
+//A variation of Floyd–Warshall, computing quotients instead of shortest paths.
+//An equation A/B=k is like a graph edge A->B, and (A/B)*(B/C)*(C/D) is like
+//the path A->B->C->D. Submitted once, accepted in 35 ms.
 //def calcEquation(self, equations, values, queries):
 //    quot = collections.defaultdict(dict)
 //    for (num, den), val in zip(equations, values):
@@ -223,4 +231,5 @@ vector<double> calcEquation(vector<pair<string, string>> equations, vector<doubl
 //            for j in quot[k]:
 //                quot[i][j] = quot[i][k] * quot[k][j]
 //    return [quot[num].get(den, -1.0) for num, den in queries]
-//Could save a line with for i, j in itertools.permutations(quot[k], 2) but it's longer and I don't like it as much here.
+//Could save a line with for i, j in itertools.permutations(quot[k], 2) but
+//it's longer and I don't like it as much here.

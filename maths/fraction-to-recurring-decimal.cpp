@@ -1,25 +1,29 @@
 //Fraction to Recurring Decimal
-//Given two integers representing the numerator and denominator of a fraction, return the fraction in string format.
-//If the fractional part is repeating, enclose the repeating part in parentheses.
+//Given two integers representing the numerator and denominator of a fraction,
+//return the fraction in string format.
+//If the fractional part is repeating, enclose the repeating part in
+//parentheses.
 //For example,
 //Given numerator = 1, denominator = 2, return "0.5".
 //Given numerator = 2, denominator = 1, return "2".
 //Given numerator = 2, denominator = 3, return "0.(6)".
 
-//############################################ Map + Recurring remainder ############################################ 
-//decimal parts to recur, the remainders should recur. 
+//############################################ Map + Recurring remainder ############################################
+//decimal parts to recur, the remainders should recur.
 //1. Pay attention to the sign of the result;
-//2. Handle cases that may cause overflow like numerator = -2147483648, denominator = -1 appropriately by using long long;
-//3. Handle all the cases of 
-//(1) no fractional part; 
-//(2) fractional part does not recur; 
+//2. Handle cases that may cause overflow like numerator = -2147483648,
+//denominator = -1 appropriately by using long long;
+//3. Handle all the cases of
+//(1) no fractional part;
+//(2) fractional part does not recur;
 //(3) fractional part recurs respectively.
 //
-//To handle problem 3, we divide the division process into the integral part 
-//and the fractional part. For the fractional part, 
-//if it does not recur, then the remainder will become 0 at some point and we could return. 
-string fractionToDecimal(int numerator, int denominator) { 
-  if (!numerator) return "0"; // 0/a = 0 
+//To handle problem 3, we divide the division process into the integral part
+//and the fractional part. For the fractional part,
+//if it does not recur, then the remainder will become 0 at some point and we
+//could return.
+string fractionToDecimal(int numerator, int denominator) {
+  if (!numerator) return "0"; // 0/a = 0
   string res;
   //update the sign of result
   if (numerator < 0 ^ denominator < 0) {
@@ -37,19 +41,19 @@ string fractionToDecimal(int numerator, int denominator) {
   unordered_map<long, long> mp;  //holds <remainder:position> tuple
   while (rmd) {
       long quotient = rmd / denom;
-      if (mp.find(rmd) != mp.end()) { 
+      if (mp.find(rmd) != mp.end()) {
           res.insert(mp[rmd], 1, '(');
           res += ')';
           break;
       }
       mp[rmd] = res.size();
       res += to_string(quotient);
-      rmd = (rmd % denom) * 10; //update the remaider 
+      rmd = (rmd % denom) * 10; //update the remaider
   }
   return res;
 }
 
-//############################################ Map + Recurring remainder + int_64 ############################################ 
+//############################################ Map + Recurring remainder + int_64 ############################################
 string fractionToDecimal(int64_t n, int64_t d) {
     // zero numerator
     if (n == 0) return "0";
@@ -83,8 +87,9 @@ string fractionToDecimal(int64_t n, int64_t d) {
     return res;
 }
 
-//############################### pytonic  ############################### 
-//Find the start point of a linked list cycle". I used the fast pointer and slow pointer trick.
+//############################### pytonic  ###############################
+//Find the start point of a linked list cycle". I used the fast pointer and
+//slow pointer trick.
 //class Solution:
 //# @return a string
 //def fractionToDecimal(self, numerator, denominator):
@@ -102,7 +107,7 @@ string fractionToDecimal(int64_t n, int64_t d) {
 //    result.append(')')
 //    return ''.join(result).replace('(0)', '').rstrip('.')
 //
-//######################################## linked list fast pointer + slow pointer ######################################## 
+//######################################## linked list fast pointer + slow pointer ########################################
 //frem : fast pointer
 //srem : slow pointer
 //def fractionToDecimal(self, numerator, denominator):

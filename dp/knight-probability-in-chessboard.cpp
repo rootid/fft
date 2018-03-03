@@ -1,13 +1,23 @@
 //Knight(Ghoda) Probability in Chessboard
-//On an NxN chessboard, a knight starts at the r-th row and c-th column and attempts to make exactly K moves. The rows and columns are 0 indexed, so the top-left square is (0, 0), and the bottom-right square is (N-1, N-1).
-//A chess knight has 8 possible moves it can make, as illustrated below. Each move is two squares in a cardinal direction, then one square in an orthogonal direction.
-//Each time the knight is to move, it chooses one of eight possible moves uniformly at random (even if the piece would go off the chessboard) and moves there.
-//The knight continues moving until it has made exactly K moves or has moved off the chessboard. Return the probability that the knight remains on the board after it has stopped moving.
+//On an NxN chessboard, a knight starts at the r-th row and c-th column and
+//attempts to make exactly K moves. The rows and columns are 0 indexed, so the
+//top-left square is (0, 0), and the bottom-right square is (N-1, N-1).
+//A chess knight has 8 possible moves it can make, as illustrated below. Each
+//move is two squares in a cardinal direction, then one square in an orthogonal
+//direction.
+//Each time the knight is to move, it chooses one of eight possible moves
+//uniformly at random (even if the piece would go off the chessboard) and moves
+//there.
+//The knight continues moving until it has made exactly K moves or has moved
+//off the chessboard. Return the probability that the knight remains on the
+//board after it has stopped moving.
 //Example:
 //Input: 3, 2, 0, 0
 //Output: 0.0625
-//Explanation: There are two moves (to (1,2), (2,1)) that will keep the knight on the board.
-//From each of those positions, there are also two moves that will keep the knight on the board.
+//Explanation: There are two moves (to (1,2), (2,1)) that will keep the knight
+//on the board.
+//From each of those positions, there are also two moves that will keep the
+//knight on the board.
 //The total probability the knight stays on the board is 0.0625.
 //Note:
 //N will be between 1 and 25.
@@ -16,11 +26,13 @@
 //
 
 //3D
-//######################################### DP ######################################### 
-//the dp is a 3-dimensional array. But we only need the previous one to derive the current one,
+//######################################### DP #########################################
+//the dp is a 3-dimensional array. But we only need the previous one to derive
+//the current one,
 // so I only preserve the previous one in the dp0 and calculate the current one in the dp1.
 //Let's think about our formula, dp1[i][j] = sum(dp0[all reachable spots]).
-//Assuming we are calculating the first step and all reachable spots are within the chessboard.
+//Assuming we are calculating the first step and all reachable spots are within
+//the chessboard.
 //Then the dp should be 8, which implies the initializing value should be 1.
 
 int[][] moves = {{1, 2}, {1, -2}, {2, 1}, {2, -1}, {-1, 2}, {-1, -2}, {-2, 1}, {-2, -1}};
@@ -41,7 +53,7 @@ public double knightProbability(int N, int K, int r, int c) {
         }
         dp0 = dp1;
     }
-    return dp0[r][c] / Math.pow(8, K); 
+    return dp0[r][c] / Math.pow(8, K);
 }
 private boolean isLegal(int r, int c, int len) {
     return r >= 0 && r < len && c >= 0 && c < len;
@@ -50,8 +62,9 @@ private boolean isLegal(int r, int c, int len) {
 
 
 
-//######################################### DP ######################################### 
-//For this problem, I think memoization is more optimal than direct DP. The reason is that memoization can avoid a lot of unnecessary subproblems.
+//######################################### DP #########################################
+//For this problem, I think memoization is more optimal than direct DP. The
+//reason is that memoization can avoid a lot of unnecessary subproblems.
 //The runtime is O(KN^2).
 
 class Solution {
@@ -71,12 +84,12 @@ private:
         for (int i = -2; i <= 2; i++) {
             if (i == 0) continue;
             dp[k][r][c] += helper(dp, N, k-1, r+i, c+3-abs(i)) + helper(dp, N, k-1, r+i, c-(3-abs(i)));
-        }      
+        }
         return dp[k][r][c];
     }
 };
 
-//######################################### DP ######################################### 
+//######################################### DP #########################################
 class Solution {
     int[][] moves = {{1,2},{1,-2},{-1,2},{-1,-2},{2,-1},{2,1},{-2,-1},{-2,1}};
     public double knightProbability(int N, int K, int r, int c) {
@@ -87,16 +100,24 @@ class Solution {
         if (r < 0 || r >= N || c < 0 || c >= N) return 0.0;
         if (k == 0) return 1.0;
         if (dp[k][r][c] != 0.0) return dp[k][r][c];
-        for (int i = 0; i < 8; i++)  
+        for (int i = 0; i < 8; i++)
             dp[k][r][c] += helper(dp, N, k-1, r+moves[i][0], c+moves[i][1]);
-        return dp[k][r][c]; 
+        return dp[k][r][c];
     }
 }
-//I am curious why is that when K is 100 and N is 25, there is no stack overflow. another question is why is the precision is not lost when dividing the possibilities 1, by 8, 100 times, which is 2^ 300, seems require something like a 40 bytes big decimal.
-//Q1: The number of recursion levels you can do depends on the call-stack size and the size of local variables and arguments that are placed on such a stack. Theoretically current desktop machine can handle a recursive depth of hundreds to some thousands. stackoverflow
-//Q2: I think the precision does get lost. Note that all possibilities in level i are summed together before division in level i+1. This may help preserve the precision, but cannot prevent it.
+//I am curious why is that when K is 100 and N is 25, there is no stack
+//overflow. another question is why is the precision is not lost when dividing
+//the possibilities 1, by 8, 100 times, which is 2^ 300, seems require
+//something like a 40 bytes big decimal.
+//Q1: The number of recursion levels you can do depends on the call-stack size
+//and the size of local variables and arguments that are placed on such a
+//stack. Theoretically current desktop machine can handle a recursive depth of
+//hundreds to some thousands. stackoverflow
+//Q2: I think the precision does get lost. Note that all possibilities in level
+//i are summed together before division in level i+1. This may help preserve
+//the precision, but cannot prevent it.
 
-//######################################### DP ######################################### 
+//######################################### DP #########################################
 class Solution {
 public:
     int movement[8][2] = {{1, 2},{1, -2},{-1, 2}, {-1, -2}, {2, 1}, {2, -1}, {-2, 1},{-2, -1}};
@@ -106,7 +127,7 @@ public:
         if(K){
             for(auto &i : movement)
                 if(r + i[0] < N && r + i[0] >= 0 && c + i[1] < N && c + i[1] >= 0)
-                    inside += 0.125* (mem[K-1][r+i[0]][c + i[1]]? 
+                    inside += 0.125* (mem[K-1][r+i[0]][c + i[1]]?
                                       mem[K-1][r+i[0]][c + i[1]] : knightProbability(N, K-1, r+i[0], c + i[1]));
             mem[K][r][c] = inside;
             return inside;
@@ -115,8 +136,9 @@ public:
     }
 };
 
-//######################################### BFS ######################################### 
-//At the start, the knight is at (r, c) with probability 1 (and anywhere else with probability 0). Then update those probabilities over K moves.
+//######################################### BFS #########################################
+//At the start, the knight is at (r, c) with probability 1 (and anywhere else
+//with probability 0). Then update those probabilities over K moves.
 def knightProbability(self, N, K, r, c):
     p = {(r, c): 1}
     for _ in range(K):
@@ -124,8 +146,9 @@ def knightProbability(self, N, K, r, c):
              for r in range(N) for c in range(N)}
     return sum(p.values())
 
-//######################################### BFS ######################################### 
-//Shorter and maybe nicer version, influenced a bit by @flamesofmoon's solution:
+//######################################### BFS #########################################
+//Shorter and maybe nicer version, influenced a bit by @flamesofmoon's
+//solution:
 def knightProbability(self, N, K, r, c):
     p = {(r, c): 1}
     for _ in range(K):
@@ -138,18 +161,29 @@ def knightProbability(self, N, K, r, c):
 //for r in range(N):
 //    for c in range(N):
 //        do sth
-//The idea of the code is to compute the real-time probability distribution over the board. In other words, at time t (the t-th step), it computes the probability that the knight is at grid r,c for all r and c.
+//The idea of the code is to compute the real-time probability distribution
+//over the board. In other words, at time t (the t-th step), it computes the
+//probability that the knight is at grid r,c for all r and c.
 //That is also why the survival rate is the sum of everything inp.values()
-//n my code, I am computing the survival rate for all grids on the board after K steps. The rates are updated step by step. For each step, probs[i][j] should be the sum of the rates in the possible eight grids divided by 8.
-//Note that here I wrote a lengthy list comprehension in the for loop. This is not to show off. If I didn't do so, I will have to create a new 2D list, store values temporarily, and deepcopy that back to probs which is too much work.
-//probs = [[(1 if i<N and j<N else 0) for j in xrange(N+2)] for i in xrange(N+2)]
+//n my code, I am computing the survival rate for all grids on the board after
+//K steps. The rates are updated step by step. For each step, probs[i][j]
+//should be the sum of the rates in the possible eight grids divided by 8.
+//Note that here I wrote a lengthy list comprehension in the for loop. This is
+//not to show off. If I didn't do so, I will have to create a new 2D list,
+//store values temporarily, and deepcopy that back to probs which is too much
+//work.
+//probs = [[(1 if i<N and j<N else 0) for j in xrange(N+2)] for i in
+//xrange(N+2)]
 //for t in xrange(K):
 //    probs = [[(0.125*sum(probs[i+a*m1][j+(3-a)*m2] for a in [1,2] for m1 in [-1,1] for m2 in [-1,1]) if i<N and j<N else 0) for j in xrange(N+2)] for i in xrange(N+2)]
 //return probs[r][c]
-//Another interesting idea given by @StefanPochmann is here, in which he only computes for probs[r][c], but in the way that the probability distribution of the knight at each step is computed.
-//I am curious if there is a mathematical solution to this problem using martingales or random walk. If you see one, please don't hesitate to
+//Another interesting idea given by @StefanPochmann is here, in which he only
+//computes for probs[r][c], but in the way that the probability distribution of
+//the knight at each step is computed.
+//I am curious if there is a mathematical solution to this problem using
+//martingales or random walk. If you see one, please don't hesitate to
 
-//######################################### DP ######################################### 
+//######################################### DP #########################################
 class Solution {
     public double knightProbability(int N, int K, int r, int c) {
         double[][] dp = new double[N][N];
@@ -168,20 +202,20 @@ class Solution {
                     }
                 }
             }
-            
+
             dp = tempCount;
         }
-        
+
         double sum = 0;
         for(int i=0;i<N;i++){
             for(int j=0;j<N;j++){
                 sum+=dp[i][j];
             }
         }
-        
+
         return sum/Math.pow(8,K);
     }
-    
+
     public boolean isInBoard(int x,int y,int N){
         if(x>=0&&x<N&&y>=0&&y<N){
             return true;

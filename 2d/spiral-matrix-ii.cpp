@@ -1,4 +1,5 @@
-//Given an integer n, generate a square matrix filled with elements from 1 to n2 in spiral order.
+//Given an integer n, generate a square matrix filled with elements from 1 to
+//n2 in spiral order.
 //For example,
 //Given n = 3,
 //You should return the following matrix:
@@ -10,7 +11,7 @@
 
 #include "../headers/global.hpp"
 
-//######################################### 4 Indices  ######################################### 
+//######################################### 4 Indices  #########################################
 public int[][] generateMatrix(int n) {
     assert n >= 0;
     int[][] rst = new int[n][n];
@@ -20,9 +21,9 @@ public int[][] generateMatrix(int n) {
     int cEnd = n-1;
     int idx = 1;
     while(rStart<= rEnd && cStart <= cEnd) {
-        for(int i=cStart;i<=cEnd;i++) 
+        for(int i=cStart;i<=cEnd;i++)
             rst[rStart][i] = idx++;
-            
+
         rStart++;
         for(int i=rStart;i<=rEnd;i++)
             rst[i][cEnd] = idx++;
@@ -36,14 +37,14 @@ public int[][] generateMatrix(int n) {
         if(cStart <= cEnd) {
              for(int i=rEnd;i>=rStart;i--)
                 rst[i][cStart] = idx++;
-                
+
         }
         cStart++;
     }
     return rst;
 }
 
-//######################################### 4 Indices  ######################################### 
+//######################################### 4 Indices  #########################################
 vector<vector<int> > generateMatrix(int n) {
       vector<vector <int> > rv(n,vector<int>(n));
       int rowMin = 0;
@@ -72,7 +73,7 @@ vector<vector<int> > generateMatrix(int n) {
             }
           }
           colMin +=1;
-          
+
       }
       return rv;
 }
@@ -82,13 +83,13 @@ vector<vector<int> > generateMatrix(int n) {
 //      while (rowbegin <= rowend && colbegin <= colend) {
 //          for (int i = colbegin; i <= colend; i++) matrix[rowbegin][i] = num++;
 //          rowbegin++;
-//          
+//
 //          for (int i = rowbegin; i <= rowend; i++) matrix[i][colend] = num++;
 //          colend--;
-//          
+//
 //          for (int i = colend; i >= colbegin; i--) matrix[rowend][i] = num++;
 //          rowend--;
-//          
+//
 //          for (int i = rowend; i >= rowbegin; i--) matrix[i][colbegin] = num++;
 //          colbegin++;
 //      }

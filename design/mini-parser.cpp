@@ -1,6 +1,8 @@
 //Mini Parser
-//Given a nested list of integers represented as a string, implement a parser to deserialize it.
-//Each element is either an integer, or a list -- whose elements may also be integers or other lists.
+//Given a nested list of integers represented as a string, implement a parser
+//to deserialize it.
+//Each element is either an integer, or a list -- whose elements may also be
+//integers or other lists.
 //Note: You may assume that the string is well-formed:
 //String is non-empty.
 //String does not contain white spaces.
@@ -53,17 +55,19 @@
 //outer2.add(outer) # outer2 is now [5, [5]]
 //"Set this NestedInteger to hold a nested list and adds a nested integer elem to it." cannot be more vague.
 //'-' means negative. It's not a delimiter.
-//For test cases like "324" you need to return something like NestedInteger(324) not "[324]".
-//A list cannot have multiple consecutive integers. e.g. "321, 231" is invalid. I guess it's for difficulty purposes
+//For test cases like "324" you need to return something like
+//NestedInteger(324) not "[324]".
+//A list cannot have multiple consecutive integers. e.g. "321, 231" is invalid.
+//I guess it's for difficulty purposes
 
 
-//################################################################  Recursion ################################################################  
+//################################################################  Recursion ################################################################
  NestedInteger deserialize(string s)
     {
         // end condition
         if (s.empty()) return NestedInteger(); // empty string
         if (s[0] != '[') return NestedInteger(stoi(s)); // number string
-        
+
         NestedInteger res;
         for (int i = 1; i < s.size();)
         {
@@ -71,16 +75,16 @@
 			if (isNumber(s[i]) || s[i] == '[')
 			{
 				int j = i; // end of substring for recursion
-				
+
 				if (isNumber(s[i])) // value ni
 					while (isNumber(s[j])) ++j; // end of number string
-				
+
 				if (s[i] == '[') // list ni
 				{
 					int cnt = 1;
 					while (cnt > 0) { ++j; cnt = s[j] == '[' ? cnt + 1 : s[j] == ']' ? cnt - 1 : cnt; } // pos of correspondent ']'
 				}
-				
+
 				res.add(deserialize(s.substr(i, j - i)));
 				i = j;
 			}
@@ -89,10 +93,10 @@
         }
         return res;
     }
-    
+
     bool isNumber(char c) { return isdigit(c) || c == '-'; }
 
-//################################################  Recursion ################################################  
+//################################################  Recursion ################################################
 NestedInteger deserialize(string s) {
    if (s.empty())
        return NestedInteger();
@@ -128,15 +132,15 @@ NestedInteger deserialize(string s) {
    return num;
 }
 
-//################################################  Iterative ################################################  
+//################################################  Iterative ################################################
 NestedInteger deserialize(string s) {
         if (!s.empty() && s[0] != '[') return stoi(s);
-        
+
         NestedInteger result;
         stack<NestedInteger> st;
         bool hasNum = false;
         int num = 0, sign = 1;
-        
+
         for (int i = 1; i < s.size(); i++) {
             char c = s[i];
             if (isdigit(c)) {

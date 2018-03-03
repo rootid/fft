@@ -2,11 +2,11 @@
 //Write a program to solve a Sudoku puzzle by filling the empty cells.
 //Empty cells are indicated by the character '.'.
 //You may assume that there will be only one unique solution.
-//#################################   O(9^m)  : Backtracking #################################   
+//#################################   O(9^m)  : Backtracking #################################
    public void solveSudoku(char[][] board) {
         doSolve(board, 0, 0);
     }
-    
+
     private boolean doSolve(char[][] board, int row, int col) {
         for (int i = row; i < 9; i++, col = 0) { // note: must reset col here!
             for (int j = col; j < 9; j++) {
@@ -24,17 +24,17 @@
         }
         return true;
     }
-    
+
     private boolean isValid(char[][] board, int row, int col, char num) {
         int blkrow = (row / 3) * 3, blkcol = (col / 3) * 3; // Block no. is i/3, first element is i/3*3
         for (int i = 0; i < 9; i++)
-            if (board[i][col] == num || board[row][i] == num || 
+            if (board[i][col] == num || board[row][i] == num ||
                     board[blkrow + i / 3][blkcol + i % 3] == num)
                 return false;
         return true;
     }
 
-//#################################   O(9^m)  : Backtracking #################################   
+//#################################   O(9^m)  : Backtracking #################################
 class Solution {
 public:
     void solveSudoku(vector<vector<char>>& board) {
@@ -54,7 +54,7 @@ private:
                     }
                     return false;
                 }
-            } 
+            }
         }
         return true;
     }
@@ -70,16 +70,18 @@ private:
     }
 };
 
-//#################################   O(9^m)  : Backtracking #################################   
+//#################################   O(9^m)  : Backtracking #################################
 //m - # of empty slots
-//Try 1 through 9 for each cell. The time complexity should be 9 ^ m (m represents the number of blanks to be filled in), since each blank can have 9 choices
+//Try 1 through 9 for each cell. The time complexity should be 9 ^ m (m
+//represents the number of blanks to be filled in), since each blank can have 9
+//choices
 public class Solution {
     public void solveSudoku(char[][] board) {
         if(board == null || board.length == 0)
             return;
         solve(board);
     }
-    
+
     public boolean solve(char[][] board){
         for(int i = 0; i < board.length; i++){
             for(int j = 0; j < board[0].length; j++){
@@ -99,25 +101,26 @@ public class Solution {
         }
         return true;
     }
-    
+
     private boolean isValid(char[][] board, int row, int col, char c){
         for(int i = 0; i < 9; i++) {
             if(board[i][col] != '.' && board[i][col] == c) return false; //check row
             if(board[row][i] != '.' && board[row][i] == c) return false; //check column
-            if(board[3 * (row / 3) + i / 3][ 3 * (col / 3) + i % 3] != '.' && 
+            if(board[3 * (row / 3) + i / 3][ 3 * (col / 3) + i % 3] != '.' &&
 board[3 * (row / 3) + i / 3][3 * (col / 3) + i % 3] == c) return false; //check 3*3 block
         }
         return true;
     }
 
-//######################################### Mask + Backtracking ######################################### 
-//use rmask, cmask, bmask to record the appearance of 1-9 in each row,col and cube.
+//######################################### Mask + Backtracking #########################################
+//use rmask, cmask, bmask to record the appearance of 1-9 in each row,col and
+//cube.
 class Solution:
 def modifyMask(self, rmask,cmask,bmask,i,j,b,change):
     rmask[i] ^= change
     cmask[j] ^= change
     bmask[b] ^= change
-    
+
 def dfs(self, board, k, rmask, cmask, bmask):
     if k == 81:
         return True
@@ -135,7 +138,7 @@ def dfs(self, board, k, rmask, cmask, bmask):
             board[i][j] = '.'
             self.modifyMask(rmask,cmask,bmask,i,j,b,change)
     return False
-    
+
 # @param board, a 9x9 2D array
 # Solve the Sudoku by modifying the input board in-place.
 # Do not return any value.
@@ -149,7 +152,7 @@ def solveSudoku(self, board):
                 self.modifyMask(rmask,cmask,bmask,i,j,b,change)
     self.dfs(board,0,rmask,cmask,bmask)
 
-//######################################### Singapore PM's code  ######################################### 
+//######################################### Singapore PM's code  #########################################
 // Original author: Hsien Loong Lee (http://bit.ly/1zfIGMc)
 // Slight modification by @1337c0d3r to adapt to run on LeetCode OJ.
 // https://leetcode.com/problems/sudoku-solver/
@@ -181,7 +184,7 @@ void InitEntry(int i, int j, int val)
      int SeqPtr2;
 
      // add suitable checks for data consistency
-     
+
 	 Entry[Square] = valbit;
 	 Block[InBlock[Square]] &= ~valbit;
 	 Col[InCol[Square]] &= ~valbit; // Simpler Col[j] &= ~valbit;
@@ -200,7 +203,7 @@ void PrintArray(char **board)
 {
      int i, j, valbit, val, Square;
      char ch;
-     
+
      Square = 0;
 
      for (i = 0; i < 9; i++) {
@@ -208,12 +211,12 @@ void PrintArray(char **board)
              valbit = Entry[Square++];
              if (valbit == 0) ch = '-';
              else {
-                 for (val = 1; val <= 9; val++) 
+                 for (val = 1; val <= 9; val++)
                      if (valbit == (1 << val)) {
                         ch = '0' + val;
                         break;
                      }
-             }    
+             }
              board[i][j] = ch;
          }
      }
@@ -268,7 +271,7 @@ void Place(int S, char** board)
           Block[BlockIndex] &= ~valbit;
           Row[RowIndex] &= ~valbit;
           Col[ColIndex] &= ~valbit;
-				
+
           Place(S + 1, board);
 
           Entry[Square] = BLANK; // Could be moved out of the loop
@@ -297,15 +300,15 @@ void solveSudoku(char **board, int m, int n) {
         Sequence[Square] = Square;
 		Entry[Square] = BLANK;
     }
-    
-	for (i = 0; i < 9; i++) 
+
+	for (i = 0; i < 9; i++)
 		Block[i] = Row[i] = Col[i] = ONES;
-    
+
     for (int i = 0; i < 9; ++i)
        for (int j = 0; j < 9; ++j) {
            if ('.' != board[i][j])
                 InitEntry(i, j, board[i][j] - '0');
        }
-       
+
     Place(SeqPtr, board);
 }

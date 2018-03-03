@@ -1,8 +1,10 @@
 //Number of Digit One
-//Given an integer n, count the total number of digit 1 appearing in all non-negative integers less than or equal to n.
+//Given an integer n, count the total number of digit 1 appearing in all
+//non-negative integers less than or equal to n.
 //For example:
 //Given n = 13,
-//Return 6, because digit 1 occurred in the following numbers: 1, 10, 11, 12, 13.
+//Return 6, because digit 1 occurred in the following numbers: 1, 10, 11, 12,
+//13.
 //Hint:
 //Beware of overflow.
 
@@ -34,12 +36,12 @@
 //
 //11       120  121  122  123  124  125  126  127  128  129          [120, 129]
 
-//######################## 
+//########################
 int countDigitOne(int n) {
     int ones = 0;
     for (long long m = 1; m <= n; m *= 10) {
         int a = n/m, b = n%m; //a = left , b = right
-        //left,right,# of digits from left side ,# of digits from right side 
+        //left,right,# of digits from left side ,# of digits from right side
         cout << a << ","  << b << "," << (a + 8) / 10 * m   << "," << (a % 10 == 1) * (b + 1)<< endl;
         ones += (a + 8) / 10 * m + (a % 10 == 1) * (b + 1);
         //left part(a) last digit = 0 (b+1)
@@ -49,13 +51,13 @@ int countDigitOne(int n) {
 }
 
 
-//##################################### Formula  ########################################################################  
+//##################################### Formula  ########################################################################
 // h= xyzdabc
 int countDigitOne1(int n) {
    if (n <= 0) return 0;
     int q = n, x = 1, ans = 0;
     do {
-        int digit = q % 10; 
+        int digit = q % 10;
         q /= 10;
         ans += q * x;
         if (digit == 1) ans += n % x + 1;

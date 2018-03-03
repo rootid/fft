@@ -1,7 +1,9 @@
 //Find Duplicate Subtrees
-//Given a binary tree, return all duplicate subtrees. For each kind of duplicate subtrees, you only need to return the root node of any one of them.
-//Two trees are duplicate if they have the same structure with same node values.
-//Example 1: 
+//Given a binary tree, return all duplicate subtrees. For each kind of
+//duplicate subtrees, you only need to return the root node of any one of them.
+//Two trees are duplicate if they have the same structure with same node
+//values.
+//Example 1:
 //        1
 //       / \
 //      2   3
@@ -18,14 +20,14 @@
 //Therefore, you need to return above trees' root in the form of a list.
 //
 
-//######################################## DLR serialization ######################################## 
+//######################################## DLR serialization ########################################
 string preorder(TreeNode* root, unordered_map<string, int>& freq, vector<TreeNode*>& res) {
       if(root != NULL) {
           string left = preorder(root -> left, freq, res);
           string right = preorder(root -> right, freq, res);
-          
+
           string str = to_string(root -> val) + " " + left + right;
-          
+
           if(freq[str] == 1) res.push_back(root);
           freq[str]++;
           return str;
@@ -40,7 +42,7 @@ string preorder(TreeNode* root, unordered_map<string, int>& freq, vector<TreeNod
       return res;
   }
 
-//######################################## LDR serialization ######################################## 
+//######################################## LDR serialization ########################################
 public:
     vector<TreeNode*> findDuplicateSubtrees(TreeNode* root) {
         unordered_map<string, vector<TreeNode*> > map;
@@ -62,26 +64,30 @@ private:
         return s;
     }
 
-//######################################### Pytonic ######################################### 
-//######################################### Simple Serialization ######################################### 
+//######################################### Pytonic #########################################
+//######################################### Simple Serialization #########################################
 def findDuplicateSubtrees(self, root):
         def trv(root):
             if not root: return "null"
             struct = "%s,%s,%s" % (str(root.val), trv(root.left), trv(root.right))
             nodes[struct].append(root)
             return struct
-        
+
         nodes = collections.defaultdict(list)
         ret = []
         trv(root)
         return [nodes[struct][0] for struct in nodes if len(nodes[struct]) > 1]
-//######################################### Serialization with tuples ######################################### 
-//I convert the entire tree of nested TreeNodes to a tree of nested tuples. 
-//Those have the advantage that they already support hashing and deep comparison (for the very unlikely cases of hash collisions). 
-//So then I can just use each subtree's tuple version as a key in my dictionary. 
+//######################################### Serialization with tuples #########################################
+//I convert the entire tree of nested TreeNodes to a tree of nested tuples.
+//Those have the advantage that they already support hashing and deep
+//comparison (for the very unlikely cases of hash collisions).
+//So then I can just use each subtree's tuple version as a key in my
+//dictionary.
 //And equal subtrees have the same key and thus get collected in the same list.
-//Overall this costs only O(n) memory (where n is the number of nodes in the given tree). 
-//The string serialization I've seen in other posted solutions costs O(n^2) memory (and thus also at least that much time).
+//Overall this costs only O(n) memory (where n is the number of nodes in the
+//given tree).
+//The string serialization I've seen in other posted solutions costs O(n^2)
+//memory (and thus also at least that much time).
 
 def findDuplicateSubtrees(self, root):
     def tuplify(root):
@@ -94,7 +100,7 @@ def findDuplicateSubtrees(self, root):
     return [roots[0] for roots in trees.values() if roots[1:]]
 
 
-//######################################### Serialization with Merkel hash ######################################### 
+//######################################### Serialization with Merkel hash #########################################
 //Assign every subtree a unique merkle hash.
 // https://discuss.leetcode.com/topic/88520/python-straightforward-with-explanation-o-st-and-o-s-t-approaches
 def findDuplicateSubtrees(self, root):

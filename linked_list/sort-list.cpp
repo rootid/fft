@@ -4,12 +4,12 @@
 ListNode quickSort(final ListNode h){
     if(h == null || h.next == null)
         return h;
-    
+
     /*split into three list*/
     ListNode fakesmall = new ListNode(0), small = fakesmall;
     ListNode fakelarge = new ListNode(0), large = fakelarge;
     ListNode fakeequal = new ListNode(0), equal = fakeequal;
-    
+
     ListNode cur = h; // pivot is h.
     while(cur != null){
         if(cur.val < h.val) {
@@ -24,12 +24,12 @@ ListNode quickSort(final ListNode h){
             large.next = cur;
             large = large.next;
         }
-        
+
         cur = cur.next;
     }
     // put an end.
     small.next = equal.next = large.next = null;
-    // merge them and return . merge reusing below one. merge for quicksort should be simplified. 
+    // merge them and return . merge reusing below one. merge for quicksort should be simplified.
     return merge(merge(quickSort(fakesmall.next), quickSort(fakelarge.next)),fakeequal.next) ;
 }
 
@@ -38,8 +38,8 @@ ListNode quickSort(final ListNode h){
 ListNode mergeSort(ListNode h){
     if(h == null || h.next == null)
         return h;
-    
-    /*find cutting point*/    
+
+    /*find cutting point*/
     ListNode slow = h, cut = null, fast = h;
     while(fast != null && fast.next != null){
         cut = slow;
@@ -69,14 +69,14 @@ ListNode merge(ListNode h, ListNode m){
 }
 
 
-//################################################################## GOOD ################################################################## 
+//################################################################## GOOD ##################################################################
 ListNode *merge(ListNode *list1,ListNode *list2){
      ListNode *head;
      ListNode **p=&head,**q;
      while (list1 || list2){
-         if (list1 && list2)  { 
+         if (list1 && list2)  {
            q = list1->val < list2->val? &list1: &list2;
-         } else { 
+         } else {
            q = list1 ? &list1:&list2;
          }
          *p=*q;
@@ -98,7 +98,7 @@ ListNode* sortList(ListNode* head) {
      return merge(sortList(head),sortList(fast));
 }
 
-//################################################################## GOOD ################################################################## 
+//################################################################## GOOD ##################################################################
 ListNode* sortList(ListNode* head) {
     if (head == nullptr || head->next == NULL)
         return head;
@@ -128,7 +128,7 @@ ListNode *merge(ListNode *l, ListNode *r) {
     }
     if (l)
         node->next = l;
-    else 
+    else
         node->next = r;
 
     ListNode *tmp = dummy->next;
@@ -138,7 +138,7 @@ ListNode *merge(ListNode *l, ListNode *r) {
 }
 
 
-//################################################################## GOOD ################################################################## 
+//################################################################## GOOD ##################################################################
 ListNode* sortList(ListNode* head) {
 ListNode* sortList(ListNode* head) {
      if (head == NULL || head->next == NULL) {
@@ -150,12 +150,12 @@ ListNode* sortList(ListNode* head) {
          slow = slow->next;
          fast = fast->next->next;
      }
-     //divide the list into two parts 
+     //divide the list into two parts
      fast = slow->next;
      slow->next = NULL;
      return merge(sortList(head), sortList(fast));
 }
-    
+
 ListNode* merge(ListNode* l1, ListNode* l2) {
     ListNode dump(0);
     ListNode* cur = &dump;
@@ -174,7 +174,7 @@ ListNode* merge(ListNode* l1, ListNode* l2) {
         cur->next = l1;
     else
         cur->next = l2;
-        
+
     return dump.next;
 }
 //Actually you are sorting them when you merge the two lists,as the following:
@@ -182,8 +182,10 @@ ListNode* merge(ListNode* l1, ListNode* l2) {
 //1->10->23->null
 //after merging:
 //1->3->8->10->12->23->null.
-//Of course the two lists must are ordered respectively.So we can only start to merge two lists that only 
-//have one element,then we get a ordered list that have two element,do this again (that is "recursion").
+//Of course the two lists must are ordered respectively.So we can only start to
+//merge two lists that only
+//have one element,then we get a ordered list that have two element,do this
+//again (that is "recursion").
 // 7 -> 3 -> 9 -> 6 -> 2 -> 8 -> 4 -> 1 -> null
 //  \ /       \ /       \ /        \ /
 //3->7->null 6->9->null 2->8->null 1->4->null

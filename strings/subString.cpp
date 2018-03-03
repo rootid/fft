@@ -1,6 +1,7 @@
 
 
-//You are given two strings, A and B. Find if there is a substring of minimum length 2 that 
+//You are given two strings, A and B. Find if there is a substring of minimum
+//length 2 that
 //appears in both A and B.
 
 s = "bac" //ba
@@ -12,7 +13,7 @@ t = "lacpd"
 //b = "bdbdbdbdbdbdbdbdbdb"
 
 bool isSubstring (string s,string t,int wnd =2 )  {
-    
+
     unordered_set<string> u_set;
     for (int i=0;i<s.length() - wnd;i++) {
         u_set.push_back(s.substr(i,wnd) ); //la,ac,cp,pd

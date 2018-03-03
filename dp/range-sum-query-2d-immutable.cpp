@@ -1,7 +1,9 @@
 //Range Sum Query 2D - Immutable
-//Given a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1, col1) and lower right corner (row2, col2).
+//Given a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1,
+//col1) and lower right corner (row2, col2).
 //Range Sum Query 2D
-//The above rectangle (with the red border) is defined by (row1, col1) = (2, 1) and (row2, col2) = (4, 3), which contains sum = 8.
+//The above rectangle (with the red border) is defined by (row1, col1) = (2, 1) and (row2, col2) = (4, 3), which
+//contains sum = 8.
 //Example:
 //Given matrix = [
 //  [3, 0, 1, 4, 2],
@@ -20,7 +22,7 @@
 
 
 
-//######################################### RowWise running sum ######################################### 
+//######################################### RowWise running sum #########################################
 class NumMatrix {
 
     int[][] rowWiseRunningSum;
@@ -32,21 +34,21 @@ class NumMatrix {
             for(int j=1;j<n;j++) matrix[i][j] += matrix[i][j-1];
         rowWiseRunningSum = matrix;
     }
-    
+
     public int sumRegion(int row1, int col1, int row2, int col2) {
         int sum = 0;
-        for(int i=row1;i<=row2;i++) 
+        for(int i=row1;i<=row2;i++)
             sum += col1 == 0 ? rowWiseRunningSum[i][col2] : rowWiseRunningSum[i][col2]  - rowWiseRunningSum[i][col1-1];
         return sum;
     }
 }
 
 
-//######################################### Row+ColumnWise running sum ######################################### 
+//######################################### Row+ColumnWise running sum #########################################
 //  O---X1---X2---X
-//  |   |    |    | 
+//  |   |    |    |
 //  E---A----D----|
-//  |   |    |    | 
+//  |   |    |    |
 //  Y1--B----C----|
 //    |              |
 //  Y-------------X
@@ -62,14 +64,14 @@ class NumMatrix {
 class NumMatrix {
 
     private int[][] dp;
-    
+
     public NumMatrix(int[][] matrix) {
-        
+
         if (null != matrix && 0 != matrix.length) {
             // build the dp array dp[i][j] = dp[i-1][j] + dp[i][j-1] - dp[i-1][j-1](all in range)
             for (int i = 0; i < matrix.length; i ++)
                 for (int j = 0; j < matrix[0].length ; j ++) {
-                    if (i - 1 >= 0) 
+                    if (i - 1 >= 0)
                         matrix[i][j] += matrix[i - 1][j];
                     if (j - 1 >= 0)
                         matrix[i][j] += matrix[i][j - 1];
@@ -78,24 +80,24 @@ class NumMatrix {
             }
         }
         dp = matrix;
-        
+
     }
-    
+
     public int sumRegion(int row1, int col1, int row2, int col2) {
-        
+
         int sum = dp[row2][col2];
         if (row1 - 1 >= 0)
             sum -= dp[row1 - 1][col2];
         if (col1 - 1 >= 0)
             sum -= dp[row2][col1 - 1];
-            
+
         return sum += (row1 - 1 >= 0 && col1 - 1 >= 0) ? dp[row1 - 1][col1 - 1] : 0;
     }
 }
 
 
 
-//######################################### Row+ColumnWise running sum ######################################### 
+//######################################### Row+ColumnWise running sum #########################################
 //Construct a 2D array sums[row+1][col+1]
 //(notice: we add additional blank row sums[0][col+1]={0} and blank column sums[row+1][0]={0} to remove the edge case checking), so, we can have the following definition
 //sums[i+1][j+1] represents the sum of area from matrix[0][0] to matrix[i][j]
@@ -112,7 +114,7 @@ class NumMatrix {
 //|               |     |              |     |               |     |              |
 //+---------------+     +--------------+     +---------------+     +--------------+
 //
-//   sums[i][j]      =    sums[i-1][j]    +     sums[i][j-1]    -   sums[i-1][j-1]   +  
+//   sums[i][j]      =    sums[i-1][j]    +     sums[i][j-1]    -   sums[i-1][j-1]   +
 //
 //                        matrix[i-1][j-1]
 //So, we use the same idea to find the specific area's sum.
@@ -127,7 +129,7 @@ class NumMatrix {
 //|        (r2,c2)|   |       (r2,c2)|   |   (r2,c1)     |   |              |   |              |
 //+---------------+   +--------------+   +---------------+   +--------------+   +--------------+
 
-//######################################### sum adjust  ######################################### 
+//######################################### sum adjust  #########################################
 class NumMatrix {
 private:
     int row, col;
@@ -139,7 +141,7 @@ public:
         sums = vector<vector<int>>(row+1, vector<int>(col+1, 0));
         for(int i=1; i<=row; i++) {
             for(int j=1; j<=col; j++) {
-                sums[i][j] = matrix[i-1][j-1] + 
+                sums[i][j] = matrix[i-1][j-1] +
                              sums[i-1][j] + sums[i][j-1] - sums[i-1][j-1] ;
             }
         }
@@ -150,7 +152,7 @@ public:
     }
 };
 
-//######################################### sum adjust +  diff modification ######################################### 
+//######################################### sum adjust +  diff modification #########################################
 class NumMatrix {
 public:
     NumMatrix(vector<vector<int>> matrix) {
@@ -179,4 +181,4 @@ private:
  * int param_1 = obj.sumRegion(row1,col1,row2,col2);
  */
 
-// vim: set sw=2 sts=2 tw=120 et nospell : 
+// vim: set sw=2 sts=2 tw=120 et nospell :

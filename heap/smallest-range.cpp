@@ -1,10 +1,12 @@
 //Smallest Range
-//You have k lists of sorted integers in ascending order. Find the smallest range that includes at least one number from each of the k lists.
-//We define the range [a,b] is smaller than range [c,d] if b-a < d-c or a < c if b-a == d-c.
+//You have k lists of sorted integers in ascending order. Find the smallest
+//range that includes at least one number from each of the k lists.
+//We define the range [a,b] is smaller than range [c,d] if b-a < d-c or a < c
+//if b-a == d-c.
 //Example 1:
 //Input:[[4,10,15,24,26], [0,9,12,20], [5,18,22,30]]
 //Output: [20,24]
-//Explanation: 
+//Explanation:
 //List 1: [4, 10, 15, 24,26], 24 is in range [20,24].
 //List 2: [0, 9, 12, 20], 20 is in range [20,24].
 //List 3: [5, 18, 22, 30], 22 is in range [20,24].
@@ -12,9 +14,11 @@
 //The given list may contain duplicates, so ascending order means >= here.
 //1 <= k <= 3500
 //-105 <= value of elements <= 105.
-//For Java users, please note that the input type has been changed to List<List<Integer>>. And after you reset the code template, you'll see this point.
+//For Java users, please note that the input type has been changed to
+//List<List<Integer>>. And after you reset the code template, you'll see this
+//point.
 
-//#########################################  Merge k sorted list #########################################  
+//#########################################  Merge k sorted list #########################################
 //TC : O(n * logm) : n =elements from all lists, m = size of heap
 //SC : O(m)
 //1. Use Min-heap to keep track of min elements
@@ -48,11 +52,12 @@ public class Solution {
     }
 }
 
-//######################################### Merge K sorted list ######################################### 
-//similar to Merge K Sorted List. Keep a priority queue of iterators/pointers which points to the current head of a row.
-vector<int> smallestRange(vector<vector<int>>& nums) { 
+//######################################### Merge K sorted list #########################################
+//similar to Merge K Sorted List. Keep a priority queue of iterators/pointers
+//which points to the current head of a row.
+vector<int> smallestRange(vector<vector<int>>& nums) {
 	typedef vector<int>::iterator vi;
-    
+
     struct comp {
         bool operator()(pair<vi, vi> p1, pair<vi, vi> p2) {
             return *p1.first > *p2.first;
@@ -73,20 +78,20 @@ vector<int> smallestRange(vector<vector<int>>& nums) {
         if (p.first == p.second)
             break;
         pq.push(p);
-        
+
         lo = *pq.top().first; //update lo
         hi = max(hi, *p.first); //updte hi
         if (hi - lo < ans[1] - ans[0])
             ans = {lo, hi};
     }
-    return ans; 
+    return ans;
 }
 
-//######################################### Merge K sorted list ######################################### 
+//######################################### Merge K sorted list #########################################
 class Solution {
 public:
     struct mycompare {
-        bool operator () (pair<int, int>& a, pair<int, int>& b) {return a.first > b.first;}  
+        bool operator () (pair<int, int>& a, pair<int, int>& b) {return a.first > b.first;}
     };
     vector<int> smallestRange(vector<vector<int>>& nums) {
         int n = nums.size(), large = INT_MIN, maxlen = INT_MAX;
@@ -114,10 +119,12 @@ public:
     }
 };
 
-//######################################### Merge K sorted list ######################################### 
-public int[] smallestRange(List<List<Integer>> nums) { 
+//######################################### Merge K sorted list #########################################
+public int[] smallestRange(List<List<Integer>> nums) {
 //pq compares its incoming element (a) and old elements (b) for order based
-//on the value of a[0] - b[0]. The value of a[0] - b[0] can be a negative integer, zero, or a positive integer as a is less than, equal to, or greater than b.
+//on the value of a[0] - b[0]. The value of a[0] - b[0] can be a negative
+//integer, zero, or a positive integer as a is less than, equal to, or greater
+//than b.
 	PriorityQueue<int[]> pq = new PriorityQueue<int[]>((a, b) -> a[0] - b[0]);
     int max = Integer.MIN_VALUE;
     for(int i = 0; i < nums.size(); i++) {
@@ -131,11 +138,11 @@ public int[] smallestRange(List<List<Integer>> nums) {
     	max = Math.max(max, nums.get(curr[1]).get(curr[2] + 1));
     	if(max - pq.peek()[0] < result[1] - result[0]) result = new int[] {pq.peek()[0], max};
     }
-    return result; 
+    return result;
 }
 
 
-//######################################### python ######################################### 
+//######################################### python #########################################
 import heapq
 class Solution(object):
     def smallestRange(self, nums):
@@ -163,10 +170,11 @@ class Solution(object):
 
 
 
-//######################################### Merge K sorted list ######################################### 
+//######################################### Merge K sorted list #########################################
 //merging k sorted array using a heap.
 //Then everytime you pop the smallest element out and
-//add the next element of that array to the heap. By keep doing this, you will have the smallest range.
+//add the next element of that array to the heap. By keep doing this, you will
+//have the smallest range.
 public int[] smallestRange(int[][] nums) {
 
 		PriorityQueue<Element> pq = new PriorityQueue<Element>(new Comparator<Element>() {
@@ -177,10 +185,10 @@ public int[] smallestRange(int[][] nums) {
 
 		int min = Integer.MAX_VALUE, max = Integer.MIN_VALUE;
 		for (int i = 0; i < nums.length; i++) {
-			//All nums arrays are sorted 
+			//All nums arrays are sorted
 			Element e = new Element(i, 0, nums[i][0]); //get min element
 			pq.offer(e);
-			max = Math.max(max, nums[i][0]); //update the max 
+			max = Math.max(max, nums[i][0]); //update the max
 		}
 		int range = Integer.MAX_VALUE;
 		int start = -1, end = -1;
@@ -192,7 +200,7 @@ public int[] smallestRange(int[][] nums) {
 				start = curr.val;
 				end = max;
 			}
-			//Iterate over the array , heap decides which array to pick to iterate 
+			//Iterate over the array , heap decides which array to pick to iterate
 			if (curr.idx + 1 < nums[curr.row].length) {
 				curr.idx = curr.idx + 1;
 				curr.val = nums[curr.row][curr.idx];
@@ -217,12 +225,16 @@ public int[] smallestRange(int[][] nums) {
 		}
 	}
 
-//################################################### Python ################################################### 
-//Keep a heap of the smallest elements. As we pop element A[i][j], we'll replace it with A[i][j+1]. For each such element left, we want right, the maximum of the closest value in each row of the array that is >= left, which is also equal to the current maximum of our heap. We'll keep track of right as we proceed.
+//################################################### Python ###################################################
+//Keep a heap of the smallest elements. As we pop element A[i][j], we'll
+//replace it with A[i][j+1]. For each such element left, we want right, the
+//maximum of the closest value in each row of the array that is >= left, which
+//is also equal to the current maximum of our heap. We'll keep track of right
+//as we proceed.
 def smallestRange(self, A):
     pq = [(row[0], i, 0) for i, row in enumerate(A)]
     heapq.heapify(pq)
-    
+
     ans = -1e9, 1e9
     right = max(row[0] for row in A)
     while pq:
@@ -238,7 +250,7 @@ def smallestRange(self, A):
 
 
 
-//######################################### Brute force ######################################### 
+//######################################### Brute force #########################################
 //TC : O(n^3) SC : O(1)
 public class Solution {
     public int[] smallestRange(int[][] nums) {
@@ -261,7 +273,7 @@ public class Solution {
                         if (m == nums.length) {
 							//b-a > d-c || b-a == d-c  && a > c
                             if (miny - minx > max - min || (miny - minx == max - min && minx > min)) {
-                                miny = max; //update miny and minx to get the shortest miny and minx 
+                                miny = max; //update miny and minx to get the shortest miny and minx
                                 minx = min;
                             }
                         }
@@ -273,7 +285,7 @@ public class Solution {
     }
 }
 
-//######################################### Brute force ######################################### 
+//######################################### Brute force #########################################
 //next : keep track of indices while traversing all the array
 //TC : O(n*m) SC : O(m)
 public class Solution {

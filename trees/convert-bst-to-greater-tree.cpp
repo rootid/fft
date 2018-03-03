@@ -1,5 +1,7 @@
 //Convert BST to Greater Tree
-//Given a Binary Search Tree (BST), convert it to a Greater Tree such that every key of the original BST is changed to the original key plus sum of all keys greater than the original key in BST.
+//Given a Binary Search Tree (BST), convert it to a Greater Tree such that
+//every key of the original BST is changed to the original key plus sum of all
+//keys greater than the original key in BST.
 //Example:
 //Input: The root of a Binary Search Tree like this:
 //              5
@@ -10,24 +12,24 @@
 //            /   \
 //          20     13
 
-//############################# Traverse from right to left in DFS way with adding the root->val  ############################# 
-void helper(TreeNode* root,int& sum) { 
-  if (root) { 
+//############################# Traverse from right to left in DFS way with adding the root->val  #############################
+void helper(TreeNode* root,int& sum) {
+  if (root) {
     helper(root->right,sum);
     root->val += sum;
     sum = root->val;
-    helper(root->left,sum); 
+    helper(root->left,sum);
   }
 }
 
-TreeNode* convertBST(TreeNode* root) { 
+TreeNode* convertBST(TreeNode* root) {
   int sum = 0;
   helper(root,sum);
   return root;
 }
 
 
-//############################# Iterative version ############################# 
+//############################# Iterative version #############################
 TreeNode* convertBST(TreeNode* root) {
     if(root == nullptr) return root;
     auto root2 = root;
@@ -52,7 +54,7 @@ TreeNode* convertBST(TreeNode* root) {
     }
     return root2;
 }
-//##########################################  Morris traversal ###############################################################   
+//##########################################  Morris traversal ###############################################################
 
 TreeNode* convertBST(TreeNode* root) {
        TreeNode* cur= root;

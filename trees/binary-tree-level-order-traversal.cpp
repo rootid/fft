@@ -1,5 +1,6 @@
 //Binary Tree Level Order Traversal
-//Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
+//Given a binary tree, return the level order traversal of its nodes' values.
+//(ie, from left to right, level by level).
 
 //For example:
 //Given binary tree {3,9,20,#,#,15,7}
@@ -16,7 +17,7 @@
 //]
 //
 
-//######################################### DFS  ######################################### 
+//######################################### DFS  #########################################
 public List<List<Integer>> levelOrder(TreeNode root) {
     List<List<Integer>> result = new ArrayList<>();
     levelOrderHelper(root,result,0);
@@ -32,7 +33,7 @@ private void levelOrderHelper(TreeNode root, List<List<Integer>> result, int lev
         result.get(level).add(root.val); //<---------------------
     }
 }
-//######################################### BFS  ######################################### 
+//######################################### BFS  #########################################
 class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
@@ -55,15 +56,15 @@ public:
                 tmp.push_back(nodes.front()->val);
                 nodes.pop();
             }
-            
+
             res.push_back(tmp);
         }
         return res;
     }
 };
 
-//######################################### DFS ######################################### 
-//SC : O(log n) 
+//######################################### DFS #########################################
+//SC : O(log n)
 vector<vector<int>> ret;
 
 void buildVector(TreeNode *root, int depth)
@@ -71,13 +72,13 @@ void buildVector(TreeNode *root, int depth)
     if(root == NULL) return;
     if(ret.size() == depth)
         ret.push_back(vector<int>());
-    
+
     ret[depth].push_back(root->val);
     buildVector(root->left, depth + 1);
     buildVector(root->right, depth + 1);
 }
 
-//######################################### DFS : Only ref ######################################### 
+//######################################### DFS : Only ref #########################################
 vector<vector<int> > levelOrder(TreeNode *root) {
     buildVector(root, 0);
     return ret;
@@ -88,19 +89,19 @@ vector<vector<int> > levelOrder(TreeNode *root) {
         if(root == NULL) return;
         if(ret.size() == depth)
             ret.push_back(vector<int>());
-        
+
         ret[depth].push_back(root->val);
         buildVector(root->left, depth + 1, ret);
         buildVector(root->right, depth + 1, ret);
     }
-    
+
     vector<vector<int> > levelOrder(TreeNode *root) {
         vector<vector<int>> ret;
         buildVector(root, 0, ret);
         return ret;
     }
 
-//######################################### DFS ######################################### 
+//######################################### DFS #########################################
 public class Solution {
     List<List<Integer>> returnList = new ArrayList<List<Integer>>();
     public List<List<Integer>> levelOrder(TreeNode root) {
@@ -128,7 +129,7 @@ public class Solution {
     }
 }
 
-//######################################### python ######################################### 
+//######################################### python #########################################
 # solution 1
 def levelOrderBottom(self, root):
     if not root:
@@ -180,16 +181,16 @@ def levelOrderBottom(self, root):
 
 >>> def test_list_comprehension():
         x = [i for i in xrange(100)]
-        
+
 >>> timeit(test_append, number=100000)
 4.446563311239515
 >>> timeit(test_list_comprehension, number=100000)
 1.0300341831108426
->>> 
+>>>
 
-//######################################### Bottom up traversal  ######################################### 
+//######################################### Bottom up traversal  #########################################
 void DFSHelper(TreeNode* root,vector< vector<int> >& result, int level) {
-  
+
   if(!root) {
     return;
   }
@@ -215,7 +216,7 @@ vector<vector<int> > levelOrderBottom(TreeNode* root) {
 vector<vector<int> > levelOrderBottom(TreeNode* root) {
 
   vector< vector<int> > result;
-  
+
   if(!root) {
     return result;
   }

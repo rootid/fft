@@ -1,7 +1,8 @@
 //Delete Node in a Linked List
 //
 //Write a function to delete a node (except the tail) in a singly linked list, given only access to that node.
-//Supposed the linked list is 1 -> 2 -> 3 -> 4 and you are given the third node with value 3, the linked list should become 1 -> 2 -> 4 after calling your function.
+//Supposed the linked list is 1 -> 2 -> 3 -> 4 and you are given the third node with value 3, the linked list should
+//become 1 -> 2 -> 4 after calling your function.
 //
 //1->2->3->4->5
 //
@@ -9,7 +10,7 @@
 #include "../headers/listnode.hpp"
 
 
-//######################################### Update val, reference ######################################### 
+//######################################### Update val, reference #########################################
 public void deleteNode(ListNode node) {
     node.val = node.next.val;
     ListNode savedNextRef = node.next;
@@ -17,13 +18,13 @@ public void deleteNode(ListNode node) {
     savedNextRef = null;
 }
 
-//######################################### Update val, reference ######################################### 
+//######################################### Update val, reference #########################################
 public void deleteNode(ListNode node) {
      node.val = node.next.val;
      node.next = node.next.next;
 }
 
-//######################################### W/o memory leak ######################################### 
+//######################################### W/o memory leak #########################################
 void deleteNodeWoMemoryLeak(ListNode* node) {
     node->val = node->next->val;
     ListNode* t = node->next;
@@ -31,7 +32,7 @@ void deleteNodeWoMemoryLeak(ListNode* node) {
     delete t;
 }
 
-//######################################### W/ memory leak ######################################### 
+//######################################### W/ memory leak #########################################
 void deleteNode(ListNode* node) {
   if(node->next == NULL)  {
     node = NULL;
@@ -43,32 +44,32 @@ void deleteNode(ListNode* node) {
   node->next = node->next->next;
 }
 
-//######################################### With Memory leak  ######################################### 
+//######################################### With Memory leak  #########################################
 void deleteNode(ListNode* node) {
     *node = *node->next;
 }
 
-//######################################### With auto ######################################### 
+//######################################### With auto #########################################
 void deleteNode(ListNode* node) {
     auto next = node->next;
     *node = *next;
     delete next;
 }
 
-//######################################### Copy value + and check wheather it is last node######################################### 
+//######################################### Copy value + and check wheather it is last node#########################################
 public void deleteNode(ListNode node) {
-  node.val = node.next.val;  
+  node.val = node.next.val;
   if(node.next == null) node = null;
   else node.next = node.next.next;
 }
 
 int main() {
   //1->2->3->4->5->NULL,
-  ListNode *head = new ListNode(1); 
-  head->next = new ListNode(2); 
-  head->next->next = new ListNode(3); 
-  //head->next->next->next = new ListNode(4); 
-  //head->next->next->next->next = new ListNode(5); 
+  ListNode *head = new ListNode(1);
+  head->next = new ListNode(2);
+  head->next->next = new ListNode(3);
+  //head->next->next->next = new ListNode(4);
+  //head->next->next->next->next = new ListNode(5);
 
   cout << "cALL " << endl;
 

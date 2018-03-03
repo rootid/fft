@@ -1,4 +1,5 @@
-//Given a collection of integers that might contain duplicates, nums, return all possible subsets.
+//Given a collection of integers that might contain duplicates, nums, return
+//all possible subsets.
 //Note: The solution set must not contain duplicate subsets.
 //For example,
 //If nums = [1,2,2], a solution is:
@@ -25,7 +26,7 @@
 //                     [4, subsets([])]
 //                     // pop()
 
-//######################################### Recursion  ######################################### 
+//######################################### Recursion  #########################################
 class Solution {
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         List<Integer> soFar = new LinkedList<>();
@@ -36,11 +37,11 @@ class Solution {
     }
     private void subsetsWithDupHelper(int[] nums,int k,List<Integer>soFar, List<List<Integer>> result) {
         int n = nums.length;
-        result.add(new ArrayList(soFar)); 
+        result.add(new ArrayList(soFar));
         for(int i=k;i<n;i++) {
             if (i == k || nums[i] != nums[i - 1]) { //Only pick the single ele when duplicates are present.
   			//if(i > k && nums[i] == nums[i-1]) continue; // skip duplicates
-                soFar.add(nums[i]);  //Add each element 
+                soFar.add(nums[i]);  //Add each element
                 subsetsWithDupHelper(nums,i+1,soFar,result);
                 soFar.remove(soFar.size() - 1);
             }
@@ -48,7 +49,7 @@ class Solution {
     }
 }
 
-//######################################### Iterative ######################################### 
+//######################################### Iterative #########################################
  vector<vector<int>> subsetsWithDup(vector<int>& nums) {
     vector<vector<int>> ret;
     ret.push_back(vector<int>());
@@ -63,7 +64,7 @@ class Solution {
 }
 
 
-//######################################### Recursion  ######################################### 
+//######################################### Recursion  #########################################
 class Solution {
 public:
     vector<vector<int> > subsets(vector<int> &nums) {
@@ -85,7 +86,8 @@ private:
 };
 
 
-//we want to insert an element which is a dup, we can only insert it after the newly inserted elements from last step.
+//we want to insert an element which is a dup, we can only insert it after the
+//newly inserted elements from last step.
 //Iterative version
 vector<vector<int> > subsetsWithDup(vector<int> &nums) {
     sort(nums.begin(), nums.end());
@@ -108,7 +110,11 @@ vector<vector<int> > subsetsWithDup(vector<int> &nums) {
 }
 
 
-//To solve this problem, it is helpful to first think how many subsets are there. If there is no duplicate element, the answer is simply 2^n, where n is the number of elements. This is because you have two choices for each element, either putting it into the subset or not. So all subsets for this no-duplicate set can be easily constructed:
+//To solve this problem, it is helpful to first think how many subsets are
+//there. If there is no duplicate element, the answer is simply 2^n, where n is
+//the number of elements. This is because you have two choices for each
+//element, either putting it into the subset or not. So all subsets for this
+//no-duplicate set can be easily constructed:
 //num of subset
 //
 //(1 to 2^0) empty set is the first subset
@@ -117,7 +123,15 @@ vector<vector<int> > subsetsWithDup(vector<int> &nums) {
 //(2^2+1 to 2^3) add the third element into subset (1 to 2^2)
 //....
 //(2^(n-1)+1 to 2^n) add the nth element into subset(1 to 2^(n-1))
-//Then how many subsets are there if there are duplicate elements? We can treat duplicate element as a spacial element. For example, if we have duplicate elements (5, 5), instead of treating them as two elements that are duplicate, we can treat it as one special element 5, but this element has more than two choices: you can either NOT put it into the subset, or put ONE 5 into the subset, or put TWO 5s into the subset. Therefore, we are given an array (a1, a2, a3, ..., an) with each of them appearing (k1, k2, k3, ..., kn) times, the number of subset is (k1+1)(k2+1)...(kn+1). We can easily see how to write down all the subsets similar to the approach above.
+//Then how many subsets are there if there are duplicate elements? We can treat
+//duplicate element as a spacial element. For example, if we have duplicate
+//elements (5, 5), instead of treating them as two elements that are duplicate,
+//we can treat it as one special element 5, but this element has more than two
+//choices: you can either NOT put it into the subset, or put ONE 5 into the
+//subset, or put TWO 5s into the subset. Therefore, we are given an array (a1,
+//a2, a3, ..., an) with each of them appearing (k1, k2, k3, ..., kn) times, the
+//number of subset is (k1+1)(k2+1)...(kn+1). We can easily see how to write
+//down all the subsets similar to the approach above.
 
     class Solution {
 public:

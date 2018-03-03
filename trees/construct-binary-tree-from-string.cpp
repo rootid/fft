@@ -1,7 +1,12 @@
 //Construct Binary Tree from String
-//You need to construct a binary tree from a string consisting of parenthesis and integers.
-//The whole input represents a binary tree. It contains an integer followed by zero, one or two pairs of parenthesis. The integer represents the root's value and a pair of parenthesis contains a child binary tree with the same structure.
-//You always start to construct the left child node of the parent first if it exists.
+//You need to construct a binary tree from a string consisting of parenthesis
+//and integers.
+//The whole input represents a binary tree. It contains an integer followed by
+//zero, one or two pairs of parenthesis. The integer represents the root's
+//value and a pair of parenthesis contains a child binary tree with the same
+//structure.
+//You always start to construct the left child node of the parent first if it
+//exists.
 //Example:
 //Input: "4(2(3)(1))(6(5))"
 //Output: return the tree root node representing the following tree:
@@ -14,7 +19,8 @@
 //There will only be '(', ')', '-' and '0' ~ '9' in the input string.
 //
 //######################################### Recursion #########################################
-//For example, we have string 4(2(3)(1))(6(5)), to construct a binary tree, we can split the string to 3 parts:
+//For example, we have string 4(2(3)(1))(6(5)), to construct a binary tree, we
+//can split the string to 3 parts:
 //4
 //(2(3)(1))
 //(6(5))
@@ -157,13 +163,19 @@ class Solution {
 }
 
 //######################################### Python #########################################
-//We perform a recursive solution. There are four cases for what the string might look like:
+//We perform a recursive solution. There are four cases for what the string
+//might look like:
 //empty
 //[integer]
 //[integer] ( [tree] )
 //[integer] ( [tree] ) ( [tree] )
-//When there is no '(', we are in one of the first two cases and proceed appropriately.
-//Else, we find the index "jx" of the ')' character that marks the end of the first tree. We do this by keeping a tally of how many left brackets minus right brackets we've seen. When we've seen 0, we must be at the end of the first tree. The second tree is going to be the expression S[jx + 2: -1], which might be empty if we are in case #3.
+//When there is no '(', we are in one of the first two cases and proceed
+//appropriately.
+//Else, we find the index "jx" of the ')' character that marks the end of the
+//first tree. We do this by keeping a tally of how many left brackets minus
+//right brackets we've seen. When we've seen 0, we must be at the end of the
+//first tree. The second tree is going to be the expression S[jx + 2: -1],
+//which might be empty if we are in case #3.
 
 def str2tree(self, S):
     ix = S.find('(')

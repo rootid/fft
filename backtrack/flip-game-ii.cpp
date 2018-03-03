@@ -1,7 +1,11 @@
 //Flip Game II
-//You are playing the following Flip Game with your friend: Given a string that contains only these two characters: + and -, you and your friend take turns to flip two consecutive "++" into "--". The game ends when a person can no longer make a move and therefore the other person will be the winner.
+//You are playing the following Flip Game with your friend: Given a string that
+//contains only these two characters: + and -, you and your friend take turns
+//to flip two consecutive "++" into "--". The game ends when a person can no
+//longer make a move and therefore the other person will be the winner.
 //Write a function to determine if the starting player can guarantee a win.
-//For example, given s = "++++", return true. The starting player can guarantee a win by flipping the middle "++" to become "+--+".
+//For example, given s = "++++", return true. The starting player can guarantee
+//a win by flipping the middle "++" to become "+--+".
 //Follow up:
 //Derive your algorithm's runtime complexity.
 
@@ -27,8 +31,14 @@ public boolean canWin(String s) {
 }
 
 //######################################### Backtracking #########################################
-//The idea is try to replace every "++" in the current string s to "--" and see if the opponent can win or not, if the opponent cannot win, great, we win!
-//For the time complexity, here is what I thought, let's say the length of the input string s is n, there are at most n - 1 ways to replace "++" to "--" (imagine s is all "+++..."), once we replace one "++", there are at most (n - 2) - 1 ways to do the replacement, it's a little bit like solving the N-Queens problem, the time complexity is (n - 1) x (n - 3) x (n - 5) x ..., so it's O(n!!), double factorial.
+//The idea is try to replace every "++" in the current string s to "--" and see
+//if the opponent can win or not, if the opponent cannot win, great, we win!
+//For the time complexity, here is what I thought, let's say the length of the
+//input string s is n, there are at most n - 1 ways to replace "++" to "--"
+//(imagine s is all "+++..."), once we replace one "++", there are at most (n -
+//2) - 1 ways to do the replacement, it's a little bit like solving the
+//N-Queens problem, the time complexity is (n - 1) x (n - 3) x (n - 5) x ...,
+//so it's O(n!!), double factorial.
 public boolean canWin(String s) {
   if (s == null || s.length() < 2) {
     return false;
@@ -99,9 +109,11 @@ private boolean canWin(char[] c, HashMap<String, Boolean> h) {
 //######################################### Backtracking  #########################################
 //
 //backtracking seems to be the only feasible solution to this problem.
-//We can basically try every possible move for the first player (Let's call him 1P from now on),
+//We can basically try every possible move for the first player (Let's call him
+//1P from now on),
 //and recursively check if the second player 2P has any chance to win.
-//If 2P is guaranteed to lose, then we know the current move 1P takes must be the winning move.
+//If 2P is guaranteed to lose, then we know the current move 1P takes must be
+//the winning move.
 
 int len;
 string ss;
@@ -122,9 +134,12 @@ bool canWin() {
     return false;
 }
 
-//Now let's check the time complexity: Suppose originally the board of size N contains only '+' signs, then roughly we have:
-//T(N) = (N-2) * T(N-2) = (N-2) * (N-4) * T(N-4) ... = (N-2) * (N-4) * (N-6) * ... ~ O(N!!)
-//DP will reduce TC upto O(N^2) by Sprague–Grundy theorem (S-G) From Game Theory (impartial game, Normal Play vs Misere Play))
+//Now let's check the time complexity: Suppose originally the board of size N
+//contains only '+' signs, then roughly we have:
+//T(N) = (N-2) * T(N-2) = (N-2) * (N-4) * T(N-4) ... = (N-2) * (N-4) * (N-6) *
+//... ~ O(N!!)
+//DP will reduce TC upto O(N^2) by Sprague–Grundy theorem (S-G) From Game
+//Theory (impartial game, Normal Play vs Misere Play))
 
 //######################################### Backtracking  #########################################
 bool canWin(string s) {

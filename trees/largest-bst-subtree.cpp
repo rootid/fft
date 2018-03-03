@@ -1,23 +1,25 @@
 //Largest BST Subtree
 //
-//Given a binary tree, find the largest subtree which is a Binary Search Tree (BST), where largest means subtree with largest number of nodes in it.
+//Given a binary tree, find the largest subtree which is a Binary Search Tree (BST), where largest means subtree with
+//largest number of nodes in it.
 //Note:
 //A subtree must include all of its descendants.
 //Here's an example:
 //    10
 //    / \
 //   5  15
-//  / \   \ 
+//  / \   \
 // 1   8   7
 //The Largest BST Subtree in this case is the highlighted one. (5,1,8)
 //The return value is the subtree's size, which is 3.
 //Hint:
-//You can recursively use algorithm similar to 98. Validate Binary Search Tree at each node of the tree, which will result in O(nlogn) time complexity.
+//You can recursively use algorithm similar to 98. Validate Binary Search Tree at each node of the tree, which will
+//result in O(nlogn) time complexity.
 //Follow up:
 //Can you figure out ways to solve it with O(n) time complexity?
 //
 //
-//################################################################## O(N) - Bottom-up solution (With Array)  ################################################################## 
+//################################################################## O(N) - Bottom-up solution (With Array)  ##################################################################
 //(# of nodes,minValue,maxValue)
 private int largestBSTSubtreeSize = 0;
 public int largestBSTSubtree(TreeNode root) {
@@ -50,7 +52,7 @@ private int[] helper(TreeNode root) {
     return result;
 }
 
-//################################################################## O(N) - Bottom-up solution  ################################################################## 
+//################################################################## O(N) - Bottom-up solution  ##################################################################
 class Result {
     int size;
     int min;
@@ -77,40 +79,40 @@ private Result BSTSubstree(TreeNode root) {
 //never use the min, max information, so we just set them to zero.
     if (left.size < 0 || right.size < 0 || root.val <= left.max || root.val >= right.min) {
         return new Result(Math.max(Math.abs(left.size), Math.abs(right.size)) * -1, 0, 0);
-    } 
-    //if we say a valid BST must not contain duplicate value, you are right. 
-    //if so, to make the code right, we only need to adjust the logic where we are dealing with NULL node, 
+    }
+    //if we say a valid BST must not contain duplicate value, you are right.
+    //if so, to make the code right, we only need to adjust the logic where we are dealing with NULL node,
     //and if (left.size==-1 || right.size==-1 || root.val<left.upper || root.val>right.lower) should be if (left.size==-1 || right.size==-1 || root.val<=left.upper || root.val>=right.lower).
     return new Result(left.size + right.size + 1, Math.min(root.val, left.min), Math.max(root.val, right.max));
 }
 
 
-//################################################################## O(N^2) ################################################################## 
+//################################################################## O(N^2) ##################################################################
     public int largestBSTSubtree(TreeNode root) {
-        if (isBST(root)) 
+        if (isBST(root))
             return size(root);
         return Math.max(largestBSTSubtree (root.left) , largestBSTSubtree(root.right) );
     }
-    
+
     private int size(TreeNode root) {
         if(root == null) return 0;
         return 1 + size(root.left) + size(root.right);
     }
-    
+
     private boolean isBST(TreeNode root) {
         return isBSTHelper(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
-    
+
     private boolean isBSTHelper(TreeNode root, int minV, int maxV) {
         if(root == null) return true;
          if(root.val < minV || root.val >= maxV) return false;
          return (isBSTHelper(root.left, minV, root.val)
-                && isBSTHelper(root.right, root.val , maxV));        
+                && isBSTHelper(root.right, root.val , maxV));
     }
 
 
 
-//################################################################## O(N) ################################################################## 
+//################################################################## O(N) ##################################################################
 //it visits every node exactly once and does a constant amount of work for each.
 int largestBSTSubtree(TreeNode* root) {
      int res = 0; //Total # of nodes
@@ -124,14 +126,14 @@ bool isBST(TreeNode* node, int& res, int& mini, int& maxi) {
         return true;
     int left_size=0, right_size=0;
     int left_mini, left_maxi, right_mini, right_maxi;
-    
+
     bool leftB = isBST(node->left, left_size, left_mini, left_maxi);
     bool rightB = isBST(node->right, right_size, right_mini, right_maxi);
     if (leftB && rightB) {
         //(left_mini,left_maxi)  node->val  (right_mini,right_maxi)
         if ( (!node->left || node->val >= left_maxi) && (!node->right || node->val <= right_mini) ) {
             /* The tree rooted at this node is a binary search tree */
-            res = left_size+right_size+1;  
+            res = left_size+right_size+1;
             mini = node->left ? left_mini : node->val;
             maxi = node->right ? right_maxi : node->val;
             return true;
@@ -142,7 +144,7 @@ bool isBST(TreeNode* node, int& res, int& mini, int& maxi) {
     return false;
 }
 
-//################################################  O(n log N)  ################################################  
+//################################################  O(n log N)  ################################################
 int largestBSTSubtree(TreeNode* root) {
      if(!root)
          return 0;
@@ -154,7 +156,7 @@ int largestBSTSubtree(TreeNode* root) {
          int n1 = largestBSTSubtree(root->left);
          int n2 = largestBSTSubtree(root->right);
          return max(n1,n2);
-     } 
+     }
 }
 bool helper(TreeNode* root){
     stack<TreeNode*> s;
@@ -189,7 +191,7 @@ int countnodes(TreeNode* root){
     return 1+countnodes(root->left)+countnodes(root->right);
 }
 
-//################################################  pytonic  ################################################  
+//################################################  pytonic  ################################################
 
 //def largestBSTSubtree(self, root):
 //    def dfs(root):
@@ -216,7 +218,7 @@ int countnodes(TreeNode* root){
 //                return -1, 0, 0
 //            maxval[0] = max(maxval[0], 1 + left + right)
 //            return 1 + left + right, min(root.val, minvl, minvr), max(root.val, maxvr, maxvl)
-//        
+//
 //        maxval = [0]
 //        solve(root, maxval)
 //        return maxval[0]
@@ -225,7 +227,7 @@ int countnodes(TreeNode* root){
 //# Status: Accepted
 //# Runtime: 100 ms
 //
-//#############################################  Bottom up solution #############################################  
+//#############################################  Bottom up solution #############################################
 //
 //public class Solution {
 //    class Result {  // (size, rangeLower, rangeUpper) -- size of current tree, range of current tree [rangeLower, rangeUpper]
@@ -240,7 +242,7 @@ int countnodes(TreeNode* root){
 //    }
 //    int max = 0;
 //    public int largestBSTSubtree(TreeNode root) {
-//        if (root == null) { return 0; }    
+//        if (root == null) { return 0; }
 //        traverse(root);
 //        return max;
 //    }
@@ -260,15 +262,15 @@ int countnodes(TreeNode* root){
 //
 ///*
 //    in brute-force solution, we get information in a top-down manner.
-//    for O(n) solution, we do it in bottom-up manner, meaning we collect information during backtracking. 
+//    for O(n) solution, we do it in bottom-up manner, meaning we collect information during backtracking.
 //*/
 //public class Solution {
-//    
+//
 //    class Result {  // (size, rangeLower, rangeUpper) -- size of current tree, range of current tree [rangeLower, rangeUpper]
 //        int size;
 //        int lower;
 //        int upper;
-//        
+//
 //        Result(int size, int lower, int upper) {
 //            this.size = size;
 //            this.lower = lower;
@@ -277,7 +279,7 @@ int countnodes(TreeNode* root){
 //    }
 //    int max = 0;
 //    public int largestBSTSubtree(TreeNode root) {
-//        if (root == null) { return 0; }    
+//        if (root == null) { return 0; }
 //        traverse(root, null);
 //        return max;
 //    }
@@ -298,10 +300,10 @@ int countnodes(TreeNode* root){
 //
 //
 
-//#################################################### O(n log n) #################################################### 
+//#################################################### O(n log n) ####################################################
 //public boolean isValidBST(TreeNode root) {
 //  if(root ==  null) return  true;
-//  return helper(root.left, null, root.val) && helper(root.right, root.val, null);        
+//  return helper(root.left, null, root.val) && helper(root.right, root.val, null);
 //}
 //
 //
@@ -309,7 +311,7 @@ int countnodes(TreeNode* root){
 //  if(node == null) return true;
 //  if(loBound != null && node.val <= loBound) return false;
 //  if(hiBound != null && node.val >= hiBound) return false;
-//  return helper(node.left, loBound, node.val) && helper(node.right, node.val, hiBound);   
+//  return helper(node.left, loBound, node.val) && helper(node.right, node.val, hiBound);
 //}
 //
 //
@@ -321,9 +323,9 @@ int countnodes(TreeNode* root){
 //        count = c;
 //      }
 //    }
-//    
+//
 //    int res = 0;
-//    
+//
 //    public int largestBSTSubtree(TreeNode root) {
 //      if(root == null) return res;
 //      Result left = isBST(root.left, null, root.val);
@@ -333,7 +335,7 @@ int countnodes(TreeNode* root){
 //      largestBSTSubtree(root.right);
 //      return res;
 //    }
-//    
+//
 //    Result isBST(TreeNode root, Integer low, Integer high){
 //      if(root == null) return new Result(true, 0);
 //      if(low != null && root.val < low) return new Result(false, 0);
@@ -345,7 +347,7 @@ int countnodes(TreeNode* root){
 //      }
 //    }
 //
-//################################ Iterative  ################################ 
+//################################ Iterative  ################################
 //
 //public int largestBSTSubtree(TreeNode root) {
 //    Stack<TreeNode> stack1 = new Stack<>(), stack2 = new Stack<>();
@@ -359,7 +361,7 @@ int countnodes(TreeNode* root){
 //            stack2.pop();
 //            int[] rightRes = stack3.pop();
 //            int[] leftRes = stack3.pop();
-//            if (leftRes[2] < 0 || rightRes[2] < 0 || leftRes[1] >= cur.val || rightRes[0] <= cur.val) 
+//            if (leftRes[2] < 0 || rightRes[2] < 0 || leftRes[1] >= cur.val || rightRes[0] <= cur.val)
 //                stack3.push(new int[]{0, 0, -1});
 //            else {
 //                stack3.push(new int[]{Math.min(leftRes[0], cur.val), Math.max(rightRes[1], cur.val), leftRes[2]  + rightRes[2] + 1});
@@ -376,4 +378,4 @@ int countnodes(TreeNode* root){
 //    return maxSize;
 //}
 
-// vim: set sw=2 sts=2 tw=120 et nospell : 
+// vim: set sw=2 sts=2 tw=120 et nospell :

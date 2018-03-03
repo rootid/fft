@@ -1,12 +1,15 @@
 //Flatten Nested List Iterator
 //Given a nested list of integers, implement an iterator to flatten it.
-//Each element is either an integer, or a list -- whose elements may also be integers or other lists.
+//Each element is either an integer, or a list -- whose elements may also be
+//integers or other lists.
 //Example 1:
 //Given the list [[1,1],2,[1,1]],
-//By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,1,2,1,1].
+//By calling next repeatedly until hasNext returns false, the order of elements
+//returned by next should be: [1,1,2,1,1].
 //Example 2:
 //Given the list [1,[4,[6]]],
-//By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,4,6].
+//By calling next repeatedly until hasNext returns false, the order of elements
+//returned by next should be: [1,4,6].
 
 /**
  * // This is the interface that allows for creating nested lists.
@@ -27,7 +30,7 @@
  */
 
 
-//################# with Begin and end list iterators (Most optimum) #################### 
+//################# with Begin and end list iterators (Most optimum) ####################
 public class NestedIterator implements Iterator<Integer> {
 
     public NestedIterator(List<NestedInteger> nestedList) {
@@ -53,10 +56,10 @@ public class NestedIterator implements Iterator<Integer> {
         }
         return false;
     }
-    
+
     private Stack<ListIterator<NestedInteger>> lists;
 }
-//######################################### Lazy retreival ######################################### 
+//######################################### Lazy retreival #########################################
 class NestedIterator {
 public:
     NestedIterator(vector<NestedInteger> &nestedList) {
@@ -65,13 +68,13 @@ public:
         }
     }
     int next() {
-        NestedInteger t = s.top(); 
+        NestedInteger t = s.top();
         s.pop();
         return t.getInteger();
     }
     bool hasNext() {
         while (!s.empty()) {
-            NestedInteger t = s.top(); 
+            NestedInteger t = s.top();
             if (t.isInteger())  {
                 return true;
             }
@@ -92,7 +95,7 @@ private:
  */
 
 
-//######################################### Heavy constructor ######################################### 
+//######################################### Heavy constructor #########################################
 class Solution {
  	private Stack<NestedInteger> stack;
     private List<NestedInteger> nestedList;
@@ -128,7 +131,7 @@ class Solution {
     }
 }
 
-//################ with Begin and end iterators ################ 
+//################ with Begin and end iterators ################
 class NestedIterator {
 public:
     NestedIterator(vector<NestedInteger> &nestedList) {
@@ -164,7 +167,7 @@ private:
 
 
 
-//################# With DFS #################### 
+//################# With DFS ####################
 class NestedIterator {
 private:
     vector<int> nums;
@@ -173,7 +176,7 @@ private:
         if(node.isInteger()) {
           v.push_back(node.getInteger());
         }
-        else for(auto& n: node.getList()) { 
+        else for(auto& n: node.getList()) {
           helper(n, v);
         }
     }

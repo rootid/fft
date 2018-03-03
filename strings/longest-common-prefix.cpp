@@ -1,9 +1,10 @@
 //Longest Common Prefix
-//Write a function to find the longest common prefix string amongst an array of strings.
+//Write a function to find the longest common prefix string amongst an array of
+//strings.
 
 #include "../headers/global.hpp"
 
-//############################################## Good  ############################################## 
+//############################################## Good  ##############################################
 string longestCommonPrefix(vector<string>& strs) {
        string prefix="";
        if(strs.size()==0)  return prefix;
@@ -19,7 +20,7 @@ string longestCommonPrefix(vector<string>& strs) {
        return prefix;
 }
 
-//############################################## Good  ############################################## 
+//############################################## Good  ##############################################
 string longestCommonPrefix(vector<string>& strs) {
      string prefix = "";
      for(int idx=0; strs.size()>0; prefix+=strs[0][idx], idx++)
@@ -29,7 +30,7 @@ string longestCommonPrefix(vector<string>& strs) {
      return prefix;
 }
 
-//############################################## Bad ############################################## 
+//############################################## Bad ##############################################
 string longestCommonPrefix(vector<string>& strs) {
        char charSet[256];
        for(int i=0;i<256;i++) {
@@ -56,7 +57,7 @@ string longestCommonPrefix(vector<string>& strs) {
        return result;
 }
 
-//############################################## Bad ############################################## 
+//############################################## Bad ##############################################
 string longestCommonPrefix(vector<string>& strs) {
   int tLen = strs.size();
   int idx =0;
@@ -73,7 +74,7 @@ string longestCommonPrefix(vector<string>& strs) {
       if(idx > lLen || idx > strs[0].length() || strs[i][idx] != strs[0][idx]) {
         //cout << "idx " << idx << endl;
         found = false;
-        break; 
+        break;
       }
     }
     idx += 1;

@@ -1,5 +1,6 @@
 //Symmetric Tree
-//Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).
+//Given a binary tree, check whether it is a mirror of itself (ie, symmetric
+//around its center).
 //For example, this binary tree is symmetric:
 //    1
 //   / \
@@ -14,7 +15,8 @@
 //   3    3
 //Note:
 //Bonus points if you could solve it both recursively and iteratively.
-//confused what "{1,#,2,3}" means? > read more on how binary tree is serialized on OJ.
+//confused what "{1,#,2,3}" means? > read more on how binary tree is serialized
+//on OJ.
 //
 
 #include<iostream>
@@ -38,7 +40,7 @@ bool isSymmetricHelper(TreeNode* p,TreeNode* q) {
  return ( p->val == q->val && isSymmetricHelper(p->left,q->right) && isSymmetricHelper(p->right,q->left) );
 }
 bool isSymmetric(TreeNode* root) {
-  
+
   if (!root) {
     return true;
   }

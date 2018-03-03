@@ -1,6 +1,7 @@
 //Lowest Common Ancestor of a Binary Tree
 //Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree.
-//According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes v and w as the lowest node in T that has both v and w as descendants (where we allow a node to be a descendant of itself).”
+//According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes v and w as
+//the lowest node in T that has both v and w as descendants (where we allow a node to be a descendant of itself).”
 //        _______3______
 //       /              \
 //    ___5__          ___1__
@@ -8,27 +9,28 @@
 //   6      _2       0       8
 //         /  \
 //         7   4
-//For example, the lowest common ancestor (LCA) of nodes 5 and 1 is 3. Another example is LCA of nodes 5 and 4 is 5, since a node can be a descendant of itself according to the LCA definition.
+//For example, the lowest common ancestor (LCA) of nodes 5 and 1 is 3. Another example is LCA of nodes 5 and 4 is 5,
+//since a node can be a descendant of itself according to the LCA definition.
 
-//######################################### LCA ######################################### 
+//######################################### LCA #########################################
 //Go untill node is not found
 public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-     if(root == null 
-        || root == p 
-        || root == q) 
+     if(root == null
+        || root == p
+        || root == q)
 
-        return root; 
+        return root;
      TreeNode rL = lowestCommonAncestor(root.left, p, q);
      TreeNode rR = lowestCommonAncestor(root.right, p, q);
      //if(rL == p && rR == q || (rL == q && rR == p) ) return root; //if p and q are on opposite sides of root
      if(rL != null && rR != null) return root; //if p and q are on opposite sides of root
      if(rL == null) //rL is after the rR (rR-->rL)
          return rR;
-     return rL; 
+     return rL;
 }
 
 
-//######################################### Recursion ######################################### 
+//######################################### Recursion #########################################
 //O(n) - Verfiy whether it's O(n) or O(h)
 TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
   if(!root || p == root || q == root) {
@@ -44,7 +46,8 @@ TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
   }
   return right;
 }
-//this might go into each subtree twice. Which means you might go into each subsubtree four times. And into each subsubsubtree eight times. And so on. That takes exponential time, which is very slow.
+//this might go into each subtree twice. Which means you might go into each subsubtree four times. And into each
+//subsubsubtree eight times. And so on. That takes exponential time, which is very slow.
 //
 //def lowestCommonAncestor(self, root, p, q):
 //    if not root or p == root or q == root:
@@ -54,21 +57,21 @@ TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
 //    return self.lowestCommonAncestor(root.left, p, q) or self.lowestCommonAncestor(root.right, p, q)
 
 
-//######################################### left + right ######################################### 
+//######################################### left + right #########################################
 def lowestCommonAncestor(self, root, p, q):
     if root in (None, p, q): return root
     left, right = (self.lowestCommonAncestor(kid, p, q)
                    for kid in (root.left, root.right))
     return root if left and right else left or right
 
-//######################################### children ######################################### 
+//######################################### children #########################################
 def lowestCommonAncestor(self, root, p, q):
     if root in (None, p, q): return root
     subs = [self.lowestCommonAncestor(kid, p, q)
             for kid in (root.left, root.right)]
     return root if all(subs) else max(subs)
 
-//######################################### Iterative  ######################################### 
+//######################################### Iterative  #########################################
 //Python
 def lowestCommonAncestor(self, root, p, q):
     stack = [root]
@@ -93,7 +96,7 @@ def lowestCommonAncestor(self, root, p, q):
 # Status: Accepted
 # Runtime: 108 ms
 # 99.14%
-//######################################### Iterative  ######################################### 
+//######################################### Iterative  #########################################
 //Java
 
 public class Solution {
@@ -123,7 +126,9 @@ public class Solution {
         return q;
     }
 }
-//To find the lowest common ancestor, we need to find where is p and q and a way to track their ancestors. A parent pointer for each node found is good for the job. After we found both p and q, we create a set of p's ancestors. Then we travel through q's ancestors, the first one appears in p's is our answer.
+//To find the lowest common ancestor, we need to find where is p and q and a way to track their ancestors. A parent
+//pointer for each node found is good for the job. After we found both p and q, we create a set of p's ancestors. Then
+//we travel through q's ancestors, the first one appears in p's is our answer.
 
 
 //https://leetcode.com/discuss/45603/iterative-solution
@@ -238,4 +243,4 @@ public:
     }
 };
 
-// vim: set sw=2 sts=2 tw=120 et nospell : 
+// vim: set sw=2 sts=2 tw=120 et nospell :

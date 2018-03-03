@@ -1,15 +1,17 @@
 //Remove Invalid Parentheses
-//Remove the minimum number of invalid parentheses in order to make the input string valid. Return all possible results.
-//Note: The input string may contain letters other than the parentheses ( and ).
+//Remove the minimum number of invalid parentheses in order to make the input
+//string valid. Return all possible results.
+//Note: The input string may contain letters other than the parentheses ( and
+//).
 //Examples:
 //"()())()" -> ["()()()", "(())()"]
 //"(a)())()" -> ["(a)()()", "(a())()"]
 //")(" -> [""]
 
-//################################################### DFS ################################################### 
+//################################################### DFS ###################################################
 //T = O(2^n)
-// T(n) = n x C(n, n) + (n-1) x C(n, n-1) + ... + 1 x C(n, 1) = n x 2^(n-1). 
-//C(n, n-1) : # of new strings 
+// T(n) = n x C(n, n) + (n-1) x C(n, n-1) + ... + 1 x C(n, 1) = n x 2^(n-1).
+//C(n, n-1) : # of new strings
 //n-1 characters,
 public List<String> removeInvalidParentheses(String s) {
     List<String> result = new ArrayList<>();
@@ -22,23 +24,23 @@ public List<String> removeInvalidParentheses(String s) {
     while(!tQ.isEmpty()) {
        s = tQ.poll();
        if(isValid(s)) {
-           isValid = true;   
+           isValid = true;
            result.add(s);
        }
-       if (isValid) continue;  
+       if (isValid) continue;
        for (int j = 0; j < s.length(); j++) {
             if (s.charAt(j) != '(' && s.charAt(j) != ')') continue; //any alphabet
             //This also generates unncessary substrings of length n
-            String newStr = s.substring(0, j) + s.substring(j + 1); // Generate all possible of substrings of same length 
-            if (!visited.contains(newStr)) { //To keep track of duplicate visited strings 
+            String newStr = s.substring(0, j) + s.substring(j + 1); // Generate all possible of substrings of same length
+            if (!visited.contains(newStr)) { //To keep track of duplicate visited strings
                 tQ.add(newStr);
                 visited.add(newStr);
              }
           }
     }
-    return result;   
+    return result;
 }
-    
+
 private boolean isValid(String s) {
     int cnt = 0;
     for(char c: s.toCharArray()) {
@@ -49,25 +51,25 @@ private boolean isValid(String s) {
     return cnt == 0;
 }
 
-//################################################### BFS ################################################### 
+//################################################### BFS ###################################################
 bool isValid(string s){
     int count=0;
     for(int i=0; i<s.size(); i++){
         char c=s[i];
         if(c=='(') count++;
         if(c==')') {
-            if(count==0)    return false; 
+            if(count==0)    return false;
             count--;
         }
     }
     return count==0;
 }
-vector<string> removeInvalidParentheses(string s) { 
+vector<string> removeInvalidParentheses(string s) {
   vector<string> result;
   if(s == "") {
       result.push_back(s);
       return result;
-  } 
+  }
   /*** use the visited to record the visited string ***/
   unordered_set<string> visited;
   /*** use the deque to do the BFS ***/
@@ -75,8 +77,8 @@ vector<string> removeInvalidParentheses(string s) {
   queue.push_back(s);
   visited.insert(s);
   bool found=false;
-  while(!queue.empty()) { 
-    string tmp = queue.front(); 
+  while(!queue.empty()) {
+    string tmp = queue.front();
     queue.pop_front();
     if(isValid(tmp)){
         result.push_back(tmp);
@@ -86,7 +88,7 @@ vector<string> removeInvalidParentheses(string s) {
     if(found)  continue;
     //No valid parenthesis found
     for(int i=0; i<tmp.size(); i++){
-        if(tmp[i] != '(' && tmp[i] != ')') 
+        if(tmp[i] != '(' && tmp[i] != ')')
           continue;
         //0,i - >  all non-parenthesis chars like [a-z|0-9]
         string str = tmp.substr(0, i) + tmp.substr(i+1); //skip ith char
@@ -99,7 +101,7 @@ vector<string> removeInvalidParentheses(string s) {
   return result;
 }
 
-//################################################### DFS + Pruning prefix ################################################### 
+//################################################### DFS + Pruning prefix ###################################################
 public List<String> removeInvalidParentheses(String s) {
     List<String> ans = new ArrayList<>();
     remove(s, ans, 0, 0, new char[]{'(', ')'});
@@ -111,8 +113,8 @@ public void remove(String s, List<String> ans, int last_i, int last_j,  char[] p
         //validate parenthesis
         if (s.charAt(i) == par[0]) stack++;
         if (s.charAt(i) == par[1]) stack--;
-        if (stack >= 0) continue; 
-        for (int j = last_j; j <= i; ++j) { //last_j : store the last pos of removed prefix 
+        if (stack >= 0) continue;
+        for (int j = last_j; j <= i; ++j) { //last_j : store the last pos of removed prefix
             if (s.charAt(j) == par[1] && (j == last_j || s.charAt(j - 1) != par[1])) {
                 remove(s.substring(0, j) + s.substring(j + 1, s.length()), ans, i, j, par);
             }
@@ -121,17 +123,17 @@ public void remove(String s, List<String> ans, int last_i, int last_j,  char[] p
     }
     String reversed = new StringBuilder(s).reverse().toString(); // reverse string to detect extra '(' par
     if (par[0] == '(') // finished left to right
-        remove(reversed, ans, 0, 0, new char[]{')', '('}); 
+        remove(reversed, ans, 0, 0, new char[]{')', '('});
     else // finished right to left
         ans.add(reversed);
 }
 
-//################################################### DFS + Pruning prefix ################################################### 
-private : 
-  vector<string> res; 
+//################################################### DFS + Pruning prefix ###################################################
+private :
+  vector<string> res;
   string p = {'(',')'};
 
-void helper(string& s, int si, int sj, int rev) { 
+void helper(string& s, int si, int sj, int rev) {
   int stn=0;
   for(int i=si;i<s.size();i++){
       //validate parenthesis
@@ -154,16 +156,16 @@ void helper(string& s, int si, int sj, int rev) {
       helper(rs, 0, 0, 1-rev);
   }else{
       res.push_back(rs);
-  } 
-}    
+  }
+}
 public:
-vector<string> removeInvalidParentheses(string s) { 
+vector<string> removeInvalidParentheses(string s) {
   res.clear();
   helper(s, 0, 0, 0);
   return res;
 }
-   
-//################################################### DFS ################################################### 
+
+//################################################### DFS ###################################################
 //T = 2^d where d = num1 + num2
 private :
    bool isValid(string s) {

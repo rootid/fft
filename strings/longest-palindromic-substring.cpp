@@ -1,5 +1,6 @@
 //Longest Palindromic Substring
-//Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.
+//Given a string s, find the longest palindromic substring in s. You may assume
+//that the maximum length of s is 1000.
 //Example:
 //Input: "babad"
 //Output: "bab"
@@ -28,8 +29,8 @@ string longestPalindrome(string s) {
 	}
 	return longest;
 }
- 
-// Given a center, either one letter or two letter, 
+
+// Given a center, either one letter or two letter,
 // Find longest palindrome
 string helper(string s, int begin, int end) {
 	while (begin >= 0 && end <= s.length() - 1 && s[begin] == s[end]) {
@@ -40,7 +41,7 @@ string helper(string s, int begin, int end) {
 	return s.substr(begin+1,len);
 }
 
-//##################### O(n^2) ##################### 
+//##################### O(n^2) #####################
 public String longestPalindrome(String s) {
     int curLen = 0;
     int start = -1;
@@ -68,7 +69,7 @@ private boolean isPalindrome(char[] array, int start, int end) {
     return true;
 }
 
-//######################################### O(n^2) ######################################### 
+//######################################### O(n^2) #########################################
 def longestPalindrome(self, s):
     res = ""
     for i in xrange(len(s)):
@@ -81,8 +82,8 @@ def longestPalindrome(self, s):
         if len(tmp) > len(res):
             res = tmp
     return res
- 
-# get the longest palindrome, l, r are the middle indexes   
+
+# get the longest palindrome, l, r are the middle indexes
 # from inner to outer
 def helper(self, s, l, r):
     while l >= 0 and r < len(s) and s[l] == s[r]:

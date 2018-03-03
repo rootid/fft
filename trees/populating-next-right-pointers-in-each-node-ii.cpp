@@ -1,5 +1,6 @@
 //Follow up for problem "Populating Next Right Pointers in Each Node".
-//What if the given tree could be any binary tree? Would your previous solution still work?
+//What if the given tree could be any binary tree? Would your previous solution
+//still work?
 //Note:
 //You may only use constant extra space.
 //For example,
@@ -26,7 +27,7 @@
  */
 
 
-//######################################### BFS with dummy node  ######################################### 
+//######################################### BFS with dummy node  #########################################
   public static void connect(TreeLinkNode root) {
     TreeLinkNode dummy = new TreeLinkNode(0);
     TreeLinkNode pre = dummy; // pre : only used to traverse the nodes
@@ -50,7 +51,7 @@
   }
 
 
-//######################################### BFS ######################################### 
+//######################################### BFS #########################################
 public void connect(TreeLinkNode root) {
         if(root == null)return;
         Queue<TreeLinkNode> nodes = new LinkedList<>();
@@ -67,11 +68,11 @@ public void connect(TreeLinkNode root) {
                 if(cur.left != null)nodes.offer(cur.left);
                 if(cur.right != null)nodes.offer(cur.right);
             }
-            
+
         }
     }
 
-//######################################### Iteration ######################################### 
+//######################################### Iteration #########################################
 def connect(self, node):
     tail = dummy = TreeLinkNode(0)
     while node:
@@ -90,18 +91,18 @@ def connect(self, node):
 
 void connect(TreeLinkNode *root) {
     for (auto head = root; head != NULL; ) {  // explore each level
-      TreeLinkNode* next_head = new TreeLinkNode(0), *next_tail = next_head; 
+      TreeLinkNode* next_head = new TreeLinkNode(0), *next_tail = next_head;
       for (auto cur = head; cur != NULL; cur = cur->next) {  // at each level
-        if (cur->left != NULL) { 
-          next_tail->next = cur->left; 
-          next_tail = cur->left; 
-        } 
-        if (cur->right != NULL) { 
+        if (cur->left != NULL) {
+          next_tail->next = cur->left;
+          next_tail = cur->left;
+        }
+        if (cur->right != NULL) {
           next_tail->next = cur->right;
-          next_tail = cur->right; //update next tail; 
-        } 
-      } 
-      head = next_head->next; 
+          next_tail = cur->right; //update next tail;
+        }
+      }
+      head = next_head->next;
     }
 }
 
@@ -124,4 +125,4 @@ static void connect(TreeLinkNode *root)
                 Append(&nextHead, &nextTail, node->right);
         }
         head = nextHead;
-   
+

@@ -1,4 +1,6 @@
-//Write a function that returns true if the given Binary Tree is SumTree else false. A SumTree is a Binary Tree where the value of a node is equal to sum of the nodes present in its left subtree and right subtree
+//Write a function that returns true if the given Binary Tree is SumTree else
+//false. A SumTree is a Binary Tree where the value of a node is equal to sum
+//of the nodes present in its left subtree and right subtree
 //
 //
 //Time complexity : DFS search : O(n)  n : Total #of vertex
@@ -21,8 +23,8 @@ struct TreeNode {
 //int isSumTreeHelper (TreeNode *root) {
 //    if(!root)  {
 //      return 0;
-//    } 
-//    return ( root->val + isSumTreeHelper(root->left) + 
+//    }
+//    return ( root->val + isSumTreeHelper(root->left) +
 //            isSumTreeHelper(root->right) );
 //}
 
@@ -30,7 +32,7 @@ struct TreeNode {
 int isSumTreeHelper_0 (TreeNode *root) {
     if(!root)  {
       return 0;
-    } 
+    }
     int ltSum = isSumTreeHelper(root->left);
     int rtSum = isSumTreeHelper(root->right);
     if ( root->val == ltSum + rtSum ) {
@@ -44,7 +46,7 @@ int isSumTreeHelper_0 (TreeNode *root) {
 }
 
 bool isSumTree (TreeNode *root) {
-  
+
     if (!root) {
       return true;
     } else if ( root->val == ( isSumTreeHelper_0 (root->left) + isSumTreeHelper_0 (root->right) ) ) {

@@ -1,21 +1,24 @@
 //Find Peak Element
 //
 //A peak element is an element that is greater than its neighbors.
-//Given an input array where num[i] ≠ num[i+1], find a peak element and return its index.
-//The array may contain multiple peaks, in that case return the index to any one of the peaks is fine.
+//Given an input array where num[i] ≠ num[i+1], find a peak element and return
+//its index.
+//The array may contain multiple peaks, in that case return the index to any
+//one of the peaks is fine.
 //You may imagine that num[-1] = num[n] = -∞.
-//For example, in array [1, 2, 3, 1], 3 is a peak element and your function should return the index number 2.
+//For example, in array [1, 2, 3, 1], 3 is a peak element and your function
+//should return the index number 2.
 
 #include "../headers/global.hpp"
 
-//##################################################  O(log n) + Iteration ##################################################  
+//##################################################  O(log n) + Iteration ##################################################
 int findPeakElement(int[] num)  {
       int low = 0;
       int high = num.length-1;
       while(low < high) {
           int mid1 = low + (high-low)/2;
           System.out.println(mid1);
-          if(num[mid1] < num[mid1+1]) 
+          if(num[mid1] < num[mid1+1])
               low = mid1+1;
           else
               high = mid1;
@@ -24,7 +27,7 @@ int findPeakElement(int[] num)  {
 }
 
 
-//##################################################  Recursion + O(log n) ##################################################  
+//##################################################  Recursion + O(log n) ##################################################
 int findPeakBinHelper(const vector<int>& nums,int left,int right) {
   if(left == right) {
     return left;
@@ -45,16 +48,16 @@ int findPeakElement(vector<int>& nums) {
   return findPeakBinHelper(nums,0,len-1);
 }
 
-//##################################################  Ugly ##################################################  
+//##################################################  Ugly ##################################################
 int findPeakElement(vector<int>& nums) {
-  int len = nums.size();  
+  int len = nums.size();
   if(len <= 1) {
     return len - 1;
-  } 
+  }
   if(len == 2) {
     if(nums[0] > nums[1]) {
       return 0;
-    } 
+    }
     return 1;
   }
   for (int i=1;i<len-1;i++) {
@@ -71,7 +74,7 @@ int findPeakElement(vector<int>& nums) {
   return -1;
 }
 
-//##################################################  Ugly ##################################################  
+//##################################################  Ugly ##################################################
 int findPeakBinHelper(vector<int>& nums,int left,int right) {
   if(left < right) {
     int mid = left + (right-left)/2;

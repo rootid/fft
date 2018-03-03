@@ -1,21 +1,25 @@
 //Longest Word in Dictionary through Deleting
-//Given a string and a string dictionary, find the longest string in the dictionary that can be formed by deleting some characters of the given string. If there are more than one possible results, return the longest word with the smallest lexicographical order. If there is no possible result, return the empty string.
+//Given a string and a string dictionary, find the longest string in the
+//dictionary that can be formed by deleting some characters of the given
+//string. If there are more than one possible results, return the longest word
+//with the smallest lexicographical order. If there is no possible result,
+//return the empty string.
 //Example 1:
 //Input:
 //s = "abpcplea", d = ["ale","apple","monkey","plea"]
-//Output: 
+//Output:
 //"apple"
 //Example 2:
 //Input:
 //s = "abpcplea", d = ["a","b","c"]
-//Output: 
+//Output:
 //"a"
 //Note:
 //All the strings in the input will only contain lower-case letters.
 //The size of the dictionary won't exceed 1,000.
 //The length of all the strings in the input won't exceed 1,000.
 
-//################################  Only scan  ################################  
+//################################  Only scan  ################################
 string findLongestWord(string s, vector<string>& d) {
     string ans;
     //pick word from dictionary
@@ -33,7 +37,7 @@ string findLongestWord(string s, vector<string>& d) {
     return ans;
 }
 
-//############################################ pytonic ############################################ 
+//############################################ pytonic ############################################
 //def findLongestWord(self, s, d):
 //    def isSubsequence(x):
 //        it = iter(s)
@@ -79,7 +83,7 @@ string findLongestWord(string s, vector<string>& d) {
 //            return word
 //    return ''
 //
-// #################################### JAVA  #################################### 
+// #################################### JAVA  ####################################
 //public String findLongestWord(String s, List<String> d) {
 //    String res = "";
 //    if (s.length() == 0 || d.size() == 0) {

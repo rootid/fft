@@ -1,5 +1,8 @@
-//Given a char array representing tasks CPU need to do. It contains capital letters A to Z where different letters represent different tasks.Tasks could be done without original order. Each task could be done in one interval. For each interval, CPU could finish one task or just be idle.
-//However, there is a non-negative cooling interval n that means between two same tasks, there must be at least n intervals that CPU are doing different tasks or just be idle.
+//Given a char array representing tasks CPU need to do. It contains capital letters A to Z where different letters
+//represent different tasks.Tasks could be done without original order. Each task could be done in one interval. For
+//each interval, CPU could finish one task or just be idle.
+//However, there is a non-negative cooling interval n that means between two same tasks, there must be at least n
+//intervals that CPU are doing different tasks or just be idle.
 //You need to return the least number of intervals the CPU will take to finish all the given tasks.
 //Example 1:
 //Input: tasks = ['A','A','A','B','B','B'], n = 2
@@ -10,7 +13,7 @@
 //The integer n is in the range [0, 100].
 //
 
-//######################################### O(N) + S = O(26) ######################################### 
+//######################################### O(N) + S = O(26) #########################################
 // (c[25] - 1) * (n + 1) + 25 - i  is frame size
 // when inserting chars, the frame might be "burst", then tasks.length takes precedence
 // when 25 - i > n, the frame is already full at construction, the following is still valid.
@@ -63,7 +66,7 @@ int leastInterval(vector <char> &tasks, int n) {
   return max( t , (c[25] - 1) * (n + 1) + 25 - i );
 }
 
-//######################################### One Pass  ######################################### 
+//######################################### One Pass  #########################################
 public class Solution {
     public int leastInterval(char[] tasks, int n) {
         int len = tasks.length;
@@ -83,14 +86,17 @@ public class Solution {
 }
 
 
-//################################ Map + Priority Queue ############################### 
+//################################ Map + Priority Queue ###############################
 //map<task, totalTaskCount>
 //priority_queue<task, count>
 //
-//1. To work on the same task again, CPU has to wait for time n, therefore we can think of as if there is a cycle, of time n+1, regardless whether you schedule some other task in the cycle or not.
-//2. To avoid leave the CPU with limited choice of tasks and having to sit there cooling down frequently at the end, it is critical the keep the diversity of the task pool for as long as possible.
-//3. In order to do that, we should try to schedule the CPU to always try round robin between the most popular tasks at any time.
-int leastInterval(vector<char>& tasks, int n) { 
+//1. To work on the same task again, CPU has to wait for time n, therefore we can think of as if there is a cycle, of
+//time n+1, regardless whether you schedule some other task in the cycle or not.
+//2. To avoid leave the CPU with limited choice of tasks and having to sit there cooling down frequently at the end, it
+//is critical the keep the diversity of the task pool for as long as possible.
+//3. In order to do that, we should try to schedule the CPU to always try round robin between the most popular tasks at
+//any time.
+int leastInterval(vector<char>& tasks, int n) {
   unordered_map<char, int> counts;
   for (char t : tasks) {
       counts[t]++;
@@ -123,7 +129,7 @@ int leastInterval(vector<char>& tasks, int n) {
   return alltime;
 }
 
-//#################################################### store only count #################################################### 
+//#################################################### store only count ####################################################
 //priority_queue<count> : Only store the count instead of <task,count>
 int leastInterval(vector<char>& tasks, int n) {
     unordered_map<char, int> counts;
@@ -157,10 +163,10 @@ int leastInterval(vector<char>& tasks, int n) {
 }
 
 
-//################################################### pytonic ################################################### 
+//################################################### pytonic ###################################################
 
 
-//################################################### O(N) ################################################### 
+//################################################### O(N) ###################################################
 //def leastInterval(self, tasks, N):
 //    task_counts = collections.Counter(tasks).values()
 //    M = max(task_counts) #Most frequent tasks
@@ -169,14 +175,14 @@ int leastInterval(vector<char>& tasks, int n) {
 
 //https://discuss.leetcode.com/topic/92952/python-straightforward-with-explanation
 
-//################################################### O(N log N) ################################################### 
+//################################################### O(N log N) ###################################################
 //class Solution(object):
-//    
+//
 //    # O(nlogn) greedy to place most popular and distinct tasks first
 //    # Actually, I don't think this is greedy
 //    # We always place different tasks in a cycle which will minimize steps
 //    # If not different tasks can be placed in a cycle, place an `idle`.
-//    
+//
 //    def _leastInterval(self, tasks, n):
 //        """
 //        :type tasks: List[str]
@@ -201,17 +207,17 @@ int leastInterval(vector<char>& tasks, int n) {
 //                heapq.heappush(heap, item)
 //            ans += heap and n or cnt # == if heap then n else cnt
 //        return ans
-//        
-    
-//################################################### O(N ) ################################################### 
+//
+
+//################################################### O(N ) ###################################################
 //    # O(n) # of the most frequent tasks, say longest, will determine the legnth
 //    # to void counting idle intervals, we count (longest - 1) * (n + 1)
 //    # then count how many will in the last cycle which means finding ties
-//    # if counted number is less than # of tasks which means 
+//    # if counted number is less than # of tasks which means
 //    # less frequent tasks can be always placed in such cycle
 //    # and it won't cause any conflicts with requirement since even most frequent can be settle
 //    # finally, return max(# of task, total counted number)
-//    
+//
 //    def leastInterval(self, tasks, n):
 //        d = collections.Counter(tasks)
 //        counts = d.values()
@@ -222,5 +228,5 @@ int leastInterval(vector<char>& tasks, int n) {
 //        return max(len(tasks), ans)
 //
 
-// vim: set sw=2 sts=2 tw=120 et nospell : 
+// vim: set sw=2 sts=2 tw=120 et nospell :
 

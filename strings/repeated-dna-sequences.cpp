@@ -1,13 +1,16 @@
 //Repeated DNA Sequences
-//All DNA is composed of a series of nucleotides abbreviated as A, C, G, and T, for example: "ACGAATTCCG". When studying DNA, it is sometimes useful to identify repeated sequences within the DNA.
-//Write a function to find all the 10-letter-long sequences (substrings) that occur more than once in a DNA molecule.
+//All DNA is composed of a series of nucleotides abbreviated as A, C, G, and T,
+//for example: "ACGAATTCCG". When studying DNA, it is sometimes useful to
+//identify repeated sequences within the DNA.
+//Write a function to find all the 10-letter-long sequences (substrings) that
+//occur more than once in a DNA molecule.
 //For example,
 //Given s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT",
 //Return:
 //["AAAAACCCCC", "CCCCCAAAAA"].
 
 
-//################### Customized hashMap ################### 
+//################### Customized hashMap ###################
   public List<String> findRepeatedDnaSequences(String s) {
         Map<Integer, Boolean> m = new HashMap<>();
         List<String> result = new LinkedList<>();
@@ -25,7 +28,7 @@
     }
 
 
-//################### HashMap ################### 
+//################### HashMap ###################
 //"AAAAAAAAAAA" o/p = AAAAAAAAAA (As AAAAAAAAAA occured at idx=0,1)
   public List<String> findRepeatedDnaSequences(String s) {
         List<String> result = new LinkedList<>();
@@ -41,7 +44,7 @@
       return result;
     }
 
-//################### Encode with last 3 bits ################### 
+//################### Encode with last 3 bits ###################
 vector<string> findRepeatedDnaSequences(string s) {
       unordered_map<int,int> umap;
       vector<string> r;
@@ -54,7 +57,7 @@ vector<string> findRepeatedDnaSequences(string s) {
 }
 
 
-//################## use boolean instead of int counter as a value (SPACE Eff) ################## 
+//################## use boolean instead of int counter as a value (SPACE Eff) ##################
 vector<string> findRepeatedDnaSequences(string s) {
     unordered_map<int, bool> m;
     vector<string> r;

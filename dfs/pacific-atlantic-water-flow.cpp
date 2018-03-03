@@ -1,13 +1,18 @@
 //Pacific Atlantic Water Flow
-//Given an m x n matrix of non-negative integers representing the height of each unit cell in a continent, the "Pacific ocean" touches the left and top edges of the matrix and the "Atlantic ocean" touches the right and bottom edges.
-//Water can only flow in four directions (up, down, left, or right) from a cell to another one with height equal or lower.
-//Find the list of grid coordinates where water can flow to both the Pacific and Atlantic ocean.
+//Given an m x n matrix of non-negative integers representing the height of
+//each unit cell in a continent, the "Pacific ocean" touches the left and top
+//edges of the matrix and the "Atlantic ocean" touches the right and bottom
+//edges.
+//Water can only flow in four directions (up, down, left, or right) from a cell
+//to another one with height equal or lower.
+//Find the list of grid coordinates where water can flow to both the Pacific
+//and Atlantic ocean.
 //Note:
 //The order of returned grid coordinates does not matter.
 //Both m and n are less than 150.
 //Example:
 //Given the following 5x5 matrix:
-//  Pacific ~   ~   ~   ~   ~ 
+//  Pacific ~   ~   ~   ~   ~
 //       ~  1   2   2   3  (5) *
 //       ~  3   2   3  (4) (4) *
 //       ~  2   4  (5)  3   1  *
@@ -18,12 +23,16 @@
 //[[0, 4], [1, 3], [1, 4], [2, 2], [3, 0], [3, 1], [4, 0]] (positions with parentheses in above matrix).
 //
 
-//1. Two Queue and add all the Pacific border to one queue; Atlantic border to another queue.
-//2. Keep a visited matrix for each queue. In the end, add the cell visited by two queue to the result.
-//BFS: Water flood from ocean to the cell. Since water can only flow from high/equal cell to low cell, 
-//add the neighboor cell with height larger or equal to current cell to the queue and mark as visited.
+//1. Two Queue and add all the Pacific border to one queue; Atlantic border to
+//another queue.
+//2. Keep a visited matrix for each queue. In the end, add the cell visited by
+//two queue to the result.
+//BFS: Water flood from ocean to the cell. Since water can only flow from
+//high/equal cell to low cell,
+//add the neighboor cell with height larger or equal to current cell to the
+//queue and mark as visited.
 
-//######################################### BFS ######################################### 
+//######################################### BFS #########################################
 public class Solution {
     int[][]dir = new int[][]{{1,0},{-1,0},{0,1},{0,-1}};
     public List<int[]> pacificAtlantic(int[][] matrix) {
@@ -35,20 +44,20 @@ public class Solution {
         //One visited map for each ocean
         boolean[][] pacific = new boolean[n][m];
         boolean[][] atlantic = new boolean[n][m];
-        
+
 		Queue<int[]> pQueue = new LinkedList<>();
         Queue<int[]> aQueue = new LinkedList<>();
         for(int i=0; i<n; i++){ //left-right border
             pQueue.offer(new int[]{i, 0});
             aQueue.offer(new int[]{i, m-1});
 			//matrix indicates that ocean water is reachable to borders
-            pacific[i][0] = true; 
+            pacific[i][0] = true;
             atlantic[i][m-1] = true;
         }
         for(int i=0; i<m; i++){ //top-downborder
             pQueue.offer(new int[]{0, i});
             aQueue.offer(new int[]{n-1, i});
-            pacific[0][i] = true;  
+            pacific[0][i] = true;
             atlantic[n-1][i] = true;
         }
         bfs(matrix, pQueue, pacific);
@@ -74,12 +83,12 @@ public class Solution {
                 }
                 visited[x][y] = true;
                 queue.offer(new int[]{x, y});
-            } 
+            }
         }
     }
 }
 
-//######################################### DFS ######################################### 
+//######################################### DFS #########################################
 public class Solution {
     public List<int[]> pacificAtlantic(int[][] matrix) {
         List<int[]> res = new LinkedList<>();
@@ -97,15 +106,15 @@ public class Solution {
             dfs(matrix, pacific, Integer.MIN_VALUE, 0, i);
             dfs(matrix, atlantic, Integer.MIN_VALUE, n-1, i);
         }
-        for (int i = 0; i < n; i++) 
-            for (int j = 0; j < m; j++) 
-                if (pacific[i][j] && atlantic[i][j]) 
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < m; j++)
+                if (pacific[i][j] && atlantic[i][j])
                     res.add(new int[] {i, j});
         return res;
     }
-    
+
     int[][]dir = new int[][]{{0,1},{0,-1},{1,0},{-1,0}};
-    
+
     public void dfs(int[][]matrix, boolean[][]visited, int height, int x, int y){
         int n = matrix.length, m = matrix[0].length;
         if(x<0 || x>=n || y<0 || y>=m || visited[x][y] || matrix[x][y] < height)
@@ -117,19 +126,19 @@ public class Solution {
     }
 }
 
-//############################################ DFS ############################################ 
+//############################################ DFS ############################################
 private :
   vector<pair<int, int>> res;
   vector<vector<int>> visited;
   void dfs(vector<vector<int>>& matrix, int x, int y, int pre, int preval){
-      if (x < 0 || x >= matrix.size() || y < 0 || y >= matrix[0].size()  
-              || matrix[x][y] < pre || (visited[x][y] & preval) == preval) 
+      if (x < 0 || x >= matrix.size() || y < 0 || y >= matrix[0].size()
+              || matrix[x][y] < pre || (visited[x][y] & preval) == preval)
           return;
       visited[x][y] |= preval;
       if (visited[x][y] == 3) res.push_back({x, y});
-      dfs(matrix, x + 1, y, matrix[x][y], visited[x][y]); 
+      dfs(matrix, x + 1, y, matrix[x][y], visited[x][y]);
       dfs(matrix, x - 1, y, matrix[x][y], visited[x][y]);
-      dfs(matrix, x, y + 1, matrix[x][y], visited[x][y]); 
+      dfs(matrix, x, y + 1, matrix[x][y], visited[x][y]);
       dfs(matrix, x, y - 1, matrix[x][y], visited[x][y]);
   }
 public :
@@ -149,7 +158,7 @@ public :
       }
       return res;
   }
-//######################### DFS with stack  ######################### 
+//######################### DFS with stack  #########################
 vector<pair<int, int>> pacificAtlantic(vector<vector<int>>& matrix) {
     vector<pair<int, int> > ret;
     stack <pair<int, int> > s1;
@@ -208,8 +217,8 @@ vector<pair<int, int>> pacificAtlantic(vector<vector<int>>& matrix) {
   }
 
 
-//################################ BFS S : O(2n),T : #################################### 
-struct Node { 
+//################################ BFS S : O(2n),T : ####################################
+struct Node {
   int x, y;
   Node(){}
   Node(int xx, int yy): x(xx), y(yy){}
@@ -253,7 +262,7 @@ public:
             p[0][j] = true;
         }
         bfs(matrix, p, q);
-        while(!q.empty()) 
+        while(!q.empty())
           q.pop();
         vector<vector<bool>> a(n, vector<bool>(m, 0));
         for(int i = 0; i < n; i++) {
@@ -267,7 +276,7 @@ public:
         bfs(matrix, a, q);
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < m; j++) {
-                if(p[i][j] && a[i][j]) 
+                if(p[i][j] && a[i][j])
                     ans.push_back(make_pair(i, j));
             }
         }
@@ -276,7 +285,9 @@ public:
 };
 
 //###################################### BFS ##########################################
-//Optimization : you can actually use just one visited and make it "+1" as pac, "+2" as atl. Then finally check whether the cell is 3. That saves some space (but very minor though)
+//Optimization : you can actually use just one visited and make it "+1" as pac,
+//"+2" as atl. Then finally check whether the cell is 3. That saves some space
+//(but very minor though)
 class Solution {
 public:
     void flow(int i, int j, vector<vector<int>>& map, vector<vector<int>>& visit) {
@@ -306,17 +317,17 @@ public:
         vector<vector<int>> pac(m,vector<int>(n,0));
         vector<vector<int>> atl(m,vector<int>(n,0));
         vector<pair<int,int>> ans;
-        
+
         for(int i=0;i<m;i++) {
             flow(i,0,matrix,pac);
             flow(i,n-1,matrix,atl);
         }
-        
+
         for(int i=0;i<n;i++) {
             flow(0,i,matrix,pac);
             flow(m-1,i,matrix,atl);
         }
-        
+
         for(int i=0;i<m;i++) {
             for(int j=0;j<n;j++) {
                 if(pac[i][j]==1 && atl[i][j]==1) ans.push_back({i,j});
@@ -327,7 +338,7 @@ public:
     }
 };
 
-//####################################### pytonic  ####################################### 
+//####################################### pytonic  #######################################
 //class Solution(object):
 //    def __init__(self):
 //        self.res = []       # Stores the valid positions.
@@ -359,15 +370,17 @@ public:
 //        self.dfs(mat, x, y - 1, mat[x][y], self.visited[x][y])
 //
 
-//####################################### pytonic  + like longest increasing sequence ####################################### 
+//####################################### pytonic  + like longest increasing sequence #######################################
 
-//1. init a directions var like self.directions = [(1,0),(-1,0),(0,1),(0,-1)] so that when you want to explore from a node, you can just do
+//1. init a directions var like self.directions = [(1,0),(-1,0),(0,1),(0,-1)]
+//so that when you want to explore from a node, you can just do
 //for direction in self.directions:
 //            x, y = i + direction[0], j + direction[1]
 //
-//2. this is a what I normally do for a dfs helper method for exploring a matrix
+//2. this is a what I normally do for a dfs helper method for exploring a
+//matrix
 //def dfs(self, i, j, matrix, visited, m, n):
-//  if visited: 
+//  if visited:
 //    # return or return a value
 //  for dir in self.directions:
 //    x, y = i + direction[0], j + direction[1]
@@ -389,10 +402,10 @@ public:
 //        m = len(matrix)
 //        n = len(matrix[0])
 //        p_visited = [[False for _ in range(n)] for _ in range(m)]
-//        
+//
 //        a_visited = [[False for _ in range(n)] for _ in range(m)]
 //        result = []
-//        
+//
 //        for i in range(m):
 //            # p_visited[i][0] = True
 //            # a_visited[i][n-1] = True
@@ -403,16 +416,16 @@ public:
 //            # a_visited[m-1][j] = True
 //            self.dfs(matrix, 0, j, p_visited, m, n)
 //            self.dfs(matrix, m-1, j, a_visited, m, n)
-//            
+//
 //        for i in range(m):
 //            for j in range(n):
 //                if p_visited[i][j] and a_visited[i][j]:
 //                    result.append([i,j])
 //        return result
-//                
-//                
+//
+//
 //    def dfs(self, matrix, i, j, visited, m, n):
-//        # when dfs called, meaning its caller already verified this point 
+//        # when dfs called, meaning its caller already verified this point
 //        visited[i][j] = True
 //        for dir in self.directions:
 //            x, y = i + dir[0], j + dir[1]
@@ -423,7 +436,7 @@ public:
 //# Runtime: 196 ms
 //
 //
-//###################### longest increasing path in matrix ###################### 
+//###################### longest increasing path in matrix ######################
 //class Solution(object):
 //    def longestIncreasingPath(self, matrix):
 //        """
@@ -441,7 +454,7 @@ public:
 //                cur_len = self.dfs(i, j, matrix, cache, m, n)
 //                res = max(res, cur_len)
 //        return res
-//        
+//
 //    def dfs(self, i, j, matrix, cache, m, n):
 //        if cache[i][j] != -1:
 //            return cache[i][j]
@@ -454,7 +467,7 @@ public:
 //            res = max(length, res)
 //        cache[i][j] = res
 //        return res
-//################# pytonic complex numbers ################# 
+//################# pytonic complex numbers #################
 //
 //moves = [1, -1, 1j, -1j]
 //def pacificAtlantic(self, matrix):
@@ -469,12 +482,12 @@ public:
 //						if	pos+mov in maps          and
 //							pos+mov not in visited   and
 //							maps[pos+mov] >= maps[pos]}
-//			visited |= layer 
+//			visited |= layer
 //		return visited
 //	points = bfs(matrix) & {m-1+n*1j-1j-pos for pos in bfs([row[::-1] for row in matrix[::-1]])}
 //	return [[p.real, p.imag] for p in points]
 
-//#################################### bit mask #################################### 
+//#################################### bit mask ####################################
 //class Solution(object):
 //    def pacificAtlantic(self, matrix):
 //        """
@@ -483,7 +496,7 @@ public:
 //        """
 //        if not matrix:
 //            return matrix
-//        self.searchPath = [[0,1],[0,-1],[1,0],[-1,0]] 
+//        self.searchPath = [[0,1],[0,-1],[1,0],[-1,0]]
 //        m = len(matrix)
 //        n = len(matrix[0])
 //        res = [[0 for _ in range(n)] for _ in range(m)] #Mask = 01, Top-left(Pacific), Mask = 10, Bottom-right(Atlantic), res[i][j] = 11
@@ -499,7 +512,7 @@ public:
 //                if res[i][j] == 3:
 //                    ans.append([i,j])
 //        return ans
-//        
+//
 //    def dfs(self, matrix, res, i, j, mask):
 //        res[i][j] = res[i][j]|mask
 //        for p in self.searchPath:

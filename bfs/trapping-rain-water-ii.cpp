@@ -1,7 +1,10 @@
 //Trapping Rain Water II
-//Given an m x n matrix of positive integers representing the height of each unit cell in a 2D elevation map, compute the volume of water it is able to trap after raining.
+//Given an m x n matrix of positive integers representing the height of each
+//unit cell in a 2D elevation map, compute the volume of water it is able to
+//trap after raining.
 //Note:
-//Both m and n are less than 110. The height of each unit cell is greater than 0 and is less than 20,000.
+//Both m and n are less than 110. The height of each unit cell is greater than
+//0 and is less than 20,000.
 //Example:
 //Given the following 3x6 height map:
 //[
@@ -11,32 +14,33 @@
 //]
 //Return 4.
 
-//####################################################  BFS ####################################################  
-//1. Reduce height( Reduce the height untill it converges to empty. start and pick the smallest height)
+//####################################################  BFS ####################################################
+//1. Reduce height( Reduce the height untill it converges to empty. start and
+//pick the smallest height)
 //2. Update Water volume
-int trapRainWater(vector<vector<int>>& heightMap) { 
-  
+int trapRainWater(vector<vector<int>>& heightMap) {
+
   if(heightMap.empty() || heightMap.front().empty()) {
     return 0;
   }
-  
+
   typedef pair<int,int> cell; //(height,co-ordinate)
   priority_queue<cell, vector<cell>, greater<cell>> q; //greater is used to get the min value
-  
+
   int m = heightMap.size();
   int n = heightMap[0].size();
   vector<int> visited(m*n, false);
-  //pick only border vertices 
+  //pick only border vertices
   for (int i = 0; i < m; ++i)
   for (int j = 0; j < n; ++j) {
-      if (i == 0 || i == m-1 || j == 0  || j == n-1) { 
+      if (i == 0 || i == m-1 || j == 0  || j == n-1) {
         if (!visited[i*n+j]) {  //Trick : store only 2D vertices in 1D
-          q.push(cell(heightMap[i][j], i*n+j)); 
+          q.push(cell(heightMap[i][j], i*n+j));
         }
         visited[i*n+j] = true;
       }
   }
-  
+
   int dir[4][2] = {{0,1}, {0, -1}, {1, 0}, {-1, 0}};
   int ans = 0;
   while(!q.empty()) {
@@ -53,12 +57,12 @@ int trapRainWater(vector<vector<int>>& heightMap) {
           visited[ii*n+jj] = true;
       }
   }
-  return ans; 
+  return ans;
 }
 
 
-//####################################################  BFS same as above but stores height as a negative ####################################################  
-int trapRainWater(vector<vector<int> >& heightMap) { 
+//####################################################  BFS same as above but stores height as a negative ####################################################
+int trapRainWater(vector<vector<int> >& heightMap) {
   if(heightMap.empty() || heightMap.front().empty()) {
     return 0;
   }
@@ -66,9 +70,9 @@ int trapRainWater(vector<vector<int> >& heightMap) {
   int m = heightMap[0].size();
   int result = 0;
   vector<vector<bool>> isVisit(n, vector<bool>(m, false));
-  
+
   priority_queue<pair<int, pair<int, int>> > myQueue;
-  
+
   for(int i = 0; i < n; i++) {
       for(int j = 0; j < m; j++) {
           if(i == 0 || i == n-1 || j == 0 || j == m-1) {
@@ -104,7 +108,7 @@ int trapRainWater(vector<vector<int> >& heightMap) {
   return result;
 }
 
-//############################################## Formulate problem as Dijkstra's shortes path ############################################## 
+//############################################## Formulate problem as Dijkstra's shortes path ##############################################
 //int[] dx = {0, 0, 1, -1};
 //int[] dy = {1, -1, 0, 0};
 //List<int[]>[] g;

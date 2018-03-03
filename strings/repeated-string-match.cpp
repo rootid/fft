@@ -1,11 +1,14 @@
 //Repeated String Match
-//Given two strings A and B, find the minimum number of times A has to be repeated such that B is a substring of it. If no such solution, return -1.
+//Given two strings A and B, find the minimum number of times A has to be
+//repeated such that B is a substring of it. If no such solution, return -1.
 //For example, with A = "abcd" and B = "cdabcdab".
-//Return 3, because by repeating A three times (“abcdabcdabcd”), B is a substring of it; and B is not a substring of A repeated two times ("abcdabcd").
+//Return 3, because by repeating A three times (“abcdabcdabcd”), B is a
+//substring of it; and B is not a substring of A repeated two times
+//("abcdabcd").
 //Note:
 //The length of A and B will be between 1 and 10000.
 
-//######################################### Append string  ######################################### 
+//######################################### Append string  #########################################
 //a = "abc"
 //b= "abcabc" - in this case we need 2 copies of a
 //b= "cabcab" - in this case we need 3 copies of a
@@ -24,15 +27,18 @@ class Solution {
     }
 }
 
-//######################################### Append string  ######################################### 
+//######################################### Append string  #########################################
 //Assume the repeated string does exist. Then, we must have
 //B = [some nullable suffix of A] AA..AA [some nullable prefix of A].
 //Let k = floor(|B| / |A|). Then, we just need to test
 //whether the string by repeating A k times contains B as a substring,
 //whether the string by repeating A (k+1) times contains B as a substring,
 //whether the string by repeating A (k+2) times contains B as a substring.
-//Note that, test 1 makes sense only if |B| is divisible by |A|. But for convenience, we include this case anyway, without increasing the overall asymptotic runtime.
-//Each test can be done in O(|A| + |B|) time using (say) KMP. Therefore, the total runtime is still O(|A| + |B|).
+//Note that, test 1 makes sense only if |B| is divisible by |A|. But for
+//convenience, we include this case anyway, without increasing the overall
+//asymptotic runtime.
+//Each test can be done in O(|A| + |B|) time using (say) KMP. Therefore, the
+//total runtime is still O(|A| + |B|).
 //Java code:
 public int repeatedStringMatch(String A, String B) {
     StringBuilder builder = new StringBuilder(A);

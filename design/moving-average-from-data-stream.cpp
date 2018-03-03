@@ -1,5 +1,6 @@
 //Moving Average from Data Stream
-//Given a stream of integers and a window size, calculate the moving average of all integers in the sliding window.
+//Given a stream of integers and a window size, calculate the moving average of
+//all integers in the sliding window.
 //For example,
 //MovingAverage m = new MovingAverage(3);
 //m.next(1) = 1
@@ -10,7 +11,7 @@
 #include "../headers/global.hpp"
 
 class MovingAverage {
-    
+
 private :
     queue<int> q;
     const int avg_size;
@@ -18,9 +19,9 @@ private :
 public:
     /** Initialize your data structure here. */
     MovingAverage(int size) : avg_size(size),sum(0) {
-        
+
     }
-    
+
     double next(int val) {
         int sz = q.size();
         sum += val;

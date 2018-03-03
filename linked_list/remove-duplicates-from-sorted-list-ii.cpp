@@ -1,12 +1,13 @@
 //Remove Duplicates from Sorted List II
-//Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.
+//Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the
+//original list.
 //For example,
 //Given 1->2->3->3->4->4->5, return 1->2->5.
 //Given 1->1->1->2->3, return 2->3.
 
 
 
-//################################## Recursion  ################################## 
+//################################## Recursion  ##################################
 public ListNode deleteDuplicates(ListNode head) {
     if(head == null || head.next == null) return head;
     ListNode kid = head.next;
@@ -17,14 +18,14 @@ public ListNode deleteDuplicates(ListNode head) {
 }
 
 
-//################################## Recursion  - 1 ################################## 
+//################################## Recursion  - 1 ##################################
 ListNode* deleteDuplicates(ListNode* head) {
     if (!head || !head->next) {
       return head;
     }
     int val = head->val;
     ListNode* p = head->next;
-    //compare 2 values at a time 
+    //compare 2 values at a time
     if (p->val != val) {
         head->next = deleteDuplicates(p);
         return head;
@@ -35,7 +36,7 @@ ListNode* deleteDuplicates(ListNode* head) {
         return deleteDuplicates(p);
     }
 }
-//################################## Recusrion - 2 ################################## 
+//################################## Recusrion - 2 ##################################
 ListNode* deleteDuplicates(ListNode* head) {
     if(!head || !head->next) {
       return head;
@@ -51,21 +52,21 @@ ListNode* deleteDuplicates(ListNode* head) {
     return head;
 }
 
-//################################## dummy iterative ################################## 
-ListNode* deleteDuplicates(ListNode* head) { 
+//################################## dummy iterative ##################################
+ListNode* deleteDuplicates(ListNode* head) {
   ListNode *dummy_head = new ListNode(0);
   dummy_head->next = head;
   ListNode* tmp = dummy_head;
-  while(tmp->next && tmp->next->next) { 
+  while(tmp->next && tmp->next->next) {
      int next_val = tmp->next->val;
      if (tmp->next->val == tmp->next->next->val) {
      int duplicate = tmp->next->val;
      while (tmp->next && tmp->next->val == duplicate) {
-       tmp->next = tmp->next->next; 
-     } 
+       tmp->next = tmp->next->next;
+     }
      } else {
-      tmp = tmp->next; 
-     } 
+      tmp = tmp->next;
+     }
   }
   return dummy_head->next;
 }

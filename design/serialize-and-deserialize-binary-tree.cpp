@@ -1,6 +1,12 @@
-//Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.
+//Serialization is the process of converting a data structure or object into a
+//sequence of bits so that it can be stored in a file or memory buffer, or
+//transmitted across a network connection link to be reconstructed later in the
+//same or another computer environment.
 //
-//Design an algorithm to serialize and deserialize a binary tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary tree can be serialized to a string and this string can be deserialized to the original tree structure.
+//Design an algorithm to serialize and deserialize a binary tree. There is no
+//restriction on how your serialization/deserialization algorithm should work.
+//You just need to ensure that a binary tree can be serialized to a string and
+//this string can be deserialized to the original tree structure.
 //
 //For example, you may serialize the following tree
 //
@@ -9,8 +15,11 @@
 //  2   3
 //     / \
 //    4   5
-//as "[1,2,3,null,null,4,5]", just the same as how LeetCode OJ serializes a binary tree. You do not necessarily need to follow this format, so please be creative and come up with different approaches yourself.
-//Note: Do not use class member/global/static variables to store states. Your serialize and deserialize algorithms should be stateless.
+//as "[1,2,3,null,null,4,5]", just the same as how LeetCode OJ serializes a
+//binary tree. You do not necessarily need to follow this format, so please be
+//creative and come up with different approaches yourself.
+//Note: Do not use class member/global/static variables to store states. Your
+//serialize and deserialize algorithms should be stateless.
 //Use of delimiter ","
 //
 // Your Codec object will be instantiated and called as such:
@@ -18,7 +27,7 @@
 // codec.deserialize(codec.serialize(root));
 //
 
-//######################################### Preorder traversal + Flow pattern for index scanning  ######################################### 
+//######################################### Preorder traversal + Flow pattern for index scanning  #########################################
 public class Codec {
 
     int idx = -1;
@@ -27,7 +36,7 @@ public class Codec {
         if(root == null) return "#";
         st += String.valueOf(root.val) + "," + serialize(root.left) + "," + serialize(root.right); //recursive preorder traversal
         return st;
-        
+
     }
     private TreeNode deserializeHelper(String[] data) {
         TreeNode root = null;
@@ -39,7 +48,7 @@ public class Codec {
         root.right = deserializeHelper(data);
         return root;
     }
-    
+
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
         System.out.println(data);
@@ -50,11 +59,11 @@ public class Codec {
     }
 }
 
-//######################################### Preorder traversal + Flow pattern for index scanning  ######################################### 
+//######################################### Preorder traversal + Flow pattern for index scanning  #########################################
 class Codec {
 public:
 string serialize() {
-      if (root == NULL)  { 
+      if (root == NULL)  {
         return "#";
       }
       return to_string(root->val) + "," + serialize(root->left) + "," + serialize(root->right);
@@ -80,7 +89,7 @@ TreeNode* deserialize_helper(istringstream& in) {
     if(tmp_v == "#") {
       return NULL;
     }
-    TreeNode *root = new TreeNode(stoi(tmp_v)); 
+    TreeNode *root = new TreeNode(stoi(tmp_v));
     root->left = deserialize_helper(in);
     root->right = deserialize_helper(in);
     return root;
@@ -92,28 +101,28 @@ string serialize(TreeNode* root) {
       }
       return  to_string(root->val) + " " + serialize(root->left) + " " + serialize(root->right);
 }
-  
-  
+
+
 TreeNode* deserialize(string data) {
    if (data == "#") return NULL;
    istringstream s(data);
    return deserialize_helper(s);
 }
-  
+
 TreeNode* deserialize_helper(istringstream& in) {
     string tmp_v;
     in >> tmp_v;
     if(tmp_v == "#") {
         return NULL;
     }
-    TreeNode *root = new TreeNode(stoi(tmp_v)); 
+    TreeNode *root = new TreeNode(stoi(tmp_v));
     root->left = deserialize_helper(in);
     root->right = deserialize_helper(in);
     return root;
 }
 };
 
-//######################################### Preorder traversal + Flow pattern for index scanning  ######################################### 
+//######################################### Preorder traversal + Flow pattern for index scanning  #########################################
 class Codec:
     def serialize(self, root):
         def doit(node):
@@ -139,7 +148,7 @@ class Codec:
         vals = iter(data.split())
         return doit()
 
-//######################################### Preorder traversal + Deque ######################################### 
+//######################################### Preorder traversal + Deque #########################################
 public class Codec {
 
 // Encodes a tree to a single string.
@@ -162,7 +171,7 @@ private void serializeHelper(TreeNode root, ArrayList<Integer> result){
 // Decodes your encoded data to tree.
 public TreeNode deserialize(String data) {
     String[] strArray = data.substring(1,data.length()-1).split(", ");
-    Deque<String> strList = new LinkedList<String>(Arrays.asList(strArray)); 
+    Deque<String> strList = new LinkedList<String>(Arrays.asList(strArray));
     return deserializeHelper(strList);
 }
 
@@ -178,7 +187,7 @@ private TreeNode deserializeHelper(Deque<String> strList){
 }
 
 
-//######################################### BFS + queue ######################################### 
+//######################################### BFS + queue #########################################
 public class Codec {
     public String serialize(TreeNode root) {
         if (root == null) return "";

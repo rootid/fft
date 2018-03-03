@@ -1,5 +1,6 @@
 //Word Break
-//Given a string s and a dictionary of words dict, determine if s can be segmented into a space-separated sequence of one or more dictionary words.
+//Given a string s and a dictionary of words dict, determine if s can be
+//segmented into a space-separated sequence of one or more dictionary words.
 //For example, given
 //s = "leetcode",
 //dict = ["leet", "code"].
@@ -7,8 +8,8 @@
 //
 //
 //
-//######################################### BFS ######################################### 
-//T : O(n^2) 
+//######################################### BFS #########################################
+//T : O(n^2)
 //S : O(n)
 
 //0123456789
@@ -37,11 +38,11 @@ public boolean wordBreak(String s, List<String> dict) {
     return false;
 }
 
-//######################################### Backtrack ######################################### 
+//######################################### Backtrack #########################################
 private boolean dfs(String s, int k, List<String> wordDict) {
     if(k == s.length()) return true;
     for(int i=k;i<s.length();i++)  {
-        if(wordDict.contains(s.substring(k, i+1)) && (i ==  s.length() -1 || dfs(s,i+1,wordDict))) return true; 
+        if(wordDict.contains(s.substring(k, i+1)) && (i ==  s.length() -1 || dfs(s,i+1,wordDict))) return true;
     }
     return false;
 }
@@ -49,14 +50,14 @@ private boolean dfs(String s, int k, List<String> wordDict) {
 public boolean wordBreak(String s, List<String> wordDict) {
     return dfs(s, 0, wordDict);
 }
-//#################################################### TOP-DOWN APPROACH ###################################################### 
+//#################################################### TOP-DOWN APPROACH ######################################################
 bool wordBreak(string s, unordered_set<string>& dict) {
   int len = s.size();
   vector<bool> dp(len+1,false);
   dp[0] = true;
   for (int i = 1; i <= len;  ++i)  //string length
   {
-      for (int j = 0; j <i; ++j)  //cut points  
+      for (int j = 0; j <i; ++j)  //cut points
       {
           if(dict.find(s.substr(j, i-j)) != dict.end() & dp[j]) //check the string which starts j & what was the cut value for j-1
           {
@@ -64,17 +65,17 @@ bool wordBreak(string s, unordered_set<string>& dict) {
               break;
           }
       }
-  }             
+  }
   return dp[len];
 }
 
-//######################################################## Backtrack/DFS ######################################################## 
+//######################################################## Backtrack/DFS ########################################################
 bool dfs_helper(string s, int start, unordered_set<string> &dict){
   if (start == s.length()) {
     return true;
   }
   for (int i=start,len = s.length();i<len;i++){
-      if (dict.find(s.substr(start,i-start+1)) != dict.end() 
+      if (dict.find(s.substr(start,i-start+1)) != dict.end()
           && (i==len-1 || dfs_helper(s,i+1,dict))) {
         return true;
       }
@@ -86,8 +87,11 @@ bool wordBreak(string s, unordered_set<string> &dict){
   return dfs_helper(s,0,dict);
 }
 
-//#################################################### DP ###################################################### 
-//We use a boolean vector dp[]. dp[i] is set to true if a valid word (word sequence) ends there. The optimization is to look from current position i back and only substring and do dictionary look up in case the preceding position j with dp[j] == true is found.
+//#################################################### DP ######################################################
+//We use a boolean vector dp[]. dp[i] is set to true if a valid word (word
+//sequence) ends there. The optimization is to look from current position i
+//back and only substring and do dictionary look up in case the preceding
+//position j with dp[j] == true is found.
 bool wordBreak(string s, unordered_set<string>& wordDict) {
 
   int len = s.size();
@@ -118,10 +122,10 @@ bool wordBreak(string s, unordered_set<string>& wordDict) {
 
 }
 
-//#################################################### BFS ###################################################### 
+//#################################################### BFS ######################################################
 //BFS approach
 //0123456789
-//nightmare : 
+//nightmare :
 //0-->5-->9
 //
 //|__ __ _^
@@ -133,7 +137,7 @@ bool wordBreak(string s, unordered_set<string> &dict) {
     // BFS
     queue<int> BFS;
     unordered_set<int> visited;
-    
+
     BFS.push(0);
     while(BFS.size() > 0)
     {

@@ -1,5 +1,6 @@
 //Implement strStr().
-//Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+//Returns the index of the first occurrence of needle in haystack, or -1 if
+//needle is not part of haystack.
 
 #include "../headers/global.hpp"
 //Hash beats 13.66%
@@ -33,7 +34,7 @@ int strStr(string haystack, string needle) {
           if (found) {
               return i;
           }
-        } 
+        }
         key -= haystack[i];
         key += haystack[i+nLen];
     }

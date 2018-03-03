@@ -1,12 +1,14 @@
 //Reverse Words in a String II
-//Given an input string, reverse the string word by word. A word is defined as a sequence of non-space characters.
-//The input string does not contain leading or trailing spaces and the words are always separated by a single space.
+//Given an input string, reverse the string word by word. A word is defined as
+//a sequence of non-space characters.
+//The input string does not contain leading or trailing spaces and the words
+//are always separated by a single space.
 //For example,
 //Given s = "the sky is blue",
 //return "blue is sky the".
 //Could you do it in-place without allocating extra space?
 
-//################################################### JAVA ################################################### 
+//################################################### JAVA ###################################################
 private void swapBetween(int start,int end, char[] str) {
   while(start < end) {
         char tmp = str[start];
@@ -31,36 +33,36 @@ public void reverseWords(char[] str) {
     }
     swapBetween(start, len-1, str);
 }
-//################################################### To handle everything in loop ################################################### 
-//for(int i = 0, j = 0;i <= s.length;i++){ 
-//    if(i == s.length || s[i] == ' ') { 
-//        reverse(s,j,i-1); 
-//        j = i+1; 
-//    } 
+//################################################### To handle everything in loop ###################################################
+//for(int i = 0, j = 0;i <= s.length;i++){
+//    if(i == s.length || s[i] == ' ') {
+//        reverse(s,j,i-1);
+//        j = i+1;
+//    }
 //}
 }
 
 
-//################################################### CPP ################################################### 
+//################################################### CPP ###################################################
 void reverseWords(string &s) {
      reverse(s.begin(), s.end());
      int n = s.length(), l = 0, r = 0;
      while (r < n) {
          while (r < n && !isspace(s[r])) r++;
-         reverse(s.begin() + l, s.begin() + r); 
+         reverse(s.begin() + l, s.begin() + r);
          l = ++r;
      }
- } 
+ }
 
-//################################################### python  ################################################### 
-//################################################### TC : O(n) SC : O(1) ################################################### 
+//################################################### python  ###################################################
+//################################################### TC : O(n) SC : O(1) ###################################################
 class Solution(object):
     def reverseWords(self, s):
         def reverse(i, j):
             while 0 <= i < j < len(s):
                 s[i], s[j] = s[j], s[i]
                 i, j = i + 1, j - 1
-    
+
         s.append(" ")
         start = 0
         for i, v in enumerate(s):

@@ -8,15 +8,19 @@
 //sequence: 1, 1, 2, 3, 5, 8.  1 + 1 = 2, 1 + 2 = 3, 2 + 3 = 5, 3 + 5 = 8
 //"199100199" is also an additive number, the additive sequence is: 1, 99, 100,
 //199.  1 + 99 = 100, 99 + 100 = 199 Note: Numbers in the additive sequence
-//cannot have leading zeros, so sequence 1, 2, 03 or 1, 02, 3 is invalid.  Given
-//a string containing only digits '0'-'9', write a function to determine if it's
+//cannot have leading zeros, so sequence 1, 2, 03 or 1, 02, 3 is invalid.
+//Given
+//a string containing only digits '0'-'9', write a function to determine if
+//it's
 //an additive number.
 //Follow up:
 //How would you handle overflow for very large input integers?
 
 //####################### Backtrack with smart sample set #######################
 //Choose first two number then recursively check.
-//Note that the length of first two numbers can't be longer than half of the initial string, so the two loops in the first function will end when i>num.size()/2 and j>(num.size()-i)/2, this will actually save a lot of time.
+//Note that the length of first two numbers can't be longer than half of the
+//initial string, so the two loops in the first function will end when
+//i>num.size()/2 and j>(num.size()-i)/2, this will actually save a lot of time.
 //Update the case of heading 0s
 //e.g. "100010" should return false
 //

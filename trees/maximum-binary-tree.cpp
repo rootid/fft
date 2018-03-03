@@ -1,22 +1,26 @@
 //Maximum Binary Tree
-//Given an integer array with no duplicates. A maximum tree building on this array is defined as follow:
+//Given an integer array with no duplicates. A maximum tree building on this
+//array is defined as follow:
 //The root is the maximum number in the array.
-//The left subtree is the maximum tree constructed from left part subarray divided by the maximum number.
-//The right subtree is the maximum tree constructed from right part subarray divided by the maximum number.
-//Construct the maximum tree by the given array and output the root node of this tree.
+//The left subtree is the maximum tree constructed from left part subarray
+//divided by the maximum number.
+//The right subtree is the maximum tree constructed from right part subarray
+//divided by the maximum number.
+//Construct the maximum tree by the given array and output the root node of
+//this tree.
 //Example 1:
 //Input: [3,2,1,6,0,5]
 //Output: return the tree root node representing the following tree:
 //      6
 //    /   \
 //   3     5
-//    \    / 
-//     2  0   
+//    \    /
+//     2  0
 //       \
 //        1
 //Note:
 
-//############################### Recursive ############################### 
+//############################### Recursive ###############################
 // O(n^2), the space complexity is O(1).
 public TreeNode constructMaximumBinaryTree(int[] nums) {
         return helper(nums, 0, nums.length - 1);
@@ -26,7 +30,7 @@ public TreeNode helper(int[] nums, int left, int right){
     if(left>right)return null;
     int max_index = left;
     for(int i = left; i <= right; i++){
-        if(nums[i] > nums[max_index])max_index = i; 
+        if(nums[i] > nums[max_index])max_index = i;
     }
     TreeNode root = new TreeNode(nums[max_index]);
     root.left = helper(nums, left, max_index - 1);
@@ -34,20 +38,20 @@ public TreeNode helper(int[] nums, int left, int right){
     return root;
 }
 
-//############################### Recursive + cpp ############################### 
+//############################### Recursive + cpp ###############################
 TreeNode* constructMaximumBinaryTree(vector<int>& nums) {
 	return helper(nums, 0, nums.size() - 1);
 }
-    
+
 //max_index denotes the index of the maximum number in range [left, right]
 TreeNode* helper(vector<int>& nums, int left, int right){
     if(left>right)return NULL;
-    
+
     int max_index = left;
     for(int i = left; i<=right; i++){
-        if(nums[i] > nums[max_index])max_index = i; 
+        if(nums[i] > nums[max_index])max_index = i;
     }
-    
+
     TreeNode* root = new TreeNode(nums[max_index]);
     root->left = helper(nums, left, max_index - 1);
     root->right = helper(nums, max_index + 1, right);
@@ -55,10 +59,15 @@ TreeNode* helper(vector<int>& nums, int left, int right){
 }
 
 
-//############################### Stack ############################### 
+//############################### Stack ###############################
 //1.We scan numbers from left to right, build the tree one node by one step;
-//2.We use a stack to keep some (not all) tree nodes and ensure a decreasing order;
-//3. For each number, we keep pop the stack until empty or a bigger number; The bigger number (if exist, it will be still in stack) is current number's root, and the last popped number (if exist) is current number's right child (temporarily, this relationship may change in the future); Then we push current number into the stack.
+//2.We use a stack to keep some (not all) tree nodes and ensure a decreasing
+//order;
+//3. For each number, we keep pop the stack until empty or a bigger number; The
+//bigger number (if exist, it will be still in stack) is current number's root,
+//and the last popped number (if exist) is current number's right child
+//(temporarily, this relationship may change in the future); Then we push
+//current number into the stack.
 TreeNode* constructMaximumBinaryTree(vector<int>& nums) {
     vector<TreeNode*> stk;
     for (int i = 0; i < nums.size(); ++i) {
@@ -74,12 +83,12 @@ TreeNode* constructMaximumBinaryTree(vector<int>& nums) {
     return stk.front();
 }
 
-//############################### Binary search ############################### 
+//############################### Binary search ###############################
 TreeNode* constructMaximumBinaryTree(vector<int>& nums) {
     vector<TreeNode*> s { new TreeNode(nums[0]) };
     for (int i = 1; i < nums.size(); ++i) {
         TreeNode* cur = new TreeNode(nums[i]);
-        auto it = upper_bound(s.rbegin(), s.rend(), cur, 
+        auto it = upper_bound(s.rbegin(), s.rend(), cur,
                               [](const TreeNode* a, const TreeNode* b) { return a->val < b->val; });
         if (it != s.rend()) (*it)->right = cur;
         if (it != s.rbegin()) cur->left = *next(it, -1);
@@ -89,10 +98,11 @@ TreeNode* constructMaximumBinaryTree(vector<int>& nums) {
     return s.front();
 }
 
-//############################### With Sorted Map ############################### 
+//############################### With Sorted Map ###############################
 //We populate right subtree if numbers are decreasing.
 //If the current number is larger than any numbers in the right subtree,
-//we find the first that is smaller, and make it a left subtree of the current number.
+//we find the first that is smaller, and make it a left subtree of the current
+//number.
 //The current number becomes a leaf of the right subtree.
 //I use map as it provides the convenient insert operation,
 //that returns the position of the inserted element in O (log n)
@@ -110,11 +120,11 @@ TreeNode* constructMaximumBinaryTree(vector<int>& nums) {
     return q.rbegin()->second;
 }
 
-//###############################  O(n) ###############################  
-public TreeNode constructMaximumBinaryTree(int[] nums) { 
+//###############################  O(n) ###############################
+public TreeNode constructMaximumBinaryTree(int[] nums) {
 	LinkedList<TreeNode> lklist = new LinkedList<>();
     TreeNode left = null;
-    for (int num: nums) { 
+    for (int num: nums) {
 		TreeNode cur = new TreeNode(num);
         while (!lklist.isEmpty() && lklist.peekFirst().val < cur.val){
             cur.left = lklist.pop();
@@ -124,16 +134,16 @@ public TreeNode constructMaximumBinaryTree(int[] nums) {
         }
         lklist.push(cur);
     }
-    return lklist.peekLast(); 
+    return lklist.peekLast();
 }
 
 
-//############################### Recursion ###############################  
-def constructMaximumBinaryTree(self, nums):   
+//############################### Recursion ###############################
+def constructMaximumBinaryTree(self, nums):
     dummy = TreeNode(None)
     def d(root, nums):
         if not nums:
-            return 
+            return
         i = nums.index(max(nums))
         root.val = max(nums)
         if nums[:i]:
@@ -145,7 +155,7 @@ def constructMaximumBinaryTree(self, nums):
     d(dummy, nums)
     return dummy
 
-//############################### Recursion shorter ###############################  
+//############################### Recursion shorter ###############################
 class Solution(object):
     def constructMaximumBinaryTree(self, nums):
         if nums:

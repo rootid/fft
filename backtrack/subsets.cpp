@@ -45,12 +45,12 @@ vector<vector<int> > subsets(vector<int>& nums) {
   return sv;
 }
 //Iteative with BFS at each level  1. copy all previous set
-//                                 2. append 
+//                                 2. append
 vector<vector<int> > subsets(vector<int> &nums) {
     int len = nums.size();
     sort(nums.begin(), nums.end());
     vector<vector<int> > res(1);//start by adding empty set   [ [] ]
-    for(int i = 0; i < len; ++i) { // BFS tree with levels = len 
+    for(int i = 0; i < len; ++i) { // BFS tree with levels = len
         int k = res.size();
         for(int j = 0; j < k; j++) { //@ each level there will be at most k childern
             res.push_back(res[j]); //[ [],[] ]
@@ -66,7 +66,7 @@ void dfs(int n,int k,vector<int>&ip,vector<int>&tmp,vector< vector<int> >&res) {
   if(n == k) {
     res.push_back(tmp);
     return;
-  } 
+  }
   tmp.push_back(ip[k]); // select kth element
   dfs(n,k+1,ip,tmp,res);
   tmp.pop_back();      //remove kth element
@@ -81,7 +81,8 @@ vector<vector<int>> subsetsWithDup(vector<int>& nums) {
     return res;
 }
 //////
-//The characteristics of C++ reference is an outstanding tool for backtracking algorithm!
+//The characteristics of C++ reference is an outstanding tool for backtracking
+//algorithm!
 //
 //let us use [1,2,3,4] as an example to explain my solution:
 //
@@ -129,7 +130,7 @@ vector<vector<int> > subsets(vector<int> &nums) {
 void enum_subsetsWithDup(vector<vector<int> > &res, vector<int> &nums, vector<int> &vec, int begin) {
 	res.push_back(vec);
 	for (int i = begin; i != nums.size(); ++i)
-		if (i == begin || nums[i] != nums[i - 1]) { 
+		if (i == begin || nums[i] != nums[i - 1]) {
 			vec.push_back(nums[i]);
 			enum_subsetsWithDup(res, nums, vec, i + 1);
 			vec.pop_back();

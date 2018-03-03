@@ -1,4 +1,6 @@
-//Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+//Given a sorted array and a target value, return the index if the target is
+//found. If not, return the index where it would be if it were inserted in
+//order.
 //You may assume no duplicates in the array.
 //Here are few examples.
 //[1,3,5,6], 5 → 2
@@ -7,7 +9,7 @@
 //[1,3,5,6], 0 → 0
 
 
-//######################################### Binary Search (start,end-1) ######################################### 
+//######################################### Binary Search (start,end-1) #########################################
 public int searchInsert(int[] nums, int target) {
     int end = nums.length-1;
     int start = 0;
@@ -23,7 +25,7 @@ public int searchInsert(int[] nums, int target) {
     return start;
 }
 
-//######################################### Binary Search (start,end] ######################################### 
+//######################################### Binary Search (start,end] #########################################
 public int searchInsert(int[] nums, int target) {
     int end = nums.length;
     int start = 0;
@@ -39,13 +41,13 @@ public int searchInsert(int[] nums, int target) {
     return start;
 }
 
-//######################################### In built Java Arrays binary search ######################################### 
+//######################################### In built Java Arrays binary search #########################################
 public int searchInsert(int[] nums, int target) {
    int idx =  Arrays.binarySearch(nums, target);
-   return idx < 0 ? ~idx : idx; 
+   return idx < 0 ? ~idx : idx;
 }
 
-//######################################### Binary Search ######################################### 
+//######################################### Binary Search #########################################
 int searchInsert(vector<int>& a, int target) {
     int end = a.size() -1;
     int start  = 0;

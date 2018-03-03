@@ -2,7 +2,8 @@
 //Design a data structure that supports the following two operations:
 //void addWord(word)
 //bool search(word)
-//search(word) can search a literal word or a regular expression string containing only letters a-z or .. A . means it can represent any one letter.
+//search(word) can search a literal word or a regular expression string containing only letters a-z or .. A . means it
+//can represent any one letter.
 //For example:
 //addWord("bad")
 //addWord("dad")
@@ -86,9 +87,12 @@ class TrieNode {
 
 
 //######################################################  TrieNode + BFS search ######################################################
-//Complexity analysis: if you have e.g. ["aaaaa", "aaaab", "aaaac"] and search for "....." it will index all the words (linear to the number of total characters).
-//If you exclude wildcards (.), worst-case-search will iterate through the longest word (i.e. linear to the maximum number of characters in a word).
-//With wildcards it will iterate through the whole tree in the worst case (see above), making it the same complexity as the indexing
+//Complexity analysis: if you have e.g. ["aaaaa", "aaaab", "aaaac"] and search for "....." it will index all the words
+//(linear to the number of total characters).
+//If you exclude wildcards (.), worst-case-search will iterate through the longest word (i.e. linear to the maximum
+//number of characters in a word).
+//With wildcards it will iterate through the whole tree in the worst case (see above), making it the same complexity as
+//the indexing
 
 public class WordDictionary {
   private final Node root = new Node();

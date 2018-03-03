@@ -1,20 +1,24 @@
 //Increasing Subsequences
-//Given an integer array, your task is to find all the different possible increasing subsequences of the given array, and the length of an increasing subsequence should be at least 2 .
+//Given an integer array, your task is to find all the different possible
+//increasing subsequences of the given array, and the length of an increasing
+//subsequence should be at least 2 .
 //Example:
 //Input: [4, 6, 7, 7]
-//Output: [[4, 6], [4, 7], [4, 6, 7], [4, 6, 7, 7], [6, 7], [6, 7, 7], [7,7], [4,7,7]]
+//Output: [[4, 6], [4, 7], [4, 6, 7], [4, 6, 7, 7], [6, 7], [6, 7, 7], [7,7],
+//[4,7,7]]
 //Note:
 //The length of the given array will not exceed 15.
 //The range of integer in the given array is [-100,100].
-//The given array may contain duplicates, and two equal integers should also be considered as a special case of increasing sequence.
-//######################################## DFS ######################################## 
+//The given array may contain duplicates, and two equal integers should also be
+//considered as a special case of increasing sequence.
+//######################################## DFS ########################################
 vector<vector<int>> findSubsequences(vector<int>& nums) {
     set<vector<int>> res;
     vector<int> seq;
     helper(nums, seq, res, 0);
     return vector<vector<int>>(res.begin(), res.end());
 }
-    
+
 void helper(vector<int> &nums, vector<int>& seq, set<vector<int>>& result, int index) {
     if (seq.size() >= 2) {
         result.insert(seq);
@@ -27,7 +31,7 @@ void helper(vector<int> &nums, vector<int>& seq, set<vector<int>>& result, int i
         }
     }
 }
-//######################################## DFS ######################################## 
+//######################################## DFS ########################################
 void findSubsequences(vector<int> &nums, vector<int> &subsequence,
                       set<vector<int> > &result, int size, int index) {
   if (size >= 2) {
@@ -49,7 +53,7 @@ vector<vector<int>> findSubsequences(vector<int>& nums) {
     vector<vector<int>> result(resultSet.begin(), resultSet.end());
     return result;
 }
-//######################################## FAST ######################################## 
+//######################################## FAST ########################################
 vector<vector<int>> findSubsequences(vector<int>& nums) {
      vector<vector<int>> ans(0);
      if(nums.size()<2) return ans;
@@ -111,7 +115,7 @@ We can also generate all increasing subsequences by adding each number to the cu
                     seq.push_back(seq[j]);
                     seq.back().push_back(nums[i]);
                     if(seq.back().size()>1) bst.insert(seq.back());
-                }  
+                }
         }
         return vector<vector<int>>(bst.begin(),bst.end());
     }
@@ -127,9 +131,9 @@ We can do better by not generating duplicates. When adding a duplicate number to
                 if(res[j].empty() || res[j].back()<=nums[i]) {
                     res.push_back(res[j]);
                     res.back().push_back(nums[i]);
-                }  
+                }
         }
-        for(int i=res.size()-1;i>=0;i--) 
+        for(int i=res.size()-1;i>=0;i--)
             if(res[i].size()<2) {
                 swap(res[i],res.back());
                 res.pop_back();

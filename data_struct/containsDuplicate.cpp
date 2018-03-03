@@ -1,5 +1,7 @@
-//Contains Duplicate 
-//Given an array of integers, find if the array contains any duplicates. Your function should return true if any value appears at least twice in the array, and it should return false if every element is distinct.
+//Contains Duplicate
+//Given an array of integers, find if the array contains any duplicates. Your
+//function should return true if any value appears at least twice in the array,
+//and it should return false if every element is distinct.
 //TO : O(n lg n) + O(n)
 //SO : O(k)
 #include<iostream>
@@ -14,7 +16,7 @@ bool containsDuplicate(vector<int>& nums) {
   }
   sort(nums.begin(),nums.end()) ;
   int len = nums.size();
-  
+
   for (int i=0;i<len-1;++i) {
     if(nums[i] == nums[i+1]) {
         return true;

@@ -1,7 +1,8 @@
 //Lexicographical Numbers
 //Given an integer n, return 1 - n in lexicographical order.
 //For example, given 13, return: [1,10,11,12,13,2,3,4,5,6,7,8,9].
-//Please optimize your algorithm to use less time and space. The input size may be as large as 5,000,000.
+//Please optimize your algorithm to use less time and space. The input size may
+//be as large as 5,000,000.
 
 #include<iostream>
 
@@ -28,11 +29,11 @@ public List<Integer> lexicalOrder(int n) {
 vector<int> lexicalOrder(int n) {
     vector<int> res;
     for(int i=1;i<10;++i){
-      dfs(i, n, res); 
+      dfs(i, n, res);
     }
     return res;
 }
-    
+
 void dfs(int cur, int n, vector<int>& res) {
     if(cur > n) {
         return;
@@ -47,7 +48,7 @@ void dfs(int cur, int n, vector<int>& res) {
     }
 }
 
-//########################## Good Explicit stack ########################## 
+//########################## Good Explicit stack ##########################
 vector<int> lexicalOrder(int n) {
     stack<int> nums;
     nums.push(0);
@@ -85,30 +86,35 @@ vector<int> lexicalOrder(int n) {
     return result;
 }
 //Observations:
-//For any given digit k, the lexical order of all numbers starting with digit k looks like:
+//For any given digit k, the lexical order of all numbers starting with digit k
+//looks like:
 //
 //k, k×10, k×10^2, k×10^3, ..., k×10^p +1, k×10^p + 2, ..., k×10^(p-m) +1, ...
 //
-//For example, the sequence of numbers starting with digit 1 will be like (with n = 2000):
+//For example, the sequence of numbers starting with digit 1 will be like (with
+//n = 2000):
 //
-//1, 10, 100, 1000, 1001, 1002, ..., 1009, 101, 1010, 1011, 1012, ..., 1019, 102, 1020, ..., 1099, 11, 110, 1100, 1101, ...
+//1, 10, 100, 1000, 1001, 1002, ..., 1009, 101, 1010, 1011, 1012, ..., 1019,
+//102, 1020, ..., 1099, 11, 110, 1100, 1101, ...
 //
-//Through the observations above, a valid sub-sequence can only be started when we 1) cannot append more zeroes to the previous number; or 2) encounter a number that ends in consecutive '9's.
+//Through the observations above, a valid sub-sequence can only be started when
+//we 1) cannot append more zeroes to the previous number; or 2) encounter a
+//number that ends in consecutive '9's.
 class Solution {
 public:
     vector<int> lexicalOrder(int n) {
         vector<int> rs;
-        
+
         int i = 1, j;
         int k;
         for(;;)
         {
             // append as many zeroes as possible to the previous number
             for(k = 0; i*pow(10,k) <= n; ++k) rs.push_back(i*pow(10,k));
-            
+
             // count continuously until we reach a number that ends with consecutive '9's
             for(j = rs.back()+1; j <= n && (j % 10) != 0; ++j) rs.push_back(j);
-            
+
             // backtrace
             if(j % 10 == 0)
             {
@@ -120,10 +126,10 @@ public:
             }
             // find the last non-'9' digit
             while(j % 10 == 9) j /= 10;
-            
+
             // start a new sub-sequence
             i = j+1;
-            
+
             if(rs.size() >= n) break;
         }
         return rs;

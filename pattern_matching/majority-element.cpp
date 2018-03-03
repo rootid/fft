@@ -1,10 +1,11 @@
 //Majority Element I
-//Given an integer array of size n, find all elements that appear more than ⌊ n/2 ⌋ times. The algorithm should run in linear time and in O(1) space.
+//Given an integer array of size n, find all elements that appear more than ⌊
+//n/2 ⌋ times. The algorithm should run in linear time and in O(1) space.
 #include<iostream>
 #include<vector>
 using namespace std;
 
-//######################################### Voting algorithm ######################################### 
+//######################################### Voting algorithm #########################################
 public int majorityElement(int[] nums) {
     int m = nums.length;
     int majElm = nums[0];
@@ -13,15 +14,15 @@ public int majorityElement(int[] nums) {
         //update freq Count
         if(majElm != nums[i]) freqCount--;
         else freqCount++;
-        if(freqCount == 0)  { //2,2,1,1,1,2,2 : o/p : 2 
-            freqCount = 1;	  
+        if(freqCount == 0)  { //2,2,1,1,1,2,2 : o/p : 2
+            freqCount = 1;
             majElm = nums[i];
         }
     }
     return majElm;
 }
 
-//######################################### Voting algorithm ######################################### 
+//######################################### Voting algorithm #########################################
 int majorityElement(vector<int>& nums) {
   int majorityEle = nums[0];
   int count = 1;
@@ -49,6 +50,6 @@ int main(int argc, char *argv[])
   vector<int> av(a,a+sizeof(a)/sizeof(a[0]));
   int ans = majorityElement(av);
   cout << "ans " << ans << endl;
-  
+
   return 0;
 }

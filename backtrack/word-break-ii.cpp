@@ -1,5 +1,8 @@
 //Word Break II
-//Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, add spaces in s to construct a sentence where each word is a valid dictionary word. You may assume the dictionary does not contain duplicate words.
+//Given a non-empty string s and a dictionary wordDict containing a list of
+//non-empty words, add spaces in s to construct a sentence where each word is a
+//valid dictionary word. You may assume the dictionary does not contain
+//duplicate words.
 //Return all such possible sentences.
 //For example, given
 //s = "catsanddog",
@@ -7,28 +10,28 @@
 //A solution is ["cats and dog", "cat sand dog"].
 //
 
-//######################################### Recursive ######################################### 
-// T : O(len(wordDict) ^ len(s / minWordLenInDict)), 
-//because there're len(wordDict) 
+//######################################### Recursive #########################################
+// T : O(len(wordDict) ^ len(s / minWordLenInDict)),
+//because there're len(wordDict)
 
-//O(2^n). But this solution, 
+//O(2^n). But this solution,
 //using memo can reduce it to O(n^2)
 public List<String> wordBreak(String s, List<String> wordDict) {
     return dfs(s,wordDict, new HashMap<String, List<String>>());
 }
-    
+
 // dfs function returns an array including all substrings derived from s.
 private List<String> dfs(String s, List<String> dict, Map<String, List<String>> map) {
     if(map.containsKey(s)) return map.get(s);
     List<String> curResult = new LinkedList<>();
     if(s.length() == 0) {
-        curResult.add(""); 
+        curResult.add("");
         return curResult;
     }
     for(String sol : dict) {
         if(s.startsWith(sol)) {
             List<String> pastResult = dfs(s.substring(sol.length()), dict, map);
-            for(String r : pastResult) 
+            for(String r : pastResult)
                 curResult.add(sol + (r.isEmpty() ? "" : " ") + r);
         }
     }
@@ -37,12 +40,16 @@ private List<String> dfs(String s, List<String> dict, Map<String, List<String>> 
 }
 //recursive call of the word_break method
 //we will have two choice:
-//1.W/o Memo that means we should calculate it using recursion, because there is no result form memo, we don't need to iterator the result form memo, so this choice is O(n^2);
-//2.W/ Memo so we don't need to do recursion, just iterator every String from the set return buy memo, so this choice is O(n^2);
-//in conclusion, recursion and iterator memo won't happen at the same time, so the run time is O(n^2);
+//1.W/o Memo that means we should calculate it using recursion, because there
+//is no result form memo, we don't need to iterator the result form memo, so
+//this choice is O(n^2);
+//2.W/ Memo so we don't need to do recursion, just iterator every String from
+//the set return buy memo, so this choice is O(n^2);
+//in conclusion, recursion and iterator memo won't happen at the same time, so
+//the run time is O(n^2);
 
 
-//########################################### 
+//###########################################
 vector<string> wordBreak(string s, unordered_set<string>& wordDict) {
     unordered_map<int, vector<string>> memo {{s.size(), {""}}};
     function<vector<string>(int)> sentences = [&](int i) {
@@ -56,7 +63,7 @@ vector<string> wordBreak(string s, unordered_set<string>& wordDict) {
     return sentences(0);
 }
 
-//########################################## Backtracking ############################################# 
+//########################################## Backtracking #############################################
 vector<string> combine(string word, vector<string> prev){
     for(int i=0;i<prev.size();++i){
         prev[i]+=" "+word;
@@ -64,7 +71,7 @@ vector<string> combine(string word, vector<string> prev){
     return prev;
 }
 vector<string> dfs_helper(string s, unordered_set<string>& dict,unordered_map<string, vector<string>>& m) {
-    if(m.count(s)) { 
+    if(m.count(s)) {
       return m[s]; //take from memory
     }
     vector<string> result;
@@ -90,7 +97,7 @@ vector<string> wordBreak(string s, vector<string>& words) {
 }
 
 
-//######################################### Iterative  ######################################### 
+//######################################### Iterative  #########################################
 vector<string> wordBreakHelper(string s, unordered_set<string> &dict) {
 	vector<string> res;
   if(s.empty()) {
@@ -109,14 +116,14 @@ vector<string> wordBreakHelper(string s, unordered_set<string> &dict) {
 	}
 	// build up result strings
 	// DFS
-	stack<int> sk; //first half 
+	stack<int> sk; //first half
 	stack<string> ssk; //second half
 	// init sk
 	for (int i = 0; i < map[len - 1].size(); i++){
 		sk.push(map[len - 1][i]);
 		ssk.push(s.substr(map[len - 1][i] + 1));
 	}
-	
+
 	int top;
 	while (!sk.empty()){
 		top = sk.top();
@@ -130,7 +137,7 @@ vector<string> wordBreakHelper(string s, unordered_set<string> &dict) {
 		for (int i = 0; i < map[top].size(); i++){
 			sk.push(map[top][i]);
 			ssk.push(s.substr(map[top][i]+1, top - map[top][i]) + " " + stop);
-		}    
+		}
 	}
 	return res;
 }
@@ -139,18 +146,18 @@ vector<string> wordBreak(string s, vector<string>& words) {
   return wordBreakHelper(s,dict);
 }
 
-//################################################# TLE ################################################# 
+//################################################# TLE #################################################
 vector<string> wordBreakHelper(string s, unordered_set<string> &dict) {
         vector<string> sentences;
         vector<string> sol;
         findWordBreak(s, dict, 0, sol, sentences);
         return sentences;
     }
-    
+
 void findWordBreak(string &s, unordered_set<string> &dict, int start, vector<string> &sol, vector<string> &sentences) {
     if(start==s.size() && !sol.empty()) {   // find word break
         string temp = sol[0];
-        for(int i=1; i<sol.size(); i++) 
+        for(int i=1; i<sol.size(); i++)
             temp.append(" "+sol[i]);
         sentences.push_back(temp);
     }
@@ -169,7 +176,7 @@ vector<string> wordBreak(string s, vector<string>& words) {
   return wordBreakHelper(s,dict);
 }
 
-//########################################## Backtracking OPT - 1############################################# 
+//########################################## Backtracking OPT - 1#############################################
 //precompute min Length
 vector<string> combine(string word, vector<string> prev){
     for(int i=0;i<prev.size();++i){
@@ -178,7 +185,7 @@ vector<string> combine(string word, vector<string> prev){
     return prev;
 }
 vector<string> dfs_helper(string s, unordered_set<string>& dict,unordered_map<string, vector<string>>& m,int& minLen) {
-    if(m.count(s)) { 
+    if(m.count(s)) {
       return m[s]; //take from memory
     }
     vector<string> result;
@@ -210,11 +217,18 @@ vector<string> wordBreak(string s, vector<string>& words) {
 }
 
 //##########################################################################################################################################################
-//DP + DFS. Very similar to Word Break I, but instead of using a boolean dp array, I used an array of Lists to maintain all of the valid start positions for every end position. Then just do classic backtracking to find all solutions. The time complexity is O(n*m) + O(n * number of solutions), where n is the length of the input string, m is the length of the longest word in the dictionary. The run time was 6ms. It is very efficient because DP is used to find out all the valid answers, and no time is wasted on doing the backtracking.
+//DP + DFS. Very similar to Word Break I, but instead of using a boolean dp
+//array, I used an array of Lists to maintain all of the valid start positions
+//for every end position. Then just do classic backtracking to find all
+//solutions. The time complexity is O(n*m) + O(n * number of solutions), where
+//n is the length of the input string, m is the length of the longest word in
+//the dictionary. The run time was 6ms. It is very efficient because DP is used
+//to find out all the valid answers, and no time is wasted on doing the
+//backtracking.
 vector<string> wordBreak(string s, Set<string> wordDict) {
     vector<Integer>[] starts = new vector[s.length() + 1]; // valid start positions
     starts[0] = new Arrayvector<Integer>();
-    
+
     int maxLen = getMaxLen(wordDict);
     for (int i = 1; i <= s.length(); i++) {
         for (int j = i - 1; j >= i - maxLen && j >= 0; j--) {
@@ -228,12 +242,12 @@ vector<string> wordBreak(string s, Set<string> wordDict) {
             }
         }
     }
-    
+
     vector<string> rst = new Arrayvector<>();
     if (starts[s.length()] == null) {
         return rst;
     }
-    
+
     dfs(rst, "", s, starts, s.length());
     return rst;
 }
@@ -260,8 +274,10 @@ int getMaxLen(Set<string> wordDict) {
 
 
 //Method 2: Memoization + Backtracking
-//HashMap to memoize all the possible strings that can be formed starting from index i. 
-//The time complexity is O(len(wordDict) ^ len(s / minWordLenInDict)) . The space complexity would be larger than other methods though. 
+//HashMap to memoize all the possible strings that can be formed starting from
+//index i.
+//The time complexity is O(len(wordDict) ^ len(s / minWordLenInDict)) . The
+//space complexity would be larger than other methods though.
 public List<String> wordBreak(String s, Set<String> wordDict) {
     HashMap<Integer, List<String>> memo = new HashMap<>(); // <Starting index, rst list>
     return dfs(s, 0, wordDict, memo);
@@ -271,13 +287,13 @@ private List<String> dfs(String s, int start, Set<String> dict, HashMap<Integer,
     if (memo.containsKey(start)) {
         return memo.get(start);
     }
-    
+
     List<String> rst = new ArrayList<>();
     if (start == s.length()) {
         rst.add("");
         return rst;
     }
-    
+
     String curr = s.substring(start);
     for (String word: dict) {
         if (curr.startsWith(word)) {
@@ -292,14 +308,19 @@ private List<String> dfs(String s, int start, Set<String> dict, HashMap<Integer,
 }
 
 //#########################################################################################################################
-//Method 3: DP Prunning + Backtracking. My very first solution is like this: using a boolean array to memoize whether a substring starting from position i to the end is breakable. This works well for worst cases like: s = "aaaaaaaaaaaab", dict = ["a", "aa", "aaa", "aaaa"]. However, for cases like: s = "aaaaaaaaaaaaa", dict = ["a", "aa", "aaa", "aaaa"], the time complexity is still O(2^n). Here is the code:
+//Method 3: DP Prunning + Backtracking. My very first solution is like this:
+//using a boolean array to memoize whether a substring starting from position i
+//to the end is breakable. This works well for worst cases like: s =
+//"aaaaaaaaaaaab", dict = ["a", "aa", "aaa", "aaaa"]. However, for cases like:
+//s = "aaaaaaaaaaaaa", dict = ["a", "aa", "aaa", "aaaa"], the time complexity
+//is still O(2^n). Here is the code:
 
 public List<String> wordBreak(String s, Set<String> wordDict) {
     List<String> rst = new ArrayList<>();
     if (s == null || s.length() == 0 || wordDict == null) {
         return rst;
     }
-    
+
     boolean[] canBreak = new boolean[s.length()];
     Arrays.fill(canBreak, true);
     StringBuilder sb = new StringBuilder();
@@ -307,7 +328,7 @@ public List<String> wordBreak(String s, Set<String> wordDict) {
     return rst;
 }
 
-private void dfs(List<String> rst, StringBuilder sb, String s, Set<String> dict, 
+private void dfs(List<String> rst, StringBuilder sb, String s, Set<String> dict,
     boolean[] canBreak, int start) {
     if (start == s.length()) {
         rst.add(sb.substring(1));
@@ -316,14 +337,14 @@ private void dfs(List<String> rst, StringBuilder sb, String s, Set<String> dict,
     if (!canBreak[start]) {
         return;
     }
-    
+
     for (int i = start + 1; i <= s.length(); i++) {
         String word = s.substring(start, i);
         if (!dict.contains(word)) continue;
-        
+
         int sbBeforeAdd = sb.length();
         sb.append(" " + word);
-        
+
         int rstBeforeDFS = rst.size();
         dfs(rst, sb, s, dict, canBreak, i);
         if (rst.size() == rstBeforeDFS) {

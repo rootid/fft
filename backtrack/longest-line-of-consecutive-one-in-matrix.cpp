@@ -1,5 +1,6 @@
 //Longest Line of Consecutive One in Matrix
-//Given a 01 matrix M, find the longest line of consecutive one in the matrix. The line could be horizontal, vertical, diagonal or anti-diagonal.
+//Given a 01 matrix M, find the longest line of consecutive one in the matrix.
+//The line could be horizontal, vertical, diagonal or anti-diagonal.
 //Example:
 //Input:
 //[[0,1,1,0],
@@ -270,9 +271,14 @@ public int longestLine(int[][] M) {
 
 //######################################### Grouping + Counting #########################################
 //We can separate the problem into two subproblems.
-//The first subproblem is, given a 1 dimensional list of 0's and 1's, what is the longest chain of consecutive 1s?
-//The second subproblem is to generate every line (row, column, diagonal, and anti-diagonal).
-//The first problem is common. We keep track of the number of 1's we've seen before. If we see a 1, we add to our count and update our answer. If we see a 0, we reset. Alternatively, we can also use itertools.groupby. Straightforward code for the first part looks like this:
+//The first subproblem is, given a 1 dimensional list of 0's and 1's, what is
+//the longest chain of consecutive 1s?
+//The second subproblem is to generate every line (row, column, diagonal, and
+//anti-diagonal).
+//The first problem is common. We keep track of the number of 1's we've seen
+//before. If we see a 1, we add to our count and update our answer. If we see a
+//0, we reset. Alternatively, we can also use itertools.groupby.
+//Straightforward code for the first part looks like this:
 
 def score(line):
   ans = count = 0
@@ -283,13 +289,17 @@ def score(line):
     else:
       count = 0
   return ans
-//The second part is more complex. We can try to manipulate indices of the grid,
+//The second part is more complex. We can try to manipulate indices of the
+//grid,
 //but there is a trick.
 //Each element in the grid belongs to exactly 4 lines:
 //1. the r-th row,
 //2. c-th column,
 //3. (r+c)-th diagonal,
-//4. and (r-c)-th anti-diagonal. We scan from left to right, top to bottom, adding each element's value to it's respective 4 groups. As we visited in reading order, our lines will be appended to in that order, which is suitable for our purposes.
+//4. and (r-c)-th anti-diagonal. We scan from left to right, top to bottom,
+//adding each element's value to it's respective 4 groups. As we visited in
+//reading order, our lines will be appended to in that order, which is suitable
+//for our purposes.
 
 def longestLine(self, A):
     if not A: return 0

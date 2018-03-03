@@ -22,7 +22,8 @@
 
 
 //######################################### nbr check  #########################################
-//check function to check the boundary and a inner double loop to traverse the 9 potential
+//check function to check the boundary and a inner double loop to traverse the
+//9 potential
 //candidates:
 public class ImageSmoother {
 
@@ -124,8 +125,10 @@ class Solution {
 }
 
 //######################################### Bits #########################################
-//Derived from StefanPochmann's idea in "game of life": the board has ints in [0, 255], hence only
-//8-bit is used, we can use the middle 8-bit to store the new state (average value), replace the old
+//Derived from StefanPochmann's idea in "game of life": the board has ints in
+//[0, 255], hence only
+//8-bit is used, we can use the middle 8-bit to store the new state (average
+//value), replace the old
 //state with the new state by shifting all values 8 bits to the right.
 vector<vector<int>> imageSmoother(vector<vector<int>>& M) {
      int m = M.size(), n = M[0].size();

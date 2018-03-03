@@ -14,7 +14,7 @@
 #include "../headers/global.hpp"
 
 //C(n,k)=C(n-1,k-1)+C(n-1,k).
-//################################################ Recursion  ################################################ 
+//################################################ Recursion  ################################################
 public List<List<Integer>> combine(int n, int k) {
     List<Integer> soFar = new LinkedList<>();
     List<List<Integer>> result = new ArrayList<>();
@@ -33,7 +33,7 @@ public void combineHelper(int n,int k, int start,List<Integer>soFar, List<List<I
     }
 }
 
-//################################################ Combine ################################################ 
+//################################################ Combine ################################################
 //C(n,k)=C(n-1,k-1)+C(n-1,k).
 public class Solution {
 	public List<List<Integer>> combine(int n, int k) {
@@ -42,14 +42,14 @@ public class Solution {
     	if (ans.size() == 0) ans.add(new LinkedList<>(Arrays.asList(n))); //asList is needed to create a list with a single list in it.
 																		  //return new LinkedList<List<Integer>>(Arrays.<List<Integer>>asList((List<Integer>)row));
     	else ans.forEach(e-> e.add(n));
-    	ans.addAll(combine(n - 1, k)); 
+    	ans.addAll(combine(n - 1, k));
     	return ans;
 	}
 }
 
 
 
-//################################################ So Far way ################################################ 
+//################################################ So Far way ################################################
 void combine_helper(int n,int k,vector<vector<int> >&result, vector<int> so_far,int state) {
       if(so_far.size() == k) {
           result.push_back(so_far);
@@ -60,7 +60,7 @@ void combine_helper(int n,int k,vector<vector<int> >&result, vector<int> so_far,
           so_far.pop_back();
       }
 }
-  
+
 vector<vector<int>> combine(int n, int k) {
       vector< vector<int> > result;
       vector<int> so_far;
@@ -68,7 +68,7 @@ vector<vector<int>> combine(int n, int k) {
       combine_helper(n,k,result,so_far,state);
       return result;
 }
-//################################################ Iterative  ################################################ 
+//################################################ Iterative  ################################################
 //Iterative :  1 ( k times)  4(k times)
 //             2 ( k-1 times) 3(k-1)
 //             3 ( k-2 )      2(k-2)
@@ -100,7 +100,7 @@ void print_result(vector<vector<int> >& r) {
     cout << endl;
   }
 }
-//################################################ DFS ################################################ 
+//################################################ DFS ################################################
 void dfsHelper(int start,int end,int k,vector<int>&iv,vector<int>& cv,vector<vector<int> >& result) {
     if(k == 0) {
       result.push_back(cv);
@@ -125,7 +125,7 @@ vector<vector<int>> combine(int n, int k) {
     print_result(result);
     return result;
 }
-//################################################ Bit manipulation ################################################ 
+//################################################ Bit manipulation ################################################
 vector<vector<int> > combine(int n, int k) {
          vector<vector<int> >res;
          vector<int>tmpres;
@@ -142,12 +142,13 @@ vector<vector<int> > combine(int n, int k) {
          }
          return res;
 }
-//Returns the smallest integer M that is greater than N, so that the binary representation of M and N has the same number 1
-int NextN(int N) 
-{ 
-     int x = N&(-N);      
-     int t = N+x; 
-     return t | ((N^t)/x)>>2; 
+//Returns the smallest integer M that is greater than N, so that the binary
+//representation of M and N has the same number 1
+int NextN(int N)
+{
+     int x = N&(-N);
+     int t = N+x;
+     return t | ((N^t)/x)>>2;
  }
 int main() {
   //vector< vector<int> > lv(1);

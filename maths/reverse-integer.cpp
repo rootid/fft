@@ -3,10 +3,15 @@
 //Example2: x = -123, return -321
 //click to show spoilers.
 //Have you thought about this?
-//Here are some good questions to ask before coding. Bonus points for you if you have already thought through this!
-//If the integer's last digit is 0, what should the output be? ie, cases such as 10, 100.
-//Did you notice that the reversed integer might overflow? Assume the input is a 32-bit integer, then the reverse of 1000000003 overflows. How should you handle such cases?
-//For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows.
+//Here are some good questions to ask before coding. Bonus points for you if
+//you have already thought through this!
+//If the integer's last digit is 0, what should the output be? ie, cases such
+//as 10, 100.
+//Did you notice that the reversed integer might overflow? Assume the input is
+//a 32-bit integer, then the reverse of 1000000003 overflows. How should you
+//handle such cases?
+//For the purpose of this problem, assume that your function returns 0 when the
+//reversed integer overflows.
 //Update (2014-11-10):
 //Test cases had been added to test the overflow behavior.
 
@@ -32,7 +37,7 @@ int reverse(int x) {
         no += tmp_;
 
       assert(no < INT_MAX && no > INT_MIN);
-        
+
         if(no > INT_MAX || no < INT_MIN) {
             no = 0;
             break;

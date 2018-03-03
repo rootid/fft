@@ -1,4 +1,5 @@
-//Given a string, find the length of the longest substring T that contains at most k distinct characters.
+//Given a string, find the length of the longest substring T that contains at
+//most k distinct characters.
 //For example, Given s = “eceba” and k = 2,
 //T is "ece" which its length is 3.
 #include "../headers/global.hpp"
@@ -19,8 +20,8 @@ int lengthOfLongestSubstringKDistinct(string s, int k) {
             max_len = max(max_len,i-j);
         }
         return max_len;
-        
-     
+
+
 //         int len = s.size();
 //           if(k == 0) {
 //             return max_len;
@@ -43,7 +44,7 @@ int lengthOfLongestSubstringKDistinct(string s, int k) {
 //                 max_len = tmp_len;
 //             }
 //         }
- 
+
 //   return max_len;
-    
+
 }

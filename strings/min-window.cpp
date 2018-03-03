@@ -1,12 +1,15 @@
 // Minimum Window Substring
-//Given a string S and a string T, find the minimum window in S which will contain all the characters in T in complexity O(n).
+//Given a string S and a string T, find the minimum window in S which will
+//contain all the characters in T in complexity O(n).
 //For example,
 //S = "ADOBECODEBANC"
 //T = "ABC"
 //Minimum window is "BANC".
 //Note:
-//If there is no such window in S that covers all characters in T, return the empty string "".
-//If there are multiple such windows, you are guaranteed that there will always be only one unique minimum window in S.
+//If there is no such window in S that covers all characters in T, return the
+//empty string "".
+//If there are multiple such windows, you are guaranteed that there will always
+//be only one unique minimum window in S.
 //
 
 #include<iostream>
@@ -24,7 +27,7 @@ string minWindow(string s, string t) {
   for(auto s:t) {
     tv[s]++;
   }
-  
+
   int end=0;
   int start=0;
   int nxtStart = 0;
@@ -34,7 +37,7 @@ string minWindow(string s, string t) {
   while(end < ls) {
     if(tv[s[end]] > 0) {
       counter--;
-    } 
+    }
     tv[s[end]]--;
     end++; //get the end
     while(counter == 0) {
@@ -43,7 +46,7 @@ string minWindow(string s, string t) {
           start = nxtStart;
         }
         tv[s[nxtStart]]++;
-        if(tv[s[nxtStart]] > 0) { 
+        if(tv[s[nxtStart]] > 0) {
           counter++;
         }
         nxtStart++; //update the start

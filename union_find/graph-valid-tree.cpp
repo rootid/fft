@@ -1,14 +1,21 @@
 //Graph Valid Tree
-//Given n nodes labeled from 0 to n - 1 and a list of undirected edges (each edge is a pair of nodes), write a function to check whether these edges make up a valid tree.
+//Given n nodes labeled from 0 to n - 1 and a list of undirected edges (each
+//edge is a pair of nodes), write a function to check whether these edges make
+//up a valid tree.
 // Notice
-//You can assume that no duplicate edges will appear in edges. Since all edges are undirected, [0, 1] is the same as [1, 0] and thus will not appear together in edges.
+//You can assume that no duplicate edges will appear in edges. Since all edges
+//are undirected, [0, 1] is the same as [1, 0] and thus will not appear
+//together in edges.
 //Example
 //Given n = 5 and edges = [[0, 1], [0, 2], [0, 3], [1, 4]], return true.
-//Given n = 5 and edges = [[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]], return false.
+//Given n = 5 and edges = [[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]], return
+//false.
 
 //######################################### Union Find #########################################
-//Tree must have unique parent,if node shares 2 parent then graph is not a valid tree
-//TODO : In case of self loop find will recursively iterate over the same recursive function. (Req fix).
+//Tree must have unique parent,if node shares 2 parent then graph is not a
+//valid tree
+//TODO : In case of self loop find will recursively iterate over the same
+//recursive function. (Req fix).
 public class Solution {
     public boolean validTree(int n, int[][] edges) {
         // initialize n isolated islands
@@ -38,13 +45,20 @@ public class Solution {
 }
 
 //######################################### Cycle Test #########################################
-//To tell whether a graph is a valid tree, we have to: (necessary and sufficient condition)
-//1. Make sure there is no cycle in the graph - this has to be a none-cyclic graph;
+//To tell whether a graph is a valid tree, we have to: (necessary and
+//sufficient condition)
+//1. Make sure there is no cycle in the graph - this has to be a none-cyclic
+//graph;
 //2. Make sure every node is reached - this has to be a connected graph;
 //Modified version of union find
 //
-//1. To test cyclic, we can make an array for each node (as array index), and the array will store the parent of the node (as array index). Every time we fetch a new pair of nodes, we trace the root node (the deepest parent node) of these two nodes, if it has the same root, then is will be a cycle; otherwise, we set the parent of second node to be the first node;
-//2. After we make sure there is node cycle in the graph, we simple test if there is enough edges to make this graph connected.
+//1. To test cyclic, we can make an array for each node (as array index), and
+//the array will store the parent of the node (as array index). Every time we
+//fetch a new pair of nodes, we trace the root node (the deepest parent node)
+//of these two nodes, if it has the same root, then is will be a cycle;
+//otherwise, we set the parent of second node to be the first node;
+//2. After we make sure there is node cycle in the graph, we simple test if
+//there is enough edges to make this graph connected.
 bool validTree(int n, vector<pair<int, int>>& edges) {
     vector<int> nodes(n,0);
     for(int i=0; i<n; i++) nodes[i] = i;
@@ -79,7 +93,8 @@ def validTree(self, n, edges):
         return x != y
     return len(edges) == n-1 and all(map(union, edges))
 
-//A version without using all(...), to be closer to other programming languages:
+//A version without using all(...), to be closer to other programming
+//languages:
 
 //######################################### Union Find #########################################
 def validTree(self, n, edges):
@@ -92,7 +107,8 @@ def validTree(self, n, edges):
             return False
         parent[x] = y
     return len(edges) == n - 1
-//A version checking len(edges) != n - 1 first, as parent = range(n) could fail for huge n:
+//A version checking len(edges) != n - 1 first, as parent = range(n) could fail
+//for huge n:
 
 //######################################### Union Find #########################################
 def validTree(self, n, edges):
@@ -119,7 +135,8 @@ def validTree(self, n, edges):
     return len(edges) == n-1 and not neighbors
 
 //######################################### Fast DFS #########################################
-//Or check the number of edges first, to be faster and to survive unreasonably huge n:
+//Or check the number of edges first, to be faster and to survive unreasonably
+//huge n:
 
 def validTree(self, n, edges):
     if len(edges) != n - 1:

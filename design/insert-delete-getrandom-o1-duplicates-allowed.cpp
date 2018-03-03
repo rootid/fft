@@ -1,9 +1,12 @@
 //Insert Delete GetRandom O(1) - Duplicates allowed
-//Design a data structure that supports all following operations in average O(1) time.
+//Design a data structure that supports all following operations in average
+//O(1) time.
 //Note: Duplicate elements are allowed.
 //insert(val): Inserts an item val to the collection.
 //remove(val): Removes an item val from the collection if present.
-//getRandom: Returns a random element from current collection of elements. The probability of each element being returned is linearly related to the number of same value the collection contains.
+//getRandom: Returns a random element from current collection of elements. The
+//probability of each element being returned is linearly related to the number
+//of same value the collection contains.
 //Example:
 //// Init an empty collection.
 //RandomizedCollection collection = new RandomizedCollection();
@@ -20,7 +23,7 @@
 //// getRandom should return 1 and 2 both equally likely.
 //collection.getRandom();
 
-//######################################## map + vector ######################################## 
+//######################################## map + vector ########################################
 class RandomizedCollection {
   private:
     unordered_map<int,vector<int> > idx_map;
@@ -29,9 +32,9 @@ class RandomizedCollection {
   public:
     /** Initialize your data structure here. */
     RandomizedCollection() {
-        
+
     }
-    
+
     /** Inserts a value to the collection. Returns true if the collection did not already contain the specified element. */
     bool insert(int val) {
         auto result = idx_map.find(val) == idx_map.end();
@@ -39,9 +42,9 @@ class RandomizedCollection {
         num_freq_vec.push_back(pair<int, int>(val, idx_map[val].size() - 1)); //insert into the vector
         return result;
     }
-    
+
     /** Removes a value from the collection. Returns true if the collection contained the specified element. */
-    bool remove(int val) { 
+    bool remove(int val) {
       //move the last element to element to be deleted
       auto result = idx_map.find(val) != idx_map.end();
       if(result) {
@@ -54,7 +57,7 @@ class RandomizedCollection {
       }
       return result;
     }
-    
+
     /** Get a random element from the collection. */
     int getRandom() {
         return num_freq_vec[rand() % num_freq_vec.size()].first;
@@ -69,14 +72,14 @@ class RandomizedCollection {
  */
 
 
-//######################################## multimap + vector ######################################## 
+//######################################## multimap + vector ########################################
 class RandomizedCollection {
 public:
     /** Initialize your data structure here. */
     RandomizedCollection() {
-        
+
     }
-    
+
     /** Inserts a value to the collection. Returns true if the collection did not already contain the specified element. */
     bool insert(int val) {
         bool ret = true;
@@ -86,7 +89,7 @@ public:
         valToIndexMap.insert(pair<int,int>(val, vals.size()-1));
         return ret;
     }
-    
+
     /** Removes a value from the collection. Returns true if the collection contained the specified element. */
     bool remove(int val) {
         auto removeItemIt = valToIndexMap.find(val);
@@ -110,32 +113,32 @@ public:
 
 		return true;
     }
-    
+
     /** Get a random element from the collection. */
     int getRandom() {
         int retIndex = rand() % vals.size();
         return vals[retIndex];
     }
-    
+
 private:
     unordered_multimap<int, int> valToIndexMap;
     vector<int> vals;
 };
 
 
-//############################################## map + PQ  ############################################## 
+//############################################## map + PQ  ##############################################
 class RandomizedCollection {
 public:
     /** Initialize your data structure here. */
     RandomizedCollection() {}
-    
+
     /** Inserts a value to the collection. Returns true if the collection did not already contain the specified element. */
     bool insert(int val) {
         m[val].push(nums.size());
         nums.push_back(val);
 	return m[val].size() == 1;
     }
-    
+
     /** Removes a value from the collection. Returns true if the collection contained the specified element. */
     bool remove(int val) {
         if (m[val].empty()) return false;
@@ -150,7 +153,7 @@ public:
 	nums.pop_back();
         return true;
     }
-    
+
     /** Get a random element from the collection. */
     int getRandom() {
         return nums[rand() % nums.size()];

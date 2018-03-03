@@ -1,6 +1,9 @@
 // Fizz Buzz
-//Write a program that outputs the string representation of numbers from 1 to n.
-//But for multiples of three it should output “Fizz” instead of the number and for the multiples of five output “Buzz”. For numbers which are multiples of both three and five output “FizzBuzz”.
+//Write a program that outputs the string representation of numbers from 1 to
+//n.
+//But for multiples of three it should output “Fizz” instead of the number and
+//for the multiples of five output “Buzz”. For numbers which are multiples of
+//both three and five output “FizzBuzz”.
 //Example:
 //n = 15,
 //Return:
@@ -29,12 +32,12 @@
 using namespace std;
 
 
-//######################################### With Mod operation ######################################### 
+//######################################### With Mod operation #########################################
 public List<String> fizzBuzz(int n) {
     String fz = "Fizz";
     String bz = "Buzz";
     String fzBz = "FizzBuzz";
-    
+
     List<String> fizBuzzList = new ArrayList<>();;
     for(int i=1;i<=n;i++) {
         if(i %3 == 0 && i %5 == 0) fizBuzzList.add(fzBz);
@@ -44,7 +47,7 @@ public List<String> fizzBuzz(int n) {
     }
     return fizBuzzList;
 }
-//######################################### W/o Mod operation ######################################### 
+//######################################### W/o Mod operation #########################################
  public List<String> fizzBuzz(int n) {
         List<String> ret = new ArrayList<String>(n);
         for(int i=1,fizz=0,buzz=0;i<=n ;i++){
@@ -63,7 +66,7 @@ public List<String> fizzBuzz(int n) {
             }else{
                 ret.add(String.valueOf(i));
             }
-        } 
+        }
         return ret;
     }
 
@@ -75,11 +78,11 @@ vector<string> fizzBuzz(int n) {
     stringstream ss;
     for(int i=1;i<=n;i++) {
         if (i%3 == 0) {
-           ss << "Fizz"; 
+           ss << "Fizz";
         }
         if(i%5 == 0) {
            ss << "Buzz";
-        } 
+        }
         if(ss.str().size() == 0) {
             ss << i;
         }
@@ -105,7 +108,7 @@ vector<string> fizzBuzz(int n) {
         if(i%15 == 0) {
             ss << "FizzBuzz";
         } else if ( i%3 == 0) {
-           ss << "Fizz"; 
+           ss << "Fizz";
         } else if( i%5 == 0) {
            ss << "Buzz";
         } else {

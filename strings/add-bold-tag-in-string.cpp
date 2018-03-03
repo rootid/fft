@@ -1,5 +1,7 @@
 //Add Bold Tag in String
-//Given a string s and a list of strings dict, you need to add a closed pair of bold tag <b> and </b> to wrap the substrings in s that exist in dict. If two such substrings overlap, you need to wrap them together by only one pair of closed bold tag. Also, if two substrings wrapped by bold tags are consecutive, you need to combine them.
+//Given a string s and a list of strings dict, you need to add a closed pair of bold tag <b> and </b> to wrap the
+//substrings in s that exist in dict. If two such substrings overlap, you need to wrap them together by only one pair of
+//closed bold tag. Also, if two substrings wrapped by bold tags are consecutive, you need to combine them.
 //Example 1:
 //Input:
 //s = "abcxyz123"
@@ -193,8 +195,13 @@ public:
 
 //############################################ Pytonic ############################################
 //######################################## Trie ########################################
-//We put all the words in our given wordlist into a trie. Then, let's paint any letter in our string that should be bolded. For every starting position i in our string, let's find the longest word that S[i:] starts with, and paint S[i:i+len(word)].
-//Afterwards, we have a boolean array where paint[i] = True iff S[i] is bolded. Let's write our letters from left to right. If we are on a bolded letter and there is an unbolded letter to the left (or if we are at the leftmost letter), we should start a <b> tag. Similarly for </b> tags: they start when our bolded letter has an unbolded right neighbor (or we are at the right-most letter.)
+//We put all the words in our given wordlist into a trie. Then, let's paint any letter in our string that should be
+//bolded. For every starting position i in our string, let's find the longest word that S[i:] starts with, and paint
+//S[i:i+len(word)].
+//Afterwards, we have a boolean array where paint[i] = True iff S[i] is bolded. Let's write our letters from left to
+//right. If we are on a bolded letter and there is an unbolded letter to the left (or if we are at the leftmost letter),
+//we should start a <b> tag. Similarly for </b> tags: they start when our bolded letter has an unbolded right neighbor
+//(or we are at the right-most letter.)
 //
 //def addBoldTag(self, S, A):
 //    END = False

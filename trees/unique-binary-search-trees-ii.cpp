@@ -1,5 +1,6 @@
 //Unique Binary Search Trees II
-//Given an integer n, generate all structurally unique BST's (binary search trees) that store values 1...n.
+//Given an integer n, generate all structurally unique BST's (binary search
+//trees) that store values 1...n.
 //For example,
 //Given n = 3, your program should return all 5 unique BST's shown below.
 //   1         3     3      2      1
@@ -31,7 +32,7 @@ vector<TreeNode*> helper(int s, int e){
     return result;
 }
 
-//############################# pytonic list comprehenssion ############################# 
+//############################# pytonic list comprehenssion #############################
 //def generateTrees(self, n):
 //    def node(val, left, right):
 //        node = TreeNode(val)
@@ -58,7 +59,7 @@ vector<TreeNode*> helper(int s, int e){
 //                for left in self.generateTrees(root-1, first)
 //                for right in self.generateTrees(last, root+1)] or [None]
 //
-//############################# pytonic loops ############################# 
+//############################# pytonic loops #############################
 //def generateTrees(self, n):
 //    def generate(first, last):
 //        trees = []

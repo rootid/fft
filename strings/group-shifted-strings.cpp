@@ -1,8 +1,10 @@
 //Group Shifted Strings
-//Given a string, we can "shift" each of its letter to its successive letter, for example: "abc" -> "bcd". We can keep "shifting" which forms the sequence:
+//Given a string, we can "shift" each of its letter to its successive letter,
+//for example: "abc" -> "bcd". We can keep "shifting" which forms the sequence:
 //"abc" -> "bcd" -> ... -> "xyz"
-//Given a list of strings which contains only lowercase alphabets, group all strings that belong to the same shifting sequence.
-//For example, given: ["abc", "bcd", "acef", "xyz", "az", "ba", "a", "z"], 
+//Given a list of strings which contains only lowercase alphabets, group all
+//strings that belong to the same shifting sequence.
+//For example, given: ["abc", "bcd", "acef", "xyz", "az", "ba", "a", "z"],
 //A solution is:
 //[
 //  ["abc","bcd","xyz"],
@@ -24,7 +26,7 @@ string shift(string& s) {
         //t += 'a' + to_string(diff) + ','; // cases like "ach","az" both will
         //produce unique string
         t += 'a' + (diff) + ',';  //converts "t" into unique white space string
-                
+
     }
     cout <<  "s = " << s << " t = " << t << endl;
     //char * S = new char[t.length() + 1];

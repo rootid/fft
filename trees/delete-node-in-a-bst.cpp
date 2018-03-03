@@ -1,4 +1,6 @@
-//Given a root node reference of a BST and a key, delete the node with the given key in the BST. Return the root node reference (possibly updated) of the BST.
+//Given a root node reference of a BST and a key, delete the node with the
+//given key in the BST. Return the root node reference (possibly updated) of
+//the BST.
 //Basically, the deletion can be divided into two stages:
 //Search for a node to remove.
 //If the node is found, delete the node.
@@ -24,7 +26,7 @@
 //  2   6
 //   \   \
 //    4   7
-//############################################# Good ############################################# 
+//############################################# Good #############################################
 TreeNode* deleteNode(TreeNode* root, int key) {
       if(!root) {
          return root;
@@ -50,7 +52,7 @@ TreeNode* deleteNode(TreeNode* root, int key) {
      return root;
 }
 
-//######################################### Python ######################################### 
+//######################################### Python #########################################
 def deleteNode(self, root, key):
     def getNodes(root):
         if root:
@@ -66,12 +68,17 @@ def deleteNode(self, root, key):
     return root
 
 
-//We will only do deletion when root->val == NULL, so if root->val > key we can know that the key is in the left subtree, then root->left = deleteNode(root->left, key), if root->val < key should do root->right = deleteNode(root->right, key).
-//When root->val == NULL we need to delete root. If root->left == NULL && root->right == NULL we can just delete root and return NULL, else we can chose root->left or root->right to be the new root in case it is not NULL.
+//We will only do deletion when root->val == NULL, so if root->val > key we can
+//know that the key is in the left subtree, then root->left =
+//deleteNode(root->left, key), if root->val < key should do root->right =
+//deleteNode(root->right, key).
+//When root->val == NULL we need to delete root. If root->left == NULL &&
+//root->right == NULL we can just delete root and return NULL, else we can
+//chose root->left or root->right to be the new root in case it is not NULL.
 //
 
 
-//############################################# GENERAL BT DELETE ############################################# 
+//############################################# GENERAL BT DELETE #############################################
 
  TreeNode* deleteNode(TreeNode* root, int key) {
         if (!root) return nullptr;
@@ -85,7 +92,7 @@ def deleteNode(self, root, key):
                 TreeNode* right = root->right;
                 while (right->left)
                     right = right->left;
-                swap(root->val, right->val);    
+                swap(root->val, right->val);
             }
         }
         root->left = deleteNode(root->left, key);
@@ -93,12 +100,12 @@ def deleteNode(self, root, key):
         return root;
 }
 
-//############################################# Log GENERIC ############################################# 
+//############################################# Log GENERIC #############################################
 
 TreeNode* deleteNode(TreeNode* root, int key) {
     if( !root )
         return nullptr;
-    
+
     if( root->val == key ){
         if( !root->right )
             return root->left;
@@ -107,7 +114,7 @@ TreeNode* deleteNode(TreeNode* root, int key) {
             while( n->left )
                 n = n->left;
             swap( n->val , root->val );
-            
+
             root->right = deleteNode( root->right , key );
             return root;
         }
@@ -119,7 +126,7 @@ TreeNode* deleteNode(TreeNode* root, int key) {
     return root;
 }
 
-//############################################# FIX ME  ############################################# 
+//############################################# FIX ME  #############################################
 void helperDel(TreeNode* sRoot,TreeNode *root, int key) {
      if(!root) {
         return ;

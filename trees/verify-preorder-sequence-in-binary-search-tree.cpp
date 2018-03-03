@@ -1,22 +1,27 @@
 //Verify preorder sequence of Binary Search Tree
-//Given an array of numbers, verify whether it is the correct preorder traversal sequence of a binary search tree.
+//Given an array of numbers, verify whether it is the correct preorder
+//traversal sequence of a binary search tree.
 //You may assume each number in the sequence is unique.
 //Follow up: Could you do it using only constant space complexity?
 //
 
-//Kinda simulate the traversal, keeping a stack of nodes (just their values) of which we're still in the left subtree.
-//If the next number is smaller than the last stack value, then we're still in the left subtree of all stack nodes,
+//Kinda simulate the traversal, keeping a stack of nodes (just their values) of
+//which we're still in the left subtree.
+//If the next number is smaller than the last stack value, then we're still in
+//the left subtree of all stack nodes,
 //so just push the new one onto the stack.
 //But before that, pop all smaller ancestor values, as we must now be in their
 //right subtrees (or even further, in the right subtree of an ancestor).
-//Also, use the popped values as a lower bound, since being in their right subtree means we must never come across a smaller number anymore.
+//Also, use the popped values as a lower bound, since being in their right
+//subtree means we must never come across a smaller number anymore.
 
-//Basically this is how to recover inorder sequence from preorder sequence of a BST.
-//######################################### How to recover inorder seq from preorder seq ######################################### 
+//Basically this is how to recover inorder sequence from preorder sequence of a
+//BST.
+//######################################### How to recover inorder seq from preorder seq #########################################
 public boolean verifyPreorder(int[] preorder) {
     Stack<Integer> stack = new Stack<>();
     Stack<Integer> inorder = new Stack<>();
-    
+
     for(int v : preorder){
         if(!inorder.isEmpty() && v < inorder.peek())
             return false;
@@ -31,7 +36,7 @@ public boolean verifyPreorder(int[] preorder) {
 
 //HOW TO replay stack insertion?
 
-//######################################### O(n) space  ######################################### 
+//######################################### O(n) space  #########################################
 public boolean verifyPreorder(int[] preorder) {
     int low = Integer.MIN_VALUE;
     Stack<Integer> path = new Stack();
@@ -45,7 +50,7 @@ public boolean verifyPreorder(int[] preorder) {
     return true;
 }
 
-//######################################### Modify array  ######################################### 
+//######################################### Modify array  #########################################
 //S : O(1)
 //Find decreasing sequence in the array
 public boolean verifyPreorder(int[] preorder) {
@@ -60,13 +65,13 @@ public boolean verifyPreorder(int[] preorder) {
     return true;
 }
 
-//######################################### preorder verification ######################################### 
+//######################################### preorder verification #########################################
 //Recover inorder sequence from preorder sequence of a BST.
 //Space : O(n)
 public boolean verifyPreorder(int[] preorder) {
     Stack<Integer> stack = new Stack<>();
     Stack<Integer> inorder = new Stack<>();
-    
+
     for(int v : preorder){
         if(!inorder.isEmpty() && v < inorder.peek())
             return false;
@@ -78,7 +83,7 @@ public boolean verifyPreorder(int[] preorder) {
     return true;
 }
 
-//######################################### python + stack ######################################### 
+//######################################### python + stack #########################################
 def verifyPreorder(self, preorder):
     stack = []
     low = float('-inf')
@@ -93,13 +98,17 @@ def verifyPreorder(self, preorder):
 
 //For example, for the following bst with preorder 6,3,1,2,5,4,7:
 //              6
-//            /  \  
+//            /  \
 //           3    7
 //          /  \
 //         1   5
 //         \   /
-//         2  4   
-//We push to stack before we see 2. So at 2 the stack is 6,3,1. For 2, we pop stack until we see 3 which is greater than 2 and curr_p is 1. 2 is in left subtree of 3 and is right child of 1. Stack is 6,3,2 now. Then we see 5, and we pop stack until 6 and curr_p is 3. Stack now is 6,5. Then we see 4 and push to stack. At 7, we pop stack until empty and curr_p is 6.
+//         2  4
+//We push to stack before we see 2. So at 2 the stack is 6,3,1. For 2, we pop
+//stack until we see 3 which is greater than 2 and curr_p is 1. 2 is in left
+//subtree of 3 and is right child of 1. Stack is 6,3,2 now. Then we see 5, and
+//we pop stack until 6 and curr_p is 3. Stack now is 6,5. Then we see 4 and
+//push to stack. At 7, we pop stack until empty and curr_p is 6.
 //
 bool verifyPreorder(vector<int>& preorder){
     // using stack
@@ -108,9 +117,9 @@ bool verifyPreorder(vector<int>& preorder){
     stack<int> s;
     s.push(preorder[0]);
     int curr_p = INT_MIN;
-    for(int i=1; i<sz; i++){ 
+    for(int i=1; i<sz; i++){
         if(s.empty() || preorder[i]<s.top()){ // if current node is less than stack top, then go to left subtree
-            if(preorder[i]<curr_p) return false; 
+            if(preorder[i]<curr_p) return false;
             s.push(preorder[i]);
         }
         else{
@@ -124,7 +133,7 @@ bool verifyPreorder(vector<int>& preorder){
     return true;
 }
 
-//######################################### Divide and conquer ######################################### 
+//######################################### Divide and conquer #########################################
 //A BST's left child is always < root and right child is always > root.
 public boolean verifyPreorder(int[] preorder) {
     if(preorder == null || preorder.length == 0) return true;

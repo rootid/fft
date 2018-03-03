@@ -1,5 +1,7 @@
 //Longest Substring with At Least K Repeating Characters
-//Find the length of the longest substring T of a given string (consists of lowercase letters only) such that every character in T appears no less than k times.
+//Find the length of the longest substring T of a given string (consists of
+//lowercase letters only) such that every character in T appears no less than k
+//times.
 //Example 1:
 //Input:
 //s = "aaabb", k = 3
@@ -11,10 +13,11 @@
 //s = "ababbc", k = 2
 //Output:
 //5
-//The longest substring is "ababb", as 'a' is repeated 2 times and 'b' is repeated 3 times.
+//The longest substring is "ababb", as 'a' is repeated 2 times and 'b' is
+//repeated 3 times.
 
 
-//########################### Divide and Conquer ########################### 
+//########################### Divide and Conquer ###########################
 //O (n^2)
 //k = 5
 //a4,b4,c4.......y4,z5 as in "aaaabbbbcccc.........yyyyzzzzz"
@@ -23,13 +26,13 @@ public int longestSubstring(String s, int k) {
      char[] arr = s.toCharArray();
      return longestSubstringHelper(arr, 0, arr.length, k);
  }
-   
+
  private int longestSubstringHelper(char[] arr, int start, int end, int k) {
      int maxLen = end - start;
      if(maxLen < k)  //substring length shorter than k.
-         return 0; 
+         return 0;
      int[] map = new int[26];
-     for(int i=start;i < end;i++) map[arr[i] - 'a']++; 
+     for(int i=start;i < end;i++) map[arr[i] - 'a']++;
      for(int i=start;i<end;i++) {
          if(map[arr[i] - 'a'] < k) //Divide the problem at position i where # of char < k
              return Math.max(longestSubstringHelper(arr, start, i,k),  longestSubstringHelper(arr, i+1, end,k));
@@ -38,11 +41,11 @@ public int longestSubstring(String s, int k) {
  }
 
 
-//########################### Divide and Conquer ########################### 
+//########################### Divide and Conquer ###########################
 public int longestSubstring(String s, int k) {
     return dc(s, 0, s.length(), k);
 }
-    
+
 public int dc(String s, int start, int end, int k) {
     if (end - start < k) return 0;
     int[] cnt = new int[26];
@@ -55,15 +58,15 @@ public int dc(String s, int start, int end, int k) {
 }
 
 
-//########################### Divide and Conquer : TLE ########################### 
+//########################### Divide and Conquer : TLE ###########################
    public int longestSubstring(String s, int k) {
         char[] arr = s.toCharArray();
         return longestSubstringHelper(arr, 0, arr.length, k);
     }
-      
+
     private int longestSubstringHelper(char[] arr, int start, int end, int k) {
         if(end-start < k)  //substring length shorter than k.
-            return 0; 
+            return 0;
       Map<Character, Integer> map = new HashMap<>();
         for(int i=start;i < end;i++) map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
         for(Character key : map.keySet() ) {
@@ -81,14 +84,14 @@ public int dc(String s, int start, int end, int k) {
         return end - start;
     }
 
-//########################### Divide and Conquer ########################### 
+//########################### Divide and Conquer ###########################
 int longestSubstring(string s, int k) {
     return helper(s,0,s.size(),k);
 }
 
 int helper(string& str, int start, int end,  int k) {
     if(end-start < k)  //substring length shorter than k.
-      return 0; 
+      return 0;
     int count[26] = {0};
     for(int i = start;i<end;i++){
         int idx = str[i]-'a';
@@ -108,7 +111,7 @@ int helper(string& str, int start, int end,  int k) {
     return end-start;
 }
 
-//###################################### optimized D&C ###################################### 
+//###################################### optimized D&C ######################################
 
 int longestSubstring(const string &s, int k) {
     return helper(s, 0, s.size(), k);
@@ -183,5 +186,5 @@ int helper(const string &s, int beg, int end, int k){
 //a c b e d g f i h k j m l z
 //
 //aaccbbeeddggffiihhkkjjmmll
-//a c b e d g f i h k j m l 
+//a c b e d g f i h k j m l
 //26

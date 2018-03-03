@@ -1,10 +1,12 @@
-//Given a non-negative number represented as an array of digits, plus one to the number.
-//The digits are stored such that the most significant digit is at the head of the list.
+//Given a non-negative number represented as an array of digits, plus one to
+//the number.
+//The digits are stored such that the most significant digit is at the head of
+//the list.
 #include<iostream>
 #include<vector>
 using namespace std;
 
-//######################################### Only check digit < 9 ######################################### 
+//######################################### Only check digit < 9 #########################################
 public int[] plusOne(int[] digits) {
     //99 + 1 = 100
     //19 + 1 = 20
@@ -22,7 +24,7 @@ public int[] plusOne(int[] digits) {
 }
 
 
-//######################################### Only check digit < 9 ######################################### 
+//######################################### Only check digit < 9 #########################################
 public int[] plusOne(int[] digits) {
     int n = digits.length;
     for(int i=n-1; i>=0; i--) {
@@ -37,13 +39,13 @@ public int[] plusOne(int[] digits) {
     return newNumber;
 }
 
-//######################################### Dumb solution ######################################### 
+//######################################### Dumb solution #########################################
 public int[] plusOne(int[] digits) {
-        
+
     //99 + 1 = 1
     int n = digits.length;
-    int carry = (digits[n-1] + 1) /10; 
-    digits[n-1] = (digits[n-1] + 1) % 10; 
+    int carry = (digits[n-1] + 1) /10;
+    digits[n-1] = (digits[n-1] + 1) % 10;
     for(int i=n-2;i>=0;i--) {
         int cVal = digits[i];
         digits[i] = (carry +  cVal) % 10;
@@ -57,9 +59,9 @@ public int[] plusOne(int[] digits) {
 }
 
 
-//######################################### Xtra space ######################################### 
+//######################################### Xtra space #########################################
 vector<int> plusOne(vector<int>& digits) {
-    
+
     int l = digits.size() - 1;
     int sum = 0;
     int carry = 1;
@@ -69,7 +71,7 @@ vector<int> plusOne(vector<int>& digits) {
         carry = sum / 10;
         sum = sum % 10;
         result.push_back(sum);
-    } 
+    }
     if(carry != 0) {
         result.push_back(carry);
     }
@@ -80,14 +82,14 @@ vector<int> plusOne(vector<int>& digits) {
 // In-Place
 vector<int> plusOne(vector<int> &digits) {
       bool carry = true;
-      
+
       for(int i=digits.size()-1; i >= 0 && carry; i--) {
           carry = (++digits[i]%=10) == 0;
       }
       if(carry) {
           digits.insert(digits.begin(), 1);
       }
-  
+
       return digits;
 }
 

@@ -1,22 +1,31 @@
 //Heaters
-//Winter is coming! Your first job during the contest is to design a standard heater with fixed warm radius to warm all the houses.
-//Now, you are given positions of houses and heaters on a horizontal line, find out minimum radius of heaters so that all houses could be covered by those heaters.
-//So, your input will be the positions of houses and heaters seperately, and your expected output will be the minimum radius standard of heaters.
+//Winter is coming! Your first job during the contest is to design a standard
+//heater with fixed warm radius to warm all the houses.
+//Now, you are given positions of houses and heaters on a horizontal line, find
+//out minimum radius of heaters so that all houses could be covered by those
+//heaters.
+//So, your input will be the positions of houses and heaters seperately, and
+//your expected output will be the minimum radius standard of heaters.
 //Note:
-//Numbers of houses and heaters you are given are non-negative and will not exceed 25000.
-//Positions of houses and heaters you are given are non-negative and will not exceed 10^9.
+//Numbers of houses and heaters you are given are non-negative and will not
+//exceed 25000.
+//Positions of houses and heaters you are given are non-negative and will not
+//exceed 10^9.
 //As long as a house is in the heaters' warm radius range, it can be warmed.
-//All the heaters follow your radius standard and the warm radius will the same.
+//All the heaters follow your radius standard and the warm radius will the
+//same.
 //Example 1:
 //Input: [1,2,3],[2]
 //Output: 1
-//Explanation: The only heater was placed in the position 2, and if we use the radius 1 standard, then all the houses can be warmed.
+//Explanation: The only heater was placed in the position 2, and if we use the
+//radius 1 standard, then all the houses can be warmed.
 //Example 2:
 //Input: [1,2,3,4],[1,4]
 //Output: 1
-//Explanation: The two heater was placed in the position 1 and 4. We need to use radius 1 standard, then all the houses can be warmed.
-//################################### binary search ################################### 
-int findRadius(vector<int>& houses, vector<int>& heaters) { 
+//Explanation: The two heater was placed in the position 1 and 4. We need to
+//use radius 1 standard, then all the houses can be warmed.
+//################################### binary search ###################################
+int findRadius(vector<int>& houses, vector<int>& heaters) {
   sort(heaters.begin(), heaters.end());
   int res = 0;
   for (auto house: houses) {
@@ -28,7 +37,7 @@ int findRadius(vector<int>& houses, vector<int>& heaters) {
               left = mid + 1;
           } else  {
               right = mid - 1;
-          } 
+          }
       }
       if (left > 0 && left < heaters.size()) // house between two heaters
           res = max(res, min(abs(house - heaters[left - 1]), abs(heaters[left] - house)));
@@ -38,11 +47,11 @@ int findRadius(vector<int>& houses, vector<int>& heaters) {
           res = max(res, abs(house - heaters[left]));
       // cout << "res = " << res << endl;
   }
-  return res; 
+  return res;
 }
 
-//################################# Sort + updating the middle pointer ################################# 
-//3 pointer solution 
+//################################# Sort + updating the middle pointer #################################
+//3 pointer solution
 // two of them point at houses and heaters; the third one points at the middle position of two neighbor heaters.
 int findRadius(vector<int>& houses, vector<int>& heaters) {
         int res = 0;
@@ -51,9 +60,9 @@ int findRadius(vector<int>& houses, vector<int>& heaters) {
         sort(heaters.begin(),heaters.end());
         // Sizes
         int s1 = houses.size();
-        int s2 = heaters.size(); 
+        int s2 = heaters.size();
        // This is the position of the middle point of two neighbor heaters
-        double mid = 0;   
+        double mid = 0;
        // If house[i] < mid, the house[i] is at the left of "mid"
        // "mid" helps determine which heater the house is close to
         int j = -1;      // Index of heater
@@ -75,16 +84,16 @@ int findRadius(vector<int>& houses, vector<int>& heaters) {
         }
         return res;
 }
-//################################# Sort + 3 conditions  ################################# 
-int findRadius(vector<int>& houses, vector<int>& heaters) { 
+//################################# Sort + 3 conditions  #################################
+int findRadius(vector<int>& houses, vector<int>& heaters) {
   int radius=0;
   if(houses.empty() || heaters.empty() )
     return 0;
   sort(houses.begin(),houses.end());
   sort(heaters.begin(), heaters.end());
-  
+
   int left, right, house, heater, j=0;
-  
+
   //For houses < heaters[0], max radius = heaters[0] - houses[0]
   if(houses[0] <= heaters[0]) {
      radius = heaters[0] - houses[0];
@@ -109,6 +118,6 @@ int findRadius(vector<int>& houses, vector<int>& heaters) {
      if(house - heater > radius)
       radius = house - heater;
   }
-  
+
   return radius;
 }

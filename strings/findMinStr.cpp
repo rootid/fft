@@ -1,4 +1,6 @@
-//HEAD: Given a random string S and another string T with unique elements, find the minimum consecutive sub-string of S such that it contains all the elements in T. example: S='adobecodebanc' T='abc'  answer='banc' 
+//HEAD: Given a random string S and another string T with unique elements, find
+//the minimum consecutive sub-string of S such that it contains all the
+//elements in T. example: S='adobecodebanc' T='abc'  answer='banc'
 
 #include<iostream>
 #include<string>
@@ -8,7 +10,7 @@ using namespace std;
 
 
 string getMinSubStr(string &s,string &t) {
- 
+
   unordered_map<char, int> u_map;
   vector< vector<int> > index_store;
   for (int i=0;i<t.length();i++) {
@@ -22,7 +24,7 @@ string getMinSubStr(string &s,string &t) {
   }
   int total_vtx = t.length();
   int total_path = index_store[0].size();
-   
+
   //for (int i=0;i<total_path ;i++) {
   //  int distance_ = INT_MAX;
   //  for (int j=1;j<total_vtx;j++) {
@@ -31,7 +33,7 @@ string getMinSubStr(string &s,string &t) {
   //      }
   //  }
   //}
-    
+
 }
 
 int main() {

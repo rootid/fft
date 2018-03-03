@@ -1,5 +1,6 @@
 //Binary Tree Right Side View
-//Given a binary tree, imagine yourself standing on the right side of it, return the values of the nodes you can see ordered from top to bottom.
+//Given a binary tree, imagine yourself standing on the right side of it,
+//return the values of the nodes you can see ordered from top to bottom.
 //For example:
 //Given the following binary tree,
 //   1            <---
@@ -11,7 +12,7 @@
 //
 //
 
-//######################################### explore right node first with increase level by 1 ######################################### 
+//######################################### explore right node first with increase level by 1 #########################################
 public List<Integer> rightSideView(TreeNode root) {
     List<Integer> rvList = new LinkedList<>();
     rightSideViewHelper(root, rvList,0);
@@ -20,7 +21,7 @@ public List<Integer> rightSideView(TreeNode root) {
 
 private void rightSideViewHelper(TreeNode root, List<Integer> rvList,int level) {
     if(root != null) {
-		//Add first right node 
+		//Add first right node
         if(rvList.size() == level) {
             rvList.add(root.val);
         }
@@ -31,24 +32,24 @@ private void rightSideViewHelper(TreeNode root, List<Integer> rvList,int level) 
 
 //Variation :
 //print a tree one level at a time.
-//################################# Recursive ################################# 
+//################################# Recursive #################################
 vector<int> rightSideView(TreeNode* root) {
    vector<int> result;
    if(!root)  return result;
    helper(result, 0, root);
    return result;
 }
-  
+
 void helper(vector<int>& result, int level, TreeNode* root){
     if(!root)  return;
     if(level == result.size()) {
-        result.push_back(root->val); 
+        result.push_back(root->val);
     }
     helper(result, level+1, root->right);
     helper(result, level+1, root->left);
 }
 
-//################################# ITerative ################################# 
+//################################# ITerative #################################
 //Push at the back and retreive from front
 vector<int> rightSideView(TreeNode* root) {
     deque<TreeNode*> dq;
@@ -60,9 +61,9 @@ vector<int> rightSideView(TreeNode* root) {
         for (int i = dq.size(); i > 0; i--) {
             TreeNode* cur = dq.front();
             dq.pop_front();
-            if (cur->left)  { 
+            if (cur->left)  {
               dq.push_back(cur->left);
-            }if (cur->right)  { 
+            }if (cur->right)  {
               dq.push_back(cur->right);
             }
         }
@@ -70,7 +71,7 @@ vector<int> rightSideView(TreeNode* root) {
     return result;
 }
 
-//###################### Iterative ###################### 
+//###################### Iterative ######################
 vector<int> rightSideView(TreeNode* root) {
    queue<TreeNode*>mQ;
    vector<int> ret;
@@ -88,10 +89,10 @@ vector<int> rightSideView(TreeNode* root) {
    return ret;
 }
 
-//###################### Divide and Conquer ###################### 
+//###################### Divide and Conquer ######################
 //solving the right tree side view and left tree side view ,and then merge
 the results
-vector<int> rightSideView(TreeNode* root) { 
+vector<int> rightSideView(TreeNode* root) {
   vector<int> r;
   if(root == NULL){
       return r;
@@ -101,7 +102,7 @@ vector<int> rightSideView(TreeNode* root) {
   vector<int> lt = rightSideView(root.left);
   for(int i=rt.size();i<lt.size();i++){
       rt.push_back(lt[i]);
-  }    
+  }
   for(auto num:rt) {
     r.push_back(num);
   }

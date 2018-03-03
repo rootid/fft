@@ -1,12 +1,13 @@
-//Meeting Rooms II 
-//Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...] (si < ei), find the minimum number of conference rooms required.
+//Meeting Rooms II
+//Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...] (si < ei), find the
+//minimum number of conference rooms required.
 //For example,
 //Given [[0, 30],[5, 10],[15, 20]],
 //return 2.
 //
 
 
-//######################################### Sort by start time and store the meetings by increasing order of end time ######################################### 
+//######################################### Sort by start time and store the meetings by increasing order of end time #########################################
 public int minMeetingRooms(Interval[] intervals) {
     if(intervals == null || intervals.length == 0) return 0;
     int rooms = 0;
@@ -24,11 +25,11 @@ public int minMeetingRooms(Interval[] intervals) {
 }
 
 
-//######################################### 2 Vectors + Sort ######################################### 
-//# Very similar with what we do in real life. Whenever you want to start a meeting, 
+//######################################### 2 Vectors + Sort #########################################
+//# Very similar with what we do in real life. Whenever you want to start a meeting,
 //# you go and check if any empty room available (available > 0) and
 //# if so take one of them ( available -=1 ). Otherwise,
-//# you need to find a new room someplace else ( numRooms += 1 ).  
+//# you need to find a new room someplace else ( numRooms += 1 ).
 //# After you finish the meeting, the room becomes available again ( available += 1 ).
 def minMeetingRooms(self, intervals):
        starts = []
@@ -46,7 +47,7 @@ def minMeetingRooms(self, intervals):
                    numRooms += 1
                else:
                    available -= 1
-                   
+
                s += 1
            else:
                available += 1
@@ -55,20 +56,20 @@ def minMeetingRooms(self, intervals):
 
 
 
-//######################################### Dictionary ######################################### 
+//######################################### Dictionary #########################################
 def minMeetingRooms(intervals):
-    
+
     mp = collections.defaultdict(int)
     for item in intervals:
         mp[item.start] += 1
         mp[item.end] -= 1
-        
+
     ret = cnt = 0
     for i in sorted(mp.keys()):
         cnt += mp[i]
         ret = max(ret, cnt)
     return ret
-//######################################### Min Heap ######################################### 
+//######################################### Min Heap #########################################
 static bool cmpStart(Interval x, Interval y){
     return x.start < y.start;
 }
@@ -86,12 +87,12 @@ int minMeetingRooms(vector<Interval>& intervals) {
     }
     return cnt;
 }
-//######################################### Min Heap ######################################### 
+//######################################### Min Heap #########################################
 //min heap, average time complexity is O(nlogn)
 public int minMeetingRooms(Interval[] intervals) {
     if (intervals == null || intervals.length == 0)
         return 0;
-        
+
     // Sort the intervals by start time
     Arrays.sort(intervals, new Comparator<Interval>() {
         public int compare(Interval a, Interval b) { return a.start - b.start; }
@@ -100,14 +101,14 @@ public int minMeetingRooms(Interval[] intervals) {
     PriorityQueue<Interval> heap = new PriorityQueue<Interval>(intervals.length, new Comparator<Interval>() {
         public int compare(Interval a, Interval b) { return a.end - b.end; }
     });
-    
+
     // start with the first meeting, put it to a meeting room
     heap.offer(intervals[0]);
     for (int i = 1; i < intervals.length; i++) {
         // get the meeting room that finishes earliest
         Interval interval = heap.poll();
         if (intervals[i].start >= interval.end) {
-            // if the current meeting starts right after 
+            // if the current meeting starts right after
             // there's no need for a new room, merge the interval
             interval.end = intervals[i].end;
         } else {
@@ -121,7 +122,7 @@ public int minMeetingRooms(Interval[] intervals) {
 }
 
 
-//#########################################  Map  ######################################### 
+//#########################################  Map  #########################################
 //First collect the changes: at what times the number of meetings goes up or down and by how much.
 //Then go through those changes in ascending order and keep track of the current and maximum number
 //of rooms needed.
@@ -140,7 +141,7 @@ int minMeetingRooms(vector<Interval>& intervals) {
 }
 
 
-//######################################### vector  ######################################### 
+//######################################### vector  #########################################
 int minMeetingRooms(vector<Interval>& intervals) {
     vector<pair<int, int>> changes;
     for (auto i : intervals) {
@@ -154,8 +155,10 @@ int minMeetingRooms(vector<Interval>& intervals) {
     return maxrooms;
 }
 
-//######################################### 2 vectors  ######################################### 
-//Uses separate vectors for start and end times, which ends up consistently being fastest. I'm guessing it's mostly because working with ints is simpler than working with pairs of ints. The initial sorting also needs fewer steps, 2(nlogn) instead of (2n)log(2n), but I think the added merging in the later loop cancels that advantage out.
+//######################################### 2 vectors  #########################################
+//Uses separate vectors for start and end times, which ends up consistently being fastest. I'm guessing it's mostly
+//because working with ints is simpler than working with pairs of ints. The initial sorting also needs fewer steps,
+//2(nlogn) instead of (2n)log(2n), but I think the added merging in the later loop cancels that advantage out.
 int minMeetingRooms(vector<Interval>& intervals) {
     vector<int> starts, ends;
     for (auto i : intervals) {

@@ -1,8 +1,10 @@
 //Closest Binary Search Tree Value
-//Given a non-empty binary search tree and a target value, find the value in the BST that is closest to the target.
+//Given a non-empty binary search tree and a target value, find the value in
+//the BST that is closest to the target.
 //Note:
 //Given target value is a floating point.
-//You are guaranteed to have only one unique value in the BST that is closest to the target.
+//You are guaranteed to have only one unique value in the BST that is closest
+//to the target.
 
 //TODO : while comparing 2 doubles use below format
 bool doubleEqual(double a, double b){
@@ -16,15 +18,15 @@ int closestValue(TreeNode *root,double target) {
     }
     int a = root->val;
     if(target < a) {
-      root = root->left;  
+      root = root->left;
     } else {
-      root = root->right;  
+      root = root->right;
     }
     if (!root) return a;
     int b = closestValue(root, target);
     if (abs(a - target) < abs(b - target) ) {
       return a;
-    } 
+    }
     return b;
 }
 
@@ -55,15 +57,15 @@ void helper(TreeNode* root,double& target,double& res) {
   }
   if(res == INT_MAX || abs(tmp-target) < abs(res-target)  ) {
     res = tmp;
-    helper(root->left,target,res); 
+    helper(root->left,target,res);
   } else {
-    helper(root->right,target,res); 
+    helper(root->right,target,res);
   }
 }
 
 int closestValue(TreeNode* root, double target) {
   double res = INT_MAX;
-  helper(root,target,res); 
+  helper(root,target,res);
   return res;
 }
 

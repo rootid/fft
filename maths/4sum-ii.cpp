@@ -38,8 +38,9 @@ vector<vector<int> > fourSum(vector<int> &num, int target) {
 }
 
 
-//############################################## Merge interval ######################################### 
-//Just go through the intervals sorted by start coordinate and either combine the current interval with the previous 
+//############################################## Merge interval #########################################
+//Just go through the intervals sorted by start coordinate and either combine
+//the current interval with the previous
 //one if they overlap, or add it to the output by itself if they don't.
 def merge(self, intervals):
     out = []

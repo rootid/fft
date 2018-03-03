@@ -6,8 +6,10 @@
 //1234567 -> "One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven"
 //Hint:
 //Did you see a pattern in dividing the number into chunk of words? For example, 123 and 123000.
-//Group the number by thousands (3 digits). You can write a helper function that takes a number less than pow(10,3) and convert just that chunk to words.
-//There are many edge cases. What are some good test cases? Does your code work with input such as 0? Or pow(10,3)010? (middle chunk is zero and should not be printed out)
+//Group the number by thousands (3 digits). You can write a helper function that takes a number less than pow(10,3) and
+//convert just that chunk to words.
+//There are many edge cases. What are some good test cases? Does your code work with input such as 0? Or pow(10,3)010?
+//(middle chunk is zero and should not be printed out)
 
 
 //######################################## Recursive ########################################

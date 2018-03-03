@@ -1,11 +1,12 @@
 //Reverse Words in a String III
-//Given a string, you need to reverse the order of characters in each word within a sentence while still preserving whitespace and initial word order.
+//Given a string, you need to reverse the order of characters in each word within a sentence while still preserving
+//whitespace and initial word order.
 //Example 1:
 //Input: "Let's take LeetCode contest"
 //Output: "s'teL ekat edoCteeL tsetnoc"
 //Note: In the string, each word is separated by single space and there will not be any extra space in the string.
 
-//######################################## traversal O(n) ######################################## 
+//######################################## traversal O(n) ########################################
 private void swapBetween(int start,int end, char[] str) {
       while(start < end) {
         char tmp = str[start];
@@ -24,11 +25,11 @@ public String reverseWords(String s1) {
           swapBetween(j,i-1,s);
           j = i+1;
       }
-    } 
+    }
     return new String(s);
 }
 
-//######################################## istream + copy semantics ######################################## 
+//######################################## istream + copy semantics ########################################
 string reverseWords(string s) {
     istringstream iss{s};
     auto iter = s.begin(); //Let's
@@ -41,7 +42,7 @@ string reverseWords(string s) {
     return s;
 }
 
-//######################################## simple traversal ######################################## 
+//######################################## simple traversal ########################################
 string reverseWords(string s) {
     for (int i = 0; i < s.length(); i++) {
         if (s[i] != ' ') {   // when i is a non-space
@@ -78,4 +79,4 @@ string reverseWords(string s) {
 //0.69 0.71 0.69 0.70 0.70 seconds for: ' '.join(x[::-1] for x in s.split())
 //0.63 0.68 0.63 0.64 0.64 seconds for: ' '.join([x[::-1] for x in s.split()])
 
-// vim: set sw=2 sts=2 tw=120 et nospell : 
+// vim: set sw=2 sts=2 tw=120 et nospell :

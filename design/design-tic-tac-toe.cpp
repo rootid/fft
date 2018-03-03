@@ -3,7 +3,8 @@
 //You may assume the following rules:
 //A move is guaranteed to be valid and is placed on an empty block.
 //Once a winning condition is reached, no more moves is allowed.
-//A player who succeeds in placing n of their marks in a horizontal, vertical, or diagonal row wins the game.
+//A player who succeeds in placing n of their marks in a horizontal, vertical,
+//or diagonal row wins the game.
 //Example:
 //Given n = 3, assume that player 1 is "X" and player 2 is "O" in the board.
 //TicTacToe toe = new TicTacToe(3);
@@ -39,16 +40,23 @@
 //Could you do better than O(n2) per move() operation?
 //Hint:
 //Could you trade extra space such that move() operation can be done in O(1)?
-//You need two arrays: int rows[n], int cols[n], plus two variables: diagonal, anti_diagonal.
+//You need two arrays: int rows[n], int cols[n], plus two variables: diagonal,
+//anti_diagonal.
 //Solution:
-//Use addtional arrays rows[n], cols[n] and two varialbes diagonal, anti_diagonal to mark the number of Xs and Os.
+//Use addtional arrays rows[n], cols[n] and two varialbes diagonal,
+//anti_diagonal to mark the number of Xs and Os.
 
 
 //############################ ############################
 //if ((row - col) == 0) diag += toAdd;
 //if ((row + col) == (n - 1)) antidiag += toAdd;
-//On an n x n matrix, you can compute the (anti-)diagonal of a cell by using x + y or x - y. Since given y = mx + b, and m = {1, -1}, then y = {1, -1}x + b, thus y + {1, -1}x = b. If 'b' = 0 then it's the diagonal starting from the bottom, if 'b' = n then it's the diagonal starting from the top.
-//And of course, the 'b' value creates an equivalency relation, which means you can generalize this property to partition all diagonals using the 'b' value. So two spots having the same b value are on the same diagonal.
+//On an n x n matrix, you can compute the (anti-)diagonal of a cell by using x
+//+ y or x - y. Since given y = mx + b, and m = {1, -1}, then y = {1, -1}x + b,
+//thus y + {1, -1}x = b. If 'b' = 0 then it's the diagonal starting from the
+//bottom, if 'b' = n then it's the diagonal starting from the top.
+//And of course, the 'b' value creates an equivalency relation, which means you
+//can generalize this property to partition all diagonals using the 'b' value.
+//So two spots having the same b value are on the same diagonal.
 public class TicTacToe {
   private int[] rows;
   private int[] cols;
@@ -294,7 +302,8 @@ public class TicTacToe {
 //
 //Record the number of moves for each rows, columns, and two diagonals.
 //For each move, we -1 for each player 1's move and +1 for player 2's move.
-//Then we just need to check whether any of the recored numbers equal to n or -n.
+//Then we just need to check whether any of the recored numbers equal to n or
+//-n.
 //class TicTacToe(object):
 //
 //    def __init__(self, n):

@@ -1,7 +1,8 @@
 #include "../headers/global.hpp"
 
 //Sort Characters By Frequency
-//Given a string, sort it in decreasing order based on the frequency of characters.
+//Given a string, sort it in decreasing order based on the frequency of
+//characters.
 //Example 1:
 //Input:
 //"tree"
@@ -9,7 +10,8 @@
 //"eert"
 //Explanation:
 //'e' appears twice while 'r' and 't' both appear once.
-//So 'e' must appear before both 'r' and 't'. Therefore "eetr" is also a valid answer.
+//So 'e' must appear before both 'r' and 't'. Therefore "eetr" is also a valid
+//answer.
 //Example 2:
 //Input:
 //"cccaaa"
@@ -27,7 +29,7 @@
 //"bbaA" is also a valid answer, but "Aabb" is incorrect.
 //Note that 'A' and 'a' are treated as two different characters.
 
-//######################################### Iteration ######################################### 
+//######################################### Iteration #########################################
 string frequencySort(string s) {
      unordered_map<char,int> freq_map;
      for(char c:s) {
@@ -38,7 +40,7 @@ string frequencySort(string s) {
          char c = i.first;
          int cnt = i.second;
          ///cout << " char " << c << " cnt " << cnt << endl;
-         inv_freq_map[cnt].append(cnt,c); //append cnt chars of c 
+         inv_freq_map[cnt].append(cnt,c); //append cnt chars of c
      }
      //for(auto& i:inv_freq_map) {
      //  cout << i << endl;

@@ -1,7 +1,12 @@
 //Map Sum Pairs
 //Implement a MapSum class with insert, and sum methods.
-//For the method insert, you'll be given a pair of (string, integer). The string represents the key and the integer represents the value. If the key already existed, then the original key-value pair will be overridden to the new one.
-//For the method sum, you'll be given a string representing the prefix, and you need to return the sum of all the pairs' value whose key starts with the prefix.
+//For the method insert, you'll be given a pair of (string, integer). The
+//string represents the key and the integer represents the value. If the key
+//already existed, then the original key-value pair will be overridden to the
+//new one.
+//For the method sum, you'll be given a string representing the prefix, and you
+//need to return the sum of all the pairs' value whose key starts with the
+//prefix.
 //Example 1:
 //Input: insert("apple", 3), Output: Null
 //Input: sum("ap"), Output: 3
@@ -11,13 +16,13 @@
 class MapSum {
     /** Initialize your data structure here. */
     public MapSum() {
-        
+
     }
     public void insert(String key, int val) {
-        
+
     }
     public int sum(String prefix) {
-        
+
     }
 }
 
@@ -28,26 +33,26 @@ class MapSum {
  * int param_2 = obj.sum(prefix);
  */
 
-//######################################### Trie ######################################### 
+//######################################### Trie #########################################
 class MapSum {
     class TrieNode {
         Map<Character, TrieNode> children;
         boolean isWord; //NOTE : Not required
-        int value; 
+        int value;
         public TrieNode() {
             children = new HashMap<Character, TrieNode>();
             isWord = false;
             value = 0;
         }
     }
-    
+
     TrieNode root;
-    
+
     /** Initialize your data structure here. */
     public MapSum() {
         root = new TrieNode();
     }
-    
+
     public void insert(String key, int val) {
         TrieNode curr = root;
         for (char c : key.toCharArray()) {
@@ -61,7 +66,7 @@ class MapSum {
         curr.isWord = true;
         curr.value = val;
     }
-    
+
     public int sum(String prefix) {
         TrieNode curr = root;
     for (char c : prefix.toCharArray()) {
@@ -71,10 +76,10 @@ class MapSum {
         }
         curr = next;
         }
-        
+
         return dfs(curr);
     }
-    
+
     private int dfs(TrieNode root) {
         int sum = 0;
         for (char c : root.children.keySet()) {
@@ -84,7 +89,7 @@ class MapSum {
     }
 }
 
-//######################################### Map + indexof (prefix check) ######################################### 
+//######################################### Map + indexof (prefix check) #########################################
 /** Initialize your data structure here. */
 HashMap<String, Integer> map;
 public MapSum() {
@@ -107,17 +112,17 @@ public int sum(String prefix) {
     return sum;
 }
 
-//######################################### Only unordered_map ######################################### 
+//######################################### Only unordered_map #########################################
 public:
     /** Initialize your data structure here. */
     MapSum() {
         sum_res = 0;
     }
-    
+
     void insert(string key, int val) {
         mp[key] = val;
     }
-    
+
     int sum(string prefix) {
         sum_res = 0;
         int prefix_size = prefix.size();
@@ -132,7 +137,7 @@ private:
     unordered_map<string, int> mp;
     int sum_res;
 
-//######################################### Trie ######################################### 
+//######################################### Trie #########################################
 class MapSum {
 	private TrieNode root;
 

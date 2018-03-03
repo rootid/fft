@@ -1,5 +1,9 @@
-//Design a hit counter which counts the number of hits received in the past 5 minutes.
-//Each function accepts a timestamp parameter (in seconds granularity) and you may assume that calls are being made to the system in chronological order (ie, the timestamp is monotonically increasing). You may assume that the earliest timestamp starts at 1.
+//Design a hit counter which counts the number of hits received in the past 5
+//minutes.
+//Each function accepts a timestamp parameter (in seconds granularity) and you
+//may assume that calls are being made to the system in chronological order
+//(ie, the timestamp is monotonically increasing). You may assume that the
+//earliest timestamp starts at 1.
 //It is possible that several hits arrive roughly at the same time.
 //Example:
 //HitCounter counter = new HitCounter();
@@ -18,14 +22,18 @@
 //// get hits at timestamp 301, should return 3.
 //counter.getHits(301);
 //Follow up:
-//What if the number of hits per second could be very large? Does your design scale?
+//What if the number of hits per second could be very large? Does your design
+//scale?
 
 
 //#########################################  #########################################
 //
 //O(s) s is total seconds in given time interval, in this case 300.
-//basic ideal is using buckets. 1 bucket for every second because we only need to keep the recent hits info for 300 seconds.
-//hit[] array is wrapped around by mod operation. Each hit bucket is associated with times[] bucket which record current time. If it is not current time, it means it is 300s or 600s... ago and need to reset to 1.
+//basic ideal is using buckets. 1 bucket for every second because we only need
+//to keep the recent hits info for 300 seconds.
+//hit[] array is wrapped around by mod operation. Each hit bucket is associated
+//with times[] bucket which record current time. If it is not current time, it
+//means it is 300s or 600s... ago and need to reset to 1.
 //
 public class HitCounter {
     private int[] times;

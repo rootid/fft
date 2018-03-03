@@ -1,10 +1,13 @@
 //ZigZag Conversion
-//The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+//The string "PAYPALISHIRING" is written in a zigzag pattern on a given number
+//of rows like this: (you may want to display this pattern in a fixed font for
+//better legibility)
 //P   A   H   N
 //A P L S I I G
 //Y   I   R
 //And then read line by line: "PAHNAPLSIIGYIR"
-//Write the code that will take a string and make this conversion given a number of rows:
+//Write the code that will take a string and make this conversion given a
+//number of rows:
 //string convert(string text, int nRows);
 //convert("PAYPALISHIRING", 3) should return "PAHNAPLSIIGYIR".
 #include<iostream>
@@ -13,14 +16,14 @@
 using namespace std;
 
 string convert(string s, int numRows) {
- 
+
   if(numRows == 1)  {
     return s;
   }
   //3-rows,columns
   vector<vector<char> > t(numRows,vector<char>());
   string result;
-  int len = s.size(); 
+  int len = s.size();
   int rowNum = 0;
   int offset= 1;
   for(int i=0;i<len;i++) {
@@ -39,7 +42,7 @@ string convert(string s, int numRows) {
       result += t[i][j] ;
     }
   }
-  return result; 
+  return result;
 }
 
 int main() {

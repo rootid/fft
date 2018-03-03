@@ -1,5 +1,6 @@
 //Keyboard Row
-//Given a List of words, return the words that can be typed using letters of alphabet on only one row's of American keyboard like the image below.
+//Given a List of words, return the words that can be typed using letters of
+//alphabet on only one row's of American keyboard like the image below.
 //Example 1:
 //Input: ["Hello", "Alaska", "Dad", "Peace"]
 //Output: ["Alaska", "Dad"]
@@ -7,14 +8,14 @@
 //You may use one character in the keyboard more than once.
 //You may assume the input string will only contain letters of alphabet.
 
-//###################################################### Map ########################################### 
+//###################################################### Map ###########################################
 vector<string> findWords(vector<string>& words) {
     unordered_set<char> row1 {'q', 'w', 'e', 'r', 't', 'y','u', 'i', 'o', 'p'};
-    unordered_set<char> row2 {'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'}; 
+    unordered_set<char> row2 {'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'};
     unordered_set<char> row3 { 'z', 'x', 'c', 'v', 'b' ,'n', 'm'};
     vector<unordered_set<char>> rows {row1, row2, row3};
-    
-    
+
+
     vector<string> validWords;
     for(int i=0; i<words.size(); ++i){
         int row=0;
@@ -30,12 +31,12 @@ vector<string> findWords(vector<string>& words) {
                 break;
             }
         }
-        
+
     }
     return validWords;
 }
 
-//###################################################### Bit manipulation  ########################################### 
+//###################################################### Bit manipulation  ###########################################
 vector<string> findWords(vector<string>& words) {
       vector<int> dict(26);
       vector<string> rows = {"QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"};

@@ -1,6 +1,8 @@
 //Longest Harmonious Subsequence
-//We define a harmonious array is an array where the difference between its maximum value and its minimum value is exactly 1.
-//Now, given an integer array, you need to find the length of its longest harmonious subsequence among all its possible subsequences.
+//We define a harmonious array is an array where the difference between its maximum value and its minimum value is
+//exactly 1.
+//Now, given an integer array, you need to find the length of its longest harmonious subsequence among all its possible
+//subsequences.
 //Example 1:
 //Input: [1,3,2,2,5,2,3,7]
 //Output: 5
@@ -8,7 +10,7 @@
 //Note: The length of the input array will not exceed 20,000.
 //
 
-//#############################  Map  : Single loop ########################## 
+//#############################  Map  : Single loop ##########################
 public int findLHS(int[] nums) {
     HashMap < Integer, Integer > map = new HashMap < > ();
     int res = 0;
@@ -21,14 +23,14 @@ public int findLHS(int[] nums) {
     }
     return res;
 }
-//#############################  Map ########################## 
+//#############################  Map ##########################
 // Maintain the freqMap of val, #of occcurances
 public int findLHS(int[] nums) {
     Map<Integer, Integer> freqMap = new HashMap<>();
     int maxLength = 0;
-    for(int i=0;i<nums.length;i++) 
+    for(int i=0;i<nums.length;i++)
         freqMap.put(nums[i], freqMap.getOrDefault(nums[i], 0) + 1);
-    
+
     for(int key: freqMap.keySet()) {
          int freq = freqMap.get(key);
          if(freqMap.containsKey(key+1)) maxLength = Math.max(maxLength, freq + freqMap.get(key+1)); // 3,4,2
@@ -38,7 +40,7 @@ public int findLHS(int[] nums) {
 }
 
 
-//#############################  with ordered_map ########################## 
+//#############################  with ordered_map ##########################
 int findLHS(vector<int>& nums) {
     map<int, int> freqs;
     for (int n : nums) {
@@ -59,7 +61,7 @@ int findLHS(vector<int>& nums) {
     return longest;
 }
 
-//#############################  with unordered_map ########################## 
+//#############################  with unordered_map ##########################
 int findLHS(vector<int>& nums) {
     unordered_map<int,int> mp;
     //map<int,int> mp;
@@ -81,7 +83,7 @@ int findLHS(vector<int>& nums) {
 }
 
 
-//############################# pytonic ########################## 
+//############################# pytonic ##########################
 //Let count[x] be the number of x's in our array.
 //
 //Suppose our longest subsequence B has min(B) = x and max(B) = x+1.
@@ -99,7 +101,10 @@ int findLHS(vector<int>& nums) {
 //for x in A:
 //    count[x] = count.get(x, 0) + 1
 //
-//count is a dictionary mapping values in our array to the number of times they occur. For example, if our array is A = [1, 1, 1, 2, 5, 5, 5], then our dictionary will be count = {1: 3, 2: 1, 5: 3}. When we iterate over count, we iterate over it's keys. So for x in count will loop through it's inner block three times, with the variable x = 1, x = 2, and x = 5.
+//count is a dictionary mapping values in our array to the number of times they occur. For example, if our array is A =
+//[1, 1, 1, 2, 5, 5, 5], then our dictionary will be count = {1: 3, 2: 1, 5: 3}. When we iterate over count, we iterate
+//over it's keys. So for x in count will loop through it's inner block three times, with the variable x = 1, x = 2, and
+//x = 5.
 //
 //def findLHS(self, nums):
 //        c = collections.Counter(nums)

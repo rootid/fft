@@ -1,19 +1,24 @@
 //Complex Number Multiplication
 //Given two strings representing two complex numbers.
-//You need to return a string representing their multiplication. Note i2 = -1 according to the definition.
+//You need to return a string representing their multiplication. Note i2 = -1
+//according to the definition.
 //Example 1:
 //Input: "1+1i", "1+1i"
 //Output: "0+2i"
-//Explanation: (1 + i) * (1 + i) = 1 + i2 + 2 * i = 2i, and you need convert it to the form of 0+2i.
+//Explanation: (1 + i) * (1 + i) = 1 + i2 + 2 * i = 2i, and you need convert it
+//to the form of 0+2i.
 //Example 2:
 //Input: "1+-1i", "1+-1i"
 //Output: "0+-2i"
-//Explanation: (1 - i) * (1 - i) = 1 + i2 - 2 * i = -2i, and you need convert it to the form of 0+-2i.
+//Explanation: (1 - i) * (1 - i) = 1 + i2 - 2 * i = -2i, and you need convert
+//it to the form of 0+-2i.
 //Note:
 //The input strings will not have extra blank.
-//The input strings will be given in the form of a+bi, where the integer a and b will both belong to the range of [-100, 100]. And the output should be also in this form.
+//The input strings will be given in the form of a+bi, where the integer a and
+//b will both belong to the range of [-100, 100]. And the output should be also
+//in this form.
 
-//################################ O(n) + parse with find ################################ 
+//################################ O(n) + parse with find ################################
 string complexNumberMultiply(string a, string b) {
      pair<int, int> av = parse(a);
      pair<int, int> bv = parse(b);
@@ -23,14 +28,14 @@ string complexNumberMultiply(string a, string b) {
 }
 
 pair<int, int> parse(const string& a) {
-    int plus = find(a.begin(), a.end(), '+') - a.begin(); 
+    int plus = find(a.begin(), a.end(), '+') - a.begin();
     int i = find(a.begin(), a.end(), 'i') - a.begin();
     int ra = stoi(a.substr(0, plus));
     int ia= stoi(a.substr(plus + 1, i - plus));
     return {ra, ia};
 }
 
-//################################ O(n) + parse with stringsteram ################################ 
+//################################ O(n) + parse with stringsteram ################################
 string complexNumberMultiply(string a, string b) {
      int ra, ia, rb, ib;
      char buff;
@@ -41,7 +46,7 @@ string complexNumberMultiply(string a, string b) {
      return ans.str();
 }
 
-//################################ O(n) + parse w/o new utils################################ 
+//################################ O(n) + parse w/o new utils################################
 vector<int> getNums(string s) {
     int i=0;
     while(s[i]!='+') ++i;
@@ -55,7 +60,7 @@ string complexNumberMultiply(string a, string b) {
     return to_string(A[0]*B[0] - A[1]*B[1]) + "+" + to_string(A[0]*B[1] + A[1]*B[0]) + "i";
 }
 
-//################################ O(n) + Lame parse ################################ 
+//################################ O(n) + Lame parse ################################
 string complexNumberMultiply(string a, string b) {
     auto A = getNum(a);
     auto B = getNum(b);
@@ -83,11 +88,11 @@ pair<int,int> getNum(string& s){
     while(s[i] != 'i'){
         im = im * 10 + (s[i++] - '0');
     }
-    
+
     return {real * sign_r, im * sign_im};
 }
 
-//################################ pytonic ################################ 
+//################################ pytonic ################################
 //class Solution(object):
 //    def complexNumberMultiply(self, a, b):
 //        a = a.split("+")

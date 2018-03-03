@@ -1,21 +1,32 @@
 //Max Sum of Rectangle No Larger Than K
-//Given a non-empty 2D matrix matrix and an integer k, find the max sum of a rectangle in the matrix such that its sum is no larger than k.
+//Given a non-empty 2D matrix matrix and an integer k, find the max sum of a
+//rectangle in the matrix such that its sum is no larger than k.
 //Example:
 //Given matrix = [
 //  [1,  0, 1],
 //  [0, -2, 3]
 //]
 //k = 2
-//The answer is 2. Because the sum of rectangle [[0, 1], [-2, 3]] is 2 and 2 is the max number no larger than k (k = 2).
+//The answer is 2. Because the sum of rectangle [[0, 1], [-2, 3]] is 2 and 2 is
+//the max number no larger than k (k = 2).
 //Note:
 //The rectangle inside the matrix must have an area > 0.
 //What if the number of rows is much larger than the number of columns?
 //
-//The naive solution is brute-force, which is O((mn)^2). In order to be more efficient, I tried something similar to Kadane's algorithm. The only difference is that here we have upper bound restriction K. Here's the easily understanding video link for the problem "find the max sum rectangle in 2D array": Maximum Sum Rectangular Submatrix in Matrix dynamic programming/2D kadane (Trust me, it's really easy and straightforward).
-//Once you are clear how to solve the above problem, the next step is to find the max sum no more than K in an array. This can be done within O(nlogn), and you can refer to this article: max subarray sum no more than k.
-//For the solution below, I assume that the number of rows is larger than the number of columns. Thus in general time complexity is O[min(m,n)^2 * max(m,n) * log(max(m,n))], space O(max(m, n)).
+//The naive solution is brute-force, which is O((mn)^2). In order to be more
+//efficient, I tried something similar to Kadane's algorithm. The only
+//difference is that here we have upper bound restriction K. Here's the easily
+//understanding video link for the problem "find the max sum rectangle in 2D
+//array": Maximum Sum Rectangular Submatrix in Matrix dynamic programming/2D
+//kadane (Trust me, it's really easy and straightforward).
+//Once you are clear how to solve the above problem, the next step is to find
+//the max sum no more than K in an array. This can be done within O(nlogn), and
+//you can refer to this article: max subarray sum no more than k.
+//For the solution below, I assume that the number of rows is larger than the
+//number of columns. Thus in general time complexity is O[min(m,n)^2 * max(m,n)
+//* log(max(m,n))], space O(max(m, n)).
 
-//######################################## DP + Kadane algo O(n) ######################## 
+//######################################## DP + Kadane algo O(n) ########################
 //https://www.youtube.com/watch?v=yCQN096CwWM
 int maxSumSubmatrix(vector<vector<int>>& matrix, int k) {
     //empty matrix
@@ -23,13 +34,13 @@ int maxSumSubmatrix(vector<vector<int>>& matrix, int k) {
       return 0;
     }
     int row = matrix.size(), col = matrix[0].size(), res = INT_MIN;
-    for (int l = 0; l < col; ++l) { 
+    for (int l = 0; l < col; ++l) {
         vector<int> sums(row, 0);
         for (int r = l; r < col; ++r) {
             for (int i = 0; i < row; ++i) {
                 sums[i] += matrix[i][r]; //get all the sum for each row
             }
-            // Find the max subarray no more than K 
+            // Find the max subarray no more than K
             set<int> accuSet;
             accuSet.insert(0);
             int curSum = 0, curMax = INT_MIN;
@@ -48,7 +59,7 @@ int maxSumSubmatrix(vector<vector<int>>& matrix, int k) {
 }
 
 
-//######################################## DP ######################## 
+//######################################## DP ########################
 int maxSumSubmatrix(vector<vector<int>>& matrix, int k) {
     int m=matrix.size();
     if(m==0) return 0;
@@ -63,7 +74,7 @@ int maxSumSubmatrix(vector<vector<int>>& matrix, int k) {
             int ms = maxSumArray(sums, k);
             if (ms == k) return ms;
             if (ms < k && ms > res) res = ms;
-      
+
         }
     }
     return res;
@@ -88,17 +99,17 @@ int maxSumArray(vector<int> & arr, int k) {
         sums.insert(sum);
     }
     return maxS;
-} 
+}
 
 
-//######################################## naive O(n^3) ######################## 
-int maxSumSubmatrix(vector<vector<int>>& matrix, int k) { 
+//######################################## naive O(n^3) ########################
+int maxSumSubmatrix(vector<vector<int>>& matrix, int k) {
   if(matrix.empty()) {
     return 0;
   }
   int rowSize = matrix.size(), colSize = matrix[0].size();
   int ret = INT_MIN;
-  for(int l = 0; l < colSize; ++l) { //starting leftmost column; 
+  for(int l = 0; l < colSize; ++l) { //starting leftmost column;
       vector<int> sums(rowSize, 0); //store the row pre-sums;
       for(int c = l; c < colSize; ++c) { //try different ending columns;
           for(int r = 0; r < rowSize; ++r) { //sum them up in rows;
@@ -118,14 +129,14 @@ int maxSumSubmatrix(vector<vector<int>>& matrix, int k) {
           ret = max(ret, maxSum);
       }
   }
-  return ret; 
+  return ret;
 }
 
 
 
-//######################################## naive O(n^4) ######################## 
-//Compute Running sum 
-//And check area <= k 
+//######################################## naive O(n^4) ########################
+//Compute Running sum
+//And check area <= k
 public int maxSumSubmatrix(int[][] matrix, int k) {
 
     if (matrix == null || matrix.length == 0 || matrix[0].length == 0)
@@ -135,7 +146,7 @@ public int maxSumSubmatrix(int[][] matrix, int k) {
     int[][] areas = new int[rows][cols];
     for (int r = 0; r < rows; r++) {
         for (int c = 0; c < cols; c++) {
-            int area = matrix[r][c]; 
+            int area = matrix[r][c];
             if (r-1 >= 0)
                 area += areas[r-1][c];
             if (c-1 >= 0)
@@ -167,7 +178,7 @@ public int maxSumSubmatrix(int[][] matrix, int k) {
 }
 
 
-//######################################## O(n^3 log n) ######################## 
+//######################################## O(n^3 log n) ########################
 // idea = to find max subarray with sum <= k in 1D array, and apply here: we find all rectangles bounded between r1 & r2, with columns from 0 to end. Pick a pair from tree.
 public int maxSumSubmatrix(int[][] matrix, int k) {
     if (matrix == null || matrix.length == 0 || matrix[0].length == 0)

@@ -1,6 +1,9 @@
 //Unique Paths
-//A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
-//The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
+//A robot is located at the top-left corner of a m x n grid (marked 'Start' in
+//the diagram below).
+//The robot can only move either down or right at any point in time. The robot
+//is trying to reach the bottom-right corner of the grid (marked 'Finish' in
+//the diagram below).
 //How many possible unique paths are there?
 
 
@@ -37,9 +40,11 @@ public int uniquePaths(int m, int n) {
 
 
 //########################################## Space O(n^2) ##########################################
-//When (n==0||m==0) the function always returns 0 since the robot can't go left or up.
+//When (n==0||m==0) the function always returns 0 since the robot can't go left
+//or up.
 //For all other cells. The result = uniquePaths(m-1,n)+uniquePaths(m,n-1)
-//Therefore I populated the edges with 1 first and use DP to get the full 2-D array.
+//Therefore I populated the edges with 1 first and use DP to get the full 2-D
+//array.
 int uniquePaths(int m, int n) {
     vector< vector<int> > paths(m, vector<int>(n,1) );
     for(int i=1;i<m;i++) {

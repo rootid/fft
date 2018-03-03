@@ -1,5 +1,6 @@
 //Restore IP Addresses
-//Given a string containing only digits, restore it by returning all possible valid IP address combinations.
+//Given a string containing only digits, restore it by returning all possible
+//valid IP address combinations.
 //For example:
 //Given "25525511135",
 //return ["255.255.11.135", "255.255.111.35"]. (Order does not matter)
@@ -19,15 +20,15 @@ void helper(List<String> acc, String s, int k, int[] section,  int segment){
     if(segment == 4 && k == s.length() ){
         acc.add(section[0] + "." + section[1] + "."+ section[2] + "." + section[3]);
         return ;
-    } 
+    }
  	for(int len = 1; len <= 3 && k + len <= s.length() && segment < 4 ; len++) {
         int val = Integer.parseInt(s.substring(k, k + len)); //take all substring upto length = 3
         // range check, no leading 0. | Pruniing
-        if(val > 255 || len >= 2  && s.charAt(k) == '0') 
-            break; 
-        section[segment] = val; 
+        if(val > 255 || len >= 2  && s.charAt(k) == '0')
+            break;
+        section[segment] = val;
         helper(acc, s, k + len, section, segment + 1); //pick the next segment
-        section[segment] = -1; // for debug. 
+        section[segment] = -1; // for debug.
     }
 }
 
@@ -35,23 +36,23 @@ void helper(List<String> acc, String s, int k, int[] section,  int segment){
 public List<String> restoreIpAddresses(String s) {
     List<String> list = new ArrayList();
     if(s.length() > 12) return list;
-    helper(s, list, 0, "", 0);  
+    helper(s, list, 0, "", 0);
     return list;
 }
-  
+
 void helper(String s, List<String> list, int k, String res, int sec){
   if(sec == 4 && k == s.length()) {
     list.add(res);
     return;
-  }  
+  }
   for(int i = 1; i <= 3; i++) {
-    if(k + i > s.length()) break;  
+    if(k + i > s.length()) break;
     String section = s.substring(k, k + i);
 	//Pruning
     if(section.length() > 1 && section.startsWith("0") || Integer.parseInt(section) >= 256)  break;
-	
+
     helper(s, list, k + i, sec == 0 ? section : res + "." + section, sec + 1);
-  }  
+  }
 }
 
 
@@ -82,14 +83,14 @@ public List<String> restoreIpAddresses(String s) {
 //################################################### BT + Pruning ###################################################
 //step : # of elements
 void dfs(string s,int start,int step,string ip,vector<string>& result) {
-    int len = s.size(); 
+    int len = s.size();
     if(start == len && step==4) {
         ip.erase(ip.end()-1); //remove the last '.' from the last decimal number
         result.push_back(ip);
         return;
     }
     //Pruning
-    if(len-start > (4-step)*3) 
+    if(len-start > (4-step)*3)
       return;
     if(len-start < (4-step)) return;
     int num = 0;
@@ -103,7 +104,7 @@ void dfs(string s,int start,int step,string ip,vector<string>& result) {
         if(num==0) break;
     }
 }
-vector<string> restoreIpAddresses(string s) { 
+vector<string> restoreIpAddresses(string s) {
   vector<string> result;
   string ip;
   dfs(s,0,0,ip,result); //paras:string s,start index of s,step(from0-3),intermediate ip,final result
@@ -126,7 +127,7 @@ vector<string> restoreIpAddresses(string s) {
             if (A<=255 && B<=255 && C<=255 && D<=255)
                 if ( (ans = to_string(A)+"."+to_string(B)+"."+to_string(C)+"."+to_string(D)).length() == s.length()+3)
                     ret.push_back(ans);
-        }    
+        }
     return ret;
 }
 

@@ -1,5 +1,7 @@
 //Encode and Decode Strings
-//Design an algorithm to encode a list of strings to a string. The encoded string is then sent over the network and is decoded back to the original list of strings.
+//Design an algorithm to encode a list of strings to a string. The encoded
+//string is then sent over the network and is decoded back to the original list
+//of strings.
 //Machine 1 (sender) has the function:
 //string encode(vector<string> strs) {
 //  // ... your code
@@ -17,9 +19,13 @@
 //strs2 in Machine 2 should be the same as strs in Machine 1.
 //Implement the encode and decode methods.
 //Note:
-//The string may contain any possible characters out of 256 valid ascii characters. Your algorithm should be generalized enough to work on any possible characters.
-//Do not use class member/global/static variables to store states. Your encode and decode algorithms should be stateless.
-//Do not rely on any library method such as eval or serialize methods. You should implement your own encode/decode algorithm.
+//The string may contain any possible characters out of 256 valid ascii
+//characters. Your algorithm should be generalized enough to work on any
+//possible characters.
+//Do not use class member/global/static variables to store states. Your encode
+//and decode algorithms should be stateless.
+//Do not rely on any library method such as eval or serialize methods. You
+//should implement your own encode/decode algorithm.
 
 
 //################################################### Use length  ###################################################
@@ -45,11 +51,13 @@
         return ret;
     }
 //################################################### Use # ###################################################
-//Double any hashes inside the strings, then use standalone hashes (surrounded by spaces) to mark string endings. For example:
+//Double any hashes inside the strings, then use standalone hashes (surrounded
+//by spaces) to mark string endings. For example:
 //{"abc", "def"}    =>  "abc # def # "
 //{'abc', '#def'}   =>  "abc # ##def # "
 //{'abc##', 'def'}  =>  "abc#### # def # "
-//For decoding, just do the reverse: First split at standalone hashes, then undo the doubling in each string.
+//For decoding, just do the reverse: First split at standalone hashes, then
+//undo the doubling in each string.
 
 public String encode(List<String> strs) {
     StringBuffer out = new StringBuffer();

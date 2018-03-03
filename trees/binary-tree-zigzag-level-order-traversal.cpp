@@ -1,4 +1,5 @@
-//Given a binary tree, return the zigzag level order traversal of its nodes' values. (ie, from left to right, then right to left for the next level and alternate between).
+//Given a binary tree, return the zigzag level order traversal of its nodes' values. (ie, from left to right, then right
+//to left for the next level and alternate between).
 //For example:
 //Given binary tree [3,9,20,null,null,15,7],
 //    3
@@ -13,14 +14,14 @@
 //  [15,7]
 //]
 
-//################################ Recursion ################################ 
+//################################ Recursion ################################
 public class Solution {
   public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
       List<List<Integer>> sol = new ArrayList<>();
       travel(root, sol, 0);
       return sol;
   }
-      
+
   private void travel(TreeNode curr, List<List<Integer>> sol, int level) {
       if(curr == null) return;
 
@@ -28,11 +29,11 @@ public class Solution {
           List<Integer> newLevel = new LinkedList<>();
           sol.add(newLevel);
       }
-      
+
       List<Integer> collection  = sol.get(level);
       if(level % 2 == 0) collection.add(curr.val);
       else collection.add(0, curr.val);
-      
+
       travel(curr.left, sol, level + 1);
       travel(curr.right, sol, level + 1);
   }
@@ -40,8 +41,8 @@ public class Solution {
 //O(n) solution by using LinkedList along with ArrayList. So insertion in the inner list and outer list are both O(1),
 //Using DFS and creating new lists when needed.
 
-//################################ Iteration + No reverse ################################ 
-public List<List<Integer>> zigzagLevelOrder(TreeNode root) { 
+//################################ Iteration + No reverse ################################
+public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
   List<List<Integer>> res = new ArrayList<>();
   if (root == null) return res;
   Queue<TreeNode> queue = new LinkedList<>();
@@ -52,13 +53,13 @@ public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
       int cnt = queue.size();
       for (int i = 0; i < cnt; i++) {
           TreeNode node = queue.poll();
-          if (zigzag) 
-              level.add(0, node.val); //prepend the node 
-          else 
+          if (zigzag)
+              level.add(0, node.val); //prepend the node
+          else
               level.add(node.val); //append the tnode
-          if (node.left != null) 
+          if (node.left != null)
               queue.add(node.left);
-          if (node.right != null) 
+          if (node.right != null)
               queue.add(node.right);
       }
       res.add(level);
@@ -67,7 +68,7 @@ public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
   return res;
 }
 
-//################################ Iterative + Deque  ################################ 
+//################################ Iterative + Deque  ################################
 public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
     List<List<Integer>> result = new LinkedList<>();
     if(root == null) return result;
@@ -82,16 +83,16 @@ public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
             vList.add(tmp.val);
             if(tmp.left != null) visitQ.offer(tmp.left);
             if(tmp.right != null) visitQ.offer(tmp.right);
-        }    
-      if(isRev == true) 
+        }
+      if(isRev == true)
           Collections.reverse(vList);
        result.add(vList);
-       isRev = !isRev; 
+       isRev = !isRev;
     }
     return result;
 }
 
-//################################ Iterative  ################################ 
+//################################ Iterative  ################################
 vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
        vector<vector <int> > result;
        if(!root) {
@@ -140,4 +141,4 @@ int main() {
   root->right->right = new TreeNode (7);
   zigzagLevelOrder(root);
 }
-// vim: set sw=2 sts=2 tw=120 et nospell : 
+// vim: set sw=2 sts=2 tw=120 et nospell :

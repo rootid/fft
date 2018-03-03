@@ -1,5 +1,6 @@
 //Word Ladder II
-//Given two words (beginWord and endWord), and a dictionary's word list, find all shortest transformation sequence(s) from beginWord to endWord, such that:
+//Given two words (beginWord and endWord), and a dictionary's word list, find all shortest transformation sequence(s)
+//from beginWord to endWord, such that:
 //Only one letter can be changed at a time
 //Each transformed word must exist in the word list. Note that beginWord is not a transformed word.
 //For example,
@@ -21,7 +22,9 @@
 //########################################## Double ended BFS ##########################################
 //O(k^d) to O(k^(d/2) + k^(d/2))  //d : # of search levelgs
 
-//we can build the word tree by going forward in one direction and backwards in the other. We stop when we have found that a word in the next level of BFS is in the other level, but first we need to update the tree for the words in the current level.
+//we can build the word tree by going forward in one direction and backwards in the other. We stop when we have found
+//that a word in the next level of BFS is in the other level, but first we need to update the tree for the words in the
+//current level.
 
 //######################################### BFS - to find shortest length, DFS = xplore path #########################################
 public List<List<String>> findLadders(String start, String end, List<String> wordList) {
@@ -241,12 +244,20 @@ vector<vector<string> > findLadders(string beginWord, string endWord, vector<str
 
 //######################################### Double BFS  #########################################
 // BT BFS traversal = O(2^l)  l = # of levels
-//If we know source and destination, we can build the word tree by going forward in one direction and backwards in the other. We stop when we have found that a word in the next level of BFS is in the other level, but first we need to update the tree for the words in the current level.
+//If we know source and destination, we can build the word tree by going forward in one direction and backwards in the
+//other. We stop when we have found that a word in the next level of BFS is in the other level, but first we need to
+//update the tree for the words in the current level.
 //Then we build the result by doing a DFS on the tree constructed by the BFS.
-//The difference between normal and double BFS is that the search changes from O(k^d) to O(k^(d/2) + k^(d/2)). Same complexity class
+//The difference between normal and double BFS is that the search changes from O(k^d) to O(k^(d/2) + k^(d/2)). Same
+//complexity class
 //
-//Let's call k the max number of neighbors of a node, and d is the distance from start to end. In traditional BFS, we explore k nodes at each BFS level, each one generating in the worst case k neighbors till we find end. So the maximum number of nodes we explore till we reach end is k*k*k...*k, d times. So it's O(k^d).
-//In double-ended BFS we finish when the forward and backward searches collide. Where do they collide? Approximately at d/2 distance. Let's call this point mid. So it's O(k^(d/2)) (start to mid) + O(k^(d/2)) (end to mid), yielding O(k^(d/2)). Yes, it's the same class of complexity of standard BFS, but for large graphs double-ended BFS may give you the right result waaaaaaay faster.
+//Let's call k the max number of neighbors of a node, and d is the distance from start to end. In traditional BFS, we
+//explore k nodes at each BFS level, each one generating in the worst case k neighbors till we find end. So the maximum
+//number of nodes we explore till we reach end is k*k*k...*k, d times. So it's O(k^d).
+//In double-ended BFS we finish when the forward and backward searches collide. Where do they collide? Approximately at
+//d/2 distance. Let's call this point mid. So it's O(k^(d/2)) (start to mid) + O(k^(d/2)) (end to mid), yielding
+//O(k^(d/2)). Yes, it's the same class of complexity of standard BFS, but for large graphs double-ended BFS may give you
+//the right result waaaaaaay faster.
 class Solution(object):
 
     # Solution using double BFS

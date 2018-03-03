@@ -1,5 +1,6 @@
 //Unique Word Abbreviation
-//An abbreviation of a word follows the form <first letter><number><last letter>. Below are some examples of word abbreviations:
+//An abbreviation of a word follows the form <first letter><number><last
+//letter>. Below are some examples of word abbreviations:
 //a) it                      --> it    (no abbreviation)
 //     1
 //b) d|o|g                   --> d1g
@@ -9,16 +10,18 @@
 //              1
 //     1---5----0
 //d) l|ocalizatio|n          --> l10n
-//Assume you have a dictionary and given a word, find whether its abbreviation is unique in the dictionary. A word's abbreviation is unique if no other word from the dictionary has the same abbreviation.
-//Example: 
+//Assume you have a dictionary and given a word, find whether its abbreviation
+//is unique in the dictionary. A word's abbreviation is unique if no other word
+//from the dictionary has the same abbreviation.
+//Example:
 //Given dictionary = [ "deer", "door", "cake", "card" ]
-//isUnique("dear") -> 
+//isUnique("dear") ->
 //false
-//isUnique("cart") -> 
+//isUnique("cart") ->
 //true
-//isUnique("cane") -> 
+//isUnique("cane") ->
 //false
-//isUnique("make") -> 
+//isUnique("make") ->
 //true
 class ValidWordAbbr {
 public :
@@ -27,7 +30,7 @@ public :
             int n = d.length();
             string abbr = d[0] + to_string(n) + d[n - 1];
             cout << "v=" << abbr << endl;
-            mp[abbr].insert(d); //dr : 
+            mp[abbr].insert(d); //dr :
         }
     }
     bool isUnique(string word) {
@@ -36,7 +39,7 @@ public :
         //mp[abbr].count(word)  : 1 "word" found , 0 if "word" not found
         //mp[abbr].size() : size of map
         if ( mp[abbr].count(word) == mp[abbr].size() ) {
-            return true;     
+            return true;
         }
         return false;
     }

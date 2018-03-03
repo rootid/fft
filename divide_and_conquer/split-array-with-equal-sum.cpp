@@ -1,8 +1,11 @@
 //Split Array with Equal Sum
-//Given an array with n integers, you need to find if there are triplets (i, j, k) which satisfies following conditions:
+//Given an array with n integers, you need to find if there are triplets (i, j,
+//k) which satisfies following conditions:
 //0 < i, i + 1 < j, j + 1 < k < n - 1
-//Sum of subarrays (0, i - 1), (i + 1, j - 1), (j + 1, k - 1) and (k + 1, n - 1) should be equal.
-//where we define that subarray (L, R) represents a slice of the original array starting from the element indexed L to the element indexed R.
+//Sum of subarrays (0, i - 1), (i + 1, j - 1), (j + 1, k - 1) and (k + 1, n -
+//1) should be equal.
+//where we define that subarray (L, R) represents a slice of the original array
+//starting from the element indexed L to the element indexed R.
 //Example:
 //Input: [1,2,1,2,1,2,1]
 //Output: True
@@ -20,14 +23,23 @@
 //TC : O(N^4)
 //SC : O(1)
 //Algorithm
-//Before we start looking at any of the approaches for solving this problem, firstly we need to look at the limits imposed on iii, jjj and kkk by the given set of constraints. The figure below shows the maximum and minimum values that iii, jjj and kkk can assume.
+//Before we start looking at any of the approaches for solving this problem,
+//firstly we need to look at the limits imposed on iii, jjj and kkk by the
+//given set of constraints. The figure below shows the maximum and minimum
+//values that iii, jjj and kkk can assume.
 //Split_Array
-//Thus, the limits based on the length of the array nnn can now be rewritten as:
+//Thus, the limits based on the length of the array nnn can now be rewritten
+//as:
 //1≤i≤n−6
 //i+2≤j≤n−4
 //j+2≤k≤n−2
-//Having discussed the limits imposed on the cuts iii, jjj, kkk that we will apply on the given array numsnumsnums, let's look at the first solution that comes to our mind.
-//We simply traverse over all the elements of the array. We consider all the possible subarrays taking care of the constraints imposed on the cuts, and check if any such cuts exist which satisfy the given equal sum quadruples criteria.
+//Having discussed the limits imposed on the cuts iii, jjj, kkk that we will
+//apply on the given array numsnumsnums, let's look at the first solution that
+//comes to our mind.
+//We simply traverse over all the elements of the array. We consider all the
+//possible subarrays taking care of the constraints imposed on the cuts, and
+//check if any such cuts exist which satisfy the given equal sum quadruples
+//criteria.
 public class Solution {
 
     public int sum(int[] nums, int l, int r) {
@@ -67,9 +79,11 @@ public class Solution {
 //	  i--j-1--j--j+2-----n-1
 //
 //Here j is used for middle cut, i for left cut and k for right cut.
-//Iterate middle cuts and then find left cuts which divides the first half into two equal quarters,
+//Iterate middle cuts and then find left cuts which divides the first half into
+//two equal quarters,
 //store that quarter sums in the hashset.
-//Then find right cuts which divides the second half into two equal quarters and check if quarter sum is present in the hashset. If yes return true.
+//Then find right cuts which divides the second half into two equal quarters
+//and check if quarter sum is present in the hashset. If yes return true.
 public boolean splitArray(int[] nums) {
 	if (nums.length < 7)
 		return false;
@@ -97,9 +111,11 @@ public boolean splitArray(int[] nums) {
 
 //################################################### Backtracking ###################################################
 //O(n^3)
-//Just think this problem as a DFS. What we need is to search for 3 positions (i, j, k)
+//Just think this problem as a DFS. What we need is to search for 3 positions
+//(i, j, k)
 //and see if they divide the array to 4 parts with same summary. Some tricks:
-//Calculate left on the fly. Thus at last we don't need to calc summary of the 4th part.
+//Calculate left on the fly. Thus at last we don't need to calc summary of the
+//4th part.
 //Skip 0 during calculate target because adding zero won't change it.
 public class Solution {
     public boolean splitArray(int[] nums) {
@@ -134,11 +150,17 @@ public class Solution {
 }
 
 //################################################### python ###################################################
-//Let A be the array. As in most problems involving querying the sum of contiguous elements of an array,
-//let P[x] = sum(A[:x]) be the prefix sums of A, which can be found in linear time.
-//Then the sums in question are P[i] = P[j] - P[i+1] = P[k] - P[j+1] = P[-1] - P[k+1].
-//For every j < k, P[i] = P[-1] - P[k+1] is a necessary requirement to choose i,
-//so let's iterate over those indices first. This gives us the advantage that since we are iterating over a sorted list of candidate indices i, we can break when i >= j.
+//Let A be the array. As in most problems involving querying the sum of
+//contiguous elements of an array,
+//let P[x] = sum(A[:x]) be the prefix sums of A, which can be found in linear
+//time.
+//Then the sums in question are P[i] = P[j] - P[i+1] = P[k] - P[j+1] = P[-1] -
+//P[k+1].
+//For every j < k, P[i] = P[-1] - P[k+1] is a necessary requirement to choose
+//i,
+//so let's iterate over those indices first. This gives us the advantage that
+//since we are iterating over a sorted list of candidate indices i, we can
+//break when i >= j.
 def splitArray(self, A):
     P = [0]
     for x in A: P.append(P[-1] + x)
@@ -158,11 +180,14 @@ def splitArray(self, A):
 
 
 //#########################################  Divide and Conquer #########################################
-//First, for every middle point j, we split nums into two subarray nums[:j] and nums[j+1:].
+//First, for every middle point j, we split nums into two subarray nums[:j] and
+//nums[j+1:].
 //In the helper function split, try to remove one element from the subarray,
-//if the the sums of two remaining left and right sub-subarray are equal, we keep the sum of sub-subarray in the set we return.
+//if the the sums of two remaining left and right sub-subarray are equal, we
+//keep the sum of sub-subarray in the set we return.
 //Once we have any intersection between the two sets, we know we can make it.
-//Keep in mind len(nums) > 6 is a must since we need to split original array into four parts.
+//Keep in mind len(nums) > 6 is a must since we need to split original array
+//into four parts.
 //like divide and conquer (only twice though).
 class Solution(object):
     def splitArray(self, nums):

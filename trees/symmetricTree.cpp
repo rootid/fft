@@ -1,5 +1,6 @@
 //Symmetric Tree
-//Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).
+//Given a binary tree, check whether it is a mirror of itself (ie, symmetric
+//around its center).
 //For example, this binary tree is symmetric:
 //    1
 //   / \
@@ -27,7 +28,7 @@ struct TreeNode {
 };
 
 bool isSymmetricHelper(TreeNode* left,TreeNode *right) {
-  
+
   if(left && right) {
     if(left->val == right->val) {
       return isSymmetricHelper(left->left,right->right) && isSymmetricHelper(left->right,right->left);

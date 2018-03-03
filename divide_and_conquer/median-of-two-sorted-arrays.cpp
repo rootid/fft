@@ -1,6 +1,7 @@
 //Median of Two Sorted Arrays
 //There are two sorted arrays nums1 and nums2 of size m and n respectively.
-//Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
+//Find the median of the two sorted arrays. The overall run time complexity
+//should be O(log (m+n)).
 //Example 1:
 //nums1 = [1, 3]
 //nums2 = [2]
@@ -9,7 +10,7 @@
 //nums1 = [1, 2]
 //nums2 = [3, 4]
 //The median is (2 + 3)/2 = 2.5
-//####################### log(m+m) with log base 4/3 ####################### 
+//####################### log(m+m) with log base 4/3 #######################
 double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
      int len1 = nums1.size(), len2 = nums2.size();
      int k = (len1 + len2 + 1) / 2; // for odd total it is the mid one, for even it is the left mid
@@ -29,19 +30,19 @@ int findKth(vector<int>& nums1, int L1, int R1, vector<int>& nums2, int L2, int 
         if (nums1[mid1] <= nums2[mid2]) {
           //A-B(mid2-1--k) pick lt(B)
           return findKth(nums1, L1, R1, nums2, L2, mid2 - 1, k);
-        } 
+        }
       //pick lt(A)
       return findKth(nums1, L1, mid1 - 1, nums2, L2, R2, k);
-    } 
+    }
     //K is in the 2nd half (mid1+1-mid2+1)
     if (nums1[mid1] <= nums2[mid2]) {
       //NOTE : Need to update k while searching in the right half (pick rt(A))
       return findKth(nums1, mid1 + 1, R1, nums2, L2, R2, k - (mid1 - L1) - 1);
-    } 
+    }
     //NOTE : Need to update k while searching in the right half (pick rt(B))
     return findKth(nums1, L1, R1, nums2, mid2 + 1, R2, k - (mid2 - L2) - 1);
 }
-//##################################################################################################  
+//##################################################################################################
 //O(m+n)
 int ans(vector<int>& nums1,vector<int>& nums2,int k){
     int n = nums1.size();
@@ -83,7 +84,7 @@ double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
         else
             return (findkthElement(A, m, B, n, (m+n)/2) + findkthElement(A, m, B, n, (m+n)/2+1))/2.0;
     }
-    
+
     int findkthElement(int A[], int m, int B[], int n, int k) {
         if (m == 0) return B[k-1];
         if (n == 0) return A[k-1];

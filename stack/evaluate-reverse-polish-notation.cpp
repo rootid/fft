@@ -1,13 +1,14 @@
 //Evaluate Reverse Polish Notation
 //Evaluate the value of an arithmetic expression in Reverse Polish Notation.
-//Valid operators are +, -, *, /. Each operand may be an integer or another expression.
+//Valid operators are +, -, *, /. Each operand may be an integer or another
+//expression.
 //Some examples:
 //  ["2", "1", "+", "3", "*"] -> ((2 + 1) * 3) -> 9
 //  ["4", "13", "5", "/", "+"] -> (4 + (13 / 5)) -> 6
 #include "../headers/global.hpp"
 
 int evalRPN(vector<string>& tokens) {
-     
+
      stack<int> sol_stack;
      int sign = 1;
      for(auto st:tokens) {
@@ -24,7 +25,7 @@ int evalRPN(vector<string>& tokens) {
              sign = 1;
              sol_stack.push(num);
          } else {
-             int b = sol_stack.top(); 
+             int b = sol_stack.top();
              sol_stack.pop();
              int a = sol_stack.top();
              sol_stack.pop();
@@ -40,7 +41,7 @@ int evalRPN(vector<string>& tokens) {
              }
              sol_stack.push(result);
          }
-         
+
      }
      if(sol_stack.empty()) {
          return 0;

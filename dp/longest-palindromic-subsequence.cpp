@@ -1,5 +1,6 @@
 //Longest Palindromic Subsequence
-//Given a string s, find the longest palindromic subsequence's length in s. You may assume that the maximum length of s is 1000.
+//Given a string s, find the longest palindromic subsequence's length in s. You
+//may assume that the maximum length of s is 1000.
 //Example 1:
 //Input:
 //"bbbab"
@@ -13,11 +14,11 @@
 //2
 //One possible longest palindromic subsequence is "bb".
 
-//########################################### 1D ######################################### 
-//dp[i] : Longest palindrome subsequence starting at i 
+//########################################### 1D #########################################
+//dp[i] : Longest palindrome subsequence starting at i
 //T : O(n^2)
 //S : O(n)
-int longestPalindromeSubseq(string s) { 
+int longestPalindromeSubseq(string s) {
   int n = s.size(), res = 0;
   vector<int> dp(n, 1);
   for (int i = 1; i < n; i++) {
@@ -33,10 +34,10 @@ int longestPalindromeSubseq(string s) {
   for (auto i : dp) {
       res = max(res, i);
   }
-  return res; 
+  return res;
 }
 
-//######################################### 2D ######################################### 
+//######################################### 2D #########################################
 //
 //dp[i][j]: longest palindrome subseq for s[i ... j] i <= j; i, j = 0 ... n-1
 //dp[i][j]: the longest palindromic subsequence's length of substring(i, j)
@@ -62,7 +63,7 @@ int longestPalindromeSubseq(string s) {
 }
 
 
-//######################### reverse the string ######################### 
+//######################### reverse the string #########################
 int longestPalindromeSubseq(string s) {
   reverse(s.begin(),s.end());
 	int len = s.length();
@@ -75,11 +76,11 @@ int longestPalindromeSubseq(string s) {
 			dp[i][j] = max(dp[i][j],dp[i][j-1]);
 			dp[i][j] = max(dp[i][j],dp[i-1][j]);
 		}
-	}   
+	}
 	return dp[len][len];
 }
 
-//######################### Reduce the problem to LCS ######################### 
+//######################### Reduce the problem to LCS #########################
 public int longestPalindromeSubseq(String s) {
      int len = s.length();
      if(len < 2) return len;

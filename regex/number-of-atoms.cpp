@@ -1,10 +1,15 @@
 //Number of Atoms
 //Given a chemical formula (given as a string), return the count of each atom.
-//An atomic element always starts with an uppercase character, then zero or more lowercase letters, representing the name.
-//1 or more digits representing the count of that element may follow if the count is greater than 1. If the count is 1, no digits will follow. For example, H2O and H2O2 are possible, but H1O2 is impossible.
+//An atomic element always starts with an uppercase character, then zero or more lowercase letters, representing the
+//name.
+//1 or more digits representing the count of that element may follow if the count is greater than 1. If the count is 1,
+//no digits will follow. For example, H2O and H2O2 are possible, but H1O2 is impossible.
 //Two formulas concatenated together produce another formula. For example, H2O2He3Mg4 is also a formula.
-//A formula placed in parentheses, and a count (optionally added) is also a formula. For example, (H2O2) and (H2O2)3 are formulas.
-//Given a formula, output the count of all elements as a string in the following form: the first name (in sorted order), followed by its count (if that count is more than 1), followed by the second name (in sorted order), followed by its count (if that count is more than 1), and so on.
+//A formula placed in parentheses, and a count (optionally added) is also a formula. For example, (H2O2) and (H2O2)3 are
+//formulas.
+//Given a formula, output the count of all elements as a string in the following form: the first name (in sorted order),
+//followed by its count (if that count is more than 1), followed by the second name (in sorted order), followed by its
+//count (if that count is more than 1), and so on.
 //Example 1:
 //Input:
 //formula = "H2O"
@@ -181,14 +186,17 @@ class Solution(object):
 
 
 //Intuition and Algorithm
-//Write a function parse that parses the formula from index i, returning a map count from names to multiplicities (the number of times that name is recorded).
+//Write a function parse that parses the formula from index i, returning a map count from names to multiplicities (the
+//number of times that name is recorded).
 //We will put i in global state: our parse function increments i throughout any future calls to parse.
 //    When we see a '(', we will parse whatever is inside the brackets (up to the closing ending bracket) and add it to our count.
 //    Otherwise, we should see an uppercase character: we will parse the rest of the letters to get the name, and add that (plus the multiplicity if there is one.)
 //    At the end, if there is a final multiplicity (representing the multiplicity of a bracketed sequence), we'll multiply our answer by this.
 //
-//Time Complexity: O(N2), where NNN is the length of the formula. It is O(N) to parse through the formula, but each of O(N)
-//multiplicities after a bracket may increment the count of each name in the formula (inside those brackets), leading to an O(N2) complexity.
+//Time Complexity: O(N2), where NNN is the length of the formula. It is O(N) to parse through the formula, but each of
+//O(N)
+//multiplicities after a bracket may increment the count of each name in the formula (inside those brackets), leading to
+//an O(N2) complexity.
 //Space Complexity: O(N). We aren't recording more intermediate information than what is contained in the formula.
 class Solution {
     int i;

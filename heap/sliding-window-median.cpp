@@ -1,9 +1,14 @@
 //Sliding Window Median
-//Median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value. So the median is the mean of the two middle value.
-//Examples: 
+//Median is the middle value in an ordered integer list. If the size of the
+//list is even, there is no middle value. So the median is the mean of the two
+//middle value.
+//Examples:
 //[2,3,4] , the median is 3
 //[2,3], the median is (2 + 3) / 2 = 2.5
-//Given an array nums, there is a sliding window of size k which is moving from the very left of the array to the very right. You can only see the k numbers in the window. Each time the sliding window moves right by one position. Your job is to output the median array for each window in the original array.
+//Given an array nums, there is a sliding window of size k which is moving from
+//the very left of the array to the very right. You can only see the k numbers
+//in the window. Each time the sliding window moves right by one position. Your
+//job is to output the median array for each window in the original array.
 //For example,
 //Given nums = [1,3,-1,-3,5,3,6,7], and k = 3.
 //Window position                Median
@@ -15,13 +20,15 @@
 // 1  3  -1  -3 [5  3  6] 7       5
 // 1  3  -1  -3  5 [3  6  7]      6
 //Therefore, return the median sliding window as [1,-1,-1,3,5,6].
-//Note: 
-//You may assume k is always valid, ie: 1 ≤ k ≤ input array's size for non-empty array.
+//Note:
+//You may assume k is always valid, ie: 1 ≤ k ≤ input array's size for
+//non-empty array.
 
 
-//####################################### Hightly optimized ############################## 
-//Keep the window elements in a multiset and keep an iterator pointing to the middle value
-//Speculative mid update based on last nums[i-k] and current value nums [i] 
+//####################################### Hightly optimized ##############################
+//Keep the window elements in a multiset and keep an iterator pointing to the
+//middle value
+//Speculative mid update based on last nums[i-k] and current value nums [i]
 vector<double> medianSlidingWindow(vector<int>& nums, int k) {
     multiset<int> window(nums.begin(), nums.begin() + k);
     auto mid = next(window.begin(), k / 2);
@@ -47,7 +54,7 @@ vector<double> medianSlidingWindow(vector<int>& nums, int k) {
         window.erase(window.lower_bound(nums[i-k])); //erase first occurance of nums[i-k]
     }
 }
-//##################################### BST + optimized ##################################### 
+//##################################### BST + optimized #####################################
 vector<double> medianSlidingWindow(vector<int>& nums, int k) {
     multiset<int> window;
     vector<double> ret;
@@ -64,29 +71,29 @@ vector<double> medianSlidingWindow(vector<int>& nums, int k) {
     return ret;
 }
 
-//##################################### BST ##################################### 
+//##################################### BST #####################################
 vector<double> medianSlidingWindow(vector<int>& nums, int k) {
     multiset<int> mp;
     vector<double> med;
-    
+
     //k-1 element inserted
     for(int i=0; i<k-1; ++i) {
       mp.insert(nums[i]);
     }
-    
+
     for(int i=k-1; i< nums.size(); ++i){
         mp.insert(nums[i]); // Add the next number
-        
-        auto itb = mp.begin(); 
+
+        auto itb = mp.begin();
         advance(itb, (k-1)/2); //Find the lower median
-        auto ite = mp.end(); 
+        auto ite = mp.end();
         advance(ite, -(k+1)/2); //Find the upper median //Note : while going from end iterator increase by 1
-    
+
         double avg = ((long)(*itb) + (*ite)) / 2.0;
         med.push_back(avg);
-    
+
         mp.erase(mp.find(nums[i-k+1])); //Remove the oldest element
     }
-    
+
     return med;
 }

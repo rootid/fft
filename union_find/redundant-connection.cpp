@@ -1,8 +1,17 @@
 //Redundant Connection
-//In this problem, a tree is an undirected graph that is connected and has no cycles.
-//The given input is a graph that started as a tree with N nodes (with distinct values 1, 2, ..., N), with one additional edge added. The added edge has two different vertices chosen from 1 to N, and was not an edge that already existed.
-//The resulting graph is given as a 2D-array of edges. Each element of edges is a pair [u, v] with u < v, that represents an undirected edge connecting nodes u and v.
-//Return an edge that can be removed so that the resulting graph is a tree of N nodes. If there are multiple answers, return the answer that occurs last in the given 2D-array. The answer edge [u, v] should be in the same format, with u < v.
+//In this problem, a tree is an undirected graph that is connected and has no
+//cycles.
+//The given input is a graph that started as a tree with N nodes (with distinct
+//values 1, 2, ..., N), with one additional edge added. The added edge has two
+//different vertices chosen from 1 to N, and was not an edge that already
+//existed.
+//The resulting graph is given as a 2D-array of edges. Each element of edges is
+//a pair [u, v] with u < v, that represents an undirected edge connecting nodes
+//u and v.
+//Return an edge that can be removed so that the resulting graph is a tree of N
+//nodes. If there are multiple answers, return the answer that occurs last in
+//the given 2D-array. The answer edge [u, v] should be in the same format, with
+//u < v.
 //Example 1:
 //Input: [[1,2], [1,3], [2,3]]
 //Output: [2,3]
@@ -19,12 +28,15 @@
 //    4 - 3
 //Note:
 //The size of the input 2D-array will be between 3 and 1000.
-//Every integer represented in the 2D-array will be between 1 and N, where N is the size of the input array.
+//Every integer represented in the 2D-array will be between 1 and N, where N is
+//the size of the input array.
 //
 //Update (2017-09-26):
-//We have overhauled the problem description + test cases and specified clearly the graph is an undirected graph. For the directed graph follow up please see Redundant Connection II). We apologize for any inconvenience causede
+//We have overhauled the problem description + test cases and specified clearly
+//the graph is an undirected graph. For the directed graph follow up please see
+//Redundant Connection II). We apologize for any inconvenience causede
 
-//############################### Union find  ############################### 
+//############################### Union find  ###############################
 public int[] findRedundantConnection(int[][] edges) {
     int[] parent = new int[2001];
     for (int i = 0; i < parent.length; i++) parent[i] = i;
@@ -37,19 +49,19 @@ public int[] findRedundantConnection(int[][] edges) {
 }
 private int find(int[] parent, int f) {
     if (f != parent[f]) {
-      parent[f] = find(parent, parent[f]);  
+      parent[f] = find(parent, parent[f]);
     }
     return parent[f];
-}   
+}
 
-//############################### Union find  ############################### 
+//############################### Union find  ###############################
 class Solution {
     public int[] findRedundantConnection(int[][] edges) {
         int[] parent = new int[20001];
         for(int i=0;i<parent.length;i++){
             parent[i] = i;
         }
-        
+
         for(int[] ele:edges){
             int index1 = findparent(parent,ele[0]);
             int index2 = findparent(parent,ele[1]);
@@ -59,10 +71,10 @@ class Solution {
                 parent[index1] = index2;
             }
         }
-        
+
         return new int[0];
     }
-    
+
     public int findparent(int[] parent,int index){
         while(index!=parent[index]){
             parent[index] = parent[parent[index]];
@@ -73,7 +85,7 @@ class Solution {
 }
 
 
-//###############################  Union find + Path Compression  ############################### 
+//###############################  Union find + Path Compression  ###############################
  vector<int> findRedundantConnection(vector<vector<int>>& edges) {
         vector<int> p(2000, 0);
         for(int i = 0; i < p.size(); i++ )
@@ -91,7 +103,7 @@ class Solution {
         return res;
     }
 
-//############################### Python Union find  ############################### 
+//############################### Python Union find  ###############################
 class UnionFind:
 
     def __init__(self, N=1001):
@@ -129,4 +141,4 @@ class Solution:
             if unionfind.find(u, v):
                 return [u, v]
             unionfind.unite(u, v
-    
+

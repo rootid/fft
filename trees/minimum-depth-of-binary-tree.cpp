@@ -1,12 +1,13 @@
 //Minimum Depth of Binary Tree
 //Given a binary tree, find its minimum depth.
-//The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.
+//The minimum depth is the number of nodes along the shortest path from the
+//root node down to the nearest leaf node.
 #include<iostream>
-//This solution o/p  {1,2} = 2 : as it thinks shortest path is from 
+//This solution o/p  {1,2} = 2 : as it thinks shortest path is from
 //root->NON-NULL NODE
 
 
-//######################################### Update height when leaf node found ######################################### 
+//######################################### Update height when leaf node found #########################################
 // Trick : leaf node has height = 0, non leaf node ht = leftHt + rightHt + 1
 public int minDepth(TreeNode root) {
     if(root == null) return 0;
@@ -15,19 +16,19 @@ public int minDepth(TreeNode root) {
     return (left == 0 || right == 0) ? left + right + 1: Math.min(left,right) + 1;
 }
 
-//######################################### Update height when leaf node found ######################################### 
+//######################################### Update height when leaf node found #########################################
 class Solution {
 	int minHt = Integer.MAX_VALUE;
-    
+
     private void minDepthHelper(TreeNode root,int ht) {
         if(root == null) return;
         ht = ht + 1;
-        if(root.left == null && root.right == null) 
-            minHt = Math.min(ht, minHt);  
+        if(root.left == null && root.right == null)
+            minHt = Math.min(ht, minHt);
         minDepthHelper(root.left,ht);
         minDepthHelper(root.right,ht);
     }
-    
+
     public int minDepth(TreeNode root) {
         if(root == null) return 0;
         minDepthHelper(root,0);
@@ -35,7 +36,7 @@ class Solution {
     }
 }
 
-//######################################### Update height when leaf node found ######################################### 
+//######################################### Update height when leaf node found #########################################
 int minDepth(TreeNode* root) {
   if(!root) {
     return 0;
@@ -58,7 +59,7 @@ int minDepth(TreeNode* root) {
   return min(ltHt,rtHt);
 }
 //with BFS
-// 
+//
 int minDepth(TreeNode* root) {
   if(!root) {
     return 0;
@@ -83,9 +84,9 @@ int minDepth(TreeNode* root) {
       }
     }
   }
- return level; //TO make compiler :) 
+ return level; //TO make compiler :)
 }
-// TODO  : FIXME 
+// TODO  : FIXME
 // with BFS ugly
 int minDepth(TreeNode* root) {
     if(!root) {
@@ -115,7 +116,7 @@ int minDepth(TreeNode* root) {
           currVisited = nextVisited;
           level += 1;
           nextVisited = 0;
-      }  
+      }
   }
     return level;
 }

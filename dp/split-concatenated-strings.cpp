@@ -1,7 +1,11 @@
-//Given a list of strings, you could concatenate these strings together into a loop, where for each string you could choose to reverse it or not. Among all the possible loops, you need to find the lexicographically biggest string after cutting the loop, which will make the looped string into a regular one.
+//Given a list of strings, you could concatenate these strings together into a loop, where for each string you could
+//choose to reverse it or not. Among all the possible loops, you need to find the lexicographically biggest string after
+//cutting the loop, which will make the looped string into a regular one.
 //Specifically, to find the lexicographically biggest string, you need to experience two phases:
-//Concatenate all the strings into a loop, where you can reverse some strings or not and connect them in the same order as given.
-//Cut and make one breakpoint in any place of the loop, which will make the looped string into a regular one starting from the character at the cutpoint.
+//Concatenate all the strings into a loop, where you can reverse some strings or not and connect them in the same order
+//as given.
+//Cut and make one breakpoint in any place of the loop, which will make the looped string into a regular one starting
+//from the character at the cutpoint.
 //And your job is to find the lexicographically biggest one among all the possible regular strings.
 //Example:
 //Input: "abc", "xyz"
@@ -49,7 +53,10 @@ public class Solution {
     }
 }
 
-//We are given a list of strings: s1,s2,s3,..,sns_1, s_2, s_3,.., s_n. We need to concatenate all these strings in a circular fashion in the same given order, but we can reverse every individual string before concatenating. Now, we need to make a cut in the final concatenated string such that the new string formed is the largest one possible in the lexicographic sense
+//We are given a list of strings: s1,s2,s3,..,sns_1, s_2, s_3,.., s_n. We need to concatenate all these strings in a
+//circular fashion in the same given order, but we can reverse every individual string before concatenating. Now, we
+//need to make a cut in the final concatenated string such that the new string formed is the largest one possible in the
+//lexicographic sense
 //######################################### DFS  #########################################
 //TC : O(2^n)
 //SC : O(n)
@@ -108,9 +115,12 @@ public class Solution {
 
 //#########################################  O(N^2) #########################################
 //1. We know the cut point must come from the one string, assumed it is called c-string.
-//2. Then except the c-string, all the other string must become its lexicographically biggest status, assumed it is called b-status. Since only in this situation, we could get the lexicographically biggest string after cutting.
-//3. To reach the point 2, we need to first let all the string reach its b-status for the convenience of traversing all the strings afterward.
-//4.Then, for each string's traversal procedure, we need to decide whether it should be reversed or not since we don't know which might generate the final answer, and then we enumerated all the characters in this string.
+//2. Then except the c-string, all the other string must become its lexicographically biggest status, assumed it is
+//called b-status. Since only in this situation, we could get the lexicographically biggest string after cutting.
+//3. To reach the point 2, we need to first let all the string reach its b-status for the convenience of traversing all
+//the strings afterward.
+//4.Then, for each string's traversal procedure, we need to decide whether it should be reversed or not since we don't
+//know which might generate the final answer, and then we enumerated all the characters in this string.
 public static String splitLoopedString(String[] strs) {
     int n = strs.length;
     for (int i = 0; i < n; i++) {
@@ -214,6 +224,7 @@ def splitLoopedString(self, strs):
                for i, s in enumerate(strs)
                for s in (s, s[::-1])
                for j in xrange(len(s)))
-//The one "real" difference is that I don't do the + 1 in the range for j. I don't think it's necessary or even meaningful, as in that case your start really isn't the start but only the end.
+//The one "real" difference is that I don't do the + 1 in the range for j. I don't think it's necessary or even
+//meaningful, as in that case your start really isn't the start but only the end.
 
 // vim: set sw=2 sts=2 tw=120 et nospell :

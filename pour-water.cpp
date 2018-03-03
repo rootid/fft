@@ -29,7 +29,8 @@
 //##  # ###
 //#########
 // 0123456
-//When moving left or right, the water can only move to the same level or a lower level.
+//When moving left or right, the water can only move to the same level or a
+//lower level.
 //(By level, we mean the total height of the terrain plus any water in that column.)
 //Since moving left will eventually make it fall, it moves left.
 //(A droplet "made to fall" means go to a lower height than it was at previously.)
@@ -38,13 +39,15 @@
 //## w# ###
 //#########
 // 0123456
-//Since moving left will not make it fall, it stays in place.  The next droplet falls:
+//Since moving left will not make it fall, it stays in place.  The next droplet
+//falls:
 //#       #
 //#   w   #
 //## w# ###
 //#########
 // 0123456
-//Since the new droplet moving left will eventually make it fall, it moves left.
+//Since the new droplet moving left will eventually make it fall, it moves
+//left.
 //Notice that the droplet still preferred to move left,
 //even though it could move right (and moving right makes it fall quicker.)
 //#       #
@@ -132,7 +135,8 @@ class Solution {
     }
 }
 
-//Time Complexity: O(V∗N), where NNN is the length of heights. For each of VVV droplets, our while loop might iterate NNN times.
+//Time Complexity: O(V∗N), where NNN is the length of heights. For each of VVV
+//droplets, our while loop might iterate NNN times.
 //Space Complexity: O(1) in additional space complexity.
 
 

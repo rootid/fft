@@ -1,8 +1,10 @@
 //Insert Delete GetRandom O(1)
-//Design a data structure that supports all following operations in average O(1) time.
+//Design a data structure that supports all following operations in average
+//O(1) time.
 //insert(val): Inserts an item val to the set if not already present.
 //remove(val): Removes an item val from the set if present.
-//getRandom: Returns a random element from current set of elements. Each element must have the same probability of being returned.
+//getRandom: Returns a random element from current set of elements. Each
+//element must have the same probability of being returned.
 //Example:
 //// Init an empty set.
 //RandomizedSet randomSet = new RandomizedSet();
@@ -22,7 +24,7 @@
 //randomSet.getRandom();
 ////
 
-//######################################### Map + List ######################################### 
+//######################################### Map + List #########################################
 //1. Use map and list
 //2. Use list for random function
 class RandomizedSet {
@@ -30,14 +32,14 @@ class RandomizedSet {
     Map<Integer,Integer> valueIdxMap;
     List<Integer> valueList;
     Random random;
-    
+
     /** Initialize your data structure here. */
     public RandomizedSet() {
         valueIdxMap = new HashMap<>();
         valueList = new ArrayList<>();
         random = new Random();
     }
-    
+
     /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
     public boolean insert(int val) {
         if(valueIdxMap.containsKey(val)) return false;
@@ -45,21 +47,21 @@ class RandomizedSet {
         valueIdxMap.put(val, valueList.size() -1);
         return true;
     }
-    
+
     /** Removes a value from the set. Returns true if the set contained the specified element. */
     public boolean remove(int val) {
           if(!valueIdxMap.containsKey(val)) return false;
           int idxReadyToUse = valueIdxMap.get(val);
-          
+
           valueList.set(idxReadyToUse,valueList.get(valueList.size() -1));
           valueIdxMap.put(valueList.get(idxReadyToUse), idxReadyToUse);
-            
+
           //Remove last element
           valueList.remove(valueList.size() -1);
           valueIdxMap.remove(val);
           return true;
     }
-    
+
     /** Get a random element from the set. */
     //Must act on the index
     public int getRandom() {
@@ -73,9 +75,9 @@ class RandomizedSet {
 public:
     /** Initialize your data structure here. */
     RandomizedSet() {
-        
+
     }
-    
+
     /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
     bool insert(int val) {
         if (cntr_map.count(val) ) {
@@ -85,7 +87,7 @@ public:
         cntr_map[val] = v_list.size()-1;
         return true;
     }
-    
+
     /** Removes a value from the set. Returns true if the set contained the specified element. */
     bool remove(int val) {
         if (!cntr_map.count(val) ) {
@@ -99,12 +101,12 @@ public:
         cntr_map.erase(val);
         return true;
     }
-    
+
     /** Get a random element from the set. */
-    int getRandom() { 
+    int getRandom() {
       return v_list[ rand() % v_list.size() ];
     }
-    
+
     private :
         //keep track of # and idx
         unordered_map<int,int> cntr_map;

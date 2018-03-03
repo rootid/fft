@@ -1,6 +1,9 @@
 //Implement a magic directory with buildDict, and search methods.
-//For the method buildDict, you'll be given a list of non-repetitive words to build a dictionary.
-//For the method search, you'll be given a word, and judge whether if you modify exactly one character into another character in this word, the modified word is in the dictionary you just built.
+//For the method buildDict, you'll be given a list of non-repetitive words to
+//build a dictionary.
+//For the method search, you'll be given a word, and judge whether if you
+//modify exactly one character into another character in this word, the
+//modified word is in the dictionary you just built.
 //Example 1:
 //Input: buildDict(["hello", "leetcode"]), Output: Null
 //Input: search("hello"), Output: False
@@ -9,21 +12,24 @@
 //Input: search("leetcoded"), Output: False
 //Note:
 //You may assume that all the inputs are consist of lowercase letters a-z.
-//For contest purpose, the test data is rather small by now. You could think about highly efficient algorithm after the contest.
-//Please remember to RESET your class variables declared in class MagicDictionary, as static/class variables are persisted across multiple test cases. Please see here for more details.
+//For contest purpose, the test data is rather small by now. You could think
+//about highly efficient algorithm after the contest.
+//Please remember to RESET your class variables declared in class
+//MagicDictionary, as static/class variables are persisted across multiple test
+//cases. Please see here for more details.
 
 class MagicDictionary {
     /** Initialize your data structure here. */
     public MagicDictionary() {
-        
+
     }
     /** Build a dictionary through a list of words */
     public void buildDict(String[] dict) {
-        
+
     }
     /** Returns if there is any word in the trie that equals to the given word after modifying exactly one character */
     public boolean search(String word) {
-        
+
     }
 }
 
@@ -33,7 +39,7 @@ class MagicDictionary {
  * obj.buildDict(dict);
  * boolean param_2 = obj.search(word);
  */
-//######################################### With Trie  ######################################### 
+//######################################### With Trie  #########################################
 class MagicDictionary {
     class TrieNode {
         TrieNode[] children = new TrieNode[26];
@@ -45,7 +51,7 @@ class MagicDictionary {
     public MagicDictionary() {
         root = new TrieNode();
     }
-    
+
     /** Build a dictionary through a list of words */
     public void buildDict(String[] dict) {
         for (String s : dict) {
@@ -59,7 +65,7 @@ class MagicDictionary {
             node.isWord = true;
         }
     }
-    
+
     /** Returns if there is any word in the trie that equals to the given word after modifying exactly one character */
     public boolean search(String word) {
         char[] arr = word.toCharArray();
@@ -90,30 +96,41 @@ class MagicDictionary {
     }
 }
 
-//######################################### Use neighbors ######################################### 
-//A word 'apple' has neighbors '*pple', 'a*ple', 'ap*le', 'app*e', 'appl*'. When searching for 
-//a target word like 'apply', we know that a necessary condition is a neighbor of 'apply' is a neighbor of some source word in our magic dictionary.
-//If there is more than one source word that does this, then at least one of those source words will be different from the target word. Otherwise, we need to check that the source doesn't equal the target.
+//######################################### Use neighbors #########################################
+//A word 'apple' has neighbors '*pple', 'a*ple', 'ap*le', 'app*e', 'appl*'.
+//When searching for
+//a target word like 'apply', we know that a necessary condition is a neighbor
+//of 'apply' is a neighbor of some source word in our magic dictionary.
+//If there is more than one source word that does this, then at least one of
+//those source words will be different from the target word. Otherwise, we need
+//to check that the source doesn't equal the target.
 class MagicDictionary(object):
     def _candidates(self, word):
         for i in xrange(len(word)):
             yield word[:i] + '*' + word[i+1:]
-            
+
     def buildDict(self, words):
         self.words = set(words)
         self.near = collections.Counter(cand for word in words
                                         for cand in self._candidates(word))
 
     def search(self, word):
-        return any(self.near[cand] > 1 or 
+        return any(self.near[cand] > 1 or
                    self.near[cand] == 1 and word not in self.words
                    for cand in self._candidates(word))
 
-//######################################### only neightbors ######################################### 
+//######################################### only neightbors #########################################
 //(extensions.get(key) >= 2)?
-//It's because of the wording of the question, which says that search() looks for cases where exactly one change must occur.
-//Suppose the dictionary contains just "apple" (and thus includes the wildcard version "appl*") and someone calls search("apple"). That needs to return false, because "apple" -> "apple" is zero transitions.
-//However, the instant someone adds "apply" to the dictionary, then search("apple") should return true because there's a one-step path from "apple" to "apply". The same is true the other way around, because "apply"->"apple" is 1 step as well. Since each of those two dictionary words added "appl*", its weight should be 2.
+//It's because of the wording of the question, which says that search() looks
+//for cases where exactly one change must occur.
+//Suppose the dictionary contains just "apple" (and thus includes the wildcard
+//version "appl*") and someone calls search("apple"). That needs to return
+//false, because "apple" -> "apple" is zero transitions.
+//However, the instant someone adds "apply" to the dictionary, then
+//search("apple") should return true because there's a one-step path from
+//"apple" to "apply". The same is true the other way around, because
+//"apply"->"apple" is 1 step as well. Since each of those two dictionary words
+//added "appl*", its weight should be 2.
 public class MagicDictionary {
   Set<String> originalWords;
   Map<String, Integer> extensions;
@@ -172,7 +189,7 @@ public class MagicDictionary {
     return false;
   }
 }
-//######################################### Only map ######################################### 
+//######################################### Only map #########################################
 class MagicDictionary {
 public:
     unordered_map<string, char> map;
@@ -189,7 +206,7 @@ public:
             }
         }
     }
-    
+
     bool search(string word) {
         for (int i = 0; i < word.size(); i++) {
             string mw = word;

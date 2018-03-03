@@ -1,6 +1,7 @@
 //Excel Sheet Column Number
 //Related to question Excel Sheet Column Title
-//Given a column title as appear in an Excel sheet, return its corresponding column number.
+//Given a column title as appear in an Excel sheet, return its corresponding
+//column number.
 //For example:
 //    A -> 1
 //    B -> 2
@@ -8,19 +9,19 @@
 //    ...
 //    Z -> 26
 //    AA -> 27
-//    AB -> 28 
+//    AB -> 28
 
 #include<iostream>
 #include<math.h>
 using namespace std;
 
-//######################################### Iteration ######################################### 
+//######################################### Iteration #########################################
 public int titleToNumber(String s) {
 	int result = 0;
 	for (int i = 0; i < s.length(); result = result * 26 + (s.charAt(i) - 'A' + 1), i++);
 	return result;
 }
-//######################################### Iteration ######################################### 
+//######################################### Iteration #########################################
 public int titleToNumber(String s) {
   int result = 0;
   for(int i=0;i<s.length();i++) {
@@ -32,7 +33,7 @@ public int titleToNumber(String s) {
 }
 
 
-//######################################### Iteration ######################################### 
+//######################################### Iteration #########################################
 int titleToNumber(string s) {
     int len = s.size();
     int no = 0;

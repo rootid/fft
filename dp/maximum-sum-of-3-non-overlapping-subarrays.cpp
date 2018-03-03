@@ -1,21 +1,29 @@
 //Maximum Sum of 3 Non-Overlapping Subarrays
-//In a given array nums of positive integers, find three non-overlapping subarrays with maximum sum.
-//Each subarray will be of size k, and we want to maximize the sum of all 3*k entries.
-//Return the result as a list of indices representing the starting position of each interval (0-indexed). If there are multiple answers, return the lexicographically smallest one.
+//In a given array nums of positive integers, find three non-overlapping
+//subarrays with maximum sum.
+//Each subarray will be of size k, and we want to maximize the sum of all 3*k
+//entries.
+//Return the result as a list of indices representing the starting position of
+//each interval (0-indexed). If there are multiple answers, return the
+//lexicographically smallest one.
 //Example:
 //Input: [1,2,1,2,6,7,5,1], 2
 //Output: [0, 3, 5]
-//Explanation: Subarrays [1, 2], [2, 6], [7, 5] correspond to the starting indices [0, 3, 5].
-//We could have also taken [2, 1], but an answer of [1, 3, 5] would be lexicographically larger.
+//Explanation: Subarrays [1, 2], [2, 6], [7, 5] correspond to the starting
+//indices [0, 3, 5].
+//We could have also taken [2, 1], but an answer of [1, 3, 5] would be
+//lexicographically larger.
 //Note:
 //nums.length will be between 1 and 20000.
 //nums[i] will be between 1 and 65535.
 //k will be between 1 and floor(nums.length / 3).
 
 
-//######################################### DP ######################################### 
-//This is a more general DP solution, and it is similar to that buy and sell stock problem.
-//dp[i][j] stands for in i th sum, the max non-overlap sum we can have from 0 to j
+//######################################### DP #########################################
+//This is a more general DP solution, and it is similar to that buy and sell
+//stock problem.
+//dp[i][j] stands for in i th sum, the max non-overlap sum we can have from 0
+//to j
 //id[i][j] stands for in i th sum, the first starting index for that sum.
 class Solution {
     public int[] maxSumOfThreeSubarrays(int[] nums, int k) {
@@ -44,13 +52,18 @@ class Solution {
         int[] res = new int[3];
         res[2] = id[3][nums.length-1];
         res[1] = id[2][res[2] - 1];
-        res[0] = id[1][res[1] - 1];        
+        res[0] = id[1][res[1] - 1];
         return res;
     }
 }
-//######################################### Backtrack  ######################################### 
-//The index in my pos[i][j] array means ending in position j - 1, the starting position of ith element we should take.
-//We first check the last element we should take using pos[3][n], where n is the length of array, aka the last element in the array. From there, we get the starting position of our 3rd element, let's call it p3. Then we backtrack to get the 2nd element by visiting pos[2][p3] (ending in p3 -1). Let's call it p2. Last, we visit pos[1][p2] to get the 1st element.
+//######################################### Backtrack  #########################################
+//The index in my pos[i][j] array means ending in position j - 1, the starting
+//position of ith element we should take.
+//We first check the last element we should take using pos[3][n], where n is
+//the length of array, aka the last element in the array. From there, we get
+//the starting position of our 3rd element, let's call it p3. Then we backtrack
+//to get the 2nd element by visiting pos[2][p3] (ending in p3 -1). Let's call
+//it p2. Last, we visit pos[1][p2] to get the 1st element.
     public int[] maxSumOfThreeSubarrays(int[] nums, int k) {
         int[] res = new int[3];
         if (nums == null || k <= 0 || nums.length < 3 * k) {
@@ -61,10 +74,10 @@ class Solution {
         for (int i = 1; i <= n; i++) {
             sums[i] = sums[i - 1] + nums[i - 1];
         }
-        
+
         int[][] dp = new int[4][n + 1];
         int[][] pos = new int[4][n + 1];
-        
+
         for (int i = 1; i <= 3; i++) {
             // Notice, here position is off by 1
             for (int j = k * i; j <= n; j++) {
@@ -74,7 +87,7 @@ class Solution {
                     pos[i][j] = j - k;
                 } else {
                     dp[i][j] = dp[i][j - 1];
-                    pos[i][j] = pos[i][j - 1];              
+                    pos[i][j] = pos[i][j - 1];
                 }
             }
         }
@@ -85,34 +98,43 @@ class Solution {
         }
         return res;
     }
-//######################################### DP ######################################### 
+//######################################### DP #########################################
 // [0, i-1] - [i, i+k-1] - [i+k, n-1]
-//The question asks for three non-overlapping intervals with maximum sum of all 3 intervals. If the middle interval is [i, i+k-1], where k <= i <= n-2k, the left interval has to be in subrange [0, i-1], and the right interval is from subrange [i+k, n-1].
+//The question asks for three non-overlapping intervals with maximum sum of all
+//3 intervals. If the middle interval is [i, i+k-1], where k <= i <= n-2k, the
+//left interval has to be in subrange [0, i-1], and the right interval is from
+//subrange [i+k, n-1].
 //So the following solution is based on DP.
 //posLeft[i] is the starting index for the left interval in range [0, i];
-//posRight[i] is the starting index for the right interval in range [i, n-1]; 
-//Then we test every possible starting index of middle interval, i.e. k <= i <= n-2k, and we can get the corresponding left and right max sum intervals easily from DP. And the run time is O(n).
-//Caution. In order to get lexicographical smallest order, when there are two intervals with equal max sum, always select the left most one. So in the code, the if condition is ">= tot" for right interval due to backward searching, and "> tot" for left interval. Thanks to @lee215 for pointing this out!
+//posRight[i] is the starting index for the right interval in range [i, n-1];
+//Then we test every possible starting index of middle interval, i.e. k <= i <=
+//n-2k, and we can get the corresponding left and right max sum intervals
+//easily from DP. And the run time is O(n).
+//Caution. In order to get lexicographical smallest order, when there are two
+//intervals with equal max sum, always select the left most one. So in the
+//code, the if condition is ">= tot" for right interval due to backward
+//searching, and "> tot" for left interval. Thanks to @lee215 for pointing this
+//out!
 
-//######################################### DP  ######################################### 
+//######################################### DP  #########################################
 class Solution {
 public:
     vector<int> maxSumOfThreeSubarrays(vector<int>& nums, int k) {
         int n = nums.size();
-        
+
         // sum[i] means nums[0] + nums[1] + ... + nums[i-1]
         vector<int> sum = {0};
         for (int& num:nums) {
             sum.push_back(sum.back() + num);
         }
-        
-        // posLeft[i] means if the middle interval start index is i, what's the index for left interval 
+
+        // posLeft[i] means if the middle interval start index is i, what's the index for left interval
         // such that left interval has the maximum sum.
         // initial value is 0 because if middle interval start index is k, then left interval start index is 0.
-        vector<int> posLeft(n, 0); 
+        vector<int> posLeft(n, 0);
         int leftMaxSum = sum[k] - sum[0]; // if left interval start index is 0, what's the sum of the left interval
         int leftMaxSumIndex = 0;
-        // middle interval start index can only be k, k + 1, ... , n - 2*k and we start from k + 1 
+        // middle interval start index can only be k, k + 1, ... , n - 2*k and we start from k + 1
         // since i = k is our initial value.
         for (int i = k + 1; i <= n - 2*k; i++) {
             if (sum[i]-sum[i-k] > leftMaxSum) {
@@ -121,11 +143,11 @@ public:
                 leftMaxSumIndex = i-k; // if left interval start index is i - k, the sum of the left interval is bigger.
             } else {
                 posLeft[i] = leftMaxSumIndex;
-            } 
+            }
         }
-        
-        
-        // posRight[i] means if the middle interval start index is i, what's the index for right interval 
+
+
+        // posRight[i] means if the middle interval start index is i, what's the index for right interval
         // such that right interval has the maximum sum.
         // initial value is n-k because if middle interval start index is n - 2*k, then right interval start index is n-k.
         vector<int> posRight(n,n-k);
@@ -157,7 +179,7 @@ public:
         return ans;
     }
 };
-//######################################### DP  ######################################### 
+//######################################### DP  #########################################
 class Solution {
 public:
     vector<int> maxSumOfThreeSubarrays(vector<int>& nums, int k) {
@@ -170,7 +192,7 @@ public:
                 posLeft[i] = i+1-k;
                 tot = sum[i+1]-sum[i+1-k];
             }
-            else 
+            else
                 posLeft[i] = posLeft[i-1];
         }
         // DP for starting index of the right max sum interval
@@ -196,7 +218,7 @@ public:
     }
 };
 
-//######################################### DP  ######################################### 
+//######################################### DP  #########################################
 class Solution {
     public int[] maxSumOfThreeSubarrays(int[] nums, int k) {
         int n = nums.length, maxsum = 0;

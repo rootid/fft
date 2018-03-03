@@ -1,9 +1,14 @@
-//Design Snake Game 
-//Design a Snake game that is played on a device with screen size = width x height. Play the game online if you are not familiar with the game.
-//The snake is initially positioned at the top left corner (0,0) with length = 1 unit.
-//You are given a list of food's positions in row-column order. When a snake eats the food, its length and the game's score both increase by 1.
-//Each food appears one by one on the screen. For example, the second food will not appear until the first food was eaten by the snake.
-//When a food does appear on the screen, it is guaranteed that it will not appear on a block occupied by the snake.
+//Design Snake Game
+//Design a Snake game that is played on a device with screen size = width x
+//height. Play the game online if you are not familiar with the game.
+//The snake is initially positioned at the top left corner (0,0) with length =
+//1 unit.
+//You are given a list of food's positions in row-column order. When a snake
+//eats the food, its length and the game's score both increase by 1.
+//Each food appears one by one on the screen. For example, the second food will
+//not appear until the first food was eaten by the snake.
+//When a food does appear on the screen, it is guaranteed that it will not
+//appear on a block occupied by the snake.
 //Example:
 //Given width = 3, height = 2, and food = [[1,2],[0,1]].
 //Snake snake = new Snake(width, height, food);
@@ -16,7 +21,8 @@
 //snake.move("D"); -> Returns 0
 //| | | |
 //| |S|F|
-//snake.move("R"); -> Returns 1 (Snake eats the first food and right after that, the second food appears at (0,1) )
+//snake.move("R"); -> Returns 1 (Snake eats the first food and right after
+//that, the second food appears at (0,1) )
 //| |F| |
 //| |S|S|
 //snake.move("U"); -> Returns 1
@@ -27,13 +33,13 @@
 //| | |S|
 //snake.move("U"); -> Returns -1 (Game over because snake collides with border)
 
-//Deque 
+//Deque
 //1. snake changes position so need to keep track of head and tail
 //Update tail only when snake eats something
-//######################################### HashSet + Deque ######################################### 
+//######################################### HashSet + Deque #########################################
 public class SnakeGame {
 
-    //2D position info is encoded to 1D and stored as two copies 
+    //2D position info is encoded to 1D and stored as two copies
     Set<Integer> set; // this copy is good for fast loop-up for eating body case
     Deque<Integer> body; // this copy is good for updating tail
     int score; //if game over update the score to avoid repeated move
@@ -41,7 +47,7 @@ public class SnakeGame {
     int foodIndex;
     int width;
     int height;
-    
+
     public SnakeGame(int width, int height, int[][] food) {
         this.width = width;
         this.height = height;
@@ -51,7 +57,7 @@ public class SnakeGame {
         body = new LinkedList<>();
         body.offerLast(0);
     }
-    
+
     public int move(String direction) {
         //case 0: game already over: do nothing
         if (score == -1) {
@@ -70,33 +76,33 @@ public class SnakeGame {
             default :  colHead++;
         }
         int head = rowHead * width + colHead; //new head position
-        
+
         //case 1: out of boundary or eating body , always need to update the body
-        set.remove(body.peekLast()); // new head is legal to be in old tail's position, remove from set temporarily 
+        set.remove(body.peekLast()); // new head is legal to be in old tail's position, remove from set temporarily
 		//Check boundry + new head is part of snak body
         if (rowHead < 0 || rowHead == height || colHead < 0 || colHead == width || set.contains(head)) {
             return score = -1;
         }
-        
+
         // add head for case2 and case3
-        set.add(head); 
+        set.add(head);
         body.offerFirst(head); //update snake body to point to new head
-        
+
         //case2: eating food, keep tail, add head
         if (foodIndex < food.length && rowHead == food[foodIndex][0] && colHead == food[foodIndex][1]) {
             set.add(body.peekLast()); // old tail does not change, so add it back to set
             foodIndex++;
             return ++score;
         }
-        
+
         //case3: normal move, remove tail, add head
         body.pollLast();
         return score;
-        
+
     }
 }
 
-//######################################### HashSet + Deque + Hash function ######################################### 
+//######################################### HashSet + Deque + Hash function #########################################
 class Solution {
     int[][] f;
     int w, h, i;
@@ -106,7 +112,7 @@ class Solution {
 	//So its purpose it to make checking for eating body case easy.
 	//All you need to do is to check for if the new position of the head is in the set.
 	//If it is in, the snake bites itself, and if not, it is safe.
-    Set<Integer> set;  
+    Set<Integer> set;
     int p = 199; // prime # to compute hash code
 
     public SnakeGame(int width, int height, int[][] food) {
@@ -154,7 +160,7 @@ class Solution {
 }
 
 
-//######################################### Set + Deque ######################################### 
+//######################################### Set + Deque #########################################
 class SnakeGame {
 public:
 /** Initialize your data structure here.
@@ -212,15 +218,19 @@ int move(string direction) {
 };
 
 
-//######################################### Complex Number traversal  ######################################### 
+//######################################### Complex Number traversal  #########################################
 
-//use real number to represent row and 
+//use real number to represent row and
 //complex number to represent column,
 //so we could easily add 1 or 1j to row and col
-//without doing something really ugly like pos[0] + direction[0], pos[1] + direction[1].
+//without doing something really ugly like pos[0] + direction[0], pos[1] +
+//direction[1].
 //Complex Number use :
-//it makes computing the neighbor coordinate nicer. Even lets me compute what to add with 1j ** ... instead of hardcoding something like [1, 1j, -1, -1j][...].
-//Just came up with an alternative initialization which I think is nicer. Not sure why I didn't do that earlier.
+//it makes computing the neighbor coordinate nicer. Even lets me compute what
+//to add with 1j ** ... instead of hardcoding something like [1, 1j, -1,
+//-1j][...].
+//Just came up with an alternative initialization which I think is nicer. Not
+//sure why I didn't do that earlier.
 //old:    food = [x + y*1j for x, y in food[::-1]]
 //new:    food = [complex(*z) for z in food[::-1]]
 class SnakeGame(object):
@@ -243,7 +253,7 @@ class SnakeGame(object):
 
 
 
-//######################################### LL ######################################### 
+//######################################### LL #########################################
 //TC ~ O(N)
 class SnakeGame {
     class Position{
@@ -259,61 +269,61 @@ class SnakeGame {
     }
     int len;
     int rows ,cols;
-    
+
     int[][] food;
     LinkedList<Position> snake;
-   
+
     /** Initialize your data structure here.
         @param width - screen width
-        @param height - screen height 
+        @param height - screen height
         @param food - A list of food positions
         E.g food = [[1,1], [1,0]] means the first food is positioned at [1,1], the second is at [1,0]. */
     public SnakeGame(int width, int height, int[][] food) {
         this.rows = height;
         this.cols = width;
         this.food = food;
-   
+
         snake = new LinkedList<Position>();
         snake.add(new Position(0,0));
         len = 0;
     }
-    
+
     /** Moves the snake.
-        @param direction - 'U' = Up, 'L' = Left, 'R' = Right, 'D' = Down 
-        @return The game's score after the move. Return -1 if game over. 
+        @param direction - 'U' = Up, 'L' = Left, 'R' = Right, 'D' = Down
+        @return The game's score after the move. Return -1 if game over.
         Game over when snake crosses the screen boundary or bites its body. */
     public int move(String direction) {
     	//if(len>=food.length) return len;
-    
+
         Position cur = new Position(snake.get(0).x,snake.get(0).y);
-        
+
         switch(direction){
-        case "U": 
+        case "U":
             cur.x--;  break;
-        case "L": 
+        case "L":
             cur.y--; break;
-        case "R": 
+        case "R":
             cur.y++;   break;
-        case "D": 
+        case "D":
             cur.x++;   break;
         }
-        
+
         if(cur.x<0 || cur.x>= rows || cur.y<0 || cur.y>=cols) return -1;
-        
+
 
         for(int i=1;i<snake.size()-1;i++){
             Position next = snake.get(i);
-            if(next.isEqual(cur)) return -1;	       
+            if(next.isEqual(cur)) return -1;
         }
-        snake.addFirst(cur);     
+        snake.addFirst(cur);
         if(len<food.length){
-            Position p = new Position(food[len][0],food[len][1]);	        
-            if(cur.isEqual(p)){	            
+            Position p = new Position(food[len][0],food[len][1]);
+            if(cur.isEqual(p)){
                 len++;
             }
         }
         while(snake.size()>len+1) snake.removeLast();
-       
+
         return len;
     }
 }

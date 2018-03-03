@@ -1,5 +1,6 @@
-//Path Sum II  
-//Given a binary tree and a sum, find all root-to-leaf paths where each path's sum equals the given sum.
+//Path Sum II
+//Given a binary tree and a sum, find all root-to-leaf paths where each path's
+//sum equals the given sum.
 //For example:
 //Given the below binary tree and sum = 22,
 //              5
@@ -18,7 +19,7 @@
 #include "../headers/global.hpp"
 #include "../headers/treenode.h"
 
-//######################################### Recursion ######################################### 
+//######################################### Recursion #########################################
 //T : O(n)
 //T : O(n) + O(p * h)
 public List<List<Integer>> pathSum(TreeNode root, int sum) {
@@ -39,7 +40,7 @@ private void pathSumHelper(TreeNode root, int sum, List<Integer> localList, List
     }
 }
 
-//######################################### Recursion ######################################### 
+//######################################### Recursion #########################################
 void sumPathHelper(TreeNode *root,vector<int> s,vector<vector <int> >& s1,int sum) {
   if(!root) {
     return;
@@ -53,7 +54,7 @@ void sumPathHelper(TreeNode *root,vector<int> s,vector<vector <int> >& s1,int su
       localSum += s[i];
       cout << localSum  << " ";
     }
-    //cout << endl; 
+    //cout << endl;
     if(sum == localSum) {
        //cout << "GOT SUM" << endl;
         s1.push_back(s);

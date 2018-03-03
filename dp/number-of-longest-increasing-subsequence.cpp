@@ -1,24 +1,29 @@
 //Number of Longest Increasing Subsequence
-//Given an unsorted array of integers, find the number of longest increasing subsequence.
+//Given an unsorted array of integers, find the number of longest increasing
+//subsequence.
 //Example 1:
 //Input: [1,3,5,4,7]
 //Output: 2
-//Explanation: The two longest increasing subsequence are [1, 3, 4, 7] and [1, 3, 5, 7].
+//Explanation: The two longest increasing subsequence are [1, 3, 4, 7] and [1,
+//3, 5, 7].
 //Example 2:
 //Input: [2,2,2,2,2]
 //Output: 5
-//Explanation: The length of longest continuous increasing subsequence is 1, and there are 5 subsequences' length is 1, so output 5.
-//Note: Length of the given array will be not exceed 2000 and the answer is guaranteed to be fit in 32-bit signed int.
+//Explanation: The length of longest continuous increasing subsequence is 1,
+//and there are 5 subsequences' length is 1, so output 5.
+//Note: Length of the given array will be not exceed 2000 and the answer is
+//guaranteed to be fit in 32-bit signed int.
 
 //For a sequence of numbers,
 //cnt[k] is total number of longest subsequence ending with nums[k];
 //len[k] is the length of longest subsequence ending with nums[k];
 //Then we have following equations
 //len[k+1] = max(len[k+1], len[i]+1) for all i <= k and nums[i] < nums[k+1];
-//cnt[k+1] = sum(cnt[i]) for all i <= k and nums[i] < nums[k+1] and len[i] = len[k+1]-1;
+//cnt[k+1] = sum(cnt[i]) for all i <= k and nums[i] < nums[k+1] and len[i] =
+//len[k+1]-1;
 //Starting case and default case: cnt[0] = len[0] = 1;
 
-//######################################### DP ######################################### 
+//######################################### DP #########################################
 class Solution {
 public:
     int findNumberOfLIS(vector<int>& nums) {
@@ -31,7 +36,7 @@ public:
                         len[i] = len[j]+1;
                         cnt[i] = cnt[j];
                     }
-                    else if (len[j]+1 == len[i]) 
+                    else if (len[j]+1 == len[i])
                         cnt[i] += cnt[j];
                 }
             }
@@ -39,16 +44,25 @@ public:
         }
         // find the longest increasing subsequence of the whole sequence
        // sum valid counts
-        for (int i = 0; i < n; i++) 
+        for (int i = 0; i < n; i++)
             if (len[i] == maxlen) ans += cnt[i];
         return ans;
     }
 };
-//############################### DP ############################### 
-//If you have not solved the Longest Increasing Subsequence problem, you should do so before attempting this question. The approach is very similar and only requires augmentation of the DP array.
-//In the Longest Increasing Subsequence problem, the DP array simply had to store the longest length. In this variant, each element in the DP array needs to store two things: (1) Length of longest subsequence ending at this index and (2) Number of longest subsequences that end at this index. I use a two element list for this purpose.
-//In each loop as we build up the DP array, find the longest length for this index and then sum up the numbers at these indices that contribute to this longest length.
-//Here I provide two versions: (1) A slower but easier to understand version and (2) Much faster and optimized version
+//############################### DP ###############################
+//If you have not solved the Longest Increasing Subsequence problem, you should
+//do so before attempting this question. The approach is very similar and only
+//requires augmentation of the DP array.
+//In the Longest Increasing Subsequence problem, the DP array simply had to
+//store the longest length. In this variant, each element in the DP array needs
+//to store two things: (1) Length of longest subsequence ending at this index
+//and (2) Number of longest subsequences that end at this index. I use a two
+//element list for this purpose.
+//In each loop as we build up the DP array, find the longest length for this
+//index and then sum up the numbers at these indices that contribute to this
+//longest length.
+//Here I provide two versions: (1) A slower but easier to understand version
+//and (2) Much faster and optimized version
 
 class Solution(object):
     def findNumberOfLIS(self, nums):
@@ -70,7 +84,8 @@ class Solution(object):
             dp[i] = [curr_longest, max(count, dp[i][1])]
             longest = max(curr_longest, longest)
         return sum([item[1] for item in dp if item[0] == longest])
-//The counting step can be optimized such that we don't count from the start when we find a longer max_len. This improved the speed from 10% to 88%.
+//The counting step can be optimized such that we don't count from the start
+//when we find a longer max_len. This improved the speed from 10% to 88%.
 
 class Solution(object):
     def findNumberOfLIS(self, nums):
@@ -86,16 +101,19 @@ class Solution(object):
                 if nums[j] < num:
                     if dp[j][0] + 1 > max_len:
                         max_len = dp[j][0] + 1
-                        count = 0 
+                        count = 0
                     if dp[j][0] == max_len - 1:
                         count += dp[j][1]
             dp[i] = [max_len, max(count, dp[i][1])]
             max_for_all = max(max_len, max_for_all)
         return sum([item[1] for item in dp if item[0] == max_for_all])
 
-//######################################### DP ######################################### 
-//Use the DP solution for LIS. Maintain an array called LIS and cnt. LIS[i] is the length of longest subsequence ending at index i. cnt[i] is the number of longest subsequences ending at index i.
-//When we find a new LIS for index i, update cnt[i] with cnt[j]. Otherwise if the LIS[i] is the same as LIS[j]+1, simply add cnt[j] to cnt[i].
+//######################################### DP #########################################
+//Use the DP solution for LIS. Maintain an array called LIS and cnt. LIS[i] is
+//the length of longest subsequence ending at index i. cnt[i] is the number of
+//longest subsequences ending at index i.
+//When we find a new LIS for index i, update cnt[i] with cnt[j]. Otherwise if
+//the LIS[i] is the same as LIS[j]+1, simply add cnt[j] to cnt[i].
 //Return the sum of frequencies of the maximum LIS.
 //Time complexity is O(N^2) and Space complexity is O(N).
 class Solution:
@@ -117,7 +135,7 @@ class Solution:
                         LIS[i] = LIS[j]+1
         return sum((y for x,y in zip(LIS, cnt) if x==max(LIS)))
 
-//############################### DP ############################### 
+//############################### DP ###############################
 The idea is to use two arrays len[n] and cnt[n] to record the maximum length of Increasing Subsequence and the coresponding number of these sequence which ends with nums[i], respectively. That is:
 
 len[i]: the length of the Longest Increasing Subsequence which ends with nums[i].

@@ -4,8 +4,8 @@
 //Note:
 //All numbers (including target) will be positive integers.
 //The solution set must not contain duplicate combinations.
-//For example, given candidate set [2, 3, 6, 7] and target 7, 
-//A solution set is: 
+//For example, given candidate set [2, 3, 6, 7] and target 7,
+//A solution set is:
 //[
 //  [7],
 //  [2, 2, 3]
@@ -15,18 +15,19 @@
 
 
 
-//Thinking about there is an opt[] array, each element in the array is a vector<vector<int>>.
+//Thinking about there is an opt[] array, each element in the array is a
+//vector<vector<int>>.
 //We do DP from opt[0] to opt[target].
 //// base case
 //opt[0] = [[]]
 //// iteration
-//opt[i] = 
-//	1.add candidates[j] to each list in opt[i-candidates[j]] if i > candidates[j] 
+//opt[i] =
+//	1.add candidates[j] to each list in opt[i-candidates[j]] if i > candidates[j]
 //	.Add each list to opt[i]
 //	2 create candidates[j] as a new vector<int> if i == candidates[j]
 //	.Add this list to opt[i]
 
-//##################################################### DP Like coin change  + Sort ##################################################### 
+//##################################################### DP Like coin change  + Sort #####################################################
 vector<vector<int> > combinationSum(vector<int> &candidates, int target) {
     sort(candidates.begin(), candidates.end());
     vector< vector< vector<int> > > combinations(target + 1, vector<vector<int>>());
@@ -43,7 +44,7 @@ vector<vector<int> > combinationSum(vector<int> &candidates, int target) {
     return combinations[target];
 }
 
-//##################################################### DP ##################################################### 
+//##################################################### DP #####################################################
 class Solution {
 public:
 	vector<vector<int> > combinationSum(vector<int> &candidates, int target) {
@@ -64,7 +65,7 @@ public:
 	}
 };
 
-//##################################################### Backtracking ##################################################### 
+//##################################################### Backtracking #####################################################
  public List<List<Integer>> combinationSum(int[] candidates, int target) {
      List<List<Integer>> resultList = new LinkedList<>();
      Arrays.sort(candidates);
@@ -73,7 +74,7 @@ public:
      combinationSumHelper(candidates, 0 ,resultList, localList, sum,target);
      return resultList;
  }
- 
+
  private void combinationSumHelper(int[] candidates, int k, List<List<Integer>> resultList, List<Integer> localList, int sum, int target) {
      if(sum > target) return;
      int m = candidates.length;
@@ -88,13 +89,13 @@ public:
      }
  }
 
-//##################################################### SKIENA WAY ##################################################### 
+//##################################################### SKIENA WAY #####################################################
 void genSolution(int last_choice,int level,int choice,vector<int>&candidates,vector<int>& local_store,int& local_result
    ,int target,vector< vector<int> >&result) {
        if(local_result == target) {
            result.push_back(local_store);
        } else {
-         level += 1;  //unnecessary however it is to compute the levels after I get the result I need to set it zero 
+         level += 1;  //unnecessary however it is to compute the levels after I get the result I need to set it zero
              for(int i=last_choice;i<candidates.size();i++) {
                 if(local_result + candidates[i] <= target) {
                     local_result += candidates[i];
@@ -118,14 +119,14 @@ vector<vector<int> > combinationSum(vector<int>& candidates, int target) {
 }
 
 
-//##################################################### DFS WAY ##################################################### 
+//##################################################### DFS WAY #####################################################
 void dfsHelper(int level_,vector<int>& iv,vector<int>& cv,vector<vector<int> >& result,int target) {
   if(target < 0) {
 	return;
   }
   if(target == 0) {
      result.push_back(cv);
-     return;	
+     return;
   }
   for(int i=level_;i<iv.size();i++) {
     cv.push_back(iv[i]);
@@ -134,7 +135,7 @@ void dfsHelper(int level_,vector<int>& iv,vector<int>& cv,vector<vector<int> >& 
     level_ += 1;
     cv.pop_back();
 }
- 
+
 }
 
 vector<vector<int> > getCombinationSum(vector<int>& iv,int target) {

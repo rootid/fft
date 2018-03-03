@@ -21,7 +21,8 @@
 
 
 //######################################### Simple solution #########################################
-//Time complexity : O(n). We need to traverse over the whole nutsnutsnuts array once. nnn refers to the size of nutsnutsnuts array.
+//Time complexity : O(n). We need to traverse over the whole nutsnutsnuts array
+//once. nnn refers to the size of nutsnutsnuts array.
 //Space complexity : O(1). Constant space is used.
 
 //We know, the distance between any two points(tree, squirrel, nut) is given by
@@ -42,7 +43,8 @@
 //current nut first. Out of all the nuts, we find out the nut which maximizes
 //the saving and then deduct this maximum saving from the sum total of the
 //to-and-fro distance of all the nuts.
-//Note that the first nut to be picked needs not necessarily be the nut closest to the squirrel's start point, but it's the one which maximizes the savings.
+//Note that the first nut to be picked needs not necessarily be the nut closest
+//to the squirrel's start point, but it's the one which maximizes the savings.
 ////
 //######################################### Manhatten distance #########################################
 public class Solution {

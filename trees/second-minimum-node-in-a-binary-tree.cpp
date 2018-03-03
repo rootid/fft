@@ -1,9 +1,13 @@
 //Second Minimum Node In a Binary Tree
-//Given a non-empty special binary tree consisting of nodes with the non-negative value, where each node in this tree has exactly two or zero sub-node. If the node has two sub-nodes, then this node's value is the smaller value among its two sub-nodes.
-//Given such a binary tree, you need to output the second minimum value in the set made of all the nodes' value in the whole tree.
+//Given a non-empty special binary tree consisting of nodes with the
+//non-negative value, where each node in this tree has exactly two or zero
+//sub-node. If the node has two sub-nodes, then this node's value is the
+//smaller value among its two sub-nodes.
+//Given such a binary tree, you need to output the second minimum value in the
+//set made of all the nodes' value in the whole tree.
 //If no such second minimum value exists, output -1 instead.
 //Example 1:
-//Input: 
+//Input:
 //    2
 //   / \
 //  2   5
@@ -13,17 +17,18 @@
 //Output: 5
 //Explanation: The smallest value is 2, the second smallest value is 5.
 //Example 2:
-//Input: 
+//Input:
 //    2
 //   / \
 //  2   2
 //
 //Output: -1
-//Explanation: The smallest value is 2, but there isn't any second smallest value.
+//Explanation: The smallest value is 2, but there isn't any second smallest
+//value.
 
-//######################################### BFS traversal ######################################### 
+//######################################### BFS traversal #########################################
 public int findSecondMinimumValue(TreeNode root) {
- 
+
     if(root == null) {
         return -1;
     }
@@ -45,8 +50,9 @@ public int findSecondMinimumValue(TreeNode root) {
     return secondMin;
 }
 
-//######################################### Priority Queue ######################################### 
-//Both TreeSet and Priority queue provides O(log(N)) complexity for adding, removing and searching elements.
+//######################################### Priority Queue #########################################
+//Both TreeSet and Priority queue provides O(log(N)) complexity for adding,
+//removing and searching elements.
 public int findSecondMinimumValue(TreeNode root) {
     PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
     add(root,pq);
@@ -67,7 +73,7 @@ public static void add(TreeNode root, PriorityQueue<Integer> pq){
     return;
 }
 
-//######################################### TreeSet ######################################### 
+//######################################### TreeSet #########################################
 public int findSecondMinimumValue(TreeNode root) {
      TreeSet<Integer> ts = new TreeSet<Integer>();
      add(root, ts);
@@ -75,7 +81,7 @@ public int findSecondMinimumValue(TreeNode root) {
      if(!ts.isEmpty()) return ts.first(); else return -1;
 }
 
-//######################################### DFS ######################################### 
+//######################################### DFS #########################################
 class Solution {
 public:
     int findSecondMinimumValue(TreeNode* root) {
@@ -88,7 +94,7 @@ private:
         if (p == nullptr) return -1;
         if (p->val != first) return p->val;
         int left = minval(p->left, first), right = minval(p->right, first);
-        // if all nodes of a subtree = root->val, 
+        // if all nodes of a subtree = root->val,
         // there is no second minimum value, return -1
         if (left == -1) return right;
         if (right == -1) return left;
@@ -97,7 +103,7 @@ private:
 };
 
 
-//######################################### Naive ######################################### 
+//######################################### Naive #########################################
 class Solution {
 public:
     set<int> dict;
@@ -105,7 +111,7 @@ public:
         preorder(root);
         return dict.size()<=1?-1:*(++dict.begin());
     }
-    
+
     void preorder(TreeNode* root){
         if (!root) return;
         dict.insert(root->val);
@@ -114,7 +120,7 @@ public:
     }
 };
 
-//######################################### Heap ######################################### 
+//######################################### Heap #########################################
 def findSecondMinimumValue(self, root):
     res = []
     queue = [root]
@@ -130,7 +136,7 @@ def findSecondMinimumValue(self, root):
     return heapq.heappop(res) if res else -1
 
 
-//######################################### dfs ######################################### 
+//######################################### dfs #########################################
 class Solution(object):
     def findSecondMinimumValue(self, root):
         def dfs(node):
@@ -141,9 +147,9 @@ class Solution(object):
         s = set()
         dfs(root)
         s.remove(min(s))
-        return min(s) if s else 
+        return min(s) if s else
 
-//######################################### bfs ######################################### 
+//######################################### bfs #########################################
 class Solution(object):
     def findSecondMinimumValue(self, root):
         q, s = collections.deque([root]), set()

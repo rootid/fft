@@ -1,15 +1,16 @@
 //Kth Smallest Element in a BST
 //Given a binary search tree, write a function kthSmallest to find the kth smallest element in it.
-//Note: 
+//Note:
 //You may assume k is always valid, 1 ≤ k ≤ BST's total elements.
 //Follow up:
-//What if the BST is modified (insert/delete operations) often and you need to find the kth smallest frequently? How would you optimize the kthSmallest routine?
+//What if the BST is modified (insert/delete operations) often and you need to find the kth smallest frequently? How
+//would you optimize the kthSmallest routine?
 //Hint:
 //Try to utilize the property of a BST.
 //What if you could modify the BST node's structure?
 //The optimal runtime complexity is O(height of BST).
 
-//###### Inorder traversal + With instance variable  ######################################### 
+//###### Inorder traversal + With instance variable  #########################################
 class Solution {
   int count = 0;
   int result = Integer.MIN_VALUE;
@@ -27,35 +28,35 @@ class Solution {
           result = root.val;
           return;
       }
-      traverse(root.right, k);       
+      traverse(root.right, k);
   }
 }
 
-//######################################### With Stack (Iterative) ######################################### 
+//######################################### With Stack (Iterative) #########################################
 public int kthSmallest(TreeNode root, int k) {
      Stack<TreeNode> stack = new Stack<TreeNode>();
      TreeNode p = root;
      int count = 0;
-     
+
      while(!stack.isEmpty() || p != null) {
          if(p != null) {
              stack.push(p);  // Just like recursion
-             p = p.left;   
-             
+             p = p.left;
+
          } else {
             TreeNode node = stack.pop();
-            if(++count == k) return node.val; 
+            if(++count == k) return node.val;
             p = node.right;
          }
      }
-     
+
      return Integer.MIN_VALUE;
  }
 
 
-//######################################### D&C ######################################### 
+//######################################### D&C #########################################
 public class Solution {
-  public int kthSmallest(TreeNode root, int k) { 
+  public int kthSmallest(TreeNode root, int k) {
     int left = nodeCount(root.left);  // this value can be saved in the root node
     if(left + 1 == k) {
         return root.val;
@@ -74,8 +75,10 @@ public class Solution {
   }
 }
 
-//######################################### With reference ######################################### 
-//Try the left subtree first. If that made k zero, then its answer is the overall answer and we return it right away. Otherwise, decrease k for the current node, and if that made k zero, then we return the current node's value right away. Otherwise try the right subtree and return whatever comes back from there.
+//######################################### With reference #########################################
+//Try the left subtree first. If that made k zero, then its answer is the overall answer and we return it right away.
+//Otherwise, decrease k for the current node, and if that made k zero, then we return the current node's value right
+//away. Otherwise try the right subtree and return whatever comes back from there.
 int kthSmallestHelper(TreeNode* root, int k,int& l) {
   if(root) {
     int lval = kthSmallestHelper(root->left,k,l);
@@ -102,8 +105,8 @@ int find(TreeNode* root, int& k) {
         //return !k ? x : !--k ? root->val : find(root->right, k);
         if (!k) {
           return x;
-        } else { 
-          if(!--k) { 
+        } else {
+          if(!--k) {
               return root->val;
           } else  {
              return find(root->right, k);
@@ -117,7 +120,7 @@ int kthSmallest(TreeNode* root, int k) {
   //return find(root,k);
 }
 
-//######################################### With stack ######################################### 
+//######################################### With stack #########################################
 //Contrainted inorder traversal with MAX k memory location instead of stack
 //Solution 2, C++ with circular vector
 //Using a vector of fixed size k and a stack pointer i into it which will be used modulo k.
@@ -136,7 +139,7 @@ int kthSmallest(TreeNode* root, int k) {
     }
 }
 
-//######################################### With Deque ######################################### 
+//######################################### With Deque #########################################
 //Solution 3, C++ with deque
 //I really like the previous version, but the fixed size k isn't always necessary, so here's a version using a deque:
 int kthSmallest(TreeNode* root, int k) {

@@ -9,7 +9,8 @@
 //Input: [1, 2, 1, 2]
 //Output: False
 //Note:
-//1. The division operator / represents real division, not integer division. For
+//1. The division operator / represents real division, not integer division.
+//For
 //example, 4 / (1 - 2/3) = 12.  2. Every operation done is between two numbers.
 //In particular, we cannot use - as a unary operator. For example, with [1, 1,
 //1, 1] as input, the expression -1 - 1 - 1 - 1 is not allowed.
@@ -67,12 +68,27 @@ def judgePoint24(self, nums):
                for a, b, *rest in itertools.permutations(nums)
                for x in {a+b, a-b, a*b, b and a/b})
 
-//Just go through all pairs of numbers a and b and replace them with a+b, a-b, a*b and a/b, . Use recursion for the now smaller list. Positive base case is the list being [24] (or close enough).
-//I prevent division-by-zero by using b and a/b instead of just a/b. If b is zero, then b and a/b is zero. And it's ok to have that zero, since a*b is zero as well. It's not even a second zero, because I'm creating a set of the up to four operation results, so duplicates are ignored immediately.
-//Oh and note that I'm using Python 3, so / is "true" division, not integer division like in Python 2. And it would be better to use fractions.Fraction instead of floats. I actually just realized that there is in fact an input where simple floats fail, namely [3, 3, 8, 8]. Floats calculate 23.999999999999989341858963598497211933135986328125 instead of 24. It's not in the judge's test suite, but it should be soon (Edit: it now is). Using Fraction however made my solution exceed the time limit, so I settled for the above approximation solution.
+//Just go through all pairs of numbers a and b and replace them with a+b, a-b,
+//a*b and a/b, . Use recursion for the now smaller list. Positive base case is
+//the list being [24] (or close enough).
+//I prevent division-by-zero by using b and a/b instead of just a/b. If b is
+//zero, then b and a/b is zero. And it's ok to have that zero, since a*b is
+//zero as well. It's not even a second zero, because I'm creating a set of the
+//up to four operation results, so duplicates are ignored immediately.
+//Oh and note that I'm using Python 3, so / is "true" division, not integer
+//division like in Python 2. And it would be better to use fractions.Fraction
+//instead of floats. I actually just realized that there is in fact an input
+//where simple floats fail, namely [3, 3, 8, 8]. Floats calculate
+//23.999999999999989341858963598497211933135986328125 instead of 24. It's not
+//in the judge's test suite, but it should be soon (Edit: it now is). Using
+//Fraction however made my solution exceed the time limit, so I settled for the
+//above approximation solution.
 
-//In the top call I go through 4!=24 permutations and thus 24 recursive calls instead of just 4*3=12. But it gets accepted in about 440 ms, so that's not a problem.
-//I also wrote a version that prevents those duplicates and more, it gets accepted in about 160 ms:
+//In the top call I go through 4!=24 permutations and thus 24 recursive calls
+//instead of just 4*3=12. But it gets accepted in about 440 ms, so that's not a
+//problem.
+//I also wrote a version that prevents those duplicates and more, it gets
+//accepted in about 160 ms:
 //######################################### Avoid duplicates #########################################
 def judgePoint24(self, nums):
     if len(nums) == 1:
@@ -81,7 +97,8 @@ def judgePoint24(self, nums):
                    {tuple(sorted([x] + rest))
                     for a, b, *rest in itertools.permutations(nums)
                     for x in (a+b, a-b, a*b, b and a/b)}))
-//Another version, using global memoization (i.e., across all test cases), fast enough to use Fraction (gets accepted in about 750 ms):
+//Another version, using global memoization (i.e., across all test cases), fast
+//enough to use Fraction (gets accepted in about 750 ms):
 
 //######################################### Memoization #########################################
 from functools import lru_cache as memoize
@@ -124,9 +141,14 @@ static bool judge24(vector<double> nums) {
 }
 
 //######################################### Python functional #########################################
-//We write a function apply that takes two sets of possibilities for A and B and returns all possible results operator(A, B) or operator(B, A) for all possible operators.
-//Ignoring reflection, there are only two ways we can apply the operators: (AB)(CD) or ((AB)C)D. When C and D are ordered, this becomes three ways - the third way is ((AB)D)C.
-//This solution is a little slow because it has to manage sets - my article has a solution that is almost 10x faster. I think this one is cool though.
+//We write a function apply that takes two sets of possibilities for A and B
+//and returns all possible results operator(A, B) or operator(B, A) for all
+//possible operators.
+//Ignoring reflection, there are only two ways we can apply the operators:
+//(AB)(CD) or ((AB)C)D. When C and D are ordered, this becomes three ways - the
+//third way is ((AB)D)C.
+//This solution is a little slow because it has to manage sets - my article has
+//a solution that is almost 10x faster. I think this one is cool though.
 //https://leetcode.com/articles/24-game/
 
 def judgePoint24(self, nums):
@@ -151,9 +173,15 @@ def judgePoint24(self, nums):
     return False
 
 //######################################### Python #########################################
-//Use itertools.permutations to generate all the possible operands and operators to form an array of length 7, representing an equation of 4 operands and 3 operators.
-//The possible function tries to evaluate the equation with different combinations of brackets, terminating as soon as an equation evaluates to 24. Each time evaluate is called, it reduces the length of the equation by 2, as it takes a triplet (operand, operator, operand) and evaluates into a value.
-//Compare the final result of the equation with a small delta because of floating point inaccuracies.
+//Use itertools.permutations to generate all the possible operands and
+//operators to form an array of length 7, representing an equation of 4
+//operands and 3 operators.
+//The possible function tries to evaluate the equation with different
+//combinations of brackets, terminating as soon as an equation evaluates to 24.
+//Each time evaluate is called, it reduces the length of the equation by 2, as
+//it takes a triplet (operand, operator, operand) and evaluates into a value.
+//Compare the final result of the equation with a small delta because of
+//floating point inaccuracies.
 class Solution(object):
     def judgePoint24(self, nums):
         """
@@ -244,9 +272,12 @@ class Solution(object):
     }
 
 //######################################### BT #########################################
-//we can find all the permutation of the input array, then for each permutation we can evaluate the result from left to right or half and half.
+//we can find all the permutation of the input array, then for each permutation
+//we can evaluate the result from left to right or half and half.
 //
-//the complexity would be O(4! * 6^3), where 4! is number of all permutation, and two number can have 6 operation result, 4 number have 3 operations. After all, we cannot call it O(1). Should be O(n! * 6^(n-1)).
+//the complexity would be O(4! * 6^3), where 4! is number of all permutation,
+//and two number can have 6 operation result, 4 number have 3 operations. After
+//all, we cannot call it O(1). Should be O(n! * 6^(n-1)).
 class Solution {
 public:
     bool judgePoint24(vector<int>& nums) {

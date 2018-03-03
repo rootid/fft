@@ -1,10 +1,17 @@
 //Matchsticks to Square
-//Remember the story of Little Match Girl? By now, you know exactly what matchsticks the little match girl has, please find out a way you can make one square by using up all those matchsticks. You should not break any stick, but you can link them up, and each matchstick must be used exactly one time.
-//Your input will be several matchsticks the girl has, represented with their stick length. Your output will either be true or false, to represent whether you could make one square using all the matchsticks the little match girl has.
+//Remember the story of Little Match Girl? By now, you know exactly what
+//matchsticks the little match girl has, please find out a way you can make one
+//square by using up all those matchsticks. You should not break any stick, but
+//you can link them up, and each matchstick must be used exactly one time.
+//Your input will be several matchsticks the girl has, represented with their
+//stick length. Your output will either be true or false, to represent whether
+//you could make one square using all the matchsticks the little match girl
+//has.
 //Example 1:
 //Input: [1,1,2,2,2]
 //Output: true
-//Explanation: You can form a square with length 2, one side of the square came two sticks with length 1.
+//Explanation: You can form a square with length 2, one side of the square came
+//two sticks with length 1.
 //Example 2:
 //Input: [3,3,3,3,4]
 //Output: false
@@ -17,7 +24,7 @@
 //0 : do not select matchstick
 //1 : select the matchstick
 
-//################################## backtracking + Bit mask ################################## 
+//################################## backtracking + Bit mask ##################################
 bool makesquare(vector<int>& nums) {
     int n = nums.size();
     long sum = accumulate(nums.begin(), nums.end(), 0l);
@@ -64,9 +71,11 @@ bool makesquare(vector<int>& nums) {
 }
 
 
-//################################## Optimized backtracking ################################## 
-//1. Each stick is used once if (sidesLength[i] + matches[k] > target) continue;
-//2. Sort (descending order) // sort(nums.begin(), nums.end(), [](const int &l, const int &r){return l > r;});
+//################################## Optimized backtracking ##################################
+//1. Each stick is used once if (sidesLength[i] + matches[k] > target)
+//continue;
+//2. Sort (descending order) // sort(nums.begin(), nums.end(), [](const int &l,
+//const int &r){return l > r;});
 //3. Check the length only once
     bool dfs(vector<int> &sidesLength,const vector<int> &matches, int index, const int target) {
         if (index == matches.size())
@@ -76,7 +85,7 @@ bool makesquare(vector<int>& nums) {
                 continue;
             int j = i;
             while (--j >= 0) // third
-                if (sidesLength[i] == sidesLength[j]) 
+                if (sidesLength[i] == sidesLength[j])
                     break;
             if (j != -1) continue;
             sidesLength[i] += matches[index];
@@ -99,7 +108,7 @@ public:
         return dfs(sidesLength, nums, 0, sum / 4);
     }
 
-//######################### backtraking ######################### 
+//######################### backtraking #########################
 //square has a 4 sides T : O(4^n)
 //NPC problem
 class Solution {
@@ -123,19 +132,19 @@ public:
     }
 };
 
-//######################### DFS with min sum ######################### 
+//######################### DFS with min sum #########################
 
-public:    
+public:
     bool makesquare(vector<int>& nums) {
       int sum;
       if (nums.size() < 4 || (sum = accumulate(nums.begin(), nums.end(), 0))%4) return false;
       return sortSmall(nums), dfs(nums.begin(), vector<int>(4,sum/4));
     }
-private: // helpers   
+private: // helpers
     // sort nums descendingly and calculate 4 smallest subsums
     void sortSmall(vector<int>& nums) {
       sort(nums.rbegin(), nums.rend());
-      small = { *((e=nums.end())-1), *(e-2), min(*(e-1)+*(e-2),*(e-3)), 
+      small = { *((e=nums.end())-1), *(e-2), min(*(e-1)+*(e-2),*(e-3)),
                 min(max(*(e-1)+*(e-2),*(e-3)),*(e-4)) };
     }
 
@@ -143,8 +152,8 @@ private: // helpers
     bool dfs(vector<int>::iterator i, const vector<int>& s) {
       if (i == e) return true;
       // check min condition
-      for (int j = 0; j < s.size(); ++j) if (small[j] > s[j]) return false; 
-      for (int j = 0; j < s.size(); ++j) {        
+      for (int j = 0; j < s.size(); ++j) if (small[j] > s[j]) return false;
+      for (int j = 0; j < s.size(); ++j) {
         if (s[j] < *i || j && s[j] == s[j-1]) continue;
         // build unique valid subsums
         vector<int> ss(s); if (!(ss[j] -= *i)) ss.erase(ss.begin()+j);
@@ -152,18 +161,18 @@ private: // helpers
       }
       return false;
     }
-    
+
     vector<int>::iterator e; // end of nums sorted descendingly
     vector<int> small = vector<int>(4); // 4 smallest subsums
 
-//############### NAive DFS  ###################### 
+//############### NAive DFS  ######################
 public boolean makesquare(int[] nums) {
     if (nums.length < 4) return false;
-        
+
     int perimeter = 0;
     for (int ele : nums) perimeter += ele;
     if (perimeter % 4 != 0) return false;
-    
+
     int side = perimeter / 4;
 
     return makesquareSub(nums, nums.length - 1, new int[] {side, side, side, side});
@@ -171,40 +180,40 @@ public boolean makesquare(int[] nums) {
 
 private boolean makesquareSub(int[] nums, int i, int[] s) {
     if (i < 0) return s[0] == 0 && s[1] == 0 && s[2] == 0 && s[3] == 0;
-        
+
     for (int j = 0; j < s.length; j++) {
         if (nums[i] > s[j]) continue;
         s[j] -= nums[i];
         if (makesquareSub(nums, i - 1, s)) return true;
         s[j] += nums[i];
     }
-        
+
     return false;
 }
-//###################### DFS + sort ###################### 
+//###################### DFS + sort ######################
 
 public boolean makesquare(int[] nums) {
     if (nums.length < 4) return false;
-        
+
     int perimeter = 0;
     for (int ele : nums) perimeter += ele;
     if (perimeter % 4 != 0) return false;
-        
+
     Arrays.sort(nums);
     int side = perimeter / 4;
 
     return makesquareSub(nums, nums.length - 1, new int[] {side, side, side, side});
 }
-    
+
 private boolean makesquareSub(int[] nums, int i, int[] s) {
     if (i < 0) return s[0] == 0 && s[1] == 0 && s[2] == 0 && s[3] == 0;
-        
+
     for (int j = 0; j < s.length; j++) {
         if (nums[i] > s[j]) continue;
         s[j] -= nums[i];
         if (makesquareSub(nums, i - 1, s)) return true;
         s[j] += nums[i];
     }
-        
+
     return false;
 }

@@ -1,8 +1,10 @@
 //2 Keys Keyboard
-//Initially on a notepad only one character 'A' is present. You can perform two operations on this notepad for each step:
+//Initially on a notepad only one character 'A' is present. You can perform two operations on this notepad for each
+//step:
 //Copy All: You can copy all the characters present on the notepad (partial copy is not allowed).
 //Paste: You can paste the characters which are copied last time.
-//Given a number n. You have to get exactly n 'A' on the notepad by performing the minimum number of steps permitted. Output the minimum number of steps to get n 'A'.
+//Given a number n. You have to get exactly n 'A' on the notepad by performing the minimum number of steps permitted.
+//Output the minimum number of steps to get n 'A'.
 //Example 1:
 //Input: 3
 //Output: 3
@@ -15,7 +17,7 @@
 //The n will be in the range [1, 1000].
 
 
-//########################################## Recursive ########################################## 
+//########################################## Recursive ##########################################
 /**
  * It take 2 op to double, 3 ops to triple, ...
  * if n % 2 == 0, then f(n) = f(n/2) + 2
@@ -31,7 +33,7 @@ int minSteps(int n) {
   return n;
 }
 
-//######################################### iterative  ######################################### 
+//######################################### iterative  #########################################
 //A's -> Operation Count
 ///1->0 2->2 3->3 4->4 5->5 6->5 7->7 8->6 9->6 10->7 11->11 12->7 13->13 14->9 15->8
 ///Now, check the solution.
@@ -74,4 +76,4 @@ int minSteps(int n) {
 
 
 
-// vim: set sw=2 sts=2 tw=120 et nospell : 
+// vim: set sw=2 sts=2 tw=120 et nospell :

@@ -1,24 +1,32 @@
 //Paint House II
-//There are a row of n houses, each house can be painted with one of the k colors. The cost of painting each house with a certain color is different. You have to paint all the houses such that no two adjacent houses have the same color.
-//The cost of painting each house with a certain color is represented by a n x k cost matrix. For example, costs[0][0] is the cost of painting house 0 with color 0; costs[1][2] is the cost of painting house 1 with color 2, and so on... Find the minimum cost to paint all houses.
+//There are a row of n houses, each house can be painted with one of the k
+//colors. The cost of painting each house with a certain color is different.
+//You have to paint all the houses such that no two adjacent houses have the
+//same color.
+//The cost of painting each house with a certain color is represented by a n x
+//k cost matrix. For example, costs[0][0] is the cost of painting house 0 with
+//color 0; costs[1][2] is the cost of painting house 1 with color 2, and so
+//on... Find the minimum cost to paint all houses.
 //Note:
 //All costs are positive integers.
 //Follow up:
 //Could you solve it in O(nk) runtime?
 //
 
-//############################################ O(nk) + S : O(K) ############################################ 
-//############################  array modification ############################  
-//Same as Paint House I, for each house and each color, 
-//the minimum cost of painting the house with that color should be the 
-//1. minimum cost of painting previous houses, 
+//############################################ O(nk) + S : O(K) ############################################
+//############################  array modification ############################
+//Same as Paint House I, for each house and each color,
+//the minimum cost of painting the house with that color should be the
+//1. minimum cost of painting previous houses,
 //2. make sure the previous house doesn't paint with the same color.
-//We can use min1 and min2 to track the indices of the 1st and 2nd smallest cost till previous house, 
-//if the current color's index is same as min1, then we have to go with min2 (as it violates the 2), otherwise we can safely go with min1.
+//We can use min1 and min2 to track the indices of the 1st and 2nd smallest
+//cost till previous house,
+//if the current color's index is same as min1, then we have to go with min2
+//(as it violates the 2), otherwise we can safely go with min1.
 //The code below modifies the value of costs[][] so we don't need extra space.
 public int minCostII(int[][] costs) {
     if (costs == null || costs.length == 0) return 0;
-        
+
     int n = costs.length, k = costs[0].length;
     // min1 is the index of the 1st-smallest cost till previous house
     // min2 is the index of the 2nd-smallest cost till previous house
@@ -37,7 +45,7 @@ public int minCostII(int[][] costs) {
             }
             // find the indices of 1st and 2nd smallest cost of painting current house i
             if (min1 < 0 || costs[i][j] < costs[i][min1]) { //cost[i][j] : current hose,current color
-                min2 = min1; 
+                min2 = min1;
 				min1 = j;
             } else if (min2 < 0 || costs[i][j] < costs[i][min2]) {
                 min2 = j;
@@ -48,9 +56,10 @@ public int minCostII(int[][] costs) {
 }
 
 
-//############################################ O(nk) + S : O(K) ############################################ 
+//############################################ O(nk) + S : O(K) ############################################
 //maintain only the two smallest total costs until the previous house
-//Otherwise we might need to traverse the other k-1 colors for each j, and the time complexity would be O(nk^2).
+//Otherwise we might need to traverse the other k-1 colors for each j, and the
+//time complexity would be O(nk^2).
 int minCostII(vector<vector<int>>& costs) {
 	if(costs.empty()) {
 		return 0;
@@ -85,7 +94,7 @@ int minCostII(vector<vector<int>>& costs) {
     return min1;
 }
 
-//############################################ Same optimized + O(nk) + S : O(K) ############################################ 
+//############################################ Same optimized + O(nk) + S : O(K) ############################################
 int minCostII(vector<vector<int>>& costs) {
        if (costs.empty()) return 0;
        int n = costs.size(), k = costs[0].size(), m1 = 0, m2 = 0;
@@ -102,9 +111,10 @@ int minCostII(vector<vector<int>>& costs) {
        return m1;
    }
 
-//########################################## Pythonic ########################################## 
+//########################################## Pythonic ##########################################
 //##########################################  T: (nk) S : O(1)
-//store is the first and second minimum costs at current house and the corresponding color index of first minimum.
+//store is the first and second minimum costs at current house and the
+//corresponding color index of first minimum.
 def minCostII(self, costs):
     if not costs or not costs[0]:
         return 0
@@ -131,7 +141,7 @@ def minCostII(self, costs):
     return fst[prev]
 
 
-//################################################ O(nk) with Map ################################################ 
+//################################################ O(nk) with Map ################################################
 class Solution:
     def minCostII(self, costs):
         return min(reduce(self.combine, costs)) if costs else 0
@@ -142,7 +152,7 @@ class Solution:
         return map(sum, zip(house, tmp))
 
 
-//################################################ O(nk) with Lambda ################################################ 
+//################################################ O(nk) with Lambda ################################################
 class Solution:
     # @param {integer[][]} costs
     # @return {integer}
@@ -154,7 +164,7 @@ class Solution:
         tmp = [m]*i + [min(tmp[0:i]+tmp[i+1:])] + [m]*(n-i-1)
         return [sum(i) for i in zip(house, tmp)]
 
-//################################################ O(nk) with functions ################################################ 
+//################################################ O(nk) with functions ################################################
 class Solution:
     # @param {integer[][]} costs
     # @return {integer}

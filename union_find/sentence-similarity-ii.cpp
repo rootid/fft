@@ -1,10 +1,22 @@
 //Sentence Similarity II
-//Given two sentences words1, words2 (each represented as an array of strings), and a list of similar word pairs pairs, determine if two sentences are similar.
-//For example, words1 = ["great", "acting", "skills"] and words2 = ["fine", "drama", "talent"] are similar, if the similar word pairs are pairs = [["great", "good"], ["fine", "good"], ["acting","drama"], ["skills","talent"]].
-//Note that the similarity relation is transitive. For example, if "great" and "good" are similar, and "fine" and "good" are similar, then "great" and "fine" are similar.
-//Similarity is also symmetric. For example, "great" and "fine" being similar is the same as "fine" and "great" being similar.
-//Also, a word is always similar with itself. For example, the sentences words1 = ["great"], words2 = ["great"], pairs = [] are similar, even though there are no specified similar word pairs.
-//Finally, sentences can only be similar if they have the same number of words. So a sentence like words1 = ["great"] can never be similar to words2 = ["doubleplus","good"].
+//Given two sentences words1, words2 (each represented as an array of strings),
+//and a list of similar word pairs pairs, determine if two sentences are
+//similar.
+//For example, words1 = ["great", "acting", "skills"] and words2 = ["fine",
+//"drama", "talent"] are similar, if the similar word pairs are pairs =
+//[["great", "good"], ["fine", "good"], ["acting","drama"],
+//["skills","talent"]].
+//Note that the similarity relation is transitive. For example, if "great" and
+//"good" are similar, and "fine" and "good" are similar, then "great" and
+//"fine" are similar.
+//Similarity is also symmetric. For example, "great" and "fine" being similar
+//is the same as "fine" and "great" being similar.
+//Also, a word is always similar with itself. For example, the sentences words1
+//= ["great"], words2 = ["great"], pairs = [] are similar, even though there
+//are no specified similar word pairs.
+//Finally, sentences can only be similar if they have the same number of words.
+//So a sentence like words1 = ["great"] can never be similar to words2 =
+//["doubleplus","good"].
 //Note:
 //The length of words1 and words2 will not exceed 1000.
 //The length of pairs will not exceed 2000.
@@ -14,9 +26,20 @@
 
 //######################################### UF #########################################
 //
-//This is a good use case for Union-Find, compare to Sentence Similarity I, here the similarity between words are transitive, so all the connected(similar) words should be group into an union represented by their ultimate parent(or family holder, you name it).
-//The connections can be represented by an parent map Map<String, String> m, which record the direct parent-ship we learned in each pair, but not the ultimate-parent. To build it, go through the input pairs, for each pair<w1, w2>, use the recursive find() method to find the ultimate-parent for both word - parent1, parent2, if they are different, assign parent1 as parent of parent2(or the other way around), so that the to families are merged.
-//The classic find(x) method will find the ultimate-parent of x. I modified it a little bit, make it do a little of extra initialization work - assign x itself as its parent when it is not initialize - so that we don't have to explicitly initialize the map at the beginning.
+//This is a good use case for Union-Find, compare to Sentence Similarity I,
+//here the similarity between words are transitive, so all the
+//connected(similar) words should be group into an union represented by their
+//ultimate parent(or family holder, you name it).
+//The connections can be represented by an parent map Map<String, String> m,
+//which record the direct parent-ship we learned in each pair, but not the
+//ultimate-parent. To build it, go through the input pairs, for each pair<w1,
+//w2>, use the recursive find() method to find the ultimate-parent for both
+//word - parent1, parent2, if they are different, assign parent1 as parent of
+//parent2(or the other way around), so that the to families are merged.
+//The classic find(x) method will find the ultimate-parent of x. I modified it
+//a little bit, make it do a little of extra initialization work - assign x
+//itself as its parent when it is not initialize - so that we don't have to
+//explicitly initialize the map at the beginning.
 class Solution {
     public boolean areSentencesSimilarTwo(String[] a, String[] b, String[][] pairs) {
         if (a.length != b.length) return false;
@@ -53,7 +76,9 @@ string find(unordered_map<string, string>& mp, string word) {
 }
 
 //######################################### DFS #########################################
-//Time Complexity: O(NP), where NNN is the maximum length of words1 and words2, and PPP is the length of pairs. Each of NNN searches could search the entire graph.
+//Time Complexity: O(NP), where NNN is the maximum length of words1 and words2,
+//and PPP is the length of pairs. Each of NNN searches could search the entire
+//graph.
 //Space Complexity: O(P), the size of pairs.
 class Solution {
     public boolean areSentencesSimilarTwo(
@@ -95,7 +120,10 @@ class Solution {
 }
 
 //######################################### Union Find #########################################
-//Time Complexity: O(NlogP+P), where NNN is the maximum length of words1 and words2, and PPP is the length of pairs. If we used union-by-rank, this complexity improves to O(N∗α(P)+P)≈O(N+P)O(N * \alpha(P) + P) \approx O(N + P)O(N∗α(P)+P)≈O(N+P), where α\alphaα is the Inverse-Ackermann function.
+//Time Complexity: O(NlogP+P), where NNN is the maximum length of words1 and
+//words2, and PPP is the length of pairs. If we used union-by-rank, this
+//complexity improves to O(N∗α(P)+P)≈O(N+P)O(N * \alpha(P) + P) \approx O(N +
+//P)O(N∗α(P)+P)≈O(N+P), where α\alphaα is the Inverse-Ackermann function.
 //
 //Space Complexity: O(P), the size of pairs.
 class Solution {

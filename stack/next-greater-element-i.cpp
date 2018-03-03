@@ -1,6 +1,9 @@
 //Next Greater Element I
-//You are given two arrays (without duplicates) nums1 and nums2 where nums1’s elements are subset of nums2. Find all the next greater numbers for nums1's elements in the corresponding places of nums2.
-//The Next Greater Number of a number x in nums1 is the first greater number to its right in nums2. If it does not exist, output -1 for this number.
+//You are given two arrays (without duplicates) nums1 and nums2 where nums1’s
+//elements are subset of nums2. Find all the next greater numbers for nums1's
+//elements in the corresponding places of nums2.
+//The Next Greater Number of a number x in nums1 is the first greater number to
+//its right in nums2. If it does not exist, output -1 for this number.
 //Example 1:
 //Input: nums1 = [4,1,2], nums2 = [1,3,4,2].
 //Output: [-1,3,-1]
@@ -20,7 +23,7 @@
 
 
 
-//################## With stack + map + Traverse right to left #################################### 
+//################## With stack + map + Traverse right to left ####################################
 vector<int> nextGreaterElement(vector<int>& findNums, vector<int>& nums) {
      if (findNums.empty()) return {};
      int n = nums.size();
@@ -31,7 +34,7 @@ vector<int> nextGreaterElement(vector<int>& findNums, vector<int>& nums) {
          ng[nums[i]] = st.empty() ? -1 : st.top();
          st.push(nums[i]);
      }
-     
+
      int m = findNums.size();
      vector<int> res(m);
      for (int i = 0; i < m; ++i) res[i] = ng[findNums[i]];
@@ -39,7 +42,7 @@ vector<int> nextGreaterElement(vector<int>& findNums, vector<int>& nums) {
  }
 //findNums  = [4,1,2]
 //nums  = [1,3,4,2]
-//################## With stack + map + Traverse left to right  #################################### 
+//################## With stack + map + Traverse left to right  ####################################
 vector<int> nextGreaterElement(vector<int>& findNums, vector<int>& nums) {
     stack<int> s;
     //map store k,v => 1,
@@ -63,39 +66,39 @@ vector<int> nextGreaterElement(vector<int>& findNums, vector<int>& nums) {
     return ans;
 }
 
-//################## With Heap ################## 
+//################## With Heap ##################
 //
   vector<int> nextGreaterElement(vector<int>& findNums, vector<int>& nums) {
-        unordered_map<int,int> num2idx; 
+        unordered_map<int,int> num2idx;
         //map num to its index in findNums
         for(int i=0; i<findNums.size(); i++)
             num2idx[findNums[i]] = i;
-            
+
         priority_queue<int,vector<int>,std::greater<int>> min_heap;
         vector<int> ans(findNums.size(),0);
         for(int i : nums){
-            
+
             //In nums, we find an element from findNums. Push it into the heap.
             //The elements in the heap are numbers whose first greater number still not found.
-            if(num2idx.count(i))         
-                min_heap.push(i);        
-                
+            if(num2idx.count(i))
+                min_heap.push(i);
+
             //See if the current number i is the first greater number for elements in heap.
-            //If so, we found the first greater number i. 
+            //If so, we found the first greater number i.
             //Since it's a min_heap, once we find an element not smaller than i, we can stop the loop.
-            while(!min_heap.empty() && min_heap.top()<i){     
-                int idx = num2idx[min_heap.top()];    
-                ans[idx] = i;                   
-                min_heap.pop();                    
+            while(!min_heap.empty() && min_heap.top()<i){
+                int idx = num2idx[min_heap.top()];
+                ans[idx] = i;
+                min_heap.pop();
             }
         }
-        
+
         //Elements still in the heap are numbers without first greater number
-        while(!min_heap.empty()){ 
+        while(!min_heap.empty()){
             int idx = num2idx[min_heap.top()];
             ans[idx] = -1;
             min_heap.pop();
         }
-        
+
         return ans;
     }

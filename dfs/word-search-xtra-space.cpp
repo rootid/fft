@@ -1,5 +1,7 @@
 //Given a 2D board and a word, find if the word exists in the grid.
-//The word can be constructed from letters of sequentially adjacent cell, where "adjacent" cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once.
+//The word can be constructed from letters of sequentially adjacent cell, where
+//"adjacent" cells are those horizontally or vertically neighboring. The same
+//letter cell may not be used more than once.
 //For example,
 //Given board =
 //[
@@ -23,23 +25,23 @@ bool exist(vector<vector<char> > &board, string word) {
      }
      return false;
 }
- 
+
 bool findWord(vector<vector<char>> &board, vector<vector<bool>> &visited, int row, int col, string &word, int index) {
      if(index==word.size()) return true;
-     if(row<0 || col<0 || row>=board.size() || col>=board[0].size() || visited[row][col] || board[row][col]!=word[index]) 
+     if(row<0 || col<0 || row>=board.size() || col>=board[0].size() || visited[row][col] || board[row][col]!=word[index])
          return false;
-         
+
      visited[row][col] = true;
      if(findWord(board, visited, row-1, col, word, index+1)) {
-       return true;  
-     }
-     if(findWord(board, visited, row+1, col, word, index+1)) { 
        return true;
      }
-     if(findWord(board, visited, row, col-1, word, index+1)) { 
+     if(findWord(board, visited, row+1, col, word, index+1)) {
        return true;
      }
-     if(findWord(board, visited, row, col+1, word, index+1)) { 
+     if(findWord(board, visited, row, col-1, word, index+1)) {
+       return true;
+     }
+     if(findWord(board, visited, row, col+1, word, index+1)) {
        return true;
      }
      visited[row][col] = false;

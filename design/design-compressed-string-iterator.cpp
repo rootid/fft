@@ -1,10 +1,16 @@
 //Design Compressed String Iterator
-//Design and implement a data structure for a compressed string iterator. It should support the following operations: next and hasNext.
-//The given compressed string will be in the form of each letter followed by a positive integer representing the number of this letter existing in the original uncompressed string.
-//next() - if the original string still has uncompressed characters, return the next letter; Otherwise return a white space.
+//Design and implement a data structure for a compressed string iterator. It
+//should support the following operations: next and hasNext.
+//The given compressed string will be in the form of each letter followed by a
+//positive integer representing the number of this letter existing in the
+//original uncompressed string.
+//next() - if the original string still has uncompressed characters, return the
+//next letter; Otherwise return a white space.
 //hasNext() - Judge whether there is any letter needs to be uncompressed.
 //Note:
-//Please remember to RESET your class variables declared in StringIterator, as static/class variables are persisted across multiple test cases. Please see here for more details.
+//Please remember to RESET your class variables declared in StringIterator, as
+//static/class variables are persisted across multiple test cases. Please see
+//here for more details.
 //Example:
 //StringIterator iterator = new StringIterator("L1e2t1C1o1d1e1");
 //iterator.next(); // return 'L'
@@ -53,14 +59,14 @@ private :
 class StringIterator {
 public:
     StringIterator(string compressedString) : in(compressedString) {}
-    
+
     char next() {
         if (!hasNext())
             return ' ';
         number--;
         return curr;
     }
-    
+
     bool hasNext() {
         return number || (in >> curr >> number);
     }
@@ -71,7 +77,7 @@ private:
     int number = 0;
 };
 
-//############################################################# With ATOI + isdigit ############################################################## 
+//############################################################# With ATOI + isdigit ##############################################################
 class StringIterator {
 public:
     StringIterator(string cs) : cs(cs), i(0), rep(0), ch(' ') { }
@@ -107,7 +113,7 @@ private:
 };
 
 //re.finditer instead to save some memory if you like.
-//##########################################################  pytonic ########################################################## 
+//##########################################################  pytonic ##########################################################
 //class StringIterator(object):
 //
 //    def __init__(self, compressedString):
@@ -137,10 +143,18 @@ private:
 //        return self.__count > 0
 //
 //
-//############################# Store string in memory  ############################# 
+//############################# Store string in memory  #############################
 //
-//Let's store the tokens like [('L', 1), ('e', 2), ('t', 1), ('c', 1), ('o', 1), ('d', 1), ('e', 1)], except in reverse. When we want a token, we pop it off the stack: t, n = 'L', 1 and return t. When there is more than one character represented, we need to put the excess back on the stack: t, n = 'e', 2 then tokens.append(('e', 1)).
-//We can use a regular expression to find the tokens quickly. The pattern \D\d+ means a non-digit character, followed by 1 or more digit characters. (The + denotes a kleene plus, a wildcard character meaning "one or more of the preceding match.") All of our tokens (and only our tokens) match this pattern as desired.
+//Let's store the tokens like [('L', 1), ('e', 2), ('t', 1), ('c', 1), ('o',
+//1), ('d', 1), ('e', 1)], except in reverse. When we want a token, we pop it
+//off the stack: t, n = 'L', 1 and return t. When there is more than one
+//character represented, we need to put the excess back on the stack: t, n =
+//'e', 2 then tokens.append(('e', 1)).
+//We can use a regular expression to find the tokens quickly. The pattern \D\d+
+//means a non-digit character, followed by 1 or more digit characters. (The +
+//denotes a kleene plus, a wildcard character meaning "one or more of the
+//preceding match.") All of our tokens (and only our tokens) match this pattern
+//as desired.
 //
 //import re
 //class StringIterator(object):
@@ -153,7 +167,7 @@ private:
 //    def next(self):
 //        if not self.tokens: return ' '
 //        t, n = self.tokens.pop()
-//        if n > 1: 
+//        if n > 1:
 //            self.tokens.append((t, n - 1))
 //        return t
 //

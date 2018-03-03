@@ -1,4 +1,5 @@
-//Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.
+//Given a singly linked list where elements are sorted in ascending order,
+//convert it to a height balanced BST.
 //1
 //1->2
 //1->2->3
@@ -19,7 +20,7 @@ TreeNode *sl_bst_helper(ListNode *head,ListNode *tail) {
      root->right = sl_bst_helper(slow->next,tail);
      return root;
 }
-     
+
 TreeNode* sortedListToBST(ListNode* head) {
      return sl_bst_helper(head,NULL);
 }

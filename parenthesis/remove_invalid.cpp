@@ -1,6 +1,8 @@
 //Remove Invalid Parentheses
-//Remove the minimum number of invalid parentheses in order to make the input string valid. Return all possible results.
-//Note: The input string may contain letters other than the parentheses ( and ).
+//Remove the minimum number of invalid parentheses in order to make the input
+//string valid. Return all possible results.
+//Note: The input string may contain letters other than the parentheses ( and
+//).
 //Examples:
 //"()())()" -> ["()()()", "(())()"]
 //"(a)())()" -> ["(a)()()", "(a())()"]
@@ -26,7 +28,7 @@ string getValidParenthesis(string s) {
       }
       cnt -= 1;
       cout << "substr = " <<  s.substr(startIdx,i-startIdx+1) << endl;
-      tmp += s.substr(startIdx,i-startIdx+1); 
+      tmp += s.substr(startIdx,i-startIdx+1);
       startIdx = i+1;
     }
   }

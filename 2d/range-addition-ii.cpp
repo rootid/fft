@@ -1,9 +1,13 @@
 //Range Addition II
-//Given an m * n matrix M initialized with all 0's and several update operations.
-//Operations are represented by a 2D array, and each operation is represented by an array with two
-//positive integers a and b, which means M[i][j] should be added by one for all 0 <= i < a and 0 <=
+//Given an m * n matrix M initialized with all 0's and several update
+//operations.
+//Operations are represented by a 2D array, and each operation is represented
+//by an array with two
+//positive integers a and b, which means M[i][j] should be added by one for all
+//0 <= i < a and 0 <=
 //j < b.
-//You need to count and return the number of maximum integers in the matrix after performing all the
+//You need to count and return the number of maximum integers in the matrix
+//after performing all the
 //operations.
 //Example 1:
 //Input:
@@ -61,11 +65,15 @@ int maxCount(int m, int n, vector<vector<int>>& ops) {
 
 
 //################################################### pytonic ###################################################
-//Say the operations are [(x_1, y_1), (x_2, y_2), ..., (x_n, y_n)]. The top left square is clearly
-//incremented by every operation. If some square (x, y) has x >= x_i, then it will not be marked by
+//Say the operations are [(x_1, y_1), (x_2, y_2), ..., (x_n, y_n)]. The top
+//left square is clearly
+//incremented by every operation. If some square (x, y) has x >= x_i, then it
+//will not be marked by
 //operation i. So all squares (x, y) with x >= min_i(x_i) do not get marked.
-//Thus, when there is atleast one operation, all squares (x, y) with 0 <= x < min(x_1, x_2, ...,
-//x_n) and 0 <= y < min(y_1, y_2, ..., y_n) get marked; and there are min_i(x_i) * min_i(y_i) of
+//Thus, when there is atleast one operation, all squares (x, y) with 0 <= x <
+//min(x_1, x_2, ...,
+//x_n) and 0 <= y < min(y_1, y_2, ..., y_n) get marked; and there are
+//min_i(x_i) * min_i(y_i) of
 //them. If there are no operations, then what is marked is the entire board.
 //
 //def maxCount(self, R, C, ops):

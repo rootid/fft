@@ -1,5 +1,6 @@
 //Set Matrix Zeroes
-//Given a m x n matrix, if an element is 0, set its entire row and column to 0. Do it in place.
+//Given a m x n matrix, if an element is 0, set its entire row and column to 0.
+//Do it in place.
 //
 //Follow up:
 //Did you use extra space?
@@ -31,7 +32,7 @@ void setZeroes(vector<vector<int>>& matrix) {
   for(int i=1;i<m;i++) {
     for(int j=1;j<n;j++) {
       if(matrix[i][0] == 0 && matrix[0][j]) {
-        continue;     // avoid repeated checks 
+        continue;     // avoid repeated checks
       }
       if(matrix[i][j] == 0) {
         matrix[i][0] = 0;

@@ -1,11 +1,13 @@
 // Binary Search Tree Iterator
-//Implement an iterator over a binary search tree (BST). Your iterator will be initialized with the root node of a BST.
+//Implement an iterator over a binary search tree (BST). Your iterator will be
+//initialized with the root node of a BST.
 //Calling next() will return the next smallest number in the BST.
-//Note: next() and hasNext() should run in average O(1) time and uses O(h) memory, where h is the height of the tree.
+//Note: next() and hasNext() should run in average O(1) time and uses O(h)
+//memory, where h is the height of the tree.
 #include "../headers/global.hpp"
 #include "../global/treenode.h"
 
-//######################################### With Stack ######################################### 
+//######################################### With Stack #########################################
 Class Solution {
     Stack<TreeNode> stk;
 
@@ -29,10 +31,10 @@ Class Solution {
         }
         return val;
     }
-    
-    
+
+
     private void pushAll(TreeNode root) {
-        while(root != null) { 
+        while(root != null) {
             stk.push(root);
             root = root.left;
         }
@@ -45,7 +47,7 @@ private :
     stack<TreeNode*> st;
     //L->D->R (inorder)
 public:
-    
+
     BSTIterator(TreeNode *root) {
         push_all(root);
     }
@@ -53,7 +55,7 @@ public:
     bool hasNext() {
         if(st.empty())  {
             return false;
-        }  
+        }
         return true;
     }
     /** @return the next smallest number */
@@ -65,7 +67,7 @@ public:
         }
         return tmp->val;
     }
-    
+
     void push_all(TreeNode *tmp) {
          while(tmp) {
             st.push(tmp);
@@ -104,17 +106,17 @@ void convert(TreeNode* root,TreeNode* pre,TreeNode* head) {
         convert(root->right,pre,head);
     }
 }
-boolean hasNext() { 
+boolean hasNext() {
   return head != NULL;
 }
-    
+
 int next() {
     if (hasNext()) {
       TreeNode* t = head;
       head = head->right;
-      return t->val; 
+      return t->val;
     } else {
         return -1;
     }
 }
- 
+

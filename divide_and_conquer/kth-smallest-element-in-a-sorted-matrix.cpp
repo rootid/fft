@@ -1,6 +1,8 @@
 //Kth Smallest Element in a Sorted Matrix
-//Given a n x n matrix where each of the rows and columns are sorted in ascending order, find the kth smallest element in the matrix.
-//Note that it is the kth smallest element in the sorted order, not the kth distinct element.
+//Given a n x n matrix where each of the rows and columns are sorted in
+//ascending order, find the kth smallest element in the matrix.
+//Note that it is the kth smallest element in the sorted order, not the kth
+//distinct element.
 //Example:
 //matrix = [
 //   [ 1,  5,  9],
@@ -9,15 +11,16 @@
 //],
 //k = 8,
 //return 13.
-//Note: 
+//Note:
 //You may assume k is always valid, 1 ≤ k ≤ n2.
 
 
-//########################################### Bin search ########################################### 
+//########################################### Bin search ###########################################
 
-//TODO case fixx : matrix=[[2000000000]], k=1. Better start with INT_MIN/INT_MAX or matrix[0][0]/matrix[n-1][n-1]
+//TODO case fixx : matrix=[[2000000000]], k=1. Better start with
+//INT_MIN/INT_MAX or matrix[0][0]/matrix[n-1][n-1]
 
-//##############################################  Bin search O(r log n) ############################################## 
+//##############################################  Bin search O(r log n) ##############################################
 int kthSmallest(vector<vector<int>>& matrix, int k) {
     int n = matrix.size();
     int left = matrix[0][0];
@@ -32,13 +35,13 @@ int kthSmallest(vector<vector<int>>& matrix, int k) {
         if (count < k) {
             left = midv + 1;
         } else {
-            right = midv;    
+            right = midv;
         }
     }
     return left;
 }
 
-//############################################## FAster O(n) ############################################## 
+//############################################## FAster O(n) ##############################################
 int kthSmallest(vector<vector<int>>& matrix, int k) {
   int n=matrix.size();
   int l=matrix[0][0], r=matrix[n-1][n-1], mid;
@@ -58,22 +61,32 @@ int kthSmallest(vector<vector<int>>& matrix, int k) {
   return l;
 }
 
-//############################################## O(n) algo ############################################## 
-//This thread is inspired by @StefanPochmann's thread, which mentioned Mirzaian and Arjoandi's paper.
+//############################################## O(n) algo ##############################################
+//This thread is inspired by @StefanPochmann's thread, which mentioned Mirzaian
+//and Arjoandi's paper.
 //
 //Preparations
 //
-//When n==1 (i.e. the matrix is 1x1. n is the number of row), the problem is trival. Hencefore we only consider the case n>=2.
-//Rather than finding one k-th element from the matrix, we will select TWO elements (say, k0-th element and k1-th element) simultaneously, such that 0<=k0<=k1<n*n and k1-k0<=4n. Obviously, if we can complete the aforementioned selection in O(n), we can find the k-th element in O(n) by simply letting k=k0=k1.
-//Let x0 denote the k0-th element; let x1 denote the k1-th element. Obviously we have x0<=x1.
+//When n==1 (i.e. the matrix is 1x1. n is the number of row), the problem is
+//trival. Hencefore we only consider the case n>=2.
+//Rather than finding one k-th element from the matrix, we will select TWO
+//elements (say, k0-th element and k1-th element) simultaneously, such that
+//0<=k0<=k1<n*n and k1-k0<=4n. Obviously, if we can complete the aforementioned
+//selection in O(n), we can find the k-th element in O(n) by simply letting
+//k=k0=k1.
+//Let x0 denote the k0-th element; let x1 denote the k1-th element. Obviously
+//we have x0<=x1.
 //Now we will introduce how to select x0 and x1 in O(n).
 //
 //General idea:
-//For an nxn matrix, where n is large, we try to select x0 and x1 in a recursive way.
+//For an nxn matrix, where n is large, we try to select x0 and x1 in a
+//recursive way.
 //
 //(Determine submatrix) This step constructs one submatrix, whose number of elements will be approximately a quarter of the original matrix. The submatrix is defined as every other row and every other column of the original matrix. The last row and the last column are included too (the reason will be stated in the sequel.) Then the dimension of the matrix is approximately (n/2) x (n/2). The submatrix is recorded by the indices in the original matrix.
-//Example 1: the original matrix has indices {0, 1, 2, 3, 4}, then the submatrix has indices {0, 2, 4}.
-//Example 2: the original matrix has indices {0,1, 2, 3, 4, 5}, then the submatrix has indices {0, 2,4, 5}.
+//Example 1: the original matrix has indices {0, 1, 2, 3, 4}, then the
+//submatrix has indices {0, 2, 4}.
+//Example 2: the original matrix has indices {0,1, 2, 3, 4, 5}, then the
+//submatrix has indices {0, 2,4, 5}.
 //
 //(Determine new k's) This step determines two new k's (denoted as k0_ and k1_) such that (i) k0_ is the largest possible integer to ensure k0_-th element in the new submatrix (denoted as x0_) is not greater than x0; (ii) k1_ is the smallest possible integer to ensure k1_-th element in the new submatrix (denoted as x1_) is not less than x1. This step is the most tricky step.
 //
@@ -82,7 +95,9 @@ int kthSmallest(vector<vector<int>>& matrix, int k) {
 //      floor((k1 + 2 * n + 1) / 4) (when n is odd)
 //The picture can also be founded here.
 //
-//Recall that we mentioned the last row and column shall always be included in the matrix. That is to ensure we can always found the x1_ such that x1_ >= x1.
+//Recall that we mentioned the last row and column shall always be included in
+//the matrix. That is to ensure we can always found the x1_ such that x1_ >=
+//x1.
 //
 //(Call recursively) Obtainx0_ and x1_ by recursion.
 //(Partition) Partition all elements in the original nxn elements into three parts: P1={e: e < x0_}, P2={e: x0_ <= e < x1_ }, P3={e: x1_ < e}. We only need to record the cardinality of P1 and P2 (denoted as |P1| and |P2| respectively), and the elements in P2. Obviously, the cardinality of P2 is O(n).
@@ -118,12 +133,12 @@ private:
 	// where k0 = ks[0] and k1 = ks[1] and n = indices.size() satisfie
 	// 0 <= k0 <= k1 < n*n  and  k1 - k0 <= 4n-4 = O(n)   and  n>=2
 	{
-		size_t n = indices.size();		
+		size_t n = indices.size();
 		if (n == 2u) // base case of resursion
-		{			
+		{
 			return biSelectNative(matrix, indices, ks);
 		}
-		
+
 		// update indices
 		vector<size_t> indices_;
 		for (size_t idx = 0; idx < n; idx += 2)
@@ -229,7 +244,7 @@ private:
 };
 
 
-//######################################## Pytonic ######################################## 
+//######################################## Pytonic ########################################
 //class Solution(object):
 //    def kthSmallest(self, matrix, k):
 //
@@ -253,7 +268,7 @@ private:
 //            n = len(index)
 //            def A(i, j):
 //                return matrix[index[i]][index[j]]
-//            
+//
 //            # Base case.
 //            if n <= 2:
 //                nums = sorted(A(i, j) for i in range(n) for j in range(n))
@@ -278,7 +293,7 @@ private:
 //                ra_less += ja
 //                rb_more += n - jb
 //                L.extend(A(i, j) for j in range(jb, ja))
-//                
+//
 //            # Compute and return x and y.
 //            x = a if ra_less <= k1 - 1 else \
 //                b if k1 + rb_more - n*n <= 0 else \
@@ -295,25 +310,57 @@ private:
 //        return biselect(range(start, min(n, start+k)), k, k)[0]
 //
 //
-//t's O(n) where n is the number of rows (and columns), not the number of elements. So it's very efficient. The algorithm is from the paper Selection in X + Y and matrices with sorted rows and columns, which I first saw mentioned by @elmirap (thanks).
-//The basic idea: Consider the submatrix you get by removing every second row and every second column. This has about a quarter of the elements of the original matrix. And the k-th element (k-th smallest I mean) of the original matrix is roughly the (k/4)-th element of the submatrix. So roughly get the (k/4)-th element of the submatrix and then use that to find the k-th element of the original matrix in O(n) time. It's recursive, going down to smaller and smaller submatrices until a trivial 2×2 matrix. For more details I suggest checking out the paper, the first half is easy to read and explains things well. Or @zhiqing_xiao's solution+explanation.
-//Cool: It uses variants of saddleback search that you might know for example from the Search a 2D Matrix II problem. And it uses the median of medians algorithm for linear-time selection.
-//Optimization: If k is less than n, we only need to consider the top-left k×k matrix. Similar if k is almost n2. So it's even O(min(n, k, n^2-k)), I just didn't mention that in the title because I wanted to keep it simple and because those few very small or very large k are unlikely, most of the time k will be "medium" (and average n2/2).
-//Implementation: I implemented the submatrix by using an index list through which the actual matrix data gets accessed. If [0, 1, 2, ..., n-1] is the index list of the original matrix, then [0, 2, 4, ...] is the index list of the submatrix and [0, 4, 8, ...] is the index list of the subsubmatrix and so on. This also covers the above optimization by starting with [0, 1, 2, ..., k-1] when applicable.
-//Application: I believe it can be used to easily solve the Find K Pairs with Smallest Sums problem in time O(k) instead of O(k log n), which I think is the best posted so far. I might try that later if nobody beats me to it (if you do, let me know :-). Update: I did that now.
+//t's O(n) where n is the number of rows (and columns), not the number of
+//elements. So it's very efficient. The algorithm is from the paper Selection
+//in X + Y and matrices with sorted rows and columns, which I first saw
+//mentioned by @elmirap (thanks).
+//The basic idea: Consider the submatrix you get by removing every second row
+//and every second column. This has about a quarter of the elements of the
+//original matrix. And the k-th element (k-th smallest I mean) of the original
+//matrix is roughly the (k/4)-th element of the submatrix. So roughly get the
+//(k/4)-th element of the submatrix and then use that to find the k-th element
+//of the original matrix in O(n) time. It's recursive, going down to smaller
+//and smaller submatrices until a trivial 2×2 matrix. For more details I
+//suggest checking out the paper, the first half is easy to read and explains
+//things well. Or @zhiqing_xiao's solution+explanation.
+//Cool: It uses variants of saddleback search that you might know for example
+//from the Search a 2D Matrix II problem. And it uses the median of medians
+//algorithm for linear-time selection.
+//Optimization: If k is less than n, we only need to consider the top-left k×k
+//matrix. Similar if k is almost n2. So it's even O(min(n, k, n^2-k)), I just
+//didn't mention that in the title because I wanted to keep it simple and
+//because those few very small or very large k are unlikely, most of the time k
+//will be "medium" (and average n2/2).
+//Implementation: I implemented the submatrix by using an index list through
+//which the actual matrix data gets accessed. If [0, 1, 2, ..., n-1] is the
+//index list of the original matrix, then [0, 2, 4, ...] is the index list of
+//the submatrix and [0, 4, 8, ...] is the index list of the subsubmatrix and so
+//on. This also covers the above optimization by starting with [0, 1, 2, ...,
+//k-1] when applicable.
+//Application: I believe it can be used to easily solve the Find K Pairs with
+//Smallest Sums problem in time O(k) instead of O(k log n), which I think is
+//the best posted so far. I might try that later if nobody beats me to it (if
+//you do, let me know :-). Update: I did that now.
 //
-//Now that I can find the kth smallest element in a sorted n×n matrix in time O(min(n, k)), I can finally solve this problem in O(k).
+//Now that I can find the kth smallest element in a sorted n×n matrix in time
+//O(min(n, k)), I can finally solve this problem in O(k).
 //
 //The idea:
 //
 //If nums1 or nums2 are larger than k, shrink them to size k.
-//Build a virtual matrix of the pair sums, i.e., matrix[i][j] = nums1[i] + nums2[j]. Make it a square matrix by padding with "infinity" if necessary. With "virtual" I mean its entries will be computed on the fly, and only those that are needed. This is necessary to stay within O(k) time.
+//Build a virtual matrix of the pair sums, i.e., matrix[i][j] = nums1[i] +
+//nums2[j]. Make it a square matrix by padding with "infinity" if necessary.
+//With "virtual" I mean its entries will be computed on the fly, and only those
+//that are needed. This is necessary to stay within O(k) time.
 //Find the kth smallest sum kthSum by using that other algorithm.
-//Use a saddleback search variation to discount the pairs with sum smaller than kthSum. After this, k tells how many pairs we need whose sum equals kthSum.
-//Collect all pairs with sum smaller than kthSum as well as k pairs whose sum equals kthSum.
+//Use a saddleback search variation to discount the pairs with sum smaller than
+//kthSum. After this, k tells how many pairs we need whose sum equals kthSum.
+//Collect all pairs with sum smaller than kthSum as well as k pairs whose sum
+//equals kthSum.
 //Each of those steps only takes O(k) time.
 //
-//The code (minus the code for kthSmallest, which you can copy verbatim from my solution to the other problem):
+//The code (minus the code for kthSmallest, which you can copy verbatim from my
+//solution to the other problem):
 //
 //class Solution(object):
 //    def kSmallestPairs(self, nums1_, nums2_, k):
@@ -324,7 +371,7 @@ private:
 //        # Gotta Catch 'Em All?
 //        if k >= m * n:
 //            return [[a, b] for a in nums1 for b in nums2]
-//        
+//
 //        # Build a virtual matrix.
 //        N, inf = max(m, n), float('inf')
 //        class Row:
@@ -351,7 +398,7 @@ private:
 //                k -= a + b == kthSum
 //        return pairs
 //    def kthSmallest(self, matrix, k):
-//        
+//
 //        # copy & paste from https://discuss.leetcode.com/topic/53126/o-n-from-paper-yes-o-rows
 //
 //
@@ -367,7 +414,7 @@ private:
 //    'nums = nums[:10]',
 //    'x = nums; nums = nums[:10]'
 //    )
-//    
+//
 //for e in range(27):
 //    n = 2**e
 //    times = []

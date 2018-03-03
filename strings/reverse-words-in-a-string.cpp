@@ -10,7 +10,8 @@
 //What constitutes a word?
 //A sequence of non-space characters constitutes a word.
 //Could the input string contain leading or trailing spaces?
-//Yes. However, your reversed string should not contain leading or trailing spaces.
+//Yes. However, your reversed string should not contain leading or trailing
+//spaces.
 //How about multiple spaces between two words?
 //Reduce them to a single space in the reversed string.
 
@@ -25,18 +26,18 @@ void reverseWords(string &s) {
             break;
         }
         string tmp = "";
-        if (!rs.empty())  { 
-             rs.push_back(' '); 
+        if (!rs.empty())  {
+             rs.push_back(' ');
          }
         while( i >= 0 && s[i] != ' ') {
             tmp.push_back(s[i]);
             i--;
         }
-       
+
         reverse(tmp.begin(),tmp.end());
         //rs += tmp;
         rs.append(tmp);
-        
+
      }
   s= rs;
  }

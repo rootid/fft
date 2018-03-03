@@ -1,5 +1,6 @@
 //You are climbing a stair case. It takes n steps to reach to the top.
-//Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+//Each time you can either climb 1 or 2 steps. In how many distinct ways can
+//you climb to the top?
 //Note: Given n will be a positive integer.
 //Example 1:
 //Input: 2
@@ -17,7 +18,7 @@
 //
 
 
-//######################################### DP O(n)######################################### 
+//######################################### DP O(n)#########################################
 public int climbStairs(int n) {
     int a = 1, b = 1;
     while (n-- > 0)
@@ -26,7 +27,7 @@ public int climbStairs(int n) {
 }
 
 
-//######################################### DP O(n)######################################### 
+//######################################### DP O(n)#########################################
 int climbStairs(int n) {
     int a = 1, b = 1;
     while(--n >= 1){
@@ -37,7 +38,7 @@ int climbStairs(int n) {
 }
 
 
-//######################################### DP O(n)######################################### 
+//######################################### DP O(n)#########################################
 public int climbStairs(int n) {
     if(n==0||n==1) return  1;
     int stepOne=1,stepTwo=1;
@@ -50,20 +51,22 @@ public int climbStairs(int n) {
     return result;
 }
 
-//######################################### DP O(n)######################################### 
+//######################################### DP O(n)#########################################
 public int climbStairs(int n) {
     if(n <= 0) return 0;
     if(n == 1| n == 2) return n;
     int[] storeArr = new int[n];
-    storeArr[0] = 1; storeArr[1] = 2; 
+    storeArr[0] = 1; storeArr[1] = 2;
     for(int i=2;i<n;i++)
         storeArr[i] = storeArr[i-1] + storeArr[i-2];
     return storeArr[n-1];
 }
 
-//######################################### DP O(log n)######################################### 
-//The idea is to use the matrix power. In fact, [f(n), f(n - 1); f(n - 1), f(n - 2)] = [1, 1; 1, 0] ^ n for n >= 2. 
-//And similar to the problem Pow(x, n), the power of a matrix can be computed in O(logn) time.
+//######################################### DP O(log n)#########################################
+//The idea is to use the matrix power. In fact, [f(n), f(n - 1); f(n - 1), f(n
+//- 2)] = [1, 1; 1, 0] ^ n for n >= 2.
+//And similar to the problem Pow(x, n), the power of a matrix can be computed
+//in O(logn) time.
 class Solution {
 public:
     int climbStairs(int n) {
@@ -78,7 +81,7 @@ private:
         ans[0] = l[0] * r[0] + l[1] * r[2];
         ans[1] = l[0] * r[1] + l[1] * r[3];
         ans[2] = l[2] * r[0] + l[3] * r[2];
-        ans[3] = l[2] * r[1] + l[3] * r[3]; 
+        ans[3] = l[2] * r[1] + l[3] * r[3];
         return ans;
     }
     vector<int> fibPower(vector<int>& fibs, int n){
@@ -92,7 +95,7 @@ private:
     }
 };
 
-//######################################### DP O(log n)######################################### 
+//######################################### DP O(log n)#########################################
 class Solution:
     # @param {integer} n
     # @return {integer}
@@ -102,7 +105,7 @@ class Solution:
         fibs = [1, 1, 1, 0]
         ans = self.fibsPower(fibs, n)
         return ans[0]
-    
+
     def matrixProd(self, l, r):
         ans = [0] * 4
         ans[0] = l[0] * r[0] + l[1] * r[2]
@@ -110,7 +113,7 @@ class Solution:
         ans[2] = l[2] * r[0] + l[3] * r[2]
         ans[3] = l[2] * r[1] + l[3] * r[3]
         return ans
-        
+
     def fibsPower(self, fibs, n):
         if n == 1:
             return fibs
@@ -121,7 +124,7 @@ class Solution:
         ans[0], ans[1], ans[2], ans[3] = ans[0] + ans[1], ans[0], ans[2] + ans[3], ans[2]
         return ans
 
-//######################################### DP O(log n)######################################### 
+//######################################### DP O(log n)#########################################
 def climbStairs(self, n):
     def mul(A, B):
         N = 0, 1

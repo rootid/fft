@@ -6,7 +6,7 @@
 #include "../headers/global.hpp"
 #include "../headers/listnode.hpp"
 
-//############################## Iterative + recursive Reverse list  ############################## 
+//############################## Iterative + recursive Reverse list  ##############################
 public boolean isPalindrome(ListNode head) {
     ListNode fast = head, slow = head;
     while (fast != null && fast.next != null) {
@@ -19,7 +19,7 @@ public boolean isPalindrome(ListNode head) {
 	//Reverse the second half
     slow = reverse(slow);
     fast = head;
-    
+
     while (slow != null) {
         if (fast.val != slow.val) {
             return false;
@@ -41,7 +41,7 @@ public ListNode reverse(ListNode head) {
     return prev;
 }
 
-//############################## Recusrive ############################## 
+//############################## Recusrive ##############################
 ListNode globalHead = null;
 boolean isPalindromeHelper(ListNode last) {
     if(last == null) {
@@ -59,7 +59,7 @@ boolean isPalindrome(ListNode head) {
     return isPalindromeHelper(head);
 }
 
-//############################## REV LIST (GOOD) ############################## 
+//############################## REV LIST (GOOD) ##############################
 bool isPalindrome(ListNode* head) {
       ListNode* slow = head;
       ListNode* fast = head;
@@ -74,14 +74,14 @@ bool isPalindrome(ListNode* head) {
       if(fast) {
            slow = slow->next; // single element & odd element
       }
-      
+
       while(slow && prev->val == slow->val) {
           slow = slow->next;
           prev = prev->next;
       }
       return slow == NULL;
 }
-//############################## Recusrive (GOOD) ############################## 
+//############################## Recusrive (GOOD) ##############################
 bool pal_helper(ListNode*& head,ListNode* last) {
     if(!last) {
         return true;
@@ -97,13 +97,14 @@ bool isPalindrome(ListNode* head) {
     return pal_helper(head,head);
 }
 
-//############################## Recursive - python ############################## 
-//O(n) time, O(1) space. The second solution restores the list after changing it.
+//############################## Recursive - python ##############################
+//O(n) time, O(1) space. The second solution restores the list after changing
+//it.
 //Solution 1: Reversed first half == Second half?
 //Phase 1: Reverse the first half while finding the middle.
 //Phase 2: Compare the reversed first half with the second half.
 
-//############################## Recursive - python ############################## 
+//############################## Recursive - python ##############################
 def isPalindrome(self, head):
     rev = None
     slow = fast = head
@@ -118,9 +119,11 @@ def isPalindrome(self, head):
     return not rev
 
 //Solution 2: Play Nice
-//Same as the above, but while comparing the two halves, restore the list to its original state by reversing the first half back. Not that the OJ or anyone else cares.
+//Same as the above, but while comparing the two halves, restore the list to
+//its original state by reversing the first half back. Not that the OJ or
+//anyone else cares.
 
-//############################## Recursive - python ############################## 
+//############################## Recursive - python ##############################
 def isPalindrome(self, head):
     rev = None
     fast = head

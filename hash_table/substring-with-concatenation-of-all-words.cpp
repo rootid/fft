@@ -1,6 +1,9 @@
 //Substring with Concatenation of All Words
 //IMP
-//You are given a string, s, and a list of words, words, that are all of the same length. Find all starting indices of substring(s) in s that is a concatenation of each word in words exactly once and without any intervening characters.
+//You are given a string, s, and a list of words, words, that are all of the
+//same length. Find all starting indices of substring(s) in s that is a
+//concatenation of each word in words exactly once and without any intervening
+//characters.
 //For example, given:
 //s: "barfoothefoobarman"
 //words: ["foo", "bar"]
@@ -9,7 +12,7 @@
 
 //############################################ Traversal left-right #########################################################
 //TC : O(n * num * len),
-vector<int> findSubstring(string s, vector<string>& words) { 
+vector<int> findSubstring(string s, vector<string>& words) {
   unordered_map<string, int> counts;
   for (string word : words) {
       counts[word]++; //ab , ba , ab
@@ -25,12 +28,12 @@ vector<int> findSubstring(string s, vector<string>& words) {
               seen[word]++;
               if (seen[word] > counts[word])
                   break;
-          } 
+          }
           else break;
       }
       if (j == num) { //visited all words
         indexes.push_back(i);
       }
   }
-  return indexes; 
+  return indexes;
 }

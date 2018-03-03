@@ -7,14 +7,14 @@
 #include "../headers/global.hpp"
 #include "../headers/listnode.hpp"
 
-//######################################### Recursion ######################################### 
+//######################################### Recursion #########################################
 public ListNode deleteDuplicates(ListNode head) {
     if(head == null || head.next == null) return head;
     head.next =  deleteDuplicates(head.next);
     return head.val == head.next.val ?  head.next : head;
 }
 
-//######################################### Iteration ######################################### 
+//######################################### Iteration #########################################
 public ListNode deleteDuplicates(ListNode head) {
     ListNode tmp = head;
     while(tmp != null) {
@@ -24,14 +24,14 @@ public ListNode deleteDuplicates(ListNode head) {
     return head;
 }
 
-//######################################### Iteration ######################################### 
+//######################################### Iteration #########################################
 ListNode* deleteDuplicates(ListNode* head) {
     ListNode *tmp = head;
     while(tmp) {
         //if(tmp->next) {
            while(tmp->next && tmp->next->val == tmp->val) {
                tmp->next = tmp->next->next;
-          // }   
+          // }
         }
          tmp = tmp->next;
     }
@@ -42,7 +42,8 @@ ListNode* deleteDuplicates(ListNode* head) {
 //return h && (h->next = deleteDuplicates(h->next)) && h->next->val == h->val ? h->next : h;
 //Update after shawnyi's comment:
 //
-//While the above does remove the duplicates from the list, it doesn't delete the nodes from memory, causing memory leaks. Here's a version which takes care of that.
+//While the above does remove the duplicates from the list, it doesn't delete the nodes from memory, causing memory
+//leaks. Here's a version which takes care of that.
 //
 //if (h && (h->next = deleteDuplicates(h->next)) && h->next->val == h->val) delete h, h = h->next; return h;
 

@@ -1,6 +1,7 @@
 //Same Tree
 //Given two binary trees, write a function to check if they are equal or not.
-//Two binary trees are considered equal if they are structurally identical and the nodes have the same value.
+//Two binary trees are considered equal if they are structurally identical and
+//the nodes have the same value.
 #include<iostream>
 #include<vector>
 #include<string>
@@ -8,7 +9,7 @@
 using namespace std;
 
 
-//######################################### Recursion ######################################### 
+//######################################### Recursion #########################################
 public boolean isSameTree(TreeNode p, TreeNode q) {
     if(p == null && q == null) return true;
     if( (p == null && q != null) || (p != null && q == null))  return false;
@@ -24,10 +25,10 @@ struct TreeNode {
 };
 
 bool isSameTree(TreeNode* p, TreeNode* q) {
-    
+
     if (!p && !q) {
         return true;
-    } 
+    }
     if(!p || !q) {
         return false;
     }
@@ -36,7 +37,7 @@ bool isSameTree(TreeNode* p, TreeNode* q) {
     } else {
         return false;
     }
-    
+
 }
 
 
@@ -50,7 +51,7 @@ bool isSymmetricHelper(TreeNode* p,TreeNode* q) {
  return ( p->val == q->val && isSymmetricHelper(p->left,q->right) && isSymmetricHelper(p->right,q->left) );
 }
 bool isSymmetric(TreeNode* root) {
-  
+
   if (!root) {
     return true;
   }

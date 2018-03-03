@@ -1,11 +1,15 @@
 //Palindrome Permutation II
-//Given a string s, return all the palindromic permutations (without duplicates) of it. Return an empty list if no palindromic permutation could be form.
+//Given a string s, return all the palindromic permutations (without
+//duplicates) of it. Return an empty list if no palindromic permutation could
+//be form.
 //For example:
 //Given s = "aabb", return ["abba", "baab"].
 //Given s = "abc", return [].
 
 //######################################### Brute Force  #########################################
-//Time complexity : O((n+1)!). A total of n!n!n! permutations are possible. For every permutation generated, we need to check if it is a palindrome, each of which requires O(n)O(n)O(n) time.
+//Time complexity : O((n+1)!). A total of n!n!n! permutations are possible. For
+//every permutation generated, we need to check if it is a palindrome, each of
+//which requires O(n)O(n)O(n) time.
 //Space complexity : O(n). The depth of the recursion tree can go upto nnn.
 public class Solution {
     Set < String > set = new HashSet < > ();
@@ -40,8 +44,12 @@ public class Solution {
 }
 
 //######################################### Backtracking #########################################
-//Time complexity : O((n2+1)!). Atmost n2!\frac{n}{2}!​2​​n​​! permutations need to be generated in the worst case. Further, for each permutation generated, string.reverse() function will take n/4n/4n/4 time.
-//Space complexity : O(n). The depth of recursion tree can go upto n/2n/2n/2 in the worst case.
+//Time complexity : O((n2+1)!). Atmost
+//n2!\frac{n}{2}!​2​​n​​! permutations need to be
+//generated in the worst case. Further, for each permutation generated,
+//string.reverse() function will take n/4n/4n/4 time.
+//Space complexity : O(n). The depth of recursion tree can go upto n/2n/2n/2 in
+//the worst case.
 public class Solution {
     Set < String > set = new HashSet < > ();
     public List < String > generatePalindromes(String s) {
@@ -138,9 +146,21 @@ private void generatePalindromesHelper(int[] freqCounter, int length, String s, 
 
 //######################################### Backracking , T = O(n/2+1)! #########################################
 //
-//we just need to get one half of the string (each character appea//rs half the times in s), then generate all its unique permutations and concatenate them with the reversed half (possibly the single middle character if the length of the string s is odd).
+//we just need to get one half of the string (each character appea//rs half the
+//times in s), then generate all its unique permutations and concatenate them
+//with the reversed half (possibly the single middle character if the length of
+//the string s is odd).
 
-//All the above work will only be done if an palindrome permutation exists. To tell whether a palindrome permutation exists, Palindrome Permutation has paved the way for us. To generate all the unique permutations, you may as well refer to Permutations II or Next Permutation as suggested by the second hint. But I guess this part is not the main point of this problem, so I directly use the next_permutation of C++. Well, I am not quite whether this is the right way, but this gives shorter codes. Moreover, the tag of this problem is backtracking, which I guess only needs to be used in generating the permutations. After this is done, we can simply concatenate to make the palindromes.
+//All the above work will only be done if an palindrome permutation exists. To
+//tell whether a palindrome permutation exists, Palindrome Permutation has
+//paved the way for us. To generate all the unique permutations, you may as
+//well refer to Permutations II or Next Permutation as suggested by the second
+//hint. But I guess this part is not the main point of this problem, so I
+//directly use the next_permutation of C++. Well, I am not quite whether this
+//is the right way, but this gives shorter codes. Moreover, the tag of this
+//problem is backtracking, which I guess only needs to be used in generating
+//the permutations. After this is done, we can simply concatenate to make the
+//palindromes.
 class Solution {
 public:
     vector<string> generatePalindromes(string s) {

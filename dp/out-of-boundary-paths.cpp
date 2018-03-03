@@ -1,5 +1,9 @@
 //Out Of Boundary Paths
-//There is an m by n grid with a ball. Given the start coordinate (i,j) of the ball, you can move the ball to adjacent cell or cross the grid boundary in four directions (up, down, left, right). However, you can at most move N times. Find out the number of paths to move the ball out of grid boundary. The answer may be very large, return it after mod 10^9 + 7. 
+//There is an m by n grid with a ball. Given the start coordinate (i,j) of the
+//ball, you can move the ball to adjacent cell or cross the grid boundary in
+//four directions (up, down, left, right). However, you can at most move N
+//times. Find out the number of paths to move the ball out of grid boundary.
+//The answer may be very large, return it after mod 10^9 + 7.
 //Example 1:
 //Input:m = 2, n = 2, N = 2, i = 0, j = 0
 //Output: 6
@@ -14,21 +18,23 @@
 //N is in range [0,50].
 
 
-//NOTE : 2d array can be represented as 1-D array 
+//NOTE : 2d array can be represented as 1-D array
 //(i,j) = i*j
-//######################################### DP  ######################################### 
-//DP[i][j][k] stands for how many possible ways to walk into cell j,k in step i,
-//DP[i][j][k] only depends on DP[i - 1][j][k], so we can compress 3 dimensional dp array to 2 dimensional.
-public int findPaths(int m, int n, int N, int i, int j) { 
+//######################################### DP  #########################################
+//DP[i][j][k] stands for how many possible ways to walk into cell j,k in step
+//i,
+//DP[i][j][k] only depends on DP[i - 1][j][k], so we can compress 3 dimensional
+//dp array to 2 dimensional.
+public int findPaths(int m, int n, int N, int i, int j) {
 	if (N <= 0) return 0;
     final int MOD = 1000000007;
     int[][] count = new int[m][n];
     count[i][j] = 1; //count[i][j] = number of ways to walk into cell i,j
     int result = 0;
-    
+
     int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-	//At most N iterations 
-    for (int step = 0; step < N; step++) { 
+	//At most N iterations
+    for (int step = 0; step < N; step++) {
 		int[][] temp = new int[m][n];
 		//Iterate over board
         for (int r = 0; r < m; r++) {
@@ -39,7 +45,7 @@ public int findPaths(int m, int n, int N, int i, int j) {
 					//Ball reached to boundary
                     if (nr < 0 || nr >= m || nc < 0 || nc >= n) {
                         result = (result + count[r][c]) % MOD;
-                    } else { 
+                    } else {
 						temp[nr][nc] = (temp[nr][nc] + count[r][c]) % MOD;
                     }
                 }
@@ -47,11 +53,11 @@ public int findPaths(int m, int n, int N, int i, int j) {
         }
         count = temp;
     }
-    return result; 
+    return result;
 }
 
-//######################################### Space : space O(N*m*n) ######################################### 
-//######################################### 3D array JAVA ######################################### 
+//######################################### Space : space O(N*m*n) #########################################
+//######################################### 3D array JAVA #########################################
 public class Solution {
     public int findPaths(int m, int n, int N, int i0, int j0) {
         long limit = 1000000007;
@@ -67,12 +73,12 @@ public class Solution {
                 }
             }
         }
-        return (int)dp[N][i0][j0];        
+        return (int)dp[N][i0][j0];
     }
 }
 
-//######################################### Space : space O(m*n) ######################################### 
-//######################################### Rolling matrix  ######################################### 
+//######################################### Space : space O(m*n) #########################################
+//######################################### Rolling matrix  #########################################
 public class Solution {
     public int findPaths(int m, int n, int N, int i0, int j0) {
         long limit = 1000000007;
@@ -87,11 +93,11 @@ public class Solution {
                 }
             }
         }
-        return (int)dp[N % 2][i0][j0];        
+        return (int)dp[N % 2][i0][j0];
     }
 }
 
-//######################################### 3D array ######################################### 
+//######################################### 3D array #########################################
 class Solution {
 public:
     int findPaths(int m, int n, int N, int i, int j) {
@@ -112,7 +118,7 @@ public:
     }
 };
 
-//################################################### DFS  ################################################### 
+//################################################### DFS  ###################################################
 class Solution {
 public:
     int findPaths(int m, int n, int N, int i, int j) {
@@ -142,8 +148,9 @@ private:
     }
 };
 
-//######################################### DP : Python ######################################### 
-//At time t, let's maintain cur[r][c] = the number of paths to (r, c) with t moves,
+//######################################### DP : Python #########################################
+//At time t, let's maintain cur[r][c] = the number of paths to (r, c) with t
+//moves,
 //and nxt[r][c] = the number of paths to (r, c) with t+1 moves.
 //A ball at (r, c) at time t, can move in one of four directions.
 //If it stays on the board, then it contributes to a path that takes t+1 moves.
@@ -152,7 +159,7 @@ def findPaths(self, R, C, N, sr, sc):
     MOD = 10**9 + 7
     nxt = [[0] * C for _ in xrange(R)]
     nxt[sr][sc] = 1
-    
+
     ans = 0
     for time in xrange(N):
         cur = nxt
@@ -166,7 +173,7 @@ def findPaths(self, R, C, N, sr, sc):
                     else:
                         ans += val
                         ans %= MOD
-        
+
     return ans
 
 
@@ -245,9 +252,18 @@ public:
 };
 
 
-//Fastest posted Python solution so far. Takes about 120 ms, of which about 80 ms are for judge overhead and importing NumPy. The other three Python solutions posted so far take about 350-850 ms, of which about 40 ms are for judge overhead.
-//My two-dimensional paths array tells the number of paths ending at each cell with the moves made so far. So initially all zeros except for the starting position, which has one path (the empty path). The for each move, I spread each path number in all four directions.
-//This only keeps track of the paths staying inside the boundary. To compute how many paths went outside in the latest move, I take all previous paths, multiply them by 4 (for the four directions) and subtract the new number of inside-paths after the move.
+//Fastest posted Python solution so far. Takes about 120 ms, of which about 80
+//ms are for judge overhead and importing NumPy. The other three Python
+//solutions posted so far take about 350-850 ms, of which about 40 ms are for
+//judge overhead.
+//My two-dimensional paths array tells the number of paths ending at each cell
+//with the moves made so far. So initially all zeros except for the starting
+//position, which has one path (the empty path). The for each move, I spread
+//each path number in all four directions.
+//This only keeps track of the paths staying inside the boundary. To compute
+//how many paths went outside in the latest move, I take all previous paths,
+//multiply them by 4 (for the four directions) and subtract the new number of
+//inside-paths after the move.
 import numpy as np
 
 class Solution(object):
@@ -265,7 +281,8 @@ class Solution(object):
             paths[:,:-1] += prev[:,1:]
             out += 4 * prev.sum() - paths.sum()
         return int(out % mod)
-//A slightly shorter version using Python ints (which can grow arbitrarily large) and doing mod 109-7 only at the end:
+//A slightly shorter version using Python ints (which can grow arbitrarily
+//large) and doing mod 109-7 only at the end:
 
 import numpy as np
 

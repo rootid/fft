@@ -1,5 +1,6 @@
 //K-th Smallest in Lexicographical Order
-//Given integers n and k, find the lexicographically k-th smallest integer in the range from 1 to n.
+//Given integers n and k, find the lexicographically k-th smallest integer in
+//the range from 1 to n.
 //Note: 1 ≤ k ≤ n ≤ 109.
 //Example:
 //Input:
@@ -7,7 +8,8 @@
 //Output:
 //10
 //Explanation:
-//The lexicographical order is [1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9], so the second smallest number is 10.
+//The lexicographical order is [1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9], so
+//the second smallest number is 10.
 
 
 //https://discuss.leetcode.com/topic/64624/concise-easy-to-understand-java-5ms-solution-with-explaination/6
@@ -15,8 +17,9 @@
 #include "../headers/global.hpp"
 
 
-//################################### Denary tree ################################### 
-//calculate the steps between curr and curr + 1 (neighbor nodes in same level), in order to skip some unnecessary moves.
+//################################### Denary tree ###################################
+//calculate the steps between curr and curr + 1 (neighbor nodes in same level),
+//in order to skip some unnecessary moves.
 int distance(long curr, long nxt, int n) {
     int dist = 0;
     while(curr <= n) {
@@ -44,7 +47,7 @@ public int findKthNumber(int n, int k) {
 }
 
 
-//################################### Denary tree ################################### 
+//################################### Denary tree ###################################
 int result = Integer.MIN_VALUE;
 int level = Integer.MIN_VALUE;
 
@@ -71,34 +74,34 @@ public int findKthNumber(int n, int k) {
 }
 
 
-//################################### Denary tree ################################### 
+//################################### Denary tree ###################################
 int helper(long curr, long next, long n) {  //This compute the level differene between curr and next
   int result = 0;
   //eg. compute distance between 1,2 @same level
   while (curr <= n) {
-      result += min(next, n + 1) - curr; 
+      result += min(next, n + 1) - curr;
       cout << "R = " << result << " next " << next << " curr " << curr << endl;
       curr *= 10; //next preorder ele
       next *= 10;
   }
-  return result; 
+  return result;
 }
 
-int findKthNumber(int n, int k) { 
+int findKthNumber(int n, int k) {
   int result = 1;
-  while (k > 1) { 
+  while (k > 1) {
     //determine distance between the adjacent node/next node
     int count = helper(result, result + 1, n);
     cout << count << endl;
-    if (count < k) { 
+    if (count < k) {
         result++;
         k -= count; //update the k
-    } else { 
+    } else {
       result *= 10; //Go the next preorder element
-      k--; 
+      k--;
     }
   }
-  return result; 
+  return result;
 }
 
 int main() {

@@ -19,11 +19,11 @@ struct SegmentTreeNode {
 };
 class NumArray {
 
-private : 
+private :
     SegmentTreeNode* root;
 
     SegmentTreeNode* buildTree(vector<int> &nums, int start, int end) {
-        if(start > end) 
+        if(start > end)
           return nullptr;
         SegmentTreeNode* root = new SegmentTreeNode(start,end);
         if(start == end) {
@@ -36,13 +36,13 @@ private :
         root->right = buildTree(nums,mid+1,end);
         //For Non leaf node : sum = addition of leaf nodes
         root->sum = root->left->sum + root->right->sum;
-        
+
         return root;
     }
 
     //Go from Top to bottom
     int modifyTree(int i, int val, SegmentTreeNode* root) {
-        if(root == nullptr) 
+        if(root == nullptr)
           return 0;
         int diff;
         if(root->start == i && root->end == i) {
@@ -81,7 +81,7 @@ public:
         int n = nums.size();
         root = buildTree(nums,0,n-1);
     }
-   
+
     void update(int i, int val) {
         modifyTree(i,val,root);
     }
@@ -92,7 +92,7 @@ public:
 
 };
 
-//######################################### BIT  ######################################### 
+//######################################### BIT  #########################################
 class NumArray {
     vector<int> bit;
     vector<int> NUMS;
@@ -115,11 +115,11 @@ public:
     int sumRange(int i, int j) {
         return sum(j) - sum(i-1);
     }
-    
+
     int last_bit(int i) {
         return i & (-i);
     }
-    
+
     void add(int i, int val) {
         i++;
         while(i < bit.size()) {
@@ -127,7 +127,7 @@ public:
             i += last_bit(i);
         }
     }
-    
+
     int sum(int i) {
         i++;
         int sum = 0;
@@ -141,9 +141,10 @@ public:
 
 //####################################################### pytonic ##############################################
 
-//############################################## BIT (Binary Indexed Tree) ############################################## 
+//############################################## BIT (Binary Indexed Tree) ##############################################
 //
-//Use self.c to represent Binary Indexed Tree. Section sums are stored in self.c[1..len(nums)]. x & -x is lowbit function, which will return x's rightmost bit 1, e.g. lowbit(7) = 1, lowbit(20) = 4.
+//Use self.c to represent Binary Indexed Tree. Section sums are stored in self.c[1..len(nums)]. x & -x is lowbit
+//function, which will return x's rightmost bit 1, e.g. lowbit(7) = 1, lowbit(20) = 4.
 //self.c[1] = nums[0]
 //self.c[2] = nums[0] + nums[1]
 //self.c[3] = nums[2]
@@ -156,7 +157,7 @@ public:
 //    def __init__(self, nums):
 //        self.n = len(nums)
 //        self.a, self.c = nums, [0] * (self.n + 1)
-//        //O(n^2) to init the tree 
+//        //O(n^2) to init the tree
 //        for i in range(self.n):
 //            k = i + 1
 //            while k <= self.n:
@@ -205,4 +206,4 @@ public:
 //# obj.update(i,val)
 //# param_2 = obj.sumRange(i,j)
 
-// vim: set sw=2 sts=2 tw=120 et nospell : 
+// vim: set sw=2 sts=2 tw=120 et nospell :

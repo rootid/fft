@@ -6,7 +6,8 @@
 //Corner Cases:
 //Did you consider the case where path = "/../"?
 //In this case, you should return "/".
-//Another corner case is the path might contain multiple slashes '/' together, such as "/home//foo/".
+//Another corner case is the path might contain multiple slashes '/' together,
+//such as "/home//foo/".
 //In this case, you should ignore redundant slashes and return "/home/foo".
 #include<iostream>
 #include<sstream>
@@ -23,7 +24,7 @@ string simplifyPath(string path) {
   while(getline(ss,strTok,'/')) {
     if(strTok == "" || strTok == ".") {
       continue;
-    } 
+    }
     if(strTok == "..") {
       if(!strStk.empty()) {
         strStk.pop_back();

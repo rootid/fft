@@ -1,17 +1,18 @@
 //Reverse String
-//Write a function that takes a string as input and returns the string reversed.
+//Write a function that takes a string as input and returns the string
+//reversed.
 //Example:
 //Given s = "hello", return "olleh".
 //
 
 
-//######################################### O(n) ######################################### 
+//######################################### O(n) #########################################
 public String reverseString(String s) {
     StringBuilder sb = new StringBuilder(s);
     return sb.reverse().toString();
 }
 
-//######################################### O(n) ######################################### 
+//######################################### O(n) #########################################
 public String reverseString(String s) {
      char[] charArr = s.toCharArray();
      int start = 0;
@@ -34,7 +35,7 @@ class Solution(object):
         return self.reverseString(s[l/2:]) + self.reverseString(s[:l/2])
 
 
-//######################################### O(n) ######################################### 
+//######################################### O(n) #########################################
 class SolutionClassic(object):
     def reverseString(self, s):
         r = list(s)
@@ -46,7 +47,7 @@ class SolutionClassic(object):
 
         return "".join(r)
 
-//######################################### O(n) ######################################### 
+//######################################### O(n) #########################################
 class SolutionPythonic(object):
     def reverseString(self, s):
         return s[::-1]

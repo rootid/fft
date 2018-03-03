@@ -1,6 +1,8 @@
 //Surrounded Regions
-//Given a 2D board containing 'X' and 'O' (the letter O), capture all regions surrounded by 'X'.
-//A region is captured by flipping all 'O's into 'X's in that surrounded region.
+//Given a 2D board containing 'X' and 'O' (the letter O), capture all regions
+//surrounded by 'X'.
+//A region is captured by flipping all 'O's into 'X's in that surrounded
+//region.
 //For example,
 //X X X X
 //X O O X
@@ -13,7 +15,7 @@
 //X O X X
 #include "../headers/global.hpp"
 
-//######################################### BFS ######################################### 
+//######################################### BFS #########################################
 //Pick boundry points
 	int[] dirs = {0,1,0,-1,0};
 
@@ -46,7 +48,7 @@
             }
         }
     }
-  
+
     private void tryMarking(char[][] board, int i, int j, Queue<Integer> q) {
         int n = board[0].length;
         if(board[i][j] == 'O') {
@@ -56,9 +58,9 @@
     }
 
 
-//######################################### BFS ######################################### 
+//######################################### BFS #########################################
 void boundry_traversal(vector<vector<char> >& board,int l,int w) {
- 
+
   int m = board.size();
   int n = board[0].size();
   queue<pair<int,int> > q;
@@ -80,7 +82,7 @@ void boundry_traversal(vector<vector<char> >& board,int l,int w) {
 
 void solve(vector<vector<char> >& board) {
   int m = board.size();
-  if(m > 0) { 
+  if(m > 0) {
     int n = board[0].size();
     if(n == 0) {
       return;
@@ -98,7 +100,7 @@ void solve(vector<vector<char> >& board) {
        if(board[m-1][k] == 'O')
          boundry_traversal(board,m-1,k);
      }
-    //Phase 2 : 
+    //Phase 2 :
     for(int i=0;i<m;i++) {
      for(int j=0;j<n;j++) {
        if(board[i][j] == 'B') {

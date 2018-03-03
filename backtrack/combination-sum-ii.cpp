@@ -1,10 +1,11 @@
-//Given a collection of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.
+//Given a collection of candidate numbers (C) and a target number (T), find all
+//unique combinations in C where the candidate numbers sums to T.
 //Each number in C may only be used once in the combination.
 //Note:
 //All numbers (including target) will be positive integers.
 //The solution set must not contain duplicate combinations.
-//For example, given candidate set [10, 1, 2, 7, 6, 1, 5] and target 8, 
-//A solution set is: 
+//For example, given candidate set [10, 1, 2, 7, 6, 1, 5] and target 8,
+//A solution set is:
 //[
 //  [1, 7],
 //  [1, 2, 5],
@@ -13,7 +14,7 @@
 //]
 //
 
-//######################################### Backtrack ######################################### 
+//######################################### Backtrack #########################################
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         List<List<Integer>> resultList = new LinkedList<>();
         Arrays.sort(candidates);
@@ -22,7 +23,7 @@
         combinationSumHelper(candidates, 0 ,resultList, localList, sum,target);
         return resultList;
     }
-    
+
     private void combinationSumHelper(int[] candidates, int k, List<List<Integer>> resultList, List<Integer> localList, int sum, int target) {
         if(sum > target) return;
         int m = candidates.length;
@@ -37,7 +38,7 @@
         }
     }
 
-//######################################### Backtrack ######################################### 
+//######################################### Backtrack #########################################
 void genSolution(int last_choice,int level,int choice,vector<int>&candidates,vector<int>& local_store,int& local_result
    ,int target,vector< vector<int> >&result) {
        if(local_result == target) {

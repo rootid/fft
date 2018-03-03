@@ -105,7 +105,8 @@ def permute(self, nums):
                      for i in range(len(nums))] or [[]]
 
 //Solution 3: Reduce, insert next number anywhere
-//Use reduce to insert the next number anywhere in the already built permutations.
+//Use reduce to insert the next number anywhere in the already built
+//permutations.
 def permute(self, nums):
     return reduce(lambda P, n: [p[:i] + [n] + p[i:]
                                 for p in P for i in range(len(p)+1)],
