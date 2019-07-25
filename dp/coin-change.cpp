@@ -65,6 +65,7 @@ int coinChange(vector<int>& coins, int amount) {
        dfs(res, coins, amount, coins.size() - 1, 0);
        return res == INT_MAX? -1: res;
 }
+#dfs
 void dfs(int& res, vector<int>& coins, int target, int idx, int count) {
        if (idx < 0) return;
        if (target % coins[idx] == 0) {

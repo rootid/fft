@@ -9,7 +9,7 @@
 
 //########################### O(k) ###########################
 public int quickSelect(int[] nums, int left, int right, int k) {
-    int pVal = nums[right];  //pivk pivot as last element.
+    int pVal = nums[right];  //pick pivot as last element.
     int i = left, j = right;
     while(i < j)
         if(nums[i++] > pVal) swap(nums, --i, --j); // (i,left)-- pVal --(j,right)

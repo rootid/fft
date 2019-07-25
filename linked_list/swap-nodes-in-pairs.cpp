@@ -6,7 +6,7 @@
 
 
 //############################### Recursion  ###############################
-//Same trik as reverse linked list nk....>nk+1
+//Same trick as reverse linked list nk....>nk+1
 public ListNode swapPairs(ListNode head) {
      if (head == null || head.next == null) return head;
      ListNode grandChild = swapPairs(head.next.next); //head-> (head->next) -> (head->next->next)

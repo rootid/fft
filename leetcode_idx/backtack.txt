@@ -1,9 +1,9 @@
 abc
-Subsets = "a", "b", "ab", "ac", ...
-Permuation = "abc","acb",
+Subsets = "a", "b", "ab", "ac", ... - > Choose/Not
+Permuation = "abc","acb", -> Arrange things
 
 #################################################################################
-Permutations	
+Permutations
     Given a collection of distinct numbers, return all possible permutations.
     For example,
     [1,2,3] have the following permutations:
@@ -17,7 +17,7 @@ Permutations
     ]
 
 #################################################################################
-Permutations II	
+Permutations II
     Given a collection of numbers that might contain duplicates,
     return all possible unique permutations.
     For example,
@@ -29,7 +29,7 @@ Permutations II
     ]
 
 #################################################################################
-Palindrome Permutation	
+Palindrome Permutation
     Given a string, determine if a permutation of the string could form a palindrome.
     For example,
     "code" -> False, "aab" -> True, "carerac" -> True.
@@ -40,7 +40,7 @@ Palindrome Permutation
     How about character which occurs odd number of times?
 
 #################################################################################
-Palindrome Permutation II	
+Palindrome Permutation II
     Palindrome Permutation II
     Given a string s, return all the palindromic permutations (without duplicates) of it.
     Return an empty list if no palindromic permutation could be form.
@@ -49,7 +49,7 @@ Palindrome Permutation II
     Given s = "abc", return [].
 
 #################################################################################
-Subsets	
+Subsets
     Given a collection of integers that might contain duplicates, nums,
     return all possible subsets.
     Note: The solution set must not contain duplicate subsets.
@@ -65,7 +65,7 @@ Subsets
     ]
 
 #################################################################################
-Subsets II	
+Subsets II
     Given a collection of integers that might contain duplicates, nums,
     return all possible subsets.
     Note: The solution set must not contain duplicate subsets.
@@ -81,7 +81,7 @@ Subsets II
     ]
 
 #################################################################################
-Combinations 
+Combinations
     Given two integers n and k, return all possible combinations of k numbers
     out of 1 ... n.  For example,
     If n = 4 and k = 2, a solution is:
@@ -96,27 +96,27 @@ Combinations
 Hint : Add and remove DFS
 
 #################################################################################
-Combination Sum	
+Combination Sum
     Given a set of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.
     The same repeated number may be chosen from C unlimited number of times.
     Note:
     All numbers (including target) will be positive integers.
     The solution set must not contain duplicate combinations.
-    For example, given candidate set [2, 3, 6, 7] and target 7, 
-    A solution set is: 
+    For example, given candidate set [2, 3, 6, 7] and target 7,
+    A solution set is:
     [
       [7],
       [2, 2, 3]
     ]
 #################################################################################
-Combination Sum II	
+Combination Sum II
     Given a collection of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.
     Each number in C may only be used once in the combination.
     Note:
     All numbers (including target) will be positive integers.
     The solution set must not contain duplicate combinations.
-    For example, given candidate set [10, 1, 2, 7, 6, 1, 5] and target 8, 
-    A solution set is: 
+    For example, given candidate set [10, 1, 2, 7, 6, 1, 5] and target 8,
+    A solution set is:
     [
       [1, 7],
       [1, 2, 5],
@@ -124,7 +124,7 @@ Combination Sum II
       [1, 1, 6]
     ]
 #################################################################################
-Combination Sum III	
+Combination Sum III
     Find all possible combinations of k numbers that add up to a number n,
     given that only numbers from 1 to 9 can be used and each combination should be a unique set of numbers.
     Example 1:
@@ -137,7 +137,7 @@ Combination Sum III
     [[1,2,6], [1,3,5], [2,3,4]]
 
 #################################################################################
-Combination Sum IV	
+Combination Sum IV
     Given an integer array with all positive numbers and no duplicates,
     find the number of possible combinations that add up to a positive integer target.
     Example:
@@ -159,18 +159,18 @@ Combination Sum IV
     What limitation we need to add to the question to allow negative numbers?
 
 #################################################################################
-Permutation Sequence	
+Permutation Sequence
 
 #################################################################################
-Permutation in String	
+Permutation in String
 
 #################################################################################
-Generalized Abbreviation	
+Generalized Abbreviation
 
 
 #################################################################################
-Generate Parentheses	
-	Given n pairs of parentheses, write a function to generate all 
+Generate Parentheses
+	Given n pairs of parentheses, write a function to generate all
 	combinations of well-formed parentheses.
 	For example, given n = 3, a solution set is:
 	[
@@ -198,7 +198,7 @@ Generate Parentheses
     111 -> ___ -> 3
 
 #################################################################################
-Letter Combinations of a Phone Number	
+Letter Combinations of a Phone Number
     Given a digit string, return all possible letter combinations that the number could represent.
     A mapping of digit to letters (just like on the telephone buttons) is given below.
     Input:Digit string "23"
@@ -207,7 +207,7 @@ Letter Combinations of a Phone Number
     Although the above answer is in lexicographical order, your answer could be in any order you want.
 
 #################################################################################
-Restore IP Addresses	
+Restore IP Addresses
     Given a string containing only digits, restore it by returning all possible valid IP address combinations.
     For example:
     Given "25525511135",
@@ -242,7 +242,7 @@ N-Queens II
     3.At max,# of queen in the diagonal = 1. (upward + downward)
 
 #################################################################################
-Valid Sudoku	
+Valid Sudoku
 Write a program to solve a Sudoku puzzle by filling the empty cells.
 
 Empty cells are indicated by the character '.'.
@@ -256,7 +256,7 @@ A sudoku puzzle...
 ...and its solution numbers marked in red.
 
 #################################################################################
-Generate Parentheses 
+Generate Parentheses
     Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
     For example, given n = 3, a solution set is:
     [

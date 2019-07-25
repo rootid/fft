@@ -109,6 +109,7 @@ vector<int> findRightInterval(vector<Interval>& intervals) {
     }
     return res;
 }
+
 int bifind(vector<Interval>& intervals, int val, int l, int r){
     if(val>intervals[r].start)
         return r+1;

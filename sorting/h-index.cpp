@@ -24,7 +24,7 @@ int hIndex(vector<int>& citations) {
     int h = 0, i = citations.size() - 1;
     //3, 0, 6, 1, 5 => 6,5,3,1,0 =>   0,1,3,5,6
     for (int c : citations) {       //5,4,3,2,1
-        if(c > i) {
+        if(c > i) { //if citations are greater than the paper count compute (n-h > 0)
             h++;
         }
         i--;

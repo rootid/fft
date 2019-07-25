@@ -1,4 +1,4 @@
-//Integer to Roman
+/Integer to Roman
 //Given an integer, convert it to a roman numeral.
 //Input is guaranteed to be within the range from 1 to 3999.
 //
@@ -8,7 +8,7 @@
 using namespace std;
 
 
-//######################################### Iteration + Index solution  ######################################### 
+//######################################### Iteration + Index solution  #########################################
 public static String intToRoman(int num) {
 	//Zero doesnot exist in roman
     String M[] = {"", "M", "MM", "MMM"}; //"", 1000-3000
@@ -17,8 +17,8 @@ public static String intToRoman(int num) {
     String I[] = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"}; //"",1-9
     return M[num/1000] + C[(num%1000)/100] + X[(num%100)/10] + I[num%10];
 }
-//######################################### Recursion ######################################### 
-string intToRoman(int num) {                
+//######################################### Recursion #########################################
+string intToRoman(int num) {
     for (int i = 0; i < int_dict.size(); i++) {
         if (int_dict[i] <= num)
             return roman_dict[i] + intToRoman(num - int_dict[i]);
@@ -26,7 +26,7 @@ string intToRoman(int num) {
     return "";
 }
 
-//######################################### Iteration  ######################################### 
+//######################################### Iteration  #########################################
 string intToRoman(int num) {
   string roman;
   vector<int> dec_num ({1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1});
@@ -66,7 +66,7 @@ string intToRoman(int num) {
   string roman;
   vector<int> dec_num ({1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1});
   vector<string> roman_num({"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"});
-   
+
    while(num != 0) {
     for(int i=0;i<dec_num.size();i++)
     if(num / dec_num[i] != 0) {
@@ -75,7 +75,7 @@ string intToRoman(int num) {
         roman += roman_num[i];
       }
       num = num % dec_num[i];
-    } 
+    }
    }
   return roman;
 }

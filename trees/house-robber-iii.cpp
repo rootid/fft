@@ -21,17 +21,17 @@
 //  / \   \
 // 1   3   1
 //Maximum amount of money the thief can rob = 4 + 5 = 9.
-
+//Botom up solution
 //############################### Recursive ###############################
 int rob(TreeNode* root) {
   if (root == nullptr)
    return 0;
   int val = 0;
   if (root->left != nullptr) {
-    val += rob(root->left->left) + rob(root->left->right); //pick first level LEFT tree node
+    val += rob(root->left->left) + rob(root->left->right); //pick 2nd level LEFT tree node
   }
   if (root->right != nullptr) {
-      val += rob(root->right->left) + rob(root->right->right); //pick first level RIGHT tree node
+      val += rob(root->right->left) + rob(root->right->right); //pick 2nd level RIGHT tree node
   }
   return max(val + root->val, rob(root->left) + rob(root->right)); // get the max between root+first level and left+right subtree
 }

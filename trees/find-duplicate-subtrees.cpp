@@ -20,6 +20,18 @@
 //Therefore, you need to return above trees' root in the form of a list.
 //
 
+def porder(root, freq_cntr, res) :
+  if(root) :
+    lt = porder(root.left, freq_cntr, res)
+    rt = porder(root.left, freq_cntr, res)
+    st = str(root.val) + " " + lt + rt
+    if(frq_cntr[st] == 1) :
+      res += [ root ]
+    frq_cntr[st] += 1
+    return st
+  else :
+    return "null"
+
 //######################################## DLR serialization ########################################
 string preorder(TreeNode* root, unordered_map<string, int>& freq, vector<TreeNode*>& res) {
       if(root != NULL) {

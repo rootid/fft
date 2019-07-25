@@ -47,27 +47,6 @@ public class Solution {
 	}
 }
 
-
-
-//################################################ So Far way ################################################
-void combine_helper(int n,int k,vector<vector<int> >&result, vector<int> so_far,int state) {
-      if(so_far.size() == k) {
-          result.push_back(so_far);
-      }
-      for(int i=state;i<=n;i++) {
-          so_far.push_back(i);
-          combine_helper(n,k,result,so_far,++state);
-          so_far.pop_back();
-      }
-}
-
-vector<vector<int>> combine(int n, int k) {
-      vector< vector<int> > result;
-      vector<int> so_far;
-      int state = 1;
-      combine_helper(n,k,result,so_far,state);
-      return result;
-}
 //################################################ Iterative  ################################################
 //Iterative :  1 ( k times)  4(k times)
 //             2 ( k-1 times) 3(k-1)
@@ -125,6 +104,7 @@ vector<vector<int>> combine(int n, int k) {
     print_result(result);
     return result;
 }
+
 //################################################ Bit manipulation ################################################
 vector<vector<int> > combine(int n, int k) {
          vector<vector<int> >res;

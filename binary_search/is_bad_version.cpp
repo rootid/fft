@@ -25,6 +25,7 @@ public int firstBadVersion(int n) {
     return start;
 }
 
+
 //######################################### Binary Search #########################################
 bool isBadVersion(int version);
 class Solution {

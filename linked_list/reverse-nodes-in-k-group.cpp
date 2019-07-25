@@ -85,10 +85,10 @@ class Solution {
             for(int i = 0; i < k && n != null; i++) n = n.next;
             if(n == null) break;
             for(int i = 0; i < k-1; i++) {
-                c = p.next;
-                p.next = c.next;
-                c.next = n.next;
-                n.next = c;
+                c = p.next;  //node to be moved
+                p.next = c.next; //get the next node
+                c.next = n.next; //move the next of current node to n+1
+                n.next = c; //n+1 points to current
             }
         }
         return dummy.next;

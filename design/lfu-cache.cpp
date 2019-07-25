@@ -54,7 +54,7 @@ public class LFUCache {
     private final int capacity;
     private final HashMap<Integer, Integer> keyToVal;
     private final HashMap<Integer, Integer> keyToCount;
-    private final HashMap<Integer, LinkedHashSet<Integer>> countToLRUKeys;
+    private final HashMap<Integer, LinkedHashSet<Integer>> countToLRUKeys; # ordereddict
 
     public LFUCache(int capacity) {
         this.min = -1;

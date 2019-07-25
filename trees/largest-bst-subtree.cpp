@@ -52,7 +52,7 @@ private int[] helper(TreeNode root) {
     return result;
 }
 
-//################################################################## O(N) - Bottom-up solution  ##################################################################
+//############O(N) - Bottom-up solution  #######
 class Result {
     int size;
     int min;

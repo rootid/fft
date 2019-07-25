@@ -112,9 +112,6 @@ public int search(int[] nums, int target) {
     return -1;
 }
 
-
-
-
 int search(vector<int>& a,int start,int end,int key) {
      while(start < end) {
          int mid = start + (end-start)/2;

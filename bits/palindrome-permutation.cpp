@@ -9,7 +9,6 @@
 //Count the frequency of each character.
 //If each character occurs even number of times, then it must be a palindrome.
 //How about character which occurs odd number of times?
-//
 
 //######################################### Compute the frequency of each character #########################################
 boolean canPermutePalindrome(String s) {

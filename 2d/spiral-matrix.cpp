@@ -47,7 +47,7 @@ public List<Integer> spiralOrder(int[][] matrix) {
            cStart++;
        }
        return rsLst;
-   }
+}
 
 //with 2 indexes
 vector<int> spiralOrder(vector<vector<int> >& matrix) {

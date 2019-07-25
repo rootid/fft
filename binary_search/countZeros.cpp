@@ -18,3 +18,13 @@
 //O(N^2)
 //O(N log(N))
 //
+//
+def number_of_zeros(self, grid) :
+  r,c = map(len, [grid, grid[0])
+  cnt = 0
+  for i in range(r) :
+    for j in range(c) :
+      if(grid[i][j] == 0)
+        cnt += 1
+  return cnt
+

@@ -1,6 +1,6 @@
-######################################### Python Complexity ######################################### 
+######################################### Python Complexity #########################################
 https://www.ics.uci.edu/~pattis/ICS-33/lectures/complexitypython.txt
-#LBYP : 
+#LBYP :
 #Look before you leap. This coding style explicitly tests for pre-conditions before making calls or lookups. This style contrasts with the EAFP approach and is characterized by the presence of many if statements.
 #https://docs.python.org/3/glossary.html#term-lbyl
 if "key" in my_dict:

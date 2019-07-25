@@ -1,9 +1,6 @@
 //Given a binary search tree and a node in it, find the in-order successor of that node in the BST.
-//Note: If the given node has no in-order successor in the tree, return null. 
-//
+//Note: If the given node has no in-order successor in the tree, return null.
 //Assumption : No duplicates are allowed in the BST.
-//
-//
 //
 //FAILED CASE : p in below BST should return 2, while the new solution will return 3.
 //    2 (p)
@@ -13,8 +10,8 @@
 //       2    4
 
 
-//################################# Time complexity : O(h) ################################# 
-//Recursion 
+//################################# Time complexity : O(h) #################################
+//Recursion
 public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
     if(root == null) return root;
     if(root.val <= p.val) return inorderSuccessor(root.right, p);
@@ -22,7 +19,7 @@ public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
     return nxtNode == null ? root : nxtNode;
 }
 
-//################################# Time complexity : O(h) ################################# 
+//################################# Time complexity : O(h) #################################
 //Only in a balanced BST O(h) = O(log n)
 TreeNode* inorderSuccessor(TreeNode* root, TreeNode* p) {
     TreeNode* succ = nullptr;
@@ -39,7 +36,7 @@ TreeNode* inorderSuccessor(TreeNode* root, TreeNode* p) {
 }
 
 
-//############################### Ternary style c++ ############################################### 
+//############################### Ternary style c++ ###############################################
 TreeNode* inorderSuccessor(TreeNode* root, TreeNode* p) {
     TreeNode* candidate = NULL;
     while (root)
@@ -47,7 +44,7 @@ TreeNode* inorderSuccessor(TreeNode* root, TreeNode* p) {
     return candidate;
 }
 
-//############################### Iterative O(h) ############################################### 
+//############################### Iterative O(h) ###############################################
 TreeNode* inorderSuccessor(TreeNode* root, TreeNode* p) {
     //Optimization
     if (p->right) {
@@ -63,7 +60,7 @@ TreeNode* inorderSuccessor(TreeNode* root, TreeNode* p) {
 }
 
 //
-//######################################## O(h) ######################################## 
+//######################################## O(h) ########################################
 //1.  The easier one: p has right subtree, then its successor is just the leftmost child of its right subtree; (leftMost
 //rotuine) line # 77
 //2.  The harder one: p has no right subtree, then a traversal is needed to find its successor.
@@ -73,11 +70,11 @@ public:
         if (p -> right) return leftMost(p -> right);
         TreeNode* suc = NULL;
         while (root) {
-            if (p->val < root->val) { 
+            if (p->val < root->val) {
                 suc = root; //store the first node of the left subtree
                 root = root->left;
             } else if (p->val > root->val) {
-                root = root->right; 
+                root = root->right;
             }
             else break;
         }
@@ -91,7 +88,7 @@ private:
 };
 
 
-////######################################### Java ######################################### 
+////######################################### Java #########################################
 public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
     TreeNode succ = null;
     while (root != null) {
@@ -105,7 +102,7 @@ public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
     return succ;
 }
 //
-//######################################### Recursive ######################################### 
+//######################################### Recursive #########################################
 public TreeNode successor(TreeNode root, TreeNode p) {
   if (root == null)
     return null;
@@ -117,7 +114,7 @@ public TreeNode successor(TreeNode root, TreeNode p) {
   }
 }
 
-//######################## Avoid unnecessary recursion call line # 77 : successor(root.right, p); ######################## 
+//######################## Avoid unnecessary recursion call line # 77 : successor(root.right, p); ########################
 //public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
 //    while (root != null && root.val <= p.val)
 //        root = root.right;
@@ -127,7 +124,7 @@ public TreeNode successor(TreeNode root, TreeNode p) {
 //    return (left != null && left.val > p.val) ? left : root;
 //}
 //
-//######################## Compact version ######################## 
+//######################## Compact version ########################
 //public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
 //    while (root != null && root.val <= p.val)
 //        root = root.right;
@@ -148,7 +145,7 @@ public TreeNode successor(TreeNode root, TreeNode p) {
 //  }
 //}
 
-//######################################### Pytonic ######################################### 
+//######################################### Pytonic #########################################
 //def inorderSuccessor(self, root, p):
 //    succ = None
 //    while root:

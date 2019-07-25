@@ -47,7 +47,6 @@ def minMeetingRooms(self, intervals):
                    numRooms += 1
                else:
                    available -= 1
-
                s += 1
            else:
                available += 1
@@ -87,6 +86,7 @@ int minMeetingRooms(vector<Interval>& intervals) {
     }
     return cnt;
 }
+
 //######################################### Min Heap #########################################
 //min heap, average time complexity is O(nlogn)
 public int minMeetingRooms(Interval[] intervals) {

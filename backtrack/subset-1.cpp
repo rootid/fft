@@ -36,8 +36,7 @@ private void subsetsHelper(int[] nums,int k,List<Integer>soFarList, List<List<In
     subsetsHelper(nums, k+1, soFarList, result);
 }
 
-//B - ######################################### Recursion
-//#########################################
+//B - ####### Recursion #######
 class Solution {
     public List<List<Integer>> subsets(int[] nums) {
         List<Integer> soFar = new LinkedList<>();

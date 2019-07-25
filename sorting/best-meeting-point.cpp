@@ -15,6 +15,8 @@
 //Try to solve it in one dimension first. How can this solution apply to the
 //two dimension case?
 
+
+## 2 q 1. Which point 1. what is the total distance - GEEKFORGEEKS
 //######################################### #########################################
 //TC : O(nm)
 //SC : O(nm)

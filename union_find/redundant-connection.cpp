@@ -140,5 +140,5 @@ class Solution:
         for u, v in edges:
             if unionfind.find(u, v):
                 return [u, v]
-            unionfind.unite(u, v
+            unionfind.unite(u, v)
 

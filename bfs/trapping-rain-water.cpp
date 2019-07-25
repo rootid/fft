@@ -35,7 +35,7 @@ int trap(vector<int>& height)  {
       if (s.empty() || height[s.top()] >= height[i])  //monotonic decreaing then add
           s.push(i++);
        else {
-          //Fact : we need at least 3 bars to hold the water
+          //Obs : we need at least 3 bars to hold the water
           int oldTop = height[s.top()];
           s.pop(); //remove 1 so at least 1 must left
           max_water += s.empty() ? 0 : ( (min(height[i],height[s.top()])-oldTop) * (i-s.top()-1));
